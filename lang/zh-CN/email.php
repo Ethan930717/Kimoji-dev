@@ -32,7 +32,7 @@ return [
     'invite-header'       => 'Hi!欢迎你加入',
     'invite-invited'      => '来自KIMOJI的邀请',
     'invite-invited1'     => '我们是一个健康向上的站点，我们希望为所有的宝爸宝妈提供国内外最优质的亲子教育资源，同时我们也致力于为影视发烧友们提供最经典与最热门的影视资源。在此诚挚的邀请你加入我们的大家庭!',
-    'invite-message'      => '致亲爱的你',
+    'invite-message'      => '致热爱PT的你',
     'invite-signup'       => '立即注册',
     'newreply-header'     => '您的话题有新的回复',
     'newreply-message'    => '信息',

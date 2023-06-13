@@ -54,9 +54,21 @@
     </svg>
 
 
+    <div id="formContent">
+        <a href="{{ route('login') }}">
+            <h2 class="inactive underlineHover">{{ __('auth.login') }} </h2>
+        </a>
+        <a href="{{ route('register') }}">
+            <h2 class="inactive underlineHover">{{ __('auth.signup') }} </h2>
+        </a>
+
+        <div class="fadeIn first">
+            <img src="{{ url('/img/icon.svg') }}" id="icon" alt="{{ __('auth.user-icon') }}"/>
+        </div>
+
         <form class="form-horizontal" role="form" method="POST" action="{{ route('password.request') }}">
             @csrf
-            <input type="hidden" name="token" value="{{ $token }}">
+            <input type="hidden" name="token" value="{{ request()->route('token') }}">
             <div class="row">
                 <div class="form-group">
                     <label for="email"></label><input type="email" id="email" class="fadeIn third" name="email"
@@ -84,9 +96,6 @@
         <div id="formFooter">
             <a href="{{ route('password.request') }}">
                 <h2 class="active">{{ __('auth.lost-password') }} </h2>
-            </a>
-            <a href="{{ route('username.request') }}">
-                <h2 class="inactive underlineHover">{{ __('auth.lost-username') }} </h2>
             </a>
         </div>
     </div>

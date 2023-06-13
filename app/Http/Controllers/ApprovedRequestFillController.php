@@ -73,7 +73,7 @@ class ApprovedRequestFillController extends Controller
         // Auto Shout
         if ($torrentRequest->filled_anon) {
             $this->chatRepository->systemMessage(
-s               printf('一位匿名用户已经满足了请求，[url=%s]%s[/url]', href_request($torrentRequest), $torrentRequest->name)
+                sprintf('一位匿名用户已经满足了请求，[url=%s]%s[/url]', href_request($torrentRequest), $torrentRequest->name)
             );
         } else {
             $this->chatRepository->systemMessage(
