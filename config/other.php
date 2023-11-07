@@ -21,7 +21,7 @@ return [
     |
     */
 
-    'title' => 'UNIT3D',
+    'title' => 'KIMOJI',
 
     /*
     |--------------------------------------------------------------------------
@@ -32,7 +32,7 @@ return [
     |
     */
 
-    'subTitle' => 'Built On Laravel',
+    'subTitle' => 'Kimoji Family Fun Park',
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'meta_description' => 'Built On Laravel',
+    'meta_description' => 'Family Fun Park',
 
     /*
     |--------------------------------------------------------------------------
@@ -64,7 +64,7 @@ return [
     | Date Site Was Born
     |
     */
-    'birthdate' => 'December 30th 2017',
+    'birthdate' => 'October 1th 1949',
 
     /*
     |--------------------------------------------------------------------------
@@ -155,7 +155,7 @@ return [
     | 7 = Dark Teal Theme
     | 8 = Dark Yellow Theme
     */
-    'default_style' => 0,
+    'default_style' => 4,
 
     /*
     |--------------------------------------------------------------------------
