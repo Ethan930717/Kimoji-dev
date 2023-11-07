@@ -1,5 +1,5 @@
 :root {
-  --text-color: #e2e2e2;
+  --text-color: #AEC2E7;
   --color-dark-magenta: hsl(300, 10%, 25%);
   --color-dark-green: hsl(120, 10%, 25%);
   --color-dark-blue: hsl(240, 10%, 30%);
@@ -20,7 +20,7 @@
   --color-bright-white: hsl(0, 0%, 100%);
   --color-light-orange: hsl(20, 20%, 50%);
 
-  --message-bubble-bg: #363636;
+  --message-bubble-bg: #AEC2E7;
   --message-bubble-fg: currentColor;
   --message-bubble-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
   --message-bubble-border-radius: 20px;
@@ -129,7 +129,7 @@
   --key-value-odd-bg: #272727;
   --key-value-padding: 10px;
 
-  --label-bg: #e2e2e2;
+  --label-bg: #AEC2E7;
   --label-fg: #424242;
   --label-fg-active: #2195f3;
   --label-fg-error: #ba1b1b;
@@ -156,7 +156,7 @@
   --meta-chip-icon-fg: #1f1f1f;
   --meta-chip-icon-hover-bg: #bbb;
   --meta-chip-icon-bg: #cdcdcd;
-  --meta-chip-name-fg: #e2e2e2;
+  --meta-chip-name-fg: #AEC2E7;
   --meta-chip-value-fg: #aaa;
   --meta-chip-value-hover-fg: #ccc;
   --meta-chip-backdrop-filter-hover:  brightness(2) blur(10px);
@@ -201,7 +201,7 @@
 
   --quick-search-bg: #1a1a1a;
   --quick-search-fg: #b6b6b6;
-  --quick-search-border: 1px solid #363636;
+  --quick-search-border: 1px solid #AEC2E7;
   --quick-search-border-radius: 0;
   --quick-search-box-shadow: none;
   --quick-search-selector-fg: #b6b6b6;
@@ -821,7 +821,7 @@ a:hover {
 }
 
 .subforum-listing__latest-datetime {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .subforum-listing__topic-stats dt {

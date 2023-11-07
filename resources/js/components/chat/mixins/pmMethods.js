@@ -18,7 +18,7 @@ export default {
                     '<input type="hidden" id="receiver-id" name="receiver-id" value="' +
                     user.id +
                     '">\n' +
-                    '<textarea id="chat-message-pm" name="message-pm" placeholder="Write your message..." cols="30" rows="5"></textarea>' +
+                    '<textarea id="chat-message-pm" name="message-pm" placeholder="输入内容..." cols="30" rows="5"></textarea>' +
                     '</div>',
                 showCancelButton: true,
                 confirmButtonText: 'Send',

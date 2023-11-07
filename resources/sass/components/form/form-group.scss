@@ -1,10 +1,17 @@
 /* Used alongside floating labels */
 
 .form__group {
-    background-color: inherit;
+    border-radius: 20px;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+    border: 2px rgba(255, 255, 255, 0.4) solid;
+    border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
+    border-right: 2px rgba(40, 40, 40, 0.35) solid;
+    margin-top: 2px !important;
     position: relative;
-    margin-top: 0 !important; /* Can be removed once site-wide `p` styles are removed */
-    width: 100%;
+    width: 97%;
+    color: #ffffff;
 }
 
 .form__group--horizontal {

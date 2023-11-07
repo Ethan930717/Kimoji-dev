@@ -31,6 +31,7 @@ class ForgotUsernameController extends Controller
         return view('auth.username');
     }
 
+
     /**
      * Send Username Reminder.
      */
@@ -66,5 +67,7 @@ class ForgotUsernameController extends Controller
 
         return to_route('login')
             ->withSuccess(trans('email.username-sent'));
+
+
     }
 }

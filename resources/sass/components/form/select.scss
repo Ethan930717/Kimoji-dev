@@ -22,13 +22,13 @@
     border: var(--select-border);
     border-radius: var(--select-border-radius);
     color: var(--select-fg);
-    font-size: 14px;
+    font-size: 12px;
     font-weight: normal;
     height: 40px;
     max-width: 100%;
     outline: none;
     padding: var(--select-padding);
-    width: 100%;
+    width: 97%;
     appearance: none;
 
     @media screen and (prefers-reduced-motion: no-preference) {
@@ -51,6 +51,7 @@
             color: var(--label-fg-active);
             border-radius: 0;
             padding: 0 4px;
+            text-shadow: 0 0 4px #fff;
         }
     }
 

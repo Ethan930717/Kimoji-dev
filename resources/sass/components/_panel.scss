@@ -14,25 +14,28 @@
     border-radius: var(--panel-border-radius);
     height: fit-content;
     break-inside: avoid;
+    backdrop-filter: blur(20px);
 }
 
 .panel__header {
-    background-color: var(--panel-head-bg);
+    background-color: transparent;
     color: var(--panel-head-fg);
     margin: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-weight: bold;
 }
 
 .panel__heading {
     background-color: var(--panel-head-bg);
     color: var(--panel-head-fg);
     display: block;
-    margin: 0;
+    margin-bottom: 4px;
     padding: 7px 5px;
-    font-size: 16px;
+    font-size: 18px;
     flex-grow: 1;
+    text-shadow: 0 0 5px #fb7171;
 }
 
 .panel__heading--centered {
@@ -48,6 +51,11 @@
     padding: 4px 4px 4px 12px;
     color: var(--panel-action-fg);
     background-color: var(--panel-head-bg);
+    /*border: 2px rgba(255,255,255,0.4) solid;*/
+    /*border-bottom: 2px rgba(40,40,40,0.35) solid;*/
+    /*border-right: 2px rgba(40,40,40,0.35) solid;*/
+    backdrop-filter: blur(20px);
+    border-radius: 18px;
 }
 
 .panel__action {
@@ -98,6 +106,7 @@
     padding: 0;
     margin: 0;
     background-color: var(--data-table-th-bg);
+    color: #ffffff;
 }
 
 .panel__tabs--centered {
@@ -111,6 +120,14 @@
     border-bottom: 2px solid var(--data-table-th-fg);
     cursor: pointer;
     white-space: nowrap;
+    border-radius: 20px;
+    backdrop-filter: blur(3px);
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+    border: 2px rgba(255, 255, 255, 0.4) solid;
+    border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
+    border-right: 2px rgba(40, 40, 40, 0.35) solid;
+    font-size: 15px;
+    margin-left: 5px;
 }
 
 .panel__tab--full-width {
@@ -119,7 +136,8 @@
 }
 
 .panel__tab--active {
-    color: #b0b0b0;
+    color: #ffffff;
+    text-shadow: 0 0 4px #fff, 0 0 10px #fff, 0 0 15px #7eeeee;
     border-bottom: 2px solid #888;
 }
 
@@ -130,6 +148,8 @@
     color: var(--panel-fg);
     background-color: var(--panel-bg);
     overflow-wrap: break-word;
+    backdrop-filter: blur(3px);
+    margin-left: 6px;
 }
 
 .panel--grid-item {

@@ -24,6 +24,15 @@ use App\Models\Page;
 class PageController extends Controller
 {
     /**
+     * Sponser.
+     */
+    public function sponsor(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+    {
+        return view('page.sponsor');
+    }
+
+
+    /**
      * Display All Pages.
      */
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View

@@ -45,10 +45,12 @@
 
 .data-table tr:nth-child(even) > td {
     background-color: var(--data-table-tr-even-bg);
+    backdrop-filter: blur(8px);
 }
 
 .data-table tr:nth-child(odd) > td {
     background-color: var(--data-table-tr-odd-bg);
+    backdrop-filter: blur(8px);
 }
 
 /* hovered row */

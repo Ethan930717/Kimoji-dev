@@ -76,10 +76,10 @@ class StoreTorrentRequest extends FormRequest
 
                     if ($torrent !== null) {
                         match ($torrent->status) {
-                            Torrent::PENDING   => $fail('A torrent with the same info_hash has already been uploaded and is pending moderation.'),
-                            Torrent::APPROVED  => $fail('A torrent with the same info_hash has already been uploaded and has been approved.'),
-                            Torrent::REJECTED  => $fail('A torrent with the same info_hash has already been uploaded and has been rejected.'),
-                            Torrent::POSTPONED => $fail('A torrent with the same info_hash has already been uploaded and is currently postponed.'),
+                            Torrent::PENDING   => $fail('当前已有相同的种子正在等待审核'),
+                            Torrent::APPROVED  => $fail('当前种子已存在'),
+                            Torrent::REJECTED  => $fail('有相同的种子正在拒绝列表中，请PM管理处理'),
+                            Torrent::POSTPONED => $fail('有相同的种子正在推迟列表中，请PM管理处理'),
                             default            => null,
                         };
                     }

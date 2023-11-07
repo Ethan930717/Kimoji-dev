@@ -71,7 +71,7 @@ class AppServiceProvider extends ServiceProvider
                 $maxLimit = (isset($parameters[1]) && is_numeric($parameters[1])) ? $parameters[1] : 1_200;
 
                 if (! HiddenCaptcha::check($validator, $minLimit, $maxLimit)) {
-                    $validator->setCustomMessages(['hiddencaptcha' => 'Captcha error']);
+                    $validator->setCustomMessages(['hiddencaptcha' => '验证失败']);
 
                     return false;
                 }

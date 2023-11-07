@@ -1,6 +1,6 @@
 <template>
   <select id="currentChatroom" v-model="selected" @change="changedRoom">
-    <option value="0" selected disabled>Join a room</option>
+    <option value="0" selected disabled>选择聊天室</option>
     <option v-for="chatroom in chatrooms" :value="chatroom.id">{{ chatroom.name }}</option>
   </select>
 </template>

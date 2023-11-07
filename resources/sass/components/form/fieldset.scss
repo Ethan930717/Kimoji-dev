@@ -1,6 +1,6 @@
 .form__fieldset {
     background-color: var(--fieldset-bg);
-    border: var(--fieldset-border);
+    /*border: var(--fieldset-border);*/
     border-radius: var(--fieldset-border-radius);
     color: var(--fieldset-fg);
     font-size: 14px;
@@ -8,7 +8,7 @@
     max-width: 100%;
     outline: none;
     padding: 6px 12px 12px 12px;
-    width: 100%;
+    /*width: 100%;*/
     height: 100%;
 }
 

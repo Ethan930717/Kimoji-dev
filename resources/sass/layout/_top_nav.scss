@@ -45,7 +45,7 @@
 .top-nav__branding {
     grid-area: branding;
     text-decoration: none;
-    color: #9682de;
+    color: #1c7f23;
     display: flex;
     column-gap: 5px;
     align-items: center;
@@ -58,9 +58,9 @@
     background-clip: text;
     background-image: radial-gradient(
         circle,
-        rgba(21, 225, 237, 1) 0%,
-        rgba(175, 99, 228, 1) 44%,
-        rgba(141, 0, 255, 1) 86%
+        #52d565 0%,
+        #32d823 44%,
+        #1db319 86%
     );
     font-weight: 400;
     font-size: 2.5rem;
@@ -79,6 +79,12 @@
     grid-area: menus;
     margin: auto 0;
     padding: 0;
+    border: 1px rgba(255, 255, 255, 0.2) solid;
+    background-color: rgba(84, 107, 115, 0.035);
+    backdrop-filter: blur(5px);
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+    border-radius: 16px;
+    z-index: 1000;
 
     &.mobile {
         display: flex;
@@ -88,7 +94,8 @@
             position: static;
             box-shadow: none;
             margin-left: 24px;
-            background-color: inherit;
+            background: linear-gradient(-45deg, rgba(179, 243, 147, 0.78), rgba(141, 192, 115, 0.78), rgba(105, 143, 86, 0.78), rgba(107, 178, 83, 0.74));
+            backdrop-filter: blur(20px);
         }
 
         .top-nav__dropdown > a {
@@ -119,6 +126,7 @@
     font-size: 15px;
     white-space: nowrap;
     text-decoration: none;
+    text-shadow: 0 0 4px #fff;
 }
 
 @media (hover: none) {
@@ -167,7 +175,7 @@
     flex-direction: column;
     padding: 6px;
     row-gap: 6px;
-    background-color: var(--top-nav-dropdown-menu-bg);
+    background: var(--top-nav-dropdown-menu-bg);
     border-radius: var(--top-nav-dropdown-menu-border-radius);
     box-shadow: var(--top-nav-dropdown-menu-box-shadow);
     border: var(--top-nav-dropdown-menu-border);
@@ -183,6 +191,8 @@
     position: absolute;
     top: -5px;
     width: 100%;
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(20px);
 }
 
 .top-nav__icon-bar .top-nav__dropdown > ul {
@@ -190,10 +200,13 @@
 }
 
 .top-nav__icon-bar.mobile .top-nav__dropdown > ul {
+    background: linear-gradient(-45deg, #bec6ecc8, #8496ecc8, #7486dec8, #546fecc8);
+    height: auto;
+    background-size: 500% 500%;
+    animation: bg-animation 5s infinite;
+    box-shadow: none;
     display: flex;
     position: static;
-    background-color: inherit;
-    box-shadow: none;
 }
 
 .top-nav__dropdown > ul > li > a,
@@ -379,7 +392,7 @@
 
 .top-nav__icon-bar > li > a > i {
     color: var(--top-nav-icon-bar-icon-fg);
-    font-size: 16px;
+    font-size: 20px;
     text-align: center;
     aspect-ratio: 1;
     border-radius: var(--top-nav-icon-bar-icon-border-radius);

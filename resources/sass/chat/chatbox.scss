@@ -12,7 +12,7 @@
 }
 #frame {
     height: 100%;
-    background: #e6eaea;
+    background: #ffffff00;
     #sidepanel {
         float: left;
         min-width: 280px;
@@ -459,7 +459,7 @@
                             }
 
                             &.chat-user-image {
-                                border: 3px solid #7289da;
+                                border: 3px solid #7289da00;
                                 margin-right: 10px;
                                 padding: 0;
                                 width: 40px;
@@ -469,7 +469,7 @@
                             }
 
                             &.chat-bot-image {
-                                border: 3px solid #7289da;
+                                border: 3px solid #7289da00;
                                 margin-right: 5px;
                                 padding: 0;
                                 width: 22px;

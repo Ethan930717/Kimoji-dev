@@ -54,6 +54,10 @@ Route::middleware('language')->group(function (): void {
         Route::get('username/reminder', [App\Http\Controllers\Auth\ForgotUsernameController::class, 'showForgotUsernameForm'])->name('username.request');
         Route::post('username/reminder', [App\Http\Controllers\Auth\ForgotUsernameController::class, 'sendUsernameReminder'])->name('username.email');
 
+        // loginsponsor
+
+        Route::get('/loginsponsor', [App\Http\Controllers\Auth\LoginSponsorController::class, 'showSponsorPage'])->name('loginsponsor');
+
         // Password Reset
         Route::post('password/email', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
         Route::get('password/reset', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
@@ -63,6 +67,7 @@ Route::middleware('language')->group(function (): void {
         // Registration
         Route::get('/register/{code?}', [App\Http\Controllers\Auth\RegisterController::class, 'registrationForm'])->name('registrationForm');
         Route::post('/register/{code?}', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register');
+
     });
 
     /*
@@ -124,6 +129,7 @@ Route::middleware('language')->group(function (): void {
             Route::get('/internal', [App\Http\Controllers\PageController::class, 'internal'])->name('internal');
             Route::get('/blacklist/clients', [App\Http\Controllers\PageController::class, 'clientblacklist'])->name('client_blacklist');
             Route::get('/aboutus', [App\Http\Controllers\PageController::class, 'about'])->name('about');
+            Route::get('/sponsor', [App\Http\Controllers\PageController::class, 'sponsor'])->name('sponsor');
             Route::get('/{page}', [App\Http\Controllers\PageController::class, 'show'])->where('id', '[0-9]+')->name('pages.show');
         });
 

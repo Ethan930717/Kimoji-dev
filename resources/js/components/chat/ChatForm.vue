@@ -85,7 +85,7 @@
                 placeholder=" "
                 send="true"
             ></textarea>
-        <label class="form__label form__label--floating">Write your message...</label>
+        <label class="form__label form__label--floating">输入内容...</label>
       </div>
     </div>
   </div>

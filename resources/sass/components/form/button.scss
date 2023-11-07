@@ -12,6 +12,13 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5ch;
+    border-radius: 12px;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+    border: 2px rgba(255, 255, 255, 0.4) solid;
+    border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
+    border-right: 2px rgba(40, 40, 40, 0.35) solid;
 
     &:hover {
         filter: brightness(1.1);
@@ -46,6 +53,11 @@
     color: var(--button-text-fg);
     border: var(--button-text-border);
     border-radius: var(--button-text-border-radius);
+    backdrop-filter: blur(3px);
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+    border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
+    border-right: 2px rgba(40, 40, 40, 0.35) solid;
+    text-shadow: 0 0 4px #fff;
 }
 
 /* Outlined */
@@ -53,8 +65,8 @@
 .form__button--outlined {
     background: var(--button-outlined-bg);
     color: var(--button-outlined-fg);
-    border: var(--button-outlined-border);
-    border-radius: var(--button-outlined-border-radius);
+    /*border: var(--button-outlined-border);*/
+    /*border-radius: var(--button-outlined-border-radius);*/
 }
 
 /* Standard Icon Buttons
