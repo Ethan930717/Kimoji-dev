@@ -57,10 +57,6 @@
             <h2 class="active">{{ __('auth.signup') }} </h2>
         </a>
 
-        <div class="fadeIn first">
-            <img src="{{ url('/img/icon.svg') }}" id="icon" alt="{{ __('auth.user-icon') }}"/>
-        </div>
-
         <form role="form" method="POST" action="{{ route('register', ['code' => $code]) }}">
             @csrf
             <label for="username"></label><input type="text" id="username" class="fadeIn second" name="username"

@@ -57,7 +57,7 @@
                 @endforeach
             </ol>
         @else
-            No topics.
+            暂无主题
         @endif
     </div>
     {{ $posts->links('partials.pagination') }}

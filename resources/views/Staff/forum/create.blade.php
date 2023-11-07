@@ -1,7 +1,7 @@
 @extends('layout.default')
 
 @section('title')
-    <title>Add Forums - {{ __('staff.staff-dashboard') }} - {{ config('other.title') }}</title>
+    <title>添加板块 - {{ __('staff.staff-dashboard') }} - {{ config('other.title') }}</title>
 @endsection
 
 @section('meta')
@@ -28,35 +28,35 @@
 
 @section('main')
     <section class="panelV2">
-        <h2 class="panel__heading">Add a new Forum</h2>
+        <h2 class="panel__heading">添加新板块</h2>
         <div class="panel__body">
             <form class="form" method="POST" action="{{ route('staff.forums.store') }}">
                 @csrf
                 <p class="form__group">
                     <select id ="forum_type" class="form__select" name="forum_type" required>
-                        <option class="form__option" value="category">Category</option>
-                        <option class="form__option" value="forum">Forum</option>
+                        <option class="form__option" value="category">分类</option>
+                        <option class="form__option" value="forum">板块</option>
                     </select>
-                    <label class="form__label form__label--floating" for="forum_type">Forum Type</label>
+                    <label class="form__label form__label--floating" for="forum_type">板块分类</label>
                 </p>
                 <p class="form__group">
                     <input id="name" class="form__text" type="text" name="name" required>
-                    <label class="form__label form__label--floating" for="name">Title</label>
+                    <label class="form__label form__label--floating" for="name">标题</label>
                 </p>
                 <p class="form__group">
                     <textarea id="description" class="form__textarea" name="description" placeholder=" "></textarea>
-                    <label class="form__label form__label--floating" for="description">Description</label>
+                    <label class="form__label form__label--floating" for="description">描述</label>
                 </p>
                 <p class="form__group">
                     <select id="parent_id" class="form__select" name="parent_id">
-                        <option value="">New Category</option>
+                        <option value="">新的分类</option>
                         @foreach ($categories as $category)
                             <option class="form__option" value="{{ $category->id }}">
-                                New Forum In {{ $category->name }} Category
+                                {{ $category->name }} 分类下的新板块
                             </option>
                         @endforeach
                     </select>
-                    <label class="form__label form__label--floating" for="parent_id">Parent forum</label>
+                    <label class="form__label form__label--floating" for="parent_id">主板块</label>
                 </p>
                 <p class="form__group">
                     <input
@@ -71,16 +71,16 @@
                     <label class="form__label form__label--floating" for="position">{{ __('common.position') }}</label>
                 </p>
                 <p class="form__group">
-                    <h3>Permissions</h3>
+                    <h3>权限</h3>
                     <div class="data-table-wrapper">
                         <table class="data-table">
                             <thead>
                             <tr>
-                                <th>Groups</th>
-                                <th>View the forum</th>
-                                <th>Read topics</th>
-                                <th>Start new topic</th>
-                                <th>Reply to topics</th>
+                                <th>群组</th>
+                                <th>查看论坛</th>
+                                <th>阅读主题</th>
+                                <th>添加新主题</th>
+                                <th>回复主题</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -106,7 +106,7 @@
                     </div>
                 </p>
                 <p class="form__group">
-                    <button class="form__button form__button--filled">Save Forum</button>
+                    <button class="form__button form__button--filled">保存</button>
                 </p>
             </form>
         </div>

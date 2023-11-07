@@ -1,7 +1,7 @@
 <section class="panelV2"
      x-data="{ tab: window.location.hash ? window.location.hash.substring(1) : 'recommendations' }" id="tab_wrapper">
     <!-- The tabs navigation -->
-    <h2 class="panel__heading">Relations</h2>
+    <h2 class="panel__heading">相关内容</h2>
     <menu class="panel__tabs">
         <li
             class="panel__tab"
@@ -9,7 +9,7 @@
             x-bind:class="tab === 'recommendations' && 'panel__tab--active'"
             x-on:click="tab = 'recommendations'; window.location.hash = 'recommendations'"
         >
-            Recommendations
+            推荐
         </li>
         <li
             class="panel__tab"
@@ -17,7 +17,7 @@
             x-bind:class="tab === 'collection' && 'panel__tab--active'"
             x-on:click="tab = 'collection'; window.location.hash = 'collection'"
         >
-            Collection
+            收藏
         </li>
         <li
             class="panel__tab"
@@ -25,7 +25,7 @@
             x-bind:class="tab === 'playlists' && 'panel__tab--active'"
             x-on:click="tab = 'playlists'; window.location.hash = 'playlists'"
         >
-            Playlists
+            播放列表
         </li>
     </menu>
     <!-- The tabs content -->

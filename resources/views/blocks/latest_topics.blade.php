@@ -18,7 +18,7 @@
         </ul>
     @else
         <div class="panel__body">
-            No topics.
+            暂无主题
         </div>
     @endif
 </section>

@@ -1,6 +1,6 @@
 <div class="panelV2" x-data="{ show: false }">
     <h2 class="panel__heading" style="cursor: pointer;" @click="show = !show">
-        <i class="{{ config("other.font-awesome") }} fa-clipboard-list"></i> Audits
+        <i class="{{ config("other.font-awesome") }} fa-clipboard-list"></i> 审核日志
         <i class="{{ config("other.font-awesome") }} fa-plus-circle fa-pull-right" x-show="!show"></i>
         <i class="{{ config("other.font-awesome") }} fa-minus-circle fa-pull-right" x-show="show" x-cloak></i>
     </h2>
@@ -8,10 +8,10 @@
         <table class="data-table">
             <thead>
                 <tr>
-                    <th>User</th>
+                    <th>用户</th>
                     <th>{{ __('common.action') }}</th>
-                    <th>Date</th>
-                    <th>Modifications</th>
+                    <th>时间</th>
+                    <th>修改内容</th>
                 </tr>
             </thead>
             <tbody>

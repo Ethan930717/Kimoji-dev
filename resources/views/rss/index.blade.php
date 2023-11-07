@@ -123,7 +123,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8">No public RSS feeds</td>
+                            <td colspan="8">无公共RSS流</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -257,7 +257,7 @@
                     </tr>
                     @empty
                         <tr>
-                            <td colspan="9">No private RSS feeds</td>
+                            <td colspan="9">无私有RSS流</td>
                         </tr>
                     @endforelse
                 </tbody>

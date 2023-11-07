@@ -82,7 +82,7 @@
     @endif
     @if ($torrent->sd)
         <i
-            class="{{ config('other.font-awesome') }} fa-ticket torrent-icons__sd"
+            class="{{ config('other.font-awesome') }} fa-solod fa-child"
             title="{{ __('torrent.sd-content') }}"
         ></i>
     @endif

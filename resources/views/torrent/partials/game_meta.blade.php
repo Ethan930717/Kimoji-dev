@@ -41,7 +41,7 @@
                     'tvdb'        => $torrent->tvdb ?? '',
                     'igdb'        => $torrent->igdb ?? '',
                 ]) }}">
-                    Request similar
+                    申请补档
                 </a>
             </li>
         </ul>

@@ -31,6 +31,16 @@
     </div>
 @endif
 <div class="wrapper fadeInDown">
+
+
+    <div id="formContent">
+        <a href="{{ route('login') }}">
+            <h2 class="inactive underlineHover">{{ __('auth.login') }}</h2>
+        </a>
+        <a href="{{ route('registrationForm', ['code' => 'null']) }}">
+            <h2 class="inactive underlineHover">{{ __('auth.signup') }}</h2>
+        </a>
+
     <svg viewBox="0 0 800 100" class="sitebanner">
         <symbol id="s-text">
             <text text-anchor="middle" x="50%" y="50%" dy=".35em">
@@ -43,18 +53,6 @@
         <use xlink:href="#s-text" class="text"></use>
         <use xlink:href="#s-text" class="text"></use>
     </svg>
-
-    <div id="formContent">
-        <a href="{{ route('login') }}">
-            <h2 class="inactive underlineHover">{{ __('auth.login') }}</h2>
-        </a>
-        <a href="{{ route('registrationForm', ['code' => 'null']) }}">
-            <h2 class="inactive underlineHover">{{ __('auth.signup') }}</h2>
-        </a>
-
-        <div class="fadeIn first">
-            <img src="{{ url('/img/icon.svg') }}" id="icon" alt="{{ __('auth.user-icon') }}"/>
-        </div>
 
         <form class="form-horizontal" role="form" method="POST" action="{{ route('password.email') }}">
             @csrf

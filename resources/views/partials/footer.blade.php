@@ -1,11 +1,7 @@
 <footer class="footer">
     <div class="footer__wrapper">
-        <section class="footer__section">
-            <h2 class="footer__section-title">
-                <b>{{ config('other.title') }}</b>
-            </h2>
-            <p>{{ config('other.meta_description') }}</p>
-            <i class="{{ config('other.font-awesome') }} fa-tv-retro footer-icon" style="font-size: 90px;"></i>
+        <section class="footer__section" style="text-align: center; display: flex; justify-content: center; align-items: center; height: 100%;">
+            <img src="/img/indexlogo.png" alt="Footer Logo" style="max-width: 100%; height: auto;margin-top: 30px">
         </section>
         <section class="footer__section">
             <h2 class="footer__section-title">{{ __('common.account') }}</h2>
@@ -73,22 +69,13 @@
             <ul class="footer__section-list">
                 <li>
                     <a
-                        href="https://github.com/sponsors/HDVinnie"
-                        target="_blank"
+                        href="{{ route('sponsor') }}"
                         class="form__button form__button--outlined"
                     >
                         {{ __('common.sponsor') }}
                     </a>
                 </li>
-                <li>
-                    <a
-                        href="https://github.com/HDInnovations/UNIT3D"
-                        target="_blank"
-                        class="form__button form__button--outlined"
-                    >
-                        {{ __('common.powered-by') }}
-                    </a>
-                </li>
+
             </ul>
         </section>
     </div>

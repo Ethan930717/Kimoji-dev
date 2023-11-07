@@ -33,7 +33,7 @@
                             class="form__button form__button--text"
                             title="This commands enables maintenance mode while whitelisting only your IP Address."
                         >
-                            Enable Maintenance Mode
+                            开启维护模式
                         </button>
                     </form>
                 </p>
@@ -44,7 +44,7 @@
                             class="form__button form__button--text"
                             title="This commands disables maintenance mode. Bringing the site backup for all to access."
                         >
-                            Disable Maintenance Mode
+                            关闭维护模式
                         </button>
                     </form>
                 </p>

@@ -20,7 +20,7 @@
             </li>
             <li>
                 <a href="{{ route('requests.create', ['title' => rawurlencode($meta?->title ?? '') ?? 'Unknown', 'imdb' => $torrent?->imdb ?? '', 'tmdb' => $meta?->id ?? '']) }}">
-                    Request similar
+                    申请补档
                 </a>
             </li>
         </ul>

@@ -35,6 +35,15 @@
     </div>
 @endif
 <div class="wrapper fadeInDown">
+
+
+    <div id="formContent">
+        <a href="{{ route('login') }}">
+            <h2 class="active">{{ __('auth.login') }} </h2>
+        </a>
+        <a href="{{ route('registrationForm', ['code' => 'null']) }}">
+            <h2 class="inactive underlineHover">{{ __('auth.signup') }} </h2>
+        </a>
     <svg viewBox="0 0 800 100" class="sitebanner">
         <symbol id="s-text">
             <text text-anchor="middle" x="50%" y="50%" dy=".35em">
@@ -48,32 +57,18 @@
         <use xlink:href="#s-text" class="text"></use>
     </svg>
 
-    <div id="formContent">
-        <a href="{{ route('login') }}">
-            <h2 class="active">{{ __('auth.login') }} </h2>
-        </a>
-        <a href="{{ route('registrationForm', ['code' => 'null']) }}">
-            <h2 class="inactive underlineHover">{{ __('auth.signup') }} </h2>
-        </a>
-
-        <div class="fadeIn first">
-            <img src="{{ url('/img/icon.svg') }}" id="icon" alt="{{ __('auth.user-icon') }}"/>
-        </div>
-
         <form role="form" method="POST" action="{{ route('login') }}">
             @csrf
             <div>
-                <label for="username" class="col-md-4 control-label">{{ __('auth.username') }}</label>
                 <div class="col-md-6">
-                    <input id="username" type="text" class="form-control" name="username"
+                    <input id="username" type="text" class="form-control" name="username" placeholder="请输入用户名"
                            value="{{ old('username') }}" required autofocus>
                 </div>
             </div>
 
             <div>
-                <label for="password" class="col-md-4 control-label">{{ __('auth.password') }}</label>
                 <div class="col-md-6">
-                    <input id="password" type="password" class="form-control" name="password" required>
+                    <input id="password" type="password" class="form-control" name="password" placeholder="请输入密码" required>
                 </div>
             </div>
 
@@ -98,6 +93,9 @@
         <div id="formFooter">
             <a href="{{ route('password.request') }}">
                 <h2 class="inactive underlineHover">{{ __('auth.lost-password') }} </h2>
+            </a>
+            <a href="{{ route('loginsponsor')  }}">
+                <h2 class="inactive underlineHover" style="margin-left:40px;margin-right:40px;color:#0093de;font-size:18px">{{ __('common.sponsor') }} </h2>
             </a>
             <a href="{{ route('username.request') }}">
                 <h2 class="inactive underlineHover">{{ __('auth.lost-username') }} </h2>
@@ -129,7 +127,7 @@
 @if (Session::has('errors'))
     <script nonce="{{ HDVinnie\SecureHeaders\SecureHeaders::nonce('script') }}">
       Swal.fire({
-        title: '<strong style=" color: rgb(17,17,17);">Error</strong>',
+        title: '<strong style=" color: rgb(17,17,17);">啊哦～</strong>',
         icon: 'error',
         html: document.getElementById('ERROR_COPY').innerHTML,
         showCloseButton: true,

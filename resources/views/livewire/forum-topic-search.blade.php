@@ -59,7 +59,7 @@
                 </ul>
             @else
                 <div class="panel__body">
-                    No topics.
+                    暂无主题
                 </div>
             @endif
             {{ $topics->links('partials.pagination') }}
@@ -89,7 +89,7 @@
                             name="sorting"
                             wire:model="label"
                         >
-                            <option value="" selected default>Any</option>
+                            <option value="" selected default>所有</option>
                             <option value="approved">
                                 {{ __('forum.approved') }}
                             </option>
@@ -161,7 +161,7 @@
                             name="direction"
                             wire:model="state"
                         >
-                            <option value="" selected default>Any</option>
+                            <option value="" selected default>所有</option>
                             <option value="open">
                                 {{ __('forum.open') }}
                             </option>
@@ -180,7 +180,7 @@
                             name="direction"
                             wire:model="subscribed"
                         >
-                            <option value="" selected default>Any</option>
+                            <option value="" selected default>所有</option>
                             <option value="include">
                                 {{ __('forum.subscribed') }}
                             </option>

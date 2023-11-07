@@ -192,7 +192,7 @@
                                 @endforeach
                             </select>
                             <label class="form__label form__label--floating" for="autodis">
-                                {{ __('torrent.distributor') }} (Only For Full Disc)
+                                {{ __('torrent.distributor') }} (仅限原盘)
                             </label>
                         </p>
                         <p class="form__group">
@@ -212,7 +212,7 @@
                                 @endforeach
                             </select>
                             <label class="form__label form__label--floating" for="autoreg">
-                                {{ __('torrent.region') }} (Only For Full Disc)
+                                {{ __('torrent.region') }} (仅限原盘)
                             </label>
                         </p>
                     </div>
@@ -244,7 +244,7 @@
                                 x-bind:required="cats[cat].type === 'tv'"
                             >
                             <label class="form__label form__label--floating" for="episode_number">
-                                {{ __('torrent.episode-number') }} (Use "0" For Season Packs.)
+                                {{ __('torrent.episode-number') }} (输入“0”代表整季)
                             </label>
                         </p>
                     </div>
@@ -367,7 +367,7 @@
                             value="1"
                             @checked(old('anon'))
                         >
-                        <label class="form__label" for="anon">{{ __('common.anonymous') }}?</label>
+                        <label class="form__label" for="anon">{{ __('common.anonymous') }} </label>
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
                         <input type="hidden" name="stream" value="0">
@@ -379,7 +379,7 @@
                             x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') ? '1' : '0'"
                             @checked(old('stream'))
                         >
-                        <label class="form__label" for="stream">{{ __('torrent.stream-optimized') }}?</label>
+                        <label class="form__label" for="stream">{{ __('torrent.stream-optimized') }} </label>
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
                         <input type="hidden" name="sd" value="0">
@@ -391,7 +391,7 @@
                             x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') ? '1' : '0'"
                             @checked(old('sd'))
                         >
-                        <label class="form__label" for="sd">{{ __('torrent.sd-content') }}?</label>
+                        <label class="form__label" for="sd">{{ __('torrent.sd-content') }} </label>
                     </p>
                     @if (auth()->user()->group->is_modo || auth()->user()->group->is_internal)
                         <p class="form__group">
@@ -404,7 +404,7 @@
                                 value="1"
                                 @checked(old('internal'))
                             >
-                            <label class="form__label" for="internal">{{ __('torrent.internal') }}?</label>
+                            <label class="form__label" for="internal">{{ __('torrent.internal') }} </label>
                         </p>
                     @endif
                     <p class="form__group">
@@ -417,7 +417,7 @@
                             value="1"
                             @checked(old('personal_release'))
                         >
-                        <label class="form__label" for="personal_release">Personal Release?</label>
+                        <label class="form__label" for="personal_release">个人发布 </label>
                     </p>
                     @if ($user->group->is_trusted)
                         <p class="form__group">
@@ -430,7 +430,7 @@
                                 value="1"
                                 @checked(old('mod_queue_opt_in'))
                             >
-                            <label class="form__label" for="mod_queue_opt_in">Opt in to Moderation Queue?</label>
+                            <label class="form__label" for="mod_queue_opt_in">提交审核 </label>
                         </p>
                     @endif
                     @if (auth()->user()->group->is_modo || auth()->user()->group->is_internal)
@@ -444,7 +444,7 @@
                                     value="1"
                                     @checked(old('refundable'))
                             >
-                            <label class="form__label" for="refundable">{{ __('torrent.refundable') }}?</label>
+                            <label class="form__label" for="refundable">{{ __('torrent.refundable') }} </label>
                         </p>
                     @endif
                     @if (auth()->user()->group->is_modo || auth()->user()->group->is_internal)

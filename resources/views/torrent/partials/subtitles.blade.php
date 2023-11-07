@@ -20,7 +20,7 @@
             <thead>
                 <tr>
                     <th>{{ __('common.language') }}</th>
-                    <th>Note</th>
+                    <th>备注</th>
                     <th>{{ __('subtitle.extension') }}</th>
                     <th>{{ __('subtitle.size') }}</th>
                     <th>{{ __('subtitle.downloads') }}</th>
@@ -157,7 +157,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7">No External Subtitles Available</td>
+                        <td colspan="7">无可用的字幕文件</td>
                     </tr>
                 @endforelse
             </tbody>

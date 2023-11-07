@@ -1,6 +1,6 @@
 <section class="panelV2" x-data="{ show_downloads: false }">
     <h2 class="panel__heading" style="cursor: pointer;" x-on:click="show_downloads = !show_downloads">
-        <i class="{{ config("other.font-awesome") }} fa-clipboard-list"></i> Torrent File Downloads ({{ App\Models\TorrentDownload::where('torrent_id', '=', $torrent->id)->count() }} Total)
+        <i class="{{ config("other.font-awesome") }} fa-clipboard-list"></i> 种子下载日志 ({{ App\Models\TorrentDownload::where('torrent_id', '=', $torrent->id)->count() }} Total)
         <i class="{{ config("other.font-awesome") }} fa-plus-circle fa-pull-right" x-show="!show_downloads"></i>
         <i class="{{ config("other.font-awesome") }} fa-minus-circle fa-pull-right" x-show="show_downloads" x-cloak></i>
     </h2>
@@ -8,9 +8,9 @@
         <table class="data-table">
             <thead>
                 <tr>
-                    <th>User</th>
-                    <th>Downloaded at</th>
-                    <th>Client</th>
+                    <th>用户</th>
+                    <th>下载时间</th>
+                    <th>客户端</th>
                 </tr>
             </thead>
             <tbody>

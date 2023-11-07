@@ -1,8 +1,7 @@
 <nav class="top-nav" x-data="{ expanded: false }" x-bind:class="expanded && 'mobile'">
     <div class="top-nav__left">
-        <a class="top-nav__branding" href="{{ route('home.index') }}">
-            <i class="fal fa-tv-retro"></i>
-            <span class="top-nav__site-logo">{{ \config('other.title') }}</span>
+        <a class="top-nav__branding" href="{{ route('home.index') }}" style="display: flex; align-items: center; justify-content: center;">
+            <img src="/img/indexlogo.png" alt="Site Logo" style="max-height: 30px;"> 
         </a>
         <livewire:quick-search-dropdown />
     </div>
@@ -61,7 +60,7 @@
                 <li>
                     <a href="{{ route('mediahub.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-database"></i>
-                        MediaHub
+                        影视库
                     </a>
                 </li>
             </ul>

@@ -19,7 +19,7 @@
                     @error('newCommentState.content')
                         <strong>{{ __('common.error') }}: </strong>
                     @enderror
-                    Add a comment...
+                    添加评论...
                 </label>
                 @error('newCommentState.content')
                     <span class="form__hint" id="new-comment__textarea-hint">{{ $message }}</span>
@@ -31,7 +31,7 @@
             </p>
             <p class="form__group" x-show="open" x-cloak>
                 <button type="submit" class="form__button form__button--filled">
-                    Comment
+                    确认发送
                 </button>
                 <button type="reset" class="form__button form__button--text">
                     {{ __('common.cancel') }}

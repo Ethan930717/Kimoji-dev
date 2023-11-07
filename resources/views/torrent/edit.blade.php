@@ -218,7 +218,7 @@
                             value="{{ old('episode_number') ?? $torrent->episode_number }}"
                         >
                         <label class="form__label form__label--floating" for="episode_number">
-                            {{ __('torrent.episode-number') }} ({{ __('common.required') }} For TV. Use "0" For Season Packs.)
+                            {{ __('torrent.episode-number') }} ({{ __('common.required') }} For TV. 输入“0”代表整季)
                         </label>
                     </p>
                 </div>

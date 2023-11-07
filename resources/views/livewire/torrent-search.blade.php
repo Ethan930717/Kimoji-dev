@@ -50,7 +50,7 @@
                     <div class="form__group--short-horizontal">
                         <p class="form__group">
                             <input wire:model="minSize" class="form__text" placeholder=" ">
-                            <label class="form__label form__label--floating">Minimum Size</label>
+                            <label class="form__label form__label--floating">最小体积</label>
                         </p>
                         <p class="form__group">
                             <select wire:model="minSizeMultiplier" class="form__select" placeholder=" ">
@@ -65,13 +65,13 @@
                                 <option value="1099511627776">TiB</option>
 
                             </select>
-                            <label class="form__label form__label--floating">Unit</label>
+                            <label class="form__label form__label--floating">单位</label>
                         </p>
                     </div>
                     <div class="form__group--short-horizontal">
                         <p class="form__group">
                             <input wire:model="maxSize" class="form__text" placeholder=" ">
-                            <label class="form__label form__label--floating">Maximum Size</label>
+                            <label class="form__label form__label--floating">最大体积</label>
                         </p>
                         <p class="form__group">
                             <select wire:model="maxSizeMultiplier" class="form__select" placeholder=" ">
@@ -86,7 +86,7 @@
                                 <option value="1099511627776">TiB</option>
 
                             </select>
-                            <label class="form__label form__label--floating">Unit</label>
+                            <label class="form__label form__label--floating">单位</label>
                         </p>
                     </div>
                 </div>
@@ -233,7 +233,7 @@
                                             value="0"
                                             wire:model="free"
                                         >
-                                        0% Freeleech
+                                        无免费
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -244,7 +244,7 @@
                                             value="25"
                                             wire:model="free"
                                         >
-                                        25% Freeleech
+                                        25% 免费
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -255,7 +255,7 @@
                                             value="50"
                                             wire:model="free"
                                         >
-                                        50% Freeleech
+                                        50% 免费
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -266,7 +266,7 @@
                                             value="75"
                                             wire:model="free"
                                         >
-                                        75% Freeleech
+                                        75% 免费
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -277,7 +277,7 @@
                                             value="100"
                                             wire:model="free"
                                         >
-                                        100% Freeleech
+                                        100% 免费
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -288,7 +288,7 @@
                                             value="1"
                                             wire:model="doubleup"
                                         >
-                                        Double Upload
+                                        双倍上传
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -299,7 +299,7 @@
                                             value="1"
                                             wire:model="featured"
                                         >
-                                        Featured
+                                        精选
                                     </label>
                                 </p>
                             </div>
@@ -412,7 +412,7 @@
                                             value="1"
                                             wire:model="dying"
                                         >
-                                        Dying
+                                        孤种
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -423,7 +423,7 @@
                                             value="1"
                                             wire:model="dead"
                                         >
-                                        Dead
+                                        断种
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -452,7 +452,7 @@
                                             value="1"
                                             wire:model="notDownloaded"
                                         >
-                                        Not Downloaded
+                                        未下载
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -463,7 +463,7 @@
                                             value="1"
                                             wire:model="downloaded"
                                         >
-                                        Downloaded
+                                        已下载
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -474,7 +474,7 @@
                                             value="1"
                                             wire:model="seeding"
                                         >
-                                        Seeding
+                                        做种中
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -485,7 +485,7 @@
                                             value="1"
                                             wire:model="leeching"
                                         >
-                                        Leeching
+                                        吸血中
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -496,7 +496,7 @@
                                             value="1"
                                             wire:model="incomplete"
                                         >
-                                        Incomplete
+                                        未完成
                                     </label>
                                 </p>
                             </div>
@@ -523,7 +523,7 @@
                             <option value="poster">{{ __('torrent.poster') }}</option>
                         </select>
                         <label class="form__label form__label--floating">
-                            Layout
+                            布局
                         </label>
                     </div>
                 </div>
@@ -566,13 +566,13 @@
                                 @if (auth()->user()->show_poster)
                                     <th class="torrent-search--list__poster-header">Poster</th>
                                 @endif
-                                <th class="torrent-search--list__format-header">Format</th>
+                                <th class="torrent-search--list__format-header">类型</th>
                                 <th class="torrent-search--list__name-header" wire:click="sortBy('name')" role="columnheader button">
                                     {{ __('torrent.name') }}
                                     @include('livewire.includes._sort-icon', ['field' => 'name'])
                                 </th>
                                 <th class="torrent-search--list__actions-header">{{ __('common.actions') }}</th>
-                                <th class="torrent-search--list__ratings-header">Rating</th>
+                                <th class="torrent-search--list__ratings-header">评分</th>
                                 <th class="torrent-search--list__size-header" wire:click="sortBy('size')" role="columnheader button">
                                     {{ __('torrent.size') }}
                                     @include('livewire.includes._sort-icon', ['field' => 'size'])
@@ -722,8 +722,8 @@
             options: myRegions,
             multiple: true,
             search: true,
-            placeholder: "{{__('Select Regions')}}",
-            noOptionsText: "{{__('No results found')}}",
+            placeholder: "{{__('选择发行地区')}}",
+            noOptionsText: "{{__('无匹配信息')}}",
           })
 
           let regions = document.querySelector('#regions')
@@ -744,8 +744,8 @@
             options: myDistributors,
             multiple: true,
             search: true,
-            placeholder: "{{__('Select Distributor')}}",
-            noOptionsText: "{{__('No results found')}}",
+            placeholder: "{{__('选择发行商')}}",
+            noOptionsText: "{{__('无匹配信息')}}",
           })
 
           let distributors = document.querySelector('#distributors')

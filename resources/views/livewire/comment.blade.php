@@ -85,7 +85,7 @@
                         @error('editState.content')
                             <strong>{{ __('common.error') }}: </strong>
                         @enderror
-                        Edit your comment...
+                        编辑评论...
                     </label>
                     @error('editState.content')
                         <span class="form__hint" id="edit-comment__textarea-hint">{{ $message }}</span>
@@ -133,7 +133,7 @@
                             @error('editState.content')
                                 <strong>{{ __('common.error') }}: </strong>
                             @enderror
-                            Reply to parent comment...
+                            回复评论...
                         </label>
                         @error('replyState.content')
                             <span class="form__hint" id="reply-comment__textarea-hint">{{ $message }}</span>

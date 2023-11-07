@@ -5,7 +5,7 @@
                 @forelse($meta->recommendedMovies ?? [] as $movie)
                     <x-movie.poster :$movie :categoryId="$torrent->category_id" />
                 @empty
-                    No Recommendations Found!
+                    暂无相关推荐
                 @endforelse
 
                 @break
@@ -13,12 +13,12 @@
                 @forelse($meta->recommendedTv ?? [] as $tv)
                     <x-tv.poster :$tv :categoryId="$torrent->category_id" />
                 @empty
-                    No Recommendations Found!
+                    暂无相关推荐
                 @endforelse
 
                 @break
             @default
-                No recommendations Found!
+                    暂无相关推荐
         @endswitch
     </section>
 </div>

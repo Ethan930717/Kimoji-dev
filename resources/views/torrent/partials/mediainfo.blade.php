@@ -36,52 +36,52 @@
         </div>
         <section class="mediainfo">
             <section class="mediainfo__filename">
-                <h3>Filename</h3>
+                <h3>文件名</h3>
                 {{ $mediaInfo['general']['file_name'] ?? __('common.unknown') }}
             </section>
             <section class="mediainfo__general">
-                <h3>General</h3>
+                <h3>常规</h3>
                 <dl>
-                    <dt>Format</dt>
+                    <dt>格式</dt>
                     <dd>{{ $mediaInfo['general']['format'] ?? __('common.unknown') }}</dd>
-                    <dt>Duration</dt>
+                    <dt>时长</dt>
                     <dd>{{ $mediaInfo['general']['duration'] ?? __('common.unknown') }}</dd>
-                    <dt>Bitrate</dt>
+                    <dt>比特率</dt>
                     <dd>{{ $mediaInfo['general']['bit_rate'] ?? __('common.unknown') }}</dd>
-                    <dt>Size</dt>
+                    <dt>体积</dt>
                     <dd>{{ App\Helpers\StringHelper::formatBytes($mediaInfo['general']['file_size'] ?? 0, 2) }}</dd>
                 </dl>
             </section>
             @if ($mediaInfo !== null)
                 @isset($mediaInfo['video'])
                     <section class="mediainfo__video">
-                        <h3>Video</h4>
+                        <h3>视频</h4>
                         @foreach ($mediaInfo['video'] as $key => $videoElement)
                             <article>
                                 <h4>#{{ ++$key }}</h4>
                                 <dl>
-                                    <dt>Format</dt>
+                                    <dt>格式</dt>
                                     <dd>{{ $videoElement['format'] ?? __('common.unknown') }} ({{ $videoElement['bit_depth'] ?? __('common.unknown') }})</dd>
-                                    <dt>Resolution</dt>
+                                    <dt>分辨率</dt>
                                     <dd>{{ $videoElement['width'] ?? __('common.unknown') }} &times; {{ $videoElement['height'] ?? __('common.unknown') }}</dd>
-                                    <dt>Aspect ratio</dt>
+                                    <dt>宽高比</dt>
                                     <dd>{{ $videoElement['aspect_ratio'] ?? __('common.unknown') }}</dd>
-                                    <dt>Frame rate</dt>
+                                    <dt>帧率</dt>
                                     <dd>
                                         @if(isset($videoElement['framerate_mode']) && $videoElement['framerate_mode'] === 'Variable')
-                                            VFR
+                                            可变帧率
                                         @else
                                             {{ $videoElement['frame_rate'] ?? __('common.unknown') }}
                                         @endif
                                     </dd>
-                                    <dt>Bit rate</dt>
+                                    <dt>比特率</dt>
                                     <dd>{{ $videoElement['bit_rate'] ?? __('common.unknown') }}</dd>
                                     @if (isset($videoElement['format']) && $videoElement['format'] === 'HEVC')
-                                        <dt>HDR format</dt>
+                                        <dt>HDR格式</dt>
                                         <dd>{{ $videoElement['hdr_format'] ?? __('common.unknown') }}</dd>
-                                        <dt>Color primaries</dt>
+                                        <dt>原色</dt>
                                         <dd>{{ $videoElement['color_primaries'] ?? __('common.unknown') }}</dd>
-                                        <dt>Transfer characteristics</dt>
+                                        <dt>转移特性</dt>
                                         <dd>{{ $videoElement['transfer_characteristics'] ?? __('common.unknown') }}</dd>
                                     @endisset
                                 </dl>
@@ -91,7 +91,7 @@
                 @endisset
                 @isset($mediaInfo['audio'])
                     <section class="mediainfo__audio">
-                        <h3>Audio</h3>
+                        <h3>音频</h3>
                         <dl>
                             @foreach ($mediaInfo['audio'] as $key => $audioElement)
                                 <dt>{{ $loop->iteration }}.</dt>
@@ -115,7 +115,7 @@
                 @endisset
                 @isset($mediaInfo['text'])
                     <section class="mediainfo__subtitles">
-                        <h3>Subtitles</h3>
+                        <h3>字幕</h3>
                         <ul>
                             @foreach ($mediaInfo['text'] as $key => $textElement)
                                 <li>
@@ -133,7 +133,7 @@
                 @endisset
                 @isset($mediaInfo['video'], array_merge(... $mediaInfo['video'])['encoding_settings'])
                     <section class="mediainfo__encode-settings">
-                        <h3>Encode Settings</h3>
+                        <h3>编码参数</h3>
                         @foreach ($mediaInfo['video'] as $key => $videoElement)
                             @isset($videoElement['encoding_settings'])
                                 <article>

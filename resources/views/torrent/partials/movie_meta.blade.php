@@ -41,7 +41,7 @@
                     'tvdb'        => $torrent->tvdb ?? '',
                     'igdb'        => $torrent->igdb ?? '',
                 ]) }}">
-                    Request similar
+                    申请补档
                 </a>
             </li>
             @if ($meta?->id)
@@ -59,7 +59,7 @@
                                 title="This item was recently updated. Try again tomorrow."
                             @endif
                         >
-                            Update Metadata
+                            更新元信息
                         </button>
                     </form>
                 </li>
