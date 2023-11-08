@@ -56,7 +56,7 @@ return [
     'content'              => '内容',
     'connected'            => '已连接',
     'contact'              => '联络',
-    'contact-desc'         => '发消息给站长，Ta会尽快回复您',
+    'contact-desc'         => '发消息给小K，她会尽快回复您',
     'contact-header'       => '你好',
     'create'               => '创建',
     'created_at'           => '创建于',
@@ -136,7 +136,7 @@ return [
     'name'                 => '名称',
     'navigation'           => '导航',
     'new'                  => 'New! ',
-    'new-adj'              => '新的',    // adj 形容词
+    'new-adj'              => '新建',
     'news'                 => '公告',
     'next'                 => '下一个',
     'no'                   => '否',
@@ -219,4 +219,12 @@ return [
     'yes'                  => '是',
     'your'                 => '你的',
     'your-comment'         => '你的评论',
+    'support'              => '帮助',
+    'top-10'               => 'TOP 10',
+    'missing'              => '求种',
+    'search-advanced'      => '搜索箱',
+    'search-hide'          => '隐藏',
+    'resolutions'          => '分辨率',
+    'resolution'          => '分辨率',
+
 ];

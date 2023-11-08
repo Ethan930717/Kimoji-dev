@@ -57,10 +57,10 @@ return [
     'staff-dashboard'          => '站务人员控制台',
     'status'                   => '状态',
     'statuses'                 => '状态',
-    'torrent-categories'       => '种子类别',
+    'torrent-categories'       => '资源类别设置',
     'torrent-moderation'       => '种子审批',
     'torrent-tools'            => '种子工具',
-    'torrent-types'            => '种子规格',
+    'torrent-types'            => '资源媒介设置',
     'torrents'                 => '种子',
     'user-gifting'             => '用户赠礼',
     'user-notes'               => '用户备忘日志',
@@ -68,4 +68,8 @@ return [
     'user-tools'               => '用户工具',
     'warnings-log'             => '警告日志',
     'you-have'                 => '你拥有',
+    'torrent-resolutions'      => '分辨率参数设置',
+    'bon-exchange'             => '商店设置',
+    'gift-log'                 => '赠送日志',
+
 ];

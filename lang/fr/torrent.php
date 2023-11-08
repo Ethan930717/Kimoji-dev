@@ -63,7 +63,7 @@ return [
     'failed'                   => 'Raté',
     'feature'                  => 'Torrent préféré',
     'featured'                 => 'Torrent préféré',
-    'featured-desc'            => 'Les torrents préférés du site sont <i class="fal fa-star text-gold"></i><strong> 100% Freeleech</strong> et en <i class="fal fa-gem text-green"></i><strong> Double Upload!</strong>',
+    'featured-desc'            => 'Les torrents préférés du site sont <i class="fal fa-star text-gold"></i><strong> 100% 免费</strong> et en <i class="fal fa-gem text-green"></i><strong> Double Upload!</strong>',
     'featured-until'           => 'Ce torrent sera dans nos préférés jusqu\'au',
     'file'                     => 'Fichier',
     'filters'                  => 'Filtres',

@@ -37,7 +37,7 @@ return [
     'users-online'   => '在线用户',
 
     // News/Articles
-    'check-news' => '公告（每日必看）',
+    'check-news' => '最新公告',
     'new-news'   => '最新消息',
 
     // Top torrents

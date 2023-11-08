@@ -71,4 +71,7 @@ return [
     'unpin'                     => '解除固定',
     'view-all'                  => '阅览全部',
     'views'                     => '阅览',
+    'updated-at'                => '更新时间',
+    'created-at'                => '创建时间',
+
 ];
