@@ -1950,9 +1950,7 @@ a.label:hover {
     min-height: 20px;
     padding: 19px;
     margin-bottom: 20px;
-    background-color: #efefef;
     border-radius: 15px;
-    border: 1px solid #ddd;
     box-shadow: 0 5px 5px rgba(93, 93, 93, 0.83);
 }
 
@@ -2328,7 +2326,7 @@ blockquote small {
 
 .jumbotron,
 .panel {
-    background-color: #efefef;
+    background-color: #ffffff00;
 }
 
 .popover {
@@ -2338,7 +2336,6 @@ blockquote small {
 
 .panel {
     margin-bottom: 10px;
-    border: 1px solid #fff;
     -moz-box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
     -webkit-box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
     box-shadow: 0 5px 5px rgba(93, 93, 93, 0.83);
@@ -2467,13 +2464,16 @@ h2.title {
 }
 
 .block {
+    background-color: #ffffff00;
+    border: 2px rgba(255,255,255,0.4) solid;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
     display: block;
     margin: 0 0 10px;
     padding: 20px 15px;
-    border-radius: 15px;
-    border: 1px solid #fff;
-    background-color: #efefef;
-    box-shadow: 0 5px 5px rgba(93, 93, 93, 0.83);
+    backdrop-filter: blur(3px);
+    border-bottom: 2px rgba(40,40,40,0.35) solid;
+    border-right: 2px rgba(40,40,40,0.35) solid;
 }
 
 .joypixels,
