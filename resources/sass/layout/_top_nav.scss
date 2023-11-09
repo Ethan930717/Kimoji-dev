@@ -94,8 +94,6 @@
             position: static;
             box-shadow: none;
             margin-left: 24px;
-            background: linear-gradient(-45deg, rgba(179, 243, 147, 0.78), rgba(141, 192, 115, 0.78), rgba(105, 143, 86, 0.78), rgba(107, 178, 83, 0.74));
-            backdrop-filter: blur(20px);
         }
 
         .top-nav__dropdown > a {
@@ -175,10 +173,13 @@
     flex-direction: column;
     padding: 6px;
     row-gap: 6px;
+    backdrop-filter: blur(20px);
     background: var(--top-nav-dropdown-menu-bg);
     border-radius: var(--top-nav-dropdown-menu-border-radius);
     box-shadow: var(--top-nav-dropdown-menu-box-shadow);
     border: var(--top-nav-dropdown-menu-border);
+    background-size: 500% 500%;
+    animation: bg-animation 5s infinite;
     list-style-type: none;
     z-index: 1000;
 }

@@ -236,7 +236,7 @@
     --top-nav-dropdown-menu-bg: linear-gradient(-45deg, rgba(179, 243, 147, 0.78), rgba(141, 192, 115, 0.78), rgba(105, 143, 86, 0.78), rgba(107, 178, 83, 0.74));
     --top-nav-dropdown-menu-border: none;
     --top-nav-dropdown-menu-border-radius: 12px;
-    --top-nav-dropdown-menu-box-shadow: 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12), 0 7px 8px -4px rgba(0, 0, 0, 0.2);
+    --top-nav-dropdown-menu-box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
     --top-nav-dropdown-menu-item-fg: #ffffff;
     --top-nav-dropdown-menu-item-bg: transparent;
     --top-nav-dropdown-menu-item-hover-fg: inherit;
@@ -248,7 +248,7 @@
     --top-nav-icon-bar-icon-bg: #ffffff00;
     --top-nav-icon-bar-icon-fg: #ffffff;
     --top-nav-icon-bar-icon-border-radius: 50%;
-    --top-nav-icon-bar-icon-hover-bg: #424242;
+    --top-nav-icon-bar-icon-hover-bg: #458551b5;
     --top-nav-icon-bar-icon-hover-fg: #ffffff;
     --top-nav-stats-fg: #ffffff;
     --top-nav-toggle-fg: #ffffff;
@@ -369,6 +369,7 @@ template {
 
 a {
     background-color: transparent;
+    text-decoration: none;
 }
 
 a:active,
