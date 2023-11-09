@@ -40,12 +40,12 @@ class ResolutionsTableSeeder extends Seeder
         return [
             [
                 'id'       => 1,
-                'name'     => '4320p',
+                'name'     => '8K｜4320p',
                 'position' => 0,
             ],
             [
                 'id'       => 2,
-                'name'     => '2160p',
+                'name'     => '4K｜2160p',
                 'position' => 1,
             ],
             [
@@ -65,28 +65,8 @@ class ResolutionsTableSeeder extends Seeder
             ],
             [
                 'id'       => 6,
-                'name'     => '576p',
-                'position' => 6,
-            ],
-            [
-                'id'       => 7,
-                'name'     => '576i',
-                'position' => 7,
-            ],
-            [
-                'id'       => 8,
-                'name'     => '480p',
-                'position' => 8,
-            ],
-            [
-                'id'       => 9,
-                'name'     => '480i',
-                'position' => 9,
-            ],
-            [
-                'id'       => 10,
                 'name'     => 'Other',
-                'position' => 10,
+                'position' => 6,
             ],
         ];
     }

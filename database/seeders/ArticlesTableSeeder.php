@@ -40,8 +40,8 @@ class ArticlesTableSeeder extends Seeder
         return [
             [
                 'id'         => 1,
-                'title'      => 'Welcome To '.config('other.title').' .',
-                'content'    => 'Welcome to '.config('other.title').'. '.config('unit3d.powered-by').'.',
+                'title'      => '欢迎来到'.config('other.title').' .',
+                'content'    => '欢迎来到'.config('other.title').'. '.config('unit3d.powered-by').'.',
                 'user_id'    => 3,
                 'created_at' => '2017-02-28 17:22:37',
                 'updated_at' => '2017-04-21 12:21:06',

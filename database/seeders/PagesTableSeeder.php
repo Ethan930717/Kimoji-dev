@@ -44,22 +44,22 @@ class PagesTableSeeder extends Seeder
         return [
             [
                 'id'      => 1,
-                'name'    => 'Rules',
+                'name'    => '规则',
                 'content' => 'RULES GOES HERE',
             ],
             [
                 'id'      => 2,
-                'name'    => 'FAQ',
+                'name'    => '常见问题',
                 'content' => 'FAQ GOES HERE',
             ],
             [
                 'id'      => 3,
-                'name'    => 'Suggested Clients',
+                'name'    => '推荐下载器',
                 'content' => 'We suggest the following BitTorrent clients.',
             ],
             [
                 'id'      => 4,
-                'name'    => 'Upload Guide',
+                'name'    => '上传教程',
                 'content' => 'UPLOAD GUIDE HERE',
             ],
             [

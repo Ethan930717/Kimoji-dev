@@ -40,18 +40,18 @@ class TypesTableSeeder extends Seeder
         return [
             [
                 'id'       => 1,
-                'name'     => 'Full Disc',
-                'position' => 0,
-            ],
-            [
-                'id'       => 2,
-                'name'     => 'Remux',
+                'name'     => 'UHD',
                 'position' => 1,
             ],
             [
-                'id'       => 3,
-                'name'     => 'Encode',
+                'id'       => 2,
+                'name'     => 'Blu-Ray',
                 'position' => 2,
+            ],
+            [
+                'id'       => 3,
+                'name'     => 'Remux',
+                'position' => 3,
             ],
             [
                 'id'       => 4,
@@ -60,7 +60,7 @@ class TypesTableSeeder extends Seeder
             ],
             [
                 'id'       => 5,
-                'name'     => 'WEBRip',
+                'name'     => 'Encode',
                 'position' => 5,
             ],
             [
@@ -93,16 +93,10 @@ class TypesTableSeeder extends Seeder
                 'name'     => 'MP3',
                 'position' => 11,
             ],
-
             [
                 'id'       => 12,
-                'name'     => 'Mac',
+                'name'     => '原盘',
                 'position' => 12,
-            ],
-            [
-                'id'       => 13,
-                'name'     => 'Windows',
-                'position' => 13,
             ],
         ];
     }
