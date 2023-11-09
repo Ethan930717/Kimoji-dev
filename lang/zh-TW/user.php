@@ -32,7 +32,7 @@ return [
     'active-torrents'       => '活躍中的資源',
     'active-warning'        => '有效',
     'active-warnings'       => '有效',
-    'add-seedbox'           => '添加Seedbox',
+    'add-seedbox'           => '登记盒子',
     'all-torrents'          => '所有資源',
     'article-comments'      => '文章評論',
     'avatar'                => '頭像',
