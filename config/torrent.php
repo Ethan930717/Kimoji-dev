@@ -32,7 +32,7 @@ return [
     |
     */
 
-    'source' => 'UNIT3D',
+    'source' => 'KIMOJI',
 
     /*
     |--------------------------------------------------------------------------
@@ -43,7 +43,7 @@ return [
     |
     */
 
-    'created_by'        => 'Edited by UNIT3D',
+    'created_by'        => 'Edited by KIMOJI',
     'created_by_append' => true,
 
     /*
@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'comment' => 'This torrent was downloaded from UNIT3D',
+    'comment' => '该资源由KIMOJI发布，请勿随意传播',
 
     /*
     |--------------------------------------------------------------------------
