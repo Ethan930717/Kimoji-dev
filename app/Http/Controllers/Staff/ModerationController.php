@@ -113,8 +113,8 @@ class ModerationController extends Controller
                 PrivateMessage::create([
                     'sender_id'   => $staff->id,
                     'receiver_id' => $torrent->user_id,
-                    'subject'     => 'Your upload, '.$torrent->name.' ,has been rejected by '.$staff->username,
-                    'message'     => "Greetings, \n\nYour upload ".$torrent->name." has been rejected. Please see below the message from the staff member.\n\n".$request->message,
+                    'subject'     => '你上传的 '.$torrent->name.' ,没有通过审核，审种员： '.$staff->username,
+                    'message'     => "你好, \n\n你上传的 ".$torrent->name." 没有通过审核，原因如下，请尽快更新您的种子信息并重新上传。\n\n".$request->message,
                 ]);
 
                 cache()->forget('announce-torrents:by-infohash:'.$torrent->info_hash);

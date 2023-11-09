@@ -61,13 +61,13 @@ class TorrentDownloadController extends Controller
         // Torrent Status Is Rejected
         if ($torrent->status === Torrent::REJECTED) {
             return to_route('torrents.show', ['id' => $torrent->id])
-                ->withErrors('This Torrent Has Been Rejected By Staff');
+                ->withErrors('这个种子未通过审核');
         }
 
         // The torrent file exist ?
         if (! file_exists(getcwd().'/files/torrents/'.$torrent->file_name)) {
             return to_route('torrents.show', ['id' => $torrent->id])
-                ->withErrors('Torrent File Not Found! Please Report This Torrent!');
+                ->withErrors('没有找到种子文件，请报告该资源');
         }
 
         if (! $request->user() && !($rsskey && $user)) {
