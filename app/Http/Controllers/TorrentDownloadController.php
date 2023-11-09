@@ -49,13 +49,13 @@ class TorrentDownloadController extends Controller
         // User's ratio is too low
         if ($user->ratio < config('other.ratio') && ! ($torrent->user_id === $user->id || $hasHistory)) {
             return to_route('torrents.show', ['id' => $torrent->id])
-                ->withErrors('Your Ratio Is Too Low To Download!');
+                ->withErrors('你的分享率太低了，无法下载资源！');
         }
 
         // User's download rights are revoked
         if ($user->can_download == 0 && ! ($torrent->user_id === $user->id || $hasHistory)) {
             return to_route('torrents.show', ['id' => $torrent->id])
-                ->withErrors('Your Download Rights Have Been Revoked!');
+                ->withErrors('你没有下载权限！');
         }
 
         // Torrent Status Is Rejected

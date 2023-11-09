@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ config('app.locale') }}" style="background-image:url('/css/pink.png')">
+<html lang="{{ config('app.locale') }}" style="background-image:url('/img/pink.png')">
 
 <head>
     <meta charset="UTF-8">
