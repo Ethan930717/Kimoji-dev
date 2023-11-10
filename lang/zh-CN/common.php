@@ -225,6 +225,7 @@ return [
     'search-advanced'      => '搜索箱',
     'search-hide'          => '隐藏',
     'resolutions'          => '分辨率',
-    'resolution'          => '分辨率',
+    'resolution'           => '分辨率',
+    'and'                  => ' ',
 
 ];

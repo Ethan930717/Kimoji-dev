@@ -164,7 +164,7 @@ class IRCAnnounceBot
     private function join(string $channel, string $key = ''): void
     {
         if (! $this->isValidChannelName($channel)) {
-            Log::error('Tried to join a channel with invalid name.', ['name' => $channel]);
+            Log::error('名称无效', ['name' => $channel]);
 
             return;
         }
@@ -178,7 +178,7 @@ class IRCAnnounceBot
     private function part(string $channel): void
     {
         if (! $this->isValidChannelName($channel)) {
-            Log::error('Tried to part a channel with invalid name.', ['name' => $channel]);
+            Log::error('名称无效', ['name' => $channel]);
 
             return;
         }

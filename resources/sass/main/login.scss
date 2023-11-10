@@ -33,11 +33,13 @@ div:where(.swal2-container).swal2-backdrop-show {
 }
 
 div:where(.swal2-container) div:where(.swal2-popup) {
-    background: #fff;
+    background: #ffffff00;
+    backdrop-filter: blur(8px);
     border: none;
     border-radius: 5px;
     box-sizing: border-box;
-    color: #545454;
+    color: #ffffff;
+    text-shadow:0 0 2px #ffffff;
     display: none;
     font-family: inherit;
     font-size: 1rem;

@@ -145,6 +145,13 @@ return [
             'rule-name' => '自定义规则名称',
         ],
     ],
+    'password' => [
+        'mixed' => ':Attribute 必须包含至少一个大写和一个小写字母。',
+        'letters' => ':Attribute 必须至少包含一个字母。',
+        'symbols' => ':Attribute 必须至少包含一个符号。',
+        'numbers' => ':Attribute 必须至少包含一个数字。',
+        'uncompromised' => '提供的 :Attribute 出现在数据泄露中。请使用其他 :Attribute。',
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -157,5 +164,7 @@ return [
     |
     */
 
-    'attributes' => [],
-];
+    'attributes' => [
+        'username' => '用户名',
+        'password' => '密码',
+    ];
