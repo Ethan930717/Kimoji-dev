@@ -74,6 +74,6 @@ class EmailBlacklist implements Rule
      */
     public function message(): string
     {
-        return 'Email domain is not allowed. Throwaway email providers are blacklisted.';
+        return '邮箱在黑名单列表中！';
     }
 }

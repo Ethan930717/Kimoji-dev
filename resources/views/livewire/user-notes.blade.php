@@ -96,7 +96,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5">No notes</td>
+                        <td colspan="5">无记录</td>
                     </tr>
                 @endforelse
             </tbody>

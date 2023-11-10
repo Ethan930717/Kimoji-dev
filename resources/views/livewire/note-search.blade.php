@@ -90,7 +90,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6">No notes</td>
+                    <td colspan="6">无记录</td>
                 </tr>
             @endforelse
             </tbody>

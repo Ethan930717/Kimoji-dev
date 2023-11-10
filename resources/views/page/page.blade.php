@@ -44,10 +44,10 @@
 
             if (totalHeight >= scrollHeight) {
               Swal.fire({
-                title: '<strong>Read The <u>Rules?</u></strong>',
-                text: 'Do You Fully Understand Our Rules?',
+                title: '<strong>阅读 <u>KIMOJI规则</u></strong>',
+                text: '你了解KIMOJI的规则吗？',
                 icon: 'question',
-                confirmButtonText: '<i class="fa fa-thumbs-up"></i> I Do!',
+                confirmButtonText: '<i class="fa fa-thumbs-up"></i> 我了解',
               }).then((result) => {
                 if (result.isConfirmed) {
                   axios.post(`/users/${atob('{{ base64_encode(auth()->user()->username) }}')}/accept-rules`)
@@ -60,7 +60,7 @@
 
                   Toast.fire({
                     icon: 'success',
-                    title: 'Thanks For Accepting Our Rules!'
+                    title: '感谢你接受我们的规则，欢迎你成为我们的一员！'
                   })
                 } else {
                   const Toast = Swal.mixin({
@@ -72,7 +72,7 @@
 
                   Toast.fire({
                     icon: 'error',
-                    title: 'Something Went Wrong!'
+                    title: '啊哦！出错啦'
                   })
                 }
               })

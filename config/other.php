@@ -32,7 +32,7 @@ return [
     |
     */
 
-    'subTitle' => 'Kimoji Family Fun Park',
+    'subTitle' => 'KIMOJI乐园',
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'meta_description' => 'Family Fun Park',
+    'meta_description' => 'KIMOJI乐园',
 
     /*
     |--------------------------------------------------------------------------
@@ -64,7 +64,7 @@ return [
     | Date Site Was Born
     |
     */
-    'birthdate' => 'October 1th 1949',
+    'birthdate' => 'October 1th 2023',
 
     /*
     |--------------------------------------------------------------------------
@@ -107,7 +107,7 @@ return [
     |
     */
 
-    'ratio' => 0.4,
+    'ratio' => 0.8,
 
     /*
     |--------------------------------------------------------------------------
@@ -138,14 +138,14 @@ return [
     | This will be the upload and download given to new members. (In Bytes!)
     | Default: 50GiB Upload and 1GiB Download
     */
-    'default_upload'   => '53687091200',
-    'default_download' => '1073741824',
+    'default_upload'   => '10737418240',
+    'default_download' => '0',
 
     /*
     |--------------------------------------------------------------------------
     | Default Site Style
     |--------------------------------------------------------------------------
-    | 0 = Light Theme
+    | 0 = 旷野
     | 1 = Galactic Theme
     | 2 = Dark Blue Theme
     | 3 = Dark Green Theme
@@ -155,7 +155,7 @@ return [
     | 7 = Dark Teal Theme
     | 8 = Dark Yellow Theme
     */
-    'default_style' => 4,
+    'default_style' => 0,
 
     /*
     |--------------------------------------------------------------------------

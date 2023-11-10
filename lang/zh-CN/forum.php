@@ -20,7 +20,7 @@ return [
     'category-quick-search'     => '快速搜索标题 (在类别内)',
     'close-topic'               => '关闭并锁定主题',
     'closed'                    => '已关闭',
-    'create-new-topic'          => '创建新主题',
+    'create-new-topic'          => '发帖',
     'created'                   => '已创建',
     'current'                   => '目前',
     'delete-topic'              => '删除该主题',
@@ -73,5 +73,6 @@ return [
     'views'                     => '阅览',
     'updated-at'                => '更新时间',
     'created-at'                => '创建时间',
+    'subscribe'                 => '订阅',
 
 ];

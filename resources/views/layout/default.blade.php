@@ -41,9 +41,6 @@
                 <div>
                     @yield('main')
                 </div>
-                <aside>
-                    @yield('sidebar')
-                </aside>
             </article>
         @else
             <article>

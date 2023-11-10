@@ -224,6 +224,7 @@ return [
     'required-anime'           => '仅限动漫',
     'required-games'           => '仅限游戏',
     'refundable'               => '支持退款',
+    'refunded'                 => '已退款',
     'distributor'              => '发行商',
     'region'                   => '发行区域',
     'keywords'                 => '关键词',

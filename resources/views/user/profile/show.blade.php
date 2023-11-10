@@ -162,7 +162,7 @@
                             alt="{{ $achievement->details->name }}"
                         >
                     @empty
-                        No recent achievements.
+                        暂无成就
                     @endforelse
                 </div>
             </section>
@@ -210,7 +210,7 @@
                             >
                         </a>
                     @empty
-                        No recent followers
+                        暂无关注者
                     @endforelse
                 </div>
             </section>
@@ -274,7 +274,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="{{ \config('announce.connectable_check') === true ? 7 : 6 }}">No Clients</td>
+                                    <td colspan="{{ \config('announce.connectable_check') === true ? 7 : 6 }}">无客户端记录</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -518,7 +518,7 @@
         @endif
         @if (auth()->user()->isAllowed($user,'profile','show_profile_torrent_seed'))
             <section class="panelV2">
-                <h2 class="panel__heading">Seed {{ __('user.statistics') }}</h2>
+                <h2 class="panel__heading">做种{{ __('user.statistics') }}</h2>
                 <dl class="key-value">
                     <dt>
                         <abbr title="{{ __('user.total-seedtime') }} ({{ __('user.all-torrents') }})">
@@ -542,7 +542,7 @@
         @endif
         @if (auth()->user()->isAllowed($user,'profile','show_profile_torrent_count'))
             <section class="panelV2">
-                <h2 class="panel__heading">Torrent Count</h2>
+                <h2 class="panel__heading">种子统计</h2>
                 <dl class="key-value">
                     <dt>
                         <a href="{{ route('users.torrents.index', ['user' => $user]) }}">
@@ -570,7 +570,7 @@
                     <dd>{{ $peers->leeching ?? 0 }}</dd>
                     <dt>
                         <a href="{{ route('users.peers.index', ['user' => $user, 'active' => 'exclude']) }}">
-                            Total Inactive Peers
+                            不活跃连接数
                         </a>
                     </dt>
                     <dd>{{ $peers->inactive ?? 0 }}</dd>
@@ -579,11 +579,11 @@
         @endif
         @if (auth()->user()->isAllowed($user,'profile','show_profile_torrent_ratio'))
             <section class="panelV2">
-                <h2 class="panel__heading">Traffic {{ __('torrent.statistics') }}</h2>
+                <h2 class="panel__heading">数据{{ __('torrent.statistics') }}</h2>
                 <dl class="key-value">
                     <dt>{{ __('common.ratio') }}</dt>
                     <dd>{{ $user->formatted_ratio }}</dd>
-                    <dt>Real {{ __('common.ratio') }}</dt>
+                    <dt>真实{{ __('common.ratio') }}</dt>
                     <dd>{{ $history->download_sum ? round(($history->upload_sum ?? 0) / $history->download_sum, 2) : "\u{221E}" }}</dd>
                     <dt>{{ __('common.buffer') }}</dt>
                     <dd>{{ $user->formatted_buffer }}</dd>
@@ -642,7 +642,7 @@
                             </time>
                         @endif
                     </dd>
-                    <dt>Last Action</dt>
+                    <dt>最后活动</dt>
                     <dd>
                         @if ($user->last_action === null)
                             N/A

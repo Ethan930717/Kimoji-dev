@@ -101,7 +101,7 @@ class ModerationController extends Controller
                 TorrentHelper::approveHelper($id);
 
                 return to_route('staff.moderation.index')
-                    ->withSuccess('Torrent Approved');
+                    ->withSuccess('审核通过！');
 
             case Torrent::REJECTED:
                 $torrent->update([

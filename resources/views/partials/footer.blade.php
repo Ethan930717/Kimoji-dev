@@ -41,9 +41,6 @@
                             </a>
                         </li>
                     @endforeach
-                    <li>
-                        <a href="{{ route('pages.index') }}">[View All]</a>
-                    </li>
                 </ul>
             </section>
         @endif
@@ -80,6 +77,6 @@
         </section>
     </div>
     <p class="footer__stats">
-        This page took {{ number_format(microtime(true) - (defined('LARAVEL_START') ? LARAVEL_START : request()->server('REQUEST_TIME_FLOAT')), 3) }} seconds to render and {{ number_format(memory_get_peak_usage(true) / 1024 / 1024, 2) }} MB of memory
+        当前页面加载时间 {{ number_format(microtime(true) - (defined('LARAVEL_START') ? LARAVEL_START : request()->server('REQUEST_TIME_FLOAT')), 3) }} 秒， 占用内存 {{ number_format(memory_get_peak_usage(true) / 1024 / 1024, 2) }} MB
     </p>
 </footer>
