@@ -538,7 +538,8 @@ div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-circular-lin
 html {
     background-image: url('../../img/loginpage_bg.jpg');
     background-size: cover;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 body {

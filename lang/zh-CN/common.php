@@ -183,7 +183,7 @@ return [
     'select'               => '选取',
     'sort'                 => '排序',
     'special'              => '特色',
-    'sponsor'              => '成为赞助者',
+    'sponsor'              => '赞助',
     'staff'                => '站务人员',
     'staff-tools'          => '站务人员工具',
     'stats'                => '统计数字',
