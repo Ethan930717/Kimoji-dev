@@ -145,7 +145,7 @@ return [
     'notifications'        => '通知',
     'older-than'           => '早于',
     'oldest'               => '最旧的',
-    'openreg_activated'    => '正在开放注册',
+    'openreg_activated'    => '内测阶段，仅保留优质账号数据与资源',
     'order-by'             => '排序方式',
     'other'                => '其他',
     'overview'             => '简介',

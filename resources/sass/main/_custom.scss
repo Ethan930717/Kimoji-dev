@@ -1670,9 +1670,15 @@ a.label:hover {
 }
 
 .alert-info {
-    background-color: #3498db;
-    border-color: #2386c8;
-    color: #fff;
+    background-color: #ffffff00;
+    color: #ffffff;
+    border: 2px rgba(255,255,255,0.4) solid;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+    backdrop-filter: blur(3px);
+    border-bottom: 2px rgba(40,40,40,0.35) solid;
+    border-right: 8px rgba(40,40,40,0.35) solid;
+    font-weight: bold;
 }
 
 .alert-info hr {
@@ -2217,7 +2223,8 @@ pre {
 .alert,
 .list-group,
 blockquote small {
-    font-weight: 300;
+    font-weight: bold;
+    text-shadow: 0 0 2px #ffffff;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
