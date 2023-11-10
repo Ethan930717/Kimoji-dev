@@ -40,11 +40,11 @@ class ArticlesTableSeeder extends Seeder
         return [
             [
                 'id'         => 1,
-                'title'      => '欢迎来到'.config('other.title').' .',
-                'content'    => '欢迎来到'.config('other.title').'. '.config('unit3d.powered-by').'.',
+                'title'      => '亲爱的旅人，欢迎来到'.config('other.title').' .',
+                'content'    => '我们的乐园还在萌芽阶段，迫切需要一切形式的援助，如果你有网页开发，尤其是laravel架构开发的经验，或者你对发种、宣传等工种有浓厚的兴趣，亦或者你有足够的硬盘空间可以协助我们保种，请随时与我们联系！在导航栏的其他中，有我们的TG频道，欢迎你的加入！',
                 'user_id'    => 3,
-                'created_at' => '2017-02-28 17:22:37',
-                'updated_at' => '2017-04-21 12:21:06',
+                'created_at' => '2023-11-11 17:22:37',
+                'updated_at' => '2023-11-11 12:21:06',
             ],
         ];
     }

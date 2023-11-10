@@ -219,6 +219,12 @@
                         {{ __('common.internal') }}
                     </a>
                 </li>
+                <li>
+                    <a href="https://t.me/Kimoji_office">
+                        <i class="fa-brands fa-telegram"></i>
+                        Telegram
+                    </a>
+                </li>
             </ul>
         </li>
     </ul>

@@ -70,6 +70,6 @@ return [
     'you-have'                 => '你拥有',
     'torrent-resolutions'      => '分辨率参数设置',
     'bon-exchange'             => '商店设置',
-    'gift-log'                 => '赠送日志',
+    'gifts-log'                 => '赠送日志',
 
 ];

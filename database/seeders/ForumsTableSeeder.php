@@ -51,8 +51,8 @@ class ForumsTableSeeder extends Seeder
                 'slug'                    => 'kimoji-forums',
                 'description'             => '网络一线牵，珍惜这段缘',
                 'parent_id'               => null,
-                'created_at'              => '2017-01-03 18:29:21',
-                'updated_at'              => '2017-01-03 18:29:21',
+                'created_at'              => '2023-11-11 18:29:21',
+                'updated_at'              => '2023-11-11 18:29:21',
             ],
             [
                 'id'                      => 2,
@@ -67,8 +67,8 @@ class ForumsTableSeeder extends Seeder
                 'slug'                    => 'invite_share',
                 'description'             => '中西良药，应有尽有',
                 'parent_id'               => 1,
-                'created_at'              => '2017-01-03 18:29:22',
-                'updated_at'              => '2017-01-03 18:29:22',
+                'created_at'              => '2023-11-11 18:29:22',
+                'updated_at'              => '2023-11-11 18:29:22',
             ],
         ];
     }
