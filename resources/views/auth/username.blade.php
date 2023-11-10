@@ -102,7 +102,7 @@
 @if (Session::has('errors'))
     <script nonce="{{ HDVinnie\SecureHeaders\SecureHeaders::nonce('script') }}">
       Swal.fire({
-        title: '<strong style=" color: rgb(17,17,17);">Error</strong>',
+        title: '<strong style=" color: rgb(255,255,255);">出错啦！</strong>',
         icon: 'error',
         html: document.getElementById('ERROR_COPY').innerHTML,
         showCloseButton: true,
