@@ -21,7 +21,7 @@ return [
     |
     */
 
-    'powered-by' => 'Powered By UNIT3D Community Edition v7.0.0',
+    'powered-by' => 'Kimoji Park',
 
     /*
     |--------------------------------------------------------------------------
@@ -32,7 +32,7 @@ return [
     |
     */
 
-    'codebase' => 'UNIT3D Community Edition',
+    'codebase' => 'UNIT3D KIMOJI',
 
     /*
     |--------------------------------------------------------------------------
