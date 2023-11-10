@@ -564,7 +564,7 @@
                                 'torrent-search--list__no-poster-headers' => ! auth()->user()->show_poster,
                             ])>
                                 @if (auth()->user()->show_poster)
-                                    <th class="torrent-search--list__poster-header">Poster</th>
+                                    <th class="torrent-search--list__poster-header">海报</th>
                                 @endif
                                 <th class="torrent-search--list__format-header">类型</th>
                                 <th class="torrent-search--list__name-header" wire:click="sortBy('name')" role="columnheader button">

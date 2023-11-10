@@ -19,4 +19,6 @@ return [
     'assigned-staff'           => '处理人',
     'created'                  => '创建时间',
     'create-ticket'            => '创建工单',
+    'category'                 => '类型'
+    'body'                     => '内容'
 ];
