@@ -240,7 +240,7 @@ class TorrentController extends Controller
         }
 
         return to_route('torrents.show', ['id' => $id])
-            ->withSuccess('Successfully Edited!');
+            ->withSuccess('编辑成功');
     }
 
     /**
@@ -310,7 +310,7 @@ class TorrentController extends Controller
         $torrent->delete();
 
         return to_route('torrents.index')
-            ->withSuccess('Torrent Has Been Deleted!');
+            ->withSuccess('种子删除成功');
     }
 
     /**
@@ -462,6 +462,6 @@ class TorrentController extends Controller
         }
 
         return to_route('download_check', ['id' => $torrent->id])
-            ->withSuccess('Your torrent file is ready to be downloaded and seeded!');
+            ->withSuccess('您的种子文件已准备好下载和做种');
     }
 }

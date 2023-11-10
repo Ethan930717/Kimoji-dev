@@ -50,7 +50,7 @@ class WarningController extends Controller
         ]);
 
         return to_route('users.show', ['user' => $user])
-            ->withSuccess('Warning issued successfully!');
+            ->withSuccess('警告发布成功');
     }
 
     /**
@@ -79,7 +79,7 @@ class WarningController extends Controller
         $warning->delete();
 
         return to_route('users.show', ['user' => $user])
-            ->withSuccess('Warning Was Successfully Deleted');
+            ->withSuccess('警告信息已删除');
     }
 
     /**
@@ -105,7 +105,7 @@ class WarningController extends Controller
         ]);
 
         return to_route('users.show', ['user' => $user])
-            ->withSuccess('All Warnings Were Successfully Deleted');
+            ->withSuccess('已删除所有警告信息');
     }
 
     /**
@@ -118,6 +118,6 @@ class WarningController extends Controller
         $warning->restore();
 
         return to_route('users.show', ['user' => $user])
-            ->withSuccess('Warning Was Successfully Restored');
+            ->withSuccess('警告信息已重置');
     }
 }

@@ -62,7 +62,7 @@ class SubscriptionController extends Controller
                 $request->user()->subscribedForums()->attach($request->forum_id);
 
                 return back()
-                    ->withSuccess('You are now subscribed to this forum. You will now receive site notifications when a topic is started.');
+                    ->withSuccess('您已成功订阅该板块，当有新主题时，我们会通知您');
 
             case $request->has('topic_id') === true:
                 abort_unless(
@@ -79,7 +79,7 @@ class SubscriptionController extends Controller
                 $request->user()->subscribedTopics()->attach($request->topic_id);
 
                 return back()
-                    ->withSuccess('You are now subscribed to this topic. You will now receive site notifications when a reply is left.');
+                    ->withSuccess('您已成功订阅该主题，当有新内容时，我们会通知您');
 
             default:
                 return back()->withErrors(['Failed to subscribe.']);
@@ -99,6 +99,6 @@ class SubscriptionController extends Controller
 
         $subscription->delete();
 
-        return back()->withSuccess('You are now unsubscribed.');
+        return back()->withSuccess('您已取消订阅');
     }
 }

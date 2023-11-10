@@ -80,7 +80,7 @@ class RegisterController extends Controller
         $user->uploaded = config('other.default_upload');
         $user->downloaded = config('other.default_download');
         $user->style = config('other.default_style', 0);
-        $user->locale = config('app.locale');
+        $user->locale = 'zh-CN';
         $user->group_id = $validatingGroup[0];
 
         if (config('email-blacklist.enabled')) {
@@ -89,7 +89,7 @@ class RegisterController extends Controller
                     'username' => 'required|alpha_dash|string|between:3,25|unique:users',
                     'password' => [
                         'required',
-                        Password::min(12)->mixedCase()->letters()->numbers()->uncompromised(),
+                        Password::min(8)->mixedCase()->letters()->numbers()->uncompromised(),
                     ],
                     'email' => [
                         'required',
@@ -105,7 +105,7 @@ class RegisterController extends Controller
                     'username' => 'required|alpha_dash|string|between:3,25|unique:users',
                     'password' => [
                         'required',
-                        Password::min(12)->mixedCase()->letters()->numbers()->uncompromised(),
+                        Password::min(8)->mixedCase()->letters()->numbers()->uncompromised(),
                     ],
                     'email' => [
                         'required',
@@ -123,7 +123,7 @@ class RegisterController extends Controller
                 'username' => 'required|alpha_dash|string|between:3,25|unique:users',
                 'password' => [
                     'required',
-                    Password::min(12)->mixedCase()->letters()->numbers()->uncompromised(),
+                    Password::min(8)->mixedCase()->letters()->numbers()->uncompromised(),
                 ],
                 'email' => 'required|string|email|max:70|unique:users',
             ]);
@@ -132,7 +132,7 @@ class RegisterController extends Controller
                 'username' => 'required|alpha_dash|string|between:3,25|unique:users',
                 'password' => [
                     'required',
-                    Password::min(12)->mixedCase()->letters()->numbers()->uncompromised(),
+                    Password::min(8)->mixedCase()->letters()->numbers()->uncompromised(),
                 ],
                 'email'   => 'required|string|email|max:70|unique:users',
                 'captcha' => 'hiddencaptcha',

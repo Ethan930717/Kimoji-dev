@@ -51,7 +51,7 @@ class PasskeyController extends Controller
         Unit3dAnnounce::addUser($user);
 
         return to_route('users.passkey.edit', ['user' => $user])
-            ->withSuccess('Your passkey was changed successfully.');
+            ->withSuccess('Passkey更新成功');
     }
 
     /**

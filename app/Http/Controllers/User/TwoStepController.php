@@ -49,7 +49,7 @@ class TwoStepController extends Controller
         }
 
         return to_route('users.two_step.edit', ['user' => $user])
-            ->withSuccess('You changed your two-step authentication Status.');
+            ->withSuccess('您的二步验证状态已更改');
     }
 
     /**

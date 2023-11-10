@@ -45,7 +45,7 @@ class RsskeyController extends Controller
         }
 
         return to_route('users.rsskey.edit', ['user' => $user])
-            ->withSuccess('Your RSS key was changed successfully.');
+            ->withSuccess('RSS key更新成功');
     }
 
     /**

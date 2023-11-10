@@ -43,6 +43,6 @@ class ContactController extends Controller
         Mail::to($user->email)->send(new Contact($input));
 
         return to_route('home.index')
-            ->withSuccess('Your Message Was Successfully Sent');
+            ->withSuccess('信息发送成功');
     }
 }

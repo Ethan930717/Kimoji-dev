@@ -181,7 +181,7 @@ class UserController extends Controller
         }
 
         return to_route('users.show', ['user' => $user])
-            ->withSuccess('Your Account Was Updated Successfully!');
+            ->withSuccess('账号更新成功');
     }
 
     /**

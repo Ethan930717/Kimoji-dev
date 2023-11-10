@@ -58,7 +58,7 @@ class EmailController extends Controller
         }
 
         return to_route('users.email.edit', ['user' => $user])
-            ->withSuccess('Your email was updated successfully.');
+            ->withSuccess('邮箱更新成功');
     }
 
     /**

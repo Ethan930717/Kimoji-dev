@@ -52,10 +52,10 @@ class ReseedController extends Controller
             );
 
             return to_route('torrents.show', ['id' => $torrent->id])
-                ->withSuccess('A notification has been sent to all users that downloaded this torrent along with original uploader!');
+                ->withSuccess('已向下载此种子的所有用户以及原始上传者发送了通知');
         }
 
         return to_route('torrents.show', ['id' => $torrent->id])
-            ->withErrors('This torrent doesnt meet the rules for a reseed request.');
+            ->withErrors('这个种子不符合重新做种规则');
     }
 }

@@ -65,7 +65,7 @@ class TorrentBuffController extends Controller
         }
 
         return to_route('torrents.show', ['id' => $torrent->id])
-            ->withSuccess('Torrent Has Been Bumped To The Top Successfully!');
+            ->withSuccess('资源置顶成功');
     }
 
     /**
@@ -81,7 +81,7 @@ class TorrentBuffController extends Controller
         $torrent->save();
 
         return to_route('torrents.show', ['id' => $torrent->id])
-            ->withSuccess('Torrent Sticky Status Has Been Adjusted!');
+            ->withSuccess('种子置顶状态已成功调整！');
     }
 
     /**
@@ -125,7 +125,7 @@ class TorrentBuffController extends Controller
         Unit3dAnnounce::addTorrent($torrent);
 
         return to_route('torrents.show', ['id' => $torrent->id])
-            ->withSuccess('Torrent FL Has Been Adjusted!');
+            ->withSuccess('已将资源设为免费');
     }
 
     /**
@@ -160,11 +160,11 @@ class TorrentBuffController extends Controller
             );
 
             return to_route('torrents.show', ['id' => $torrent->id])
-                ->withSuccess('Torrent Is Now Featured!');
+                ->withSuccess('已将资源设为精选');
         }
 
         return to_route('torrents.show', ['id' => $torrent->id])
-            ->withErrors('Torrent Is Already Featured!');
+            ->withErrors('该种子已经是精选资源');
     }
 
     /**
@@ -197,7 +197,7 @@ class TorrentBuffController extends Controller
         $featured_torrent->delete();
 
         return to_route('torrents.show', ['id' => $torrent->id])
-            ->withSuccess('Revoked featured from Torrent!');
+            ->withSuccess('已从精选资源中删除');
     }
 
     /**
@@ -239,7 +239,7 @@ class TorrentBuffController extends Controller
         Unit3dAnnounce::addTorrent($torrent);
 
         return to_route('torrents.show', ['id' => $torrent->id])
-            ->withSuccess('Torrent DoubleUpload Has Been Adjusted!');
+            ->withSuccess('双倍上传已开启');
     }
 
     /**
@@ -266,11 +266,11 @@ class TorrentBuffController extends Controller
             cache()->put('freeleech_token:'.$user->id.':'.$torrent->id, true);
 
             return to_route('torrents.show', ['id' => $torrent->id])
-                ->withSuccess('You Have Successfully Activated A Freeleech Token For This Torrent!');
+                ->withSuccess('免费令生效，该种子将在未来24小时内免费');
         }
 
         return to_route('torrents.show', ['id' => $torrent->id])
-            ->withErrors('You Dont Have Enough Freeleech Tokens Or Already Have One Activated On This Torrent.');
+            ->withErrors('免费令不足或当前种子已处于免费状态');
     }
 
     /**
@@ -301,6 +301,6 @@ class TorrentBuffController extends Controller
         $torrent->save();
 
         return to_route('torrents.show', ['id' => $torrent->id])
-            ->withSuccess('Torrent\'s Refundable Status Has Been Adjusted!');
+            ->withSuccess('Torrent\'退款状态已开启');
     }
 }

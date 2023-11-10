@@ -130,7 +130,7 @@ class SubtitleController extends Controller
         }
 
         return to_route('torrents.show', ['id' => $request->input('torrent_id')])
-            ->withSuccess('Subtitle Successfully Added');
+            ->withSuccess('成功添加字幕');
     }
 
     /**
@@ -143,7 +143,7 @@ class SubtitleController extends Controller
         $subtitle->update($request->validated());
 
         return to_route('torrents.show', ['id' => $request->input('torrent_id')])
-            ->withSuccess('Subtitle Successfully Updated');
+            ->withSuccess('更新字幕成功');
     }
 
     /**
@@ -164,7 +164,7 @@ class SubtitleController extends Controller
         $subtitle->delete();
 
         return to_route('torrents.show', ['id' => $request->integer('torrent_id')])
-            ->withSuccess('Subtitle Successfully Deleted');
+            ->withSuccess('字幕已删除');
     }
 
     /**

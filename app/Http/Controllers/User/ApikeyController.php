@@ -46,7 +46,7 @@ class ApikeyController extends Controller
         }
 
         return to_route('users.apikey.edit', ['user' => $user])
-            ->withSuccess('Your API key was changed successfully.');
+            ->withSuccess('API key更新成功');
     }
 
     /**

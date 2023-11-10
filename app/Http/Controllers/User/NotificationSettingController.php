@@ -124,7 +124,7 @@ class NotificationSettingController extends Controller
         ]);
 
         return to_route('users.notification_settings.edit', ['user' => $user])
-            ->withSuccess('Your notification settings have been successfully saved.');
+            ->withSuccess('通知设置已保存');
     }
 
     /**

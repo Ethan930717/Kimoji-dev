@@ -54,7 +54,7 @@ class GeneralSettingController extends Controller
         ]);
 
         return to_route('users.general_settings.edit', ['user' => $user])
-            ->withSuccess('Your general settings have been successfully saved.');
+            ->withSuccess('基础设定更改已保存');
     }
 
     /**

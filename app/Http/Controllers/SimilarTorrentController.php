@@ -141,6 +141,6 @@ class SimilarTorrentController extends Controller
         }
 
         return to_route('torrents.similar', ['category_id' => $category->id, 'tmdb' => $tmdbId])
-            ->withSuccess('Metadata update queued successfully.');
+            ->withSuccess('元数据更新已成功加入队列');
     }
 }

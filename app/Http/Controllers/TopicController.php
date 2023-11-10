@@ -175,7 +175,7 @@ class TopicController extends Controller
         }
 
         return to_route('topics.show', ['id' => $topic->id])
-            ->withSuccess('Topic Created Successfully!');
+            ->withSuccess('创建成功');
     }
 
     /**
@@ -288,7 +288,7 @@ class TopicController extends Controller
         }
 
         return to_route('topics.show', ['id' => $topic->id])
-            ->withSuccess('Topic Successfully Edited');
+            ->withSuccess('编辑成功');
     }
 
     /**
@@ -319,7 +319,7 @@ class TopicController extends Controller
         ]);
 
         return to_route('forums.show', ['id' => $forum->id])
-            ->withSuccess('This Topic Is Now Deleted!');
+            ->withSuccess('删除成功');
     }
 
     /**
@@ -332,7 +332,7 @@ class TopicController extends Controller
         $topic->save();
 
         return to_route('topics.show', ['id' => $topic->id])
-            ->withSuccess('This Topic Is Now Closed!');
+            ->withSuccess('当前主题已关闭');
     }
 
     /**
@@ -345,7 +345,7 @@ class TopicController extends Controller
         $topic->save();
 
         return to_route('topics.show', ['id' => $topic->id])
-            ->withSuccess('This Topic Is Now Open!');
+            ->withSuccess('当前主题已开启');
     }
 
     /**
@@ -358,7 +358,7 @@ class TopicController extends Controller
         $topic->save();
 
         return to_route('topics.show', ['id' => $topic->id])
-            ->withSuccess('This Topic Is Now Pinned!');
+            ->withSuccess('主题已固定');
     }
 
     /**
@@ -371,7 +371,7 @@ class TopicController extends Controller
         $topic->save();
 
         return to_route('topics.show', ['id' => $topic->id])
-            ->withSuccess('This Topic Is Now Unpinned!');
+            ->withSuccess('取消固定');
     }
 
     /**
