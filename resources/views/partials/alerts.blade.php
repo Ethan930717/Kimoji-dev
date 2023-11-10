@@ -6,17 +6,6 @@
                 @if (config('other.invite-only') == false)🌐 {{ __('common.openreg_activated') }} 🌐@endif
                 @if (config('other.doubleup') == true)🌐 {{ __('common.doubleup_activated') }} 🌐@endif
             </span>
-            <div>
-                <span x-text="days">00</span>
-                <span>{{ __('common.day') }}</span>
-                <span x-text="hours">00</span>
-                <span>{{ __('common.hour') }}</span>
-                <span x-text="minutes">00</span>
-                <span>{{ __('common.minute') }}</span>
-                <span>{{ __('common.and') }}</span>
-                <span x-text="seconds">00</span>
-                <span>{{ __('common.second') }}</span>
-            </div>
         </div>
     </div>
 @endif
