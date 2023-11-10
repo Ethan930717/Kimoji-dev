@@ -221,7 +221,7 @@ return [
     'votes'                    => '评分',
     'year-range'               => '年份范围',
     'resolution'               => '分辨率',
-    'required-anime'           => '仅限动漫',
+    'required-anime'           => '非动漫资源请填 0',
     'required-games'           => '仅限游戏',
     'refundable'               => '支持退款',
     'refunded'                 => '已退款',
