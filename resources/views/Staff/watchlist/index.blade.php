@@ -15,7 +15,7 @@
         </a>
     </li>
     <li class="breadcrumb--active">
-        Watchlist
+        关注列表
     </li>
 @endsection
 

@@ -376,5 +376,7 @@ return [
     'warnings'                => '警告',
     'warning-log'             => '警告日志',
     'wishlist'                => '心愿卡',
-    'clinet-list'             => '客户端列表',
+    'client-list'             => '客户端列表',
+    'not-enough-invites'      => '邀请数量不足',
+    'invite-sent-success'     => '邀请发送成功',
 ];

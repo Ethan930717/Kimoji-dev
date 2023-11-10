@@ -11,7 +11,7 @@
                             wire:click="toggleProperties('show')"
                     >
                     <label class="form__label" for="show">
-                        Show Soft Deletes
+                        查看标记删除
                     </label>
                 </div>
             </div>
@@ -159,7 +159,7 @@
             </tr>
         @empty
             <tr>
-                <td colspan="7">No warnings</td>
+                <td colspan="7">暂无警告</td>
             </tr>
         @endforelse
         </tbody>

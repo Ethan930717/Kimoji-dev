@@ -387,16 +387,16 @@
         @if (auth()->user()->group->is_modo)
             <section class="panelV2">
                 <header class="panel__header">
-                    <h2 class="panel__heading">Watchlist</h2>
+                    <h2 class="panel__heading">关注列表</h2>
                     <div class="panel__actions">
                         @if($watch === null)
                             <div class="panel__action" x-data="{ open: false }">
                                 <button class="form__button form__button--text" x-on:click.stop="open = true; $refs.dialog.showModal();">
-                                    Watch
+                                    关注
                                 </button>
                                 <dialog class="dialog" x-ref="dialog" x-show="open" x-cloak>
                                     <h3 class="dialog__heading">
-                                        Watch user: {{ $user->username }}
+                                        关注用户: {{ $user->username }}
                                     </h3>
                                     <form
                                         class="dialog__form"
@@ -413,7 +413,7 @@
                                                 name="message"
                                                 required
                                             ></textarea>
-                                            <label class="form__label form__label--floating" for="watchlist_reason">Reason</label>
+                                            <label class="form__label form__label--floating" for="watchlist_reason">关注理由</label>
                                         </p>
                                         <p class="form__group">
                                             <button class="form__button form__button--filled">
@@ -435,7 +435,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button class="form__button form__button--text">
-                                    Unwatch
+                                    取消关注
                                 </button>
                             </form>
                         @endif
@@ -445,9 +445,9 @@
                     <table class="data-table">
                         <thead>
                             <tr>
-                                <th>Watched By</th>
-                                <th>Message</th>
-                                <th>Created At</th>
+                                <th>关注人</th>
+                                <th>关注理由</th>
+                                <th>关注时间</th>
                                 <th>{{ __('common.action') }}</th>
                             </tr>
                         </thead>
@@ -489,7 +489,7 @@
                                                         })"
                                                         class="form__button form__button--text"
                                                     >
-                                                        Unwatch
+                                                        取消关注
                                                     </button>
                                                 </form>
                                             </li>

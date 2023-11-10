@@ -179,25 +179,25 @@
                 <p class="form__group form__group--horizontal">
                     <a class="form__button form__button--text" href="{{ route('staff.regions.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-columns"></i>
-                        Torrent Regions
+                        产地
                     </a>
                 </p>
                 <p class="form__group form__group--horizontal">
                     <a class="form__button form__button--text" href="{{ route('staff.distributors.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-columns"></i>
-                        Torrent Distributors
+                        发行商
                     </a>
                 </p>
                 <p class="form__group form__group--horizontal">
                     <a class="form__button form__button--text" href="{{ route('staff.peers.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-columns"></i>
-                        Peers
+                        连接数
                     </a>
                 </p>
                 <p class="form__group form__group--horizontal">
                     <a class="form__button form__button--text" href="{{ route('staff.histories.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-columns"></i>
-                        Histories
+                        历史
                     </a>
                 </p>
                 <p class="form__group form__group--horizontal">
@@ -215,7 +215,7 @@
                 <p class="form__group form__group--horizontal">
                     <a class="form__button form__button--text" href="{{ route('staff.cheated_torrents.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-question"></i>
-                        Cheated Torrents
+                        作弊资源
                     </a>
                 </p>
                 <p class="form__group form__group--horizontal">
@@ -266,7 +266,7 @@
                 <p class="form__group form__group--horizontal">
                     <a class="form__button form__button--text" href="{{ route('staff.watchlist.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-eye"></i>
-                        Watchlist
+                        关注列表
                     </a>
                 </p>
                 <p class="form__group form__group--horizontal">
@@ -312,7 +312,7 @@
                 <p class="form__group form__group--horizontal">
                     <a class="form__button form__button--text" href="{{ route('staff.internals.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-magic"></i>
-                        Internals
+                        内部人员
                     </a>
                 </p>
                 @if (auth()->user()->group->is_admin)

@@ -69,6 +69,7 @@ class UsersTableSeeder extends Seeder
                 'rsskey'    => md5(random_bytes(60)),
                 'api_token' => Str::random(100),
                 'active'    => 1,
+                'invites'   => 9999,
             ],
         ];
     }

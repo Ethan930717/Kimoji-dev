@@ -50,7 +50,7 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 3,
-                'name'        => '言辞新秀',
+                'name'        => '新秀',
                 'description' => '哇！您的评论如冉冉升起的新星，迅速累积了10条闪耀的见解！',
                 'points'      => 10,
                 'secret'      => 0,
@@ -80,7 +80,7 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 6,
-                'name'        => '评论绅士/淑女',
+                'name'        => '贵族',
                 'description' => '哇塞！您的言辞犹如绅士的手帕或淑女的手套，已经优雅地留下了50条珍贵的印记！',
                 'points'      => 50,
                 'secret'      => 0,
@@ -90,7 +90,7 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 7,
-                'name'        => '评论导师',
+                'name'        => '导师',
                 'description' => '您的评论像是指引灯塔，照亮了百条言语之路！',
                 'points'      => 100,
                 'secret'      => 0,
@@ -100,7 +100,7 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 8,
-                'name'        => '评论鉴赏家',
+                'name'        => '鉴赏家',
                 'description' => '您的评论堪比艺术品，每一条都值得细细品味，现已收藏了200条！',
                 'points'      => 200,
                 'secret'      => 0,
@@ -110,7 +110,7 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 9,
-                'name'        => '评论大亨',
+                'name'        => '大亨',
                 'description' => '您的评论已成为这个圈子不可或缺的财富，总计达到了300条辉煌篇章！',
                 'points'      => 300,
                 'secret'      => 0,
@@ -120,7 +120,7 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 10,
-                'name'        => '评论领袖',
+                'name'        => '领袖',
                 'description' => '哇！您的评论如领袖般引领风骚，已累计发表400条令人敬仰的观点！',
                 'points'      => 400,
                 'secret'      => 0,
@@ -130,7 +130,7 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 11,
-                'name'        => '评论巨匠',
+                'name'        => '巨匠',
                 'description' => '您的评论如同巨匠的作品，每一笔都是时间的见证，现已堆积了500条经典！',
                 'points'      => 500,
                 'secret'      => 0,
@@ -140,7 +140,7 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 12,
-                'name'        => '评论宗师',
+                'name'        => '宗师',
                 'description' => '哇！您的评论已经到达了宗师级别，累计600条让人佩服的深度解析！',
                 'points'      => 600,
                 'secret'      => 0,
@@ -150,8 +150,8 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 13,
-                'name'        => '评论泰斗',
-                'description' => '您在评论的海洋中犹如泰斗，700条见解犹如珍珠般散落其间！',
+                'name'        => '瑰宝',
+                'description' => '您在评论的海洋徜徉，700条见解犹如珍珠般散落其间！',
                 'points'      => 700,
                 'secret'      => 0,
                 'class_name'  => \App\Achievements\UserMade700Comments::class,
@@ -170,7 +170,7 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 15,
-                'name'        => '评论皇帝',
+                'name'        => '皇帝',
                 'description' => '哇！您的评论帝国壮观无比，已累计发表900条让世人赞叹的精彩评论！',
                 'points'      => 900,
                 'secret'      => 0,
@@ -210,7 +210,7 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 19,
-                'name'        => '引领者',
+                'name'        => '先驱',
                 'description' => '三百个种子扎根于此，您的领导将KIMOJI引向繁盛！',
                 'points'      => 300,
                 'secret'      => 0,
@@ -280,8 +280,8 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 26,
-                'name'        => '初封佳信',
-                'description' => '恭喜您！您已细心地寄出了第一封邮件！',
+                'name'        => '秀才',
+                'description' => '恭喜您！您已成功发布了您的第一篇帖子！',
                 'points'      => 1,
                 'secret'      => 0,
                 'class_name'  => \App\Achievements\UserMadeFirstPost::class,
@@ -290,8 +290,8 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 27,
-                'name'        => '二十五封信笺',
-                'description' => '哇哦！您已经寄出了二十五封充满心意的信笺！',
+                'name'        => '举人',
+                'description' => '哇哦！您已经发表了二十五篇充满想法的帖子！',
                 'points'      => 25,
                 'secret'      => 0,
                 'class_name'  => \App\Achievements\UserMade25Posts::class,
@@ -300,8 +300,8 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 28,
-                'name'        => '五十封书简',
-                'description' => '哇哦！您的信笺已经积累到五十封，记录了许多珍贵的交流！',
+                'name'        => '进士',
+                'description' => '哇哦！您的帖子数量已经达到五十篇，记录了许多有趣的讨论！',
                 'points'      => 50,
                 'secret'      => 0,
                 'class_name'  => \App\Achievements\UserMade50Posts::class,
@@ -310,8 +310,8 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 29,
-                'name'        => '百封往复',
-                'description' => '哇哦！您已经用百封邮件，编织了一个个小小的故事！',
+                'name'        => '解元',
+                'description' => '哇哦！您已经发表了一百篇帖子，编织了一个个精彩的话题！',
                 'points'      => 100,
                 'secret'      => 0,
                 'class_name'  => \App\Achievements\UserMade100Posts::class,
@@ -320,8 +320,8 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 30,
-                'name'        => '两百封交响',
-                'description' => '哇哦！您的交流如两百封邮件般丰富，温暖了每一个收信人的心！',
+                'name'        => '会元',
+                'description' => '哇哦！您的两百篇帖子给KIMOJI社区带来了许多精彩内容！',
                 'points'      => 200,
                 'secret'      => 0,
                 'class_name'  => \App\Achievements\UserMade200Posts::class,
@@ -330,8 +330,8 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 31,
-                'name'        => '三百封情书',
-                'description' => '哇哦！您已经寄出了三百封邮件，每一封都充满情感与真诚！',
+                'name'        => '榜眼',
+                'description' => '哇哦！您已经发表了三百篇帖子，每一篇都充满洞察力与智慧！',
                 'points'      => 300,
                 'secret'      => 0,
                 'class_name'  => \App\Achievements\UserMade300Posts::class,
@@ -340,8 +340,8 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 32,
-                'name'        => '四百封篇章',
-                'description' => '哇哦！您以四百封邮件，构筑了一个个精彩的对话与回忆！',
+                'name'        => '探花',
+                'description' => '哇哦！您以四百篇帖子，构筑了一个个深入的讨论与回忆！',
                 'points'      => 400,
                 'secret'      => 0,
                 'class_name'  => \App\Achievements\UserMade400Posts::class,
@@ -350,8 +350,8 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 33,
-                'name'        => '五百封香箋',
-                'description' => '哇哦！您已经传情达意，用五百封邮件绘声绘色地分享了您的故事！',
+                'name'        => '状元',
+                'description' => '哇哦！您已经发表了五百篇帖子，分享了您丰富多彩的见解和故事！',
                 'points'      => 500,
                 'secret'      => 0,
                 'class_name'  => \App\Achievements\UserMade500Posts::class,
@@ -360,8 +360,8 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 34,
-                'name'        => '六百封纸鸢',
-                'description' => '哇哦！六百封邮件，如同纸鸢一般，承载着您的思念与问候！',
+                'name'        => '郎中',
+                'description' => '哇哦！六百篇帖子，承载着您的智慧与创意，为社区增添色彩！',
                 'points'      => 600,
                 'secret'      => 0,
                 'class_name'  => \App\Achievements\UserMade600Posts::class,
@@ -370,8 +370,8 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 35,
-                'name'        => '七百封心扉',
-                'description' => '哇哦！七百封邮件已送出，每一封都是您心扉的美妙展现！',
+                'name'        => '侍郎',
+                'description' => '哇哦！七百篇帖子已送出，每一篇都展现了您对话题的深刻理解！',
                 'points'      => 700,
                 'secret'      => 0,
                 'class_name'  => \App\Achievements\UserMade700Posts::class,
@@ -380,8 +380,8 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 36,
-                'name'        => '八百封密语',
-                'description' => '哇哦！八百封邮件，如同密语，传递着您与他人间的不解之缘！',
+                'name'        => '尚书',
+                'description' => '哇哦！八百篇帖子，如同密语，展现了您与社区成员间的紧密联系！',
                 'points'      => 800,
                 'secret'      => 0,
                 'class_name'  => \App\Achievements\UserMade800Posts::class,
@@ -390,8 +390,8 @@ class AchievementDetailsTableSeeder extends Seeder
             ],
             [
                 'id'          => 37,
-                'name'        => '九百封笔谈',
-                'description' => '哇哦！九百封邮件记录了您与世界的千丝万缕的笔谈！',
+                'name'        => '大学士',
+                'description' => '哇哦！九百篇帖子记录了您与KIMOJI世界的深刻交流与笔谈！',
                 'points'      => 900,
                 'secret'      => 0,
                 'class_name'  => \App\Achievements\UserMade900Posts::class,

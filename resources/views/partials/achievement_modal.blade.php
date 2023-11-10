@@ -6,13 +6,13 @@
         <span class="modal-icon display-1-lg">
             <i class="fas fa-trophy-alt fa-4x text-gold"></i>
         </span>
-        <span>Well done!</span>
+        <span>干得漂亮！</span>
         <p class="form__group">
             <a
                 href="{{ route('users.achievements.index', ['user' => auth()->user()]) }}"
                 class="form__button form__button--outlined"
             >
-                All Achievements
+                查看所有成就
             </a>
         </p>
     </div>
