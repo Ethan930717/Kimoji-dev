@@ -172,13 +172,13 @@ class RegisterController extends Controller
         // Select A Random Welcome Message
         $profileUrl = href_profile($user);
         $welcomeArray = [
-            sprintf('[url=%s]%s[/url], Welcome to ', $profileUrl, $user->username).config('other.title').'! Hope you enjoy the community :rocket:',
-            sprintf("[url=%s]%s[/url], We've been expecting you :space_invader:", $profileUrl, $user->username),
-            sprintf("[url=%s]%s[/url] has arrived. Party's over. :cry:", $profileUrl, $user->username),
-            sprintf("It's a bird! It's a plane! Nevermind, it's just [url=%s]%s[/url].", $profileUrl, $user->username),
-            sprintf('Ready player [url=%s]%s[/url].', $profileUrl, $user->username),
-            sprintf('A wild [url=%s]%s[/url] appeared.', $profileUrl, $user->username),
-            'Welcome to '.config('other.title').sprintf(' [url=%s]%s[/url]. We were expecting you ( ͡° ͜ʖ ͡°)', $profileUrl, $user->username),
+            sprintf('[url=%s]%s[/url], 欢迎来到 ', $profileUrl, $user->username).config('other.title').'!  :rocket:',
+            sprintf("[url=%s]%s[/url], 等你好久啦！ :space_invader:", $profileUrl, $user->username),
+            sprintf("[url=%s]%s[/url] 离开啦！ :cry:", $profileUrl, $user->username),
+            sprintf("有人来了，瞅瞅是谁～呀，是 [url=%s]%s[/url]！", $profileUrl, $user->username),
+            sprintf('大佬 [url=%s]%s[/url] 登场喽！', $profileUrl, $user->username),
+            sprintf('疯狗 [url=%s]%s[/url] 出现啦！', $profileUrl, $user->username),
+            '欢迎来到 '.config('other.title').sprintf(' [url=%s]%s[/url]. 我们等你好久啦！', $profileUrl, $user->username),
         ];
         $selected = random_int(0, \count($welcomeArray) - 1);
         $this->chatRepository->systemMessage(

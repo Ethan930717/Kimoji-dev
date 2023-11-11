@@ -454,7 +454,7 @@
                         <tbody>
                             @if ($watch === null)
                                 <tr>
-                                    <td colspan="4">Not watched</td>
+                                    <td colspan="4">暂无关注对象</td>
                                 </tr>
                             @else
                                 <tr>

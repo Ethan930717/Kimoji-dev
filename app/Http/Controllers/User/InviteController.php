@@ -137,7 +137,7 @@ class InviteController extends Controller
         $sentInvite->delete();
 
         return to_route('users.invites.index', ['user' => $user])
-            ->withSuccess('Invite deleted successfully.');
+            ->withSuccess('邀请删除成功');
     }
 
     /**

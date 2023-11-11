@@ -130,6 +130,7 @@ Route::middleware('language')->group(function (): void {
             Route::get('/blacklist/clients', [App\Http\Controllers\PageController::class, 'clientblacklist'])->name('client_blacklist');
             Route::get('/aboutus', [App\Http\Controllers\PageController::class, 'about'])->name('about');
             Route::get('/sponsor', [App\Http\Controllers\PageController::class, 'sponsor'])->name('sponsor');
+            Route::get('/chatroom', [App\Http\Controllers\PageController::class, 'chatroom'])->name('chatroom');
             Route::get('/{page}', [App\Http\Controllers\PageController::class, 'show'])->where('id', '[0-9]+')->name('pages.show');
         });
 

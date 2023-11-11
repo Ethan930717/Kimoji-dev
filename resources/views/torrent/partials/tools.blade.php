@@ -63,11 +63,11 @@
                 <menu style="display: flex; list-style-type: none; margin: 0; padding: 0; flex-wrap: wrap;">
                     <li x-data>
                         <button class="form__button form__button--outlined" x-on:click.stop="$refs.dialog.showModal()">
-                            <i class="{{ config('other.font-awesome') }} fa-star"></i> Freeleech
+                            <i class="{{ config('other.font-awesome') }} fa-star"></i> 免费下载
                         </button>
                         <dialog class="dialog" x-ref="dialog">
                             <h4 class="dialog__heading">
-                                Edit Freeleech
+                                编辑
                             </h4>
                             <div x-on:click.outside="$refs.dialog.close()">
                                 <form
@@ -85,22 +85,22 @@
                                             <option value="100" @selected($torrent->free === 100)>100%</option>
                                         </select>
                                         <label class="form__label form__label--floating" for="free">
-                                            Freeleech
+                                            免费下载
                                         </label>
                                     </p>
                                     <p class="form__group">
                                         <select class="form__select" name="fl_until">
-                                            <option value="">No Limit</option>
-                                            <option value="1">1 Day</option>
-                                            <option value="2">2 Days</option>
-                                            <option value="3">3 Days</option>
-                                            <option value="4">4 Days</option>
-                                            <option value="5">5 Days</option>
-                                            <option value="6">6 Days</option>
-                                            <option value="7">7 Days</option>
+                                            <option value="">永久</option>
+                                            <option value="1">1 天</option>
+                                            <option value="2">2 天</option>
+                                            <option value="3">3 天</option>
+                                            <option value="4">4 天</option>
+                                            <option value="5">5 天</option>
+                                            <option value="6">6 天</option>
+                                            <option value="7">7 天</option>
                                         </select>
                                         <label for="fl_until" class="form__label form__label--floating">
-                                            Buff Time
+                                            持续时间
                                         </label>
                                     </p>
                                     <p class="form__group">
@@ -117,11 +117,11 @@
                     </li>
                     <li x-data>
                         <button class="form__button form__button--outlined" x-on:click.stop="$refs.dialog.showModal()">
-                            <i class="{{ config('other.font-awesome') }} fa-chevron-double-up"></i> Double Upload
+                            <i class="{{ config('other.font-awesome') }} fa-chevron-double-up"></i> 双倍上传
                         </button>
                         <dialog class="dialog" x-ref="dialog">
                             <h4 class="dialog__heading">
-                                Edit Double Upload
+                                编辑
                             </h4>
                             <div x-on:click.outside="$refs.dialog.close()">
                                 <form
@@ -132,17 +132,17 @@
                                     @csrf
                                     <p class="form__group">
                                         <select class="form__select" name="du_until">
-                                            <option value="">No Limit</option>
-                                            <option value="1">1 Day</option>
-                                            <option value="2">2 Days</option>
-                                            <option value="3">3 Days</option>
-                                            <option value="4">4 Days</option>
-                                            <option value="5">5 Days</option>
-                                            <option value="6">6 Days</option>
-                                            <option value="7">7 Days</option>
+                                            <option value="">永久</option>
+                                            <option value="1">1 天</option>
+                                            <option value="2">2 天</option>
+                                            <option value="3">3 天</option>
+                                            <option value="4">4 天</option>
+                                            <option value="5">5 天</option>
+                                            <option value="6">6 天</option>
+                                            <option value="7">7 天</option>
                                         </select>
                                         <label for="fl_until" class="form__label form__label--floating">
-                                            Buff Time
+                                            持续时间
                                         </label>
                                     </p>
                                     <p class="form__group">
@@ -347,16 +347,16 @@
                     <li>
                         @switch ($torrent->status)
                             @case(\App\Models\Torrent::APPROVED)
-                                Approved By: <x-user_tag :user="$torrent->moderated" :anon="false" />
+                                批准人: <x-user_tag :user="$torrent->moderated" :anon="false" />
                                 @break
                             @case(\App\Models\Torrent::POSTPONED)
-                                Postponed By: <x-user_tag :user="$torrent->moderated" :anon="false" />
+                                推迟人: <x-user_tag :user="$torrent->moderated" :anon="false" />
                                 @break
                             @case(\App\Models\Torrent::REJECTED)
-                                Rejected By: <x-user_tag :user="$torrent->moderated" :anon="false" />
+                                拒收人: <x-user_tag :user="$torrent->moderated" :anon="false" />
                                 @break
                             @default
-                                Unmoderated
+                                未处理
                         @endswitch
                     </li>
                 </menu>

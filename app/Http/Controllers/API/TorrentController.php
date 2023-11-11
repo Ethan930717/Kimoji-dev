@@ -304,21 +304,21 @@ class TorrentController extends BaseController
             // Announce To Shoutbox
             if ($anon == 0) {
                 $this->chatRepository->systemMessage(
-                    sprintf('User [url=%s/users/', $appurl).$username.']'.$username.sprintf('[/url] has uploaded a new '.$torrent->category->name.'. [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.'[/url], grab it now! :slight_smile:'
+                    sprintf('用户 [url=%s/users/', $appurl).$username.']'.$username.sprintf('[/url] 上传了 '.$torrent->category->name.'. [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.'[/url], 快看看吧! :slight_smile:'
                 );
             } else {
                 $this->chatRepository->systemMessage(
-                    sprintf('An anonymous user has uploaded a new '.$torrent->category->name.'. [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.'[/url], grab it now! :slight_smile:'
+                    sprintf('匿名用户上传了 '.$torrent->category->name.'. [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.'[/url], 快瞅瞅! :slight_smile:'
                 );
             }
 
             if ($anon == 1 && $featured == 1) {
                 $this->chatRepository->systemMessage(
-                    sprintf('Ladies and Gents, [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.'[/url] has been added to the Featured Torrents Slider by an anonymous user! Grab It While You Can! :fire:'
+                    sprintf('大哥大姐们，[url=%s/torrents/%s]%s[/url] 刚刚被一位匿名用户加精了！快瞅瞅！:fire:', $appurl, $torrent->id, $torrent->name
                 );
             } elseif ($anon == 0 && $featured == 1) {
                 $this->chatRepository->systemMessage(
-                    sprintf('Ladies and Gents, [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.sprintf('[/url] has been added to the Featured Torrents Slider by [url=%s/users/', $appurl).$username.']'.$username.'[/url]! Grab It While You Can! :fire:'
+                    sprintf('大哥大姐们, [url=%s/torrents/%s]%s[/url] 刚刚有人在 [url=%s/users/%s]%s[/url] 发出了一个救种请求，能帮帮忙吗？ :fire:', $appurl, $torrent->id, $torrent->name, $appurl, $username, $username
                 );
             }
 
@@ -326,16 +326,16 @@ class TorrentController extends BaseController
                 if ($torrent->fl_until === null) {
                     $this->chatRepository->systemMessage(
                         sprintf(
-                            'Ladies and Gents, [url=%s/torrents/',
+                            '大哥大姐们, [url=%s/torrents/',
                             $appurl
-                        ).$torrent->id.']'.$torrent->name.'[/url] has been granted '.$free.'% FreeLeech! Grab It While You Can! :fire:'
+                        ).$torrent->id.']'.$torrent->name.'[/url] 免费下载 '.$free.'% 上钟了!冲鸭！ :fire:'
                     );
                 } else {
                     $this->chatRepository->systemMessage(
                         sprintf(
-                            'Ladies and Gents, [url=%s/torrents/',
+                            '大哥大姐们, [url=%s/torrents/',
                             $appurl
-                        ).$torrent->id.']'.$torrent->name.'[/url] has been granted '.$free.'% FreeLeech for '.$request->input('fl_until').' days. :stopwatch:'
+                        ).$torrent->id.']'.$torrent->name.'[/url] 免费下载 '.$free.'% 剩余时间 '.$request->input('fl_until').' 天. :stopwatch:'
                     );
                 }
             }
@@ -344,16 +344,16 @@ class TorrentController extends BaseController
                 if ($torrent->du_until === null) {
                     $this->chatRepository->systemMessage(
                         sprintf(
-                            'Ladies and Gents, [url=%s/torrents/',
+                            '大哥大姐们, [url=%s/torrents/',
                             $appurl
-                        ).$torrent->id.']'.$torrent->name.'[/url] has been granted Double Upload! Grab It While You Can! :fire:'
+                        ).$torrent->id.']'.$torrent->name.'[/url] 双倍上传上钟了! 冲鸭! :fire:'
                     );
                 } else {
                     $this->chatRepository->systemMessage(
                         sprintf(
-                            'Ladies and Gents, [url=%s/torrents/',
+                            '大哥大姐们, [url=%s/torrents/',
                             $appurl
-                        ).$torrent->id.']'.$torrent->name.'[/url] has been granted Double Upload for '.$request->input('du_until').' days. :stopwatch:'
+                        ).$torrent->id.']'.$torrent->name.'[/url] 双倍上传时间剩余 '.$request->input('du_until').' 天. :stopwatch:'
                     );
                 }
             }
@@ -471,6 +471,6 @@ class TorrentController extends BaseController
             return new TorrentsResource($torrents);
         }
 
-        return $this->sendResponse('404', 'No Torrents Found');
+        return $this->sendResponse('404', '未找到该种子);
     }
 }

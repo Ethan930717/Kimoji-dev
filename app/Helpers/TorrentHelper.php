@@ -101,13 +101,13 @@ class TorrentHelper
             $ircAnnounceBot = new IRCAnnounceBot();
 
             if ($anon == 0) {
-                $ircAnnounceBot->message(config('irc-bot.channel'), '['.$appname.'] User '.$username.' has uploaded '.$torrent->name.' grab it now!');
-                $ircAnnounceBot->message(config('irc-bot.channel'), '[Category: '.$torrent->category->name.'] [Type: '.$torrent->type->name.'] [Size:'.$torrent->getSize().']');
+                $ircAnnounceBot->message(config('irc-bot.channel'), '['.$appname.'] 用户 '.$username.' 上传了 '.$torrent->name.' 快看看吧！');
+                $ircAnnounceBot->message(config('irc-bot.channel'), '[资源: '.$torrent->category->name.'] [类别: '.$torrent->type->name.'] [体积:'.$torrent->getSize().']');
             } else {
-                $ircAnnounceBot->message(config('irc-bot.channel'), '['.$appname.'] An anonymous user has uploaded '.$torrent->name.' grab it now!');
-                $ircAnnounceBot->message(config('irc-bot.channel'), '[Category: '.$torrent->category->name.'] [Type: '.$torrent->type->name.'] [Size: '.$torrent->getSize().']');
+                $ircAnnounceBot->message(config('irc-bot.channel'), '['.$appname.'] 匿名用户 '.$torrent->name.' 快看看吧!');
+                $ircAnnounceBot->message(config('irc-bot.channel'), '[资源: '.$torrent->category->name.'] [Type: '.$torrent->type->name.'] [体积: '.$torrent->getSize().']');
             }
-            $ircAnnounceBot->message(config('irc-bot.channel'), sprintf('[Link: %s/torrents/', $appurl).$id.']');
+            $ircAnnounceBot->message(config('irc-bot.channel'), sprintf('[链接: %s/torrents/', $appurl).$id.']');
         }
 
         cache()->forget('announce-torrents:by-infohash:'.$torrent->info_hash);

@@ -57,15 +57,15 @@ class NewPost extends Notification implements ShouldQueue
 
         if ($this->type == 'staff') {
             return [
-                'title' => $this->user->username.' Has Posted In A Staff Forum Topic',
-                'body'  => $this->user->username.' has left a new post in Staff Topic '.$this->post->topic->name,
+                'title' => $this->user->username.' 在员工论坛发送了一个帖子',
+                'body'  => $this->user->username.' 在 '.$this->post->topic->name.' 回帖了 ',
                 'url'   => sprintf('%s/posts/%s', route('topics.show', ['id' => $this->post->topic->id]), $this->post->id),
             ];
         }
 
         return [
-            'title' => $this->user->username.' Has Posted In A Topic You Started',
-            'body'  => $this->user->username.' has left a new post in Your Topic '.$this->post->topic->name,
+            'title' => $this->user->username.' 在你创建的主题下回帖了',
+            'body'  => $this->user->username.' 在你创建的主题 '.$this->post->topic->name.' 中发送了一个帖子 ',
             'url'   => sprintf('/forums/topics/%s/posts/%s', $this->post->topic->id, $this->post->id),
         ];
     }

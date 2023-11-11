@@ -84,6 +84,12 @@
                     </a>
                 </li>
                 <li>
+                    <a  href="{{ route('chatroom') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-mug-tea"></i>
+                        茶室
+                    </a>
+                </li>
+                <li>
                     <a  href="{{ route('playlists.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-list-ol"></i>
                         {{ __('playlist.playlists') }}

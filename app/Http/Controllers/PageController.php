@@ -31,6 +31,10 @@ class PageController extends Controller
         return view('page.sponsor');
     }
 
+    public function chatroom()
+    {
+        return view('page.chatroom');
+    }
 
     /**
      * Display All Pages.

@@ -39,22 +39,22 @@ class ChatStatusSeeder extends Seeder
     {
         return [
             [
-                'name'  => 'Online',
+                'name'  => '在线',
                 'color' => '#2ECC40',
                 'icon'  => config('other.font-awesome').' fa-comment-smile',
             ],
             [
-                'name'  => 'Away',
+                'name'  => '离开',
                 'color' => '#FFDC00',
                 'icon'  => config('other.font-awesome').' fa-comment-minus',
             ],
             [
-                'name'  => 'Busy',
+                'name'  => '忙碌',
                 'color' => '#FF4136',
                 'icon'  => config('other.font-awesome').' fa-comment-exclamation',
             ],
             [
-                'name'  => 'Offline',
+                'name'  => '离线',
                 'color' => '#AAAAAA',
                 'icon'  => config('other.font-awesome').' fa-comment-slash',
             ],

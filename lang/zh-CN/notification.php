@@ -35,4 +35,7 @@ return [
     'reseed-requests'    => '要求续种',
     'title'              => '标题',
     'unfollows'          => '取消追踪',
+    'all-marked-read'    => '所有邮件都已设为已读',
+    'already-marked-read' => '已经是已读状态',
+    'all-deleted'         => '已删除所有邮件',
 ];

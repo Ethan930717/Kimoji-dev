@@ -167,7 +167,7 @@
                         x-bind:class="tab === 'hierarchy' && 'panel__tab--active'"
                         x-on:click="tab = 'hierarchy'"
                     >
-                        Hierarchy
+                        结构
                     </li>
                     <li
                         class="panel__tab"
@@ -175,7 +175,7 @@
                         x-bind:class="tab === 'list' && 'panel__tab--active'"
                         x-on:click="tab = 'list'"
                     >
-                        List
+                        列表
                     </li>
                 </menu>
                 <div class="dialog__form" x-show="tab === 'hierarchy'">

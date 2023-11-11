@@ -49,7 +49,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="3">No Followers</td>
+                                <td colspan="3">暂无粉丝</td>
                             </tr>
                         @endforelse
                     </tbody>

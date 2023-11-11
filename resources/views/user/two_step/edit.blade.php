@@ -26,7 +26,7 @@
 
 @section('main')
     <section class="panelV2">
-        <h2 class="panel__heading">Two Step Authentication</h2>
+        <h2 class="panel__heading">两步验证</h2>
         <div class="panel__body">
             <form
                 class="form"
@@ -35,8 +35,8 @@
             >
                 @csrf
                 @method('PATCH')
-                <p>Currently, only email-based two step authentication is supported. Upon enabling, you will receive an email including a code to your registered email address.</p>
-                <p>Token-based two factor authentication is planned for a future update.</p>
+                <p>目前，仅支持基于电子邮件的两步验证。启用后，您将收到一封包含代码的电子邮件发送到您注册的邮箱地址。</p>
+                <p>基于令牌的双因素认证计划在未来推出。</p>
                 <p class="form__group">
                     <input type="hidden" name="twostep" value="0">
                     <input
@@ -47,7 +47,7 @@
                         value="1"
                         @checked($user->twostep)
                     >
-                    <label class="form__label" for="internal">Enable two-step authentication</label>
+                    <label class="form__label" for="internal">开启两步验证</label>
                 </p>
                 <p class="form__group">
                     <button class="form__button form__button--filled">

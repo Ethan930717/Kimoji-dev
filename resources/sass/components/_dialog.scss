@@ -35,6 +35,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    backdrop-filter: blur(5px);
 }
 
 .dialog__header {

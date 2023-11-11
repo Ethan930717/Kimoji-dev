@@ -70,6 +70,6 @@ class PeerController extends Controller
 
         $user->decrement('own_flushes');
 
-        return redirect()->back()->withSuccess('All peers last announced from the client over 70 minutes ago have been flushed successfully!');
+        return redirect()->back()->withSuccess('已成功清除所有超过70分钟未从客户端报告状态的用户！');
     }
 }

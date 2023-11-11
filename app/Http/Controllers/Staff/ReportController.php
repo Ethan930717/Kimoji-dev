@@ -55,7 +55,7 @@ class ReportController extends Controller
 
         if ($report->solved == 1) {
             return to_route('staff.reports.index')
-                ->withErrors('This Report Has Already Been Solved');
+                ->withErrors('该报告已被处理');
         }
 
         $report->update(['solved' => 1, 'staff_id' => $staff->id] + $request->validated());
@@ -64,11 +64,11 @@ class ReportController extends Controller
         PrivateMessage::create([
             'sender_id'   => $staff->id,
             'receiver_id' => $report->reporter_id,
-            'subject'     => 'Your Report Has A New Verdict',
+            'subject'     => '您的报告已有结果',
             'message'     => '[b]REPORT TITLE:[/b] '.$report->title."\n\n[b]ORIGINAL MESSAGE:[/b] ".$report->message."\n\n[b]VERDICT:[/b] ".$report->verdict,
         ]);
 
         return to_route('staff.reports.index')
-            ->withSuccess('Report has been successfully resolved');
+            ->withSuccess('报告已被成功受理');
     }
 }

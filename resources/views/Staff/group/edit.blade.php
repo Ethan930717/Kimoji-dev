@@ -221,7 +221,7 @@
                         @checked($group->is_double_upload)
                     >
                     <label class="form__label" for="is_double_upload">
-                        Double Upload
+                        双倍上传
                     </label>
                 </p>
                 <p class="form__group">

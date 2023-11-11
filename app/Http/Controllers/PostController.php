@@ -107,7 +107,7 @@ class PostController extends Controller
         if (config('other.staff-forum-notify') && ($forum->id == config('other.staff-forum-id') || $forum->parent_id == config('other.staff-forum-id'))) {
             $topic->notifyStaffers($user, $topic, $post);
         } else {
-            $this->chatRepository->systemMessage(sprintf('[url=%s]%s[/url] has left a reply on topic [url=%s]%s[/url]', $profileUrl, $user->username, $postUrl, $topic->name));
+            $this->chatRepository->systemMessage(sprintf('[url=%s]%s[/url] 回复了主题 [url=%s]%s[/url]', $profileUrl, $user->username, $postUrl, $topic->name));
 
             // Notify All Subscribers Of New Reply
             if ($topic->first_post_user_id != $user->id) {

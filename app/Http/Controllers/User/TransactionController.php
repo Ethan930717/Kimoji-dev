@@ -66,7 +66,7 @@ class TransactionController extends Controller
             $bonExchange = BonExchange::findOrFail($request->exchange);
 
             if ($bonExchange->cost > $user->seedbonus) {
-                return back()->withErrors('Not enough BON.');
+                return back()->withErrors('魔力不足');
             }
 
             switch (true) {

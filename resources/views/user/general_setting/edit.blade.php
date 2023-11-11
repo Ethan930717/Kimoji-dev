@@ -82,7 +82,7 @@
                     </p>
                 </fieldset>
                 <fieldset class="form__fieldset">
-                    <legend class="form__legend">聊天室（暂未开放）</legend>
+                    <legend class="form__legend">聊天室</legend>
                     <p class="form__group">
                         <label class="form__label">
                             <input type="hidden" name="censor" value="0">
@@ -94,19 +94,6 @@
                                 @checked($user->censor)
                             />
                             语言审查（带有敏感词的内容将被过滤）
-                        </label>
-                    </p>
-                    <p class="form__group">
-                        <label class="form__label">
-                            <input type="hidden" name="chat_hidden" value="1">
-                            <input
-                                class="form__checkbox"
-                                type="checkbox"
-                                name="chat_hidden"
-                                value="1"
-                                @checked($user->chat_hidden)
-                            />
-                            隐藏聊天室
                         </label>
                     </p>
                 </fieldset>

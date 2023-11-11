@@ -156,7 +156,7 @@ class TopicController extends Controller
         if (config('other.staff-forum-notify') && ($forum->id == config('other.staff-forum-id') || $forum->parent_id == config('other.staff-forum-id'))) {
             $forum->notifyStaffers($user, $topic);
         } else {
-            $this->chatRepository->systemMessage(sprintf('[url=%s]%s[/url] has created a new topic [url=%s]%s[/url]', $profileUrl, $user->username, $topicUrl, $topic->name));
+            $this->chatRepository->systemMessage(sprintf('[url=%s]%s[/url] 创建了一个新主题 [url=%s]%s[/url]', $profileUrl, $user->username, $topicUrl, $topic->name));
             $forum->notifySubscribers($user, $topic);
 
             //Achievements

@@ -81,7 +81,7 @@ class UserController extends Controller
         Unit3dAnnounce::addUser($user);
 
         return to_route('users.show', ['user' => $user])
-            ->withSuccess('Account Was Updated Successfully!');
+            ->withSuccess('账户更新成功！');
     }
 
     /**
@@ -183,10 +183,10 @@ class UserController extends Controller
             Unit3dAnnounce::removeUser($user);
 
             return to_route('staff.dashboard.index')
-                ->withSuccess('Account Has Been Removed');
+                ->withSuccess('账号删除成功');
         }
 
         return to_route('staff.dashboard.index')
-            ->withErrors('Something Went Wrong!');
+            ->withErrors('出错了!');
     }
 }

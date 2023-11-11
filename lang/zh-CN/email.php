@@ -39,7 +39,7 @@ return [
     'newreply-replied'    => '已回复您的话题',
     'newreply-view'       => '立即查看',
     'no-email-found'      => '找不到你的邮箱',
-    'register-code'       => '请点击下面的按钮以激活您的帐户。激活后，也许要在Chrome安装GooReplacer插件才能看到验证码。',
+    'register-code'       => '请点击下面的按钮以激活您的帐户。',
     'register-footer'     => '如果上面的按钮不起作用，请手动复制下方的注册链接',
     'register-header'     => 'Hi！感谢您注册',
     'report-comment'      => '评论',

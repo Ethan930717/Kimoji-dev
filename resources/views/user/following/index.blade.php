@@ -49,7 +49,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="3">Not following</td>
+                                <td colspan="3">你谁都没推</td>
                             </tr>
                         @endforelse
                     </tbody>

@@ -56,8 +56,8 @@ class NewTopic extends Notification implements ShouldQueue
         }
 
         return [
-            'title' => $this->user->username.' Has Posted In A Subscribed Forum',
-            'body'  => $this->user->username.' has started a new topic in '.$this->topic->forum->name,
+            'title' => $this->user->username.' 在你关注的板块发送了一个新帖子',
+            'body'  => $this->user->username.' 在 '.$this->topic->forum->name.' 创建了一个新主题 ',
             'url'   => sprintf('/forums/topics/%s', $this->topic->id),
         ];
     }

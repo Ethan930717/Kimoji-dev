@@ -1,5 +1,5 @@
 :root {
-    --message-bubble-bg: white;
+    --message-bubble-bg: #ffffff00;
     --message-bubble-fg: currentColor;
 
     --achievement-fg: inherit;
@@ -586,7 +586,7 @@ textarea {
 
 a {
     color: #ffffff;
-    text-shadow: 0 0 4px #fff;
+    text-shadow: 0 0 2px #fff;
 }
 
 a:focus,
@@ -4198,7 +4198,6 @@ div.pagination p {
     border-top-right-radius: 15px;
     background-color: var(--message-bubble-bg);
     padding: 4px 12px 0 8px;
-    margin: 4px 12px 0 48px;
 }
 /* Message text */
 .sent > div {
@@ -4225,10 +4224,20 @@ div.pagination p {
 }
 /* Entire Message */
 #frame .content .messages ul li.sent {
-    border: 0;
-    display: table;
-    max-width: 85%;
-    width: auto;
+    color: #ffffff;
+    width: 100%;
+    max-width: 100%;
+    line-height: 100%;
+    font-size: 18px;
+    font-weight: 400;
+    background: #ffffff00;
+    border-radius: 25px;
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+    border: 2px rgba(255, 255, 255, 0.4) solid;
+    border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
+    border-right: 2px rgba(40, 40, 40, 0.35) solid;
 }
 /* Timestamp */
 #frame .content .messages ul li.sent h4 .text-muted {
@@ -4250,6 +4259,23 @@ div.pagination p {
     color: #000000;
 }
 
+div:where(.swal2-container) div:where(.swal2-popup) {
+    background: #ffffff00;
+    backdrop-filter: blur(8px);
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #ffffff;
+    text-shadow:0 0 2px #ffffff;
+    display: none;
+    font-family: inherit;
+    font-size: 1rem;
+    grid-template-columns:minmax(0, 100%);
+    max-width: 100%;
+    padding: 0 0 1.25em;
+    position: relative;
+    width: 32em
+}
 @keyframes bg-animation {
     0% {
         background-position: 0% 0%;

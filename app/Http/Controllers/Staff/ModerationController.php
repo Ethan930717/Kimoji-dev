@@ -66,7 +66,7 @@ class ModerationController extends Controller
         if ($request->integer('old_status') !== $torrent->status) {
             return to_route('torrents.show', ['id' => $id])
                 ->withInput()
-                ->withErrors('Torrent has already been moderated since this page was loaded.');
+                ->withErrors('该种子已经通过审核');
         }
 
         if ($request->integer('status') === $torrent->status) {
@@ -74,11 +74,11 @@ class ModerationController extends Controller
                 ->withInput()
                 ->withErrors(
                     match ($torrent->status) {
-                        Torrent::PENDING   => 'Torrent already pending.',
-                        Torrent::APPROVED  => 'Torrent already approved.',
-                        Torrent::REJECTED  => 'Torrent already rejected.',
-                        Torrent::POSTPONED => 'Torrent already postponed.',
-                        default            => 'Invalid moderation status.'
+                        Torrent::PENDING   => '种子已处于待审核状态',
+                        Torrent::APPROVED  => '种子已被批准',
+                        Torrent::REJECTED  => '种子已被拒绝',
+                        Torrent::POSTPONED => '种子已被延期',
+                        default            => '无效的审核状态'
                     }
                 );
         }
@@ -90,7 +90,7 @@ class ModerationController extends Controller
                 // Announce To Shoutbox
                 if ($torrent->anon === 0) {
                     $this->chatRepository->systemMessage(
-                        sprintf('User [url=%s/users/', config('app.url')).$torrent->user->username.']'.$torrent->user->username.sprintf('[/url] has uploaded a new '.$torrent->category->name.'. [url=%s/torrents/', config('app.url')).$id.']'.$torrent->name.'[/url], grab it now! :slight_smile:'
+                        sprintf('用户 [url=%s/users/', config('app.url')).$torrent->user->username.']'.$torrent->user->username.sprintf('[/url] 上传了一个新 '.$torrent->category->name.'. [url=%s/torrents/', config('app.url')).$id.']'.$torrent->name.'[/url], grab it now! :slight_smile:'
                     );
                 } else {
                     $this->chatRepository->systemMessage(
@@ -143,11 +143,11 @@ class ModerationController extends Controller
                 Unit3dAnnounce::addTorrent($torrent);
 
                 return to_route('staff.moderation.index')
-                    ->withSuccess('Torrent Postponed');
+                    ->withSuccess('种子已延期');
 
             default: // Undefined status
                 return to_route('torrents.show', ['id' => $id])
-                    ->withErrors('Invalid moderation status.');
+                    ->withErrors('无效的审核状态');
         }
     }
 }

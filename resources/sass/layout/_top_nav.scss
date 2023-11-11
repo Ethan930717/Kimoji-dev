@@ -5,6 +5,7 @@
     grid-template: 'left . menus . right toggle' 48px / 1fr 40px auto 40px 1fr auto;
     align-items: center;
     padding: 0 14px;
+    backdrop-filter: blur(8px);
 
     &.mobile {
         grid-template: 'left toggle' 'menus menus' 'right right' auto / 1fr auto;

@@ -30,7 +30,7 @@
 >
     <p class="bbcode-input__tabs">
         <input class="bbcode-input__tab-input" type="radio" id="{{ $name }}-bbcode-preview-disabled" name="isPreviewEnabled" value="0" wire:model="isPreviewEnabled" />
-        <label class="bbcode-input__tab-label" for="{{ $name }}-bbcode-preview-disabled">Write</label>
+        <label class="bbcode-input__tab-label" for="{{ $name }}-bbcode-preview-disabled">编辑</label>
         <input class="bbcode-input__tab-input" type="radio" id="{{ $name }}-bbcode-preview-enabled" name="isPreviewEnabled" value="1" wire:model="isPreviewEnabled" />
         <label class="bbcode-input__tab-label" for="{{ $name }}-bbcode-preview-enabled">{{ __('common.preview') }}</label>
     </p>

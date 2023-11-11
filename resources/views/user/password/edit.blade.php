@@ -36,7 +36,6 @@
                 @csrf
                 @method('PATCH')
                 <p>{{ __('user.change-password-help') }}.</p>
-                <p>We strongly recommend you use a password manager (such as the free version of Bitwarden) to generate a secure random password</p>
                 @if (auth()->id() == $user->id)
                     <p class="form__group">
                         <input
@@ -48,7 +47,7 @@
                             required
                             type="password"
                         >
-                        <label class="form__label form__label--floating" for="current_password">Current Password</label>
+                        <label class="form__label form__label--floating" for="current_password">当前密码</label>
                     </p>
                 @endif
                 <livewire:password-strength />

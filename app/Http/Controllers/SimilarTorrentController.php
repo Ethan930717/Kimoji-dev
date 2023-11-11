@@ -36,7 +36,7 @@ class SimilarTorrentController extends Controller
             case $category->movie_meta:
                 $hasTorrents = Torrent::query()->where('category_id', '=', $categoryId)->where('tmdb', '=', $tmdbId)->exists();
 
-                abort_unless($hasTorrents, 404, 'No Similar Torrents Found');
+                abort_unless($hasTorrents, 404, '没有找到相关种子信息');
 
                 $meta = Movie::with([
                     'genres',
@@ -51,7 +51,7 @@ class SimilarTorrentController extends Controller
             case $category->tv_meta:
                 $hasTorrents = Torrent::query()->where('category_id', '=', $categoryId)->where('tmdb', '=', $tmdbId)->exists();
 
-                abort_unless($hasTorrents, 404, 'No Similar Torrents Found');
+                abort_unless($hasTorrents, 404, '没有找到相关种子信息');
 
                 $meta = Tv::with([
                     'genres',
@@ -67,7 +67,7 @@ class SimilarTorrentController extends Controller
             case $category->game_meta:
                 $hasTorrents = Torrent::query()->where('category_id', '=', $categoryId)->where('igdb', '=', $tmdbId)->exists();
 
-                abort_unless($hasTorrents, 404, 'No Similar Torrents Found');
+                abort_unless($hasTorrents, 404, '没有找到相关种子信息');
 
                 $meta = Game::with([
                     'cover'    => ['url', 'image_id'],
@@ -86,7 +86,7 @@ class SimilarTorrentController extends Controller
 
                 break;
             default:
-                abort(404, 'No Similar Torrents Found');
+                abort(404, '没有找到相关种子信息');
         }
 
         $personalFreeleech = cache()->get('personal_freeleech:'.auth()->id());
@@ -106,7 +106,7 @@ class SimilarTorrentController extends Controller
     {
         if ($tmdbId === 0 || Torrent::where('category_id', '=', $category->id)->where('tmdb', '=', $tmdbId)->doesntExist()) {
             return to_route('torrents.similar', ['category_id' => $category->id, 'tmdb' => $tmdbId])
-                ->withErrors('There exists no torrent with this tmdb.');
+                ->withErrors('暂无该TMDb条目的种子');
         }
 
         $tmdbScraper = new TMDBScraper();

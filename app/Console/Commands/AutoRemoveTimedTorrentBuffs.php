@@ -74,10 +74,10 @@ class AutoRemoveTimedTorrentBuffs extends Command
 
             // Announce To Chat
             $this->chatRepository->systemMessage(
-                sprintf('Ladies and Gents, [url=%s/torrents/%s]%s[/url] timed double upload buff has expired.', $appurl, $torrent->id, $torrent->name)
+                sprintf('大哥大姐们, [url=%s/torrents/%s]%s[/url] 双倍上传下钟了.', $appurl, $torrent->id, $torrent->name)
             );
         }
 
-        $this->comment('Automated Removal Of Expired Torrent Buffs Command Complete');
+        $this->comment('自动移除过期种子的命令已完成');
     }
 }

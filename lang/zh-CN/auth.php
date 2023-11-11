@@ -99,5 +99,5 @@ return [
     'verificationLockedMessage' => '账户被锁定！',
     'verificationLockedTitle'   => '不妙！',
 
-    'verificationModalConfBtn' => 'Ok',
+    'verificationModalConfBtn' => '搞定',
 ];

@@ -82,7 +82,7 @@ class SubscriptionController extends Controller
                     ->withSuccess('您已成功订阅该主题，当有新内容时，我们会通知您');
 
             default:
-                return back()->withErrors(['Failed to subscribe.']);
+                return back()->withErrors(['订阅失败']);
         }
     }
 

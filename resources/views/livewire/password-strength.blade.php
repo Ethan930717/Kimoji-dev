@@ -12,7 +12,7 @@
                 value="{{ old('new_password') }}"
                 wire:model="password"
         >
-        <label class="form__label form__label--floating" for="new_password">New Password</label>
+        <label class="form__label form__label--floating" for="new_password">新密码</label>
     </p>
     <p class="form__group">
         <input
@@ -26,11 +26,11 @@
                 type="password"
                 value="{{ old('new_password') }}"
         >
-        <label class="form__label form__label--floating" for="new_password_confirmation">Repeat Password</label>
+        <label class="form__label form__label--floating" for="new_password_confirmation">再次输入新密码</label>
     </p>
     <p class="form__group">
         <label class="form__label" for="password_strength">
-            Password strength: <b>{{ $strengthLevels[$strengthScore] ?? 'Weak' }}</b>
+            密码强度: <b>{{ $strengthLevels[$strengthScore] ?? '弱' }}</b>
         </label>
         <meter
             id="password_strength"
@@ -39,7 +39,7 @@
             max="4"
             value="{{ $strengthScore }}"
         >
-            {{ $strengthLevels[$strengthScore] ?? 'Weak' }}
+            {{ $strengthLevels[$strengthScore] ?? '弱' }}
         </meter>
     </p>
 </div>

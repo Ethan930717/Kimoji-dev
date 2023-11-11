@@ -20,15 +20,15 @@ class PasswordStrength extends Component
 {
     public string $password = '';
 
-    public string $passwordStrength = 'Weak';
+    public string $passwordStrength = '弱';
 
     public int $strengthScore = 0;
 
     public array $strengthLevels = [
-        1 => 'Weak',
-        2 => 'Fair',
-        3 => 'Good',
-        4 => 'Strong',
+        1 => '弱',
+        2 => '一般',
+        3 => '强',
+        4 => '极强',
     ];
 
     final public function updatedPassword($password): void

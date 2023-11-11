@@ -24,7 +24,7 @@ return [
     'aboutus-rules2'        => '遵守规则。',
     'aboutus-rules3'        => '提供建议。我们正在努力让 :title 变得更好。期待你的意见与建议。',
     'aboutus-welcome'       => '关于',
-    'aboutus-welcome-desc'  => ':title 是一个基于社区的影音聚合网站，所有内容都由会员无私奉献。 :title <em>致力于</em> 提供高清资源，活跃的用户群体，安全、可靠、优秀的网站程序，以及亲切友善的站务人员队伍。',
+    'aboutus-welcome-desc'  => ':title 是一个基于社区的影音聚合网站，所有内容都由会员无私奉献。 :title 致力于提供高清资源，活跃的用户群体，安全、可靠、优秀的网站程序，以及亲切友善的站务人员队伍。',
     'blacklist-browsers'    => '浏览器',
     'blacklist-btclient'    => 'BitTorrent客户端',
     'blacklist-clients'     => '客户端',

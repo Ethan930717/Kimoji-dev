@@ -168,5 +168,6 @@ return [
         'username' => '用户名',
         'password' => '密码',
         'email'    => '邮箱',
+        'bounty'   => '赏金',
     ],
     ];

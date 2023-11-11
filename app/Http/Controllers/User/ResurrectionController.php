@@ -48,7 +48,7 @@ class ResurrectionController extends Controller
 
         if ($torrent->seeders !== 0) {
             return to_route('torrents.show', ['id' => $torrent->id])
-                ->withErrors('This torrent is not dead.');
+                ->withErrors('该资源不是死种');
         }
 
         if ($torrent->created_at->gt(now()->subDays(30))) {

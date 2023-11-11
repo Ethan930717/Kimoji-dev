@@ -114,24 +114,25 @@ class AutoNerdStat extends Command
 
             // Select A Random Nerd Stat
             $statArray = [
-                sprintf('In The Last 24 Hours [color=#93c47d][b]%s[/b][/color] Unique Users Have Logged Into ', $logins).config('other.title').'!',
-                sprintf('In The Last 24 Hours [color=#93c47d][b]%s[/b][/color] Torrents Have Been Uploaded To ', $uploads).config('other.title').'!',
-                sprintf('In The Last 24 Hours [color=#93c47d][b]%s[/b][/color] Users Have Registered To ', $users).config('other.title').'!',
-                sprintf('There Are Currently [color=#93c47d][b]%s[/b][/color] 25%% Freeleech Torrents On ', $fl25).config('other.title').'!',
-                sprintf('There Are Currently [color=#93c47d][b]%s[/b][/color] 50%% Freeleech Torrents On ', $fl50).config('other.title').'!',
-                sprintf('There Are Currently [color=#93c47d][b]%s[/b][/color] 75%% Freeleech Torrents On ', $fl75).config('other.title').'!',
-                sprintf('There Are Currently [color=#93c47d][b]%s[/b][/color] 100%% Freeleech Torrents On ', $fl100).config('other.title').'!',
-                sprintf('There Are Currently [color=#93c47d][b]%s[/b][/color] Double Upload Torrents On ', $du).config('other.title').'!',
-                sprintf('Currently [url=%s]%s[/url] Is The Best Seeded Torrent On ', $seededUrl, $seeded->name).config('other.title').'!',
-                sprintf('Currently [url=%s]%s[/url] Is The Most Leeched Torrent On ', $leechedUrl, $leeched->name).config('other.title').'!',
-                sprintf('Currently [url=%s]%s[/url] Is The Most Snatched Torrent On ', $snatchedUrl, $snatched->name).config('other.title').'!',
-                sprintf('Currently [url=%s]%s[/url] Is The Top BON Holder On ', $bankerUrl, $banker->username).config('other.title').'!',
-                sprintf('Currently There Are [color=#93c47d][b]%s[/b][/color] Peers On ', $peers).config('other.title').'!',
-                sprintf('In The Last 24 Hours [color=#dd7e6b][b]%s[/b][/color] Users Have Been Banned From ', $bans).config('other.title').'!',
-                sprintf('In The Last 24 Hours [color=#dd7e6b][b]%s[/b][/color] Hit and Run Warnings Have Been Issued On ', $warnings).config('other.title').'!',
-                config('other.title').sprintf(' Birthday Is [b]%s[/b]!', $bday),
-                config('other.title').' Is King!',
+                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 位独立用户登录了 ', $logins).config('other.title').'！',
+                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 个种子被上传到 ', $uploads).config('other.title').'！',
+                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 位用户注册到 ', $users).config('other.title').'！',
+                sprintf('目前共有 [color=#e54736][b]%s[/b][/color] 个25%% 免费种子在 ', $fl25).config('other.title').'！',
+                sprintf('目前共有 [color=#e54736][b]%s[/b][/color] 个50%% 免费种子在 ', $fl50).config('other.title').'！',
+                sprintf('目前共有 [color=#e54736][b]%s[/b][/color] 个75%% 免费种子在 ', $fl75).config('other.title').'！',
+                sprintf('目前共有 [color=#e54736][b]%s[/b][/color] 个100%% 免费种子在 ', $fl100).config('other.title').'！',
+                sprintf('目前共有 [color=#e54736][b]%s[/b][/color] 个双倍上传种子在 ', $du).config('other.title').'！',
+                sprintf('目前 [url=%s]%s[/url] 是在 ', $seededUrl, $seeded->name).config('other.title').' 上种子做种最好的！',
+                sprintf('目前 [url=%s]%s[/url] 是在 ', $leechedUrl, $leeched->name).config('other.title').' 上下载最多的种子！',
+                sprintf('目前 [url=%s]%s[/url] 是在 ', $snatchedUrl, $snatched->name).config('other.title').' 上被抓取最多的种子！',
+                sprintf('目前 [url=%s]%s[/url] 是在 ', $bankerUrl, $banker->username).config('other.title').' 上最高BON持有者！',
+                sprintf('目前共有 [color=#e54736][b]%s[/b][/color] 个用户在 ', $peers).config('other.title').'！',
+                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 位用户从 ', $bans).config('other.title').' 被禁止！',
+                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 个一击即逃警告在 ', $warnings).config('other.title').' 被发布！',
+                config('other.title').sprintf(' 的生日是 [b]%s[/b]！', $bday),
+                config('other.title').' 是王者！',
             ];
+
             $selected = random_int(0, \count($statArray) - 1);
 
             // Auto Shout Nerd Stat

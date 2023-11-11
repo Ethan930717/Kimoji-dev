@@ -61,7 +61,7 @@ class NerdBot
             $bots = Bot::where('active', '=', 1)->where('id', '!=', $this->bot->id)->oldest('position')->get();
 
             foreach ($bots as $bot) {
-                $botHelp .= '( ! | / | @)'.$bot->command.' help triggers help file for '.$bot->name."\n";
+                $botHelp .= '( ! | / | @)'.$bot->command.' help 获取 '.$bot->name.' 的帮助'."\n";
             }
 
             $output = str_replace('{bots}', $botHelp, $output);
@@ -78,7 +78,7 @@ class NerdBot
             fn () => User::orderByDesc('seedbonus')->first()
         );
 
-        return sprintf('Currently [url=/users/%s]%s[/url] Is The Top BON Holder On ', $banker->username, $banker->username).config('other.title').'!';
+        return sprintf('现在 [url=/users/%s]%s[/url] 成为首富啦 ', $banker->username, $banker->username).config('other.title').'!';
     }
 
     public function getSnatched(): string
@@ -89,7 +89,7 @@ class NerdBot
             fn () => Torrent::orderByDesc('times_completed')->first()
         );
 
-        return sprintf('Currently [url=/torrents/%s]%s[/url] Is The Most Snatched Torrent On ', $snatched->id, $snatched->name).config('other.title').'!';
+            return sprintf('目前 [url=/torrents/%s]%s[/url] 是在 ', $snatched->id, $snatched->name).config('other.title').' 上最抢手的种子！';
     }
 
     public function getLeeched(): string
@@ -100,7 +100,7 @@ class NerdBot
             fn () => Torrent::orderByDesc('leechers')->first()
         );
 
-        return sprintf('Currently [url=/torrents/%s]%s[/url] Is The Most Leeched Torrent On ', $leeched->id, $leeched->name).config('other.title').'!';
+        return sprintf('目前 [url=/torrents/%s]%s[/url] 是在 ', $leeched->id, $leeched->name).config('other.title').' 下载量最多的人！';
     }
 
     public function getSeeded(): string
@@ -111,7 +111,7 @@ class NerdBot
             fn () => Torrent::orderByDesc('seeders')->first()
         );
 
-        return sprintf('Currently [url=/torrents/%s]%s[/url] Is The Most Seeded Torrent On ', $seeded->id, $seeded->name).config('other.title').'!';
+        return sprintf('目前 [url=/torrents/%s]%s[/url] 是在 ', $seeded->id, $seeded->name).config('other.title').' 做种最多的人！';
     }
 
     public function getFreeleech(): string
@@ -122,7 +122,7 @@ class NerdBot
             fn () => Torrent::where('free', '=', 1)->count()
         );
 
-        return sprintf('There Are Currently %s Freeleech Torrents On ', $freeleech).config('other.title').'!';
+        return sprintf('目前共有 %s 个免费种子在 ', $freeleech).config('other.title').'！';
     }
 
     public function getDoubleUpload(): string
@@ -133,7 +133,7 @@ class NerdBot
             fn () => Torrent::where('doubleup', '=', 1)->count()
         );
 
-        return sprintf('There Are Currently %s Double Upload Torrents On ', $doubleUpload).config('other.title').'!';
+        return sprintf('目前共有 %s 个双倍上传种子在 ', $doubleUpload).config('other.title').'！';
     }
 
     public function getPeers(): string
@@ -144,7 +144,7 @@ class NerdBot
             fn () => Peer::where('active', '=', 1)->count()
         );
 
-        return sprintf('Currently There Are %s Peers On ', $peers).config('other.title').'!';
+        return sprintf('目前共有 %s 个用户在 ', $peers).config('other.title').'！';
     }
 
     public function getBans(): string
@@ -157,7 +157,7 @@ class NerdBot
                 ->where('created_at', '>', $this->current->subDay())->count()
         );
 
-        return sprintf('In The Last 24 Hours %s Users Have Been Banned From ', $bans).config('other.title').'!';
+        return sprintf('在过去的24小时内，共有 %s 位用户从 ', $bans).config('other.title').' 被流放！';
     }
 
     public function getWarnings(): string
@@ -168,7 +168,7 @@ class NerdBot
             fn () => Warning::where('created_at', '>', $this->current->subDay())->count()
         );
 
-        return sprintf('In The Last 24 Hours %s Hit and Run Warnings Have Been Issued On ', $warnings).config('other.title').'!';
+        return sprintf('在过去的24小时内，共有 %s 个HR在 ', $warnings).config('other.title').' 被发布！';
     }
 
     public function getUploads(): string
@@ -179,7 +179,7 @@ class NerdBot
             fn () => Torrent::where('created_at', '>', $this->current->subDay())->count()
         );
 
-        return sprintf('In The Last 24 Hours %s Torrents Have Been Uploaded To ', $uploads).config('other.title').'!';
+        return sprintf('在过去的24小时内，共有 %s 个种子被上传到 ', $uploads).config('other.title').'！';
     }
 
     public function getLogins(): string
@@ -190,7 +190,7 @@ class NerdBot
             fn () => User::whereNotNull('last_login')->where('last_login', '>', $this->current->subDay())->count()
         );
 
-        return sprintf('In The Last 24 Hours %s Unique Users Have Logged Into ', $logins).config('other.title').'!';
+        return sprintf('在过去的24小时内，共有 %s 位用户登录了 ', $logins).config('other.title').'！';
     }
 
     public function getRegistrations(): string
@@ -201,7 +201,7 @@ class NerdBot
             fn () => User::where('created_at', '>', $this->current->subDay())->count()
         );
 
-        return sprintf('In The Last 24 Hours %s Users Have Registered To ', $registrations).config('other.title').'!';
+        return sprintf('在过去的24小时内，共有 %s 位用户入住 ', $registrations).config('other.title').'！';
     }
 
     /**
@@ -223,7 +223,7 @@ class NerdBot
             $i++;
         }
 
-        return "The Most Recent Donations To All Bots Are As Follows:\n\n".trim($donationDump);
+        return "所有机器人最近的捐款情况如下：\n\n".trim($donationDump);
     }
 
     public function getHelp(): string
@@ -233,7 +233,7 @@ class NerdBot
 
     public function getKing(): string
     {
-        return config('other.title').' Is King!';
+        return config('other.title').' 是老大';
     }
 
     /**
@@ -271,10 +271,10 @@ class NerdBot
             $donations = BotTransaction::with('user', 'bot')->where('bot_id', '=', $this->bot->id)->where('to_bot', '=', 1)->latest()->limit(10)->get();
             cache()->put('casinobot-donations', $donations, $this->expiresAt);
 
-            return 'Your donation to '.$this->bot->name.' for '.$amount.' BON has been sent!';
+            return '您对 '.$this->bot->name.' 的 '.$amount.' 魔力捐款已发送！';
         }
 
-        return 'Your donation to '.$output.' could not be sent.';
+        return '您对 '.$output.' 的捐款未能发送。';
     }
 
     /**
@@ -295,7 +295,7 @@ class NerdBot
         if ($message === '') {
             $log = '';
         } else {
-            $log = 'All '.$this->bot->name.' commands must be a private message or begin with /'.$this->bot->command.' or !'.$this->bot->command.'. Need help? Type /'.$this->bot->command.' help and you shall be helped.';
+            $log = '所有 '.$this->bot->name.' 命令必须是私人消息或以 /'.$this->bot->command.' 或 !'.$this->bot->command.' 开始。需要帮助？输入 /'.$this->bot->command.' help，您将得到帮助。';
         }
 
         $command = @explode(' ', $message);
