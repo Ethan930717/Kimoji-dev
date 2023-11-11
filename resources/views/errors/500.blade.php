@@ -6,6 +6,6 @@
 
 @section('content')
     <div style="text-align: center;">
-        <img src="{{ asset('/img/contribute.jpg') }}" alt="Error 500" style="max-width: 100%; height: auto;">
+        <img src="{{ asset('/img/500error.png') }}" alt="Error 500" style="max-width: 100%; height: auto;">
     </div>
 @endsection
