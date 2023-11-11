@@ -49,7 +49,7 @@ return [
     'proof-min'             => '（最少2, 建议3）',
     'proof-profile'         => '其他站点个人档案链接',
     'recover-my-password'   => '重设密码',
-    'register-thanks'       => '提交成功，请检查邮件并完成注册',
+    'register-thanks'       => '注册成功，请检查邮件并激活账号',
     'remember-me'           => '记住我的登录状态',
     'require-rules'         => '请阅读页底的条款并接受。',
     'signup'                => '注册',

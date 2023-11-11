@@ -297,7 +297,11 @@ div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-circular-lin
 }
 
 .swal2-show {
-    animation: swal2-show .3s
+    animation: swal2-show .3s;
+    background: #ffffff00;
+    backdrop-filter: blur(8px);
+    color:#ffffff;
+    text-shadow:0 0 2px #ffffff;
 }
 
 
@@ -960,16 +964,16 @@ input[type=email]:focus::placeholder {
     margin-top: 20px;
     margin-bottom: 20px;
 }
-div:where(.swal2-container).swal2-center>.swal2-popup {
-    background: #ffffff00 !important;
-    backdrop-filter: blur(8px);
-    color:#ffffff !important;
-    text-shadow:0 0 2px #ffffff;
-}
+
 div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
-    background-color: #5fbae9cc !important;
-    padding: 1em 2em !important;
-    display: flex !important;
+    border: 0;
+    border-radius: 0.25em;
+    background: initial;
+    background-color: #5fbae9cc !important ;
+    padding: 1em 2em;
+    color: #fff;
+    font-size: 1em;
+    display: flex !important ;
     justify-content: center;
     align-items: center;
     text-align: center;

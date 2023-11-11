@@ -146,7 +146,7 @@
       function backup(option = '') {
         @this.createBackup(option)
         Swal.fire({
-          title: '<strong style=" color: rgb(17,17,17);">Success</strong>',
+          title: '<strong style=" color: rgb(255,255,255);">成功</strong>',
           icon: 'success',
           html: 'Creating a new backup in the background...' + (option ? ' (' + option + ')' : ''),
           showCloseButton: true,
