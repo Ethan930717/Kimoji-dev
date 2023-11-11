@@ -52,7 +52,7 @@ class GroupsTableSeeder extends Seeder
                 'slug'       => 'guest',
                 'position'   => 3,
                 'color'      => '#575757',
-                'icon'       => config('other.font-awesome').' fa-cowboy-hat-side',
+                'icon'       => config('other.font-awesome').' fa-hat-coyboy',
                 'can_upload' => 0,
                 'level'      => 10,
             ],

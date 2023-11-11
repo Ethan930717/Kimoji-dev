@@ -18,7 +18,8 @@
 }
 
 .swal2-popup.swal2-toast.swal2-show {
-    animation: swal2-toast-show .5s
+    animation: swal2-toast-show .5s;
+    color: #000000
 }
 
 div:where(.swal2-container) {
