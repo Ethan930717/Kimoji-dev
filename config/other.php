@@ -74,7 +74,7 @@ return [
     | Global Freeleech
     |
     */
-    'freeleech' => true,
+    'freeleech' => false,
 
     'freeleech_until' => '12/23/2023 3:00 PM EST',
 
@@ -120,7 +120,7 @@ return [
     | Restricted mode for invites. If set to true, invites will be restricted
     | Exempt these groups from the invite restrictions
     */
-    'invite-only'   => false,
+    'invite-only'   => true,
     'invite_expire' => '14',
 
     'invites_restriced' => false,
