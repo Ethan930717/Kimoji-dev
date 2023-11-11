@@ -1,5 +1,11 @@
 @extends('errors.layout')
 
-@section('title', 'Error 500: Internal Server Error')
+@section('title', 'Error 500: 内部错误')
 
-@section('description', 'Our server encountered an internal error. Sorry For The Inconvenience')
+@section('description', 'KIMOJI正在检修中，请稍后再来')
+
+@section('content')
+    <div style="text-align: center;">
+        <img src="{{ asset('/img/contribute.jpg') }}" alt="Error 500" style="max-width: 100%; height: auto;">
+    </div>
+@endsection

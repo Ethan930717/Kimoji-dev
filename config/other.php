@@ -74,9 +74,9 @@ return [
     | Global Freeleech
     |
     */
-    'freeleech' => false,
+    'freeleech' => true,
 
-    'freeleech_until' => '12/23/2017 3:00 PM EST',
+    'freeleech_until' => '12/23/2023 3:00 PM EST',
 
     /*
     |--------------------------------------------------------------------------
@@ -174,7 +174,7 @@ return [
     | True/1 = Enabled
     | False/0 = Disabled
     */
-    'application_signups' => false,
+    'application_signups' => true,
 
     /*
     |--------------------------------------------------------------------------
