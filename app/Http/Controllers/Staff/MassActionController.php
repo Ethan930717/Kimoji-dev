@@ -85,6 +85,6 @@ class MassActionController extends Controller
         }
 
         return to_route('staff.dashboard.index')
-            ->withSuccess('Unvalidated Accounts Are Now Validated');
+            ->withSuccess('所有未验证的账号均已激活');
     }
 }

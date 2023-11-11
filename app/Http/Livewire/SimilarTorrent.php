@@ -128,9 +128,9 @@ class SimilarTorrent extends Component
         $torrents = Torrent::whereKey($this->checked)->pluck('name')->toArray();
         $names = $torrents;
         $this->dispatchBrowserEvent('swal:confirm', [
-            'type'    => 'warning',
-            'message' => 'Are you sure?',
-            'body'    => 'If deleted, you will not be able to recover the following files!'.nl2br("\n")
+            'type'    => '警告',
+            'message' => '你确定吗?',
+            'body'    => '一旦删除，以下文件将无法恢复！'.nl2br("\n")
                         .nl2br(implode("\n", $names)),
         ]);
     }

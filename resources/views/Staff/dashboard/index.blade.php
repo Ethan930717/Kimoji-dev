@@ -280,8 +280,8 @@
                         @csrf
                         <button
                             x-on:click.prevent="Swal.fire({
-                                title: 'Are you sure?',
-                                text: 'Are you sure you want to automatically validate all users even if their email address isn\'t confirmed?',
+                                title: '你确定吗?',
+                                text: '请确认是否真的需要批量激活所有账号',
                                 icon: 'warning',
                                 showConfirmButton: true,
                                 showCancelButton: true,
