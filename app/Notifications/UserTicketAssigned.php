@@ -45,9 +45,9 @@ class UserTicketAssigned extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage())
-            ->subject('Your ticket was assigned (Ticket # '.$this->ticket->id.')')
-            ->line('Your ticket was assigned to '.$this->ticket->user->username)
-            ->action('View Ticket', route('tickets.show', ['ticket' => $this->ticket]));
+            ->subject('您的工单已分配 (工单号 # '.$this->ticket->id.')')
+            ->line('您的工单已经分配给了 '.$this->ticket->user->username)
+            ->action('查看工单', route('tickets.show', ['ticket' => $this->ticket]));
     }
 
     /**

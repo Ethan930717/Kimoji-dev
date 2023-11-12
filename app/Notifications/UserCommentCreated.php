@@ -45,9 +45,9 @@ class UserCommentCreated extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage())
-            ->subject('A comment was added (User)')
-            ->line('A comment was added')
-            ->action('View Ticket', route('tickets.show', ['ticket' => $this->comment->commentable_id]));
+            ->subject('添加了新评论 (用户)')
+            ->line('添加了新评论')
+            ->action('查看工单', route('tickets.show', ['ticket' => $this->comment->commentable_id]));
     }
 
     /**

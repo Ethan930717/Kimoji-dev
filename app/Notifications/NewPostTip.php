@@ -47,8 +47,8 @@ class NewPostTip extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
-            'title' => $this->tipper.' Has Tipped You '.$this->amount.' BON For A Forum Post',
-            'body'  => $this->tipper.' has tipped one of your Forum posts in '.$this->post->topic->name,
+            'title' => $this->tipper.' 向你打赏了 '.$this->amount.' 魔力',
+            'body' => $this->tipper.' 在 '.$this->post->topic->name.' 打赏了你',
             'url'   => sprintf('/forums/topics/%s/posts/%s', $this->post->topic->id, $this->post->id),
         ];
     }

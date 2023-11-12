@@ -47,8 +47,8 @@ class NewUnfollow extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
-            'title' => $this->unfollower->username.' Has Unfollowed You!',
-            'body'  => $this->unfollower->username.' has stopped following you so they will no longer get notifications about your activities.',
+            'title' => $this->unfollower->username.' 取关了你！',
+            'body'  => $this->unfollower->username.' 取关了你，之后将无法继续收到您的最新动态',
             'url'   => '/users/'.$this->unfollower->username,
         ];
     }

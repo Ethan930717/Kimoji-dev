@@ -42,7 +42,7 @@ class ThankButton extends Component
         $thank = Thank::where('user_id', '=', $this->user->id)->where('torrent_id', '=', $this->torrent->id)->first();
 
         if ($thank) {
-            $this->dispatchBrowserEvent('error', ['type' => 'error',  'message' => 'You Have Already Thanked!']);
+            $this->dispatchBrowserEvent('error', ['type' => 'error',  'message' => '您已经感谢过当前资源']);
 
             return;
         }
@@ -57,7 +57,7 @@ class ThankButton extends Component
             $this->torrent->notifyUploader('thank', $thank);
         }
 
-        $this->dispatchBrowserEvent('success', ['type' => 'success',  'message' => 'Your Thank Was Successfully Applied!']);
+        $this->dispatchBrowserEvent('success', ['type' => 'success',  'message' => '感谢成功']);
     }
 
     final public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application

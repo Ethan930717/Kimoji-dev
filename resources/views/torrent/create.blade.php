@@ -77,7 +77,7 @@
                 >
                     @csrf
                     <p class="form__group">
-                        <label for="torrent" class="form__label">Torrent {{ __('torrent.file') }}</label>
+                        <label for="torrent" class="form__label">种子 {{ __('torrent.file') }}</label>
                         <input
                             class="upload-form-file form__file"
                             type="file"
@@ -96,15 +96,15 @@
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'no'">
                         <label for="torrent-cover" class="form__label">
-                            Cover {{ __('torrent.file') }} ({{ __('torrent.optional') }})
+                            背景图片 ({{ __('torrent.optional') }})
                         </label>
-                        <input id="torrent-cover" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg" name="torrent-cover">
+                        <input id="torrent-cover" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg, .png" name="torrent-cover">
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'no'">
                         <label for="torrent-banner" class="form__label">
-                            Banner {{ __('torrent.file') }} ({{ __('torrent.optional') }})
+                            海报 (必选)
                         </label>
-                        <input id="torrent-banner" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg" name="torrent-banner">
+                        <input id="torrent-banner" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg, .png" name="torrent-banner">
                     </p>
                     <p class="form__group">
                         <input

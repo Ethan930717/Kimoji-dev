@@ -48,15 +48,15 @@ class NewComment extends Notification
         if ($this->type === 'torrent') {
             if ($this->comment->anon == 0) {
                 return [
-                    'title' => 'New Torrent Comment Received',
-                    'body'  => $this->comment->user->username.' has left you a comment on Torrent '.$this->comment->commentable->name,
+                    'title' => '收到了新的种子评论',
+                    'body'  => $this->comment->user->username.' 评论了'.$this->comment->commentable->name,
                     'url'   => '/torrents/'.$this->comment->commentable->id,
                 ];
             }
 
             return [
-                'title' => 'New Torrent Comment Received',
-                'body'  => 'Anonymous has left you a comment on Torrent '.$this->comment->commentable->name,
+                'title' => '收到了新的种子评论',
+                'body'  => '一位匿名用户评论了 '.$this->comment->commentable->name,
                 'url'   => '/torrents/'.$this->comment->commentable->id,
             ];
         }
@@ -64,15 +64,15 @@ class NewComment extends Notification
         if ($this->type === 'torrent request') {
             if ($this->comment->anon == 0) {
                 return [
-                    'title' => 'New Request Comment Received',
-                    'body'  => $this->comment->user->username.' has left you a comment on Torrent Request '.$this->comment->commentable->name,
+                    'title' => '收到了新的求种评论',
+                    'body'  => $this->comment->user->username.' 评论了 '.$this->comment->commentable->name,
                     'url'   => '/requests/'.$this->comment->commentable->id,
                 ];
             }
 
             return [
-                'title' => 'New Request Comment Received',
-                'body'  => 'Anonymous has left you a comment on Torrent Request '.$this->comment->commentable->name,
+                'title' => '收到了新的求种评论',
+                'body'  => '一位匿名用户评论了 '.$this->comment->commentable->name,
                 'url'   => '/requests/'.$this->comment->commentable->id,
             ];
         }
@@ -80,15 +80,15 @@ class NewComment extends Notification
         if ($this->type === 'ticket') {
             if ($this->comment->anon == 0) {
                 return [
-                    'title' => 'New Ticket Comment Received',
-                    'body'  => $this->comment->user->username.' has left you a comment on Ticket '.$this->comment->commentable->subject,
+                    'title' => '收到新的工单评论',
+                    'body' => $this->comment->user->username.' 评论了 '.$this->comment->commentable->subject,
                     'url'   => '/tickets/'.$this->comment->commentable->id,
                 ];
             }
 
             return [
-                'title' => 'New Ticket Comment Received',
-                'body'  => 'Anonymous has left you a comment on Ticket '.$this->comment->commentable->subject,
+                'title' => '收到新的工单评论',
+                'body' => '一位匿名用户评论了 '.$this->comment->commentable->subject,
                 'url'   => '/tickets/'.$this->comment->commentable->id,
             ];
         }
@@ -96,15 +96,15 @@ class NewComment extends Notification
         if ($this->type === 'playlist') {
             if ($this->comment->anon == 0) {
                 return [
-                    'title' => 'New Playlist Comment Received',
-                    'body'  => $this->comment->user->username.' has left you a comment on Playlist '.$this->comment->commentable->name,
+                    'title' => '收到新的播放列表评论',
+                    'body'  => $this->comment->user->username.' 评论了 '.$this->comment->commentable->name,
                     'url'   => '/playlists/'.$this->comment->commentable->id,
                 ];
             }
 
             return [
-                'title' => 'New Playlist Comment Received',
-                'body'  => 'Anonymous has left you a comment on Playlist '.$this->comment->commentable->name,
+                'title' => '收到新的播放列表评论',
+                'body'  => '一位匿名用户评论了 '.$this->comment->commentable->name,
                 'url'   => '/playlists/'.$this->comment->commentable->id,
             ];
         }
@@ -112,30 +112,30 @@ class NewComment extends Notification
         if ($this->type === 'collection') {
             if ($this->comment->anon == 0) {
                 return [
-                    'title' => 'New Collection Comment Received',
-                    'body'  => $this->comment->user->username.' has left you a comment on Collection '.$this->comment->commentable->name,
+                    'title' => '收到新的收藏评论',
+                    'body'  => $this->comment->user->username.' 评论了 '.$this->comment->commentable->name,
                     'url'   => '/mediahub/collections/'.$this->comment->commentable->id,
                 ];
             }
 
             return [
-                'title' => 'New Collection Comment Received',
-                'body'  => 'Anonymous has left you a comment on Collection '.$this->comment->commentable->name,
+                'title' => '收到新的收藏评论',
+                'body'  => '一位匿名用户评论了 '.$this->comment->commentable->name,
                 'url'   => '/mediahub/collections/'.$this->comment->commentable->id,
             ];
         }
 
         if ($this->comment->anon == 0) {
             return [
-                'title' => 'New Article Comment Received',
-                'body'  => $this->comment->user->username.' has left you a comment on Article '.$this->comment->commentable->title,
+                'title' => '收到新的文章评论',
+                'body'  => $this->comment->user->username.' 评论了 '.$this->comment->commentable->title,
                 'url'   => '/articles/'.$this->comment->commentable->id,
             ];
         }
 
         return [
-            'title' => 'New Article Comment Received',
-            'body'  => 'Anonymous has left you a comment on Article '.$this->comment->commentable->title,
+            'title' => '收到新的文章评论',
+            'body'  => '一位匿名用户评论了 '.$this->comment->commentable->title,
             'url'   => '/articles/'.$this->comment->commentable->id,
         ];
     }

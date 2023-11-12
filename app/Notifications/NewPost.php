@@ -49,8 +49,8 @@ class NewPost extends Notification implements ShouldQueue
     {
         if ($this->type == 'subscription') {
             return [
-                'title' => $this->user->username.' Has Posted In A Subscribed Topic',
-                'body'  => $this->user->username.' has left a new post in Subscribed Topic '.$this->post->topic->name,
+                'title' => $this->user->username.' 在你关注的主题下发送了新帖子',
+                'body'  => $this->user->username.' 在你关注的主题 '.$this->post->topic->name.' 下发送了新帖',
                 'url'   => sprintf('/forums/topics/%s/posts/%s', $this->post->topic->id, $this->post->id),
             ];
         }

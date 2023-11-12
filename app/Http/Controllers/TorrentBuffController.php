@@ -301,6 +301,6 @@ class TorrentBuffController extends Controller
         $torrent->save();
 
         return to_route('torrents.show', ['id' => $torrent->id])
-            ->withSuccess('Torrent\'退款状态已开启');
+            ->withSuccess('退款状态更新成功');
     }
 }

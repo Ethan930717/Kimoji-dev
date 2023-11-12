@@ -49,15 +49,15 @@ class NewTopic extends Notification implements ShouldQueue
     {
         if ($this->type == 'staff') {
             return [
-                'title' => $this->user->username.' Has Posted In A Staff Forum',
-                'body'  => $this->user->username.' has started a new staff topic in '.$this->topic->forum->name,
+                'title' => $this->user->username.' 在员工板块中发送了新帖子',
+                'body'  => $this->user->username.' 在 '.$this->topic->forum->name.' 创建了新主题',
                 'url'   => route('topics.show', ['id' => $this->topic->id]),
             ];
         }
 
         return [
-            'title' => $this->user->username.' 在你关注的板块发送了一个新帖子',
-            'body'  => $this->user->username.' 在 '.$this->topic->forum->name.' 创建了一个新主题 ',
+            'title' => $this->user->username.' 在你关注的板块创建了新主题',
+            'body'  => $this->user->username.' 在 '.$this->topic->forum->name.' 创建了新主题 ',
             'url'   => sprintf('/forums/topics/%s', $this->topic->id),
         ];
     }

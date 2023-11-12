@@ -128,7 +128,7 @@ class AutoNerdStat extends Command
                 sprintf('目前 [url=%s]%s[/url] 是在 ', $bankerUrl, $banker->username).config('other.title').' 上最高BON持有者！',
                 sprintf('目前共有 [color=#e54736][b]%s[/b][/color] 个用户在 ', $peers).config('other.title').'！',
                 sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 位用户从 ', $bans).config('other.title').' 被禁止！',
-                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 个一击即逃警告在 ', $warnings).config('other.title').' 被发布！',
+                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 个H&R警告在 ', $warnings).config('other.title').' 被发布！',
                 config('other.title').sprintf(' 的生日是 [b]%s[/b]！', $bday),
                 config('other.title').' 是王者！',
             ];

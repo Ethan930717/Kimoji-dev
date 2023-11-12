@@ -37,10 +37,10 @@ class UserWarningExpire extends Notification
         $profileUrl = href_profile($this->user);
 
         return (new MailMessage())
-            ->greeting('Hit and Run Warning Expired!')
-            ->line('Your Hit and Run Warning has expired or been seeded off!')
-            ->action('View Profile!', $profileUrl)
-            ->line('Thank you for using 🚀'.config('other.title'));
+            ->greeting('H&R警告到期')
+            ->line('您的H&R警告已到期或已处理')
+            ->action('查看个人信息', $profileUrl)
+            ->line('感谢你使用'.config('other.title'));
     }
 
     /**
@@ -51,8 +51,8 @@ class UserWarningExpire extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'title' => $this->torrent->name.' Hit and Run Warning Expired',
-            'body'  => 'Your Hit and Run Warning has expired or been seeded off on '.$this->torrent->name,
+            'title' => $this->torrent->name.' H&R警告到期',
+            'body'  => '您的H&R警告已到期或已处理 '.$this->torrent->name,
             'url'   => sprintf('/torrents/%s', $this->torrent->id),
         ];
     }

@@ -107,7 +107,7 @@
                 @csrf
                 <input type="hidden" name="torrent" value="{{ $torrent->id }}">
                 <div>
-                    {!! __('torrent.torrent-tips', ['total' => $total_tips, 'user' => $user_tips]) !!}.
+                    {!! __('torrent.torrent-tips', ['total' => $total_tips, 'user' => $user_tips]) !!}
                     <span>({{ __('torrent.torrent-tips-desc') }})</span>
                 </div>
                 <div class="form__group">

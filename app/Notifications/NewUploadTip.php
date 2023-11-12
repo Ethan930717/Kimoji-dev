@@ -47,8 +47,8 @@ class NewUploadTip extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
-            'title' => $this->tipper.' Has Tipped You '.$this->amount.' BON For An Uploaded Torrent',
-            'body'  => $this->tipper.' has tipped one of your Uploaded Torrents '.$this->torrent->name,
+            'title' => $this->tipper.' 向你上传的种子打赏了 '.$this->amount.' 魔力值',
+            'body'  => $this->tipper.' 打赏了您上传的 '.$this->torrent->name,
             'url'   => sprintf('/torrents/%s', $this->torrent->id),
         ];
     }

@@ -33,8 +33,8 @@ class UserBanExpire extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage())
-            ->greeting('You have been unbanned 🤩')
-            ->line('You have been unbanned from '.config('other.title'))
-            ->line('Thank you for using 🚀'.config('other.title'));
+            ->greeting('你被赦免了')
+            ->line('你的流放之路已结束')
+            ->line('欢迎你重新回到'.config('other.title'));
     }
 }

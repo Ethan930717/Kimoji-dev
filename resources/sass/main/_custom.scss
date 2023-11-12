@@ -4278,6 +4278,21 @@ div:where(.swal2-container) div:where(.swal2-popup) {
     position: relative;
     width: 32em
 }
+
+.swal2-show {
+    background: #ffffff00;
+    color: #ffffff;
+    border: var(--button-text-border);
+    border-radius: var(--button-text-border-radius);
+    backdrop-filter: blur(3px);
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+    border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
+    border-right: 2px rgba(40, 40, 40, 0.35) solid;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+    background-color: #d76b6b !important ;
+}
 @keyframes bg-animation {
     0% {
         background-position: 0% 0%;

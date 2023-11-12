@@ -232,4 +232,5 @@ return [
     'season-number'            => '季数',
     'episode-number'           => '集数',
     'featured'                 => '精选',
+    'revokefeatured'           => '取消精选',
 ];

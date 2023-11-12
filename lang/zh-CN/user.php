@@ -380,4 +380,5 @@ return [
     'client-list'             => '客户端列表',
     'not-enough-invites'      => '邀请数量不足',
     'invite-sent-success'     => '邀请发送成功',
+    'report-sent'             => '举报发送成功',
 ];

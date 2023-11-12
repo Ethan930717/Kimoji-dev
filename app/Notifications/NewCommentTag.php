@@ -49,15 +49,15 @@ class NewCommentTag extends Notification implements ShouldQueue
         if ($this->type === 'torrent') {
             if ($this->comment->anon == 0) {
                 return [
-                    'title' => $this->comment->user->username.' Has Tagged You',
-                    'body'  => $this->comment->user->username.' has tagged you in an comment on Torrent '.$this->comment->commentable->name,
+                    'title' => $this->comment->user->username.' 标记了你',
+                    'body' => $this->comment->user->username.' 在种子 '.$this->comment->commentable->name.' 的评论中标记了你',
                     'url'   => '/torrents/'.$this->comment->commentable->id,
                 ];
             }
 
             return [
-                'title' => 'You Have Been Tagged',
-                'body'  => 'Anonymous has tagged you in an comment on Torrent '.$this->comment->commentable->name,
+                'title' => '你被标记了',
+                'body' => '一位匿名用户在种子 '.$this->comment->commentable->name.' 的评论中标记了你',
                 'url'   => '/torrents/'.$this->comment->commentable->id,
             ];
         }
@@ -65,15 +65,15 @@ class NewCommentTag extends Notification implements ShouldQueue
         if ($this->type === 'torrent request') {
             if ($this->comment->anon == 0) {
                 return [
-                    'title' => $this->comment->user->username.' Has Tagged You',
-                    'body'  => $this->comment->user->username.' has tagged you in an comment on Torrent Request '.$this->comment->commentable->name,
+                    'title' => $this->comment->user->username.' 标记了你',
+                    'body' => $this->comment->user->username.' 在求种信息 '.$this->comment->commentable->name.' 的评论中标记了你',
                     'url'   => '/requests/'.$this->comment->commentable->id,
                 ];
             }
 
             return [
-                'title' => 'You Have Been Tagged',
-                'body'  => 'Anonymous has tagged you in an comment on Torrent Request '.$this->comment->commentable->name,
+                'title' => '你被标记了',
+                'body' => '一位匿名用户在种子请求 '.$this->comment->commentable->name.' 的评论中标记了你',
                 'url'   => '/requests/'.$this->comment->commentable->id,
             ];
         }
@@ -81,15 +81,15 @@ class NewCommentTag extends Notification implements ShouldQueue
         if ($this->type === 'ticket') {
             if ($this->comment->anon == 0) {
                 return [
-                    'title' => $this->comment->user->username.' Has Tagged You',
-                    'body'  => $this->comment->user->username.' has tagged you in an comment on Ticket '.$this->comment->commentable->subject,
+                    'title' => $this->comment->user->username.' 标记了你',
+                    'body' => $this->comment->user->username.' 在工单 '.$this->comment->commentable->subject.' 的评论中标记了你',
                     'url'   => '/tickets/'.$this->comment->commentable->id,
                 ];
             }
 
             return [
-                'title' => 'You Have Been Tagged',
-                'body'  => 'Anonymous has tagged you in an comment on Ticket '.$this->comment->commentable->subject,
+                'title' => '你被标记了',
+                'body' => '一位匿名用户在工单 '.$this->comment->commentable->subject.' 的评论中标记了你',
                 'url'   => '/tickets/'.$this->comment->commentable->id,
             ];
         }
@@ -97,15 +97,15 @@ class NewCommentTag extends Notification implements ShouldQueue
         if ($this->type === 'playlist') {
             if ($this->comment->anon == 0) {
                 return [
-                    'title' => $this->comment->user->username.' Has Tagged You',
-                    'body'  => $this->comment->user->username.' has tagged you in an comment on Playlist '.$this->comment->commentable->name,
+                    'title' => $this->comment->user->username.' 标记了你',
+                    'body' => $this->comment->user->username.' 在播放列表 '.$this->comment->commentable->name.' 的评论中标记了你',
                     'url'   => '/playlists/'.$this->comment->commentable->id,
                 ];
             }
 
             return [
-                'title' => 'You Have Been Tagged',
-                'body'  => 'Anonymous has tagged you in an comment on Playlist '.$this->comment->commentable->name,
+                'title' => '你被标记了',
+                'body' => '一位匿名用户在集合 '.$this->comment->commentable->name.' 的评论中标记了你',
                 'url'   => '/playlists/'.$this->comment->commentable->id,
             ];
         }
@@ -113,30 +113,30 @@ class NewCommentTag extends Notification implements ShouldQueue
         if ($this->type === 'collection') {
             if ($this->comment->anon == 0) {
                 return [
-                    'title' => $this->comment->user->username.' Has Tagged You',
-                    'body'  => $this->comment->user->username.' has tagged you in an comment on Collection '.$this->comment->commentable->name,
+                    'title' => $this->comment->user->username.' 标记了你',
+                    'body' => $this->comment->user->username.' 在收藏列表 '.$this->comment->commentable->name.' 的评论中标记了你',
                     'url'   => '/mediahub/collections/'.$this->comment->commentable->id,
                 ];
             }
 
             return [
-                'title' => 'You Have Been Tagged',
-                'body'  => 'Anonymous has tagged you in an comment on Collection '.$this->comment->commentable->name,
+                'title' => '你被标记了',
+                'body' => '一位匿名用户在收藏列表 '.$this->comment->commentable->name.' 的评论中标记了你',
                 'url'   => '/mediahub/collections/'.$this->comment->commentable->id,
             ];
         }
 
         if ($this->comment->anon == 0) {
             return [
-                'title' => $this->comment->user->username.' Has Tagged You',
-                'body'  => $this->comment->user->username.' has tagged you in an comment on Article '.$this->comment->commentable->title,
+                'title' => $this->comment->user->username.' 标记了你',
+                'body' => $this->comment->user->username.' 在文章 '.$this->comment->commentable->title.' 的评论中标记了你',
                 'url'   => '/articles/'.$this->comment->commentable->id,
             ];
         }
 
         return [
-            'title' => 'You Have Been Tagged',
-            'body'  => 'Anonymous has tagged you in an comment on Article '.$this->comment->commentable->title,
+            'title' => '你被标记了',
+            'body' => '一位匿名用户在文章 '.$this->comment->commentable->title.' 的评论中标记了你',
             'url'   => '/articles/'.$this->comment->commentable->id,
         ];
     }

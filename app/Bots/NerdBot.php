@@ -61,7 +61,7 @@ class NerdBot
             $bots = Bot::where('active', '=', 1)->where('id', '!=', $this->bot->id)->oldest('position')->get();
 
             foreach ($bots as $bot) {
-                $botHelp .= '( ! | / | @)'.$bot->command.' help 获取 '.$bot->name.' 的帮助'."\n";
+                $botHelp .= '( ! 或 / 或 @)'.$bot->command.' help 获取 '.$bot->name.' 的使用指南'."\n";
             }
 
             $output = str_replace('{bots}', $botHelp, $output);

@@ -40,7 +40,7 @@ class AutoBanDisposableUsers extends Command
      *
      * @var string
      */
-    protected $description = 'Ban User If they are using a disposable email';
+    protected $description = '如果用户使用一次性邮箱，则封禁该用户';
 
     /**
      * Execute the console command.
@@ -81,7 +81,7 @@ class AutoBanDisposableUsers extends Command
                     $logban = new Ban();
                     $logban->owned_by = $user->id;
                     $logban->created_by = 1;
-                    $logban->ban_reason = 'Detected disposable email, '.$domain.' not allowed.';
+                    $logban->ban_reason = '指定的邮箱域名, '.$domain.' 在禁止列表中';
                     $logban->unban_reason = '';
                     $logban->save();
 
@@ -93,6 +93,6 @@ class AutoBanDisposableUsers extends Command
                 Unit3dAnnounce::addUser($user);
             }
         });
-        $this->comment('Automated User Banning Command Complete');
+        $this->comment('自动封禁用户指令生效');
     }
 }

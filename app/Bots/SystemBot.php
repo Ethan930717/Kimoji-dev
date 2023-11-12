@@ -51,7 +51,7 @@ class SystemBot
             $bots = Bot::where('active', '=', 1)->where('id', '!=', $this->bot->id)->oldest('position')->get();
 
             foreach ($bots as $bot) {
-                $botHelp .= '( ! | / | @)'.$bot->command.' help triggers help file for '.$bot->name."\n";
+                $botHelp .= '( ! 或 / 或 @)'.$bot->command.' help 获取使用帮助 '.$bot->name."\n";
             }
 
             $output = str_replace('{bots}', $botHelp, $output);
@@ -86,7 +86,7 @@ class SystemBot
             $recipient = User::where('username', 'LIKE', $receiver)->first();
 
             if (! $recipient || $recipient->id === $this->target->id) {
-                return 'Your BON gift could not be sent.';
+                return '魔力赠送失败';
             }
 
             $value = $amount;
@@ -117,10 +117,10 @@ class SystemBot
                 sprintf('[url=%s]%s[/url] 赠送了 %s 点魔力给 [url=%s]%s[/url]', $profileUrl, $this->target->username, $value, $recipientUrl, $recipient->username)
             );
 
-            return 'Your gift to '.$recipient->username.' for '.$amount.' BON has been sent!';
+            return '向 '.$recipient->username.' 赠送 '.$amount.' 魔力失败了!';
         }
 
-        return 'Your BON gift could not be sent.';
+        return '魔力赠送失败';
     }
 
     /**
@@ -143,7 +143,7 @@ class SystemBot
         if ($message === '') {
             $log = '';
         } else {
-            $log = 'All '.$this->bot->name.' commands must be a private message or begin with /'.$this->bot->command.' or !'.$this->bot->command.'. Need help? Type /'.$this->bot->command.' help and you shall be helped.';
+            $log = '所有 '.$this->bot->name.' 指令必须以 /'.$this->bot->command.' 或 !'.$this->bot->command.' 开头。如需帮助，请输入 /'.$this->bot->command.' help';
         }
 
         $command = @explode(' ', $message);
@@ -251,7 +251,7 @@ class SystemBot
                 $this->chatRepository->privateMessage(1, $roomId, $txt, $target->id, $this->bot->id);
             }
 
-            return response('success');
+            return response('成功');
         }
 
         if ($type === 'echo') {
@@ -260,7 +260,7 @@ class SystemBot
                 $this->chatRepository->botMessage($this->bot->id, $roomId, $txt, $target->id);
             }
 
-            return response('success');
+            return response('成功');
         }
 
         if ($type === 'public') {
@@ -269,7 +269,7 @@ class SystemBot
                 $this->chatRepository->message(1, $target->chatroom->id, $txt, null, $this->bot->id);
             }
 
-            return response('success');
+            return response('成功');
         }
 
         return true;

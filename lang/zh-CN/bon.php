@@ -54,7 +54,7 @@ return [
      'sender' => '发送者',
      'store' => '商店',
      'success' => '积分兑换成功',
-     'success-tip' => '您的打赏已成功应用！',
+     'success-tip' => '打赏成功！',
      'tips' => '打赏',
      'total' => '总收益',
      'total-gifts' => '礼物总计',

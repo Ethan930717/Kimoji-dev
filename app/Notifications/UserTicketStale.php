@@ -46,9 +46,9 @@ class UserTicketStale extends Notification
     {
         return (new MailMessage())
             ->cc($this->ticket->staff->email)
-            ->subject('Your ticket is still open')
-            ->line('This is a reminder that your ticket is still open')
-            ->action('View Ticket', route('tickets.show', ['ticket' => $this->ticket]));
+            ->subject('您的工单仍在处理中')
+            ->line('您的工单仍在处理中')
+            ->action('查看工单', route('tickets.show', ['ticket' => $this->ticket]));
     }
 
     /**

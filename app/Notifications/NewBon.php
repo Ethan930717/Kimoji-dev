@@ -47,8 +47,8 @@ class NewBon extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
-            'title' => $this->sender.' Has Gifted You '.$this->bonTransactions->cost.' BON',
-            'body'  => $this->sender.' has gifted you '.$this->bonTransactions->cost.' BON with the following note: '.$this->bonTransactions->comment,
+            'title' => $this->sender.' 向您赠送了 '.$this->bonTransactions->cost.' 魔力',
+            'body'  => $this->sender.' 向您赠送了 '.$this->bonTransactions->cost.' 魔力并留言: '.$this->bonTransactions->comment,
             'url'   => sprintf('/users/%s', $this->bonTransactions->sender->username),
         ];
     }

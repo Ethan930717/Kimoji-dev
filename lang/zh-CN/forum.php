@@ -54,7 +54,7 @@ return [
     'posts'                     => '帖子',
     'quote'                     => '引用',
     'read-topic'                => '阅读该主题',
-    'replies'                   => '回应',
+    'replies'                   => '回帖',
     'send-new-topic'            => '保存该主题',
     'solved'                    => '已解决',
     'state'                     => '状态',
@@ -69,10 +69,11 @@ return [
     'topic-title'               => '标题',
     'topics'                    => '主题',
     'unpin'                     => '解除固定',
-    'view-all'                  => '阅览全部',
-    'views'                     => '阅览',
+    'view-all'                  => '浏览全部',
+    'views'                     => '浏览',
     'updated-at'                => '更新时间',
     'created-at'                => '创建时间',
     'subscribe'                 => '订阅',
+    'unsubscribe'               => '取消订阅',
 
 ];

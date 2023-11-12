@@ -37,10 +37,10 @@ class UserPreWarning extends Notification
         $profileUrl = href_profile($this->user);
 
         return (new MailMessage())
-            ->greeting('Hit and Run Pre Warning!')
-            ->line('You have received a hit and run pre warning on one or more torrents!')
-            ->action('View Unsatisfied Torrents to seed off your warnings or wait until they expire!', $profileUrl)
-            ->line('Thank you for using 🚀'.config('other.title'));
+            ->greeting('⚠️警告：触发H&R规则')
+            ->line('你的一个或多个种子触发了H&R警告')
+            ->action('请尽快处理你的H&R种子', $profileUrl)
+            ->line('感谢你使用'.config('other.title'));
     }
 
     /**
@@ -51,8 +51,8 @@ class UserPreWarning extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'title' => $this->torrent->name.' Pre Warning Received',
-            'body'  => 'You have received an automated PRE WARNING from the system because you failed to follow the Hit and Run rules in relation to Torrent '.$this->torrent->name,
+            'title' => $this->torrent->name.' 触发了H&R',
+            'body'  => '以下种子触发了H&R警告，请尽快处理 '.$this->torrent->name,
             'url'   => sprintf('/torrents/%s', $this->torrent->id),
         ];
     }

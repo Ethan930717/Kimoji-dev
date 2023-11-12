@@ -26,21 +26,21 @@ class BookmarkButton extends Component
     final public function store(): void
     {
         if ($this->user->bookmarks()->where('torrent_id', '=', $this->torrent->id)->exists()) {
-            $this->dispatchBrowserEvent('error', ['type' => 'error',  'message' => 'Torrent Has Already Been Bookmarked!']);
+            $this->dispatchBrowserEvent('error', ['type' => 'error',  'message' => '当前资源已在收藏列表中']);
 
             return;
         }
 
         $this->user->bookmarks()->attach($this->torrent->id);
         $this->isBookmarked = true;
-        $this->dispatchBrowserEvent('success', ['type' => 'success',  'message' => 'Torrent Has Been Bookmarked Successfully!']);
+        $this->dispatchBrowserEvent('success', ['type' => 'success',  'message' => '收藏成功']);
     }
 
     final public function destroy(): void
     {
         $this->user->bookmarks()->detach($this->torrent->id);
         $this->isBookmarked = false;
-        $this->dispatchBrowserEvent('success', ['type' => 'success',  'message' => 'Torrent Has Been Unbookmarked Successfully!']);
+        $this->dispatchBrowserEvent('success', ['type' => 'success',  'message' => '取消收藏成功']);
     }
 
     final public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application

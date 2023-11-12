@@ -47,8 +47,8 @@ class NewPostTag extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
-            'title' => $this->post->user->username.' Has Tagged You In A Post',
-            'body'  => $this->post->user->username.' has tagged you in a Post in Topic '.$this->post->topic->name,
+            'title' => $this->post->user->username.' 在帖子中标记了你',
+            'body'  => $this->post->user->username.' 在 '.$this->post->topic->name.' 中的帖子下标记了你',
             'url'   => sprintf('/forums/topics/%s/posts/%s', $this->post->topic->id, $this->post->id),
         ];
     }

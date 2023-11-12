@@ -45,9 +45,9 @@ class StaffTicketClosed extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage())
-            ->subject('A ticket was closed (Staff)')
-            ->line('A ticket was closed')
-            ->action('View Ticket', route('tickets.show', ['ticket' => $this->ticket]));
+            ->subject('一张工单已关闭 (员工)')
+            ->line('一张工单已关闭')
+            ->action('查看工单', route('tickets.show', ['ticket' => $this->ticket]));
     }
 
     /**

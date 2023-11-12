@@ -19,61 +19,60 @@ use Exception;
 class TrackerException extends Exception
 {
     protected const ERROR_MSG = [
-        // Error message of base Tracker system
-        100 => 'This Tracker is not open now.',
+        // 基础追踪器系统的错误消息
+        100 => '当前Traker未开放。',
 
-        // Error message about Requests ( Part.1 HTTP Method and Route )
-        110 => 'Invalid request type: client request (:method) was not a HTTP GET.',
-        111 => 'Invalid Action type `:action`.',
+        // 关于请求的错误消息 (第1部分 HTTP 方法和路由)
+        110 => '无效的请求类型：客户端请求 (:method) 不是 HTTP GET。',
+        111 => '无效的操作类型 `:action`。',
 
-        // Error message about User Agent ( Bittorrent Client )
-        120 => 'Invalid user-agent !',
-        121 => 'Browser, Crawler or Cheater is not Allowed.',
-        122 => 'Abnormal access blocked !',
-        123 => 'The User-Agent of this client is too long!',
-        124 => ':pattern REGEX error for :start, please ask sysop to fix this.',
-        125 => 'Your client is too old. please update it after :start .',
-        126 => 'Client :ua is not acceptable! Please check our Whitelist.',
-        127 => 'Client :ua banned due to: :comment .',
-        128 => 'Client :ua is not acceptable! Please check our Blacklist.',
-        129 => 'Invalid request !',
+        // 关于用户代理（比特流客户端）的错误消息
+        120 => '无效的用户代理！',
+        121 => '不允许使用浏览器、爬虫或作弊者。',
+        122 => '阻止了异常访问！',
+        123 => '此客户端的用户代理太长！',
+        124 => ':pattern 正则表达式错误于 :start，请联系系统管理员修复。',
+        125 => '您的客户端太旧，请在 :start 之后更新。',
+        126 => '客户端 :ua 不被接受！请检查我们的白名单。',
+        127 => '由于：:comment，客户端 :ua 被禁用。',
+        128 => '客户端 :ua 不被接受！请检查我们的黑名单。',
+        129 => '无效的请求！',
 
-        // Error message about Requests ( Part.2 request params )
-        130 => 'key: :attribute is Missing !',
-        131 => 'Invalid :attribute ! :reason',  // Normal Invalid, Use below instead.
-        132 => 'Invalid :attribute ! the length of :attribute must be :rule',
-        133 => 'Invalid :attribute ! :attribute is not :rule bytes long',
-        134 => 'Invalid :attribute ! :attribute Must be a number greater than or equal to 0',
-        135 => 'Illegal port :port . Port should between 6881-64999',
-        136 => 'Unsupported Event type :event .',
-        137 => 'Illegal port 0 under Event type :event .',
-        138 => 'You have reached a rate limit. You can only seed/leech a single torrent from upto :limit locations.',
+        // 关于请求的错误消息 (第2部分 请求参数)
+        130 => '缺失键：:attribute ！',
+        131 => '无效的 :attribute！:reason',  // 一般无效，使用下面的替代。
+        132 => '无效的 :attribute！:attribute 的长度必须是 :rule',
+        133 => '无效的 :attribute！:attribute 不是 :rule 字节长',
+        134 => '无效的 :attribute！:attribute 必须是大于或等于0的数字',
+        135 => '非法端口 :port。端口应在6881-64999之间',
+        136 => '不支持的事件类型 :event。',
+        137 => '在事件类型 :event 下非法端口0。',
+        138 => '你已达到速率限制。你只能从最多 :limit 个位置同时上传/下载一个种子。',
 
-        // Error message about User Account
-        140 => 'Passkey does not esist! Please Re-download the .torrent',
-        141 => 'Your account is not enabled! ( Current `:status` )',
-        142 => 'Your downloading privileges have been disabled! (Read the rules)',
+        // 关于用户账户的错误消息
+        140 => 'Passkey 不存在！请重新下载 .torrent',
+        141 => '您的账户未启用！（当前状态 `:status`）',
+        142 => '您的下载权限已被禁用！（请阅读规则）',
 
-        // Error message about Torrent
-        150 => 'Torrent not registered with this tracker.',
-        151 => 'You do not have permission to access a :status torrent.',
-        152 => 'Torrent being announced as complete but no record found.',
+        // 关于种子的错误消息
+        150 => '此种子未在本追踪器注册。',
+        151 => '你没有权限访问 :status 状态的种子。',
+        152 => '被声明为完成的种子未找到记录。',
 
-        // Error message about Download Session
-        160 => 'You cannot seed the same torrent from more than :count locations.',
-        161 => 'You are already downloading the same torrent. You can only leech from :count location at a time!',
-        162 => 'You last announced :elapsed s ago. Please respect the min interval.',
-        163 => 'Your ratio is too low! You need to wait :sec seconds to start.',
-        164 => 'Your slot limit is reached! You may at most download :max torrents at the same time',
+        // 关于下载会话的错误消息
+        160 => '你不能从超过 :count 个地点上传同一个种子。',
+        161 => '你已经在下载相同的种子。你只能从一个地点下载！',
+        162 => '你最后一次通告是 :elapsed 秒前。请尊重最小间隔。',
+        163 => '你的比例太低！你需要等待 :sec 秒才能开始。',
+        164 => '你的槽位限制已达到！你最多同时下载 :max 个种子',
 
-        // Error message from Anti-Cheater System
-        170 => "We believe you're trying to cheat. And your account is disabled.",
+        // 反作弊系统的错误消息
+        170 => "我们认为你正在尝试作弊。你的账户已被禁用。",
 
-        // Test Message
-        998 => 'Internal server error :msg',
+        // 测试消息
+        998 => '内部服务器错误 :msg',
         999 => ':test',
     ];
-
     /**
      * TrackerException constructor.
      */

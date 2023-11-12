@@ -45,9 +45,9 @@ class StaffTicketCreated extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage())
-            ->subject('A ticket was created (Ticket # '.$this->ticket->id.')')
-            ->line('A ticket was created.')
-            ->action('View Ticket', route('tickets.show', ['ticket' => $this->ticket]));
+            ->subject('一张新工单已创建 (工单号 # '.$this->ticket->id.')')
+            ->line('一张新工单已创建.')
+            ->action('查看工单', route('tickets.show', ['ticket' => $this->ticket]));
     }
 
     /**

@@ -40,11 +40,11 @@ class BackupPassword
             return;
         }
 
-        consoleOutput()->info('Applying password and encryption to zip using ZipArchive...');
+        consoleOutput()->info('正在使用 ZipArchive 加密 zip 文件');
 
         $this->makeZip($path);
 
-        consoleOutput()->info('Successfully applied password and encryption to zip.');
+        consoleOutput()->info('已成功加密 zip 文件');
     }
 
     /**

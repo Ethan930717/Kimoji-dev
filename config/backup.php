@@ -25,7 +25,7 @@ return [
          * The name of this application. You can use this name to monitor
          * the backups.
          */
-        'name' => 'UNIT3D',
+        'name' => 'KIMOJI',
 
         'source' => [
             'files' => [
@@ -187,7 +187,7 @@ return [
      */
     'monitor_backups' => [
         [
-            'name'          => 'UNIT3D',
+            'name'          => 'KIMOJI',
             'disks'         => ['backups'],
             'health_checks' => [
                 \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays::class          => 1,
