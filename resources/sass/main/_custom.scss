@@ -4198,6 +4198,8 @@ div.pagination p {
     border-top-right-radius: 15px;
     background-color: var(--message-bubble-bg);
     padding: 4px 12px 0 8px;
+    margin: 0 12px 4px 48px !important;
+
 }
 /* Message text */
 .sent > div {

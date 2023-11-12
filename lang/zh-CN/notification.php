@@ -34,7 +34,7 @@ return [
     'request-unclaims'   => '求种取消',
     'reseed-requests'    => '要求续种',
     'title'              => '标题',
-    'unfollows'          => '取消追踪',
+    'unfollows'          => '取关',
     'all-marked-read'    => '所有邮件都已设为已读',
     'already-marked-read' => '已经是已读状态',
     'all-deleted'         => '已删除所有邮件',

@@ -29,7 +29,7 @@
                 @click.prevent="changeTab('list', 'userlist')"
                 class="form__button form__button--text"
             >
-              <i class="fa fa-users"></i> Users In {{ tab }}: {{ users.length }}
+              <i class="fa fa-users"></i> {{ tab }}在线: {{ users.length }}
             </a>
             <a
                 href="#"
