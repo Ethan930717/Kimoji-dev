@@ -9,8 +9,8 @@
         @method('DELETE')
         <button
             x-on:click.prevent="Swal.fire({
-                title: 'Are you sure?',
-                text: 'Are you sure you want to delete this torrent request and lose the BON?',
+                title: '请确认',
+                text: '是否确认删除该求种（悬赏金将被扣除）',
                 icon: 'warning',
                 showConfirmButton: true,
                 showCancelButton: true,

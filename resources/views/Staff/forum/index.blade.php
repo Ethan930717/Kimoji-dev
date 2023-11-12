@@ -67,8 +67,8 @@
                                         @method('DELETE')
                                         <button
                                             x-on:click.prevent="Swal.fire({
-                                                title: 'Are you sure?',
-                                                text: `Are you sure you want to delete this forum category: ${atob('{{ base64_encode($category->name) }}')}?`,
+                                                title: '请确认',
+                                                text: `是否确认删除该板块: ${atob('{{ base64_encode($category->name) }}')}?`,
                                                 icon: 'warning',
                                                 showConfirmButton: true,
                                                 showCancelButton: true,
@@ -113,8 +113,8 @@
                                             @method('DELETE')
                                             <button
                                                 x-on:click.prevent="Swal.fire({
-                                                    title: 'Are you sure?',
-                                                    text: `Are you sure you want to delete this forum: ${atob('{{ base64_encode($forum->name) }}')}?`,
+                                                    title: '请确认',
+                                                    text: `是否确认删除该板块: ${atob('{{ base64_encode($forum->name) }}')}?`,
                                                     icon: 'warning',
                                                     showConfirmButton: true,
                                                     showCancelButton: true,

@@ -52,8 +52,8 @@
                                             @method('DELETE')
                                             <button
                                                 x-on:click.prevent="Swal.fire({
-                                                    title: 'Are you sure?',
-                                                    text: `Are you sure you want to delete this notification: ${atob('{{ base64_encode($notification->data['body']) }}')}?`,
+                                                    title: '请确认',
+                                                    text: `是否确认删除该提醒: ${atob('{{ base64_encode($notification->data['body']) }}')}?`,
                                                     icon: 'warning',
                                                     showConfirmButton: true,
                                                     showCancelButton: true,
@@ -235,8 +235,8 @@
                     <p class="form__group form__group--horizontal">
                         <button
                             x-on:click.prevent="Swal.fire({
-                                title: 'Are you sure?',
-                                text: 'Are you sure you want to mark all notifications as read?',
+                                title: '请确认',
+                                text: '是否要将所有提醒设为已读',
                                 icon: 'warning',
                                 showConfirmButton: true,
                                 showCancelButton: true,
@@ -257,8 +257,8 @@
                     <p class="form__group form__group--horizontal">
                         <button
                             x-on:click.prevent="Swal.fire({
-                                title: 'Are you sure?',
-                                text: 'Are you sure you want to delete all notifications?',
+                                title: '请确认',
+                                text: '是否确认删除所有提醒',
                                 icon: 'warning',
                                 showConfirmButton: true,
                                 showCancelButton: true,

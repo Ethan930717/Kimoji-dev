@@ -81,8 +81,8 @@
                         @csrf
                         <button
                             x-on:click.prevent="Swal.fire({
-                                title: 'Are you sure?',
-                                text: 'Are you sure you want to delete all chatbox messages in all chatrooms (including private chatbox messages)?',
+                                title: '请确认',
+                                text: '是否确认删除所有聊天室及信息',
                                 icon: 'warning',
                                 showConfirmButton: true,
                                 showCancelButton: true,
@@ -223,8 +223,8 @@
                         @csrf
                         <button
                             x-on:click.prevent="Swal.fire({
-                                title: 'Are you sure?',
-                                text: 'Are you sure you want to delete all ghost peers?',
+                                title: '请确认',
+                                text: '是否确认清空所有幽灵种子',
                                 icon: 'warning',
                                 showConfirmButton: true,
                                 showCancelButton: true,

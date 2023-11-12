@@ -53,8 +53,8 @@
                                 @method('DELETE')
                                 <button
                                     x-on:click.prevent="Swal.fire({
-                                        title: 'Are you sure?',
-                                        text: `Are you sure you want to delete this user and all their associated records: ${atob('{{ base64_encode($user->username) }}')}?`,
+                                        title: '请确认',
+                                        text: `是否确认删除该用户及其相关记录: ${atob('{{ base64_encode($user->username) }}')}?`,
                                         icon: 'warning',
                                         showConfirmButton: true,
                                         showCancelButton: true,
@@ -477,8 +477,8 @@
                                                     @method('DELETE')
                                                     <button
                                                         x-on:click.prevent="Swal.fire({
-                                                            title: 'Are you sure?',
-                                                            text: 'Are you sure you want to unwatch this user: {{ $watch->user->username }}?',
+                                                            title: '请确认',
+                                                            text: '是否确认不再关注该用户: {{ $watch->user->username }}?',
                                                             icon: 'warning',
                                                             showConfirmButton: true,
                                                             showCancelButton: true,

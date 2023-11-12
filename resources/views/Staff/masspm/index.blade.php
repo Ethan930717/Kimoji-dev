@@ -44,8 +44,8 @@
                 <p class="form__group">
                     <button
                         x-on:click.prevent="Swal.fire({
-                            title: 'Are you sure?',
-                            text: 'Are you sure you want to send this private message to every user on the site?',
+                            title: '请确认',
+                            text: '是否确认向所有用户发送私信',
                             icon: 'warning',
                             showConfirmButton: true,
                             showCancelButton: true,

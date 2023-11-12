@@ -75,8 +75,8 @@
                                     <form x-data>
                                         <button
                                             x-on:click.prevent="Swal.fire({
-                                                title: 'Are you sure?',
-                                                text: `Are you sure you want to delete this note: ${atob('{{ base64_encode($note->message) }}')}?`,
+                                                title: '请确认',
+                                                text: `是否确认删除该记录: ${atob('{{ base64_encode($note->message) }}')}?`,
                                                 icon: 'warning',
                                                 showConfirmButton: true,
                                                 showCancelButton: true,

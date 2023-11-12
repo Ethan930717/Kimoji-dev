@@ -99,8 +99,8 @@
                                         @method('DELETE')
                                         <button
                                             x-on:click.prevent="Swal.fire({
-                                                title: 'Are you sure?',
-                                                text: `Are you sure you want to delete this chat status: ${atob('{{ base64_encode($chatstatus->name) }}')}?`,
+                                                title: '请确认',
+                                                text: `是否确认删除该状态: ${atob('{{ base64_encode($chatstatus->name) }}')}?`,
                                                 icon: 'warning',
                                                 showConfirmButton: true,
                                                 showCancelButton: true,

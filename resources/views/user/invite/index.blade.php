@@ -82,7 +82,7 @@
                                             @csrf
                                             <button
                                                 x-on:click.prevent="Swal.fire({
-                                                    title: 'Are you sure?',
+                                                    title: '请确认',
                                                     text: `Are you sure you want to resend the email to: ${atob('{{ base64_encode($invite->email) }}')}?`,
                                                     icon: 'warning',
                                                     showConfirmButton: true,
@@ -109,8 +109,8 @@
                                             @method('DELETE')
                                             <button
                                                 x-on:click.prevent="Swal.fire({
-                                                    title: 'Are you sure?',
-                                                    text: `Are you sure you want to retract the invite to: ${atob('{{ base64_encode($invite->email) }}')}? This will forfeit the invite.`,
+                                                    title: '请确认',
+                                                    text: `是否确认撤回邀请: ${atob('{{ base64_encode($invite->email) }}')}? This will forfeit the invite.`,
                                                     icon: 'warning',
                                                     showConfirmButton: true,
                                                     showCancelButton: true,

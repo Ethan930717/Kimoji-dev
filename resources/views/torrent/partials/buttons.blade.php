@@ -40,16 +40,16 @@
                         title='{!! __('torrent.fl-tokens-left', ['tokens' => $user->fl_tokens]) !!}!'
                         x-on:click.prevent="
                             Swal.fire({
-                                title: 'Are you sure?',
-                                text: 'This will use one of your Freeleech Tokens!',
+                                title: '请确认',
+                                text: '免费令将被扣除',
                                 icon: 'warning',
                                 showConfirmButton: true,
                                 showCloseButton: true,
                             }).then((result) => {
                                 if (result.isConfirmed && {{ $torrent->seeders }} == 0) {
                                     Swal.fire({
-                                        title: 'Are you sure?',
-                                        text: 'This torrent has 0 seeders!',
+                                        title: '请确认',
+                                        text: '该种子目前无人做种',
                                         icon: 'warning',
                                         showConfirmButton: true,
                                         showCancelButton: true,

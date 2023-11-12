@@ -130,8 +130,8 @@
                                             @method('DELETE')
                                             <button
                                                 x-on:click.prevent="Swal.fire({
-                                                    title: 'Are you sure?',
-                                                    text: `Are you sure you want to cancel this resurrection: ${atob('{{ base64_encode($resurrection->torrent->name) }}')}?`,
+                                                    title: '请确认',
+                                                    text: `您确定要取消这个救活操作吗: ${atob('{{ base64_encode($resurrection->torrent->name) }}')}?`,
                                                     icon: 'warning',
                                                     showConfirmButton: true,
                                                     showCancelButton: true,

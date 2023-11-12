@@ -135,8 +135,8 @@
                                             <input id="torrent_id" name="torrent_id" type="hidden" value="{{ $torrent->id }}">
                                             <button
                                                 x-on:click.prevent="Swal.fire({
-                                                    title: 'Are you sure?',
-                                                    text: `Are you sure you want to delete this subtitle: ${atob('{{ base64_encode($subtitle->language->name) }}')}?`,
+                                                    title: '请确认',
+                                                    text: `是否确认删除该字幕: ${atob('{{ base64_encode($subtitle->language->name) }}')}?`,
                                                     icon: 'warning',
                                                     showConfirmButton: true,
                                                     showCancelButton: true,

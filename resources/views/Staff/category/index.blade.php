@@ -115,8 +115,8 @@
                                             @method('DELETE')
                                             <button
                                                 x-on:click.prevent="Swal.fire({
-                                                    title: 'Are you sure?',
-                                                    text: `Are you sure you want to delete this category: ${atob('{{ base64_encode($category->name) }}')}?`,
+                                                    title: '请确认',
+                                                    text: `是否确认删除该分类: ${atob('{{ base64_encode($category->name) }}')}?`,
                                                     icon: 'warning',
                                                     showConfirmButton: true,
                                                     showCancelButton: true,

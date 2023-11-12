@@ -61,8 +61,8 @@
                 <p class="form__group">
                     <button
                         x-on:click.prevent="Swal.fire({
-                            title: 'Are you sure?',
-                            text: `Are you sure you want to delete this distributor: ${atob('{{ base64_encode($distributor->name) }}')}?`,
+                            title: '请确认',
+                            text: `是否确认删除该厂商: ${atob('{{ base64_encode($distributor->name) }}')}?`,
                             icon: 'warning',
                             showConfirmButton: true,
                             showCancelButton: true,

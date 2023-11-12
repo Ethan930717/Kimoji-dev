@@ -92,8 +92,8 @@
                                             @method('DELETE')
                                             <button
                                                 x-on:click.prevent="Swal.fire({
-                                                    title: 'Are you sure?',
-                                                    text: `Are you sure you want to delete this wish: ${atob('{{ base64_encode($wish->title) }}')}?`,
+                                                    title: '请确认',
+                                                    text: `是否确认删除心愿: ${atob('{{ base64_encode($wish->title) }}')}?`,
                                                     icon: 'warning',
                                                     showConfirmButton: true,
                                                     showCancelButton: true,

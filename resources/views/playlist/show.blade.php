@@ -76,8 +76,8 @@
                     <p class="form__group form__group--horizontal">
                         <button
                             x-on:click.prevent="Swal.fire({
-                                title: 'Are you sure?',
-                                text: `Are you sure you want to delete this playlist: ${atob('{{ base64_encode($playlist->name) }}')}?`,
+                                title: '请确认',
+                                text: `是否确认删除该播放列表: ${atob('{{ base64_encode($playlist->name) }}')}?`,
                                 icon: 'warning',
                                 showConfirmButton: true,
                                 showCancelButton: true,

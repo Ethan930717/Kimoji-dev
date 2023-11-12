@@ -117,8 +117,8 @@
                             type="submit"
                             title="{{ __('common.delete') }}"
                             x-on:click.prevent="Swal.fire({
-                                    title: 'Are you sure?',
-                                    text: 'Are you sure you want to delete this post?',
+                                    title: '请确认',
+                                    text: '是否确认删除该帖子',
                                     icon: 'warning',
                                     showConfirmButton: true,
                                     showCancelButton: true,

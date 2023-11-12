@@ -81,8 +81,8 @@
                                     @method('DELETE')
                                     <button
                                         x-on:click.prevent="Swal.fire({
-                                            title: 'Are you sure?',
-                                            text: `Are you sure you want to unwatch this user: ${atob('{{ base64_encode($watching->user->username) }}')}?`,
+                                            title: '请确认',
+                                            text: `是否确认取关该用户: ${atob('{{ base64_encode($watching->user->username) }}')}?`,
                                             icon: 'warning',
                                             showConfirmButton: true,
                                             showCancelButton: true,

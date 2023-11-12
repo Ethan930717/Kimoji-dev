@@ -46,8 +46,8 @@
                     @csrf
                     <button
                         x-on:click.prevent="Swal.fire({
-                            title: 'Are you sure?',
-                            text: 'Are you sure you want to delete all warnings?',
+                            title: '请确认',
+                            text: '是否确认删除所有警告',
                             icon: 'warning',
                             showConfirmButton: true,
                             showCancelButton: true,
@@ -65,8 +65,8 @@
                     @csrf
                     <button
                         x-on:click.prevent="Swal.fire({
-                            title: 'Are you sure?',
-                            text: 'Are you sure you want to deactivate all warnings?',
+                            title: '请确认',
+                            text: '是否确认失效所有警告',
                             icon: 'warning',
                             showConfirmButton: true,
                             showCancelButton: true,
@@ -169,8 +169,8 @@
                                                 @method('PATCH')
                                                 <button
                                                     x-on:click.prevent="Swal.fire({
-                                                    title: 'Are you sure?',
-                                                    text: `Are you sure you want to restore this warning: ${atob('{{ base64_encode($warning->reason) }}')}?`,
+                                                    title: '请确认',
+                                                    text: `是否确认恢复该警告: ${atob('{{ base64_encode($warning->reason) }}')}?`,
                                                     icon: 'warning',
                                                     showConfirmButton: true,
                                                     showCancelButton: true,
@@ -193,8 +193,8 @@
                                                         @csrf
                                                         <button
                                                             x-on:click.prevent="Swal.fire({
-                                                            title: 'Are you sure?',
-                                                            text: `Are you sure you want to deactivate this warning: ${atob('{{ base64_encode($warning->reason) }}')}?`,
+                                                            title: '请确认',
+                                                            text: `是否确认失效该警告: ${atob('{{ base64_encode($warning->reason) }}')}?`,
                                                             icon: 'warning',
                                                             showConfirmButton: true,
                                                             showCancelButton: true,
@@ -215,8 +215,8 @@
                                                         @csrf
                                                         <button
                                                             x-on:click.prevent="Swal.fire({
-                                                            title: 'Are you sure?',
-                                                            text: `Are you sure you want to reactivate this warning: ${atob('{{ base64_encode($warning->reason) }}')}?`,
+                                                            title: '请确认',
+                                                            text: `是否确认激活所有警告: ${atob('{{ base64_encode($warning->reason) }}')}?`,
                                                             icon: 'warning',
                                                             showConfirmButton: true,
                                                             showCancelButton: true,
@@ -238,8 +238,8 @@
                                                 @csrf
                                                 <button
                                                     x-on:click.prevent="Swal.fire({
-                                                    title: 'Are you sure?',
-                                                    text: `Are you sure you want to delete this warning: ${atob('{{ base64_encode($warning->reason) }}')}?`,
+                                                    title: '请确认',
+                                                    text: `是否确认删除该警告: ${atob('{{ base64_encode($warning->reason) }}')}?`,
                                                     icon: 'warning',
                                                     showConfirmButton: true,
                                                     showCancelButton: true,

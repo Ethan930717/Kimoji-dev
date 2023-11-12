@@ -15,7 +15,7 @@
         </a>
     </li>
     <li class="breadcrumb--active">
-        Cheated Torrents
+        作弊资源
     </li>
 @endsection
 
@@ -24,7 +24,7 @@
 @section('main')
     <section class="panelV2">
         <header class="panel__header">
-            <h2 class="panel__heading">Cheated Torrents</h2>
+            <h2 class="panel__heading">作弊资源</h2>
             <div class="panel__actions">
                 <form
                     class="panel__action"
@@ -36,8 +36,8 @@
                     @method('DELETE')
                     <button
                         x-on:click.prevent="Swal.fire({
-                            title: 'Are you sure?',
-                            text: 'Are you sure you want to reset all torrent balances? This will allow you to start tracking cheated torrents from scratch, but you will no longer have data for previous cheated torrents.',
+                            title: '请确认',
+                            text: ' 您确定要重置所有种子的数据吗？这将允许您从头开始监控作弊的种子，但意味着以往作弊种子的数据将不再可用',
                             icon: 'warning',
                             showConfirmButton: true,
                             showCancelButton: true,
@@ -48,7 +48,7 @@
                         })"
                         class="form__button form__button--text"
                     >
-                        Reset all torrent balances
+                        重置所有种子的数据
                     </button>
                 </form>
             </div>
@@ -68,9 +68,9 @@
                             <i class="fas fa-check-circle"></i>
                         </th>
                         <th>{{ __('torrent.size') }}</th>
-                        <th>Balance</th>
-                        <th>Times Cheated</th>
-                        <th>All-time Balance</th>
+                        <th>数据</th>
+                        <th>作弊时间</th>
+                        <th>全时段数据</th>
                         <th>{{ __('torrent.uploaded') }}</th>
                         <th>{{ __('common.actions') }}</th>
                     </tr>
@@ -123,7 +123,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button class="form__button form__button--text">
-                                                Reset Balance
+                                                重置数据
                                             </button>
                                         </form>
                                     </li>

@@ -237,7 +237,7 @@
                             x-bind:required="cats[cat].type === 'movie' || cats[cat].type === 'tv'"
                         >
                         <label class="form__label form__label--floating" for="tmdb">
-                            TMDB ID <b>({{ __('common.required') }})</b>
+                            TMDB ID <b>必填</b>
                         </label>
                     </p>
                     <p class="form__group">
@@ -254,7 +254,7 @@
                             x-bind:required="cats[cat].type === 'movie' || cats[cat].type === 'tv'"
                         >
                         <label class="form__label form__label--floating" for="imdb">
-                            IMDB ID <b>({{ __('torrent.optional') }})</b>
+                            IMDB ID <b>选填（可填0）</b>
                         </label>
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'tv'">
@@ -271,7 +271,7 @@
                             x-bind:required="cats[cat].type === 'tv'"
                         >
                         <label class="form__label form__label--floating" for="tvdb">
-                            TVDB ID <b>({{ __('torrent.optional') }})</b>
+                            TVDB ID <b>选填（可填0）</b>
                         </label>
                     </p>
                     <p class="form__group">
@@ -288,7 +288,7 @@
                             x-bind:required="cats[cat].type === 'movie' || cats[cat].type === 'tv'"
                         >
                         <label class="form__label form__label--floating" for="mal">
-                            MAL ID <b>({{ __('request.required') }} For Anime)</b>
+                            MAL ID <b> 动漫必填</b>
                         </label>
                     </p>
                 </div>
@@ -306,7 +306,7 @@
                         x-bind:required="cats[cat].type === 'game'"
                     >
                     <label class="form__label form__label--floating" for="igdb">
-                        IGDB ID <b>{{ __('request.required') }} For Games)</b>
+                        IGDB ID <b>游戏必填</b>
                     </label>
                 </p>
                 <p class="form__group">
@@ -348,7 +348,7 @@
                         placeholder=" "
                     >{{ old('bdinfo') ?? $torrent->bdinfo }}</textarea>
                     <label class="form__label form__label--floating" for="description">
-                        BDInfo (Quick Summary)
+                        BDInfo (快扫)
                     </label>
                 </p>
 
@@ -363,7 +363,7 @@
                             value="1"
                             @checked(old('anon') ?? $torrent->anon)
                         >
-                        <label class="form__label" for="anon">{{ __('common.anonymous') }}?</label>
+                        <label class="form__label" for="anon">{{ __('common.anonymous') }} </label>
                     </p>
                 @else
                     <input type="hidden" name="anon" value={{ $torrent->anon }}>
@@ -378,7 +378,7 @@
                         x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') ? '1' : '0'"
                         @checked(old('stream') ?? $torrent->stream)
                     >
-                    <label class="form__label" for="stream">{{ __('torrent.stream-optimized') }}?</label>
+                    <label class="form__label" for="stream">{{ __('torrent.stream-optimized') }} </label>
                 </p>
                 <p class="form__group" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
                     <input type="hidden" name="sd" value="0">
@@ -390,7 +390,7 @@
                         x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') ? '1' : '0'""
                         @checked(old('stream') ?? $torrent->sd)
                     >
-                    <label class="form__label" for="sd">{{ __('torrent.sd-content') }}?</label>
+                    <label class="form__label" for="sd">{{ __('torrent.sd-content') }} </label>
                 </p>
                 @if (auth()->user()->group->is_modo || auth()->user()->group->is_internal)
                     <p class="form__group">
@@ -403,7 +403,7 @@
                             value="1"
                             @checked(old('internal') ?? $torrent->internal)
                         >
-                        <label class="form__label" for="internal">{{ __('torrent.internal') }}?</label>
+                        <label class="form__label" for="internal">{{ __('torrent.internal') }} </label>
                     </p>
                 @endif
                 @if (auth()->user()->group->is_modo || auth()->id() === $torrent->user_id)
@@ -417,7 +417,7 @@
                             value="1"
                             @checked(old('personal_release') ?? $torrent->personal_release)
                         >
-                        <label class="form__label" for="personal_release">Personal Release?</label>
+                        <label class="form__label" for="personal_release">个人发布</label>
                     </p>
                 @else
                     <input type="hidden" name="personal_release" value="{{ $torrent->personal_release }}">

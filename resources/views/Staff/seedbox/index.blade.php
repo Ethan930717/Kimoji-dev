@@ -60,8 +60,8 @@
                                         @method('DELETE')
                                         <button
                                             x-on:click.prevent="Swal.fire({
-                                                title: 'Are you sure?',
-                                                text: `Are you sure you want to delete this seedbox: ${atob('{{ base64_encode($seedbox->ip) }}')} (owned by ${atob('{{ base64_encode($seedbox->user->username) }}')})?`,
+                                                title: '请确认',
+                                                text: `是否确认删除盒子记录: ${atob('{{ base64_encode($seedbox->ip) }}')} (owned by ${atob('{{ base64_encode($seedbox->user->username) }}')})?`,
                                                 icon: 'warning',
                                                 showConfirmButton: true,
                                                 showCancelButton: true,

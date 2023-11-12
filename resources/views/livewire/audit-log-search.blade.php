@@ -170,8 +170,8 @@
                                     @method('DELETE')
                                     <button
                                             x-on:click.prevent="Swal.fire({
-                                                    title: 'Are you sure?',
-                                                    text: 'Are you sure you want to delete this audit log entry?',
+                                                    title: '请确认',
+                                                    text: '是否确认删除该日志',
                                                     icon: 'warning',
                                                     showConfirmButton: true,
                                                     showCancelButton: true,
