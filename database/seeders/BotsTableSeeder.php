@@ -43,7 +43,7 @@ class BotsTableSeeder extends Seeder
                 'emoji'    => '1f916',
                 'command'  => 'systembot',
                 'position' => 1,
-                'color'    => '#ffffff',
+                'color'    => '#f1c40f',
                 'icon'     => 'fab fa-android',
                 'help'     => '{me} v0.1 Help -- Notes about / ! and @{me} tab
 
