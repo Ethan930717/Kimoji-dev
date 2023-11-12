@@ -8,8 +8,8 @@
               v-if="$parent.bot > 0 && $parent.activeTab.substr(0, 3) == 'bot'"
           >
                         <span class="badge-extra" style="margin-left: 0; padding-left: 5px; margin-bottom: 0"
-                        >{{ $parent.botName }} can accept messages from any tab if you type:
-                            <strong>/{{ $parent.botCommand }} help</strong></span
+                        >你可以在所有的聊天室输入<strong>/{{ $parent.botCommand }} help</strong>来召唤{{ $parent.botName }}
+                        </span
                         >
           </div>
           <div
@@ -27,7 +27,7 @@
                           }}</span>
           </div>
           <div v-if="$parent.tab != 'userlist'" style="margin-right: 5px; display: inline-block">
-            <span>Audio: </span>
+            <span>通知: </span>
             <i
                 v-if="
                                 $parent.room &&
@@ -56,7 +56,7 @@
             ></i>
           </div>
           <div style="margin-right: 5px; display: inline-block">
-            <span style="margin-right: 5px">Status: </span>
+            <span style="margin-right: 5px">状态: </span>
             <i
                 v-for="status in $parent.statuses"
                 @click="$emit('changedStatus', status.id)"

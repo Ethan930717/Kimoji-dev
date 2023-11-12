@@ -169,5 +169,6 @@ return [
         'password' => '密码',
         'email'    => '邮箱',
         'bounty'   => '赏金',
+        'tip'      => '内容',
     ],
     ];

@@ -277,13 +277,23 @@ class ChatRepository
         if ($bot) {
             $this->message($systemUserId, $this->systemChatroom(), $message, null, $bot);
         } else {
-            $systemBotId = Bot::where('command', 'systembot')->first()->id;
-
-            $this->message($systemUserId, $this->systemChatroom(), $message, null, $systemBotId);
+            $systemBot = Bot::where('command', 'systembot')->first();
+            if ($systemBot) {
+                $systemBotId = $systemBot->id;
+                $this->message($systemUserId, $this->systemChatroom(), $message, null, $systemBotId);
+            } else {
+                // 处理没有找到 systembot 的情况
+                \Log::error('SystemBot not found', [
+                    'message' => $message,
+                    'context' => 'Attempt to send system message without systembot'
+                ]);
+                // $this->message($systemUserId, $this->systemChatroom(), 'SystemBot not found', null, null);
+            }
         }
 
         return $this;
     }
+
 
     public function systemChatroom($room = null)
     {

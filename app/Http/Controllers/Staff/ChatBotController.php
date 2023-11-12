@@ -53,7 +53,7 @@ class ChatBotController extends Controller
         $bot->update($request->validated());
 
         return to_route('staff.bots.index')
-            ->withSuccess("The Bot Has Been Updated");
+            ->withSuccess("机器人更新成功");
     }
 
     /**
@@ -68,7 +68,7 @@ class ChatBotController extends Controller
         $bot->delete();
 
         return to_route('staff.bots.index')
-            ->withSuccess('The Humans Vs Machines War Has Begun! Humans: 1 and Bots: 0');
+            ->withSuccess('人机大战开启! 人类: 1  机器人: 0');
     }
 
     /**
@@ -81,7 +81,7 @@ class ChatBotController extends Controller
         ]);
 
         return to_route('staff.bots.index')
-            ->withSuccess('The Bot Has Been Disabled');
+            ->withSuccess('机器人已关闭');
     }
 
     /**
@@ -94,6 +94,6 @@ class ChatBotController extends Controller
         ]);
 
         return to_route('staff.bots.index')
-            ->withSuccess('The Bot Has Been Enabled');
+            ->withSuccess('机器人已开启');
     }
 }

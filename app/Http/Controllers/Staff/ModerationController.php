@@ -90,11 +90,26 @@ class ModerationController extends Controller
                 // Announce To Shoutbox
                 if ($torrent->anon === 0) {
                     $this->chatRepository->systemMessage(
-                        sprintf('用户 [url=%s/users/', config('app.url')).$torrent->user->username.']'.$torrent->user->username.sprintf('[/url] 上传了一个新 '.$torrent->category->name.'. [url=%s/torrents/', config('app.url')).$id.']'.$torrent->name.'[/url], grab it now! :slight_smile:'
+                        sprintf(
+                            '[url=%s/users/%s]%s[/url] 上传了 %s. [url=%s/torrents/%s]%s[/url], 快看看吧！',
+                            config('app.url'),
+                            $torrent->user->username,
+                            $torrent->user->username,
+                            $torrent->category->name,
+                            config('app.url'),
+                            $torrent->id,
+                            $torrent->name
+                        )
                     );
                 } else {
                     $this->chatRepository->systemMessage(
-                        sprintf('An anonymous user has uploaded a new '.$torrent->category->name.'. [url=%s/torrents/', config('app.url')).$id.']'.$torrent->name.'[/url], grab it now! :slight_smile:'
+                        sprintf(
+                            '一位匿名用户上传了 %s. [url=%s/torrents/%s]%s[/url], 快看看吧！',
+                            $torrent->category->name,
+                            config('app.url'),
+                            $torrent->id,
+                            $torrent->name
+                        )
                     );
                 }
 
@@ -134,8 +149,8 @@ class ModerationController extends Controller
                 PrivateMessage::create([
                     'sender_id'   => $staff->id,
                     'receiver_id' => $torrent->user_id,
-                    'subject'     => 'Your upload, '.$torrent->name.' ,has been postponed by '.$staff->username,
-                    'message'     => "Greetings, \n\nYour upload, ".$torrent->name." ,has been postponed. Please see below the message from the staff member.\n\n".$request->message,
+                    'subject'     => '你上传的 '.$torrent->name.' ,已被 '.$staff->username.' 延期处理',
+                    'message'     => "你好, \n\n你上传的 ".$torrent->name." 已被延期处理。请查看以下来自审种员的消息。\n\n".$request->message,
                 ]);
 
                 cache()->forget('announce-torrents:by-infohash:'.$torrent->info_hash);
@@ -143,7 +158,8 @@ class ModerationController extends Controller
                 Unit3dAnnounce::addTorrent($torrent);
 
                 return to_route('staff.moderation.index')
-                    ->withSuccess('种子已延期');
+                    ->withSuccess('种子处理已延期');
+
 
             default: // Undefined status
                 return to_route('torrents.show', ['id' => $id])

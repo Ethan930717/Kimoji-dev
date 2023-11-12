@@ -47,8 +47,8 @@ class NewUpload extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
-            'title' => $this->torrent->user->username.' 上传了一个新种子',
-            'body' => sprintf('%s，你关注的用户上传了一个新种子 %s', $this->torrent->user->username, $this->torrent->name),
+            'title' => $this->torrent->user->username.' 上传了',
+            'body' => sprintf('%s，你关注的用户上传了 %s', $this->torrent->user->username, $this->torrent->name),
             'url'   => sprintf('/torrents/%s', $this->torrent->id),
         ];
     }

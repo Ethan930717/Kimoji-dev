@@ -4289,7 +4289,10 @@ div:where(.swal2-container) div:where(.swal2-popup) {
     border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
     border-right: 2px rgba(40, 40, 40, 0.35) solid;
 }
-
+.swal2-popup.swal2-toast.swal2-show {
+    animation: swal2-toast-show .5s;
+    color: #000000
+}
 div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
     background-color: #d76b6b !important ;
 }
