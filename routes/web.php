@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
-use App\Http\Controllers\TelegramController;
 
 /**
  * NOTICE OF LICENSE.
@@ -33,8 +32,6 @@ if (config('unit3d.proxy_scheme')) {
 if (config('unit3d.root_url_override')) {
     URL::forceRootUrl(config('unit3d.root_url_override'));
 }
-// Telegram bot
-Route::post('/telegram-webhook', [TelegramController::class, 'handleWebhook']);
 Route::middleware('language')->group(function (): void {
     /*
     |---------------------------------------------------------------------------------
