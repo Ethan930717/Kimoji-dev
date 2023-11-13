@@ -6,6 +6,7 @@ use App\Services\InviteService;
 use Illuminate\Http\Request;
 use Telegram\Bot\Laravel\Facades\Telegram;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class TelegramController extends Controller
 {
@@ -30,6 +31,7 @@ class TelegramController extends Controller
         if (isset($update['message'])) {
             $chatId = $update['message']['chat']['id'];
             $text = $update['message']['text'];
+            Log::info("Received message: {$text}");
 
             $botUsername = 'KIMOJI_PARK_BOT';
             $pattern = '/@' . preg_quote($botUsername, '/') . '\s*申请内测资格\s*([\w\.\-]+@\w+\.\w+)/';
