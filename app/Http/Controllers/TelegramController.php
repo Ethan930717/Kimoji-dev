@@ -38,7 +38,7 @@ class TelegramController extends Controller
                 // 记录收到的消息
                 Log::info("Received message: {$text}");
 
-                if (preg_match('/申请内测资格([\w\.\-]+@\w+\.\w+)/', $text, $matches)) {
+                if (preg_match('/申请内测资格\s*([\w\.\-]+@\w+\.\w+)/', $text, $matches)) {
                     $email = $matches[1];
 
                     if ($this->isValidEmail($email)) {
