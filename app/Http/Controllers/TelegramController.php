@@ -31,7 +31,10 @@ class TelegramController extends Controller
             $chatId = $update['message']['chat']['id'];
             $text = $update['message']['text'];
 
-            if (preg_match('/申请内测资格([\w\.\-]+@\w+\.\w+)/', $text, $matches)) {
+            $botUsername = 'KIMOJI_PARK_BOT';
+            $pattern = '/@' . preg_quote($botUsername, '/') . '\s*申请内测资格\s*([\w\.\-]+@\w+\.\w+)/';
+
+            if (preg_match($pattern, $text, $matches)) {
                 $email = $matches[1];
 
                 if ($this->isValidEmail($email)) {
