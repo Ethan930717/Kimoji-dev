@@ -48,7 +48,7 @@
             x-cloak
             x-on:click="tab = 'open'"
         >
-            Open
+            进行中
         </li>
         <li
             class="panel__tab panel__tab--full-width"
@@ -57,7 +57,7 @@
             x-cloak
             x-on:click="tab = 'closed'"
         >
-            Closed
+            已关闭
         </li>
     </menu>
     <div class="data-table-wrapper">

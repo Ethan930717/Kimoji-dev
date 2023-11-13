@@ -26,7 +26,7 @@ return [
     'bookmark'                 => '收藏',
     'bookmarks'                => '收藏',
     'bump'                     => '推顶',
-    'cant-upload'              => '错误：你没有上传权',
+    'cant-upload'              => '错误：你没有发布权限',
     'cant-upload-desc'         => '如果有异议，请联系站务人员',
     'cards'                    => '卡片',
     'cards-view'               => '以卡片形式展示',

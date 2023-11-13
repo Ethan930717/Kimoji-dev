@@ -215,7 +215,7 @@ class ChatRepository
 
     public function botMessages($senderId, $botId): \Illuminate\Support\Collection
     {
-        $systemUserId = User::where('username', 'System')->sole()->id;
+        $systemUserId = User::where('username', '小苹果')->sole()->id;
 
         return $this->message->with([
             'bot',

@@ -312,7 +312,7 @@
                 <p class="form__group form__group--horizontal">
                     <a class="form__button form__button--text" href="{{ route('staff.internals.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-magic"></i>
-                        内部人员
+                        工作组
                     </a>
                 </p>
                 @if (auth()->user()->group->is_admin)

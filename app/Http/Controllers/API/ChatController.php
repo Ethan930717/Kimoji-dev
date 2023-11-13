@@ -505,7 +505,7 @@ class ChatController extends Controller
     /* USERS */
     public function updateUserChatStatus(Request $request): \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
     {
-        $systemUser = User::where('username', 'System')->sole();
+        $systemUser = User::where('username', '小苹果')->sole();
 
         $user = $request->user();
         $user->load(['chatStatus', 'chatroom', 'group', 'echoes']);

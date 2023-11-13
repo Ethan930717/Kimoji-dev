@@ -176,7 +176,7 @@ class TorrentController extends BaseController
         }
         $torrent->sticky = $user->group->is_modo || $user->group->is_internal ? $request->input('sticky') : 0;
         $torrent->moderated_at = Carbon::now();
-        $torrent->moderated_by = User::where('username', 'System')->first()->id; //System ID
+        $torrent->moderated_by = User::where('username', '小苹果')->first()->id; //System ID
 
         // Set freeleech and doubleup if featured
         if ($torrent->featured == 1) {

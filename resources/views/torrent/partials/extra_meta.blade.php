@@ -25,7 +25,7 @@
             x-bind:class="tab === 'playlists' && 'panel__tab--active'"
             x-on:click="tab = 'playlists'; window.location.hash = 'playlists'"
         >
-            播放列表
+            合集
         </li>
     </menu>
     <!-- The tabs content -->

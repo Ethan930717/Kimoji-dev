@@ -137,7 +137,7 @@
                             <p class="form__group">
                                 <label class="form__label">
                                     <input class="user-torrents__checkbox" type="checkbox" value="{{ \App\Models\Torrent::POSTPONED }}" wire:model="status">
-                                    Postponed
+                                    推迟
                                 </label>
                             </p>
                         </div>
@@ -145,12 +145,12 @@
                 </div>
                 <div class="form__group">
                     <fieldset class="form__fieldset">
-                        <legend class="form__legend">Precision</legend>
+                        <legend class="form__legend">详细数据</legend>
                         <div class="form__fieldset-checkbox-container">
                             <p class="form__group">
                                 <label class="form__label">
                                     <input type="checkbox" class="user-torrents__checkbox" wire:model="showMorePrecision">
-                                    Show more precision
+                                    展示详细数据
                                 </label>
                             </p>
                         </div>
@@ -201,11 +201,11 @@
                     @include('livewire.includes._sort-icon', ['field' => 'actual_ratio'])
                 </th>
                 <th class="user-torrents__leechtime-header" wire:click="sortBy('leechtime')" role="columnheader button">
-                    Leeched
+                    吸血
                     @include('livewire.includes._sort-icon', ['field' => 'leechtime'])
                 </th>
                 <th class="user-torrents__seedtime-header" wire:click="sortBy('seedtime')" role="columnheader button">
-                    Seeded
+                    做种
                     @include('livewire.includes._sort-icon', ['field' => 'seedtime'])
                 </th>
                 <th class="user-torrents__created-at-header" wire:click="sortBy('created_at')" role="columnheader button">

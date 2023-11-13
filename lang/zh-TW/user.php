@@ -34,7 +34,7 @@ return [
     'active-warnings'       => '有效',
     'add-seedbox'           => '登记盒子',
     'all-torrents'          => '所有資源',
-    'article-comments'      => '文章評論',
+    'article-comments'      => '公告評論',
     'avatar'                => '頭像',
     'avg-seedtime'          => '平均做種時間',
     'badges'                => '徽章',

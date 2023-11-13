@@ -28,7 +28,7 @@ return [
     'read'               => '读取',
     'request-approvals'  => '求种获准',
     'request-bounties'   => '求种',
-    'request-claims'     => '求种应微',
+    'request-claims'     => '求种成功',
     'request-fills'      => '求种达成',
     'request-rejections' => '求种拒绝',
     'request-unclaims'   => '求种取消',

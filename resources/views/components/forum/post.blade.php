@@ -41,7 +41,7 @@
                         value="0"
                     >
                     <button class="post__tip-button" type="submit" title="{{ __('forum.tip-this-post') }}">
-                        Tip
+                        打赏
                     </button>
                     <datalist id="quick-tip-values">
                         <option value="10">

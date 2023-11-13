@@ -105,7 +105,7 @@ return [
     'icon'                 => '图标',
     'image'                => '图片',
     'info'                 => '信息',
-    'internal'             => '内部',
+    'internal'             => '工作组',
     'ip'                   => 'IP',
     'is-allowed'           => '允许使用',
     'language'             => '语言',

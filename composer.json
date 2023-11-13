@@ -23,6 +23,7 @@
         "hdvinnie/laravel-joypixel-emojis": "^2.0.0",
         "hdvinnie/laravel-security-headers": "^2.0.0",
         "intervention/image": "^2.7.2",
+        "irazasyed/telegram-bot-sdk": "^3.13",
         "joypixels/assets": "^v7.0.1",
         "laravel/framework": "^10.15",
         "laravel/tinker": "^2.8.1",

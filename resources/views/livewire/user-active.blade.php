@@ -34,7 +34,7 @@
                 <p class="form__group">
                     <label class="form__label">
                         <input type="checkbox" class="user-peers__checkbox" wire:model="showMorePrecision">
-                        Show more precision
+                        展示详细数据
                     </label>
                 </p>
             </form>

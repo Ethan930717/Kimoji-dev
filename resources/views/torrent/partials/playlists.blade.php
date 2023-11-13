@@ -32,7 +32,7 @@
                 @empty
                     <div class="text-center">
                         <h4 class="text-bold text-danger">
-                            <i class="{{ config('other.font-awesome') }} fa-frown"></i> 暂无播放列表
+                            <i class="{{ config('other.font-awesome') }} fa-frown"></i> 暂无合集
                         </h4>
                     </div>
                 @endforelse

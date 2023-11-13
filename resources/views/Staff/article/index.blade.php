@@ -88,7 +88,7 @@
                                         <button    
                                             x-on:click.prevent="Swal.fire({
                                                 title: '请确认',
-                                                text: `是否确认删除改文章: ${atob('{{ base64_encode($article->title) }}')}?`,
+                                                text: `是否确认删除改公告: ${atob('{{ base64_encode($article->title) }}')}?`,
                                                 icon: 'warning',
                                                 showConfirmButton: true,
                                                 showCancelButton: true,

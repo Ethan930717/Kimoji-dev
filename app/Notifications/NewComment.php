@@ -96,14 +96,14 @@ class NewComment extends Notification
         if ($this->type === 'playlist') {
             if ($this->comment->anon == 0) {
                 return [
-                    'title' => '收到新的播放列表评论',
+                    'title' => '收到新的合集评论',
                     'body'  => $this->comment->user->username.' 评论了 '.$this->comment->commentable->name,
                     'url'   => '/playlists/'.$this->comment->commentable->id,
                 ];
             }
 
             return [
-                'title' => '收到新的播放列表评论',
+                'title' => '收到新的合集评论',
                 'body'  => '一位匿名用户评论了 '.$this->comment->commentable->name,
                 'url'   => '/playlists/'.$this->comment->commentable->id,
             ];
@@ -127,14 +127,14 @@ class NewComment extends Notification
 
         if ($this->comment->anon == 0) {
             return [
-                'title' => '收到新的文章评论',
+                'title' => '收到新的公告评论',
                 'body'  => $this->comment->user->username.' 评论了 '.$this->comment->commentable->title,
                 'url'   => '/articles/'.$this->comment->commentable->id,
             ];
         }
 
         return [
-            'title' => '收到新的文章评论',
+            'title' => '收到新的公告评论',
             'body'  => '一位匿名用户评论了 '.$this->comment->commentable->title,
             'url'   => '/articles/'.$this->comment->commentable->id,
         ];
