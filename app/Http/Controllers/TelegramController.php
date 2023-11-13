@@ -36,11 +36,24 @@ class TelegramController extends Controller
                 $text = $update['message']['text'];
                 Log::info("Received message: {$text}");
 
-                if (strpos($text, '/help') === 0) {
+                //机器人帮助指南
+                if (strpos($text, '小K指南') === 0) {
                     $this->handleHelpCommand($chatId);
                     return response()->json(['status' => 'success']);
                 }
-
+                // 检查更新中是否有新成员加入
+                if (isset($update['message']['new_chat_members'])) {
+                    $newMembers = $update['message']['new_chat_members'];
+                    foreach ($newMembers as $member) {
+                        $welcomeMessage = "欢迎 " . $member['first_name'] . " 来到Kimoji，申请内测账号请上翻聊天记录或回复小K指南";
+                        Telegram::sendMessage([
+                            'chat_id' => $chatId,
+                            'text' => $welcomeMessage
+                        ]);
+                    }
+                    return response()->json(['status' => 'success']);
+                }
+                //自动发药，申请内测资格
                 if (preg_match('/申请内测资格\s*([\w\.\-]+@\w+\.\w+)/', $text, $matches)) {
                     $email = $matches[1];
 
@@ -76,7 +89,7 @@ class TelegramController extends Controller
     public function handleHelpCommand($chatId)
     {
         $helpMessage = "阿K当前支持的指令:\n";
-        $helpMessage .= "/help - 显示帮助信息\n";
+        $helpMessage .= "小K指南 - 显示帮助信息\n";
         $helpMessage .= "申请内测资格 [邮箱] - 申请加入内测";
 
         Telegram::sendMessage([
