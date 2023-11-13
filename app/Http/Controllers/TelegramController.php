@@ -31,31 +31,31 @@ class TelegramController extends Controller
             $chatId = $update['message']['chat']['id'];
             $text = $update['message']['text'];
 
-        // 检查消息是否符合特定格式，例如 "@bot 申请内测资格***@qq.com"
-        if (preg_match('/申请内测资格[\w\.\-]+@\w+\.\w+/', $text, $matches)) {
-            $email = $matches[1];
+            if (preg_match('/申请内测资格([\w\.\-]+@\w+\.\w+)/', $text, $matches)) {
+                $email = $matches[1];
 
-            if ($this->isValidEmail($email)) {
-                try {
-                    $this->inviteService->sendInvite($email);
+                if ($this->isValidEmail($email)) {
+                    try {
+                        $this->inviteService->sendInvite($email);
+                        Telegram::sendMessage([
+                            'chat_id' => $chatId,
+                            'text' => "内测邀请函已发送至: {$email}，注册后请勿再使用该指令，也不要向任何群外人员发送邀请，否则将取消内测资格，感谢配合"
+                        ]);
+                    } catch (\Exception $e) {
+                        Telegram::sendMessage([
+                            'chat_id' => $chatId,
+                            'text' => "发送失败，失败原因：" . $e->getMessage()
+                        ]);
+                    }
+                } else {
                     Telegram::sendMessage([
                         'chat_id' => $chatId,
-                        'text' => "内测邀请函已发送至: {$email}，注册后请勿再使用该指令，也不要向任何群外人员发送邀请，否则将取消内测资格，感谢配合"
-                    ]);
-                } catch (\Exception $e) {
-                    Telegram::sendMessage([
-                        'chat_id' => $chatId,
-                        'text' => "发送失败，失败原因：" . $e->getMessage()
+                        'text' => "提供的邮箱地址不正确，发送失败"
                     ]);
                 }
-            } else {
-                Telegram::sendMessage([
-                    'chat_id' => $chatId,
-                    'text' => "提供的邮箱地址不正确，发送失败"
-                ]);
             }
         }
-    }
 
-    return response()->json(['status' => 'success']);
+        return response()->json(['status' => 'success']);
+    }
 }
