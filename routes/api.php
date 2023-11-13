@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
-use App\Http\Controllers\TelegramController;
 
 /**
  * NOTICE OF LICENSE.
@@ -41,5 +40,3 @@ Route::middleware(['auth:api', 'banned'])->prefix('torrents')->group(function ()
     Route::post('/upload', [App\Http\Controllers\API\TorrentController::class, 'store']);
 });
 
-// Telegram bot
-Route::post('/telegram-webhook', [TelegramController::class, 'handleWebhook']);
