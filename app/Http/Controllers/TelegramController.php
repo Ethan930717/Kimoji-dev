@@ -30,34 +30,40 @@ class TelegramController extends Controller
 
         if (isset($update['message'])) {
             $chatId = $update['message']['chat']['id'];
-            $text = $update['message']['text'];
-            Log::info("Received message: {$text}");
 
-            $botUsername = 'KIMOJI_PARK_BOT';
-            $pattern = '/@' . preg_quote($botUsername, '/') . '\s*申请内测资格\s*([\w\.\-]+@\w+\.\w+)/';
+            // 先检查 'text' 字段是否存在
+            if (isset($update['message']['text'])) {
+                $text = $update['message']['text'];
 
-            if (preg_match($pattern, $text, $matches)) {
-                $email = $matches[1];
+                // 记录收到的消息
+                Log::info("Received message: {$text}");
 
-                if ($this->isValidEmail($email)) {
-                    try {
-                        $this->inviteService->sendInvite($email);
+                if (preg_match('/申请内测资格([\w\.\-]+@\w+\.\w+)/', $text, $matches)) {
+                    $email = $matches[1];
+
+                    if ($this->isValidEmail($email)) {
+                        try {
+                            $this->inviteService->sendInvite($email);
+                            Telegram::sendMessage([
+                                'chat_id' => $chatId,
+                                'text' => "内测邀请函已发送至: {$email}，注册后请勿再使用该指令，也不要向任何群外人员发送邀请，否则将取消内测资格，感谢配合"
+                            ]);
+                        } catch (\Exception $e) {
+                            Telegram::sendMessage([
+                                'chat_id' => $chatId,
+                                'text' => "发送失败，失败原因：" . $e->getMessage()
+                            ]);
+                        }
+                    } else {
                         Telegram::sendMessage([
                             'chat_id' => $chatId,
-                            'text' => "内测邀请函已发送至: {$email}，注册后请勿再使用该指令，也不要向任何群外人员发送邀请，否则将取消内测资格，感谢配合"
-                        ]);
-                    } catch (\Exception $e) {
-                        Telegram::sendMessage([
-                            'chat_id' => $chatId,
-                            'text' => "发送失败，失败原因：" . $e->getMessage()
+                            'text' => "提供的邮箱地址不正确，发送失败"
                         ]);
                     }
-                } else {
-                    Telegram::sendMessage([
-                        'chat_id' => $chatId,
-                        'text' => "提供的邮箱地址不正确，发送失败"
-                    ]);
                 }
+            } else {
+                // 如果没有 'text' 字段，记录一个不同的消息
+                Log::info("Received a non-text message type");
             }
         }
 
