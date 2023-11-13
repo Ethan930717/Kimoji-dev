@@ -24,34 +24,30 @@ class TelegramController extends Controller
             $chatId = $update['message']['chat']['id'];
             $text = $update['message']['text'];
 
-            if ($this->isValidEmail($text)) {
-                try {
-                    $this->inviteService->sendInvite($text);
+            if (preg_match('/申请内测资格[\w\.\-]+@\w+\.\w+/', $text, $matches)) {
+                $email = str_replace('申请内测资格', '', $matches[0]);
+
+                if ($this->isValidEmail($email)) {
+                    try {
+                        $this->inviteService->sendInvite($email);
+                        Telegram::sendMessage([
+                            'chat_id' => $chatId,
+                            'text' => "内测邀请函已发送至: {$email}，注册成功后请勿重复使用该指令，也不要为除本群之外的其他人注册账号，否则将取消内测资格"
+                        ]);
+                    } catch (\Exception $e) {
+                        Telegram::sendMessage([
+                            'chat_id' => $chatId,
+                            'text' => "发送失败，失败原因：" . $e->getMessage()
+                        ]);
+                    }
+                } else {
                     Telegram::sendMessage([
                         'chat_id' => $chatId,
-                        'text' => "内测邀请函已发送，欢迎您加入KIMOJI,注册后请勿再使用该指令，也不要给不在本群内的外部人员发送邀请，否则将取消内测资格"
-                    ]);
-                } catch (\Exception $e) {
-                    Telegram::sendMessage([
-                        'chat_id' => $chatId,
-                        'text' => "发送失败，失败原因：" . $e->getMessage()
+                        'text' => "提供的邮箱地址不正确，发送失败"
                     ]);
                 }
-            } else {
-                Telegram::sendMessage([
-                    'chat_id' => $chatId,
-                    'text' => "提供的邮箱地址不正确，发送失败"
-                ]);
             }
         }
 
         return response()->json(['status' => 'success']);
-    }
-
-    private function isValidEmail($email)
-    {
-        return Validator::make(['email' => $email], [
-            'email' => 'required|email',
-        ])->passes();
-    }
-}
+    }}
