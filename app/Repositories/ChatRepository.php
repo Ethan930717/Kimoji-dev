@@ -272,12 +272,12 @@ class ChatRepository
 
     public function systemMessage($message, $bot = null): static
     {
-        $systemUserId = User::where('username', 'System')->first()->id;
+        $systemUserId = User::where('username', '小苹果')->first()->id;
 
         if ($bot) {
             $this->message($systemUserId, $this->systemChatroom(), $message, null, $bot);
         } else {
-            $systemBot = Bot::where('command', 'systembot')->first();
+            $systemBot = Bot::where('command', 'kk')->first();
             if ($systemBot) {
                 $systemBotId = $systemBot->id;
                 $this->message($systemUserId, $this->systemChatroom(), $message, null, $systemBotId);

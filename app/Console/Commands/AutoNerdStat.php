@@ -48,7 +48,7 @@ class AutoNerdStat extends Command
      *
      * @var string
      */
-    protected $description = 'Automatically Posts Daily Nerd Stat To Shoutbox';
+    protected $description = '成功发送日报';
 
     /**
      * Execute the console command.
@@ -114,23 +114,23 @@ class AutoNerdStat extends Command
 
             // Select A Random Nerd Stat
             $statArray = [
-                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 位独立用户登录了 ', $logins).config('other.title').'！',
-                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 个种子被上传到 ', $uploads).config('other.title').'！',
-                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 位用户注册到 ', $users).config('other.title').'！',
-                sprintf('目前共有 [color=#e54736][b]%s[/b][/color] 个25%% 免费种子在 ', $fl25).config('other.title').'！',
-                sprintf('目前共有 [color=#e54736][b]%s[/b][/color] 个50%% 免费种子在 ', $fl50).config('other.title').'！',
-                sprintf('目前共有 [color=#e54736][b]%s[/b][/color] 个75%% 免费种子在 ', $fl75).config('other.title').'！',
-                sprintf('目前共有 [color=#e54736][b]%s[/b][/color] 个100%% 免费种子在 ', $fl100).config('other.title').'！',
-                sprintf('目前共有 [color=#e54736][b]%s[/b][/color] 个双倍上传种子在 ', $du).config('other.title').'！',
-                sprintf('目前 [url=%s]%s[/url] 是在 ', $seededUrl, $seeded->name).config('other.title').' 上种子做种最好的！',
-                sprintf('目前 [url=%s]%s[/url] 是在 ', $leechedUrl, $leeched->name).config('other.title').' 上下载最多的种子！',
-                sprintf('目前 [url=%s]%s[/url] 是在 ', $snatchedUrl, $snatched->name).config('other.title').' 上被抓取最多的种子！',
-                sprintf('目前 [url=%s]%s[/url] 是在 ', $bankerUrl, $banker->username).config('other.title').' 上最高BON持有者！',
-                sprintf('目前共有 [color=#e54736][b]%s[/b][/color] 个用户在 ', $peers).config('other.title').'！',
-                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 位用户从 ', $bans).config('other.title').' 被禁止！',
-                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 个H&R警告在 ', $warnings).config('other.title').' 被发布！',
+                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 位用户登录', $logins),
+                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 个种子发布！', $uploads),
+                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 位用户注册！', $users),
+                sprintf('现在共有 [color=#e54736][b]%s[/b][/color] 个75折资源！', $fl25),
+                sprintf('现在共有 [color=#e54736][b]%s[/b][/color] 个半价资源！', $fl50),
+                sprintf('现在共有 [color=#e54736][b]%s[/b][/color] 个25折资源！', $fl75),
+                sprintf('现在共有 [color=#e54736][b]%s[/b][/color] 个免费资源！', $fl100),
+                sprintf('现在共有 [color=#e54736][b]%s[/b][/color] 个双倍上传种子！', $du),
+                sprintf('现在 [url=%s]%s[/url] 是做种人数最多的种子！', $seededUrl, $seeded->name),
+                sprintf('现在 [url=%s]%s[/url] 是下载最多的种子！', $leechedUrl, $leeched->name),
+                sprintf('现在 [url=%s]%s[/url] 是热度最高的种子！', $snatchedUrl, $snatched->name),
+                sprintf(' [url=%s]%s[/url] 现在是KIMOJI首富啦！', $bankerUrl, $banker->username),
+                sprintf('KIMOJI乐园现在有 [color=#e54736][b]%s[/b][/color] 位家人啦！', $peers),
+                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 位用户被禁止！', $bans),
+                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 个H&R警告被发布！', $warnings),
                 config('other.title').sprintf(' 的生日是 [b]%s[/b]！', $bday),
-                config('other.title').' 是王者！',
+                config('other.title').' 是天堂！',
             ];
 
             $selected = random_int(0, \count($statArray) - 1);

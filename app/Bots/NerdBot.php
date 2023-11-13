@@ -157,7 +157,7 @@ class NerdBot
                 ->where('created_at', '>', $this->current->subDay())->count()
         );
 
-        return sprintf('在过去的24小时内，共有 %s 位用户从 ', $bans).config('other.title').' 被流放！';
+        return sprintf('在过去的24小时内，共有 %s 位用户 ', $bans).config('other.title').' 被流放！';
     }
 
     public function getWarnings(): string

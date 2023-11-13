@@ -185,7 +185,7 @@ class Comment extends Component
             if ($reply->anon == 0) {
                 $this->chatRepository->systemMessage(
                     sprintf(
-                        '[url=%s]%s[/url] has left a comment on '.$modelName.' [url=%s]%s[/url]',
+                        '[url=%s]%s[/url] 评论了 '.$modelName.' [url=%s]%s[/url]',
                         $profileUrl,
                         $this->user->username,
                         $modelUrl,
@@ -195,7 +195,7 @@ class Comment extends Component
             } else {
                 $this->chatRepository->systemMessage(
                     sprintf(
-                        'An anonymous user has left a comment on '.$modelName.' [url=%s]%s[/url]',
+                        '一位匿名用户评论了 '.$modelName.' [url=%s]%s[/url]',
                         $modelUrl,
                         $this->comment->commentable->name ?? $this->comment->commentable->title
                     )
