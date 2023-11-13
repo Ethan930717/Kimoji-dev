@@ -29,7 +29,7 @@ class TelegramController extends Controller
                     $this->inviteService->sendInvite($text);
                     Telegram::sendMessage([
                         'chat_id' => $chatId,
-                        'text' => "内测邀请函已发送，欢迎您加入KIMOJI"
+                        'text' => "内测邀请函已发送，欢迎您加入KIMOJI,注册后请勿再使用该指令，也不要给不在本群内的外部人员发送邀请，否则将取消内测资格"
                     ]);
                 } catch (\Exception $e) {
                     Telegram::sendMessage([
