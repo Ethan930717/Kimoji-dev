@@ -34,9 +34,12 @@ class TelegramController extends Controller
             // 先检查 'text' 字段是否存在
             if (isset($update['message']['text'])) {
                 $text = $update['message']['text'];
-
-                // 记录收到的消息
                 Log::info("Received message: {$text}");
+
+                if (strpos($text, '/help') === 0) {
+                    $this->handleHelpCommand($chatId);
+                    return response()->json(['status' => 'success']);
+                }
 
                 if (preg_match('/申请内测资格\s*([\w\.\-]+@\w+\.\w+)/', $text, $matches)) {
                     $email = $matches[1];
@@ -69,4 +72,17 @@ class TelegramController extends Controller
 
         return response()->json(['status' => 'success']);
     }
+
+    public function handleHelpCommand($chatId)
+    {
+        $helpMessage = "阿K当前支持的指令:\n";
+        $helpMessage .= "/help - 显示帮助信息\n";
+        $helpMessage .= "申请内测资格 [邮箱] - 申请加入内测";
+
+        Telegram::sendMessage([
+            'chat_id' => $chatId,
+            'text' => $helpMessage
+        ]);
+    }
+
 }
