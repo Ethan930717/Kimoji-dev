@@ -24,5 +24,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'telegram-webhook',
+        'torrents/create'
     ];
 }

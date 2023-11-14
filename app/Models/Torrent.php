@@ -82,7 +82,7 @@ class Torrent extends Model
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class)->withDefault([
-            'username' => 'System',
+            'username' => '小苹果',
             'id'       => '1',
         ]);
     }

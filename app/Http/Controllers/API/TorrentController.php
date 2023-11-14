@@ -102,11 +102,11 @@ class TorrentController extends BaseController
         $requestFile = $request->file('torrent');
 
         if (! $request->hasFile('torrent')) {
-            return $this->sendError('Validation Error.', 'You Must Provide A Torrent File For Upload!');
+            return $this->sendError('验证错误', '你必须上传一个有效的种子文件!');
         }
 
         if ($requestFile->getError() !== 0 || $requestFile->getClientOriginalExtension() !== 'torrent') {
-            return $this->sendError('Validation Error.', 'You Must Provide A Valid Torrent File For Upload!');
+            return $this->sendError('验证错误', '你必须上传一个有效的种子文件!');
         }
 
         // Deplace and decode the torrent temporarily
@@ -116,12 +116,12 @@ class TorrentController extends BaseController
         try {
             $meta = Bencode::get_meta($decodedTorrent);
         } catch (Exception) {
-            return $this->sendError('Validation Error.', 'You Must Provide A Valid Torrent File For Upload!');
+            return $this->sendError('验证错误', '你必须上传一个有效的种子文件!');
         }
 
         foreach (TorrentTools::getFilenameArray($decodedTorrent) as $name) {
             if (! TorrentTools::isValidFilename($name)) {
-                return $this->sendError('Validation Error.', 'Invalid Filenames In Torrent Files!');
+                return $this->sendError('验证错误', '种子名称无效！');
             }
         }
 
@@ -239,7 +239,7 @@ class TorrentController extends BaseController
                 Storage::disk('torrents')->delete($fileName);
             }
 
-            return $this->sendError('Validation Error.', $v->errors());
+            return $this->sendError('验证错误', $v->errors());
         }
 
         // Save The Torrent
