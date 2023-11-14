@@ -482,12 +482,14 @@
             </h2>
             <div class="panel__body">
                 <p>{{ __('torrent.announce-url') }}:
-                    <a href="{{ route('announce', ['passkey' => $user->passkey]) }}">
+                    <a style="font-size:14px;" href="{{ route('announce', ['passkey' => $user->passkey]) }}">
                         {{ route('announce', ['passkey' => $user->passkey]) }}
                     </a>
                 </p>
                 <br>
                 <p>{{ __('torrent.announce-url-desc', ['source' => config('torrent.source')]) }}</p>
+                <img src="{{ asset('/img/阿K.png') }}" alt="k_img" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+
                 <br>
                 <p class="text-success">{!! __('torrent.announce-url-desc-url', ['url' => config('other.upload-guide_url')]) !!}</p>
             </div>
