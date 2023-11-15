@@ -85,19 +85,20 @@
                                     >
                                         @csrf
                                         @method('DELETE')
-                                        <button    
-                                            x-on:click.prevent="Swal.fire({
-                                                title: '请确认',
-                                                text: `是否确认删除改公告: ${atob('{{ base64_encode($article->title) }}')}?`,
-                                                icon: 'warning',
-                                                showConfirmButton: true,
-                                                showCancelButton: true,
-                                            }).then((result) => {
-                                                if (result.isConfirmed) {
-                                                    $root.submit();
-                                                }
-                                            })"
-                                            class="form__button form__button--text">
+                                        <button
+                                                x-on:click.prevent="Swal.fire({
+        title: '请确认',
+        text: `是否确认删除该公告: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($article->title)) }}'))}`,
+        icon: 'warning',
+        showConfirmButton: true,
+        showCancelButton: true,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $root.submit();
+        }
+    })"
+                                                class="form__button form__button--text"
+                                        >
                                             {{ __('common.delete') }}
                                         </button>
                                     </form>

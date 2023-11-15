@@ -93,7 +93,7 @@
                                             <button
                                                 x-on:click.prevent="Swal.fire({
                                                     title: '请确认',
-                                                    text: `是否确认删除心愿: ${atob('{{ base64_encode($wish->title) }}')}?`,
+                                                    text: `是否确认删除心愿: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($wish->title)) }}'))}`,
                                                     icon: 'warning',
                                                     showConfirmButton: true,
                                                     showCancelButton: true,

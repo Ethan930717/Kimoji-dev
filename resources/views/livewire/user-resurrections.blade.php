@@ -131,7 +131,7 @@
                                             <button
                                                 x-on:click.prevent="Swal.fire({
                                                     title: '请确认',
-                                                    text: `您确定要取消这个救活操作吗: ${atob('{{ base64_encode($resurrection->torrent->name) }}')}?`,
+                                                    text: `您确定要取消这个救活操作吗: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($resurrection->torrent->name)) }}'))}`,
                                                     icon: 'warning',
                                                     showConfirmButton: true,
                                                     showCancelButton: true,

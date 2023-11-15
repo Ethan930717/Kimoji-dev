@@ -82,7 +82,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8">暂无待审资源</td>
+                        <td colspan="8">暂无待审种子</td>
                     </tr>
                 @endforelse
                 </tbody>
@@ -163,7 +163,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="9">暂无推迟资源</td>
+                        <td colspan="9">暂无推迟种子</td>
                     </tr>
                 @endforelse
                 </tbody>
@@ -245,7 +245,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="9">No rejected torrents</td>
+                        <td colspan="9">暂无拒绝种子</td>
                     </tr>
                 @endforelse
                 </tbody>

@@ -334,7 +334,7 @@
                         </label>
                     </p>
                 </fieldset>
-                <h3>Block all notifications from the selected groups.</h3>
+                <h3>屏蔽来自选中等级发来的消息</h3>
                 <div class="form__group--short-horizontal">
                     <fieldset class="form__fieldset">
                         <legend class="form__legend">{{ __('user.follow') }}</legend>
@@ -456,7 +456,7 @@
                         @endforeach
                     </fieldset>
                     <fieldset class="form__fieldset">
-                        <legend class="form__legend">Mentions</legend>
+                        <legend class="form__legend">通知</legend>
                         @foreach($groups as $group)
                             <p class="form__group">
                                 <label class="form__label">
@@ -473,7 +473,6 @@
                         @endforeach
                     </fieldset>
                 </div>
-                <h3>Override all notifications.</h3>
                 <p class="form__group">
                     <label class="form__label">
                         <input type="hidden" name="block_notifications" value="0" />
@@ -484,7 +483,7 @@
                             name="block_notifications"
                             @checked($user->block_notifications)
                         />
-                        Block all notifications.
+                        屏蔽所有消息
                     </label>
                 </p>
                 <p class="form__group">

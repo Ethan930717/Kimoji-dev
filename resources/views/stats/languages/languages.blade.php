@@ -25,7 +25,7 @@
                 @foreach ($languages as $code => $name)
                     <tr>
                         <td>{{ $name }}</td>
-                        <td>Used By {{ App\Models\User::where('locale', '=', $code)->count() }} Users</td>
+                        <td>使用人数 {{ App\Models\User::where('locale', '=', $code)->count() }} </td>
                     </tr>
                 @endforeach
             </table>

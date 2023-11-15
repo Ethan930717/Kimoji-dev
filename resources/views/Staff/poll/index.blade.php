@@ -76,7 +76,7 @@
                                         <button
                                             x-on:click.prevent="Swal.fire({
                                                 title: '请确认',
-                                                text: `是否确认删除该投票: ${atob('{{ base64_encode($poll->title) }}')}?`,
+                                                text: `是否确认删除该投票: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($poll->title)) }}'))}`,
                                                 icon: 'warning',
                                                 showConfirmButton: true,
                                                 showCancelButton: true,

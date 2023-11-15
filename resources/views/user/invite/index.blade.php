@@ -83,7 +83,7 @@
                                             <button
                                                 x-on:click.prevent="Swal.fire({
                                                     title: '请确认',
-                                                    text: `Are you sure you want to resend the email to: ${atob('{{ base64_encode($invite->email) }}')}?`,
+                                                    text: `Are you sure you want to resend the email to: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($invite->email)) }}'))}`,
                                                     icon: 'warning',
                                                     showConfirmButton: true,
                                                     showCancelButton: true,
@@ -110,7 +110,7 @@
                                             <button
                                                 x-on:click.prevent="Swal.fire({
                                                     title: '请确认',
-                                                    text: `是否确认撤回邀请: ${atob('{{ base64_encode($invite->email) }}')}? This will forfeit the invite.`,
+                                                    text: `是否确认撤回邀请: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($invite->email)) }}'))} This will forfeit the invite.`,
                                                     icon: 'warning',
                                                     showConfirmButton: true,
                                                     showCancelButton: true,

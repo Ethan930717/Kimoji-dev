@@ -109,7 +109,7 @@
                                         <button
                                             x-on:click.prevent="Swal.fire({
                                                 title: '请确认',
-                                                text: `是否确认删除该盒子: ${atob('{{ base64_encode($seedbox->name) }}')}?`,
+                                                text: `是否确认删除该盒子: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($seedbox->name)) }}'))}`,
                                                 icon: 'warning',
                                                 showConfirmButton: true,
                                                 showCancelButton: true,

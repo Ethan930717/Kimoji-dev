@@ -74,7 +74,7 @@
                                         <button
                                             x-on:click.prevent="Swal.fire({
                                                 title: '请确认',
-                                                text: `是否确认删除该页面: ${atob('{{ base64_encode($page->name) }}')}?`,
+                                                text: `是否确认删除该页面: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($page->name)) }}'))}`,
                                                 icon: 'warning',
                                                 showConfirmButton: true,
                                                 showCancelButton: true,

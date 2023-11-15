@@ -43,7 +43,7 @@
     </li>
     <li class="nav-tabV2">
         <a class="nav-tab__link" href="{{ route('themes') }}">
-            Themes
+            主题
         </a>
     </li>
 @endsection
@@ -58,31 +58,31 @@
             <h2 class="panel__heading">{{ __('torrent.torrents') }}</h2>
             <dl class="key-value">
                 @foreach ($categories as $category)
-                    <dt>{{ $category->name }} {{ __('common.category') }}</dt>
+                    <dt>{{ $category->name }}</dt>
                     <dd>{{ $category->torrents_count }}</dd>
                 @endforeach
-                <dt>HD</dt>
+                <dt>高清资源</dt>
                 <dd>{{ $num_hd }}</dd>
-                <dt>SD</dt>
+                <dt>PG-12资源</dt>
                 <dd>{{ $num_sd }}</dd>
                 <dt>{{ __('stat.total-torrents') }}</dt>
                 <dd>{{ $num_torrent }}</dd>
-                <dt>{{ __('stat.total-torrents') }} {{ __('torrent.size') }}</dt>
+                <dt>资源总体积</dt>
                 <dd>{{ App\Helpers\StringHelper::formatBytes($torrent_size, 2) }}</dd>
             </dl>
         </section>
         <section class="panelV2 panel--grid-item">
             <h2 class="panel__heading">{{ __('common.users') }}</h2>
             <dl class="key-value">
-                <dt>{{ __('stat.all') }} {{ __('common.users') }}</dt>
+                <dt>{{ __('stat.all') }}</dt>
                 <dd>{{ $all_user }}</dd>
-                <dt>{{ __('stat.active') }} {{ __('common.users') }}</dt>
+                <dt>{{ __('stat.active') }}</dt>
                 <dd>{{ $active_user }}</dd>
-                <dt>{{ __('stat.disabled') }} {{ __('common.users') }}</dt>
+                <dt>{{ __('stat.disabled') }}</dt>
                 <dd>{{ $disabled_user }}</dd>
-                <dt>{{ __('stat.pruned') }} {{ __('common.users') }}</dt>
+                <dt>{{ __('stat.pruned') }}</dt>
                 <dd>{{ $pruned_user }}</dd>
-                <dt>{{ __('stat.banned') }} {{ __('common.users') }}</dt>
+                <dt>{{ __('stat.banned') }}</dt>
                 <dd>{{ $banned_user }}</dd>
             </dl>
         </section>
@@ -93,7 +93,7 @@
                 <dd>{{ $num_seeders }}</dd>
                 <dt>{{ __('torrent.leechers') }}</dt>
                 <dd>{{ $num_leechers }}</dd>
-                <dt>Total</dt>
+                <dt>总数</dt>
                 <dd>{{ $num_peers }}</dd>
             </dl>
         </section>

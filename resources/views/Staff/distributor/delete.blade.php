@@ -36,7 +36,7 @@
                 @csrf
                 @method('DELETE')
                 <p class="form__group">
-                    An existing torrent on site may already use this distributor. Would you like to change it?
+                    可能已经有资源使用了该发行商作为种子信息，你需要更换吗？
                 </p>
                 <p class="form__group">
                     <select
@@ -62,7 +62,7 @@
                     <button
                         x-on:click.prevent="Swal.fire({
                             title: '请确认',
-                            text: `是否确认删除该厂商: ${atob('{{ base64_encode($distributor->name) }}')}?`,
+                            text: `是否确认删除该厂商: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($distributor->name)) }}'))}`,
                             icon: 'warning',
                             showConfirmButton: true,
                             showCancelButton: true,

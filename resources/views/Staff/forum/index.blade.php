@@ -68,7 +68,7 @@
                                         <button
                                             x-on:click.prevent="Swal.fire({
                                                 title: '请确认',
-                                                text: `是否确认删除该板块: ${atob('{{ base64_encode($category->name) }}')}?`,
+                                                text: `是否确认删除该板块: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($category->name)) }}'))}`,
                                                 icon: 'warning',
                                                 showConfirmButton: true,
                                                 showCancelButton: true,
@@ -114,7 +114,7 @@
                                             <button
                                                 x-on:click.prevent="Swal.fire({
                                                     title: '请确认',
-                                                    text: `是否确认删除该板块: ${atob('{{ base64_encode($forum->name) }}')}?`,
+                                                    text: `是否确认删除该板块: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($forum->name)) }}'))}`,
                                                     icon: 'warning',
                                                     showConfirmButton: true,
                                                     showCancelButton: true,

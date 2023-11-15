@@ -11,7 +11,7 @@
         </a>
     </li>
     <li class="breadcrumb--active">
-        Clients
+        客户端
     </li>
 @endsection
 
@@ -19,12 +19,12 @@
 
 @section('main')
     <section class="panelV2">
-        <h2 class="panel__heading">Clients</h2>
+        <h2 class="panel__heading">客户端统计</h2>
         <div class="data-table-wrapper">
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Client</th>
+                        <th>客户端</th>
                         <th>{{ __('common.users') }}</th>
                     </tr>
                 </thead>
@@ -32,7 +32,7 @@
                     @foreach ($clients as $client => $count)
                         <tr>
                             <td>{{ $client }}</td>
-                            <td>Used by {{ $count }} users(s)</td>
+                            <td>使用人数 {{ $count }}</td>
                         </tr>
                     @endforeach
                 </tbody>

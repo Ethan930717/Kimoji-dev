@@ -23,7 +23,7 @@
 
 @section('main')
     <section class="panelV2">
-        <h2 class="panel__heading">{{ __('stat.top-leeched') }}</h2>
+        <h2 class="panel__heading">KIMOJI PARK {{ __('stat.top-leeched') }}</h2>
         <div class="data-table-wrapper">
             <table class="data-table">
                 <thead>

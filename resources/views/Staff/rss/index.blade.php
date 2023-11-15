@@ -132,7 +132,7 @@
                                         <button
                                             x-on:click.prevent="Swal.fire({
                                                 title: '请确认',
-                                                text: `是否确认删除公共RSS流: ${atob('{{ base64_encode($rss->name) }}')}?`,
+                                                text: `是否确认删除公共RSS流: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($rss->name)) }}'))}`,
                                                 icon: 'warning',
                                                 showConfirmButton: true,
                                                 showCancelButton: true,

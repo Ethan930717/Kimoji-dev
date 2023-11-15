@@ -11,7 +11,7 @@
         </a>
     </li>
     <li class="breadcrumb--active">
-        Themes
+        主题
     </li>
 @endsection
 
@@ -19,7 +19,7 @@
 
 @section('main')
     <section class="panelV2">
-        <h2 class="panel__heading">Site Stylesheets</h2>
+        <h2 class="panel__heading">站点主题</h2>
         <div class="data-table-wrapper">
             <table class="data-table">
                 @forelse ($siteThemes as $siteTheme)
@@ -28,7 +28,7 @@
                         <td>
                             @switch($siteTheme->style)
                                 @case ('0')
-                                Light Theme
+                                KIMOJIの旷野
                                 @break
                                 @case ('1')
                                 Galactic Theme
@@ -59,11 +59,11 @@
                                 @break
                             @endswitch
                         </td>
-                        <td>Used By {{ $siteTheme->value }} Users</td>
+                        <td>使用人数 {{ $siteTheme->value }}</td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3">None Used</td>
+                        <td colspan="3">无使用者</td>
                     </tr>
                 @endforelse
             </table>
@@ -71,18 +71,18 @@
     </section>
 
     <section class="panelV2">
-        <h2 class="panel__heading">External CSS Stylesheets (Stacks on top of above site theme)</h2>
+        <h2 class="panel__heading">外部CSS样式表</h2>
         <div class="data-table-wrapper">
             <table class="data-table">
                 @forelse ($customThemes as $customTheme)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $customTheme->custom_css }}</td>
-                        <td>Used By {{ $customTheme->value }} Users</td>
+                        <td>使用人数 {{ $customTheme->value }}</td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3">None Used</td>
+                        <td colspan="3">无人使用</td>
                     </tr>
                 @endforelse
             </table>
@@ -90,18 +90,18 @@
     </section>
 
     <section class="panelV2">
-        <h2 class="panel__heading">Standalone CSS Stylesheets (No site theme used)</h2>
+        <h2 class="panel__heading">独立CSS样式表</h2>
         <div class="data-table-wrapper">
             <table class="data-table">
                 @forelse ($standaloneThemes as $standaloneTheme)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $standaloneTheme->standalone_css }}</td>
-                        <td>Used By {{ $standaloneTheme->value }} Users</td>
+                        <td>使用人数 {{ $standaloneTheme->value }}</td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3">None Used</td>
+                        <td colspan="3">无人使用</td>
                     </tr>
                 @endforelse
             </table>

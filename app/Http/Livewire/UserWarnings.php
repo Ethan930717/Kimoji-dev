@@ -105,13 +105,13 @@ class UserWarnings extends Component
         PrivateMessage::create([
             'sender_id'   => User::SYSTEM_USER_ID,
             'receiver_id' => $this->user->id,
-            'subject'     => 'Received warning',
-            'message'     => 'You have received a [b]warning[/b]. Reason: '.$this->message,
+            'subject'     => '收到警告',
+            'message'     => '您收到了一个[b]警告[/b]。理由:  '.$this->message,
         ]);
 
         $this->message = '';
 
-        $this->dispatchBrowserEvent('success', ['type' => 'success', 'message' => 'Warning issued successfully!']);
+        $this->dispatchBrowserEvent('success', ['type' => 'success', 'message' => '警告发送成功']);
     }
 
     /**
@@ -131,11 +131,11 @@ class UserWarnings extends Component
         PrivateMessage::create([
             'sender_id'   => $staff->id,
             'receiver_id' => $this->user->id,
-            'subject'     => 'Hit and Run Warning Deleted',
-            'message'     => $staff->username.' has decided to deactivate your warning for torrent '.$warning->torrent.' You lucked out! [color=red][b]THIS IS AN AUTOMATED SYSTEM MESSAGE, PLEASE DO NOT REPLY![/b][/color]',
+            'subject'     => '撤销警告',
+            'message'     => $staff->username.' 已决定撤销你的种子 '.$warning->torrent.' 的警告。你幸运了！[color=red][b]这是一个自动系统消息，请勿回复！[/b][/color]',
         ]);
 
-        $this->dispatchBrowserEvent('success', ['type' => 'success', 'message' => 'Warning Was Successfully Deactivated']);
+        $this->dispatchBrowserEvent('success', ['type' => 'success', 'message' => '警告关闭成功']);
     }
 
     /**
@@ -150,7 +150,7 @@ class UserWarnings extends Component
             'active'     => true,
         ]);
 
-        $this->dispatchBrowserEvent('success', ['type' => 'success', 'message' => 'Warning Was Successfully Reactivated']);
+        $this->dispatchBrowserEvent('success', ['type' => 'success', 'message' => '警告激活成功']);
     }
 
     /**
@@ -173,11 +173,11 @@ class UserWarnings extends Component
         PrivateMessage::create([
             'sender_id'   => $staff->id,
             'receiver_id' => $this->user->id,
-            'subject'     => 'All Hit and Run Warnings Deleted',
-            'message'     => $staff->username.' has decided to deactivate all of your warnings. You lucked out! [color=red][b]THIS IS AN AUTOMATED SYSTEM MESSAGE, PLEASE DO NOT REPLY![/b][/color]',
+            'subject'     => '撤销所有警告',
+            'message'     => $staff->username.' 撤销了你的所有警告，你解放了！ [color=red][b]这是一条系统消息，请勿回复！[/b][/color]',
         ]);
 
-        $this->dispatchBrowserEvent('success', ['type' => 'success', 'message' => 'All Warnings Were Successfully Deactivated']);
+        $this->dispatchBrowserEvent('success', ['type' => 'success', 'message' => '所有警告关闭成功']);
     }
 
     /**
@@ -201,10 +201,10 @@ class UserWarnings extends Component
             'sender_id'   => $staff->id,
             'receiver_id' => $this->user->id,
             'subject'     => 'Hit and Run Warning Deleted',
-            'message'     => $staff->username.' has decided to delete your warning for torrent '.$warning->torrent.' You lucked out! [color=red][b]THIS IS AN AUTOMATED SYSTEM MESSAGE, PLEASE DO NOT REPLY![/b][/color]',
+            'message'     => $staff->username.' 撤销了种子 '.$warning->torrent.' 的警告，你解放了！[color=red][b]这是一条系统消息，请勿回复！[/b][/color]',
         ]);
 
-        $this->dispatchBrowserEvent('success', ['type' => 'success', 'message' => 'Warning Was Successfully Deleted']);
+        $this->dispatchBrowserEvent('success', ['type' => 'success', 'message' => '警告删除成功']);
     }
 
     /**
@@ -227,11 +227,11 @@ class UserWarnings extends Component
         PrivateMessage::create([
             'sender_id'   => $staff->id,
             'receiver_id' => $this->user->id,
-            'subject'     => 'All Hit and Run Warnings Deleted',
-            'message'     => $staff->username.' has decided to delete all of your warnings. You lucked out! [color=red][b]THIS IS AN AUTOMATED SYSTEM MESSAGE, PLEASE DO NOT REPLY![/b][/color]',
+            'subject'     => '撤销所有警告',
+            'message'     => $staff->username.' 撤销了你的所有警告，你解放了！ [color=red][b]这是一条系统消息，请勿回复！[/b][/color]',
         ]);
 
-        $this->dispatchBrowserEvent('success', ['type' => 'success', 'message' => 'All Warnings Were Successfully Deleted']);
+        $this->dispatchBrowserEvent('success', ['type' => 'success', 'message' => '所有警告删除成功']);
     }
 
     /**
@@ -243,7 +243,7 @@ class UserWarnings extends Component
 
         Warning::withTrashed()->findOrFail($id)->restore();
 
-        $this->dispatchBrowserEvent('success', ['type' => 'success', 'message' => 'Warning Was Successfully Restored']);
+        $this->dispatchBrowserEvent('success', ['type' => 'success', 'message' => '警告恢复成功']);
     }
 
     final public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application

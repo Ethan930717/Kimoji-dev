@@ -69,7 +69,7 @@
                                         <button
                                             x-on:click.prevent="Swal.fire({
                                                 title: '请确认',
-                                                text: `是否确认删除该工作组: ${atob('{{ base64_encode($internal->name) }}')}?`,
+                                                text: `是否确认删除该工作组: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($internal->name)) }}'))}`,
                                                 icon: 'warning',
                                                 showConfirmButton: true,
                                                 showCancelButton: true,

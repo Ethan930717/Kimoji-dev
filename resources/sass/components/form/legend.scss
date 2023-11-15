@@ -1,7 +1,7 @@
 .form__legend {
     all: revert !important; /* Can be removed once site-wide `legend` styling is removed */
 
-    font-size: 11px !important;
+    font-size: 15px !important;
     color: var(--legend-fg) !important;
     background-color: var(--legend-bg) !important;
     border: var(--legend-border) !important;

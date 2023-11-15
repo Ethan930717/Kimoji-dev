@@ -170,7 +170,7 @@
                                                 <button
                                                     x-on:click.prevent="Swal.fire({
                                                     title: '请确认',
-                                                    text: `是否确认恢复该警告: ${atob('{{ base64_encode($warning->reason) }}')}?`,
+                                                    text: `是否确认恢复该警告: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($warning->reason)) }}'))}`,
                                                     icon: 'warning',
                                                     showConfirmButton: true,
                                                     showCancelButton: true,
@@ -194,7 +194,7 @@
                                                         <button
                                                             x-on:click.prevent="Swal.fire({
                                                             title: '请确认',
-                                                            text: `是否确认失效该警告: ${atob('{{ base64_encode($warning->reason) }}')}?`,
+                                                            text: `是否确认失效该警告: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($warning->reason)) }}'))}`,
                                                             icon: 'warning',
                                                             showConfirmButton: true,
                                                             showCancelButton: true,
@@ -216,7 +216,7 @@
                                                         <button
                                                             x-on:click.prevent="Swal.fire({
                                                             title: '请确认',
-                                                            text: `是否确认激活所有警告: ${atob('{{ base64_encode($warning->reason) }}')}?`,
+                                                            text: `是否确认激活所有警告: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($warning->reason)) }}'))}`,
                                                             icon: 'warning',
                                                             showConfirmButton: true,
                                                             showCancelButton: true,
@@ -239,7 +239,7 @@
                                                 <button
                                                     x-on:click.prevent="Swal.fire({
                                                     title: '请确认',
-                                                    text: `是否确认删除该警告: ${atob('{{ base64_encode($warning->reason) }}')}?`,
+                                                    text: `是否确认删除该警告: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($warning->reason)) }}'))}`,
                                                     icon: 'warning',
                                                     showConfirmButton: true,
                                                     showCancelButton: true,

@@ -68,7 +68,7 @@
                                             <button
                                                 x-on:click.prevent="Swal.fire({
                                                     title: '请确认',
-                                                    text: `是否确认删除该语言: ${atob('{{ base64_encode($media_language->name) }}')}?`,
+                                                    text: `是否确认删除该语言: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($media_language->name)) }}'))}`,
                                                     icon: 'warning',
                                                     showConfirmButton: true,
                                                     showCancelButton: true,

@@ -65,7 +65,7 @@
                                         <button
                                             x-on:click.prevent="Swal.fire({
                                                 title: '请确认',
-                                                text: `是否确认删除分辨率: ${atob('{{ base64_encode($resolution->name) }}')}?`,
+                                                text: `是否确认删除分辨率: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($resolution->name)) }}'))}`,
                                                 icon: 'warning',
                                                 showConfirmButton: true,
                                                 showCancelButton: true,

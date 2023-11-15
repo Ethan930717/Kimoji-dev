@@ -23,7 +23,7 @@
 
 @section('main')
     <section class="panelV2">
-        <h2 class="panel__heading">{{ __('stat.top-uploaders') }} ({{ strtolower(__('stat.by-volume')) }})</h2>
+        <h2 class="panel__heading">KIMOJI {{ __('stat.top-uploaders') }}</h2>
         <div class="data-table-wrapper">
             <table class="data-table">
                 <thead>

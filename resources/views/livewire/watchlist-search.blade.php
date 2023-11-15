@@ -82,7 +82,7 @@
                                     <button
                                         x-on:click.prevent="Swal.fire({
                                             title: '请确认',
-                                            text: `是否确认取关该用户: ${atob('{{ base64_encode($watching->user->username) }}')}?`,
+                                            text: `是否确认取关该用户: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($watching->user->username)) }}'))}`,
                                             icon: 'warning',
                                             showConfirmButton: true,
                                             showCancelButton: true,

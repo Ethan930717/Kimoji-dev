@@ -61,7 +61,7 @@
                                         <button
                                             x-on:click.prevent="Swal.fire({
                                                 title: '请确认',
-                                                text: `是否确认删除盒子记录: ${atob('{{ base64_encode($seedbox->ip) }}')} (owned by ${atob('{{ base64_encode($seedbox->user->username) }}')})?`,
+                                                text: `是否确认删除盒子记录: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($seedbox->ip) }}')} (owned by ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($seedbox->user->username) }}')})?`,
                                                 icon: 'warning',
                                                 showConfirmButton: true,
                                                 showCancelButton: true,

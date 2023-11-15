@@ -140,7 +140,7 @@
                                 class="form__button form__button--filled form__button--centered"
                                 x-on:click.prevent="Swal.fire({
                                     title: '请确认',
-                                    text: `是否确认删除该主题: ${atob('{{ base64_encode($topic->name) }}')}?`,
+                                    text: `是否确认删除该主题: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($topic->name)) }}'))}`,
                                     icon: 'warning',
                                     showConfirmButton: true,
                                     showCancelButton: true,

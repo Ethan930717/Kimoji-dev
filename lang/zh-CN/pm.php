@@ -37,4 +37,5 @@ return [
     'to'            => '收件人',
     'unread'        => '未读',
     'empty-inbox'   => '清空收件箱',
+    'delete-success' => '删除成功',
 ];

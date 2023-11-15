@@ -23,7 +23,7 @@
 
 @section('main')
     <section class="panelV2">
-        <h2 class="panel__heading">{{ __('stat.top-bankers') }} ({{ __('bon.bon') }})</h2>
+        <h2 class="panel__heading">KIMOJI 富豪排行榜</h2>
         <div class="data-table-wrapper">
             <table class="data-table">
                 <thead>

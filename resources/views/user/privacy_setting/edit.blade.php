@@ -1,7 +1,7 @@
 @extends('layout.default')
 
 @section('title')
-    <title>{{ $user->username }} - Privacy - {{ __('common.members') }} - {{ config('other.title') }}</title>
+    <title>{{ $user->username }} - 隐私设置 - {{ __('common.members') }} - {{ config('other.title') }}</title>
 @endsection
 
 @section('breadcrumbs')
@@ -37,7 +37,7 @@
                 @csrf
                 @method('PATCH')
                 <fieldset class="form__fieldset">
-                    <legend class="form__legend">Profile</legend>
+                    <legend class="form__legend">数据</legend>
                     <p class="form__group">
                         <label class="form__label">
                             <input type="hidden" name="show_profile_torrent_count" value="0" />
@@ -222,7 +222,7 @@
                     </p>
                 </fieldset>
                 <fieldset class="form__fieldset">
-                    <legend class="form__legend">Achievements</legend>
+                    <legend class="form__legend">成就</legend>
                     <p class="form__group">
                         <label class="form__label">
                             <input type="hidden" name="show_achievement" value="0" />
@@ -238,7 +238,7 @@
                     </p>
                 </fieldset>
                 <fieldset class="form__fieldset">
-                    <legend class="form__legend">Followers</legend>
+                    <legend class="form__legend">粉丝</legend>
                     <p class="form__group">
                         <label class="form__label">
                             <input type="hidden" name="show_follower" value="0" />
@@ -254,7 +254,7 @@
                     </p>
                 </fieldset>
                 <fieldset class="form__fieldset">
-                    <legend class="form__legend">Forums</legend>
+                    <legend class="form__legend">论坛</legend>
                     <p class="form__group">
                         <label class="form__label">
                             <input type="hidden" name="show_topic" value="0" />
@@ -283,7 +283,7 @@
                     </p>
                 </fieldset>
                 <fieldset class="form__fieldset">
-                    <legend class="form__legend">Requests</legend>
+                    <legend class="form__legend">求种</legend>
                     <p class="form__group">
                         <label class="form__label">
                             <input type="hidden" name="show_requested" value="0" />
@@ -299,7 +299,7 @@
                     </p>
                 </fieldset>
                 <fieldset class="form__fieldset">
-                    <legend class="form__legend">Torrents</legend>
+                    <legend class="form__legend">种子</legend>
                     <p class="form__group">
                         <label class="form__label">
                             <input type="hidden" name="show_upload" value="0" />
@@ -341,7 +341,7 @@
                     </p>
                 </fieldset>
                 <fieldset class="form__fieldset">
-                    <legend class="form__legend">Other</legend>
+                    <legend class="form__legend">其它</legend>
                     <p class="form__group">
                         <label class="form__label">
                             <input type="hidden" name="show_online" value="0" />
@@ -356,10 +356,10 @@
                         </label>
                     </p>
                 </fieldset>
-                <h3>Hide your profile options from the selected groups.</h3>
+                <h3>对选定的等级隐藏您的个人资料</h3>
                 <div class="form__group--short-horizontal">
                     <fieldset class="form__fieldset">
-                        <legend class="form__legend">Profile</legend>
+                        <legend class="form__legend">数据</legend>
                         @foreach($groups as $group)
                             <p class="form__group">
                                 <label class="form__label">
@@ -376,7 +376,7 @@
                         @endforeach
                     </fieldset>
                     <fieldset class="form__fieldset">
-                        <legend class="form__legend">Achievements</legend>
+                        <legend class="form__legend">成就</legend>
                         @foreach($groups as $group)
                             <p class="form__group">
                                 <label class="form__label">
@@ -393,7 +393,7 @@
                         @endforeach
                     </fieldset>
                     <fieldset class="form__fieldset">
-                        <legend class="form__legend">Followers</legend>
+                        <legend class="form__legend">粉丝</legend>
                         @foreach($groups as $group)
                             <p class="form__group">
                                 <label class="form__label">
@@ -410,7 +410,7 @@
                         @endforeach
                     </fieldset>
                     <fieldset class="form__fieldset">
-                        <legend class="form__legend">Forums</legend>
+                        <legend class="form__legend">论坛</legend>
                         @foreach($groups as $group)
                             <p class="form__group">
                                 <label class="form__label">
@@ -427,7 +427,7 @@
                         @endforeach
                     </fieldset>
                     <fieldset class="form__fieldset">
-                        <legend class="form__legend">Requests</legend>
+                        <legend class="form__legend">求种</legend>
                         @foreach($groups as $group)
                             <p class="form__group">
                                 <label class="form__label">
@@ -444,7 +444,7 @@
                         @endforeach
                     </fieldset>
                     <fieldset class="form__fieldset">
-                        <legend class="form__legend">Torrents</legend>
+                        <legend class="form__legend">种子</legend>
                         @foreach($groups as $group)
                             <p class="form__group">
                                 <label class="form__label">
@@ -461,7 +461,7 @@
                         @endforeach
                     </fieldset>
                     <fieldset class="form__fieldset">
-                        <legend class="form__legend">Other</legend>
+                        <legend class="form__legend">其它</legend>
                         @foreach($groups as $group)
                             <p class="form__group">
                                 <label class="form__label">
