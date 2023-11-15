@@ -56,7 +56,7 @@
                         <button
                             @if (cache()->has('tmdb-tv-scraper:'.$meta->id) && ! auth()->user()->group->is_modo)
                                 disabled
-                                title="This item was recently updated. Try again tomorrow."
+                                title="这个信息才更新没多久哦～请明天再试吧"
                             @endif
                         >
                             更新元信息
@@ -119,7 +119,7 @@
     <p class="meta__description">{{ $meta?->overview }}</p>
     <div class="meta__chips">
         <section class="meta__chip-container">
-            <h2 class="meta__heading">Cast</h2>
+            <h2 class="meta__heading">演员</h2>
             @foreach ($meta?->credits?->where('occupation_id', '=', App\Enums\Occupations::ACTOR->value)?->sortBy('order') ?? [] as $credit)
                 <article class="meta-chip-wrapper">
                     <a href="{{ route('mediahub.persons.show', ['id' => $credit->person->id, 'occupationId' => $credit->occupation_id]) }}" class="meta-chip">
@@ -139,7 +139,7 @@
             @endforeach
         </section>
         <section class="meta__chip-container" title="Crew">
-            <h2 class="meta__heading">Crew</h2>
+            <h2 class="meta__heading">工作人员</h2>
             @foreach($meta?->credits?->where('occupation_id', '!=', App\Enums\Occupations::ACTOR->value)?->sortBy('occupation.position') ?? [] as $credit)
                 <article class="meta-chip-wrapper">
                     <a href="{{ route('mediahub.persons.show', ['id' => $credit->person->id, 'occupationId' => $credit->occupation_id]) }}" class="meta-chip">
@@ -159,7 +159,7 @@
             @endforeach
         </section>
         <section class="meta__chip-container">
-            <h2 class="meta__heading">Extra Information</h2>
+            <h2 class="meta__heading">其他信息</h2>
             <article class="meta-chip-wrapper meta-chip">
                 <i class="{{ config('other.font-awesome') }} fa-star meta-chip__icon"></i>
                 <h2 class="meta-chip__name">{{ __('torrent.rating') }}</h2>
@@ -169,8 +169,8 @@
                 <article class="meta__trailer show-trailer">
                     <a class="meta-chip" href="#">
                         <i class="{{ config('other.font-awesome') }} fa-external-link meta-chip__icon"></i>
-                        <h2 class="meta-chip__name">Trailer</h2>
-                        <h3 class="meta-chip__value">View</h3>
+                        <h2 class="meta-chip__name">预告片</h2>
+                        <h3 class="meta-chip__value">观看</h3>
                     </a>
                 </article>
             @endisset
@@ -178,7 +178,7 @@
                 <article class="meta__genres">
                     <a class="meta-chip" href="{{ route('torrents.index', ['view' => 'group', 'genres' => $meta->genres->pluck('id')->toArray()]) }}">
                         <i class="{{ config('other.font-awesome') }} fa-theater-masks meta-chip__icon"></i>
-                        <h2 class="meta-chip__name">Genres</h2>
+                        <h2 class="meta-chip__name">类型</h2>
                         <h3 class="meta-chip__value">{{ $meta->genres->pluck('name')->join(' / ') }}</h3>
                     </a>
                 </article>
@@ -191,7 +191,7 @@
                         @else
                             <i class="{{ config('other.font-awesome') }} fa-camera-movie meta-chip__icon"></i>
                         @endif
-                        <h2 class="meta-chip__name">Company</h2>
+                        <h2 class="meta-chip__name">发行</h2>
                         <h3 class="meta-chip__value">{{ $company->name }}</h3>
                     </a>
                 </article>
@@ -200,7 +200,7 @@
                 <article class="meta__keywords">
                     <a class="meta-chip" href="{{ route('torrents.index', ['view' => 'group', 'keywords' => $torrent->keywords->pluck('name')->join(', ')]) }}">
                         <i class="{{ config('other.font-awesome') }} fa-tag meta-chip__icon"></i>
-                        <h2 class="meta-chip__name">Keywords</h2>
+                        <h2 class="meta-chip__name">关键词</h2>
                         <h3 class="meta-chip__value">{{ $torrent->keywords->pluck('name')->join(', ') }}</h3>
                     </a>
                 </article>
