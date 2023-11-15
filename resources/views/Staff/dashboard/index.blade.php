@@ -396,39 +396,39 @@
 
 @section('sidebar')
     <section class="panelV2">
-        <h2 class="panel__heading">SSL Certificate</h2>
+        <h2 class="panel__heading">SSL证书</h2>
         <dl class="key-value">
-            <dt>URL</dt>
+            <dt>网址</dt>
             <dd>{{ config('app.url') }}</dd>
             @if (request()->secure())
-                <dt>Connection</dt>
-                <dd>Secure</dd>
-                <dt>Issued By</dt>
+                <dt>连接性</dt>
+                <dd>安全</dd>
+                <dt>颁发者</dt>
                 <dd>{{ (!is_string($certificate)) ? $certificate->getIssuer() : "No Certificate Info Found" }}</dd>
-                <dt>Expires</dt>
+                <dt>过期时间</dt>
                 <dd>{{ (!is_string($certificate)) ? $certificate->expirationDate()->diffForHumans() : "No Certificate Info Found" }}</dd>
             @else
-                <dt>Connection</dt>
+                <dt>连接性</dt>
                 <dd>
-                    <strong>Not Secure</strong>
+                    <strong>不安全</strong>
                 </dd>
-                <dt>Issued By</dt>
+                <dt>颁发者</dt>
                 <dd>N/A</dd>
-                <dt>Expires</dt>
+                <dt>过期时间</dt>
                 <dd>N/A</dd>
             @endif
         </dl>
     </section>
     <section class="panelV2">
-        <h2 class="panel__heading">Server Information</h2>
+        <h2 class="panel__heading">服务器</h2>
         <dl class="key-value">
-            <dt>OS</dt>
+            <dt>操作系统</dt>
             <dd>{{ $basic['os'] }}</dd>
-            <dt>PHP</dt>
+            <dt>PHP版本</dt>
             <dd>{{ $basic['php'] }}</dd>
-            <dt>Database</dt>
+            <dt>数据库版本</dt>
             <dd>{{ $basic['database'] }}</dd>
-            <dt>Laravel</dt>
+            <dt>Laravel版本</dt>
             <dd>{{ $basic['laravel'] }}</dd>
             <dt>{{ config('unit3d.codebase') }}</dt>
             <dd>{{ config('unit3d.version') }}</dd>
@@ -436,89 +436,89 @@
     </section>
     <div class="dashboard__stats">
         <section class="panelV2 panel--grid-item">
-            <h2 class="panel__heading">Torrents</h2>
+            <h2 class="panel__heading">种子信息</h2>
             <dl class="key-value">
-                <dt>Total</dt>
+                <dt>总计</dt>
                 <dd>{{ $torrents->total }}</dd>
-                <dt>Pending</dt>
+                <dt>待审核</dt>
                 <dd>{{ $torrents->pending }}</dd>
-                <dt>Approved</dt>
+                <dt>已批准</dt>
                 <dd>{{ $torrents->approved }}</dd>
-                <dt>Postponed</dt>
+                <dt>已推迟</dt>
                 <dd>{{ $torrents->postponed }}</dd>
-                <dt>Rejected</dt>
+                <dt>已拒绝</dt>
                 <dd>{{ $torrents->rejected }}</dd>
             </dl>
         </section>
         <section class="panelV2 panel--grid-item">
-            <h2 class="panel__heading">Peers</h2>
+            <h2 class="panel__heading">连接数</h2>
             <dl class="key-value">
-                <dt>Total</dt>
+                <dt>总计</dt>
                 <dd>{{ $peers->total }}</dd>
-                <dt>Active</dt>
+                <dt>活跃</dt>
                 <dd>{{ $peers->active }}</dd>
-                <dt>Inactive</dt>
+                <dt>不活跃</dt>
                 <dd>{{ $peers->inactive }}</dd>
-                <dt>Seeds</dt>
+                <dt>做种</dt>
                 <dd>{{ $peers->seeders }}</dd>
-                <dt>Leeches</dt>
+                <dt>下载</dt>
                 <dd>{{ $peers->leechers }}</dd>
             </dl>
         </section>
         <section class="panelV2 panel--grid-item">
-            <h2 class="panel__heading">Users</h2>
+            <h2 class="panel__heading">用户</h2>
             <dl class="key-value">
-                <dt>Total</dt>
+                <dt>总数</dt>
                 <dd>{{ $users->total }}</dd>
-                <dt>Validating</dt>
+                <dt>待验证</dt>
                 <dd>{{ $users->validating }}</dd>
-                <dt>Banned</dt>
+                <dt>流放</dt>
                 <dd>{{ $users->banned }}</dd>
             </dl>
         </section>
         <section class="panelV2 panel--grid-item">
-            <h2 class="panel__heading">RAM</h2>
+            <h2 class="panel__heading">内存</h2>
             <dl class="key-value">
-                <dt>Total</dt>
+                <dt>总计</dt>
                 <dd>{{ $ram['total'] }}</dd>
-                <dt>Used</dt>
+                <dt>已使用</dt>
                 <dd>{{ $ram['used'] }}</dd>
-                <dt>Free</dt>
+                <dt>空闲</dt>
                 <dd>{{ $ram['available'] }}</dd>
             </dl>
         </section>
         <section class="panelV2 panel--grid-item">
-            <h2 class="panel__heading">Disk</h2>
+            <h2 class="panel__heading">硬盘</h2>
             <dl class="key-value">
-                <dt>Total</dt>
+                <dt>总计</dt>
                 <dd>{{ $disk['total'] }}</dd>
-                <dt>Used</dt>
+                <dt>已使用</dt>
                 <dd>{{ $disk['used'] }}</dd>
-                <dt>Free</dt>
+                <dt>空闲</dt>
                 <dd>{{ $disk['free'] }}</dd>
             </dl>
         </section>
         <section class="panelV2 panel--grid-item">
-            <h2 class="panel__heading">Load Average</h2>
+            <h2 class="panel__heading">平均负载</h2>
             <dl class="key-value">
-                <dt>1 minute</dt>
+                <dt>1分钟</dt>
                 <dd>{{ $avg['1-minute'] }}</dd>
-                <dt>5 minutes</dt>
+                <dt>5分钟</dt>
                 <dd>{{ $avg['5-minute'] }}</dd>
-                <dt>15 minutes</dt>
+                <dt>15分钟</dt>
                 <dd>{{ $avg['15-minute'] }}</dd>
             </dl>
         </section>
     </div>
     <section class="panelV2">
-        <h2 class="panel__heading">Directory Permissions</h2>
+        <h2 class="panel__heading">权限</h2>
         <div class="data-table-wrapper">
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Directory</th>
-                        <th>Current</th>
-                        <th><abbr title="Recommended">Rec.</abbr></th>
+                        <th>目录</th>
+                        <th>当前</th>
+                        <th><abbr title="Recommended">建议</abbr></th>
                     </tr>
                 </thead>
                 <tbody>

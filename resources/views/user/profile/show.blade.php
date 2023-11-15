@@ -716,11 +716,11 @@
                     <div class="panel__actions">
                         <div class="panel__action" x-data="{ open: false }">
                             <button class="form__button form__button--text" x-on:click.stop="open = true; $refs.dialog.showModal();">
-                                Gift BON
+                                赠送
                             </button>
                             <dialog class="dialog" x-ref="dialog" x-show="open" x-cloak>
                                 <h3 class="dialog__heading">
-                                    Note user: {{ $user->username }}
+                                    赠送对象: {{ $user->username }}
                                 </h3>
                                 <form
                                     class="dialog__form"

@@ -381,4 +381,5 @@ return [
     'not-enough-invites'      => '邀请数量不足',
     'invite-sent-success'     => '邀请发送成功',
     'report-sent'             => '举报发送成功',
+    'upload-snatches'         => '上传分享数',
 ];
