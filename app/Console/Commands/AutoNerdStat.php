@@ -127,8 +127,8 @@ class AutoNerdStat extends Command
                 sprintf('现在 [url=%s]%s[/url] 是热度最高的种子！', $snatchedUrl, $snatched->name),
                 sprintf(' [url=%s]%s[/url] 现在是KIMOJI首富啦！', $bankerUrl, $banker->username),
                 sprintf('KIMOJI乐园现在有 [color=#e54736][b]%s[/b][/color] 位家人啦！', $peers),
-                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 位用户被禁止！', $bans),
-                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 个H&R警告被发布！', $warnings),
+                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 位用户被流放！', $bans),
+                sprintf('在过去的24小时内，共有 [color=#e54736][b]%s[/b][/color] 个H&R警告发布！', $warnings),
                 config('other.title').sprintf(' 的生日是 [b]%s[/b]！', $bday),
                 config('other.title').' 是天堂！',
             ];

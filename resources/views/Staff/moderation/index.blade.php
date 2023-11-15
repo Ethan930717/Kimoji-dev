@@ -82,7 +82,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8">No pending torrents</td>
+                        <td colspan="8">暂无待审资源</td>
                     </tr>
                 @endforelse
                 </tbody>
@@ -163,7 +163,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="9">No postponed torrents</td>
+                        <td colspan="9">暂无推迟资源</td>
                     </tr>
                 @endforelse
                 </tbody>

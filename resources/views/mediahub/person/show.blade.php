@@ -31,9 +31,9 @@
         <dl class="key-value">
             <dt>{{ __('mediahub.born') }}</dt>
             <dd>{{ $person->birthday ?? __('common.unknown') }}</dd>
-            <dt>Place of Birth</dt>
+            <dt>出生日期</dt>
             <dd>{{ $person->place_of_birth ?? __('common.unknown') }}</dd>
         </dl>
-        <div class="panel__body">{{ $person->biography ?? 'No biography' }}</div>
+        <div class="panel__body">{{ $person->biography ?? '暂无介绍' }}</div>
     </section>
 @endsection

@@ -54,7 +54,7 @@
                 <div class="movie-bottom">
                     <a href="{{ route('torrents.index', ['collectionId' => $collection->id]) }}" role="button"
                        class="form__button form__button--filled">
-                        <i class='{{ config('other.font-awesome') }} fa-eye'></i> Collection Torrents List
+                        <i class='{{ config('other.font-awesome') }} fa-eye'></i> 添加到收藏列表
                     </a>
                 </div>
             </div>
@@ -64,7 +64,7 @@
 
         <div class="panel panel-chat shoutbox">
             <div class="panel__heading">
-                <h4><i class="{{ config("other.font-awesome") }} fa-film"></i> Movies</h4>
+                <h4><i class="{{ config("other.font-awesome") }} fa-film"></i> 影片</h4>
             </div>
             <div class="table-responsive">
                 <table class="table table-condensed table-bordered table-striped">
@@ -88,7 +88,7 @@
                                                 </div>
                                                 <div style=" margin-top: 8px;">
                                                     <span class="badge-extra"><i
-                                                                class="fas fa-calendar text-purple"></i> {{ __('common.year') }}: {{ substr($movie->release_date, 0, 4) }}</span>
+                                                                class="fas fa-calendar text-purple"></i> {{ __('common.bornyear') }}: {{ substr($movie->release_date, 0, 4) }}</span>
                                                     <span class="badge-extra"><i class="fas fa-star text-gold"></i> {{ __('torrent.rating') }}: {{ $movie->vote_average }}</span>
                                                 </div>
                                             </a>

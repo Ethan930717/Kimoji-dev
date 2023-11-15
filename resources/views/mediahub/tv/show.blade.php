@@ -16,7 +16,7 @@
     </li>
     <li class="breadcrumbV2">
         <a href="{{ route('mediahub.shows.index') }}" class="breadcrumb__link">
-            TV Shows
+            剧集
         </a>
     </li>
     <li class="breadcrumb--active">
@@ -113,29 +113,29 @@
             alt="{{ $show->name }}"
         >
         <dl class="key-value">
-            <dt>Seasons</dt>
+            <dt>季数</dt>
             <dd>{{ $show->number_of_seasons }}</dd>
-            <dt>Status</dt>
+            <dt>完结状态</dt>
             <dd>{{ $show->status }}</dd>
-            <dt>Networks</dt>
+            <dt>流媒体</dt>
             <dd>
                 @foreach($show->networks as $network)
                     <a href="{{ route('torrents.index', ['view' => 'group', 'networkId' => $network->id]) }}">{{ $network->name }}</a>
                     @if (! $loop->last), @endif
                 @endforeach
             </dd>
-            <dt>Companies</dt>
+            <dt>发行</dt>
             <dd>
                 @foreach($show->companies as $company)
                     <a href="{{ route('torrents.index', ['view' => 'group', 'companyId' => $company->id]) }}">{{ $company->name }}</a>
                     @if (! $loop->last), @endif
                 @endforeach
             </dd>
-            <dt>Runtime</dt>
+            <dt>时长</dt>
             <dd>{{ $show->episode_run_time }}</dd>
-            <dt>Torrents</dt>
+            <dt>种子</dt>
             <dd>{{ $show->torrents_count }}</dd>
-            <dt>Genres</dt>
+            <dt>类型</dt>
             <dd>
                 @foreach($show->genres as $genre)
                     <a href="{{ route('torrents.index', ['view' => 'group', 'genres' => $genre->id]) }}">{{ $genre->name }}</a>

@@ -28,7 +28,7 @@
     @if ($torrent->personal_release)
         <i
             class="{{ config('other.font-awesome') }} fa-user-plus torrent-icons__personal-release"
-            title="Personal Release"
+            title="{{ __('torrent.personal-release') }}"
         ></i>
     @endif
     @if ($torrent->stream)

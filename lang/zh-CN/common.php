@@ -139,6 +139,7 @@ return [
     'new-adj'              => '新建',
     'news'                 => '公告',
     'next'                 => '下一个',
+    'next-page'            => '下一页',
     'no'                   => '否',
     'no-comments'          => '暂无评论',
     'no-result'            => '查询结果为空',
@@ -158,9 +159,10 @@ return [
     'port'                 => '端口',
     'position'             => '位置',
     'posts'                => '帖子',
-    'powered-by'           => '由UNIT3D提供',
+    'powered-by'           => '由KIMOJI提供',
     'preview'              => '预览',
-    'previous'             => '前一个',
+    'previous'             => '上一个',
+    'previous-page'        => '上一页',
     'progress'             => '进度',
     'publish'              => '发布',
     'quantity'             => '每页显示',
@@ -227,5 +229,6 @@ return [
     'resolutions'          => '分辨率',
     'resolution'           => '分辨率',
     'and'                  => ' ',
+    'bornyear'             => '年份',
 
 ];

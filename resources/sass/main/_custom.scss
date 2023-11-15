@@ -139,11 +139,11 @@
     --notification-read: transparent;
     --notification-unread: #2bb666;
 
-    --paginate-bg: #373d43;
-    --paginate-bg-hover: #4f5964;
-    --paginate-bg-current: #454d55;
-    --paginate-fg: #ddd;
-    --paginate-fg-disabled: #999;
+    --paginate-bg: #ffffff00;
+    --paginate-bg-hover: #ffffff00;
+    --paginate-bg-current: #ffffff00;
+    --paginate-fg: #ffffff;
+    --paginate-fg-disabled: #40a690;
     --paginate-divider: #888;
 
     --panel-action-fg: #ffffff;
@@ -1037,7 +1037,7 @@ pre code {
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
-    background-color: #e2e2e2;
+    background-color: #ffffff00;
 }
 
 .table-hover > tbody > tr:hover,
@@ -2743,8 +2743,7 @@ img.torrent-poster-img-small {
     margin-bottom: 50px;
     padding: 15px;
     border-radius: 15px;
-    border: 1px solid #fff;
-    background-color: #efefef;
+    background-color: #ffffff00;
     box-shadow: 0 5px 5px rgba(93, 93, 93, 0.83);
 }
 
@@ -3584,7 +3583,7 @@ div.blocks div.media_blocks.collection span {
 }
 
 .card.is-torrent {
-    background: #fff;
+    background: #ffffff00;
     box-shadow: 1px -1px 5px 3px rgba(0, 0, 0, 0.17);
     height: 305px;
     border-radius: 5px;
@@ -3656,14 +3655,14 @@ div.blocks div.media_blocks.collection span {
 }
 
 .card.is-torrent .description_plot {
-    color: #70727c;
+    color: #ffffff;
     font-size: 1.2rem;
     margin-top: 10px;
 }
 
 .card.is-torrent .genre-label {
     box-shadow: 0 1px 10px 0 rgba(211, 215, 221, 0.7);
-    color: #9d9ea1;
+    color: #ffffff;
     display: inline-block;
     font-size: 0.9rem;
     font-weight: 800;

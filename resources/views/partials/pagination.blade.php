@@ -3,7 +3,7 @@
         <ul class="pagination__items">
             @if ($paginator->onFirstPage())
                 <li class="pagination__previous pagination__previous--disabled">
-                    &lsaquo; {{ __('common.previous') }}
+                    &lsaquo; {{ __('common.previous-page') }}
                 </li>
             @else
                 <li class="pagination__previous">
@@ -13,7 +13,7 @@
                         wire:click.prevent="previousPage"
                         rel="prev"
                     >
-                        &lsaquo; {{ __('common.previous') }}
+                        &lsaquo; {{ __('common.previous-page') }}
                     </a>
                 </li>
             @endif
@@ -102,12 +102,12 @@
                         wire:click.prevent="nextPage"
                         rel="next"
                     >
-                        {{ __('common.next') }} &rsaquo;
+                        {{ __('common.next-page') }} &rsaquo;
                     </a>
                 </li>
             @else
                 <li class="pagination__next pagination__next--disabled">
-                    {{ __('common.next') }} &rsaquo;
+                    {{ __('common.next-page') }} &rsaquo;
                 </li>
             @endif
         </ul>

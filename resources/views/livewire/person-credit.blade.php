@@ -9,7 +9,7 @@
             x-on:click="tab = {{ App\Enums\Occupations::CREATOR->value }}"
             x-show="{{ $createdCount }} > 0"
         >
-            Creator ({{ $createdCount }})
+            {{ __('mediahub.Creator') }} ({{ $createdCount }})
         </li>
         <li
             class="panel__tab"
@@ -19,7 +19,7 @@
             x-on:click="tab = {{ App\Enums\Occupations::DIRECTOR->value }}"
             x-show="{{ $directedCount }} > 0"
         >
-            Director ({{ $directedCount }})
+            {{ __('mediahub.Director') }} ({{ $directedCount }})
         </li>
         <li
             class="panel__tab"
@@ -29,7 +29,7 @@
             x-on:click="tab = {{ App\Enums\Occupations::WRITER->value }}"
             x-show="{{ $writtenCount }} > 0"
         >
-            Writer ({{ $writtenCount }})
+            {{ __('mediahub.Writer') }} ({{ $writtenCount }})
         </li>
         <li
             class="panel__tab"
@@ -39,7 +39,7 @@
             x-on:click="tab = {{ App\Enums\Occupations::PRODUCER->value }}"
             x-show="{{ $producedCount }} > 0"
         >
-            Producer ({{ $producedCount }})
+            {{ __('mediahub.Producer') }} ({{ $producedCount }})
         </li>
         <li
             class="panel__tab"
@@ -49,7 +49,7 @@
             x-on:click="tab = {{ App\Enums\Occupations::COMPOSER->value }}"
             x-show="{{ $composedCount }} > 0"
         >
-            Composer ({{ $composedCount }})
+            {{ __('mediahub.Composer') }} ({{ $composedCount }})
         </li>
         <li
             class="panel__tab"
@@ -59,7 +59,7 @@
             x-on:click="tab = {{ App\Enums\Occupations::CINEMATOGRAPHER->value }}"
             x-show="{{ $cinematographedCount }} > 0"
         >
-            Cinematographer ({{ $cinematographedCount }})
+            {{ __('mediahub.Cinematographer') }} ({{ $cinematographedCount }})
         </li>
         <li
             class="panel__tab"
@@ -69,7 +69,7 @@
             x-on:click="tab = {{ App\Enums\Occupations::EDITOR->value }}"
             x-show="{{ $editedCount }} > 0"
         >
-            Editor ({{ $editedCount }})
+            {{ __('mediahub.Editor') }} ({{ $editedCount }})
         </li>
         <li
             class="panel__tab"
@@ -79,7 +79,7 @@
             x-on:click="tab = {{ App\Enums\Occupations::PRODUCTION_DESIGNER->value }}"
             x-show="{{ $productionDesignedCount }} > 0"
         >
-            Production Designer ({{ $productionDesignedCount }})
+            {{ __('mediahub.ProductionDesigner') }} ({{ $productionDesignedCount }})
         </li>
         <li
             class="panel__tab"
@@ -89,7 +89,7 @@
             x-on:click="tab = {{ App\Enums\Occupations::ART_DIRECTOR->value }}"
             x-show="{{ $artDirectedCount }} > 0"
         >
-            Art Director ({{ $artDirectedCount }})
+            {{ __('mediahub.artdirector') }} ({{ $artDirectedCount }})
         </li>
         <li
             class="panel__tab"
@@ -99,7 +99,7 @@
             x-on:click="tab = {{ App\Enums\Occupations::ACTOR->value }}"
             x-show="{{ $actedCount }} > 0"
         >
-            Actor ({{ $actedCount }})
+            {{ __('mediahub.actor') }} ({{ $actedCount }})
         </li>
     </menu>
     <div class="panel__body">
@@ -113,7 +113,7 @@
                     @break
             @endswitch
         @empty
-            No Media
+            {{ __('mediahub.nomedia') }}
         @endforelse
     </div>
 </section>
