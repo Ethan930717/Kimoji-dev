@@ -262,14 +262,20 @@
 
 .torrent-search--list__seeders a {
   color: var(--torrent-row-seeders-fg);
+  text-shadow: none;
+  font-weight: bold;
 }
 
 .torrent-search--list__leechers a {
   color: var(--torrent-row-leechers-fg);
+  text-shadow: none;
+  font-weight: bold;
 }
 
 .torrent-search--list__completed a {
   color: var(--torrent-row-completed-fg);
+  text-shadow: none;
+  font-weight: bold;
 }
 
 .torrent-search--list__age {

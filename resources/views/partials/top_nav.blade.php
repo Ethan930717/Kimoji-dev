@@ -58,6 +58,12 @@
                     </a>
                 </li>
                 <li>
+                    <a  href="{{ route('playlists.index') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-list-ol"></i>
+                        {{ __('playlist.playlists') }}
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('mediahub.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-database"></i>
                         影视库
@@ -90,12 +96,6 @@
                     </a>
                 </li>
                 <li>
-                    <a  href="{{ route('playlists.index') }}">
-                        <i class="{{ config('other.font-awesome') }} fa-list-ol"></i>
-                        {{ __('playlist.playlists') }}
-                    </a>
-                </li>
-                <li>
                     <a  href="{{ route('polls.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-chart-pie"></i>
                         {{ __('poll.polls') }}
@@ -105,6 +105,12 @@
                     <a  href="{{ route('stats') }}">
                         <i class="{{ config('other.font-awesome') }} fa-chart-bar"></i>
                         {{ __('common.extra-stats') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="https://t.me/Kimoji_office">
+                        <i class="fa-brands fa-telegram"></i>
+                        Telegram
                     </a>
                 </li>
                 <li>
@@ -226,9 +232,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://t.me/Kimoji_office">
-                        <i class="fa-brands fa-telegram"></i>
-                        Telegram
+                    <a href="https://music.kimoji.club">
+                        <i class="{{ config('other.font-awesome') }} fa-music"></i>
+                        FM KIMOJI
                     </a>
                 </li>
             </ul>

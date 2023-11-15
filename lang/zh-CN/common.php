@@ -221,7 +221,7 @@ return [
     'your-comment'         => '你的评论',
     'support'              => '帮助',
     'top-10'               => 'TOP 10',
-    'missing'              => '求种',
+    'missing'              => '补档',
     'search-advanced'      => '搜索箱',
     'search-hide'          => '隐藏',
     'resolutions'          => '分辨率',
