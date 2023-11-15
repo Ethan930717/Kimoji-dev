@@ -127,14 +127,14 @@
                     </article>
                 @empty
                     <article class="quick-search__result--empty">
-                        <p class="quick-search__result-text">No results found</p>
+                        <p class="quick-search__result-text">没有找到相关资源</p>
                     </article>
                 @endforelse
             </div>
         @else
             <div class="quick-search__results">
                 <article class="quick-search__result--keep-typing">
-                    <p class="quick-search__result-text">Keep typing to get results</p>
+                    <p class="quick-search__result-text">请耐心等待搜索...</p>
                 </article>
             </div>
         @endif
