@@ -54,8 +54,8 @@ class PasswordController extends Controller
             PrivateMessage::create([
                 'sender_id'   => 1,
                 'receiver_id' => $user->id,
-                'subject'     => 'ATTENTION - Your password has been changed',
-                'message'     => "Your password has been changed by staff. You will need to update your password manager with the new password.\n\nFor more information, please create a helpdesk ticket.\n\n[color=red][b]THIS IS AN AUTOMATED SYSTEM MESSAGE, PLEASE DO NOT REPLY![/b][/color]",
+                'subject'     => '请注意，您的密码已变更',
+                'message' => "您的密码已由工作人员进行更改。\n\n如需更多信息，请提交工单求助。\n\n[color=red][b]这是一条系统消息，请勿回复！[/b][/color]",
             ]);
         }
 

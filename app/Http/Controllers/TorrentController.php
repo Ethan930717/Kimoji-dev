@@ -268,8 +268,8 @@ class TorrentController extends Controller
             $pms[] = [
                 'sender_id'   => User::SYSTEM_USER_ID,
                 'receiver_id' => $user_id,
-                'subject'     => 'Torrent Deleted! - '.$torrent->name,
-                'message'     => '[b]Attention:[/b] Torrent '.$torrent->name." has been removed from our site. Our system shows that you were either the uploader, a seeder or a leecher on said torrent. We just wanted to let you know you can safely remove it from your client.\n\n[b]Removal Reason:[/b] ".$request->message."\n\n[color=red][b]THIS IS AN AUTOMATED SYSTEM MESSAGE, PLEASE DO NOT REPLY![/b][/color]",
+                'subject'     => '种子已删除 - '.$torrent->name,
+                'message'     => '[b]请注意:[/b]  '.$torrent->name." 已被删除，我们留意到您正在连接这个种子，请您抽空把这个种子删除吧.\n\n[b]删种原因:[/b] ".$request->message."\n\n[color=red][b]这是一条系统消息，请勿回复！[/b][/color]",
                 'created_at'  => now(),
                 'updated_at'  => now(),
             ];

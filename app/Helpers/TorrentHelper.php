@@ -61,9 +61,9 @@ class TorrentHelper
             $pm = new PrivateMessage();
             $pm->sender_id = 1;
             $pm->receiver_id = $wish->user_id;
-            $pm->subject = 'Wish List Notice!';
-            $pm->message = sprintf('The following item, %s, from your wishlist has been uploaded to %s! You can view it [url=%s/torrents/', $wish->title, $appname, $appurl).$torrent->id.'] HERE [/url]
-                            [color=red][b]THIS IS AN AUTOMATED SYSTEM MESSAGE, PLEASE DO NOT REPLY![/b][/color]';
+            $pm->subject = '心愿卡通知';
+            $pm->message = sprintf('您心愿卡中的以下内容，%s，已上传到 %s！您可以在此处查看 [url=%s/torrents/', $wish->title, $appname, $appurl).$torrent->id.'] 点击 [/url]
+                [color=red][b]这是一条系统消息，请勿回复！[/b][/color]';
             $pm->save();
         }
 

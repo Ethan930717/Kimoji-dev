@@ -35,13 +35,19 @@
                             default => 'list'
                         }]) }}"
                     >
-                        <i class="{{ config('other.font-awesome') }} fa-download"></i>
-                        {{ __('torrent.torrents') }}
+                        <i class="{{ config('other.font-awesome') }} fa-seedling"></i>
+                        综合
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/torrents?sd=true') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-flower"></i>
+                        KIMOJI PARK
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('torrents.create', ['category_id' => 1]) }}">
-                        <i class="{{ config('other.font-awesome') }} fa-upload"></i>
+                        <i class="{{ config('other.font-awesome') }} fa-sun-plant-wilt"></i>
                         {{ __('common.upload') }}
                     </a>
                 </li>
@@ -111,12 +117,6 @@
                     <a href="https://t.me/Kimoji_office">
                         <i class="fa-brands fa-telegram"></i>
                         Telegram
-                    </a>
-                </li>
-                <li>
-                    <a  href="{{ route('articles.index') }}">
-                        <i class="{{ config('other.font-awesome') }} fa-newspaper"></i>
-                        {{ __('common.news') }}
                     </a>
                 </li>
                 @if (!empty(config('unit3d.chat-link-url')))
@@ -234,7 +234,7 @@
                 <li>
                     <a href="https://music.kimoji.club">
                         <i class="{{ config('other.font-awesome') }} fa-music"></i>
-                        FM KIMOJI
+                        KIMOJI FM
                     </a>
                 </li>
             </ul>

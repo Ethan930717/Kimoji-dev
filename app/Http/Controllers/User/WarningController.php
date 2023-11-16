@@ -45,8 +45,8 @@ class WarningController extends Controller
         PrivateMessage::create([
             'sender_id'   => User::SYSTEM_USER_ID,
             'receiver_id' => $user->id,
-            'subject'     => 'Received warning',
-            'message'     => 'You have received a [b]warning[/b]. Reason: '.$request->string('message'),
+            'subject'     => '收到警告',
+            'message'     => '您收到了一条警告 [b]警告[/b]. 原因： '.$request->string('message'),
         ]);
 
         return to_route('users.show', ['user' => $user])
@@ -68,8 +68,8 @@ class WarningController extends Controller
         PrivateMessage::create([
             'sender_id'   => $staff->id,
             'receiver_id' => $user->id,
-            'subject'     => 'Hit and Run Warning Deleted',
-            'message'     => $staff->username.' has decided to delete your warning for torrent '.$warning->torrent.' You lucked out! [color=red][b]THIS IS AN AUTOMATED SYSTEM MESSAGE, PLEASE DO NOT REPLY![/b][/color]',
+            'subject'     => 'H&R记录删除告知',
+            'message'     => $staff->username.' 删除了您的H&R记录 '.$warning->torrent.'  [color=red][b]这是一条系统消息，请勿回复![/b][/color]',
         ]);
 
         $warning->update([
@@ -100,8 +100,8 @@ class WarningController extends Controller
         PrivateMessage::create([
             'sender_id'   => $staff->id,
             'receiver_id' => $user->id,
-            'subject'     => 'All Hit and Run Warnings Deleted',
-            'message'     => $staff->username.' has decided to delete all of your warnings. You lucked out! [color=red][b]THIS IS AN AUTOMATED SYSTEM MESSAGE, PLEASE DO NOT REPLY![/b][/color]',
+            'subject'     => 'H&R记录删除告知',
+            'message'     => $staff->username.' 决定删除您所有的警告记录。您真幸运！[color=red][b]这是一条系统消息，请勿回复！[/b][/color]',
         ]);
 
         return to_route('users.show', ['user' => $user])

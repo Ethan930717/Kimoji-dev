@@ -40,8 +40,8 @@ class PasskeyController extends Controller
             PrivateMessage::create([
                 'sender_id'   => 1,
                 'receiver_id' => $user->id,
-                'subject'     => 'ATTENTION - Your passkey has been reset',
-                'message'     => "Your passkey has been reset by staff. You will need to update your passkey in all your torrent clients to continue seeding.\n\nFor more information, please create a helpdesk ticket.\n\n[color=red][b]THIS IS AN AUTOMATED SYSTEM MESSAGE, PLEASE DO NOT REPLY![/b][/color]",
+                'subject'     => '请注意，PASSKEY已重置',
+                'message'     => "您的PASSKEY已被工作人员重置。您需要在所有的客户端中更新您的PASSKEY，以继续做种。\n\n如需更多信息，请提交工单求助。\n\n[color=red][b]这是一条系统消息，请勿回复！[/b][/color]",
             ]);
         }
 

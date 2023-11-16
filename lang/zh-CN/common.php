@@ -82,7 +82,7 @@ return [
     'everyday'             => '每日',
     'expired'              => '过期',
     'extra'                => '额外',
-    'extra-stats'          => '站內统计',
+    'extra-stats'          => '排行榜',
     'faq'                  => '常见问题',
     'files'                => '文件',
     'fl_token'             => '免费令',
@@ -230,5 +230,8 @@ return [
     'resolution'           => '分辨率',
     'and'                  => ' ',
     'bornyear'             => '年份',
+    'system-message'       => '这是一条系统消息，请勿回复!',
+    'similar'              => '相似资源',
+
 
 ];

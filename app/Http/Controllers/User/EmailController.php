@@ -52,8 +52,8 @@ class EmailController extends Controller
             PrivateMessage::create([
                 'sender_id'   => 1,
                 'receiver_id' => $user->id,
-                'subject'     => 'ATTENTION - Your email has been changed',
-                'message'     => "Your email has been changed by staff.\n\nFor more information, please create a helpdesk ticket.\n\n[color=red][b]THIS IS AN AUTOMATED SYSTEM MESSAGE, PLEASE DO NOT REPLY![/b][/color]",
+                'subject'     => '请注意，您的邮箱已更改',
+                'message'     => "您的邮箱已被工作人员更改。\n\n如需更多信息，请提交工单求助。\n\n[color=red][b]这是一条系统消息，请勿回复！[/b][/color]",
             ]);
         }
 

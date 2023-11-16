@@ -21,7 +21,7 @@ return [
     'mark-all-read'      => '标记所有为已读',
     'mark-read'          => '标记为已读',
     'message'            => '信息',
-    'no-notifications'   => '没有找到通知',
+    'no-notifications'   => '暂无通知',
     'notifications'      => '通知',
     'post-tags'          => '帖子标记',
     'post-tips'          => '帖子打赏',

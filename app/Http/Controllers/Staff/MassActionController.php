@@ -57,7 +57,7 @@ class MassActionController extends Controller
         }
 
         return to_route('staff.mass-pm.create')
-            ->withSuccess('全站PM发送成功');
+            ->withSuccess('全站PM成功');
     }
 
     /**

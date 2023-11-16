@@ -46,7 +46,7 @@
                     <dd>{{ $mediaInfo['general']['format'] ?? __('common.unknown') }}</dd>
                     <dt>时长</dt>
                     <dd>{{ $mediaInfo['general']['duration'] ?? __('common.unknown') }}</dd>
-                    <dt>比特率</dt>
+                    <dt>码率</dt>
                     <dd>{{ $mediaInfo['general']['bit_rate'] ?? __('common.unknown') }}</dd>
                     <dt>体积</dt>
                     <dd>{{ App\Helpers\StringHelper::formatBytes($mediaInfo['general']['file_size'] ?? 0, 2) }}</dd>
@@ -74,7 +74,7 @@
                                             {{ $videoElement['frame_rate'] ?? __('common.unknown') }}
                                         @endif
                                     </dd>
-                                    <dt>比特率</dt>
+                                    <dt>码率</dt>
                                     <dd>{{ $videoElement['bit_rate'] ?? __('common.unknown') }}</dd>
                                     @if (isset($videoElement['format']) && $videoElement['format'] === 'HEVC')
                                         <dt>HDR格式</dt>

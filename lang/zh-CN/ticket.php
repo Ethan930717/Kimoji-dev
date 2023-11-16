@@ -12,7 +12,7 @@
  */
 
 return [
-    'helpdesk'                 => '工单查询',
+    'helpdesk'                 => '工单',
     'closed'                   => '关闭时间',
     'subject'                  => '主题',
     'priority'                 => '优先级',

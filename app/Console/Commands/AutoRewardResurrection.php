@@ -77,7 +77,7 @@ class AutoRewardResurrection extends Command
                 $appurl = config('app.url');
 
                 $this->chatRepository->systemMessage(
-                    sprintf('Ladies and Gents, [url=%s/users/%s]%s[/url] has successfully resurrected [url=%s/torrents/%s]%s[/url]. :zombie:', $appurl, $user->username, $user->username, $appurl, $torrent->id, $torrent->name)
+                    sprintf('各位, [url=%s/users/%s]%s[/url] 成功复活了死种 [url=%s/torrents/%s]%s[/url]，太强辣！ :zombie:', $appurl, $user->username, $user->username, $appurl, $torrent->id, $torrent->name)
                 );
 
                 // Bump Torrent With FL
@@ -86,7 +86,7 @@ class AutoRewardResurrection extends Command
                 $torrent->free = 100;
                 $torrent->fl_until = Carbon::now()->addDays(3);
                 $this->chatRepository->systemMessage(
-                    sprintf('Ladies and Gents, [url=%s]%s[/url] has been granted 100%% FreeLeech for 3 days and has been bumped to the top. :stopwatch:', $torrentUrl, $torrent->name)
+                    sprintf('各位, [url=%s]%s[/url] 已限免3天并置顶. :stopwatch:', $torrentUrl, $torrent->name)
                 );
                 $torrent->save();
 
@@ -94,9 +94,9 @@ class AutoRewardResurrection extends Command
                 $pm = new PrivateMessage();
                 $pm->sender_id = 1;
                 $pm->receiver_id = $user->id;
-                $pm->subject = 'Successful Graveyard Resurrection';
-                $pm->message = sprintf('You have successfully resurrected [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.'[/url] :zombie: ! Thank you for bringing a torrent back from the dead! Enjoy the freeleech tokens!
-                [color=red][b]THIS IS AN AUTOMATED SYSTEM MESSAGE, PLEASE DO NOT REPLY![/b][/color]';
+                $pm->subject = '成功复活死种';
+                $pm->message = sprintf('十分感谢你已复活了 [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.'[/url] :zombie: ! 送上一枚免费令，请笑纳
+                [color=red][b]这是一条系统消息，请勿回复![/b][/color]';
                 $pm->save();
             }
         }

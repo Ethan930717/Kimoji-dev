@@ -193,14 +193,14 @@ class SimilarTorrent extends Component
             $pmuser = new PrivateMessage();
             $pmuser->sender_id = 1;
             $pmuser->receiver_id = $user;
-            $pmuser->subject = 'Bulk Torrents Deleted - '.$title.'! ';
-            $pmuser->message = '[b]Attention: [/b] The following torrents have been removed from our site.
+            $pmuser->subject = '批量删除种子 - '.$title.'! ';
+            $pmuser->message = '[b]请注意: [/b] 以下种子已KIMOJI中删除
             [list]
                 [*]'.implode(' [*]', $names).'
             [/list]
-            Our system shows that you were either the uploader, a seeder or a leecher on said torrent. We just wanted to let you know you can safely remove it from your client.
-                                    [b]Removal Reason: [/b] '.$this->reason.'
-                                    [color=red][b]THIS IS AN AUTOMATED SYSTEM MESSAGE, PLEASE DO NOT REPLY![/b][/color]';
+            我们的系统显示您正在连接这些种子，现在您可以安全地从您的客户端中移除这些种子了
+                                    [b]删种原因: [/b] '.$this->reason.'
+                                    [color=red][b]这是一条系统消息，请勿回复！[/b][/color]';
             $pmuser->save();
         }
 
@@ -210,8 +210,8 @@ class SimilarTorrent extends Component
 
         $this->dispatchBrowserEvent('swal:modal', [
             'type'    => 'success',
-            'message' => 'Torrents Deleted Successfully!',
-            'text'    => 'A personal message has been sent to all users that have downloaded these torrents.',
+            'message' => '种子删除成功',
+            'text'    => '已向所有下载了这些种子的用户发送了私信',
         ]);
     }
 

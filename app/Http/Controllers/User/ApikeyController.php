@@ -40,8 +40,8 @@ class ApikeyController extends Controller
             PrivateMessage::create([
                 'sender_id'   => 1,
                 'receiver_id' => $user->id,
-                'subject'     => 'ATTENTION - Your API key has been reset',
-                'message'     => "Your API key has been reset by staff. You will need to update your API key in all your scripts to continue using the API.\n\nFor more information, please create a helpdesk ticket.\n\n[color=red][b]THIS IS AN AUTOMATED SYSTEM MESSAGE, PLEASE DO NOT REPLY![/b][/color]",
+                'subject'     => '请注意：API key已重置',
+                'message'     => "您的 API 密钥已被工作人员重置。您需要在所有脚本中更新您的 API 密钥才能继续使用 API\n\n如需更多信息，请提交工单求助。\n\n[color=red][b]这是一条系统消息，请勿回复![/b][/color]",
             ]);
         }
 
