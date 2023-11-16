@@ -48,7 +48,7 @@
     <section>
         @if ($media->torrents->has('Complete Pack'))
             <details class="torrent-search--grouped__dropdown" open>
-                <summary>Complete Pack</summary>
+                <summary>完结</summary>
                 <table class="torrent-search--grouped__torrents">
                     <tbody>
                         @foreach ($media->torrents['Complete Pack'] as $type => $torrents)
@@ -78,7 +78,7 @@
                     open
                 @endif
             >
-                <summary>Specials</summary>
+                <summary>特别篇</summary>
                 @foreach ($media->torrents['Specials'] as $specialName => $special)
                     <details
                         class="torrent-search--grouped__dropdown"
@@ -121,7 +121,7 @@
                 <summary>{{ $seasonName }}</summary>
                 @if ($season->has('Season Pack'))
                     <details open class="torrent-search--grouped__dropdown">
-                        <summary>Season Pack</summary>
+                        <summary>完结</summary>
                         <table class="torrent-search--grouped__torrents">
                             @foreach ($season['Season Pack'] as $type => $torrents)
                                 <tbody>

@@ -134,7 +134,7 @@
         @else
             <div class="quick-search__results">
                 <article class="quick-search__result--keep-typing">
-                    <p class="quick-search__result-text">请耐心等待搜索...</p>
+                    <p class="quick-search__result-text">请耐心等待搜索结果...</p>
                 </article>
             </div>
         @endif
