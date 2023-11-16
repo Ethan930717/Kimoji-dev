@@ -1028,7 +1028,8 @@ pre code {
 .table-bordered > tfoot > tr > th,
 .table-bordered > thead > tr > td,
 .table-bordered > thead > tr > th {
-    border: 1px solid #ddd;
+    border: 1px solid #ffffff00;
+    backdrop-filter: blur(2px);
 }
 
 .table-bordered > thead > tr > td,
@@ -2618,7 +2619,7 @@ img.torrent-poster-img-small {
 }
 
 .text-pink {
-    color: #f92672;
+    color: #ed96b5;
 }
 
 .text-gold {
@@ -3138,6 +3139,7 @@ span.tags {
 
 h4 {
     font-size: 16px;
+    font-weight: bold;
 }
 
 h3 {
@@ -3617,16 +3619,16 @@ div.blocks div.media_blocks.collection span {
 
 .card.is-torrent .card_footer {
     align-items: center;
-    background: #f3f3f3;
+    background: #ffffff00;
     box-shadow: 0 -1px 5px 0 rgba(0, 0, 0, 0.05);
-    color: #70727c;
+    color: #ffffff;
     font-size: 1.3rem;
     height: 34px;
     padding: 6px;
 }
 
 .card.is-torrent .card_footer a {
-    color: #70727c;
+    color: #ffffff;
 }
 
 .card.is-torrent .card_footer a:hover {

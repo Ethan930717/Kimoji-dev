@@ -35,10 +35,10 @@
                                 style=" height: auto; margin-top: 0; margin-bottom: 20px;">
                             <div class="card_head">
                 <span class="badge-user text-bold" style="float:right;">
-                    {{ $season->episodes->count() }} Episodes
+                    共{{ $season->episodes->count() }}集
                 </span>
                                 <span class="badge-user text-bold" style="float:right;">
-                    Season {{ $season->season_number }}
+                    第{{ $season->season_number }}季
                 </span>
                             </div>
                             <div class="card_body" style="height: 190px;">
@@ -62,7 +62,7 @@
                             <div class="card_footer text-center">
                                 <a data-toggle="collapse" data-target="#{{ $season->season_number }}">
                                     <i class="fas fa-chevron-double-down"></i> <span
-                                            class="badge-user text-bold"> {{ $season->torrents->where('season_number', '=', $season->season_number)->count() }} Torrents Matched</span>
+                                            class="badge-user text-bold"> 匹配到{{ $season->torrents->where('season_number', '=', $season->season_number)->count() }}个资源</span>
                                     <i class="fas fa-chevron-double-down"></i>
                                 </a>
                             </div>
@@ -84,7 +84,7 @@
                                                 <tr>
                                                     <td>
                                                         <a href="{{ route('torrents.show', ['id' => $torrent->id]) }}"
-                                                            style="color: #8fa8e0;">{{ $torrent->name }}</a>
+                                                            style="color: #ffffff;">{{ $torrent->name }}</a>
                                                     </td>
                                                     <td>{{ $torrent->getSize() }}</td>
                                                     <td>{{ $torrent->seeders }}</td>

@@ -55,7 +55,7 @@
 
                         <button
                             @if (cache()->has('tmdb-tv-scraper:'.$meta->id) && ! auth()->user()->group->is_modo)
-                                disabled
+                                哎呀
                                 title="这个信息才更新没多久哦～请明天再试吧"
                             @endif
                         >

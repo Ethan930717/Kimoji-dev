@@ -41,5 +41,5 @@ return [
     'new-news'   => '最新消息',
 
     // Top torrents
-    'new-torrents' => '最新资源',
+    'new-torrents' => '最新',
 ];

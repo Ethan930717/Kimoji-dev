@@ -39,7 +39,7 @@
                         <div class="card is-torrent" style="margin-top: 0; margin-bottom: 20px; height: auto;">
                             <div class="card_head">
                                 <span class="badge-user text-bold" style="float:right;">
-                                    Episode {{ $episode->episode_number }}
+                                    第{{ $episode->episode_number }}集
                                 </span>
                             </div>
                             <div class="card_body">
