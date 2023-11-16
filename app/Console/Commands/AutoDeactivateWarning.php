@@ -82,6 +82,6 @@ class AutoDeactivateWarning extends Command
             }
         }
 
-        $this->comment('Automated Warning Deativation Command Complete');
+        $this->comment('自动取消警告成功');
     }
 }

@@ -51,8 +51,8 @@ class AutoRemovePersonalFreeleech extends Command
             $pm = new PrivateMessage();
             $pm->sender_id = 1;
             $pm->receiver_id = $pfl->user_id;
-            $pm->subject = 'Personal 24 Hour Freeleech Expired';
-            $pm->message = 'Your [b]Personal 24 Hour Freeleech[/b] has expired! Feel free to reenable it in the BON Store! [color=red][b]THIS IS AN AUTOMATED SYSTEM MESSAGE, PLEASE DO NOT REPLY![/b][/color]';
+            $pm->subject = '免费令过期提醒';
+            $pm->message = '你的 [b]免费令[/b] 过期了! 欢迎到KIMOJI商城回购 [color=red][b]这是一条系统消息，请勿回复[/b][/color]';
             $pm->save();
 
             // Delete The Record From DB
@@ -62,6 +62,6 @@ class AutoRemovePersonalFreeleech extends Command
             Unit3dAnnounce::removePersonalFreeleech($pfl->user_id);
         }
 
-        $this->comment('Automated Removal User Personal Freeleech Command Complete');
+        $this->comment('免费令自动删除成功');
     }
 }

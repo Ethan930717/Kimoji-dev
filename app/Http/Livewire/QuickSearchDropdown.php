@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class QuickSearchDropdown extends Component
 {
-    public string $quicksearchRadio = '搜索资源';
+    public string $quicksearchRadio = 'movies';
 
     public string $quicksearchText = '';
 

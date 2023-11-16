@@ -61,7 +61,7 @@ class AutoRemoveTimedTorrentBuffs extends Command
 
             // Announce To Chat
             $this->chatRepository->systemMessage(
-                sprintf('Ladies and Gents, [url=%s/torrents/%s]%s[/url] timed freeleech buff has expired.', $appurl, $torrent->id, $torrent->name)
+                sprintf('大哥大姐们, [url=%s/torrents/%s]%s[/url] 的免费时间到期啦', $appurl, $torrent->id, $torrent->name)
             );
         }
 
