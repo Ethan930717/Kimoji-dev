@@ -8,7 +8,7 @@
     </li>
     <li class="breadcrumbV2">
         <a href="{{ route('users.earnings.index', ['user' => $user]) }}" class="breadcrumb__link">
-            {{ __('bon.bonus') }} {{ __('bon.points') }}
+            {{ __('bon.points') }}
         </a>
     </li>
     <li class="breadcrumb--active">
@@ -39,8 +39,8 @@
                     <tr>
                         <th>{{ __('common.name') }}</th>
                         <th>{{ __('common.description') }}</th>
-                        <th>Per {{ __('torrent.torrent') }}</th>
-                        <th>Hourly</th>
+                        <th>系数</th>
+                        <th>时魔</th>
                         <th x-cloak x-show="extendStats">Daily</th>
                         <th x-cloak x-show="extendStats">Weekly</th>
                         <th x-cloak x-show="extendStats">Monthly</th>

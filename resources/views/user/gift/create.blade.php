@@ -8,7 +8,7 @@
     </li>
     <li class="breadcrumbV2">
         <a href="{{ route('users.earnings.index', ['user' => $user]) }}" class="breadcrumb__link">
-            {{ __('bon.bonus') }} {{ __('bon.points') }}
+            {{ __('bon.points') }}
         </a>
     </li>
     <li class="breadcrumbV2">

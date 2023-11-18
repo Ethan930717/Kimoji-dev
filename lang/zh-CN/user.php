@@ -389,6 +389,6 @@ return [
     'top-dying'               => '孤种排行榜',
     'top-dead'                => '死种排行榜',
     'top-bountied'            => '悬赏大厅',
-
+    'seedbox-added-success'   => '盒子登记成功',
 
 ];
