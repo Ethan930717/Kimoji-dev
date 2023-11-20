@@ -86,7 +86,7 @@ class RegisterController extends Controller
         if (config('email-blacklist.enabled')) {
             if (! config('captcha.enabled')) {
                 $v = validator($request->all(), [
-                    'username' => 'required|alpha_dash|string|between:3,25|unique:users',
+                    'username' => ['required', 'string', 'between:3,25', 'unique:users', 'regex:/^[\p{L}\p{N}_-]+$/u'],
                     'password' => [
                         'required',
                         Password::min(8)->mixedCase()->letters()->numbers()->uncompromised(),
@@ -102,7 +102,7 @@ class RegisterController extends Controller
                 ]);
             } else {
                 $v = validator($request->all(), [
-                    'username' => 'required|alpha_dash|string|between:3,25|unique:users',
+                    'username' => ['required', 'string', 'between:3,25', 'unique:users', 'regex:/^[\p{L}\p{N}_-]+$/u'],
                     'password' => [
                         'required',
                         Password::min(8)->mixedCase()->letters()->numbers()->uncompromised(),
@@ -120,7 +120,7 @@ class RegisterController extends Controller
             }
         } elseif (! config('captcha.enabled')) {
             $v = validator($request->all(), [
-                'username' => 'required|alpha_dash|string|between:3,25|unique:users',
+                'username' => ['required', 'string', 'between:3,25', 'unique:users', 'regex:/^[\p{L}\p{N}_-]+$/u'],
                 'password' => [
                     'required',
                     Password::min(8)->mixedCase()->letters()->numbers()->uncompromised(),
@@ -129,7 +129,7 @@ class RegisterController extends Controller
             ]);
         } else {
             $v = validator($request->all(), [
-                'username' => 'required|alpha_dash|string|between:3,25|unique:users',
+                'username' => ['required', 'string', 'between:3,25', 'unique:users', 'regex:/^[\p{L}\p{N}_-]+$/u'],
                 'password' => [
                     'required',
                     Password::min(8)->mixedCase()->letters()->numbers()->uncompromised(),
