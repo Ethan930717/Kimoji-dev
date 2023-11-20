@@ -171,6 +171,7 @@ return [
         'bounty'   => '赏金',
         'tip'      => '内容',
         'receiver_username' => '收件人',
+        'name'     => '名称',
 
     ],
     ];

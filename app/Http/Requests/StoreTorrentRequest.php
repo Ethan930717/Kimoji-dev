@@ -49,7 +49,7 @@ class StoreTorrentRequest extends FormRequest
                 'file',
                 function (string $attribute, mixed $value, Closure $fail): void {
                     if ($value->getClientOriginalExtension() !== 'torrent') {
-                        $fail('The torrent file uploaded does not have a ".torrent" file extension (it has "'.$value->getClientOriginalExtension().'"). Did you upload the correct file?');
+                        $fail('上传的种子文件扩展名不正确（您上传的是 "'.$value->getClientOriginalExtension().'")， 您是否上传了正确的文件？');
                     }
 
                     $decodedTorrent = TorrentTools::normalizeTorrent($value);
@@ -57,18 +57,18 @@ class StoreTorrentRequest extends FormRequest
                     $v2 = Bencode::is_v2_or_hybrid($decodedTorrent);
 
                     if ($v2) {
-                        $fail('BitTorrent v2 (BEP 52) is not supported!');
+                        $fail('不支持 BitTorrent v2 (BEP 52) ！');
                     }
 
                     try {
                         $meta = Bencode::get_meta($decodedTorrent);
                     } catch (Exception) {
-                        $fail('You Must Provide A Valid Torrent File For Upload!');
+                        $fail('你必须提供一个有效的种子文件！');
                     }
 
                     foreach (TorrentTools::getFilenameArray($decodedTorrent) as $name) {
                         if (! TorrentTools::isValidFilename($name)) {
-                            $fail('Invalid Filenames In Torrent Files!');
+                            $fail('种子名称无效');
                         }
                     }
 
@@ -91,7 +91,7 @@ class StoreTorrentRequest extends FormRequest
                 'file',
                 function (string $attribute, mixed $value, Closure $fail): void {
                     if ($value->getClientOriginalExtension() !== 'nfo') {
-                        $fail('The NFO uploaded does not have a ".nfo" file extension (it has "'.$value->getClientOriginalExtension().'"). Did you upload the correct file?');
+                        $fail('上传的NFO文件扩展名不正确（您上传的是  "'.$value->getClientOriginalExtension().'")，您是否上传了正确的文件？');
                     }
                 },
             ],
@@ -244,11 +244,11 @@ class StoreTorrentRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'igdb.in' => 'The IGBB ID must be 0 if the media doesn\'t exist on IGDB or you\'re not uploading a game.',
-            'tmdb.in' => 'The TMDB ID must be 0 if the media doesn\'t exist on TMDB or you\'re not uploading a tv show or movie.',
-            'imdb.in' => 'The IMDB ID must be 0 if the media doesn\'t exist on IMDB or you\'re not uploading a tv show or movie.',
-            'tvdb.in' => 'The TVDB ID must be 0 if the media doesn\'t exist on TVDB or you\'re not uploading a tv show.',
-            'mal.in'  => 'The MAL ID must be 0 if the media doesn\'t exist on MAL or you\'re not uploading a tv or movie.',
+            'igdb.in' => '如果媒体不存在于IGDB上或您未上传游戏，IGDB ID必须为0。',
+            'tmdb.in' => '如果媒体不存在于TMDB上或您未上传电视节目或电影，TMDB ID必须为0。',
+            'imdb.in' => '如果媒体不存在于IMDB上或您未上传电视节目或电影，IMDB ID必须为0。',
+            'tvdb.in' => '如果媒体不存在于TVDB上或您未上传电视节目，TVDB ID必须为0。',
+            'mal.in'  => '如果媒体不存在于MAL上或您未上传电视或电影，MAL ID必须为0。',
         ];
     }
 }
