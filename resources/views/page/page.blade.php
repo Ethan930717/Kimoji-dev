@@ -51,8 +51,8 @@
                 confirmButtonText: '<i class="fa fa-thumbs-up"></i> 我了解',
               }).then((result) => {
                 if (result.isConfirmed) {
-                  axios.post(`/users/${decodeURIComponent(atob('{{ base64_encode(rawurlencode(auth()->user()->username) }}'))}/accept-rules`)
-                  const Toast = Swal.mixin({
+                    axios.post(`/users/${atob('{{ base64_encode(auth()->user()->username) }}')}/accept-rules`)
+                    const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
