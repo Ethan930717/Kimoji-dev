@@ -98,7 +98,7 @@ class NewCommentTag extends Notification implements ShouldQueue
             if ($this->comment->anon == 0) {
                 return [
                     'title' => $this->comment->user->username.' 标记了你',
-                    'body' => $this->comment->user->username.' 在合集 '.$this->comment->commentable->name.' 的评论中标记了你',
+                    'body' => $this->comment->user->username.' 在播单 '.$this->comment->commentable->name.' 的评论中标记了你',
                     'url'   => '/playlists/'.$this->comment->commentable->id,
                 ];
             }

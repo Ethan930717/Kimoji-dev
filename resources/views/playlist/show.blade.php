@@ -77,7 +77,7 @@
                         <button
                             x-on:click.prevent="Swal.fire({
                                 title: '请确认',
-                                text: `是否确认删除该合集: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($playlist->name)) }}'))}`,
+                                text: `是否确认删除该播单: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($playlist->name)) }}'))}`,
                                 icon: 'warning',
                                 showConfirmButton: true,
                                 showCancelButton: true,

@@ -42,47 +42,47 @@ class TicketCategoriesTableSeeder extends Seeder
     {
         return [
             [
-                'name'     => 'Accounts',
+                'name'     => '账号',
                 'position' => 0,
             ],
             [
-                'name'     => 'Appeals',
+                'name'     => '申诉',
                 'position' => 1,
             ],
             [
-                'name'     => 'Forums',
+                'name'     => '论坛',
                 'position' => 2,
             ],
             [
-                'name'     => 'Requests',
+                'name'     => '求种',
                 'position' => 3,
             ],
             [
-                'name'     => 'Subtitles',
+                'name'     => '字幕',
                 'position' => 4,
             ],
             [
-                'name'     => 'Torrents',
+                'name'     => '种子',
                 'position' => 5,
             ],
             [
-                'name'     => 'MediaHub',
+                'name'     => '影视库',
                 'position' => 6,
             ],
             [
-                'name'     => 'Technical',
+                'name'     => '技术相关',
                 'position' => 7,
             ],
             [
-                'name'     => 'Playlists',
+                'name'     => '播单',
                 'position' => 8,
             ],
             [
-                'name'     => 'Bugs',
+                'name'     => '上报BUG',
                 'position' => 9,
             ],
             [
-                'name'     => 'Other',
+                'name'     => '其他',
                 'position' => 10,
             ],
         ];
