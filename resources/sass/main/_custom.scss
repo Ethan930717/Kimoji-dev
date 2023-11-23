@@ -128,7 +128,7 @@
     --meta-chip-backdrop-filter-hover:  brightness(130%) blur(10px);
     --meta-chip-hover-bg: rgba(255,255,255,0.4);
     --meta-chip-icon-fg: #ffffff;
-    --meta-chip-icon-hover-bg: #fff;
+    --meta-chip-icon-hover-bg: #ffffff00;
     --meta-chip-icon-bg: #ffffff00;
     --meta-chip-name-fg: #ffffff;
     --meta-chip-value-fg: #ffffff;
@@ -771,12 +771,12 @@ mark {
 }
 
 .text-success {
-    color: #00bc63;
+    color: #02ff87;
 }
 
 a.text-success:focus,
 a.text-success:hover {
-    color: #008948;
+    color: #00ffd8;
 }
 
 .text-bright {
