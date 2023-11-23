@@ -33,6 +33,7 @@ return [
     'stats-format'            => '数据只显示前100项',
     'top-bankers'             => '富豪排行榜',
     'top-bountied'            => '悬赏令',
+    'bountied'                => '悬赏',
     'top-completed'           => '完成排行',
     'top-dead'                => '死种排行',
     'top-downloaded'          => '顶级完成',

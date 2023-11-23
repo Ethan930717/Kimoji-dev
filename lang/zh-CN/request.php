@@ -79,5 +79,6 @@ return [
     'votes'               => '投票',
     'yes'                 => 'Yes',
     'resolution'          => '分辨率',
+    'added-bonus'         => '赏金追加成功',
 
 ];

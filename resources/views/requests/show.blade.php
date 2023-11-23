@@ -116,7 +116,7 @@
         </ul>
         <section class="panelV2">
             <h2 class="panel__heading">
-                {{ $torrentRequest->name }} {{ __('request.for') }}
+                {{ $torrentRequest->name }} {{ __('stat.bountied') }}
                 <i class="{{ config('other.font-awesome') }} fa-coins text-gold"></i>
                 {{ $torrentRequest->bounty }} {{ __('bon.bon') }}
             </h2>
