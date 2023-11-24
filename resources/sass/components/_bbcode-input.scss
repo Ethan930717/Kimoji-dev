@@ -1,10 +1,13 @@
 .bbcode-input {
     border: var(--bbcode-input-border);
     border-radius: var(--bbcode-input-border-radius);
-    background-color: var(--bbcode-input-bg);
+    background-color: #ffffff00;
     display: grid;
     grid-template: 'tabs buttons toggle' auto 'content content content' auto / 1fr auto auto;
     max-width: 100%;
+    border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
+    border-right: 2px rgba(40, 40, 40, 0.35) solid;
+
 }
 
 .bbcode-input__tab-input {
@@ -18,13 +21,14 @@
     line-height: 1 !important;
     border-top-left-radius: var(--bbcode-input-border-radius);
     border-top-right-radius: var(--bbcode-input-border-radius);
-    color: #555;
+    color: #ffffff;
     margin: 0 !important;
 }
 
 .bbcode-input__tab-input:checked + .bbcode-input__tab-label {
-    border-bottom: 2px solid grey;
-    color: #888;
+    border-bottom: 2px solid #ffffffa3;
+    color: #ffffff;
+    ext-shadow: 0 0 2px #ff0000;
 }
 
 .bbcode-input__tab-pane {

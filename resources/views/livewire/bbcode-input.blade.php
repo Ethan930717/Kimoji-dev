@@ -195,8 +195,8 @@
                 type="button"
                 class="form__standard-icon-button"
                 x-on:click="Swal.fire({
-                    title: 'Emoji Picker',
-                    html: 'If using MacOS, press Ctrl + Cmd + Space bar<br>If using Windows or Linux, press Windows logo key + .',
+                    title: 'Emoji选择器',
+                    html: '如果您使用的是MacOS，请按 Ctrl + Cmd + 空格键<br>如果您使用的是Windows或Linux，请按 Windows 徽标键 + . (句号键)',
                     icon: 'info',
                     showConfirmButton: true,
                 })"
