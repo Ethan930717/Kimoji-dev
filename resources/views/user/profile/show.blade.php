@@ -73,11 +73,11 @@
                     @if (auth()->id() !== $user->id)
                         <div class="panel__action" x-data>
                             <button class="form__button form__button--text" x-on:click.stop="$refs.dialog.showModal();">
-                                Report
+                                举报
                             </button>
                             <dialog class="dialog" x-ref="dialog">
                                 <h3 class="dialog__heading">
-                                    Report user: {{ $user->username }}
+                                    举报用户: {{ $user->username }}
                                 </h3>
                                 <form
                                     class="dialog__form"
@@ -93,7 +93,7 @@
                                             name="message"
                                             required
                                         ></textarea>
-                                        <label class="form__label form__label--floating" for="report_reason">Reason</label>
+                                        <label class="form__label form__label--floating" for="report_reason">举报理由</label>
                                     </p>
                                     <p class="form__group">
                                         <button class="form__button form__button--filled">

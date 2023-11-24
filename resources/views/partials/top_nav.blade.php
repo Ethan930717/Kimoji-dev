@@ -36,7 +36,7 @@
                         }]) }}"
                     >
                         <i class="{{ config('other.font-awesome') }} fa-seedling"></i>
-                        综合
+                        万事屋
                     </a>
                 </li>
                 <li>

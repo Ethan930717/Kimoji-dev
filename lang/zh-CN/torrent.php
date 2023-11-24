@@ -153,7 +153,7 @@ return [
     'remaining'                => '剩余',
     'request-reseed'           => '请求续种',
     'requires-reseed'          => '请求续种',
-    'resurrections'            => '救活',
+    'resurrections'            => '救种',
     'revoke'                   => '撤回',
     'rss'                      => 'RSS',
     'runtime'                  => '片长',
