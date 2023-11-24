@@ -18,6 +18,7 @@ return [
     'from'          => '发件人',
     'inbox'         => '收件箱',
     'mark-all-read' => '全部标为已读',
+    'all-marked-read' => '全部标为已读',
     'message'       => '消息',
     'messages'      => '消息',
     'new'           => '新消息',
