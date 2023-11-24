@@ -21,4 +21,13 @@ return [
     'create-ticket'            => '创建工单',
     'category'                 => '类型',
     'body'                     => '内容',
+    'assign'                   => '分配工单',
+    'unassign'                 => '取消分配',
+    'delete'                   => '删除工单',
+    'close'                    => '关闭工单',
+    'opened-by'                => '发起人',
+    'attachments'              => '附件',
+    'no-attach'                => '无',
+
+
 ];

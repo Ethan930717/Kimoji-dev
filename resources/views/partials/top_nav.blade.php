@@ -40,27 +40,33 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/torrents?sd=true') }}">
+                    <a href="{{ url('/torrents?perPage=24&view=poster&sd=true') }}">
                         <i class="{{ config('other.font-awesome') }} fa-flower"></i>
                         KIMOJI PARK
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/torrents?perPage=24&view=poster&categories[0]=2') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-party-horn"></i>
+                        追剧乐园
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/torrents?perPage=24&categories[0]=5&view=poster') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-planet-ringed"></i>
+                        娱乐星球
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/torrents?perPage=24&view=poster&types[0]=12') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-gifts"></i>
+                        蓝光宝盒
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('torrents.create', ['category_id' => 1]) }}">
                         <i class="{{ config('other.font-awesome') }} fa-sun-plant-wilt"></i>
                         {{ __('common.upload') }}
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('requests.index') }}">
-                        <i class="{{ config('other.font-awesome') }} fa-hands-helping"></i>
-                        {{ __('request.requests') }}
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('rss.index') }}">
-                        <i class="{{ config('other.font-awesome') }} fa-rss"></i>
-                        {{ __('rss.rss') }}
                     </a>
                 </li>
                 <li>
@@ -208,6 +214,18 @@
             </a>
             <ul>
                 <li>
+                    <a href="{{ route('requests.index') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-hands-helping"></i>
+                        {{ __('request.requests') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('missing.index') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-ballot-check"></i>
+                        {{ __('common.missing') }}
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('subtitles.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-closed-captioning"></i>
                         {{ __('common.subtitles') }}
@@ -219,10 +237,11 @@
                         {{ __('common.top-10') }}
                     </a>
                 </li>
+
                 <li>
-                    <a href="{{ route('missing.index') }}">
-                        <i class="{{ config('other.font-awesome') }} fa-ballot-check"></i>
-                        {{ __('common.missing') }}
+                    <a href="{{ route('rss.index') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-rss"></i>
+                        {{ __('rss.rss') }}
                     </a>
                 </li>
                 <li>
