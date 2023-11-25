@@ -478,18 +478,25 @@
         <section class="panelV2">
             <h2 class="panel__heading">
                 <i class="{{ config('other.font-awesome') }} fa-info"></i>
-                {{ __('common.info') }}
+                发布须知
             </h2>
             <div class="panel__body">
-                <a href="{{ route('announce', ['passkey' => $user->passkey]) }}" style="font-size:14px; text-align:center; cursor:pointer;" id="trackerLink">
-                    右键复制Tracker地址
+                <p class="text-success">{!! __('torrent.announce-url-desc-url', ['url' => config('other.upload-guide_url')]) !!}</p>
+                <a href="/pages/3" style="font-size:18px; text-align:center; cursor:pointer;" id="generalRulesLink">
+                    发布总则
                 </a>
                 <br>
-                <p>{{ __('torrent.announce-url-desc', ['source' => config('torrent.source')]) }}</p>
-                <img src="{{ asset('/img/akay.png') }}" alt="akay_img" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
-
+                <a href="/pages/5" style="font-size:18px; text-align:center; cursor:pointer;" id="repostRulesLink">
+                    转载规则
+                </a>
                 <br>
-                <p class="text-success">{!! __('torrent.announce-url-desc-url', ['url' => config('other.upload-guide_url')]) !!}</p>
+                <a href="/pages/4" style="font-size:18px; text-align:center; cursor:pointer;" id="originalDiskRulesLink">
+                    原盘发布规则
+                </a>
+                <br>
+                <a href="{{ route('announce', ['passkey' => $user->passkey]) }}" style="font-size:18px; text-align:center; cursor:pointer;" id="trackerLink">
+                    复制Tracker地址
+                </a>
             </div>
         </section>
     @endsection

@@ -18,7 +18,6 @@
         <h2 class="panel__heading">{{ $page->name }}</h2>
         <div class="panel__body bbcode-rendered">
             @joypixels($page->getContentHtml())
-            <img src="/img/contributing.png" alt="contributing">
         </div>
     </section>
 @endsection
