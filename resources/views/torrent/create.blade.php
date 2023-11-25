@@ -478,24 +478,30 @@
         <section class="panelV2">
             <h2 class="panel__heading">
                 <i class="{{ config('other.font-awesome') }} fa-info"></i>
-                发布须知
+                发布须知(首次发种请详细阅读）
             </h2>
             <div class="panel__body">
                 <p class="text-success">{!! __('torrent.announce-url-desc-url', ['url' => config('other.upload-guide_url')]) !!}</p>
                 <a href="/pages/3" style="font-size:18px; text-align:center; cursor:pointer;" id="generalRulesLink">
-                    发布总则
+                    <i class="fas fa-gavel"></i> 发布总则
                 </a>
                 <br>
+                <br>
+
                 <a href="/pages/5" style="font-size:18px; text-align:center; cursor:pointer;" id="repostRulesLink">
-                    转载规则
+                    <i class="fas fa-copy"></i> 转载规则
                 </a>
                 <br>
+                <br>
+
                 <a href="/pages/4" style="font-size:18px; text-align:center; cursor:pointer;" id="originalDiskRulesLink">
-                    原盘发布规则
+                    <i class="fas fa-compact-disc"></i> 原盘发布规则
                 </a>
                 <br>
+                <br>
+
                 <a href="{{ route('announce', ['passkey' => $user->passkey]) }}" style="font-size:18px; text-align:center; cursor:pointer;" id="trackerLink">
-                    复制Tracker地址
+                    <i class="fas fa-link"></i> 复制Tracker地址
                 </a>
             </div>
         </section>

@@ -46,6 +46,13 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ url('/torrents?perPage=25&categories[0]=1&types[0]=1&types[1]=4&types[2]=3&types[3]=6&types[4]=7&types[5]=8&types[6]=11&types[7]=2&types[8]=5&view=poster
+') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-camera-movie"></i>
+                        荧幕大亨
+                    </a>
+                </li>
+                <li>
                     <a href="{{ url('/torrents?perPage=24&view=poster&categories[0]=2') }}">
                         <i class="{{ config('other.font-awesome') }} fa-party-horn"></i>
                         追剧乐园
