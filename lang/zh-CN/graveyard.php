@@ -17,7 +17,7 @@ return [
     'graveyard'          => '坟场',
     'guidelines'         => '指引',
     'guidelines-content' => '1) 你不可以申请救种自己发布的种子；<br>2) 不要申请救种自己未必一定能救种的种子。',
-    'howto'              => '规则在此',
+    'howto'              => '规则',
     'howto-desc1'        => '你必须保种 <span class="text-green"><em>:name</em></span> 至少 <span class="text-red text-bold">30 天</span> 才能成功救种。从当下此刻开始计时。',
     'howto-desc2'        => '你会被奖励',
     'howto-hits'         => '点击',

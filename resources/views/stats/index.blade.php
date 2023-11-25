@@ -63,7 +63,7 @@
                 @endforeach
                 <dt>高清资源</dt>
                 <dd>{{ $num_hd }}</dd>
-                <dt>PG-12资源</dt>
+                <dt>PG-12儿童资源</dt>
                 <dd>{{ $num_sd }}</dd>
                 <dt>{{ __('stat.total-torrents') }}</dt>
                 <dd>{{ $num_torrent }}</dd>

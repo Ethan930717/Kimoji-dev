@@ -55,7 +55,7 @@ class AttachmentUpload extends Component
         $attachment->file_extension = $this->attachment->getMimeType();
         $attachment->save();
 
-        $this->dispatchBrowserEvent('success', ['type' => 'success',  'message' => 'Ticket Attachment Uploaded Successfully!']);
+        $this->dispatchBrowserEvent('success', ['type' => 'success',  'message' => '附件图片上传成功!']);
     }
 
     final public function getAttachmentsProperty(): \Illuminate\Database\Eloquent\Collection

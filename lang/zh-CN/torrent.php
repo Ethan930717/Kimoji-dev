@@ -159,7 +159,7 @@ return [
     'runtime'                  => '片长',
     'satisfied_in'             => '达标于',
     'say-thanks'               => '别忘记说<b>谢谢</b> 及 <b>保种</b>',
-    'sd-content'               => 'PG-12',
+    'sd-content'               => 'PG-12儿童资源',
     'search'                   => '搜索',
     'seed-time'                => '发布时间',
     'seeder'                   => '做种',

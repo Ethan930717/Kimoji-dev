@@ -92,9 +92,9 @@
     --input-text-border-hover: 2px solid #ffffff00;
     --input-text-border-radius: 5px;
     --input-text-fg: #ffffff;
-    --input-text-padding: 12px;
-    --input-text-padding-active: 11px;
-    --input-text-padding-hover: 11px;
+    --input-text-padding: 8px;
+    --input-text-padding-active: 8px;
+    --input-text-padding-hover: 8px;
 
     --key-value-even-bg: #ffffff00;
     --key-value-fg: inherit;
@@ -2882,7 +2882,9 @@ body.tvshow .movie-poster {
 ul,
 time {
     color: #ffffff;
-    text-shadow: 0 0 4px #fff;
+    /*
+    text-shadow: 0 0 2px #fff;
+    */
 }
 
 .topic .topic-posts {

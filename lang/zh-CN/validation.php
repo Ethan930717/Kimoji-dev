@@ -172,6 +172,7 @@ return [
         'tip'      => '内容',
         'receiver_username' => '收件人',
         'name'     => '名称',
+        'attachment'  => '附件',
 
     ],
     ];
