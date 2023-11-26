@@ -104,7 +104,11 @@ class TorrentController extends BaseController
 
             Log::info('Test message sent to Telegram group.');
         } catch (\Exception $e) {
-            Log::error('Failed to send test message to Telegram group.', ['error' => $e->getMessage()]);
+            Log::error('Failed to send test message to Telegram group.', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            return response()->json(['error' => $e->getMessage()], 500); // 添加这一行
         }
         $user = $request->user();
 
