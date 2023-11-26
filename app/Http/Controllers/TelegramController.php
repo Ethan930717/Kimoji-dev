@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Telegram\Bot\Laravel\Facades\Telegram;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
+use Telegram\Bot\FileUpload\InputFile;
 
 class TelegramController extends Controller
 {
@@ -108,13 +109,13 @@ class TelegramController extends Controller
             'text' => $helpMessage
         ]);
     }
-    public function sendTorrentNotification($poster, $overview, $uploader,$chatId)
+
+    public function sendTorrentNotification($poster, $overview, $uploader, $chatId)
     {
         try {
-            $chatId = $chatId; // 替换为您的 Telegram 群组 ID
-            $message = "{$uploader} 上传了新资源：\n\n" . $overview; // 使用上传者的用户名
+            $message = "$uploader 上传了新资源：\n\n" . $overview; // 使用上传者的用户名
             $photo = $poster; // 海报图片 URL
-
+            $chatId = "-4047467856";
             // 记录发送前的日志
             Log::info("Sending torrent notification to Telegram", [
                 'chat_id' => $chatId,
@@ -124,7 +125,7 @@ class TelegramController extends Controller
 
             $response = Telegram::sendPhoto([
                 'chat_id' => $chatId,
-                'photo' => $photo,
+                'photo' => InputFile::create($photo, basename($photo)),
                 'caption' => $message
             ]);
 
@@ -135,16 +136,6 @@ class TelegramController extends Controller
             // 记录异常
             Log::error("Error sending torrent notification to Telegram", ['error' => $e->getMessage()]);
         }
-    }
-    public function testSendTorrentNotification()
-    {
-        // 使用测试数据
-        $poster = 'https://image.tmdb.org/t/p/w500/kciiX68V94RM8oAuNZUuUFQP2TZ.jpg'; // 有效的图片 URL
-        $overview = '这是一个测试资源的概述';
-        $uploader = '测试上传者';
-        $chatId = '-4047467856';
-
-        return $this->sendTorrentNotification($poster, $overview, $uploader, $chatId);
     }
 
 }
