@@ -303,10 +303,12 @@ class TorrentController extends BaseController
 
             // Announce To Shoutbox
             if ($anon == 0) {
+                $this->sendNewTorrentNotificationToTelegram($torrent);
                 $this->chatRepository->systemMessage(
                     sprintf('用户 [url=%s/users/', $appurl).$username.']'.$username.sprintf('[/url] 上传了 '.$torrent->category->name.'. [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.'[/url], 快看看吧! :slight_smile:'
                 );
             } else {
+                $this->sendNewTorrentNotificationToTelegram($torrent);
                 $this->chatRepository->systemMessage(
                     sprintf('匿名用户上传了 '.$torrent->category->name.'. [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.'[/url], 快瞅瞅! :slight_smile:'
                 );
@@ -360,7 +362,6 @@ class TorrentController extends BaseController
 
             TorrentHelper::approveHelper($torrent->id);
         }
-        $this->sendNewTorrentNotificationToTelegram($torrent);
 
         return $this->sendResponse(route('torrent.download.rsskey', ['id' => $torrent->id, 'rsskey' => auth('api')->user()->rsskey]), 'Torrent uploaded successfully.');
     }
