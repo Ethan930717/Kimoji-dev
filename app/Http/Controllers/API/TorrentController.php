@@ -315,11 +315,11 @@ class TorrentController extends BaseController
             if ($anon == 1 && $featured == 1) {
                 $this->chatRepository->systemMessage(
                     sprintf('大哥大姐们，[url=%s/torrents/%s]%s[/url] 刚刚被一位匿名用户加精了！快瞅瞅！:fire:', $appurl, $torrent->id, $torrent->name
-                );
+                    ));
             } elseif ($anon == 0 && $featured == 1) {
                 $this->chatRepository->systemMessage(
                     sprintf('大哥大姐们, [url=%s/torrents/%s]%s[/url] 刚刚有人在 [url=%s/users/%s]%s[/url] 发出了一个救种请求，能帮帮忙吗？ :fire:', $appurl, $torrent->id, $torrent->name, $appurl, $username, $username
-                );
+                    ));
             }
 
             if ($free >= 1 && $featured == 0) {
@@ -485,6 +485,6 @@ class TorrentController extends BaseController
             return new TorrentsResource($torrents);
         }
 
-        return $this->sendResponse('404', '未找到该种子);
+        return $this->sendResponse('404', '未找到该种子');
     }
 }
