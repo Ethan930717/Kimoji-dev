@@ -111,7 +111,7 @@ class TelegramController extends Controller
     public function sendTorrentNotification($poster, $overview, $uploader,$chatId)
     {
         try {
-            #$chatId = '-4047467856'; // 替换为您的 Telegram 群组 ID
+            $chatId = $chatId; // 替换为您的 Telegram 群组 ID
             $message = "{$uploader} 上传了新资源：\n\n" . $overview; // 使用上传者的用户名
             $photo = $poster; // 海报图片 URL
 
@@ -138,19 +138,14 @@ class TelegramController extends Controller
     }
     public function testSendTorrentNotification()
     {
-        try {
-            // 使用测试数据
+        // 使用测试数据
         $poster = 'https://image.tmdb.org/t/p/w500/kciiX68V94RM8oAuNZUuUFQP2TZ.jpg'; // 有效的图片 URL
         $overview = '这是一个测试资源的概述';
         $uploader = '测试上传者';
         $chatId = '-4047467856';
-        return $this->sendTorrentNotification($poster, $overview, $uploader, $chatId);
-    }catch (\Exception $e) {
-            Log::error("Error in testSendTorrentNotification", ['error' => $e->getMessage()]);
-            return 'Error: ' . $e->getMessage();
-        }
-    }
 
+        return $this->sendTorrentNotification($poster, $overview, $uploader, $chatId);
+    }
 
 }
 
