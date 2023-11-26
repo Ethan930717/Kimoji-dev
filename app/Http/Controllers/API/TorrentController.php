@@ -203,6 +203,16 @@ class TorrentController extends BaseController
             $seasonRule = 'required|numeric';
         }
 
+        try {
+            Telegram::sendMessage([
+                'chat_id' => '-4047467856', // 您的 Telegram 群组 ID
+                'text' => '这是一个来自 Laravel 的测试消息。'
+            ]);
+
+            Log::info('Test message sent to Telegram group.');
+        } catch (\Exception $e) {
+            Log::error('Failed to send test message to Telegram group.', ['error' => $e->getMessage()]);
+        }
         // Validation
         $v = validator($torrent->toArray(), [
             'name'             => 'required|unique:torrents',
@@ -302,16 +312,7 @@ class TorrentController extends BaseController
             $free = $torrent->free;
             $doubleup = $torrent->doubleup;
 
-            try {
-                Telegram::sendMessage([
-                    'chat_id' => '-4047467856', // 您的 Telegram 群组 ID
-                    'text' => '这是一个来自 Laravel 的测试消息。'
-                ]);
 
-                Log::info('Test message sent to Telegram group.');
-            } catch (\Exception $e) {
-                Log::error('Failed to send test message to Telegram group.', ['error' => $e->getMessage()]);
-            }
 
             // Announce To Shoutbox
             if ($anon == 0) {
