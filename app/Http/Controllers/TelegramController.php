@@ -111,7 +111,7 @@ class TelegramController extends Controller
     public function sendTorrentNotification($poster, $overview, $uploader)
     {
         try {
-            $chatId = '5782102472'; // 替换为您的 Telegram 群组 ID
+            $chatId = '-4047467856'; // 替换为您的 Telegram 群组 ID
             $message = "{$uploader} 上传了新资源：\n\n" . $overview; // 使用上传者的用户名
             $photo = $poster; // 海报图片 URL
 
