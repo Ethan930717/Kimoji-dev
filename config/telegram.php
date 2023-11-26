@@ -54,7 +54,7 @@ return [
     | your default bot for regular use.
     |
     */
-    'default' => 'AK',
+    'default' => 'Miss.K',
 
     /*
     |--------------------------------------------------------------------------
