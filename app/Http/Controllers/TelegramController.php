@@ -139,11 +139,23 @@ class TelegramController extends Controller
     public function testSendTorrentNotification()
     {
         // 使用测试数据
-        $poster = 'https://image.tmdb.org/t/p/w500/kciiX68V94RM8oAuNZUuUFQP2TZ.jpg'; // 替换为一个有效的图片 URL
+        $poster = 'https://image.tmdb.org/t/p/w500/kciiX68V94RM8oAuNZUuUFQP2TZ.jpg'; // 有效的图片 URL
         $overview = '这是一个测试资源的概述';
         $uploader = '测试上传者';
+        $chatId = '-4047467856';
 
-        return $this->sendTorrentNotification($poster, $overview, $uploader);
+        return $this->sendTorrentNotification($poster, $overview, $uploader, $chatId);
+    }
+
+    public function sendTorrentNotification($poster, $overview, $uploader, $chatId)
+    {
+        try {
+            // 使用传递来的 chat_id
+            // ... 省略其他代码 ...
+        } catch (\Exception $e) {
+            // 记录异常
+            Log::error("Error sending torrent notification to Telegram", ['error' => $e->getMessage()]);
+        }
     }
 
 }

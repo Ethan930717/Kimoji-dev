@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Telegram\Bot\Laravel\Facades\Telegram;
+use App\Http\Controllers\TelegramController;
+
 #测试TG机器人
 Route::get('/test-telegram', function () {
     try {
@@ -16,7 +18,7 @@ Route::get('/test-telegram', function () {
         return 'Error: ' . $e->getMessage();
     }
 });
-Route::get('/test-telegram-notification', 'TelegramController@testSendTorrentNotification');
+Route::get('/test-telegram-notification', [TelegramController::class, 'testSendTorrentNotification']);
 
 /**
  * NOTICE OF LICENSE.
