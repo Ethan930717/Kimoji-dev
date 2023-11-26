@@ -13,7 +13,7 @@
 
 return [
     'bon-gifts'          => '礼物',
-    'comment-tags'       => '评论获标记',
+    'comment-tags'       => '评论被标记',
     'date'               => '日期',
     'delete'             => '删除',
     'delete-all'         => '删除所有通知',
@@ -23,7 +23,7 @@ return [
     'message'            => '信息',
     'no-notifications'   => '暂无通知',
     'notifications'      => '通知',
-    'post-tags'          => '帖子标记',
+    'post-tags'          => '帖子被标记',
     'post-tips'          => '帖子打赏',
     'read'               => '读取',
     'request-approvals'  => '求种获准',
