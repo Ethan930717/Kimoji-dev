@@ -40,7 +40,7 @@ return [
     'filled'              => '已达成',
     'filled-by'           => '达成于',
     'for'                 => '对于',
-    'fulfill'             => '证明',
+    'fulfill'             => '领赏',
     'last-vote'           => '最后的投票',
     'my-voted'            => '已投票',
     'my-filled'           => '已达成',
@@ -80,5 +80,7 @@ return [
     'yes'                 => 'Yes',
     'resolution'          => '分辨率',
     'added-bonus'         => '赏金追加成功',
+    'claimed-success'     => '认领成功',
+    'unclaimed-success'   => '取消认领',
 
 ];

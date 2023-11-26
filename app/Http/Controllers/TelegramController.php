@@ -28,9 +28,20 @@ class TelegramController extends Controller
     {
         $update = Telegram::commandsHandler(true);
 
+        // 记录整个更新的详细信息
+        Log::info("Received update from Telegram", ['update' => $update]);
+
         if (isset($update['message'])) {
             $chatId = $update['message']['chat']['id'];
+            $senderId = $update['message']['from']['id']; // 发送者的 ID
+            $chatType = $update['message']['chat']['type']; // 聊天类型，如群组或私聊
 
+            // 记录更多的消息详细信息
+            Log::info("Message details", [
+                'chat_id' => $chatId,
+                'sender_id' => $senderId,
+                'chat_type' => $chatType
+            ]);
             // 先检查 'text' 字段是否存在
             if (isset($update['message']['text'])) {
                 $text = $update['message']['text'];
@@ -99,15 +110,31 @@ class TelegramController extends Controller
     }
     public function sendTorrentNotification($poster, $overview, $uploader)
     {
-        $chatId = '5782102472'; // 替换为你的 Telegram 群组 ID
-        $message = "{$uploader} 上传了新资源：\n\n" . $overview; // 使用上传者的用户名
-        $photo = $poster; // 海报图片 URL
+        try {
+            $chatId = '5782102472'; // 替换为您的 Telegram 群组 ID
+            $message = "{$uploader} 上传了新资源：\n\n" . $overview; // 使用上传者的用户名
+            $photo = $poster; // 海报图片 URL
 
-        Telegram::sendPhoto([
-            'chat_id' => $chatId,
-            'photo' => $photo,
-            'caption' => $message
-        ]);
+            // 记录发送前的日志
+            Log::info("Sending torrent notification to Telegram", [
+                'chat_id' => $chatId,
+                'message' => $message,
+                'photo' => $photo
+            ]);
+
+            $response = Telegram::sendPhoto([
+                'chat_id' => $chatId,
+                'photo' => $photo,
+                'caption' => $message
+            ]);
+
+            // 记录发送后的日志
+            Log::info("Torrent notification sent", ['response' => $response]);
+
+        } catch (\Exception $e) {
+            // 记录异常
+            Log::error("Error sending torrent notification to Telegram", ['error' => $e->getMessage()]);
+        }
     }
 }
 
