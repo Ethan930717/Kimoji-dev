@@ -13,6 +13,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\TelegramController;
 use App\Helpers\Bencode;
 use App\Helpers\TorrentHelper;
 use App\Helpers\TorrentTools;

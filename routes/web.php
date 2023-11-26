@@ -3,8 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Telegram\Bot\Laravel\Facades\Telegram;
-
-
+#测试TG机器人
 Route::get('/test-telegram', function () {
     try {
         $response = Telegram::sendMessage([
