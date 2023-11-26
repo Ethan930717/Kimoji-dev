@@ -3,15 +3,20 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Telegram\Bot\Laravel\Facades\Telegram;
-use App\Http\Controllers\TelegramController;
 
 #测试TG机器人
 Route::get('/test-telegram', function () {
+    $poster = 'https://image.tmdb.org/t/p/w500/kciiX68V94RM8oAuNZUuUFQP2TZ.jpg'; // 有效的图片 URL
+    $overview = '这是一个测试资源的概述';
+    $uploader = '测试上传者';
+    $chatId = '-4047467856';
     try {
-        $response = Telegram::sendMessage([
-            'chat_id' => '-4047467856', // 替换为您的 Telegram 聊天 ID 或群组 ID
-            'text' => 'Hello from Laravel!'
-        ]);
+        $message = "{$uploader} 上传了新资源：\n\n" . $overview; // 使用上传者的用户名
+        $photo = $poster; // 海报图片 URL
+        $response = Telegram::sendPhoto([
+            'chat_id' => $chatId, // 替换为您的 Telegram 聊天 ID 或群组 ID
+            'photo' => $photo,
+            'caption' => $message        ]);
 
         return 'Message sent! Message ID: ' . $response->getMessageId();
     } catch (Exception $e) {
@@ -19,7 +24,6 @@ Route::get('/test-telegram', function () {
     }
 });
 
-Route::get('/test-telegram-notification', [TelegramController::class, 'testSendTorrentNotification']);
 
 /**
  * NOTICE OF LICENSE.

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\TelegramController;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 /**
  * NOTICE OF LICENSE.
@@ -43,3 +44,4 @@ Route::middleware(['auth:api', 'banned'])->prefix('torrents')->group(function ()
 
 // Telegram bot
 Route::post('/telegram-webhook', [TelegramController::class, 'handleWebhook']);
+Route::get('/test-telegram-notification', [TelegramController::class, 'testSendTorrentNotification']);
