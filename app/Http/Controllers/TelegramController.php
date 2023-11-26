@@ -147,16 +147,6 @@ class TelegramController extends Controller
         return $this->sendTorrentNotification($poster, $overview, $uploader, $chatId);
     }
 
-    public function sendTorrentNotification($poster, $overview, $uploader, $chatId)
-    {
-        try {
-            // 使用传递来的 chat_id
-            // ... 省略其他代码 ...
-        } catch (\Exception $e) {
-            // 记录异常
-            Log::error("Error sending torrent notification to Telegram", ['error' => $e->getMessage()]);
-        }
-    }
 
 }
 
