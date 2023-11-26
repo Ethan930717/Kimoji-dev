@@ -46,7 +46,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/torrents?perPage=25&categories[0]=1') }}">
+                    <a href="{{ url('/torrents?perPage=25&categories[0]=1&view=poster') }}">
                         <i class="{{ config('other.font-awesome') }} fa-camera-movie"></i>
                         荧幕大亨
                     </a>
@@ -64,7 +64,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('torrents?perPage=25&categories[0]=1&types[0]=2&types[1]=1') }}">
+                    <a href="{{ url('torrents?perPage=25&categories[0]=1&types[0]=2&types[1]=1&view=poster') }}">
                         <i class="{{ config('other.font-awesome') }} fa-gifts"></i>
                         蓝光宝盒
                     </a>
