@@ -110,7 +110,7 @@ class TelegramController extends Controller
         ]);
     }
 
-    public function sendTorrentNotification($poster, $overview, $uploader, $chatId)
+    public function sendTorrentNotification($poster, $overview, $uploader)
     {
         try {
             $message = "$uploader 上传了新资源：\n\n" . $overview; // 使用上传者的用户名
