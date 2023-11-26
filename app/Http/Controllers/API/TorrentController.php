@@ -12,7 +12,7 @@
  */
 
 namespace App\Http\Controllers\API;
-
+use Telegram\Bot\Laravel\Facades\Telegram;
 use App\Http\Controllers\TelegramController;
 use App\Helpers\Bencode;
 use App\Helpers\TorrentHelper;
