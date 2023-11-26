@@ -2,7 +2,21 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
+
+Route::get('/test-telegram', function () {
+    try {
+        $response = Telegram::sendMessage([
+            'chat_id' => '5782102472', // 替换为您的 Telegram 聊天 ID 或群组 ID
+            'text' => 'Hello from Laravel!'
+        ]);
+
+        return 'Message sent! Message ID: ' . $response->getMessageId();
+    } catch (Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
 /**
  * NOTICE OF LICENSE.
  *

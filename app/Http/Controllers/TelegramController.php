@@ -45,7 +45,7 @@ class TelegramController extends Controller
                 if (isset($update['message']['new_chat_members'])) {
                     $newMembers = $update['message']['new_chat_members'];
                     foreach ($newMembers as $member) {
-                        $welcomeMessage = "欢迎 " . $member['first_name'] . " 来到Kimoji，自动获取内测账号渠道已关闭，请在群内留言取药";
+                        $welcomeMessage = "欢迎 " . $member['first_name'] . " 来到Kimoji ";
                         Telegram::sendMessage([
                             'chat_id' => $chatId,
                             'text' => $welcomeMessage
@@ -97,5 +97,17 @@ class TelegramController extends Controller
             'text' => $helpMessage
         ]);
     }
+    public function sendTorrentNotification($poster, $overview, $uploader)
+    {
+        $chatId = 'your_telegram_group_chat_id'; // 替换为你的 Telegram 群组 ID
+        $message = "{$uploader} 上传了新资源：\n\n" . $overview; // 使用上传者的用户名
+        $photo = $poster; // 海报图片 URL
 
+        Telegram::sendPhoto([
+            'chat_id' => $chatId,
+            'photo' => $photo,
+            'caption' => $message
+        ]);
+    }
 }
+

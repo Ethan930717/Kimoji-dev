@@ -360,10 +360,24 @@ class TorrentController extends BaseController
 
             TorrentHelper::approveHelper($torrent->id);
         }
+        $this->sendNewTorrentNotificationToTelegram($torrent);
 
         return $this->sendResponse(route('torrent.download.rsskey', ['id' => $torrent->id, 'rsskey' => auth('api')->user()->rsskey]), 'Torrent uploaded successfully.');
     }
 
+    protected function sendNewTorrentNotificationToTelegram(Torrent $torrent) {
+        // 获取电影或电视剧的信息
+        $meta = $torrent->category->movie_meta ? Movie::find($torrent->tmdb) : Tv::find($torrent->tmdb);
+
+        if ($meta) {
+            $poster = $meta->poster;
+            $overview = $meta->overview;
+            $uploader = $torrent->user->username;
+
+            // 调用 TelegramController 方法发送消息
+            app(TelegramController::class)->sendTorrentNotification($poster, $overview, $uploader);
+        }
+    }
     /**
      * Display the specified resource.
      */
