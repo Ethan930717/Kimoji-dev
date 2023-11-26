@@ -34,7 +34,7 @@ return [
     'dont-have-bps'       => '你没有足够的奖金',
     'edit-request'        => '编辑',
     'enter-bp'            => '填写赏金（下限为 100）',
-    'enter-hash'          => '填写所上传的torrent文件的校验码',
+    'enter-hash'          => '填写所上传的torrent文件的校验码(在种子页面的文件结构中查看）',
     'fill'                => '达成',
     'fill-request'        => '达成此请求',
     'filled'              => '已达成',
