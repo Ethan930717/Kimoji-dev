@@ -54,7 +54,7 @@ return [
     | your default bot for regular use.
     |
     */
-    'default' => 'Miss.K',
+    'default' => 'mybot',
 
     /*
     |--------------------------------------------------------------------------
@@ -126,7 +126,7 @@ return [
     |
     */
     'commands' => [
-        App\Telegram\Commands\StartCommand::class,
+        HelpCommand::class,
     ],
 
     /*
