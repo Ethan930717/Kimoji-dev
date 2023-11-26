@@ -7,7 +7,7 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 Route::get('/test-telegram', function () {
     try {
         $response = Telegram::sendMessage([
-            'chat_id' => '5782102472', // 替换为您的 Telegram 聊天 ID 或群组 ID
+            'chat_id' => '-4047467856', // 替换为您的 Telegram 聊天 ID 或群组 ID
             'text' => 'Hello from Laravel!'
         ]);
 
