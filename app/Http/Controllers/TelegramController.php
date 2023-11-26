@@ -136,5 +136,15 @@ class TelegramController extends Controller
             Log::error("Error sending torrent notification to Telegram", ['error' => $e->getMessage()]);
         }
     }
+    public function testSendTorrentNotification()
+    {
+        // 使用测试数据
+        $poster = 'https://image.tmdb.org/t/p/w500/kciiX68V94RM8oAuNZUuUFQP2TZ.jpg'; // 替换为一个有效的图片 URL
+        $overview = '这是一个测试资源的概述';
+        $uploader = '测试上传者';
+
+        return $this->sendTorrentNotification($poster, $overview, $uploader);
+    }
+
 }
 

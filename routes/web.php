@@ -16,6 +16,8 @@ Route::get('/test-telegram', function () {
         return 'Error: ' . $e->getMessage();
     }
 });
+Route::get('/test-telegram-notification', 'TelegramController@testSendTorrentNotification');
+
 /**
  * NOTICE OF LICENSE.
  *
