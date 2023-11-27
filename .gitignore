@@ -44,4 +44,4 @@ _ide_helper.php
 supervisor.ini
 /.phpunit.cache/
 
-/tests
+tests
