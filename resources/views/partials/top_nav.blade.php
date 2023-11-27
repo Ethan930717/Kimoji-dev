@@ -77,13 +77,13 @@
                 </li>
                 <li>
                     <a href="{{ url('torrents?perPage=24&view=card&categories[0]=7') }}">
-                        <i class="{{ config('other.font-awesome') }} fa-compact-disc"></i>
+                        <i class="{{ config('other.font-awesome') }} fa-music"></i>
                         旋律海洋
                     </a>
                 </li>
                 <li>
                     <a href="{{ url('torrents?perPage=24&view=card&categories[0]=8') }}">
-                        <i class="{{ config('other.font-awesome') }} fa-compact-disc"></i>
+                        <i class="{{ config('other.font-awesome') }} fa-basketball-ball"></i>
                         竞技秀场
                     </a>
                 </li>
