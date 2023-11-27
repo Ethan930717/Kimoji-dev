@@ -40,51 +40,69 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/torrents?perPage=24&view=poster&sd=true') }}">
+                    <a href="{{ url('torrents?perPage=24&view=poster&sd=true') }}">
                         <i class="{{ config('other.font-awesome') }} fa-flower"></i>
                         KIMOJI PARK
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/torrents?perPage=25&categories[0]=1&view=poster') }}">
+                    <a href="{{ url('torrents?perPage=25&categories[0]=1&view=poster') }}">
                         <i class="{{ config('other.font-awesome') }} fa-camera-movie"></i>
                         荧幕大亨
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/torrents?perPage=24&view=poster&categories[0]=2') }}">
+                    <a href="{{ url('torrents?perPage=24&view=poster&categories[0]=2') }}">
                         <i class="{{ config('other.font-awesome') }} fa-party-horn"></i>
                         追剧乐园
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/torrents?perPage=24&categories[0]=5&view=poster') }}">
+                    <a href="{{ url('torrents?perPage=24&view=poster&categories[0]=4&categories[1]=3') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-tree"></i>
+                        动漫森林
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('torrents?perPage=24&categories[0]=5&view=poster') }}">
                         <i class="{{ config('other.font-awesome') }} fa-planet-ringed"></i>
                         娱乐星球
                     </a>
                 </li>
                 <li>
                     <a href="{{ url('torrents?perPage=25&categories[0]=1&types[0]=2&types[1]=1&view=poster') }}">
-                        <i class="{{ config('other.font-awesome') }} fa-gifts"></i>
+                        <i class="{{ config('other.font-awesome') }} fa-compact-disc"></i>
                         蓝光宝盒
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('torrents.create', ['category_id' => 1]) }}">
-                        <i class="{{ config('other.font-awesome') }} fa-sun-plant-wilt"></i>
-                        {{ __('common.upload') }}
+                    <a href="{{ url('torrents?perPage=24&view=card&categories[0]=7') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-compact-disc"></i>
+                        旋律海洋
                     </a>
                 </li>
                 <li>
-                    <a  href="{{ route('playlists.index') }}">
-                        <i class="{{ config('other.font-awesome') }} fa-list-ol"></i>
-                        {{ __('playlist.playlists') }}
+                    <a href="{{ url('torrents?perPage=24&view=card&categories[0]=8') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-compact-disc"></i>
+                        竞技秀场
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('mediahub.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-database"></i>
-                        影视库
+                        KIMOJI HUB
+                    </a>
+                </li>
+                <li>
+                    <a  href="{{ route('playlists.index') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-list-ol"></i>
+                        播单推荐
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('torrents.create', ['category_id' => 1]) }}">
+                        <i class="{{ config('other.font-awesome') }} fa-sun-plant-wilt"></i>
+                        发布资源
                     </a>
                 </li>
             </ul>
