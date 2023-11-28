@@ -4,11 +4,11 @@
         /* border-bottom: 2px solid rgba(40,40,40,.35); */
         /* border-radius: var(--bbcode-input-border-radius); */
         /* border-right: 2px solid rgba(40,40,40,.35); */
-display: grid;
-    /* grid-template:
+    display: grid;
+    grid-template:
         "tabs buttons toggle" auto
-        "content content content" auto/1fr auto auto; */
-    /* max-width: 100%; */
+        "content content content" auto/1fr auto auto;
+    max-width: 100%;
     backdrop-filter: blur(3px);
     background-color: hsla(0,0%,100%,0);
     border-bottom: 2px solid hsla(0,0%,100%,.4);
