@@ -6,7 +6,7 @@
 
 @section('breadcrumbs')
     <li class="breadcrumb--active">
-        Missing Media
+        补档列表
     </li>
 @endsection
 

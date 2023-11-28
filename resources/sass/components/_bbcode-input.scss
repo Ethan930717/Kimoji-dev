@@ -1,12 +1,27 @@
 .bbcode-input {
-    border: var(--bbcode-input-border);
-    border-radius: var(--bbcode-input-border-radius);
-    background-color: #ffffff00;
-    display: grid;
-    grid-template: 'tabs buttons toggle' auto 'content content content' auto / 1fr auto auto;
-    max-width: 100%;
-    border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
-    border-right: 2px rgba(40, 40, 40, 0.35) solid;
+    /*background-color: hsla(0,0%,100%,0); */
+        /* border: var(--bbcode-input-border); */
+        /* border-bottom: 2px solid rgba(40,40,40,.35); */
+        /* border-radius: var(--bbcode-input-border-radius); */
+        /* border-right: 2px solid rgba(40,40,40,.35); */
+display: grid;
+    /* grid-template:
+        "tabs buttons toggle" auto
+        "content content content" auto/1fr auto auto; */
+    /* max-width: 100%; */
+    backdrop-filter: blur(3px);
+    background-color: hsla(0,0%,100%,0);
+    border-bottom: 2px solid hsla(0,0%,100%,.4);
+    border-radius: 20px;
+    border-right: 2px solid hsla(0,0%,100%,.4);
+    border-color: hsla(0,0%,100%,.4) rgba(40,40,40,.35) rgba(40,40,40,.35) hsla(0,0%,100%,.4);
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: 2px 8px 8px rgba(0,0,0,.3);
+    color: #fff;
+    margin-top: 2px!important;
+    position: relative;
+    width: 100%;
 
 }
 
@@ -26,8 +41,8 @@
 }
 
 .bbcode-input__tab-input:checked + .bbcode-input__tab-label {
-    border-bottom: 2px solid #ffffffa3;
-    color: #ffffff;
+    border-bottom: 2px solid #15a966;
+    color: #15a966;
     ext-shadow: 0 0 2px #ff0000;
 }
 
