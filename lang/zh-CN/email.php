@@ -28,7 +28,7 @@ return [
     'fail-login-line1'    => '检测到一次账户登录失败。',
     'fail-login-line2'    => '该登录发生于 :time，來自 :ip  ( :host ) 。',
     'fail-login-subject'  => '登录失败提示',
-    'footer-link'         =>  '如点击 :actionText 按钮遇到困难, 请把以下链接复制到浏览器地址栏。<br><br><img src="https://kimoji.club/img/indexlogo.png" alt="Kimoji Logo" style="max-width:100%;height:auto;">',
+    'footer-link'         =>  '如点击 :actionText 按钮遇到困难, 请把以下链接复制到浏览器地址栏。<br><img src="https://kimoji.club/img/indexlogo.png" alt="Kimoji Logo" style="max-width:100%;height:auto;"></br>',
     'invite-header'       => 'Hi!欢迎你加入',
     'invite-invited'      => '来自KIMOJI的邀请',
     'invite-invited1'     => '我们是一个健康向上的小站点，我们希望为所有的宝爸宝妈提供国内外最优质的亲子教育资源，同时我们也致力于为影视发烧友们提供最经典与最热门的影视资源。在此诚挚的邀请你加入我们的大家庭，希望你的加入，能让我们更上一层楼！',
