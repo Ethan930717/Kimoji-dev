@@ -39,7 +39,7 @@ return [
     'subject-enter'            => '请输入主题...',
     'submit-ticket'            => '提交工单',
     'ticket'                   => '工单',
-    'unassigned-success'       => '工单分配已取消',
+    'unassigned-success'       => '工单已取消分配',
     'unassign'                 => '取消分配',
     'opened-by'                => '发起人:',
     'updated-success'          => '工单更新成功',

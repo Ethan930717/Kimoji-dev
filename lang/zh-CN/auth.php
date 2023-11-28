@@ -17,6 +17,7 @@ return [
     | Default Authentication Language Lines
     |--------------------------------------------------------------------------
     */
+    'application'           => '填写申请表',
     'activation-error'      => '帐户已被封禁 或 确认码无效 或 账户已经确认',
     'activation-success'    => '确认成功，现在可登录！中国大陆用户需在Chrome浏览器中安装GooReplacer插件',
     'add-image'             => '增加一项',
@@ -47,7 +48,8 @@ return [
     'password'              => '密码',
     'proof-image'           => '其他站点截图链接',
     'proof-min'             => '（最少2, 建议3）',
-    'proof-profile'         => '其他站点个人档案链接',
+    'proof-profile'         => '其他站点个人中心链接',
+    'proof-profile-title'   => '档案认证',
     'recover-my-password'   => '重设密码',
     'register-thanks'       => '注册成功，请检查邮件并激活账号',
     'remember-me'           => '记住我的登录状态',

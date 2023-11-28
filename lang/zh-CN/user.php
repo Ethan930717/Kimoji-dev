@@ -148,6 +148,7 @@ return [
     'invites-rules'                        => '<li class="text-success">只邀请那些你信得过及了解的朋友。</li><li class="text-danger">你需要对这些邀请负个人责任。</li><li class="text-danger">不准使用马甲。</li><li class="text-danger">不准买卖邀请码。</li><li class="text-danger">若你所邀请的人因作弊或买卖帐户而被封禁，你也会被牵连。</li>',
     'invites-send'                         => '邀请已发送',
     'judge'                                => '审核人',
+    'last-ation'                           => '最后活动时间',
     'last-login'                           => '上次登录时间',
     'locked'                               => '未解锁',
     'locked-achievements'                  => '未解锁的成就',

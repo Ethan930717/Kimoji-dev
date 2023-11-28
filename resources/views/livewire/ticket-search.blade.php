@@ -137,7 +137,7 @@
                         @if ($ticket->staff)
                             <x-user_tag :user="$ticket->staff" :anon="false" />
                         @else
-                            Unassigned
+                            未分配
                         @endif
                     </td>
                     <td>
