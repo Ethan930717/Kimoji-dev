@@ -71,10 +71,10 @@ return [
     'titleFailed' => '验证失败',
     'titlePassed' => '验证成功！',
 
-    'inputAlt1' => 'Code Input 1',
-    'inputAlt2' => 'Code Input 2',
-    'inputAlt3' => 'Code Input 3',
-    'inputAlt4' => 'Code Input 4',
+    'inputAlt1' => '输入验证码 1',
+    'inputAlt2' => '输入验证码 2',
+    'inputAlt3' => '输入验证码 3',
+    'inputAlt4' => '输入验证码 4',
 
     'attemptsRemaining' => '尝试次数剩余|尝试次数剩余',
     'missingCode'       => '没有收到验证码?',

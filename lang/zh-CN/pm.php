@@ -12,13 +12,15 @@
  */
 
 return [
+    'all-marked-read' => '全部标为已读',
     'create'        => '新建',
     'delete'        => '删除',
+    'delete-success' => '删除成功',
+    'error'           => '你想干啥？',
     'enter-subject' => '输入标题',
     'from'          => '发件人',
     'inbox'         => '收件箱',
     'mark-all-read' => '全部标为已读',
-    'all-marked-read' => '全部标为已读',
     'message'       => '消息',
     'messages'      => '消息',
     'new'           => '新消息',
@@ -34,9 +36,9 @@ return [
     'send-to'       => '发送私信给',
     'sent'          => '已发送',
     'sent-at'       => '发送于',
+    'sent-success'    => '发送成功',
     'subject'       => '标题',
     'to'            => '收件人',
     'unread'        => '未读',
     'empty-inbox'   => '清空收件箱',
-    'delete-success' => '删除成功',
 ];

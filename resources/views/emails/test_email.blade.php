@@ -1,6 +1,21 @@
 @component('mail::message')
-# Test Email
-Your test email has been successfully delivered! Looks like your mail configs are on point!
-Thanks,
-{{ config('other.title') }}
+    # {{ __('email.invite-header') }} {{ config('other.title') }} !
+
+    <div style="background-color:#f8f9fa; padding:10px; border-radius:5px;">
+        <p style="color:#333; font-size:16px;">
+            <strong>{{ __('email.invite-message') }}:</strong> {{ __('email.invite-invited') }}
+        </p>
+    </div>
+
+    <!-- 示例图片 -->
+    <img src="https://kimoji.club/img/indexlogo.png" alt="logo" style="width:100%; max-width:600px; height:auto; margin-top:20px;">
+
+    @component('mail::button', ['url' => route('register', $invite->code), 'color' => 'blue'])
+        {{ __('email.invite-signup') }}
+    @endcomponent
+
+    <p>{{ __('email.register-footer') }}</p>
+    <p style="word-wrap: break-word; overflow-wrap: break-word; word-break: break-word;">
+        {{ route('register', $invite->code) }}
+    </p>
 @endcomponent
