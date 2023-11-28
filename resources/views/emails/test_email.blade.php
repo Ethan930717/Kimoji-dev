@@ -4,6 +4,3 @@ Your test email has been successfully delivered! Looks like your mail configs ar
 Thanks,
 {{ config('other.title') }}
 @endcomponent
-@endcomponent
-<p>{{ __('email.register-footer') }}</p>
-@endcomponent
