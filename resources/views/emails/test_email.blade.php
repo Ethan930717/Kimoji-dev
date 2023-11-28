@@ -9,10 +9,7 @@
 
     <!-- 示例图片 -->
     <img src="https://kimoji.club/img/indexlogo.png" alt="logo" style="width:100%; max-width:600px; height:auto; margin-top:20px;">
-
-    @component('mail::button', ['url' => route('register', $invite->code), 'color' => 'blue'])
-        {{ __('email.invite-signup') }}
-    @endcomponent
+    
 
     <p>{{ __('email.register-footer') }}</p>
     <p style="word-wrap: break-word; overflow-wrap: break-word; word-break: break-word;">
