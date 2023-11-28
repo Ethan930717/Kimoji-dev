@@ -2,5 +2,5 @@
 # Test Email
 Your test email has been successfully delivered! Looks like your mail configs are on point!
 Thanks,
-{{ __('email.register-footer') }}
+{{ __('email.footer-link') }}
 @endcomponent
