@@ -96,6 +96,19 @@
                             语言审查（带有敏感词的内容将被过滤）
                         </label>
                     </p>
+                    <p class="form__group" style="visibility: hidden">
+                        <label class="form__label">
+                            <input type="hidden" name="chat_hidden" value="0">
+                            <input
+                                    class="form__checkbox"
+                                    type="checkbox"
+                                    name="chat_hidden"
+                                    value="0"
+                                    @checked($user->chat_hidden)
+                            />
+                            Hide Chat
+                        </label>
+                    </p>
                 </fieldset>
                 <fieldset class="form form__fieldset">
                     <legend class="form__legend">资源相关</legend>
