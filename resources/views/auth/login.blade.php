@@ -41,6 +41,9 @@
         <a href="{{ route('login') }}">
             <h2 class="active">{{ __('auth.login') }} </h2>
         </a>
+        <a href="{{ route('loginsponsor')  }}">
+            <h2 class="inactive underlineHover" style="margin-left:30px;margin-right:30px;color:#97fbff;font-size:20px;text-shadow: 0 0 8px #ffb6d3;">{{ __('common.sponsor') }} </h2>
+        </a>
         <a href="{{ route('registrationForm', ['code' => 'null']) }}">
             <h2 class="inactive underlineHover">{{ __('auth.signup') }} </h2>
         </a>
@@ -93,9 +96,6 @@
         <div id="formFooter">
             <a href="{{ route('password.request') }}">
                 <h2 class="inactive underlineHover">{{ __('auth.lost-password') }} </h2>
-            </a>
-            <a href="{{ route('loginsponsor')  }}">
-                <h2 class="inactive underlineHover" style="margin-left:40px;margin-right:40px;color:#0093de;font-size:18px">{{ __('common.sponsor') }} </h2>
             </a>
             <a href="{{ route('username.request') }}">
                 <h2 class="inactive underlineHover">{{ __('auth.lost-username') }} </h2>

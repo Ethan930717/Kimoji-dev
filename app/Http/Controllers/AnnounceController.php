@@ -346,17 +346,17 @@ final class AnnounceController extends Controller
 
         // If User Account Is Unactivated/Validating Return Error to Client
         if ($user->group_id === $deniedGroups->validating_id) {
-            throw new TrackerException(141, [':status' => 'Unactivated/Validating']);
+            throw new TrackerException(141, [':status' => '不活跃的']);
         }
 
         // If User Is Banned Return Error to Client
         if ($user->group_id === $deniedGroups->banned_id) {
-            throw new TrackerException(141, [':status' => 'Banned']);
+            throw new TrackerException(141, [':status' => '流放']);
         }
 
         // If User Is Disabled Return Error to Client
         if ($user->group_id === $deniedGroups->disabled_id) {
-            throw new TrackerException(141, [':status' => 'Disabled']);
+            throw new TrackerException(141, [':status' => '冻结']);
         }
 
         return $group;
@@ -386,17 +386,17 @@ final class AnnounceController extends Controller
 
         // If Torrent Is Pending Moderation Return Error to Client
         if ($torrent->status === self::PENDING) {
-            throw new TrackerException(151, [':status' => 'PENDING In Moderation']);
+            throw new TrackerException(151, [':status' => '审核中']);
         }
 
         // If Torrent Is Rejected Return Error to Client
         if ($torrent->status === self::REJECTED) {
-            throw new TrackerException(151, [':status' => 'REJECTED In Moderation']);
+            throw new TrackerException(151, [':status' => '被拒绝']);
         }
 
         // If Torrent Is Postponed Return Error to Client
         if ($torrent->status === self::POSTPONED) {
-            throw new TrackerException(151, [':status' => 'POSTPONED In Moderation']);
+            throw new TrackerException(151, [':status' => '待修改']);
         }
 
         // Don't use eager loading so that we can make use of mysql prepared statement caching.
