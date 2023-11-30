@@ -503,6 +503,12 @@
                 <br>
                 <br>
 
+                <a href="/pages/6" style="font-size:18px; text-align:center; cursor:pointer;" id="originalDiskRulesLink">
+                    <i class="fas fa-photo-film"></i> 友站插画
+                </a>
+                <br>
+                <br>
+
                 <a href="/pages/4" style="font-size:18px; text-align:center; cursor:pointer;" id="originalDiskRulesLink">
                     <i class="fas fa-compact-disc"></i> 原盘发布规则
                 </a>
