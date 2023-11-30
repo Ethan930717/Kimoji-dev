@@ -76,7 +76,7 @@
                                                     @method('PATCH')
                                                     <input id="torrent_id" name="torrent_id" type="hidden" value="{{ $torrent->id }}">
                                                     <p class="form__group">
-                                                        <select class="form__select" id="language_id" name="language_id" required>
+                                                        <select class="form__select use-select2" id="language_id" name="language_id" required>
                                                             <option value="{{ $subtitle->language_id }}" selected>
                                                                 {{ $subtitle->language->name }} ({{ __('torrent.current') }})
                                                             </option>
@@ -92,6 +92,7 @@
                                                         <input
                                                             id="note"
                                                             class="form__text"
+
                                                             name="note"
                                                             type="text"
                                                             value="{{ $subtitle->note }}"

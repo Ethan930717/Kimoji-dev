@@ -19,7 +19,7 @@
                 <div class="form__group">
                     <select
                         id="quantity"
-                        class="form__select"
+                        class="form__select use-select2"
                         wire:model="perPage"
                         required
                     >
@@ -37,6 +37,7 @@
                     <input
                         id="search"
                         class="form__text"
+
                         type="text"
                         wire:model="search"
                         placeholder=" "

@@ -20,7 +20,7 @@
                 <div class="form__group">
                     <select
                             x-data="{ selected: '' }" x-model="selected" x-bind:class="selected === '' ? 'form__select--default' : ''"
-                            class="form__select"
+                            class="form__select use-select2"
                             wire:model="modelName"
                             required
                             x-data="{ selected: '' }"
@@ -54,7 +54,7 @@
             <div class="panel__action">
                 <div class="form__group">
                     <select
-                            class="form__select"
+                            class="form__select use-select2"
                             wire:model="action"
                             required
                             x-data="{ selected: '' }"
@@ -89,7 +89,7 @@
                 <div class="form__group">
                     <select
                             id="quantity"
-                            class="form__select"
+                            class="form__select use-select2"
                             wire:model="perPage"
                             required
                     >

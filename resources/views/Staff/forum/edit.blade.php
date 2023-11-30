@@ -49,7 +49,7 @@
                     <label class="form__label form__label--floating" for="description">Description</label>
                 </p>
                 <p class="form__group">
-                    <select name="forum_type" class="form__select">
+                    <select name="forum_type" class="form__select use-select2">
                         @if ($forum->category == null)
                             <option value="category" selected>Category (Current)</option>
                             <option value="forum">Forum</option>
@@ -61,7 +61,7 @@
                     <label class="form__label form__label--floating" for="forum_type">Forum Type</label>
                 </p>
                 <p class="form__group">
-                    <select name="parent_id" class="form__select">
+                    <select name="parent_id" class="form__select use-select2">
                         @if ($forum->category != null)
                             <option value="{{ $forum->parent_id }}" selected>
                                 {{ $forum->category->name }} (Current)
@@ -77,6 +77,7 @@
                     <input
                         id="position"
                         class="form__text"
+
                         inputmode="numeric"
                         name="position"
                         pattern="[0-9]*"

@@ -61,7 +61,8 @@
                     >
                 </p>
                 <p class="form__group">
-                    <input type="text" class="form__text" name="name" value="{{ old('name') ?? $torrent->name }}" required>
+                    <input type="text" class="form__text"
+ name="name" value="{{ old('name') ?? $torrent->name }}" required>
                     <label class="form__label form__label--floating" for="name">
                         {{ __('torrent.title') }}
                     </label>
@@ -69,7 +70,7 @@
                 <p class="form__group">
                     <select
                         id="category_id"
-                        class="form__select"
+                        class="form__select use-select2"
                         name="category_id"
                         x-model="cat"
                         x-ref="catId"
@@ -91,7 +92,7 @@
                 <p class="form__group">
                     <select
                         id="type_id"
-                        class="form__select"
+                        class="form__select use-select2"
                         name="type_id"
                         x-model="type"
                         x-ref="typeId"
@@ -111,7 +112,7 @@
                     </label>
                 </p>
                 <p class="form__group" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
-                    <select id="resolution_id" name="resolution_id" class="form__select">
+                    <select id="resolution_id" name="resolution_id" class="form__select use-select2">
                         @if (! $torrent->resolution)
                             <option hidden="" disabled="disabled" selected="selected" value="">
                                 --Select Resolution--
@@ -133,7 +134,7 @@
                 </p>
                 <div class="form__group--horizontal" x-show="(cats[cat].type === 'movie' || cats[cat].type === 'tv') && types[type].name === 'Full Disc'">
                     <p class="form__group">
-                        <select id="distributor_id" name="distributor_id" class="form__select">
+                        <select id="distributor_id" name="distributor_id" class="form__select use-select2">
                             @if (! $torrent->distributor)
                                 <option hidden="" disabled="disabled" selected="selected" value="">
                                     --Select Distributor--
@@ -162,7 +163,7 @@
                         </label>
                     </p>
                     <p class="form__group">
-                        <select id="region_id" name="region_id" class="form__select">
+                        <select id="region_id" name="region_id" class="form__select use-select2">
                             @if (! $torrent->region)
                                 <option hidden="" disabled="disabled" selected="selected" value="">
                                     --Select Region--
@@ -195,6 +196,7 @@
                         <input
                             id="season_number"
                             class="form__text"
+
                             inputmode="numeric"
                             name="season_number"
                             pattern="[0-9]*"
@@ -210,6 +212,7 @@
                         <input
                             id="episode_number"
                             class="form__text"
+
                             inputmode="numeric"
                             name="episode_number"
                             pattern="[0-9]*"
@@ -228,6 +231,7 @@
                         <input
                             id="tmdb"
                             class="form__text"
+
                             inputmode="numeric"
                             name="tmdb"
                             pattern="[0-9]*"
@@ -245,6 +249,7 @@
                         <input
                             id="imdb"
                             class="form__text"
+
                             inputmode="numeric"
                             name="imdb"
                             pattern="[0-9]*"
@@ -262,6 +267,7 @@
                         <input
                             id="tvdb"
                             class="form__text"
+
                             inputmode="numeric"
                             name="tvdb"
                             pattern="[0-9]*"
@@ -279,6 +285,7 @@
                         <input
                             id="mal"
                             class="form__text"
+
                             inputmode="numeric"
                             name="mal"
                             pattern="[0-9]*"
@@ -297,6 +304,7 @@
                     <input
                         id="igdb"
                         class="form__text"
+
                         name="igdb"
                         type="text"
                         value="{{ old('igdb') ?? $torrent->igdb }}"
@@ -313,6 +321,7 @@
                     <input
                         id="keywords"
                         class="form__text"
+
                         name="keywords"
                         type="text"
                         placeholder=" "

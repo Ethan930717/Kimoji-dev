@@ -18,6 +18,7 @@
                 <textarea
                     id="message"
                     class="form__text"
+
                     name="message"
                     placeholder=" "
                     type="text"

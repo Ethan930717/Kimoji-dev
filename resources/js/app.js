@@ -1,4 +1,5 @@
 window._ = require('lodash');
+import 'select2';
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -62,3 +63,8 @@ if (document.getElementById('vue')) {
  */
 // Sweet Alert
 window.Swal = require('sweetalert2');
+$(function(){
+    $("select.use-select2").each(function () {
+        $(this).select2({ minimumResultsForSearch: -1 });
+    });
+});

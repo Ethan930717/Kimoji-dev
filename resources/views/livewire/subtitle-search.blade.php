@@ -106,6 +106,7 @@
                             wire:model="search"
                             type="search"
                             class="form__text"
+
                             placeholder=" "
                         >
                         <label for="search" class="form__label form__label--floating">
@@ -115,7 +116,7 @@
                     <p class="form__group">
                         <select
                             id="language_id"
-                            class="form__select"
+                            class="form__select use-select2"
                             wire:model="language"   
                             x-data="{ language: '' }"
                             x-model="language"
@@ -158,6 +159,7 @@
                             wire:model="username"
                             type="search"
                             class="form__text"
+
                             placeholder=" "
                         >
                         <label for="username" class="form__label form__label--floating">
@@ -167,7 +169,7 @@
                     <p class="form__group">
                         <select
                             id="quantity"
-                            class="form__select"
+                            class="form__select use-select2"
                             wire:model="perPage"
                             required
                         >

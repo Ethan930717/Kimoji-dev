@@ -31,6 +31,7 @@
                     <input
                         id="contact-name"
                         class="form__text"
+
                         name="contact-name"
                         placeholder=" "
                         required
@@ -45,6 +46,7 @@
                     <input
                         id="email"
                         class="form__text"
+
                         name="email"
                         placeholder=" "
                         required

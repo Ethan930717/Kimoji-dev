@@ -20,6 +20,7 @@
                     <input
                             id="receiver"
                             class="form__text"
+
                             type="text"
                             wire:model="receiver"
                             placeholder=" "
@@ -34,6 +35,7 @@
                     <input
                             id="sender"
                             class="form__text"
+
                             type="text"
                             wire:model="sender"
                             placeholder=" "
@@ -48,6 +50,7 @@
                     <input
                             id="torrent"
                             class="form__text"
+
                             type="text"
                             wire:model="torrent"
                             placeholder=" "
@@ -62,6 +65,7 @@
                     <input
                             id="reason"
                             class="form__text"
+
                             type="text"
                             wire:model="reason"
                             placeholder=" "
@@ -75,7 +79,7 @@
                 <div class="form__group">
                     <select
                             id="quantity"
-                            class="form__select"
+                            class="form__select use-select2"
                             wire:model="perPage"
                             required
                     >

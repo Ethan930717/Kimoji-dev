@@ -31,6 +31,7 @@
                 <p class="form__group">
                     <input
                         class="form__text"
+
                         type="text"
                         name="name"
                         placeholder=" "
@@ -43,6 +44,7 @@
                 <p class="form__group">
                     <input
                         class="form__text"
+
                         type="text"
                         name="position"
                         placeholder=" "
@@ -55,6 +57,7 @@
                 <p class="form__group">
                     <input
                         class="form__text"
+
                         type="text"
                         name="level"
                         placeholder=" "
@@ -67,6 +70,7 @@
                 <p class="form__group">
                     <input
                         class="form__text"
+
                         type="text"
                         name="download_slots"
                         placeholder=" "
@@ -79,6 +83,7 @@
                 <p class="form__group">
                     <input
                         class="form__text"
+
                         type="text"
                         name="color"
                         placeholder=" "
@@ -91,6 +96,7 @@
                 <p class="form__group">
                     <input
                         class="form__text"
+
                         type="text"
                         name="icon"
                         placeholder=" "
@@ -103,6 +109,7 @@
                 <p class="form__group">
                     <input
                         class="form__text"
+
                         type="text"
                         name="effect"
                         placeholder="GIF Effect"

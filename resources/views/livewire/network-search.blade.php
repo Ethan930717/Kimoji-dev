@@ -6,6 +6,7 @@
                 <div class="form__group">
                     <input
                         class="form__text"
+
                         placeholder=" "
                         type="text"
                         wire:model.debounce.250ms="search"

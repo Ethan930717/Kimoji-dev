@@ -17,6 +17,7 @@
                 <input
                     id="torrent_id"
                     class="form__text"
+
                     name="torrent_id"
                     placeholder=" "
                     type="text"

@@ -42,7 +42,7 @@
                 <p class="form__group">
                     <select
                         id="category_id"
-                        class="form__text"
+                        class="form__text use-select2"
                         name="category_id"
                         required
                     >
@@ -59,7 +59,7 @@
                     <select
                         name="priority_id"
                         id="priority_id"
-                        class="form__select"
+                        class="form__select use-select2"
                         required
                     >
                         <option hidden disabled selected value=""></option>
@@ -74,7 +74,8 @@
                 <p class="form__group">
                     <input
                         id="ticket_subject"
-                        class="form__text"
+                        class="form__text use-select2"
+
                         name="subject"
                         required
                     >

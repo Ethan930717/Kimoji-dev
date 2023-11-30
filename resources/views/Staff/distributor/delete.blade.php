@@ -42,7 +42,7 @@
                     <select
                         name="distributor_id"
                         id="autoreg"
-                        class="form__select"
+                        class="form__select use-select2"
                         x-data="{ distributor: '' }"
                         x-model="distributor"
                         x-bind:class="distributor === '' ? 'form__select--default' : ''"

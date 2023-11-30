@@ -28,6 +28,7 @@
                     <input
                         id="name"
                         class="form__text"
+
                         name="name"
                         required
                         type="text"
@@ -40,6 +41,7 @@
                     <input
                         id="icon"
                         class="form__text"
+
                         name="icon"
                         required
                         type="text"
@@ -53,6 +55,7 @@
                     <input
                         id="effect"
                         class="form__text"
+
                         name="effect"
                         required
                         type="text"

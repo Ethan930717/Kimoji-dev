@@ -4,7 +4,7 @@
         <div class="panel__actions">
             <div class="panel__action">
                 <div class="form__group">
-                    <select id="interval" class="form__select" type="date" name="interval" wire:model="interval">
+                    <select id="interval" class="form__select use-select2" type="date" name="interval" wire:model="interval">
                         <option value="day">一天内</option>
                         <option value="week">一周内</option>
                         <option value="month">一月内</option>
@@ -18,7 +18,7 @@
             </div>
             <div class="panel__action">
                 <div class="form__group">
-                    <select id="metaType" class="form__select" type="date" name="metaType" wire:model="metaType">
+                    <select id="metaType" class="form__select use-select2" type="date" name="metaType" wire:model="metaType">
                         @foreach ($metaTypes as $name => $type)
                             <option value="{{ $type }}">{{ $name  }}</option>
                         @endforeach

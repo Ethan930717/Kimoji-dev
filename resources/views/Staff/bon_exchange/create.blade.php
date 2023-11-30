@@ -38,6 +38,7 @@
                         name="description"
                         id="description"
                         class="form__text"
+
                         value="{{ old('description') }}"
                         required
                     >
@@ -49,6 +50,7 @@
                         name="value"
                         id="value"
                         class="form__text"
+
                         inputmode="numeric"
                         pattern="[0-9]*"
                         value="{{ old('value') }}"
@@ -64,6 +66,7 @@
                         name="cost"
                         id="cost"
                         class="form__text"
+
                         inputmode="numeric"
                         pattern="[0-9]*"
                         value="{{ old('cost') }}"
@@ -77,7 +80,7 @@
                     <select
                         name="type"
                         id="type"
-                        class="form__select"
+                        class="form__select use-select2"
                         required
                     >
                         <option hidden selected disabled value=""></option>

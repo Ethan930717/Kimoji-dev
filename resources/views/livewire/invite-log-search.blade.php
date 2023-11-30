@@ -10,6 +10,7 @@
                         <input
                             id="sender"
                             class="form__text"
+
                             type="text"
                             wire:model="sender"
                             placeholder=" "
@@ -22,6 +23,7 @@
                         <input
                             id="receiver"
                             class="form__text"
+
                             type="text"
                             wire:model="receiver"
                             placeholder=" "
@@ -34,6 +36,7 @@
                         <input
                             id="email"
                             class="form__text"
+
                             type="text"
                             wire:model="email"
                             placeholder=" "
@@ -46,6 +49,7 @@
                         <input
                             id="threshold"
                             class="form__text"
+
                             type="text"
                             inputmode="numeric"
                             pattern="[0-9]*"
@@ -68,6 +72,7 @@
                         <input
                             id="code"
                             class="form__text"
+
                             type="text"
                             wire:model="code"
                             placeholder=" "
@@ -80,6 +85,7 @@
                         <input
                             id="code"
                             class="form__text"
+
                             type="text"
                             wire:model="custom"
                             placeholder=" "

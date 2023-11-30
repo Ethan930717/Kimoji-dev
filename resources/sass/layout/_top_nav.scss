@@ -33,7 +33,9 @@
     display: flex;
     column-gap: 40px;
     justify-content: end;
-
+    position: absolute;
+    right: 0;
+    top: 8px;
     &.mobile {
         display: flex;
         flex-direction: column;

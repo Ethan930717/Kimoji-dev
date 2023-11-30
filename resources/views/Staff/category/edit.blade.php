@@ -39,6 +39,7 @@
                     <input
                         id="name"
                         class="form__text"
+
                         type="text"
                         name="name"
                         value="{{ $category->name }}"
@@ -49,6 +50,7 @@
                     <input
                         id="position"
                         class="form__text"
+
                         type="text"
                         name="position"
                         value="{{ $category->position }}"
@@ -59,6 +61,7 @@
                     <input
                         id="position"
                         class="form__text"
+
                         type="text"
                         name="icon"
                         value="{{ $category->icon }}"
@@ -83,7 +86,7 @@
                     <select
                         name="meta"
                         id="meta"
-                        class="form__select"
+                        class="form__select use-select2"
                         required
                     >
                         <option class="form__option" value="movie" @selected($category->movie_meta)>

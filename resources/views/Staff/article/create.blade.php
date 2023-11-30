@@ -39,6 +39,7 @@
                         name="title"
                         id="title"
                         class="form__text"
+
                         required
                     >
                     <label class="form__label form__label--floating" for="title">

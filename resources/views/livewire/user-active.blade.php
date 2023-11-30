@@ -4,7 +4,8 @@
         <div class="panel__body">
             <form class="form">
                 <p class="form__group">
-                    <input wire:model="name" class="form__text" placeholder=" " autofocus="">
+                    <input wire:model="name" class="form__text"
+ placeholder=" " autofocus="">
                     <label class="form__label form__label--floating">{{ __('torrent.name') }}</label>
                 </p>
                 <p class="form__group">
@@ -46,7 +47,7 @@
             <div class="panel__actions">
                 <div class="panel__action">
                     <div class="form__group">
-                        <select wire:model="perPage" class="form__select">
+                        <select wire:model="perPage" class="form__select use-select2">
                             <option value="25">25</option>
                             <option value="50">50</option>
                             <option value="100">100</option>

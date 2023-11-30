@@ -32,7 +32,7 @@
                 @csrf
                 @method('PATCH')
                 <p class="form__group">
-                    <select id="locale" class="form__select" name="locale" required>
+                    <select id="locale" class="form__select use-select2" name="locale" required>
                         @foreach (App\Models\Language::allowed() as $code => $name)
                             <option class="form__option" value="{{ $code }}" @selected($user->locale === $code)>
                                 {{ $name }}
@@ -46,7 +46,7 @@
                 <fieldset class="form form__fieldset">
                     <legend class="form__legend">风格</legend>
                     <p class="form__group">
-                        <select id="style" class="form__select" name="style" required>
+                        <select id="style" class="form__select use-select2" name="style" required>
                             <option class="form__option" value="0" @selected($user->style === 0)>KIMOJIの旷野</option>
 
                         </select>
@@ -57,7 +57,8 @@
                     <p class="form__group">
                         <input
                             id="custom_css"
-                            class="form__text"
+                            class="class="form__text"
+"
                             name="custom_css"
                             placeholder=" "
                             type="url"
@@ -70,7 +71,8 @@
                     <p class="form__group">
                         <input
                             id="standalone_css"
-                            class="form__text"
+                            class="class="form__text"
+"
                             name="standalone_css"
                             placeholder=" "
                             type="url"
@@ -113,7 +115,7 @@
                 <fieldset class="form form__fieldset">
                     <legend class="form__legend">资源相关</legend>
                     <p class="form__group">
-                        <select id="show_poster" class="form__select" name="torrent_layout" required>
+                        <select id="show_poster" class="form__select use-select2" name="torrent_layout" required>
                             <option class="form__option" value="0" @selected($user->torrent_layout === 0)>列表模式</option>
                             <option class="form__option" value="1" @selected($user->torrent_layout === 1)>卡片模式</option>
                             <option class="form__option" value="2" @selected($user->torrent_layout === 2)>分组模式</option>
@@ -124,7 +126,7 @@
                         </label>
                     </p>
                     <p class="form__group">
-                        <select id="ratings" class="form__select" name="ratings" required>
+                        <select id="ratings" class="form__select use-select2" name="ratings" required>
                             <option class="form__option" value="0" @selected($user->ratings === 0)>TMDB</option>
                             <option class="form__option" value="1" @selected($user->ratings === 1)>IMDB</option>
                         </select>

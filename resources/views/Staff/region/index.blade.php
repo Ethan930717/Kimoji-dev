@@ -77,7 +77,7 @@
                                                 <select
                                                     name="region_id"
                                                     id="autoreg"
-                                                    class="form__select"
+                                                    class="form__select use-select2"
                                                     x-data="{ region: '' }"
                                                     x-model="region"
                                                     x-bind:class="region === '' ? 'form__select--default' : ''"

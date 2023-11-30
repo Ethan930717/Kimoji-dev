@@ -30,6 +30,7 @@
                     <input
                         id="name"
                         class="form__text"
+
                         name="name"
                         type="text"
                         required
@@ -42,6 +43,7 @@
                     <input
                         id="code"
                         class="form__text"
+
                         name="code"
                         type="text"
                         required

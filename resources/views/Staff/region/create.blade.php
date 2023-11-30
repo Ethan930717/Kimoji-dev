@@ -32,6 +32,7 @@
                     <input
                         id="name"
                         class="form__text"
+
                         name="name"
                         required
                         type="text"
@@ -44,6 +45,7 @@
                     <input
                         id="position"
                         class="form__text"
+
                         inputmode="numeric"
                         name="position"
                         pattern="[0-9]*"

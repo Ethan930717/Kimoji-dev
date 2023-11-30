@@ -119,6 +119,7 @@
                                 wire:model="name"
                                 type="search"
                                 class="form__text"
+
                                 placeholder=" "
                             />
                             <label class="form__label form__label--floating">
@@ -126,25 +127,30 @@
                             </label>
                         </p>
                         <p class="form__group">
-                            <input wire:model="requestor" class="form__text" placeholder=" ">
+                            <input wire:model="requestor" class="form__text"
+ placeholder=" ">
                             <label class="form__label form__label--floating">{{ __('common.author') }}</label>
                         </p>
                     </div>
                     <div class="form__group--short-horizontal">
                         <p class="form__group">
-                            <input wire:model="tmdbId" class="form__text" placeholder=" ">
+                            <input wire:model="tmdbId" class="form__text"
+ placeholder=" ">
                             <label class="form__label form__label--floating">TMDb ID</label>
                         </p>
                         <p class="form__group">
-                            <input wire:model="imdbId" class="form__text" placeholder=" ">
+                            <input wire:model="imdbId" class="form__text"
+ placeholder=" ">
                             <label class="form__label form__label--floating">IMDb ID</label>
                         </p>
                         <p class="form__group">
-                            <input wire:model="tvdbId" class="form__text" placeholder=" ">
+                            <input wire:model="tvdbId" class="form__text"
+ placeholder=" ">
                             <label class="form__label form__label--floating">TVDb ID</label>
                         </p>
                         <p class="form__group">
-                            <input wire:model="malId" class="form__text" placeholder=" ">
+                            <input wire:model="malId" class="form__text"
+ placeholder=" ">
                             <label class="form__label form__label--floating">MAL ID</label>
                         </p>
                     </div>

@@ -112,6 +112,7 @@
                             name="name"
                             id="title"
                             class="form__text"
+
                             value="{{ $title ?: old('name') }}"
                             required
                         >
@@ -122,7 +123,7 @@
                             x-ref="catId"
                             name="category_id"
                             id="autocat"
-                            class="form__select"
+                            class="form__select use-select2"
                             required
                             x-model="cat"
                             @change="cats[cat].type = cats[$event.target.value].type;"
@@ -142,7 +143,7 @@
                         <select
                             name="type_id"
                             id="autotype"
-                            class="form__select"
+                            class="form__select use-select2"
                             required
                         >
                             <option hidden disabled selected value=""></option>
@@ -160,7 +161,7 @@
                         <select
                             name="resolution_id"
                             id="autores"
-                            class="form__select"
+                            class="form__select use-select2"
                             x-bind:required="cats[cat].type === 'movie' || cats[cat].type === 'tv'"
                         >
                             <option hidden disabled selected value=""></option>
@@ -179,7 +180,7 @@
                             <select
                                 name="distributor_id"
                                 id="autodis"
-                                class="form__select"
+                                class="form__select use-select2"
                                 x-data="{ distributor: '' }"
                                 x-model="distributor"
                                 x-bind:class="distributor === '' ? 'form__select--default' : ''"
@@ -199,7 +200,7 @@
                             <select
                                 name="region_id"
                                 id="autoreg"
-                                class="form__select"
+                                class="form__select use-select2"
                                 x-data="{ region: '' }"
                                 x-model="region"
                                 x-bind:class="region === '' ? 'form__select--default' : ''"
@@ -223,6 +224,7 @@
                                 name="season_number"
                                 id="season_number"
                                 class="form__text"
+
                                 inputmode="numeric"
                                 pattern="[0-9]*"
                                 value="{{ old('season_number') }}"
@@ -238,6 +240,7 @@
                                 name="episode_number"
                                 id="episode_number"
                                 class="form__text"
+
                                 inputmode="numeric"
                                 pattern="[0-9]*"
                                 value="{{ old('episode_number') }}"
@@ -256,6 +259,7 @@
                                 name="tmdb"
                                 id="autotmdb"
                                 class="form__text"
+
                                 inputmode="numeric"
                                 pattern="[0-9]*"
                                 x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') ? '{{ $tmdb ?: old('tmdb') }}' : '0'"
@@ -271,6 +275,7 @@
                                 name="imdb"
                                 id="autoimdb"
                                 class="form__text"
+
                                 inputmode="numeric"
                                 pattern="[0-9]*"
                                 x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') ? '{{ $imdb ?: old('imdb') }}' : '0'"
@@ -288,6 +293,7 @@
                                 pattern="[0-9]*"
                                 x-bind:value="cats[cat].type === 'tv' ? '{{ $tvdb ?: old('tvdb') }}' : '0'"
                                 class="form__text"
+
                                 x-bind:required="cats[cat].type === 'tv'"
                             >
                             <label class="form__label form__label--floating" for="autotvdb">TVDB ID</label>
@@ -303,6 +309,7 @@
                                 x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') ? '{{ $mal ?: old('mal') }}' : '0'"
                                 x-bind:required="cats[cat].type === 'movie' || cats[cat].type === 'tv'"
                                 class="form__text"
+
                                 placeholder=" "
                             >
                             <label class="form__label form__label--floating" for="automal">MAL ID ({{ __('torrent.required-anime') }})</label>
@@ -317,6 +324,7 @@
                             pattern="[0-9]*"
                             x-bind:value="cats[cat].type === 'game' ? '{{ $igdb ?: old('igdb') }}' : '0'"
                             class="form__text"
+
                             x-bind:required="cats[cat].type === 'game'"
                         >
                         <label class="form__label form__label--floating" for="autoigdb">IGDB ID <b>({{ __('torrent.required-games') }})</b></label>
@@ -327,6 +335,7 @@
                             name="keywords"
                             id="autokeywords"
                             class="form__text"
+
                             value="{{ old('keywords') }}"
                             placeholder=" "
                         >
@@ -449,7 +458,7 @@
                     @endif
                     @if (auth()->user()->group->is_modo || auth()->user()->group->is_internal)
                         <p class="form__group">
-                            <select name="free" id="free" class="form__select">
+                            <select name="free" id="free" class="form__select use-select2">
                                 <option value="0" @selected(old('free') === '0' || old('free') === null)>{{ __('common.no') }}</option>
                                 <option value="25" @selected(old('free') === '25')>25%</option>
                                 <option value="50" @selected(old('free') === '50')>50%</option>

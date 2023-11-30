@@ -42,6 +42,7 @@
                         name="title"
                         id="title"
                         class="form__text"
+
                         value="{{ $article->title }}"
                         required
                     >

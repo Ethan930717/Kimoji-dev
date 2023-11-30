@@ -1,7 +1,7 @@
 @component('mail::message')
-# Your {{ config('other.title') }} Application
-Your application has been denied for the following reason:
+# {{ config('other.title') }} 申请结果通知
+您的入站申请由于以下原因被拒绝了：
 {{ $deniedMessage }}
-Thanks,
+感谢您的申请
 {{ config('other.title') }}
 @endcomponent

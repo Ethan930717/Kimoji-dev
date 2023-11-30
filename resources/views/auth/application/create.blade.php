@@ -43,7 +43,7 @@
                         <form class="form" method="POST" action="{{ route('application.store') }}" x-data="{ links: 2 }">
                             @csrf
                             <p class="form__group">
-                                <select class="form__select" name="type" required>
+                                <select class="form__select use-select2" name="type" required>
                                     <option class="form__option" value="New To The Game" selected>
                                             {{ __('auth.newbie') }}
                                     </option>

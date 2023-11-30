@@ -85,7 +85,7 @@
                     <p class="form__group">
                         <select
                             id="sorting"
-                            class="form__select"
+                            class="form__select use-select2"
                             name="sorting"
                             wire:model="label"
                         >
@@ -119,7 +119,7 @@
                     <p class="form__group">
                         <select
                             id="sorting"
-                            class="form__select"
+                            class="form__select use-select2"
                             name="sorting"
                             required
                             wire:model="sortField"
@@ -138,7 +138,7 @@
                     <p class="form__group">
                         <select
                             id="direction"
-                            class="form__select"
+                            class="form__select use-select2"
                             name="direction"
                             required
                             wire:model="sortDirection"
@@ -157,7 +157,7 @@
                     <p class="form__group">
                         <select
                             id="direction"
-                            class="form__select"
+                            class="form__select use-select2"
                             name="direction"
                             wire:model="state"
                         >
@@ -176,7 +176,7 @@
                     <p class="form__group">
                         <select
                             id="direction"
-                            class="form__select"
+                            class="form__select use-select2"
                             name="direction"
                             wire:model="subscribed"
                         >

@@ -7,19 +7,23 @@
             <form class="form">
                 <div class="form__group--short-horizontal">
                     <p class="form__group">
-                        <input wire:model="torrent" class="form__text" placeholder=" ">
+                        <input wire:model="torrent" class="form__text"
+ placeholder=" ">
                         <label class="form__label form__label--floating">Torrent Name</label>
                     </p>
                     <p class="form__group">
-                        <input wire:model="ip" class="form__text" placeholder=" ">
+                        <input wire:model="ip" class="form__text"
+ placeholder=" ">
                         <label class="form__label form__label--floating">IP Address</label>
                     </p>
                     <p class="form__group">
-                        <input wire:model="port" class="form__text" placeholder=" ">
+                        <input wire:model="port" class="form__text"
+ placeholder=" ">
                         <label class="form__label form__label--floating">Port</label>
                     </p>
                     <p class="form__group">
-                        <input wire:model="agent" class="form__text" placeholder=" ">
+                        <input wire:model="agent" class="form__text"
+ placeholder=" ">
                         <label class="form__label form__label--floating">Agent</label>
                     </p>
                     <p class="form__group">

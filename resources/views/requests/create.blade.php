@@ -34,6 +34,7 @@
                         <input
                             id="title"
                             class="form__text"
+
                             name="name"
                             required
                             type="text"
@@ -47,7 +48,7 @@
                         <select
                             name="category_id"
                             id="category_id"
-                            class="form__select"
+                            class="form__select use-select2"
                             required
                             x-model="cat"
                             x-on:change="cats[cat].type = cats[$event.target.value].type;"
@@ -66,7 +67,7 @@
                     <p class="form__group">
                         <select
                             id="type_id"
-                            class="form__select"
+                            class="form__select use-select2"
                             name="type_id"
                             required
                         >
@@ -84,7 +85,7 @@
                     <p class="form__group">
                         <select
                             id="resolution_id"
-                            class="form__select"
+                            class="form__select use-select2"
                             name="resolution_id"
                             required
                         >
@@ -105,6 +106,7 @@
                             <input
                                 id="autotmdb"
                                 class="form__text"
+
                                 inputmode="numeric"
                                 name="tmdb"
                                 pattern="[0-9]*"
@@ -120,6 +122,7 @@
                             <input
                                 id="autoimdb"
                                 class="form__text"
+
                                 inputmode="numeric"
                                 name="imdb"
                                 pattern="[0-9]*"
@@ -135,6 +138,7 @@
                             <input
                                 id="autotvdb"
                                 class="form__text"
+
                                 inputmode="numeric"
                                 name="tvdb"
                                 pattern="[0-9]*"
@@ -150,6 +154,7 @@
                             <input
                                 id="automal"
                                 class="form__text"
+
                                 inputmode="numeric"
                                 name="mal"
                                 pattern="[0-9]*"
@@ -164,6 +169,7 @@
                             <input
                                 id="igdb"
                                 class="form__text"
+
                                 inputmode="numeric"
                                 name="igdb"
                                 pattern="[0-9]*"
@@ -185,6 +191,7 @@
                     <p class="form__group">
                         <input
                             class="form__text"
+
                             name="bounty"
                             type="text"
                             pattern="[0-9]*?[1-9][0-9]{2,}"

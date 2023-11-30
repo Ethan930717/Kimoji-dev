@@ -18,6 +18,7 @@
                 <input
                     id="seedbonus"
                     class="form__text"
+
                     inputmode="numeric"
                     name="seedbonus"
                     pattern="[0-9]*?[1-9][0-9]{2,}"

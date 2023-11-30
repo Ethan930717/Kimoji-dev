@@ -37,6 +37,7 @@
                     <input
                         id="name"
                         class="form__text"
+
                         type="text"
                         name="name"
                         placeholder=" "
@@ -47,6 +48,7 @@
                     <input
                         id="position"
                         class="form__text"
+
                         type="text"
                         name="position"
                         placeholder=" "
@@ -57,6 +59,7 @@
                     <input
                         id="position"
                         class="form__text"
+
                         type="text"
                         name="icon"
                         placeholder=" "
@@ -81,7 +84,7 @@
                     <select
                         name="meta"
                         id="meta"
-                        class="form__select"
+                        class="form__select use-select2"
                         required
                     >
                         <option hidden selected disabled value=""></option>

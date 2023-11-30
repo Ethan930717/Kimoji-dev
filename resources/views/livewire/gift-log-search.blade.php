@@ -7,6 +7,7 @@
                     <input
                         id="sender"
                         class="form__text"
+
                         type="text"
                         wire:model="sender"
                         placeholder=" "
@@ -21,6 +22,7 @@
                     <input
                         id="receiver"
                         class="form__text"
+
                         type="text"
                         wire:model="receiver"
                         placeholder=" "
@@ -35,6 +37,7 @@
                     <input
                         id="comment"
                         class="form__text"
+
                         type="text"
                         wire:model="comment"
                         placeholder=" "
@@ -48,7 +51,7 @@
                 <div class="form__group">
                     <select
                         id="quantity"
-                        class="form__select"
+                        class="form__select use-select2"
                         wire:model="perPage"
                         required
                     >
