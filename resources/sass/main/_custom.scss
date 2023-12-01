@@ -202,16 +202,7 @@
     --secondary-nav-tab-menu-border-radius: 6px;
     --secondary-nav-tab-menu-box-shadow: none;
 
-    --select-border: 1px solid #ffffff00;
-    --select-border-active: 2px solid #ffffff00;
-    --select-border-error: 1px solid #ba1b1b;
-    --select-border-hover: 2px solid #ffffff00;
-    --select-border-radius: 5px;
-    --select-fg: #ffffff;
-    --select-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='%23444' d='M6 8l-1 1l5 5l5-5l-1-1l-4 4l-4-4z'/></svg>");
-    --select-padding: 11px 23px 11px 11px;
-    --select-padding-active: 10px 22px 10px 10px;
-    --select-padding-hover: 10px 22px 10px 10px;
+
 
     --subforum-listing-odd-bg: #ffffff00;
     --subforum-listing-even-bg: transparent;
@@ -433,7 +424,6 @@ pre {
 
 button,
 input,
-select,
 textarea {
     color: inherit;
     font: inherit;
@@ -444,8 +434,7 @@ button {
     overflow: visible;
 }
 
-button,
-select {
+button {
     text-transform: none;
 }
 
@@ -577,7 +566,6 @@ body {
 
 button,
 input,
-select,
 textarea {
     font-family: inherit;
     font-size: inherit;
@@ -1275,10 +1263,6 @@ input[type='range'] {
     width: 100%;
 }
 
-select[multiple],
-select[size] {
-    height: auto;
-}
 
 input[type='file']:focus,
 input[type='checkbox']:focus,

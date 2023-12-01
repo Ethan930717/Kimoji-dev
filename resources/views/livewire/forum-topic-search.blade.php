@@ -118,7 +118,7 @@
                     </p>
                     <p class="form__group">
                         <select
-                            id="sorting"
+                            id="sorting2"
                             class="select2"
                             name="sorting"
                             required
@@ -137,7 +137,7 @@
                     </p>
                     <p class="form__group">
                         <select
-                            id="direction"
+                            id="direction1"
                             class="select2"
                             name="direction"
                             required
@@ -156,7 +156,7 @@
                     </p>
                     <p class="form__group">
                         <select
-                            id="direction"
+                            id="direction2"
                             class="select2"
                             name="direction"
                             wire:model="state"
@@ -175,7 +175,7 @@
                     </p>
                     <p class="form__group">
                         <select
-                            id="direction"
+                            id="direction3"
                             class="select2"
                             name="direction"
                             wire:model="subscribed"

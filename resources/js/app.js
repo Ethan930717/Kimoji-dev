@@ -64,19 +64,30 @@ if (document.getElementById('vue')) {
 // Sweet Alert
 window.Swal = require('sweetalert2');
 $(function(){
-    $("select.select2").each(function () {
+    // 初始化 autocat 作为 select2 控件并处理其 change 事件
+    $('#autocat').select2({ minimumResultsForSearch: -1 }).on('change', function() {
+        var alpineComponentRoot = $(this).closest('[x-data]');
+        var selectedValue = $(this).val();
+
+        if (alpineComponentRoot.length && alpineComponentRoot[0].__x) {
+            alpineComponentRoot[0].__x.$data.cat = selectedValue;
+            if (alpineComponentRoot[0].__x.$data.cats && alpineComponentRoot[0].__x.$data.cats[selectedValue]) {
+                alpineComponentRoot[0].__x.$data.cats[selectedValue].type = alpineComponentRoot[0].__x.$data.cats[selectedValue].type;
+            }
+        }
+    });
+
+    // 初始化其他 select2 控件并处理其 select2:select 事件
+    $("select.select2:not(#autocat)").each(function () {
         $(this).select2({ minimumResultsForSearch: -1 })
             .on("select2:select", function (e) {
-                // 获取 Alpine.js 组件的根元素
                 var alpineComponentRoot = $(this).closest('[x-data]');
-
-                // 获取被选中的值
                 var selectedValue = $(this).val();
 
-                // 更新 Alpine.js 的数据模型
-                alpineComponentRoot[0].__x.$data.cat = selectedValue;
-
-                // 可能需要额外的逻辑来更新其他相关的 Alpine.js 数据
+                if (alpineComponentRoot.length && alpineComponentRoot[0].__x) {
+                    // 更新 Alpine.js 的数据模型
+                    // 添加适用于此元素的特定逻辑
+                }
             })
             .on("keydown", function(e) {
                 var term = e.key;
