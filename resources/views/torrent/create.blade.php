@@ -123,7 +123,7 @@
                             x-ref="catId"
                             name="category_id"
                             id="autocat"
-                            class="form__select use-select2"
+                            class="select2"
                             required
                             x-model="cat"
                             @change="cats[cat].type = cats[$event.target.value].type;"
@@ -143,7 +143,7 @@
                         <select
                             name="type_id"
                             id="autotype"
-                            class="form__select use-select2"
+                            class="select2"
                             required
                         >
                             <option hidden disabled selected value=""></option>
@@ -161,7 +161,7 @@
                         <select
                             name="resolution_id"
                             id="autores"
-                            class="form__select use-select2"
+                            class="select2"
                             x-bind:required="cats[cat].type === 'movie' || cats[cat].type === 'tv'"
                         >
                             <option hidden disabled selected value=""></option>
@@ -180,10 +180,10 @@
                             <select
                                 name="distributor_id"
                                 id="autodis"
-                                class="form__select use-select2"
+                                class="select2"
                                 x-data="{ distributor: '' }"
                                 x-model="distributor"
-                                x-bind:class="distributor === '' ? 'form__select--default' : ''"
+                                x-bind:class="distributor === '' ? 'select2--default' : ''"
                             >
                                 <option selected value=""></option>
                                 @foreach ($distributors as $distributor)
@@ -200,10 +200,10 @@
                             <select
                                 name="region_id"
                                 id="autoreg"
-                                class="form__select use-select2"
+                                class="select2"
                                 x-data="{ region: '' }"
                                 x-model="region"
-                                x-bind:class="region === '' ? 'form__select--default' : ''"
+                                x-bind:class="region === '' ? 'select2--default' : ''"
                             >
                                 <option selected value=""></option>
                                 @foreach ($regions as $region)
@@ -458,7 +458,7 @@
                     @endif
                     @if (auth()->user()->group->is_modo || auth()->user()->group->is_internal)
                         <p class="form__group">
-                            <select name="free" id="free" class="form__select use-select2">
+                            <select name="free" id="free" class="select2">
                                 <option value="0" @selected(old('free') === '0' || old('free') === null)>{{ __('common.no') }}</option>
                                 <option value="25" @selected(old('free') === '25')>25%</option>
                                 <option value="50" @selected(old('free') === '50')>50%</option>

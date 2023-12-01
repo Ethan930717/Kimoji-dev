@@ -77,10 +77,10 @@
                                                 <select
                                                     name="region_id"
                                                     id="autoreg"
-                                                    class="form__select use-select2"
+                                                    class="select2"
                                                     x-data="{ region: '' }"
                                                     x-model="region"
-                                                    x-bind:class="region === '' ? 'form__select--default' : ''"
+                                                    x-bind:class="region === '' ? 'select2--default' : ''"
                                                 >
                                                     <option hidden disabled selected value=""></option>
                                                     @foreach ($regions as $region)

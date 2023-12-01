@@ -55,7 +55,7 @@
                     <p class="form__group">
                         <select
                             id="category_id"
-                            class="form__select use-select2"
+                            class="select2"
                             name="category_id"
                             required
                         >
@@ -73,7 +73,7 @@
                     <p class="form__group">
                         <select
                             id="type_id"
-                            class="form__select use-select2"
+                            class="select2"
                             name="type_id"
                             required
                         >
@@ -91,7 +91,7 @@
                     <p class="form__group">
                         <select
                             id="resolution_id"
-                            class="form__select use-select2"
+                            class="select2"
                             name="resolution_id"
                             required
                         >

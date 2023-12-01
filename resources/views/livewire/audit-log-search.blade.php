@@ -19,13 +19,13 @@
             <div class="panel__action">
                 <div class="form__group">
                     <select
-                            x-data="{ selected: '' }" x-model="selected" x-bind:class="selected === '' ? 'form__select--default' : ''"
-                            class="form__select use-select2"
+                            x-data="{ selected: '' }" x-model="selected" x-bind:class="selected === '' ? 'select2--default' : ''"
+                            class="select2"
                             wire:model="modelName"
                             required
                             x-data="{ selected: '' }"
                             x-model="selected"
-                            x-bind:class="selected === '' ? 'form__select--default' : ''"
+                            x-bind:class="selected === '' ? 'select2--default' : ''"
                     >
                         <option selected value="">All</option>
                         @foreach ($modelNames as $modelName)
@@ -54,12 +54,12 @@
             <div class="panel__action">
                 <div class="form__group">
                     <select
-                            class="form__select use-select2"
+                            class="select2"
                             wire:model="action"
                             required
                             x-data="{ selected: '' }"
                             x-model="selected"
-                            x-bind:class="selected === '' ? 'form__select--default' : ''"
+                            x-bind:class="selected === '' ? 'select2--default' : ''"
                     >
                         <option selected value="">All</option>
                         <option value="create">Create</option>
@@ -89,7 +89,7 @@
                 <div class="form__group">
                     <select
                             id="quantity"
-                            class="form__select use-select2"
+                            class="select2"
                             wire:model="perPage"
                             required
                     >

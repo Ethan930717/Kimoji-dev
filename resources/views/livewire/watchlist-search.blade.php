@@ -6,7 +6,7 @@
                 <p class="form__group">
                     <select
                         id="quantity"
-                        class="form__select use-select2"
+                        class="select2"
                         wire:model="perPage"
                         required
                     >

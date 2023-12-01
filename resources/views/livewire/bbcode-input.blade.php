@@ -2,6 +2,155 @@
 <div
     class="bbcode-input"
     x-data="{
+                    convertImages() {
+        const input = this.$refs.bbcode;
+        let selectedText = input.value.substring(input.selectionStart, input.selectionEnd);
+
+        if (!selectedText) {
+            Swal.fire({
+                title: '错误',
+                html: '请先选定缩略图的 BBCode 代码<br><br>本功能代码来自 <a href= /img/friendsite/tomorrow505.png  target= _blank>Tomorrow505</a>',
+                icon: 'error',
+                confirmButtonText: '好的'
+            });
+            return;
+        }
+
+        let convertedText = '';
+        const imageRegex = /(\[img\])(http[^\[\]]*?(jpg|png|webp))/ig;
+
+        if (!imageRegex.test(selectedText)) {
+            Swal.fire({
+                title: '错误',
+                html: '选定的部分不是缩略图 BBCode<br><br>本功能代码来自 <a href= /img/friendsite/tomorrow505.png  target= _blank>Tomorrow505</a>',
+                icon: 'error',
+                confirmButtonText: '好的'
+            });
+            return;
+        }
+        selectedText.match(imageRegex).forEach((item) => {
+            item = item.replace(/\[.*\]/g, '');
+            if (item.match(/imgbox/)) {
+                convertedText += '[img]' + item.replace('thumbs2', 'images2').replace('t.png', 'o.png') + '[/img]\n';
+            }
+            else if (item.match(/pixhost/)) {
+                convertedText += '[img]' + item.replace('//t', '//img').replace('thumbs', 'images') + '[/img]\n';
+            }
+            else if (item.match(/pterclub.com|beyondhd.co\/(images|cache)|z4a.net\/images/)) {
+                convertedText += '[img]' + item.replace(/th.png/g, 'png').replace(/md.png/g, 'png').replace(/t\/mages/, 'i/mages') + '[/img]\n';
+            }
+            else if (item.match(/tu.totheglory.im/)) {
+                convertedText += '[img]' + item.replace(/_thumb.png/, '.png') + '[/img]\n';
+            }
+            else if (item.match(/img.hdchina.org/)) {
+                convertedText += '[img]' + item.replace(/md.png/, 'png') + '[/img]\n';
+            }
+            else if (item.match(/cinematik/)) {
+                convertedText += '[img]' + item.replace(/thu/, 'big') + '[/img]\n';
+            }
+            else if (item.match(/img4k.net|img.hdhome.org/)) {
+                convertedText += '[img]' + item.replace(/md.png/, 'png') + '[/img]\n';
+            }
+            else {
+                convertedText += '[img]' + item + '[/img]\n';
+            }
+        });
+
+        if (!convertedText) {
+            Swal.fire({
+                title: '错误',
+                html: '无法转换选定的 BBCode，当前本功能仅支持以下图床 <br> imgbox，pixhost，pter，ttg，瓷器，img4k <br><br>本功能代码来自 <a href= /img/friendsite/tomorrow505.png  target= _blank>Tomorrow505</a>',
+                icon: 'error',
+                confirmButtonText: '好的'
+            });
+            return;
+        }
+
+        // 将转换后的文本放入结果区域
+        input.value = input.value.substring(0, input.selectionStart)
+            + convertedText
+            + input.value.substring(input.selectionEnd);
+        input.dispatchEvent(new Event('input'));
+    },
+
+        insertThanks(openTag, closeTag) {
+            const input = this.$refs.bbcode;
+            const start = input.selectionStart;
+            const end = input.selectionEnd;
+            const selectedText = input.value.substring(start, end);
+
+            if (selectedText.includes('[/img]') && selectedText.includes('[/spoiler]') && selectedText.includes('[/center]')) {
+                Swal.fire({
+                    title: '错误',
+                    html: '请不要在相同内容中重复使用本功能',
+                    icon: 'error',
+                    confirmButtonText: '好的'
+                });
+                return;
+            }
+
+            // 检查是否选中了包含 [img]、friendsite 和 [/img] 的文本
+            if (selectedText.includes('[img]') && selectedText.includes('friendsite') && selectedText.includes('[/img]')) {
+                input.value = input.value.substring(0, start)
+                    + openTag
+                    + selectedText
+                    + closeTag
+                    + input.value.substring(end);
+                input.dispatchEvent(new Event('input'));
+                input.focus();
+                input.setSelectionRange(start, end + openTag.length + closeTag.length);
+            } else if (!selectedText.includes('[img]') || !selectedText.includes('[/img]')) {
+                Swal.fire({
+                    title: '错误',
+                    html: '请完整选定友站插图的BBCode代码后再使用本功能 <br> 选定部分首尾需为 [img] 与 [/img] 标签',
+                    icon: 'error',
+                    confirmButtonText: '好的'
+                });
+            } else if (!selectedText.includes('friendsite')) {
+                Swal.fire({
+                    title: '错误',
+                    html: '您选定的内容不是KIMOJI为友站订制的插图 <br> 请您先行移步浏览 <a href= /pages/5 >《转载规则》</a>',
+                    icon: 'error',
+                    confirmButtonText: '好的'
+                    });
+                }
+            },
+
+        insertWithCheck(openTag, closeTag) {
+            const input = this.$refs.bbcode;
+            const start = input.selectionStart;
+            const end = input.selectionEnd;
+            const selectedText = input.value.substring(start, end);
+
+            if (selectedText.includes('[/img]') && selectedText.includes('[/spoiler]') && selectedText.includes('[/center]')) {
+                Swal.fire({
+                    title: '错误',
+                    html: '请不要在相同内容中重复使用本功能',
+                    icon: 'error',
+                    confirmButtonText: '好的'
+                });
+                return;
+            }
+            // 检查是否选中了文本，以及该文本是否包含 [img] 和 [/img]
+            if (selectedText.length > 0 && selectedText.includes('[img]') && selectedText.includes('[/img]')) {
+                input.value = input.value.substring(0, start)
+                    + openTag
+                    + selectedText
+                    + closeTag
+                    + input.value.substring(end);
+                input.dispatchEvent(new Event('input'));
+                input.focus();
+                input.setSelectionRange(start, end + openTag.length + closeTag.length);
+            } else {
+                // 弹出错误提示
+                Swal.fire({
+                    title: '错误',
+                    html: '请在选定所有截图的BBCode代码后再使用本功能<br>选定部分首尾需为 [img] 与 [/img] 标签',
+                    icon: 'error',
+                    confirmButtonText: '好的'
+                });
+            }
+        },
         insert(openTag, closeTag) {
             input = $refs.bbcode;
             start = input.selectionStart;
@@ -20,6 +169,7 @@
             } else {
                 input.setSelectionRange(start, end + openTag.length + closeTag.length);
             }
+
         },
         showButtons: false,
         bbcodePreviewHeight: null,
@@ -34,7 +184,11 @@
         <input class="bbcode-input__tab-input" type="radio" id="{{ $name }}-bbcode-preview-enabled" name="isPreviewEnabled" value="1" wire:model="isPreviewEnabled" />
         <label class="bbcode-input__tab-label" for="{{ $name }}-bbcode-preview-enabled">{{ __('common.preview') }}</label>
     </p>
+
     <p class="bbcode-input__icon-bar-toggle">
+        <button type="button" class="form__button form__button--text" x-on:click="insertThanks('[center][color=#bbff88][size=24][b][spoiler=转载致谢]', '[/spoiler][/b][/size][/color][/center]')">转载致谢</button>
+        <button type="button" class="form__button form__button--text" x-on:click="insertWithCheck('[center][color=#bbff88][size=24][b][spoiler=截图赏析]', '[/spoiler][/b][/size][/color][/center]')">截图赏析</button>
+        <button type="button" class="form__button form__button--text" x-on:click="convertImages()">转换大图</button>
         <button type="button" class="form__button form__button--text" x-on:click="showButtons = ! showButtons">BBCode</button>
     </p>
     <menu class="bbcode-input__icon-bar" x-cloak x-show="showButtons">

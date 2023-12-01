@@ -67,7 +67,7 @@
                             <chatrooms-dropdown
                                 :current="user.chatroom.id"
                                 :chatrooms="$parent.chatrooms"
-                                class="pull-right use-select2"
+                                class="pull-right select2"
                                 @changedRoom="$parent.changeRoom"
                             >
                             </chatrooms-dropdown>

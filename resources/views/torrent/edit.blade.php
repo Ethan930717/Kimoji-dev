@@ -70,7 +70,7 @@
                 <p class="form__group">
                     <select
                         id="category_id"
-                        class="form__select use-select2"
+                        class="select2"
                         name="category_id"
                         x-model="cat"
                         x-ref="catId"
@@ -92,7 +92,7 @@
                 <p class="form__group">
                     <select
                         id="type_id"
-                        class="form__select use-select2"
+                        class="select2"
                         name="type_id"
                         x-model="type"
                         x-ref="typeId"
@@ -112,7 +112,7 @@
                     </label>
                 </p>
                 <p class="form__group" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
-                    <select id="resolution_id" name="resolution_id" class="form__select use-select2">
+                    <select id="resolution_id" name="resolution_id" class="select2">
                         @if (! $torrent->resolution)
                             <option hidden="" disabled="disabled" selected="selected" value="">
                                 --Select Resolution--
@@ -134,7 +134,7 @@
                 </p>
                 <div class="form__group--horizontal" x-show="(cats[cat].type === 'movie' || cats[cat].type === 'tv') && types[type].name === 'Full Disc'">
                     <p class="form__group">
-                        <select id="distributor_id" name="distributor_id" class="form__select use-select2">
+                        <select id="distributor_id" name="distributor_id" class="select2">
                             @if (! $torrent->distributor)
                                 <option hidden="" disabled="disabled" selected="selected" value="">
                                     --Select Distributor--
@@ -163,7 +163,7 @@
                         </label>
                     </p>
                     <p class="form__group">
-                        <select id="region_id" name="region_id" class="form__select use-select2">
+                        <select id="region_id" name="region_id" class="select2">
                             @if (! $torrent->region)
                                 <option hidden="" disabled="disabled" selected="selected" value="">
                                     --Select Region--

@@ -116,11 +116,11 @@
                     <p class="form__group">
                         <select
                             id="language_id"
-                            class="form__select use-select2"
+                            class="select2"
                             wire:model="language"   
                             x-data="{ language: '' }"
                             x-model="language"
-                            x-bind:class="language === '' ? 'form__select--default' : ''"
+                            x-bind:class="language === '' ? 'select2--default' : ''"
                         >
                             <option hidden disabled selected value=""></option>
                             @foreach (App\Models\MediaLanguage::orderBy('name')->get() as $media_language)
@@ -169,7 +169,7 @@
                     <p class="form__group">
                         <select
                             id="quantity"
-                            class="form__select use-select2"
+                            class="select2"
                             wire:model="perPage"
                             required
                         >

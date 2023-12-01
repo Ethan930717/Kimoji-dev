@@ -22,7 +22,7 @@
                         <label class="form__label form__label--floating">Agent</label>
                     </p>
                     <p class="form__group">
-                        <select wire:model="seeder" class="form__select use-select2" placeholder=" ">
+                        <select wire:model="seeder" class="select2" placeholder=" ">
                             <option value="any">Any</option>
                             <option value="include">Completed</option>
                             <option value="exclude">Incomplete</option>
@@ -30,7 +30,7 @@
                         <label class="form__label form__label--floating">Completed</label>
                     </p>
                     <p class="form__group">
-                        <select wire:model="active" class="form__select use-select2" placeholder=" ">
+                        <select wire:model="active" class="select2" placeholder=" ">
                             <option value="any">Any</option>
                             <option value="exclude">Inactive</option>
                             <option value="include">Active</option>
@@ -38,7 +38,7 @@
                         <label class="form__label form__label--floating">Active</label>
                     </p>
                     <p class="form__group">
-                        <select wire:model="groupBy" class="form__select use-select2" placeholder=" ">
+                        <select wire:model="groupBy" class="select2" placeholder=" ">
                             <option value="none">None</option>
                             <option value="user_id">User</option>
                         </select>

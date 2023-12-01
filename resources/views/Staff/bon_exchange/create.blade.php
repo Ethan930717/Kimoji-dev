@@ -80,7 +80,7 @@
                     <select
                         name="type"
                         id="type"
-                        class="form__select use-select2"
+                        class="select2"
                         required
                     >
                         <option hidden selected disabled value=""></option>

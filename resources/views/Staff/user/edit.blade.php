@@ -106,7 +106,7 @@
                 <p class="form__group">
                     <select
                         id="group_id"
-                        class="form__select use-select2"
+                        class="select2"
                         name="group_id"
                     >
                         <option class="form__option" value="{{ $user->group->id }}">
@@ -126,7 +126,7 @@
                     <select
                         id="internal_id"
                         name="internal_id"
-                        class="form__select use-select2"
+                        class="select2"
                     >
                         @if ($user->internal != null)
                             <option class="form__option" value="{{ $user->internal->id }}">

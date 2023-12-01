@@ -64,7 +64,32 @@ if (document.getElementById('vue')) {
 // Sweet Alert
 window.Swal = require('sweetalert2');
 $(function(){
-    $("select.use-select2").each(function () {
-        $(this).select2({ minimumResultsForSearch: -1 });
+    $("select.select2").each(function () {
+        $(this).select2({ minimumResultsForSearch: -1 })
+            .on("select2:select", function (e) {
+                // 获取 Alpine.js 组件的根元素
+                var alpineComponentRoot = $(this).closest('[x-data]');
+
+                // 获取被选中的值
+                var selectedValue = $(this).val();
+
+                // 更新 Alpine.js 的数据模型
+                alpineComponentRoot[0].__x.$data.cat = selectedValue;
+
+                // 可能需要额外的逻辑来更新其他相关的 Alpine.js 数据
+            })
+            .on("keydown", function(e) {
+                var term = e.key;
+                if (term.length === 1 && term.match(/[a-z]/i)) {
+                    var matched = $(this).find("option").filter(function() {
+                        return $(this).text().toLowerCase().startsWith(term.toLowerCase());
+                    }).first();
+
+                    if (matched.length) {
+                        $(this).val(matched.val()).trigger("change");
+                    }
+                }
+            });
     });
 });
+

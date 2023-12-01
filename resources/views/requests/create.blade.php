@@ -48,7 +48,7 @@
                         <select
                             name="category_id"
                             id="category_id"
-                            class="form__select use-select2"
+                            class="select2"
                             required
                             x-model="cat"
                             x-on:change="cats[cat].type = cats[$event.target.value].type;"
@@ -67,7 +67,7 @@
                     <p class="form__group">
                         <select
                             id="type_id"
-                            class="form__select use-select2"
+                            class="select2"
                             name="type_id"
                             required
                         >
@@ -85,7 +85,7 @@
                     <p class="form__group">
                         <select
                             id="resolution_id"
-                            class="form__select use-select2"
+                            class="select2"
                             name="resolution_id"
                             required
                         >
