@@ -51,7 +51,7 @@
 @section('main')
     <section class="panelV2">
         <h2 class="panel__heading">{{ __('stat.nerd-stats') }}</h2>
-        <div class="panel__body">{{ __('stat.nerd-stats-desc') }}. {{ __('stat.updated') }}</div>
+        <div class="panel__body">{{ __('stat.updated') }}{{ __('stat.nerd-stats-desc') }} </div>
     </section>
     <div class="stats__panels">
         <section class="panelV2 panel--grid-item">

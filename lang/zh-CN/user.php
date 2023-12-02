@@ -275,7 +275,7 @@ return [
     'request-privacy'                 => '求种设定',
     'request-privacy-requested'       => '允许其他用户查看你的求种清单',
     'reset-api-token'                 => '重设API口令',
-    'reset-api-help'                  => '重设API口令后，你必须在使用了旧口令的所有脚本或程序中更新你的口令。',
+    'reset-api-help'                  => '重设API口令后，你必须在使用了旧口令的所有脚本或程序中更新你的口令',
     'reset-passkey'                   => '重设Passkey',
     'reset-passkey-help'              => '重设Passkey后，你必须重新下载/上传你所有的种子，请谨慎操作',
     'reset-rss'                       => '重设RSSkey',

@@ -21,7 +21,7 @@ return [
     'languages'               => '语言',
     'last30days'              => '最近30天',
     'nerd-stats'              => '数据帝',
-    'nerd-stats-desc'         => '站点主要数据统计',
+    'nerd-stats-desc'         => '站点主要数据',
     'place'                   => '名次',
     'registration-date'       => '注册日期',
     'request-fulfilled'       => '已达成',
