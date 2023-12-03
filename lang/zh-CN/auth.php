@@ -25,7 +25,7 @@ return [
     'allow-invite'          => '已经打烊了哦～请下次再来吧',
     'allow-invite-appl'     => '已经打烊了哦～请下次再来吧',
     'appl-closed'           => '申请已关闭',
-    'appl-intro'            => '是一个圈子很小的站点，我们对会员的质量要求远大于数量。每个月，我们只会择优通过50份入站申请',
+    'appl-intro'            => '的圈子很小，我们对会员的质量要求远大于数量，每个月，我们只会择优通过50份入站申请',
     'appl-reason'           => '你如何得知 :sitename ？为何要加入？',
     'application-submitted' => '申请已提交。若审批通过，你会收到电子邮件通知。',
     'are-you'               => '你是：',
