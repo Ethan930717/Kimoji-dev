@@ -22,6 +22,7 @@
     outline: none;
     padding: var(--input-text-padding);
     width: 100%;
+    text-shadow: 0 0 5px #ffffe3, 0 0 10px #ffffd7, 0 0 15px #ffffd5, 0 0 20px #ffffd4;
 
     @media screen and (prefers-reduced-motion: no-preference) {
         transition: border-color 600ms cubic-bezier(0.25, 0.8, 0.25, 1), height 600ms cubic-bezier(0.25, 0.8, 0.25, 1);
