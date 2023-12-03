@@ -38,7 +38,7 @@
                 @method('PATCH')
                 <p class="form__group" x-show="cats[cat].type === 'no'">
                     <label class="form__label" for="torrent-cover">
-                        Cover {{ __('torrent.file') }} ({{ __('torrent.optional') }})
+                        背景图片 {{ __('torrent.file') }} ({{ __('torrent.optional') }})
                     </label>
                     <input
                         id="torrent-cover"
@@ -50,7 +50,7 @@
                 </p>
                 <p class="form__group" x-show="cats[cat].type === 'no'">
                     <label class="form__label" for="torrent-banner">
-                        Banner {{ __('torrent.file') }} ({{ __('torrent.optional') }})
+                        海报 {{ __('torrent.file') }} ({{ __('torrent.optional') }})
                     </label>
                     <input
                         id="torrent-banner"

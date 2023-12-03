@@ -26,7 +26,7 @@ return [
     'achievement-unlocked' => '你解锁了“:name”成就',
     'action'               => '操作',
     'actions'              => '操作',
-    'active'               => '使用中',
+    'active'               => '活跃',
     'active-warning'       => '有效警告',
     'add'                  => '添加',
     'added'                => '加入于',

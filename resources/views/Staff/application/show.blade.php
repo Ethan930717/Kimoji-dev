@@ -133,7 +133,7 @@
                                     value="{{ $application->email }}"
                                 >
                                 <p class="form__group">
-                                    <textarea id="approve" class="form__textarea" name="approve" placeholder=" ">Application Approved!</textarea>
+                                    <textarea id="approve" class="form__textarea" name="approve" placeholder=" ">您的申请已通过，欢迎您进入KIMOJI的大家庭</textarea>
                                     <label class="form__label form__label--floating" for="approve">Invitation Message</label>
                                 </p>
                                 <p class="form__group">
