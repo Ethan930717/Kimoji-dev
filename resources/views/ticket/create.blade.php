@@ -42,7 +42,11 @@
                 <p class="form__group">
                     <select
                         id="category_id"
+<<<<<<< Updated upstream
                         class="form__text select2"
+=======
+                        class="form__text form__select"
+>>>>>>> Stashed changes
                         name="category_id"
                         required
                     >
@@ -74,7 +78,11 @@
                 <p class="form__group">
                     <input
                         id="ticket_subject"
+<<<<<<< Updated upstream
                         class="form__text select2"
+=======
+                        class="form__text"
+>>>>>>> Stashed changes
 
                         name="subject"
                         required

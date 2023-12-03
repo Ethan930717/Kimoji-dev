@@ -63,6 +63,7 @@ if (document.getElementById('vue')) {
  */
 // Sweet Alert
 window.Swal = require('sweetalert2');
+<<<<<<< Updated upstream
 $(function(){
     // 初始化 autocat 作为 select2 控件并处理其 change 事件
     $('#autocat').select2({ minimumResultsForSearch: -1 }).on('change', function() {
@@ -104,3 +105,11 @@ $(function(){
     });
 });
 
+=======
+
+
+/*$(function () {
+    var formSelect = $('.form__select');
+    formSelect.select2({minimumResultsForSearch: -1});
+});*/
+>>>>>>> Stashed changes

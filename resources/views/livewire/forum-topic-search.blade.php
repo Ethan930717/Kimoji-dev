@@ -119,7 +119,11 @@
                     <p class="form__group">
                         <select
                             id="sorting2"
+<<<<<<< Updated upstream
                             class="select2"
+=======
+                            class="form__select"
+>>>>>>> Stashed changes
                             name="sorting"
                             required
                             wire:model="sortField"
@@ -138,7 +142,11 @@
                     <p class="form__group">
                         <select
                             id="direction1"
+<<<<<<< Updated upstream
                             class="select2"
+=======
+                            class="form__select"
+>>>>>>> Stashed changes
                             name="direction"
                             required
                             wire:model="sortDirection"
@@ -157,7 +165,11 @@
                     <p class="form__group">
                         <select
                             id="direction2"
+<<<<<<< Updated upstream
                             class="select2"
+=======
+                            class="form__select"
+>>>>>>> Stashed changes
                             name="direction"
                             wire:model="state"
                         >
@@ -176,7 +188,11 @@
                     <p class="form__group">
                         <select
                             id="direction3"
+<<<<<<< Updated upstream
                             class="select2"
+=======
+                            class="form__select"
+>>>>>>> Stashed changes
                             name="direction"
                             wire:model="subscribed"
                         >

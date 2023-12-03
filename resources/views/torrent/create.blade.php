@@ -515,7 +515,11 @@
                 <br>
                 <br>
 
+<<<<<<< Updated upstream
                 <a href="{{ route('announce', ['passkey' => $user->passkey]) }}" style="font-size:18px; text-align:center; cursor:pointer;" id="trackerLink">
+=======
+                <a href="{{ route('announce', ['passkey' => $user->passkey]) }}" style="font-size:18px; text-align:center; cursor:pointer;" id="trackerLink" onclick="copyToClipboard(event)">
+>>>>>>> Stashed changes
                     <i class="fas fa-link"></i> 复制Tracker地址
                 </a>
             </div>
@@ -525,6 +529,17 @@
 
 @section('javascripts')
     <script src="{{ mix('js/imgbb.js') }}" crossorigin="anonymous"></script>
+    <script>
+        function copyToClipboard(e) {
+            e.preventDefault();
+            var link = e.currentTarget.getAttribute('href');
+            navigator.clipboard.writeText(link).then(() => {
+                alert('链接已复制到剪贴板');
+            }).catch(err => {
+                console.error('复制失败:', err);
+            });
+        }
+    </script>
 @endsection
 
 

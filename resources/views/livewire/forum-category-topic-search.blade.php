@@ -43,7 +43,7 @@
                             name="sorting"
                             wire:model="label"
                         >
-                            <option value="" selected default>Any</option>
+                            <option value="" selected default>全部</option>
                             <option value="approved">
                                 {{ __('forum.approved') }}
                             </option>
@@ -73,7 +73,11 @@
                     <p class="form__group">
                         <select
                             id="sorting2"
+<<<<<<< Updated upstream
                             class="select2"
+=======
+                            class="form__select"
+>>>>>>> Stashed changes
                             name="sorting"
                             required
                             wire:model="sortField"
@@ -92,7 +96,11 @@
                     <p class="form__group">
                         <select
                             id="direction1"
+<<<<<<< Updated upstream
                             class="select2"
+=======
+                            class="form__select"
+>>>>>>> Stashed changes
                             name="direction"
                             required
                             wire:model="sortDirection"
@@ -111,11 +119,15 @@
                     <p class="form__group">
                         <select
                             id="direction2"
+<<<<<<< Updated upstream
                             class="select2"
+=======
+                            class="form__select"
+>>>>>>> Stashed changes
                             name="direction"
                             wire:model="state"
                         >
-                            <option value="" selected default>Any</option>
+                            <option value="" selected default>全部</option>
                             <option value="open">
                                 {{ __('forum.open') }}
                             </option>
@@ -130,11 +142,15 @@
                     <p class="form__group">
                         <select
                             id="direction3"
+<<<<<<< Updated upstream
                             class="select2"
+=======
+                            class="form__select"
+>>>>>>> Stashed changes
                             name="direction"
                             wire:model="subscribed"
                         >
-                            <option value="" selected default>Any</option>
+                            <option value="" selected default>全部</option>
                             <option value="include">
                                 {{ __('forum.subscribed') }}
                             </option>

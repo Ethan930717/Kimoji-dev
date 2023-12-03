@@ -123,12 +123,19 @@ return [
     'invite-only'   => true,
     'invite_expire' => '14',
 
-    'invites_restriced' => false,
+    'invites_restriced' => true,
     'invite_groups'     => [
-        'Administrator',
-        'Owner',
+        '统筹',
+        '主宰',
+        '贵人',
+        '监护',
+        '园丁',
+        '耕夫',
+        '守卫',
+        '掌固',
+        '颐养',
     ],
-    'max_unused_user_invites' => 1,
+    'max_unused_user_invites' => 99,
 
     /*
     |--------------------------------------------------------------------------
@@ -174,7 +181,7 @@ return [
     | True/1 = Enabled
     | False/0 = Disabled
     */
-    'application_signups' => false,
+    'application_signups' => true,
 
     /*
     |--------------------------------------------------------------------------

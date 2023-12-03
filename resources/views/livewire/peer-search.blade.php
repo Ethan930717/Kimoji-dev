@@ -27,16 +27,26 @@
                         <label class="form__label form__label--floating">Agent</label>
                     </p>
                     <p class="form__group">
+<<<<<<< Updated upstream
                         <select wire:model="connectivity" class="select2" placeholder=" ">
                             <option value="any">Any</option>
+=======
+                        <select wire:model="connectivity" class="form__select" placeholder=" ">
+                            <option value="any">全部</option>
+>>>>>>> Stashed changes
                             <option value="connectable">Connectable</option>
                             <option value="unconnectable">Unconnectable</option>
                         </select>
                         <label class="form__label form__label--floating">Connectivity</label>
                     </p>
                     <p class="form__group">
+<<<<<<< Updated upstream
                         <select wire:model="active" class="select2" placeholder=" ">
                             <option value="any">Any</option>
+=======
+                        <select wire:model="active" class="form__select" placeholder=" ">
+                            <option value="any">全部</option>
+>>>>>>> Stashed changes
                             <option value="exclude">Inactive</option>
                             <option value="include">Active</option>
                         </select>

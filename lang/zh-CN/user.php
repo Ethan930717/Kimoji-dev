@@ -137,6 +137,7 @@ return [
     'important-info'                       => '重要资讯',
     'information'                          => '资讯',
     'invited-by'                           => '邀请人',
+<<<<<<< Updated upstream
     'invite-friend'                        => '邀请你的朋友（需要 邮箱 + 资料）',
     'invite-tree'                          => '邀请树',
     'invites'                              => '邀请',
@@ -147,6 +148,24 @@ return [
     'invites-disabled-desc'                => '稍后再来！',
     'invites-rules'                        => '<li class="text-success">只邀请那些你信得过及了解的朋友。</li><li class="text-danger">你需要对这些邀请负个人责任。</li><li class="text-danger">不准使用马甲。</li><li class="text-danger">不准买卖邀请码。</li><li class="text-danger">若你所邀请的人因作弊或买卖帐户而被封禁，你也会被牵连。</li>',
     'invites-send'                         => '邀请已发送',
+=======
+    'invite-already-sent'                  => '您尝试邀请的电子邮件地址已被邀请过',
+    'invite-already-used'                  => '您尝试重新发送的邀请已被使用',
+    'invite-expired' => '您发送的邀请已过期',
+    'invite-friend' => '邀请您的朋友',
+    'invite-resent-success' => '邀请已成功发送！',
+    'invite-sent-success' => '邀请已成功发送！',
+    'invite-tree' => '邀请列表',
+    'invites' => '邀请',
+    'invites-banned' => '您的邀请权限已被禁用',
+    'invites-banned-desc' => '如果您认为这是一个错误，请联系工作人员！',
+    'invites-count' => '您拥有 :count 个邀请名额',
+    'invites-disabled' => '注意：由于开放注册，邀请功能已被禁用！',
+    'invites-disabled-desc' => '请稍后再来查看！',
+    'invites-disabled-group' => '您没有邀请权限',
+    'invites-rules' => '<li class="text-success">只邀请您认识和信任的人</li><li class="text-success">请您对自己的下家负责</li><li class="text-success">我们会定期检查每一位新用户的账号状态</li><li class="text-success">禁止交易或出售邀请</li><li class="text-success">如果您邀请的人被发现作弊、交易账号或出售/交易邀请，您将受到连坐惩罚</li>',
+    'invites-send' => '发送邀请',
+>>>>>>> Stashed changes
     'judge'                                => '审核人',
     'last-ation'                           => '最后活动时间',
     'last-login'                           => '上次登录时间',
@@ -391,5 +410,5 @@ return [
     'top-dead'                => '死种排行榜',
     'top-bountied'            => '悬赏大厅',
     'seedbox-added-success'   => '盒子登记成功',
-
+    'invites-disabled-group'  => '您没有邀请会员的权限',
 ];
