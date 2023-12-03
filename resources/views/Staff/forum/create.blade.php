@@ -33,7 +33,7 @@
             <form class="form" method="POST" action="{{ route('staff.forums.store') }}">
                 @csrf
                 <p class="form__group">
-                    <select id ="forum_type" class="select2" name="forum_type" required>
+                    <select id ="forum_type" class="form__select" name="forum_type" required>
                         <option class="form__option" value="category">分类</option>
                         <option class="form__option" value="forum">板块</option>
                     </select>
@@ -48,7 +48,7 @@
                     <label class="form__label form__label--floating" for="description">描述</label>
                 </p>
                 <p class="form__group">
-                    <select id="parent_id" class="select2" name="parent_id">
+                    <select id="parent_id" class="form__select" name="parent_id">
                         <option value="">新的分类</option>
                         @foreach ($categories as $category)
                             <option class="form__option" value="{{ $category->id }}">

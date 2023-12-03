@@ -48,7 +48,7 @@
                 <p class="form__group">
                     <select
                         id="language_id"
-                        class="select2"
+                        class="form__select"
                         name="language_id"
                         required
                     >

@@ -2,7 +2,7 @@
  * Usage
  *
  * <p class="form__group">
- *     <select id="select" class="form__select" x-data="{ selected: '' }" x-model="selected" x-bind:class="selected === '' ? 'select2--default' : ''">
+ *     <select id="select" class="form__select" x-data="{ selected: '' }" x-model="selected" x-bind:class="selected === '' ? 'form__select--default' : ''">
  *         <option hidden="" disabled selected value=""></option>
  *         <option></option>
  *     </select>
@@ -20,8 +20,6 @@
     vertical-align: middle;
     width: 100% !important;
 }
-<<<<<<< Updated upstream
-=======
 
 .select2-container .select2-selection--single {
     box-sizing: border-box;
@@ -738,9 +736,6 @@
     width: 100%;
 }
 
-
->>>>>>> Stashed changes
-
 .select2-container .select2-selection--single {
     box-sizing: border-box;
     cursor: pointer;
@@ -1455,7 +1450,7 @@
     padding: var(--input-text-padding);
     width: 100%;
 }
-.Select2 {
+.form__select {
     background-color: inherit !important; /* !important can be removed once site-wide `select` styling is removed */
     background: var(--select-icon);
     background-size: 16px;
@@ -1497,7 +1492,7 @@
         }
     }
 
-    &:valid:not(.Select2--default),
+    &:valid:not(.form__select--default),
     &:focus:placeholder-shown {
         & + .form__label--floating {
             top: -5px  ;
@@ -1530,11 +1525,7 @@
         }
     }
 }
-<<<<<<< Updated upstream
-
-=======
 .form__select option {
     color: black; /* 文字颜色 */
     background-color: lightgrey; /* 背景颜色 */
 }
->>>>>>> Stashed changes

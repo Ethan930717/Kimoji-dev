@@ -84,7 +84,7 @@
                     <select
                         name="meta"
                         id="meta"
-                        class="select2"
+                        class="form__select"
                         required
                     >
                         <option hidden selected disabled value=""></option>

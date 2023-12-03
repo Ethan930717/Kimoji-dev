@@ -19,13 +19,13 @@
             <div class="panel__action">
                 <div class="form__group">
                     <select
-                            x-data="{ selected: '' }" x-model="selected" x-bind:class="selected === '' ? 'select2--default' : ''"
-                            class="select2"
+                            x-data="{ selected: '' }" x-model="selected" x-bind:class="selected === '' ? 'form__select--default' : ''"
+                            class="form__select"
                             wire:model="modelName"
                             required
                             x-data="{ selected: '' }"
                             x-model="selected"
-                            x-bind:class="selected === '' ? 'select2--default' : ''"
+                            x-bind:class="selected === '' ? 'form__select--default' : ''"
                     >
                         <option selected value="">All</option>
                         @foreach ($modelNames as $modelName)
@@ -54,12 +54,12 @@
             <div class="panel__action">
                 <div class="form__group">
                     <select
-                            class="select2"
+                            class="form__select"
                             wire:model="action"
                             required
                             x-data="{ selected: '' }"
                             x-model="selected"
-                            x-bind:class="selected === '' ? 'select2--default' : ''"
+                            x-bind:class="selected === '' ? 'form__select--default' : ''"
                     >
                         <option selected value="">All</option>
                         <option value="create">Create</option>
@@ -89,7 +89,7 @@
                 <div class="form__group">
                     <select
                             id="quantity"
-                            class="select2"
+                            class="form__select"
                             wire:model="perPage"
                             required
                     >

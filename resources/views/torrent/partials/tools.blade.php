@@ -77,7 +77,7 @@
                                 >
                                     @csrf
                                     <p class="form__group">
-                                        <select name="freeleech" class="select2">
+                                        <select name="freeleech" class="form__select">
                                             <option value="0" @selected($torrent->free === 0)>No</option>
                                             <option value="25" @selected($torrent->free === 25)>25%</option>
                                             <option value="50" @selected($torrent->free === 50)>50%</option>
@@ -89,7 +89,7 @@
                                         </label>
                                     </p>
                                     <p class="form__group">
-                                        <select class="select2" name="fl_until">
+                                        <select class="form__select" name="fl_until">
                                             <option value="">永久</option>
                                             <option value="1">1 天</option>
                                             <option value="2">2 天</option>
@@ -131,7 +131,7 @@
                                 >
                                     @csrf
                                     <p class="form__group">
-                                        <select class="select2" name="du_until">
+                                        <select class="form__select" name="du_until">
                                             <option value="">永久</option>
                                             <option value="1">1 天</option>
                                             <option value="2">2 天</option>

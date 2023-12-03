@@ -62,7 +62,7 @@
                         </label>
                     </div>
                     <div class="form__group">
-                        <select id="groupBy" wire:model="groupBy" class="select2" placeholder=" ">
+                        <select id="groupBy" wire:model="groupBy" class="form__select" placeholder=" ">
                             <option value="none">None</option>
                             <option value="user_id">Sender</option>
                         </select>
@@ -97,7 +97,7 @@
                     <div class="form__group">
                         <select
                             id="quantity"
-                            class="select2"
+                            class="form__select"
                             wire:model="perPage"
                             required
                         >

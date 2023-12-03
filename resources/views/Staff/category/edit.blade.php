@@ -86,7 +86,7 @@
                     <select
                         name="meta"
                         id="meta"
-                        class="select2"
+                        class="form__select"
                         required
                     >
                         <option class="form__option" value="movie" @selected($category->movie_meta)>

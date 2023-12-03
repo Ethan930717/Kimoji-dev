@@ -186,9 +186,6 @@
     </p>
 
     <p class="bbcode-input__icon-bar-toggle">
-        <button type="button" class="form__button form__button--text" x-on:click="insertThanks('[center][color=#bbff88][size=24][b][spoiler=转载致谢]', '[/spoiler][/b][/size][/color][/center]')">转载致谢</button>
-        <button type="button" class="form__button form__button--text" x-on:click="insertWithCheck('[center][color=#bbff88][size=24][b][spoiler=截图赏析]', '[/spoiler][/b][/size][/color][/center]')">截图赏析</button>
-        <button type="button" class="form__button form__button--text" x-on:click="convertImages()">转换大图</button>
         <button type="button" class="form__button form__button--text" x-on:click="showButtons = ! showButtons">BBCode</button>
     </p>
     <menu class="bbcode-input__icon-bar" x-cloak x-show="showButtons">
@@ -360,6 +357,9 @@
                 </abbr>
             </button>
         </li>
+        <li><button type="button" class="form__button form__button--text" x-on:click="insertThanks('[center][color=#bbff88][size=24][b][spoiler=转载致谢]', '[/spoiler][/b][/size][/color][/center]')">转载致谢</button></li>
+        <li><button type="button" class="form__button form__button--text" x-on:click="insertWithCheck('[center][color=#bbff88][size=24][b][spoiler=截图赏析]', '[/spoiler][/b][/size][/color][/center]')">截图赏析</button></li>
+        <li><button type="button" class="form__button form__button--text" x-on:click="convertImages()">转换大图</button></li>
     </menu>
     <div class="bbcode-input__tab-pane">
         <div class="bbcode-input__preview bbcode-rendered" x-show="isPreviewEnabled">

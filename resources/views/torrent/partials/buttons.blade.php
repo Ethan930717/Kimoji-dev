@@ -310,7 +310,7 @@
                     @csrf
                     <input type="hidden" name="torrent_id" value="{{ $torrent->id }}">
                     <p class="form__group">
-                        <select id="playlist_id" name="playlist_id" class="select2">
+                        <select id="playlist_id" name="playlist_id" class="form__select">
                             @foreach ($playlists as $playlist)
                                 <option value="{{ $playlist->id }}">{{ $playlist->name }}</option>
                             @endforeach

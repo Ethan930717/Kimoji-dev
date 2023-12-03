@@ -42,10 +42,10 @@
                     <select
                         name="distributor_id"
                         id="autoreg"
-                        class="select2"
+                        class="form__select"
                         x-data="{ distributor: '' }"
                         x-model="distributor"
-                        x-bind:class="distributor === '' ? 'select2--default' : ''"
+                        x-bind:class="distributor === '' ? 'form__select--default' : ''"
                     >
                         <option hidden disabled selected value=""></option>
                         @foreach ($distributors as $distributor)

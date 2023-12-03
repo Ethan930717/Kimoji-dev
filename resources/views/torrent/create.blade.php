@@ -123,7 +123,7 @@
                             x-ref="catId"
                             name="category_id"
                             id="autocat"
-                            class="select2"
+                            class="form__select"
                             required
                             x-model="cat"
                             @change="cats[cat].type = cats[$event.target.value].type;"
@@ -143,7 +143,7 @@
                         <select
                             name="type_id"
                             id="autotype"
-                            class="select2"
+                            class="form__select"
                             required
                         >
                             <option hidden disabled selected value=""></option>
@@ -161,7 +161,7 @@
                         <select
                             name="resolution_id"
                             id="autores"
-                            class="select2"
+                            class="form__select"
                             x-bind:required="cats[cat].type === 'movie' || cats[cat].type === 'tv'"
                         >
                             <option hidden disabled selected value=""></option>
@@ -180,10 +180,10 @@
                             <select
                                 name="distributor_id"
                                 id="autodis"
-                                class="select2"
+                                class="form__select"
                                 x-data="{ distributor: '' }"
                                 x-model="distributor"
-                                x-bind:class="distributor === '' ? 'select2--default' : ''"
+                                x-bind:class="distributor === '' ? 'form__select--default' : ''"
                             >
                                 <option selected value=""></option>
                                 @foreach ($distributors as $distributor)
@@ -200,10 +200,10 @@
                             <select
                                 name="region_id"
                                 id="autoreg"
-                                class="select2"
+                                class="form__select"
                                 x-data="{ region: '' }"
                                 x-model="region"
-                                x-bind:class="region === '' ? 'select2--default' : ''"
+                                x-bind:class="region === '' ? 'form__select--default' : ''"
                             >
                                 <option selected value=""></option>
                                 @foreach ($regions as $region)
@@ -458,7 +458,7 @@
                     @endif
                     @if (auth()->user()->group->is_modo || auth()->user()->group->is_internal)
                         <p class="form__group">
-                            <select name="free" id="free" class="select2">
+                            <select name="free" id="free" class="form__select">
                                 <option value="0" @selected(old('free') === '0' || old('free') === null)>{{ __('common.no') }}</option>
                                 <option value="25" @selected(old('free') === '25')>25%</option>
                                 <option value="50" @selected(old('free') === '50')>50%</option>
@@ -514,12 +514,7 @@
                 </a>
                 <br>
                 <br>
-
-<<<<<<< Updated upstream
-                <a href="{{ route('announce', ['passkey' => $user->passkey]) }}" style="font-size:18px; text-align:center; cursor:pointer;" id="trackerLink">
-=======
                 <a href="{{ route('announce', ['passkey' => $user->passkey]) }}" style="font-size:18px; text-align:center; cursor:pointer;" id="trackerLink" onclick="copyToClipboard(event)">
->>>>>>> Stashed changes
                     <i class="fas fa-link"></i> 复制Tracker地址
                 </a>
             </div>

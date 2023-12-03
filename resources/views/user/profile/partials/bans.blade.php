@@ -32,7 +32,7 @@
                             <p class="form__group">
                                 <select
                                     id="group_id"
-                                    class="select2"
+                                    class="form__select"
                                     name="group_id"
                                     required
                                 >

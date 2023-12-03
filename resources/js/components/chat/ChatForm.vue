@@ -67,11 +67,7 @@
                             <chatrooms-dropdown
                                 :current="user.chatroom.id"
                                 :chatrooms="$parent.chatrooms"
-<<<<<<< Updated upstream
-                                class="pull-right select2"
-=======
                                 class="pull-right form__select"
->>>>>>> Stashed changes
                                 @changedRoom="$parent.changeRoom"
                             >
                             </chatrooms-dropdown>

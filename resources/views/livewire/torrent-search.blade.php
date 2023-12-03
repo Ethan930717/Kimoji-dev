@@ -61,7 +61,7 @@
                             <label class="form__label form__label--floating">最小体积</label>
                         </p>
                         <p class="form__group">
-                            <select wire:model="minSizeMultiplier" class="select2" placeholder=" ">
+                            <select wire:model="minSizeMultiplier" class="form__select" placeholder=" ">
                                 <option value="1" selected>Bytes</option>
                                 <option value="1000">KB</option>
                                 <option value="1024">KiB</option>
@@ -83,7 +83,7 @@
                             <label class="form__label form__label--floating">最大体积</label>
                         </p>
                         <p class="form__group">
-                            <select wire:model="maxSizeMultiplier" class="select2" placeholder=" ">
+                            <select wire:model="maxSizeMultiplier" class="form__select" placeholder=" ">
                                 <option value="1" selected>Bytes</option>
                                 <option value="1000">KB</option>
                                 <option value="1024">KiB</option>
@@ -530,7 +530,7 @@
                 <div class="panel__action">
                     <div class="form__group">
                         <select
-                            class="select2"
+                            class="form__select"
                             wire:model="view"
                             required
                         >
@@ -547,7 +547,7 @@
                 <div class="panel__action">
                     <div class="form__group">
                         <select
-                            class="select2"
+                            class="form__select"
                             wire:model="perPage"
                             required
                         >

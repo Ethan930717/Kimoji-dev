@@ -56,7 +56,7 @@
                     </label>
                 </p>
                 <p class="form__group">
-                    <select id="forum_id" name="forum_id" class="select2">
+                    <select id="forum_id" name="forum_id" class="form__select">
                         @foreach ($categories as $category)
                             <optgroup label="{{ $category->name }}">
                                 @foreach ($category->forums as $forum)
