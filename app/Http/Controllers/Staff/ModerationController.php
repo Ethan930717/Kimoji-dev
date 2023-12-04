@@ -21,6 +21,7 @@ use App\Models\Scopes\ApprovedScope;
 use App\Models\Torrent;
 use App\Repositories\ChatRepository;
 use App\Services\Unit3dAnnounce;
+use App\Http\Controllers\TelegramController;
 
 /**
  * @see \Tests\Todo\Feature\Http\Controllers\Staff\ModerationControllerTest
@@ -83,6 +84,13 @@ class ModerationController extends Controller
                 );
         }
 
+        if ($request->integer('status') === Torrent::PENDING) {
+            // 创建 TelegramController 实例
+            $telegramController = new TelegramController(new InviteService());
+
+            // 调用方法发送通知
+            $telegramController->sendModerationNotification($torrent->name, $torrent->id);
+        }
         $staff = auth()->user();
 
         switch ($request->status) {
@@ -137,7 +145,7 @@ class ModerationController extends Controller
                 Unit3dAnnounce::addTorrent($torrent);
 
                 return to_route('staff.moderation.index')
-                    ->withSuccess('Torrent Rejected');
+                    ->withSuccess('种子已拒绝');
 
             case Torrent::POSTPONED:
                 $torrent->update([

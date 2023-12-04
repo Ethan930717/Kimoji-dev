@@ -137,6 +137,24 @@ class TelegramController extends Controller
             Log::error("Error sending torrent notification to Telegram", ['error' => $e->getMessage()]);
         }
     }
+    public function sendModerationNotification($torrentName, $torrentId)
+    {
+        try {
+            $chatId = "-4047467856"; // 您的 Telegram 群组ID
+            $message = "有新的待审核种子：{$torrentName} (ID: {$torrentId})";
+
+            // 发送消息
+            Telegram::sendMessage([
+                'chat_id' => $chatId,
+                'text' => $message
+            ]);
+
+            Log::info("Sent moderation notification to Telegram", ['chat_id' => $chatId, 'message' => $message]);
+        } catch (\Exception $e) {
+            Log::error("Error sending moderation notification to Telegram", ['error' => $e->getMessage()]);
+        }
+    }
+
 
 }
 
