@@ -48,10 +48,18 @@
                         <td>
                             @switch(true)
                                 @case($tip->torrent_id !== null)
-                                    <x-user_tag :user="$tip->receiver" :anon="$tip->torrent->anon" />
+                                    @if ($tip->torrent === null)
+                                        种子被删除
+                                    @else
+                                        <x-user_tag :user="$tip->receiver" :anon="$tip->torrent->anon" />
+                                    @endif
                                     @break
                                 @case($tip->post_id !== null)
-                                    <x-user_tag :user="$tip->receiver" :anon="false" />
+                                    @if ($tip->post === null)
+                                        帖子被删除
+                                    @else
+                                        <x-user_tag :user="$tip->receiver" :anon="false" />
+                                    @endif
                                     @break
                             @endswitch
                         </td>
