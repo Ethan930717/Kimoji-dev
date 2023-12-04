@@ -339,7 +339,7 @@
         && $history->active == 1
     )
         <li class="form__group form__group--short-horizontal">
-            <form action="{{ route('reseed', ['id' => $torrent->id]) }}" method="POST" style="display: inline;">
+            <form action="{{ route('reseed', ['id' => $torrent->id]) }}" method="POST" style="display: grid;">
                 @csrf
                 <button class="form__button form__button--outlined form__button--centered">
                     <i class='{{ config("other.font-awesome") }} fa-envelope'></i> {{ __('torrent.request-reseed') }}
