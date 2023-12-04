@@ -45,11 +45,11 @@
                         type="text"
                         value="{{ $user->rsskey }}"
                     >
-                    <label class="form__label form__label--floating" for="current_rsskey">Current Rss Key</label>
+                    <label class="form__label form__label--floating" for="current_rsskey">当前的Rss Key</label>
                 </p>
                 <p class="form__group">
                     <button class="form__button form__button--filled">
-                        Reset
+                        重置
                     </button>
                 </p>
             </form>

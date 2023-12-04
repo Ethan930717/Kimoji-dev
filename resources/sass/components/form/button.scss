@@ -1,5 +1,5 @@
 .form__button {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
     line-height: 1;
     padding: 8px 12px;
@@ -8,7 +8,9 @@
     text-align: center;
     transition: filter 300ms;
     cursor: pointer;
+    /*
     display: inline-flex;
+    */
     align-items: center;
     gap: 0.5ch;
     border-radius: 12px;

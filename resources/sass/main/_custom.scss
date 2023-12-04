@@ -88,7 +88,7 @@
 
     --input-text-border: 1px solid #ffffff00;
     --input-text-border-active: 2px solid #ffffff00;
-    --input-text-border-error: 1px solid ff000087;
+    --input-text-border-error: 1px solid #ff000000;
     --input-text-border-hover: 2px solid #ffffff00;
     --input-text-border-radius: 16px;
     --input-text-fg: #000000;
@@ -425,6 +425,7 @@ textarea {
     overflow: auto;
 }
 
+
 code,
 kbd,
 pre {
@@ -579,6 +580,16 @@ textarea {
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
+    color: var(--select-fg);
+    /* height: 40px; */
+    /* max-width: 100%; */
+    /* outline: none; */
+    padding: var(--select-padding);
+    text-shadow: 0 0 3px #f7f742;
+    background: none;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 a {
