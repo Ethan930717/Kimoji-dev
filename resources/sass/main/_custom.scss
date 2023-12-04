@@ -103,7 +103,7 @@
 
     --label-bg: #ffffff00;
     --label-fg: #ffffff;
-    --label-fg-active: #ffffff;
+    --label-fg-active: rgba(255, 255, 255, 0);
     --label-fg-error: #ba1b1b;
     --label-fg-hover: #ffffff;
 
@@ -580,20 +580,29 @@ textarea {
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
-    color: var(--select-fg);
-    /* height: 40px; */
-    /* max-width: 100%; */
-    /* outline: none; */
-    /*
+/*    color: var(--select-fg);
+    !* height: 40px; *!
+    !* max-width: 100%; *!
+    !* outline: none; *!
+    !*
     padding: var(--select-padding);
-    */
+    *!
     text-shadow: 0 0 3px #f7f742;
     background: none;
     border: none;
     width: 100%;
-    box-sizing: border-box;
+    box-sizing: border-box;*/
 }
 
+input#custom_css,
+input#standalone_css,{
+    background-color: transparent;
+    /* color: black; */
+    border: none;
+    padding: 8px 12px;
+    box-sizing: border-box;
+    width: 100%;
+}
 a {
     color: #ffffff;
     text-shadow: 0 0 1px #fff;
