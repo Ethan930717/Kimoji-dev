@@ -52,6 +52,7 @@
     border-radius: 9999px;
     align-self: flex-start;
     transition: filter 300ms;
+    white-space: nowrap;
 
     &:hover {
         filter: brightness(1.1);

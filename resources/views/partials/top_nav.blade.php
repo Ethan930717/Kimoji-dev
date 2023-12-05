@@ -277,7 +277,7 @@
                 <li>
                     <a href="/gallery">
                         <i class="{{ config('other.font-awesome') }} fa-camera"></i>
-                        KIMOJI画廊
+                        KIMOJI 画廊
                     </a>
                 </li>
                 <li>

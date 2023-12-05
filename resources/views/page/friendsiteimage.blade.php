@@ -45,7 +45,7 @@
 
 @section('main')
     <section class="panelV2">
-        <h2 class="panel__heading center-text"> KIMOJI画廊 </h2>
+        <h2 class="panel__heading center-text"> KIMOJI 画廊 </h2>
     </section>
     <div class="stats__panels">
         @foreach ($images as $image)
@@ -62,8 +62,8 @@
         .panel--grid-item {
             display: flex;
             flex-direction: column;
-            align-items: center; /* 保证子元素在交叉轴上居中 */
-            justify-content: center; /* 保证子元素在主轴上居中 */
+            align-items: center;
+            justify-content: center;
             text-align: center;
             position: relative;
         }
@@ -85,12 +85,12 @@
         }
         .image-title {
             text-align: center;
-            font-size: 16px; /* 根据需要调整字体大小 */
+            font-size: 16px;
             text-shadow: 0 0 2px #24eb4d;
-            z-index: 10; /* 这个值大于其他元素的z-index */
-            position: relative; /* 使z-index生效 */
-            margin-top: 3px; /* 根据需要调整 */
-            font-size: 16px; /* 根据需要调整 */
+            z-index: 10;
+            position: relative;
+            margin-top: 3px;
+            font-size: 16px;
         }
         .image-container{
             margin-bottom: 15px;
