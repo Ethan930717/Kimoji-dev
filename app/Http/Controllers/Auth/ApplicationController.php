@@ -20,6 +20,7 @@ use App\Models\ApplicationUrlProof;
 use App\Rules\EmailBlacklist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\TelegramController;
+use Illuminate\Support\Facades\Log;
 
 /**
  * @see \Tests\Todo\Feature\Http\Controllers\Staff\ApplicationControllerTest
