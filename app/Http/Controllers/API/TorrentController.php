@@ -370,7 +370,8 @@ class TorrentController extends BaseController
         try {
             if ($user->group->is_trusted) {
                 // 直接使用 TelegramController 调用新方法
-                app(TelegramController::class)->notifyNewTorrent($torrent);
+                $telegramController = app(TelegramController::class);
+                $telegramController->notifyNewTorrent($torrent);
             } else {
                 // 需要审核的种子：发送通知到工作人员群组
                 $message = "有新的待审核资源：" . $torrent->name;

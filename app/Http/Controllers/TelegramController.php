@@ -73,6 +73,8 @@ class TelegramController extends Controller
 
     public function notifyNewTorrent(Torrent $torrent)
     {
+        Log::info("notifyNewTorrent method called for torrent: {$torrent->id}");
+
         // 获取电影或电视剧的信息
         $meta = $torrent->category->movie_meta ? Movie::find($torrent->tmdb) : Tv::find($torrent->tmdb);
 
