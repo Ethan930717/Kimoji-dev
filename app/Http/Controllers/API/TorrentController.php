@@ -249,29 +249,7 @@ class TorrentController extends BaseController
         // Save The Torrent
         $torrent->save();
 
-        try {
-            if ($user->group->is_trusted) {
-                // 信任用户：发送通知到公共频道
-                $message = "新种子已上传：名称 - " . $torrent->name;
-                Telegram::sendMessage([
-                    'chat_id' => '-4047467856',
-                    'text' => $message
-                ]);
-            } else {
-                // 需要审核的种子：发送通知到工作人员群组
-                $message = "有新的待审核资源：" . $torrent->name;
-                Telegram::sendMessage([
-                    'chat_id' => '-4047467856',
-                    'text' => $message
-                ]);
-            }
-            Log::info('新种子通知已发送到 Telegram。');
-        } catch (\Exception $e) {
-            Log::error('发送新种子通知到 Telegram 失败。', [
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
-        }
+
         // Set torrent to featured
         if ($torrent->featured == 1) {
             $featuredTorrent = new FeaturedTorrent();
@@ -283,7 +261,25 @@ class TorrentController extends BaseController
         // Count and save the torrent number in this category
         $category->num_torrent = $category->torrents_count;
         $category->save();
-
+        try {
+            if ($user->group->is_trusted) {
+                // 信任用户：发送详细通知到公共频道
+                $this->sendNewTorrentNotificationToTelegram($torrent);
+            } else {
+                // 需要审核的种子：发送通知到工作人员群组
+                $message = "有新的待审核资源：" . $torrent->name;
+                Telegram::sendMessage([
+                    'chat_id' => '工作人员的 Telegram 群组 ID',
+                    'text' => $message
+                ]);
+            }
+            Log::info('新种子通知已发送到 Telegram。');
+        } catch (\Exception $e) {
+            Log::error('发送新种子通知到 Telegram 失败。', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+        }
         // Backup the files contained in the torrent
         $files = TorrentTools::getTorrentFiles($decodedTorrent);
 
@@ -397,7 +393,6 @@ class TorrentController extends BaseController
         // 获取电影或电视剧的信息
         Log::info('sendNewTorrentNotificationToTelegram started');
         $meta = $torrent->category->movie_meta ? Movie::find($torrent->tmdb) : Tv::find($torrent->tmdb);
-
         if ($meta) {
             $poster = $meta->poster;
             $overview = $meta->overview;
