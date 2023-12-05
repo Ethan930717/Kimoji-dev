@@ -261,25 +261,7 @@ class TorrentController extends BaseController
         // Count and save the torrent number in this category
         $category->num_torrent = $category->torrents_count;
         $category->save();
-        try {
-            if ($user->group->is_trusted) {
-                // 信任用户：发送详细通知到公共频道
-                $this->sendNewTorrentNotificationToTelegram($torrent);
-            } else {
-                // 需要审核的种子：发送通知到工作人员群组
-                $message = "有新的待审核资源：" . $torrent->name;
-                Telegram::sendMessage([
-                    'chat_id' => "-4047467856",
-                    'text' => $message
-                ]);
-            }
-            Log::info('新种子通知已发送到 Telegram。');
-        } catch (\Exception $e) {
-            Log::error('发送新种子通知到 Telegram 失败。', [
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
-        }
+
         // Backup the files contained in the torrent
         $files = TorrentTools::getTorrentFiles($decodedTorrent);
 
@@ -385,7 +367,25 @@ class TorrentController extends BaseController
 
             TorrentHelper::approveHelper($torrent->id);
         }
-
+        try {
+            if ($user->group->is_trusted) {
+                // 信任用户：发送详细通知到公共频道
+                $this->sendNewTorrentNotificationToTelegram($torrent);
+            } else {
+                // 需要审核的种子：发送通知到工作人员群组
+                $message = "有新的待审核资源：" . $torrent->name;
+                Telegram::sendMessage([
+                    'chat_id' => "-4047467856",
+                    'text' => $message
+                ]);
+            }
+            Log::info('新种子通知已发送到 Telegram。');
+        } catch (\Exception $e) {
+            Log::error('发送新种子通知到 Telegram 失败。', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+        }
         return $this->sendResponse(route('torrent.download.rsskey', ['id' => $torrent->id, 'rsskey' => auth('api')->user()->rsskey]), 'Torrent uploaded successfully.');
     }
 
