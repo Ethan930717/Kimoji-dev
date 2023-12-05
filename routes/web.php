@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Telegram\Bot\Laravel\Facades\Telegram;
 use Telegram\Bot\FileUpload\InputFile;
+use App\Http\Controllers\ImageGalleryController;
 
 #测试TG机器人
 Route::get('/test-telegram', function () {
@@ -27,7 +28,8 @@ Route::get('/test-telegram', function () {
         return 'Error: ' . $e->getMessage();
     }
 });
-
+#图片展示
+Route::get('/gallery', [ImageGalleryController::class, 'showGallery']);
 
 /**
  * NOTICE OF LICENSE.
@@ -157,6 +159,7 @@ Route::middleware('language')->group(function (): void {
             Route::get('/aboutus', [App\Http\Controllers\PageController::class, 'about'])->name('about');
             Route::get('/sponsor', [App\Http\Controllers\PageController::class, 'sponsor'])->name('sponsor');
             Route::get('/chatroom', [App\Http\Controllers\PageController::class, 'chatroom'])->name('chatroom');
+            Route::get('/friendsiteimage', [App\Http\Controllers\PageController::class, 'friendsiteimage'])->name('friendsiteimage');
             Route::get('/{page}', [App\Http\Controllers\PageController::class, 'show'])->where('id', '[0-9]+')->name('pages.show');
         });
 

@@ -31,6 +31,12 @@ class PageController extends Controller
         return view('page.sponsor');
     }
 
+    public function friendsiteimage(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+    {
+        return view('page.friendsiteimage');
+    }
+
+
     public function chatroom()
     {
         return view('page.chatroom');

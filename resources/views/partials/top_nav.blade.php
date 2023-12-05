@@ -275,6 +275,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="/gallery">
+                        <i class="{{ config('other.font-awesome') }} fa-camera"></i>
+                        KIMOJI画廊
+                    </a>
+                </li>
+                <li>
                     <a href="https://music.kimoji.club">
                         <i class="{{ config('other.font-awesome') }} fa-music"></i>
                         KIMOJI FM
