@@ -19,6 +19,7 @@ use App\Models\ApplicationImageProof;
 use App\Models\ApplicationUrlProof;
 use App\Rules\EmailBlacklist;
 use Illuminate\Http\Request;
+use App\Http\Controllers\TelegramController;
 
 /**
  * @see \Tests\Todo\Feature\Http\Controllers\Staff\ApplicationControllerTest
@@ -38,6 +39,7 @@ class ApplicationController extends Controller
      */
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
+        Log::info('开始处理新的入站申请');
         $application = resolve(Application::class);
         $application->type = $request->input('type');
         $application->email = $request->input('email');
@@ -108,18 +110,23 @@ class ApplicationController extends Controller
         }
 
         if ($v->fails()) {
+            Log::error('申请验证失败', ['errors' => $v->errors()]);
             return to_route('application.create')
                 ->withErrors($v->errors());
         }
 
         $application->save();
+        Log::info('新申请已保存', ['application_id' => $application->id]);
+
         // Map And Save IMG Proofs
         $applicationImageProofs = collect($request->input('images'))->map(fn ($value) => new ApplicationImageProof(['image' => $value]));
         $application->imageProofs()->saveMany($applicationImageProofs);
         // Map And Save URL Proofs
         $applicationUrlProofs = collect($request->input('links'))->map(fn ($value) => new ApplicationUrlProof(['url' => $value]));
         $application->urlProofs()->saveMany($applicationUrlProofs);
-
+        $telegramController = new TelegramController(); // 确保这种方式可以实例化你的 TelegramController
+        $telegramController->sendNewApplicationNotification("收到新的入站申请：\n申请类型：{$application->type}\n电子邮件：{$application->email}\n推荐人：{$application->referrer}");
+        Log::info('Telegram 通知已发送');
         return to_route('login')
             ->withSuccess(trans('auth.application-submitted'));
     }

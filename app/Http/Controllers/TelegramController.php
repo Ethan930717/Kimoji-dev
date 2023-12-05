@@ -155,6 +155,23 @@ class TelegramController extends Controller
         }
     }
 
+    public function sendNewApplicationNotification($applicationDetails)
+    {
+        try {
+            $chatId = "-4047467856"; // 替换为你的 Telegram 群组ID
+            $message = "收到了新的入站申请：\n\n" . $applicationDetails;
+
+            // 发送消息
+            Telegram::sendMessage([
+                'chat_id' => $chatId,
+                'text' => $message
+            ]);
+
+            Log::info("Sent new application notification to Telegram", ['chat_id' => $chatId, 'message' => $message]);
+        } catch (\Exception $e) {
+            Log::error("Error sending new application notification to Telegram", ['error' => $e->getMessage()]);
+        }
+    }
 
 }
 
