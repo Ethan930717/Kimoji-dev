@@ -33,6 +33,6 @@ class ActivateUser extends Mailable
     public function build(): static
     {
         return $this->markdown('emails.activate')
-            ->subject('Activation Required '.config('other.title'));
+            ->subject(config('other.title').'账号激活');
     }
 }

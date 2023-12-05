@@ -503,7 +503,7 @@
                 <br>
                 <br>
 
-                <a href="/pages/6" style="font-size:18px; text-align:center; cursor:pointer;" id="originalDiskRulesLink">
+                <a href="/gallery" style="font-size:18px; text-align:center; cursor:pointer;" id="originalDiskRulesLink">
                     <i class="fas fa-photo-film"></i> 友站插画
                 </a>
                 <br>

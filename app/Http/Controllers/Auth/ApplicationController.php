@@ -128,12 +128,13 @@ class ApplicationController extends Controller
 
         // 准备 Telegram 消息
         $images = $request->input('images', []);
-        $firstImage = $images[0] ?? null; // 获取第一个图片链接
         $applicationDetails = "申请类型：{$application->type}\n电子邮件：{$application->email}\n申请理由：{$application->referrer}";
+
         // 发送 Telegram 通知
         $telegramController = new TelegramController();
-        $telegramController->sendNewApplicationNotification($applicationDetails, $firstImage);
+        $telegramController->sendNewApplicationNotification($applicationDetails, $images);
         Log::info('Telegram 通知已发送');
+
         return to_route('login')
             ->withSuccess(trans('auth.application-submitted'));
     }

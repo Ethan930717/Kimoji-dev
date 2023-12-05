@@ -369,13 +369,13 @@ class TorrentController extends BaseController
         }
         try {
             if ($user->group->is_trusted) {
-                // 信任用户：发送详细通知到公共频道
-                $this->sendNewTorrentNotificationToTelegram($torrent);
+                // 直接使用 TelegramController 调用新方法
+                app(TelegramController::class)->notifyNewTorrent($torrent);
             } else {
                 // 需要审核的种子：发送通知到工作人员群组
                 $message = "有新的待审核资源：" . $torrent->name;
                 Telegram::sendMessage([
-                    'chat_id' => "-4047467856",
+                    'chat_id' => "-4047467856", // 确保这是正确的 Telegram 群组 ID
                     'text' => $message
                 ]);
             }
@@ -389,18 +389,6 @@ class TorrentController extends BaseController
         return $this->sendResponse(route('torrent.download.rsskey', ['id' => $torrent->id, 'rsskey' => auth('api')->user()->rsskey]), 'Torrent uploaded successfully.');
     }
 
-    protected function sendNewTorrentNotificationToTelegram(Torrent $torrent) {
-        // 获取电影或电视剧的信息
-        Log::info('sendNewTorrentNotificationToTelegram started');
-        $meta = $torrent->category->movie_meta ? Movie::find($torrent->tmdb) : Tv::find($torrent->tmdb);
-        if ($meta) {
-            $poster = $meta->poster;
-            $overview = $meta->overview;
-            $uploader = $torrent->user->username;
-            // 调用 TelegramController 方法发送消息
-            app(TelegramController::class)->sendTorrentNotification($poster, $overview, $uploader);
-        }
-    }
     /**
      * Display the specified resource.
      */

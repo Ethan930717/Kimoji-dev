@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Telegram\Bot\Laravel\Facades\Telegram;
 use Illuminate\Support\Facades\Log;
 use Telegram\Bot\FileUpload\InputFile;
-
+use App\Models\Torrent;
 class TelegramController extends Controller
 {
 
@@ -71,6 +71,21 @@ class TelegramController extends Controller
         ]);
     }
 
+    public function notifyNewTorrent(Torrent $torrent)
+    {
+        // 获取电影或电视剧的信息
+        $meta = $torrent->category->movie_meta ? Movie::find($torrent->tmdb) : Tv::find($torrent->tmdb);
+
+        if ($meta) {
+            $poster = $meta->poster;
+            $overview = $meta->overview;
+            $uploader = $torrent->user->username;
+
+            // 使用 sendTorrentNotification 方法发送通知
+            $this->sendTorrentNotification($poster, $overview, $uploader);
+        }
+    }
+
     public function sendTorrentNotification($poster, $overview, $uploader)
     {
         try {
@@ -116,24 +131,26 @@ class TelegramController extends Controller
         }
     }
 
-    public function sendNewApplicationNotification($applicationDetails, $image = null)
+    public function sendNewApplicationNotification($applicationDetails, $images = [])
     {
         try {
             $chatId = "-4047467856"; // 替换为你的 Telegram 群组ID
             $message = "收到了新的入站申请：\n\n" . $applicationDetails;
 
-            // 发送消息
+            // 发送文本消息
             Telegram::sendMessage([
                 'chat_id' => $chatId,
                 'text' => $message
             ]);
 
-            // 如果提供了图片链接，发送图片
-            if ($image) {
-                Telegram::sendPhoto([
-                    'chat_id' => $chatId,
-                    'photo' => $image
-                ]);
+            // 如果提供了图片链接数组，发送图片
+            if (!empty($images)) {
+                foreach ($images as $image) {
+                    Telegram::sendPhoto([
+                        'chat_id' => $chatId,
+                        'photo' => InputFile::create($image)
+                    ]);
+                }
             }
 
             Log::info("Sent new application notification to Telegram", ['chat_id' => $chatId, 'message' => $message]);
@@ -141,6 +158,5 @@ class TelegramController extends Controller
             Log::error("Error sending new application notification to Telegram", ['error' => $e->getMessage()]);
         }
     }
-
 }
 

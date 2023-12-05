@@ -19,7 +19,7 @@ return [
     */
     'application'           => '填写申请表',
     'activation-error'      => '帐户已被封禁 或 确认码无效 或 账户已经确认',
-    'activation-success'    => '确认成功，现在可登录！中国大陆用户需在Chrome浏览器中安装GooReplacer插件',
+    'activation-success'    => '账号激活成功，欢迎您来到KIMOJI',
     'add-image'             => '增加一项',
     'add-profile'           => '增加一项',
     'allow-invite'          => '已经打烊了哦～请下次再来吧',

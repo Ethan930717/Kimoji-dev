@@ -1,6 +1,8 @@
 @component('mail::message')
 # {{ __('email.invite-header') }} {{ config('other.title') }} !
+{{--
 **{{ __('email.invite-message') }}:** {{ __('email.invite-invited') }}
+--}}
 @component('mail::button', ['url' => route('register', $invite->code), 'color' => 'blue'])
 {{ __('email.invite-signup') }}
 @endcomponent

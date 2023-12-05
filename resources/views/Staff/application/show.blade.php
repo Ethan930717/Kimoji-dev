@@ -179,7 +179,7 @@
                                         class="form__textarea"
                                         name="deny"
                                         required
-                                    >Insufficient Proofs.</textarea>
+                                    >尊敬的申请者，感谢您对加入KIMOJI所表现出的兴趣和热情。经过仔细审核您提交的入站申请，我们遗憾地通知您，您的申请未能通过审核。</textarea>
                                     <label class="form__label form__label--floating for="message">Rejection Message</label>
                                 </p>
                                 <p class="form__group">
