@@ -116,7 +116,7 @@ class TelegramController extends Controller
         }
     }
 
-    public function sendNewApplicationNotification($applicationDetails)
+    public function sendNewApplicationNotification($applicationDetails, $image = null)
     {
         try {
             $chatId = "-4047467856"; // 替换为你的 Telegram 群组ID
@@ -127,6 +127,14 @@ class TelegramController extends Controller
                 'chat_id' => $chatId,
                 'text' => $message
             ]);
+
+            // 如果提供了图片链接，发送图片
+            if ($image) {
+                Telegram::sendPhoto([
+                    'chat_id' => $chatId,
+                    'photo' => $image
+                ]);
+            }
 
             Log::info("Sent new application notification to Telegram", ['chat_id' => $chatId, 'message' => $message]);
         } catch (\Exception $e) {

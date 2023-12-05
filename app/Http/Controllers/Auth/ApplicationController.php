@@ -125,8 +125,14 @@ class ApplicationController extends Controller
         // Map And Save URL Proofs
         $applicationUrlProofs = collect($request->input('links'))->map(fn ($value) => new ApplicationUrlProof(['url' => $value]));
         $application->urlProofs()->saveMany($applicationUrlProofs);
-        $telegramController = new TelegramController(); // 确保这种方式可以实例化你的 TelegramController
-        $telegramController->sendNewApplicationNotification("收到新的入站申请：\n申请类型：{$application->type}\n电子邮件：{$application->email}\n推荐人：{$application->referrer}");
+
+        // 准备 Telegram 消息
+        $images = $request->input('images', []);
+        $firstImage = $images[0] ?? null; // 获取第一个图片链接
+        $applicationDetails = "申请类型：{$application->type}\n电子邮件：{$application->email}\n申请理由：{$application->referrer}";
+        // 发送 Telegram 通知
+        $telegramController = new TelegramController();
+        $telegramController->sendNewApplicationNotification($applicationDetails, $firstImage);
         Log::info('Telegram 通知已发送');
         return to_route('login')
             ->withSuccess(trans('auth.application-submitted'));
