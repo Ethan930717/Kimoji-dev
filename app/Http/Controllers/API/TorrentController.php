@@ -34,6 +34,8 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Exception;
+use Illuminate\Support\Facades\Log;
+
 
 /**
  * @see \Tests\Todo\Feature\Http\Controllers\TorrentControllerTest
@@ -96,20 +98,6 @@ class TorrentController extends BaseController
      */
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {
-        try {
-            Telegram::sendMessage([
-                'chat_id' => '-4047467856', // 您的 Telegram 群组 ID
-                'text' => '这是一个来自 Laravel 的测试消息。'
-            ]);
-
-            Log::info('Test message sent to Telegram group.');
-        } catch (\Exception $e) {
-            Log::error('Failed to send test message to Telegram group.', [
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
-            return response()->json(['error' => $e->getMessage()], 500); // 添加这一行
-        }
         $user = $request->user();
 
         abort_unless($user->can_upload, 403);
@@ -261,6 +249,29 @@ class TorrentController extends BaseController
         // Save The Torrent
         $torrent->save();
 
+        try {
+            if ($user->group->is_trusted) {
+                // 信任用户：发送通知到公共频道
+                $message = "新种子已上传：名称 - " . $torrent->name;
+                Telegram::sendMessage([
+                    'chat_id' => '-4047467856',
+                    'text' => $message
+                ]);
+            } else {
+                // 需要审核的种子：发送通知到工作人员群组
+                $message = "有新的待审核资源：" . $torrent->name;
+                Telegram::sendMessage([
+                    'chat_id' => '-4047467856',
+                    'text' => $message
+                ]);
+            }
+            Log::info('新种子通知已发送到 Telegram。');
+        } catch (\Exception $e) {
+            Log::error('发送新种子通知到 Telegram 失败。', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+        }
         // Set torrent to featured
         if ($torrent->featured == 1) {
             $featuredTorrent = new FeaturedTorrent();
@@ -321,12 +332,10 @@ class TorrentController extends BaseController
 
             // Announce To Shoutbox
             if ($anon == 0) {
-                $this->sendNewTorrentNotificationToTelegram($torrent);
                 $this->chatRepository->systemMessage(
                     sprintf('用户 [url=%s/users/', $appurl).$username.']'.$username.sprintf('[/url] 上传了 '.$torrent->category->name.'. [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.'[/url], 快看看吧! :slight_smile:'
                 );
             } else {
-                $this->sendNewTorrentNotificationToTelegram($torrent);
                 $this->chatRepository->systemMessage(
                     sprintf('匿名用户上传了 '.$torrent->category->name.'. [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.'[/url], 快瞅瞅! :slight_smile:'
                 );
@@ -393,7 +402,6 @@ class TorrentController extends BaseController
             $poster = $meta->poster;
             $overview = $meta->overview;
             $uploader = $torrent->user->username;
-
             // 调用 TelegramController 方法发送消息
             app(TelegramController::class)->sendTorrentNotification($poster, $overview, $uploader);
         }

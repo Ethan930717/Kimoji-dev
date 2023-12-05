@@ -44,10 +44,10 @@
                             @csrf
                             <p class="form__group">
                                 <select class="form__select" name="type" required>
-                                    <option class="form__option" value="New To The Game" selected>
+                                    <option class="form__option" value="小萌新" selected>
                                             {{ __('auth.newbie') }}
                                     </option>
-                                    <option class="form__option" value="Experienced With Private Trackers">
+                                    <option class="form__option" value="老司机">
                                         {{ __('auth.veteran') }}
                                     </option>
                                 </select>
