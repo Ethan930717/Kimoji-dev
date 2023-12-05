@@ -269,7 +269,7 @@ class TorrentController extends BaseController
                 // 需要审核的种子：发送通知到工作人员群组
                 $message = "有新的待审核资源：" . $torrent->name;
                 Telegram::sendMessage([
-                    'chat_id' => '工作人员的 Telegram 群组 ID',
+                    'chat_id' => "-4047467856",
                     'text' => $message
                 ]);
             }
