@@ -370,15 +370,12 @@ class TorrentController extends BaseController
         try {
             if ($user->group->is_trusted) {
                 // 直接使用 TelegramController 调用新方法
-                $telegramController = app(TelegramController::class);
+                $telegramController = new TelegramController();
                 $telegramController->notifyNewTorrent($torrent);
             } else {
                 // 需要审核的种子：发送通知到工作人员群组
-                $message = "有新的待审核资源：" . $torrent->name;
-                Telegram::sendMessage([
-                    'chat_id' => "-4047467856", // 确保这是正确的 Telegram 群组 ID
-                    'text' => $message
-                ]);
+                $telegramController = new TelegramController();
+                $telegramController->notifyNewTorrent($torrent);
             }
             Log::info('新种子通知已发送到 Telegram。');
         } catch (\Exception $e) {
