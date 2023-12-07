@@ -113,7 +113,7 @@
                         class="form__button form__button--filled form__button--centered"
                     >
                         <i class='{{ config('other.font-awesome') }} fa-eye'></i>
-                        Playlist Torrents List
+                        播单资源列表
                     </a>
                 </p>
             </div>

@@ -1,0 +1,6 @@
+for file in *.png; do
+    webpfile="${file%.png}.webp"
+    if [ ! -f "$webpfile" ]; then
+        mogrify -format webp "$file"
+    fi
+done

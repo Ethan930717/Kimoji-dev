@@ -45,17 +45,24 @@
 
 @section('main')
     <section class="panelV2">
-        <h2 class="panel__heading center-text"> KIMOJI 画廊 </h2>
+        <h2 class="panel__heading center-text">KIMOJI 画廊</h2>
     </section>
     <div class="stats__panels">
-        @foreach ($images as $image)
+        @foreach ($images as $index => $image)
             <div class="image-container">
                 <section class="panelV2 panel--grid-item">
-                    <img class="thumbnail" src="{{ asset($image->url) }}" alt="缩略图" onclick="openModal(this)">
+                    <img class="thumbnail" src="{{ asset($image->url) }}" alt="缩略图" onclick="openModal(this, {{ $index }})">
                 </section>
                 <div class="image-title">{{ pathinfo($image->name, PATHINFO_FILENAME) }}</div>
             </div>
         @endforeach
+    </div>
+
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
 
     <style>
@@ -96,20 +103,5 @@
             margin-bottom: 15px;
         }
 
-
     </style>
-
-    <script>
-        function openModal(imgElement) {
-            var modal = document.getElementById("myModal");
-            var modalImg = document.getElementById("img01");
-            modal.style.display = "block";
-            modalImg.src = imgElement.src; // 使用原图
-        }
-
-        function closeModal() {
-            var modal = document.getElementById("myModal");
-            modal.style.display = "none";
-        }
-    </script>
 @endsection
