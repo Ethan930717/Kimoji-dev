@@ -132,7 +132,7 @@ if (! \function_exists('language_flag')) {
     function language_flag($language)
     {
         $flag = match ($language) {
-            'English', 'English (US)' => 'us',
+            'English', 'English (US)', '英语' => 'us',
             'English (GB)' => 'gb',
             'English (CA)' => 'can',
             'English (AU)' => 'au',
@@ -149,7 +149,7 @@ if (! \function_exists('language_flag')) {
             'Burmese' => 'mm',
             'Sichuan' => 'sichuan',
             '未知'     => 'unknown',
-            'Chinese', 'Mandarin', 'Mandarin (Hans)', 'Mandarin (Hant)', 'Cantonese', 'Cantonese (Hant)', 'Chinese (Simplied)', 'Chinese (Traditional)', 'Chinese (Simplified)', 'Chinese-yue-Hant', 'Chinese-cmn-Hans', 'Chinese-cmn-Hant', '普通话' => 'cn',
+            'Chinese', '国语', 'Mandarin', 'Mandarin (Hans)', 'Mandarin (Hant)', 'Cantonese', 'Cantonese (Hant)', 'Chinese (Simplied)', 'Chinese (Traditional)', 'Chinese (Simplified)', 'Chinese-yue-Hant', 'Chinese-cmn-Hans', 'Chinese-cmn-Hant', '普通话' => 'cn',
             'Chinese (HK)', 'Chinese-Hant-HK', 'Mandarin (HK)', 'Cantonese (HK)', 'yue', '粤语' => 'hk','Chinese-cmn-HK' => 'hk',
             'Chinese (Taiwan)' => 'tw',
             'Croatian', 'Croatian (HR)' => 'hr',
