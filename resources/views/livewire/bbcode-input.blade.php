@@ -171,7 +171,7 @@
             }
 
         },
-        showButtons: false,
+        showButtons: true,
         bbcodePreviewHeight: null,
         isPreviewEnabled: @entangle('isPreviewEnabled'),
         isOverInput: false,
@@ -357,8 +357,8 @@
                 </abbr>
             </button>
         </li>
-        <li><button type="button" class="form__button form__button--text" x-on:click="insertThanks('[center][color=#bbff88][size=24][b][spoiler=转载致谢]', '[/spoiler][/b][/size][/color][/center]')">转载致谢</button></li>
-        <li><button type="button" class="form__button form__button--text" x-on:click="insertWithCheck('[center][color=#bbff88][size=24][b][spoiler=截图赏析]', '[/spoiler][/b][/size][/color][/center]')">截图赏析</button></li>
+        <li><button type="button" class="form__button form__button--text" x-on:click="insertThanks('[center][color=#bbff88][size=24][b][spoiler=转载致谢]', '[/spoiler][/b][/size][/color][/center]\n')">转载致谢</button></li>
+        <li><button type="button" class="form__button form__button--text" x-on:click="insertWithCheck('[center][color=#bbff88][size=24][b][spoiler=截图赏析]', '[/spoiler][/b][/size][/color][/center]\n')">截图赏析</button></li>
         <li><button type="button" class="form__button form__button--text" x-on:click="convertImages()">转换大图</button></li>
     </menu>
     <div class="bbcode-input__tab-pane">
@@ -380,7 +380,7 @@
                 x-on:mousedown="previousActiveElement = document.activeElement;"
                 x-on:mouseover="isOverInput = true"
                 x-on:mouseleave="isOverInput = false"
-                wire:model.defer="contentBbcode"
+                wire:model="contentBbcode"
                 x-bind:style="{ height: bbcodePreviewHeight !== null && bbcodePreviewHeight, transition: previousActiveElement === $el ? 'none' : 'border-color 600ms cubic-bezier(0.25, 0.8, 0.25, 1), height 600ms cubic-bezier(0.25, 0.8, 0.25, 1)' }"
                 @if ($isRequired)
                     required
