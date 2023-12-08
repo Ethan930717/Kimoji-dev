@@ -66,5 +66,5 @@ return [
     |
     */
 
-    'magnet' => 1,
+    'magnet' => 0,
 ];

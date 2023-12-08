@@ -17,7 +17,7 @@
         }
 
         let convertedText = '';
-        const imageRegex = /(\[img\])(http[^\[\]]*?(jpg|png|webp))/ig;
+        const imageRegex = /(\[img(?:=\d+)?\])(http[^\[\]]*?(jpg|jpeg|png|gif|webp))/ig;
 
         if (!imageRegex.test(selectedText)) {
             Swal.fire({
@@ -171,7 +171,7 @@
             }
 
         },
-        showButtons: true,
+        showButtons: false,
         bbcodePreviewHeight: null,
         isPreviewEnabled: @entangle('isPreviewEnabled'),
         isOverInput: false,
