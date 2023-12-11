@@ -50,7 +50,7 @@
                 </p>
                 <p class="form__group" x-show="cats[cat].type === 'no'">
                     <label class="form__label" for="torrent-banner">
-                        专辑封面（必选
+                        专辑封面（必选)
                     </label>
                     <input
                         id="torrent-banner"
