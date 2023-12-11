@@ -1,0 +1,65 @@
+#myModal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, .6);
+    width: 100vw;
+    height: 100vh;
+    position: fixed; /* Ensure modal is fixed */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* To be on top of other elements */
+}
+
+#myModal div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#myModal .modal-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    margin-bottom: 30px; /* Space for navigation buttons */
+}
+
+#myModal .close {
+    color: #fff;
+    cursor: pointer;
+    font-size: 35px; /* Increased font size */
+    position: absolute;
+    top: 15px;
+    right: 20px; /* Position to the top right */
+}
+
+#myModal .prev,
+#myModal .next {
+    color: #fff;
+    font-size: 30px;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    margin: 0 10px; /* Space between buttons */
+}
+
+#myModal .prev:hover,
+#myModal .next:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Additional styles for better usability */
+#myModal .prev,
+#myModal .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#myModal .prev {
+    left: 10px;
+}
+
+#myModal .next {
+    right: 10px;
+}

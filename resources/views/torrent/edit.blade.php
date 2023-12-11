@@ -91,20 +91,35 @@
                 </p>
                 <p class="form__group">
                     <select
-                        id="type_id"
-                        class="form__select"
-                        name="type_id"
-                        x-model="type"
-                        x-ref="typeId"
-                        @change="types[type].name = types[$event.target.value].name"
+                            name="type_id"
+                            id="autotype"
+                            class="form__select"
+                            required
+                            x-show="cats[cat].type === 'no'"
                     >
-                        <option value="{{ old('type_id') ?? $torrent->type->id }}" selected>
-                            {{ $torrent->type->name }} ({{ __('torrent.current') }})
-                        </option>
-                        @foreach ($types as $id => $type)
-                            <option value="{{ $id }}" @selected(old('type_id') === $id)>
-                                {{ $type['name'] }}
-                            </option>
+                        <option hidden disabled selected value=""></option>
+                        @foreach ($types as $index => $type)
+                            @if ($index >= 8 && $index < 29)
+                                <option value="{{ $type->id }}" @selected(old('type_id')==$type->id) x-show="cats[cat].type === 'no'">
+                                    {{ $type->name }}
+                                </option>
+                            @endif
+                        @endforeach
+                    </select>
+                    <select
+                            name="type_id"
+                            id="autotype"
+                            class="form__select"
+                            required
+                            x-show="cats[cat].type !== 'no'"
+                    >
+                        <option hidden disabled selected value=""></option>
+                        @foreach ($types as $index => $type)
+                            @if ($index < 8)
+                                <option value="{{ $type->id }}" @selected(old('type_id')==$type->id) x-show="cats[cat].type !== 'no'">
+                                    {{ $type->name }}
+                                </option>
+                            @endif
                         @endforeach
                     </select>
                     <label class="form__label form__label--floating" for="type_id">

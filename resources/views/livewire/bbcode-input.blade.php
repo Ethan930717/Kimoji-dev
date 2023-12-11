@@ -2,6 +2,38 @@
 <div
     class="bbcode-input"
     x-data="{
+
+
+                            confirmInsertion() {
+            const input = this.$refs.bbcode;
+            const selectedText = input.value.substring(input.selectionStart, input.selectionEnd);
+
+            if (!selectedText) {
+                Swal.fire({
+                    title: '错误',
+                    html: '请选中需要转换的内容后再使用本功能',
+                    icon: 'error',
+                    confirmButtonText: '好的'
+                });
+                return;
+            }else{
+
+            Swal.fire({
+                title: '确认添加制作说明',
+                html: '当前功能仅限于DIY原盘的说明内容、音乐类资源的专辑歌曲列表、频谱信息以及其他特殊资源信息，不包括PTGEN、Mediainfo等信息。<br><br>是否确认添加制作说明',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '是',
+                cancelButtonText: '否'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.insert('[center][color=#bbff88][size=24][b][spoiler=制作说明]', '[/spoiler][/b][/size][/color][/center]\n');
+                }
+            });
+        }
+        },
                     convertImages() {
         const input = this.$refs.bbcode;
         let selectedText = input.value.substring(input.selectionStart, input.selectionEnd);
@@ -357,7 +389,9 @@
                 </abbr>
             </button>
         </li>
+
         <li><button type="button" class="form__button form__button--text" x-on:click="insertThanks('[center][color=#bbff88][size=24][b][spoiler=转载致谢]', '[/spoiler][/b][/size][/color][/center]\n')">转载致谢</button></li>
+        <li><button type="button" class="form__button form__button--text" x-on:click="confirmInsertion">制作说明</button></li>
         <li><button type="button" class="form__button form__button--text" x-on:click="insertWithCheck('[center][color=#bbff88][size=24][b][spoiler=截图赏析]', '[/spoiler][/b][/size][/color][/center]\n')">截图赏析</button></li>
         <li><button type="button" class="form__button form__button--text" x-on:click="convertImages()">转换大图</button></li>
     </menu>
