@@ -92,7 +92,7 @@
                 <p class="form__group">
                     <select
                             name="type_id"
-                            id="autotype"
+                            id="type_id"
                             class="form__select"
                             required
                             x-show="cats[cat].type === 'no'"
@@ -100,7 +100,7 @@
                         <option hidden disabled selected value=""></option>
                         @foreach ($types as $index => $type)
                             @if ($index >= 7 && $index < 29)
-                                <option value="{{ $type->id }}" @selected(old('type_id')==$type->id) x-show="cats[cat].type === 'no'">
+                                <option value="{{ $type->id }}" @selected(old('type_id') == $type->id || $type->id == $torrent->type_id) x-show="cats[cat].type === 'no'">
                                     {{ $type->name }}
                                 </option>
                             @endif
@@ -108,7 +108,7 @@
                     </select>
                     <select
                             name="type_id"
-                            id="autotype"
+                            id="type_id"
                             class="form__select"
                             required
                             x-show="cats[cat].type !== 'no'"
@@ -116,7 +116,7 @@
                         <option hidden disabled selected value=""></option>
                         @foreach ($types as $index => $type)
                             @if ($index < 7)
-                                <option value="{{ $type->id }}" @selected(old('type_id')==$type->id) x-show="cats[cat].type !== 'no'">
+                                <option value="{{ $type->id }}" @selected(old('type_id') == $type->id || $type->id == $torrent->type_id) x-show="cats[cat].type !== 'no'">
                                     {{ $type->name }}
                                 </option>
                             @endif
