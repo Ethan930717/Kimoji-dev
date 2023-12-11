@@ -27,7 +27,7 @@
                 cancelButtonText: '否'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    this.insert('[center][color=#bbff88][size=24][b][spoiler=制作说明]', '[/spoiler][/b][/size][/color][/center]\n');
+                    this.insert('[center][color=#bbff88][size=24][b][spoiler=制作说明][size=16][color=white]', '[/color][/size][/spoiler][/b][/size][/color][/center]\n');
                 }
             });
         }
