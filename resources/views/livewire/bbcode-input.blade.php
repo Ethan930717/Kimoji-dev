@@ -3,7 +3,6 @@
     class="bbcode-input"
     x-data="{
 
-
                             confirmInsertion() {
             const input = this.$refs.bbcode;
             const selectedText = input.value.substring(input.selectionStart, input.selectionEnd);
@@ -34,6 +33,8 @@
             });
         }
         },
+
+
                     convertImages() {
         const input = this.$refs.bbcode;
         let selectedText = input.value.substring(input.selectionStart, input.selectionEnd);
@@ -389,7 +390,6 @@
                 </abbr>
             </button>
         </li>
-
         <li><button type="button" class="form__button form__button--text" x-on:click="insertThanks('[center][color=#bbff88][size=24][b][spoiler=转载致谢]', '[/spoiler][/b][/size][/color][/center]\n')">转载致谢</button></li>
         <li><button type="button" class="form__button form__button--text" x-on:click="confirmInsertion">制作说明</button></li>
         <li><button type="button" class="form__button form__button--text" x-on:click="insertWithCheck('[center][color=#bbff88][size=24][b][spoiler=截图赏析]', '[/spoiler][/b][/size][/color][/center]\n')">截图赏析</button></li>
