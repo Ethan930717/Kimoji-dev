@@ -58,7 +58,7 @@
         @endforeach
     </div>
 
-    <div id="myModal" class="modal">
+    <div id="myModal" class="modal" style="display: none;">
         <span class="close" onclick="closeModal()">&times;</span>
         <img class="modal-content" id="img01">
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>

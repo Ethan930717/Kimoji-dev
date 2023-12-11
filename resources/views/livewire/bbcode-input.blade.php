@@ -1,4 +1,3 @@
-
 <div
     class="bbcode-input"
     x-data="{
