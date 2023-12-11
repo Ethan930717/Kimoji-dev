@@ -32,12 +32,7 @@ class TelegramController extends Controller
             if (isset($update['message']['text'])) {
                 $text = $update['message']['text'];
                 Log::info("Received message: {$text}");
-
-                //机器人帮助指南
-                if (strpos($text, '阿K') === 0) {
-                    $this->handleHelpCommand($chatId);
-                    return response()->json(['status' => 'success']);
-                }
+                
                 // 检查更新中是否有新成员加入
                 if (isset($update['message']['new_chat_members'])) {
                     $newMembers = $update['message']['new_chat_members'];
@@ -59,17 +54,6 @@ class TelegramController extends Controller
         return response()->json(['status' => 'success']);
     }
 
-    public function handleHelpCommand($chatId)
-    {
-        $helpMessage = "阿K当前支持的指令:\n";
-        $helpMessage .= "阿K - 显示帮助信息\n";
-        #$helpMessage .= "申请内测资格 [邮箱] - 申请加入内测";
-
-        Telegram::sendMessage([
-            'chat_id' => $chatId,
-            'text' => $helpMessage
-        ]);
-    }
 
     public function notifyNewTorrent(Torrent $torrent)
     {
@@ -118,7 +102,7 @@ class TelegramController extends Controller
     public function sendModerationNotification($torrentName, $torrentId)
     {
         try {
-            $chatId = "-4047467856"; // 您的 Telegram 群组ID
+            $chatId = "-4083300344"; // 您的 Telegram 群组ID
             $message = "有新的待审核种子：{$torrentName} (ID: {$torrentId})";
 
             // 发送消息
@@ -136,7 +120,7 @@ class TelegramController extends Controller
     public function sendNewApplicationNotification($applicationDetails, $images = [])
     {
         try {
-            $chatId = "-4047467856"; // 替换为你的 Telegram 群组ID
+            $chatId = "-4083300344"; // 替换为你的 Telegram 群组ID
             $message = "收到了新的入站申请：\n\n" . $applicationDetails;
 
             // 发送文本消息
