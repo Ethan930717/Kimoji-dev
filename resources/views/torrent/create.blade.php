@@ -149,7 +149,7 @@
                         >
                             <option hidden disabled selected value=""></option>
                             @foreach ($types as $index => $type)
-                                @if ($index >= 8 && $index < 29)
+                                @if ($index >= 7 && $index < 29)
                                     <option value="{{ $type->id }}" @selected(old('type_id')==$type->id) x-show="cats[cat].type === 'no'">
                                         {{ $type->name }}
                                     </option>
@@ -165,7 +165,7 @@
                         >
                             <option hidden disabled selected value=""></option>
                             @foreach ($types as $index => $type)
-                                @if ($index < 8)
+                                @if ($index < 7)
                                     <option value="{{ $type->id }}" @selected(old('type_id')==$type->id) x-show="cats[cat].type !== 'no'">
                                         {{ $type->name }}
                                     </option>
@@ -535,7 +535,7 @@
                 <br>
 
                 <a href="/pages/7" style="font-size:18px; text-align:center; cursor:pointer;" id="repostRulesLink">
-                    <i class="fas fa-copy"></i> 音乐媒介说明
+                    <i class="fas fa-music"></i> 音乐媒介说明
                 </a>
                 <br>
                 <br>

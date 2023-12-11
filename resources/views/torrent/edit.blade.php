@@ -99,7 +99,7 @@
                     >
                         <option hidden disabled selected value=""></option>
                         @foreach ($types as $index => $type)
-                            @if ($index >= 8 && $index < 29)
+                            @if ($index >= 7 && $index < 29)
                                 <option value="{{ $type->id }}" @selected(old('type_id')==$type->id) x-show="cats[cat].type === 'no'">
                                     {{ $type->name }}
                                 </option>
@@ -115,7 +115,7 @@
                     >
                         <option hidden disabled selected value=""></option>
                         @foreach ($types as $index => $type)
-                            @if ($index < 8)
+                            @if ($index < 7)
                                 <option value="{{ $type->id }}" @selected(old('type_id')==$type->id) x-show="cats[cat].type !== 'no'">
                                     {{ $type->name }}
                                 </option>
