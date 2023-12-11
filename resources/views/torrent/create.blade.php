@@ -140,16 +140,35 @@
                     </p>
                     <p class="form__group">
                         <select
-                            name="type_id"
-                            id="autotype"
-                            class="form__select"
-                            required
+                                name="type_id"
+                                id="autotype"
+                                class="form__select"
+                                required
+                                x-show="cats[cat].type === 'no'"
                         >
                             <option hidden disabled selected value=""></option>
-                            @foreach ($types as $type)
-                                <option value="{{ $type->id }}" @selected(old('type_id')==$type->id)>
-                                    {{ $type->name }}
-                                </option>
+                            @foreach ($types as $index => $type)
+                                @if ($index >= 8 && $index < 29)
+                                    <option value="{{ $type->id }}" @selected(old('type_id')==$type->id) x-show="cats[cat].type === 'no'">
+                                        {{ $type->name }}
+                                    </option>
+                                @endif
+                            @endforeach
+                        </select>
+                        <select
+                                name="type_id"
+                                id="autotype"
+                                class="form__select"
+                                required
+                                x-show="cats[cat].type !== 'no'"
+                        >
+                            <option hidden disabled selected value=""></option>
+                            @foreach ($types as $index => $type)
+                                @if ($index < 8)
+                                    <option value="{{ $type->id }}" @selected(old('type_id')==$type->id) x-show="cats[cat].type !== 'no'">
+                                        {{ $type->name }}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                         <label class="form__label form__label--floating" for="autotype">
@@ -490,6 +509,41 @@
 
                 <br>
                 <p class="text-success">{!! __('torrent.announce-url-desc-url', ['url' => config('other.upload-guide_url')]) !!}</p>
+<<<<<<< Updated upstream
+=======
+                <a href="/pages/3" style="font-size:18px; text-align:center; cursor:pointer;" id="generalRulesLink">
+                    <i class="fas fa-gavel"></i> 发布总则
+                </a>
+                <br>
+                <br>
+
+                <a href="/pages/5" style="font-size:18px; text-align:center; cursor:pointer;" id="repostRulesLink">
+                    <i class="fas fa-copy"></i> 转载规则
+                </a>
+                <br>
+                <br>
+
+                <a href="/gallery" style="font-size:18px; text-align:center; cursor:pointer;" id="originalDiskRulesLink">
+                    <i class="fas fa-photo-film"></i> 友站插画
+                </a>
+                <br>
+                <br>
+
+                <a href="/pages/4" style="font-size:18px; text-align:center; cursor:pointer;" id="originalDiskRulesLink">
+                    <i class="fas fa-compact-disc"></i> 原盘发布规则
+                </a>
+                <br>
+                <br>
+
+                <a href="/pages/7" style="font-size:18px; text-align:center; cursor:pointer;" id="repostRulesLink">
+                    <i class="fas fa-copy"></i> 音乐媒介说明
+                </a>
+                <br>
+                <br>
+                <a href="{{ route('announce', ['passkey' => $user->passkey]) }}" style="font-size:18px; text-align:center; cursor:pointer;" id="trackerLink" onclick="copyToClipboard(event)">
+                    <i class="fas fa-link"></i> 复制Tracker地址
+                </a>
+>>>>>>> Stashed changes
             </div>
         </section>
     @endsection
