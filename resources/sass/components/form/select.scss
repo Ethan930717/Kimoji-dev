@@ -1467,6 +1467,8 @@
     padding: var(--select-padding);
     width: 100%;
     appearance: none;
+    position: relative;
+    z-index: 1050;
     text-shadow: 0 0 5px #ffffe3, 0 0 10px #ffffd7, 0 0 15px #ffffd5, 0 0 20px #ffffd4;
 
     @media screen and (prefers-reduced-motion: no-preference) {
