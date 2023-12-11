@@ -50,7 +50,7 @@
                 </p>
                 <p class="form__group" x-show="cats[cat].type === 'no'">
                     <label class="form__label" for="torrent-banner">
-                        专辑封面（必选)
+                        专辑封面（必选
                     </label>
                     <input
                         id="torrent-banner"
@@ -91,35 +91,20 @@
                 </p>
                 <p class="form__group">
                     <select
-                            name="type_id"
-                            id="type_id"
-                            class="form__select"
-                            required
-                            x-show="cats[cat].type === 'no'"
+                        id="type_id"
+                        class="form__select"
+                        name="type_id"
+                        x-model="type"
+                        x-ref="typeId"
+                        @change="types[type].name = types[$event.target.value].name"
                     >
-                        <option hidden disabled selected value=""></option>
-                        @foreach ($types as $index => $type)
-                            @if ($index >= 7 && $index < 29)
-                                <option value="{{ $type->id }}" @selected(old('type_id') == $type->id || $type->id == $torrent->type_id) x-show="cats[cat].type === 'no'">
-                                    {{ $type->name }}
-                                </option>
-                            @endif
-                        @endforeach
-                    </select>
-                    <select
-                            name="type_id"
-                            id="type_id"
-                            class="form__select"
-                            required
-                            x-show="cats[cat].type !== 'no'"
-                    >
-                        <option hidden disabled selected value=""></option>
-                        @foreach ($types as $index => $type)
-                            @if ($index < 7)
-                                <option value="{{ $type->id }}" @selected(old('type_id') == $type->id || $type->id == $torrent->type_id) x-show="cats[cat].type !== 'no'">
-                                    {{ $type->name }}
-                                </option>
-                            @endif
+                        <option value="{{ old('type_id') ?? $torrent->type->id }}" selected>
+                            {{ $torrent->type->name }} ({{ __('torrent.current') }})
+                        </option>
+                        @foreach ($types as $id => $type)
+                            <option value="{{ $id }}" @selected(old('type_id') === $id)>
+                                {{ $type['name'] }}
+                            </option>
                         @endforeach
                     </select>
                     <label class="form__label form__label--floating" for="type_id">
