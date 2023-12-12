@@ -45,7 +45,9 @@
 
 @section('main')
     <section class="panelV2">
-        <h2 class="panel__heading center-text">KIMOJI 画廊</h2>
+        <h2 class="panel__heading center-text">
+            KIMOJI 画廊今日共计展出作品: {{ count($images) }} 幅
+        </h2>
     </section>
     <div class="stats__panels">
         @foreach ($images as $index => $image)
@@ -57,6 +59,7 @@
             </div>
         @endforeach
     </div>
+
 
     <div id="myModal" class="modal" style="display: none;">
         <span class="close" onclick="closeModal()">&times;</span>
