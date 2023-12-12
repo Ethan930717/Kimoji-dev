@@ -41,9 +41,9 @@
                         <th>{{ __('common.description') }}</th>
                         <th>系数</th>
                         <th>时魔</th>
-                        <th x-cloak x-show="extendStats">Daily</th>
-                        <th x-cloak x-show="extendStats">Weekly</th>
-                        <th x-cloak x-show="extendStats">Monthly</th>
+                        <th x-cloak x-show="extendStats">每日</th>
+                        <th x-cloak x-show="extendStats">每周</th>
+                        <th x-cloak x-show="extendStats">每月</th>
                     </tr>
                 </thead>
                 <tbody>

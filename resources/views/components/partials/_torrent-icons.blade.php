@@ -43,30 +43,51 @@
             title="{{ __('torrent.featured') }}"
         ></i>
     @endif
-    @php
-        $alwaysFreeleech = $personalFreeleech || $torrent->freeleechTokens_exists || auth()->user()->group->is_freeleech || config('other.freeleech')
-    @endphp
-    @if ($alwaysFreeleech || $torrent->free)
-        <i
-            @class([
-                'torrent-icons__freeleech '.config('other.font-awesome'),
-                'fa-star' => $alwaysFreeleech || (90 <= $torrent->free && $torrent->fl_until === null),
-                'fa-star-half' => ! $alwaysFreeleech && $torrent->free < 90 && $torrent->fl_until === null,
-                'fa-calendar-star' => ! $alwaysFreeleech && $torrent->fl_until !== null,
-            ])
-            title="@if($personalFreeleech){{ __('torrent.personal-freeleech') }}&NewLine;@endif&ZeroWidthSpace;@if($torrent->freeleechTokens_exists){{ __('torrent.freeleech-token') }}&NewLine;@endif&ZeroWidthSpace;@if(auth()->user()->group->is_freeleech){{ __('torrent.special-freeleech') }}&NewLine;@endif&ZeroWidthSpace;@if(config('other.freeleech')){{ __('torrent.global-freeleech') }}&NewLine;@endif&ZeroWidthSpace;@if($torrent->free > 0){{ $torrent->free }}% {{ __('common.free') }}@if($torrent->fl_until !== null) (expires {{ $torrent->fl_until->diffForHumans() }})@endif&ZeroWidthSpace;@endif"
-        ></i>
-    @endif
+            @php
+                    $alwaysFreeleech = $personalFreeleech || $torrent->freeleechTokens_exists || auth()->user()->group->is_freeleech || config('other.freeleech');
+                    $titleText = "";
+                    if ($personalFreeleech) {
+                        $titleText .= __('torrent.personal-freeleech') . "\n";
+                    }
+                    if ($torrent->freeleechTokens_exists) {
+                        $titleText .= __('torrent.freeleech-token') . "\n";
+                    }
+                    if (auth()->user()->group->is_freeleech) {
+                        $titleText .= __('torrent.special-freeleech') . "\n";
+                    }
+                    if (config('other.freeleech')) {
+                        $titleText .= __('torrent.global-freeleech') . "\n";
+                    }
+                    if ($torrent->free > 0) {
+                        $titleText .= $torrent->free . '% ' . __('common.free');
+                    }
+            @endphp
+
+            @if ($alwaysFreeleech || $torrent->free)
+                 {{--   <i
+                            @class([
+                                'torrent-icons__freeleech '.config('other.font-awesome'),
+                                'fa-star' => $alwaysFreeleech || (90 <= $torrent->free && $torrent->fl_until === null),
+                                'fa-star-half' => ! $alwaysFreeleech && $torrent->free < 90 && $torrent->fl_until === null,
+                                'fa-calendar-star' => ! $alwaysFreeleech && $torrent->fl_until !== null,
+                            ])
+                            title="{{ $titleText }}"
+                    ></i>--}}
+                    <span class="freeleech-title">{{ Str::limit($titleText, 150, '...') }}</span>
+            @endif
     @if (config('other.doubleup') || auth()->user()->group->is_double_upload || $torrent->doubleup)
-        <i
+ {{--       <i
             class="{{ config('other.font-awesome') }} fa-chevron-double-up torrent-icons__double-upload"
             title="@if(config('other.doubleup')){{ __('torrent.global-double-upload') }}&NewLine;@endif&ZeroWidthSpace;@if(auth()->user()->group->is_double_upload){{ __('torrent.special-double_upload') }}&NewLine;@endif&ZeroWidthSpace;@if($torrent->doubleup > 0)100% {{ __('torrent.double-upload') }}@if($torrent->du_until !== null) (expires {{ $torrent->du_until->diffForHumans() }})@endif&ZeroWidthSpace;@endif"
-        ></i>
+        ></i>--}}
+        <span class="doubleup-title"> 双倍上传 </span>
     @endif
     @if ($torrent->refundable || auth()->user()->group->is_refundable)
-        <i class="{{ config('other.font-awesome') }} fa-percentage"
+<!--        <i class="{{ config('other.font-awesome') }} fa-percentage"
            title='{{ __('torrent.refundable') }}'>
-        </i>
+        </i>-->
+            <span class="refundable-title">{{ __('torrent.refundable') }}</span>
+
     @endif
     @if ($torrent->sticky)
         <i

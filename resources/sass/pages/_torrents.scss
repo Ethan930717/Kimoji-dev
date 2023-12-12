@@ -54,7 +54,7 @@
 .torrent-icons {
   grid-area: icons;
   letter-spacing: 3px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .torrent-icons__thanks {
@@ -909,3 +909,99 @@ td.torrent-search--grouped__age time {
   margin: 0;
   padding: 0;
 }
+
+.doubleup-title {
+  font-size: 14px; /* 设置文字大小 */
+  letter-spacing: -1px; /* 减小字母间距 */
+  color: #fff; /* 设置文字颜色，可根据需要调整 */
+  background: linear-gradient(45deg, #6e32c9, #c6302b, #f7df1e, #498af4, #6e32c9); /* 炫彩背景渐变 */
+  background-size: 200% auto;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* 文字阴影效果 */
+  animation: shine 5s linear infinite; /* 添加动画效果 */
+  display: inline-block; /* 为了让 padding 生效 */
+  padding: 0 5px; /* 文字内边距 */
+  margin: 0 5px; /* 文字外边距 */
+  border-radius: 5px; /* 圆角边框 */
+}
+
+.freeleech-title {
+  font-size: 14px; /* 设置文字大小 */
+  letter-spacing: -1px; /* 减小字母间距 */
+  color: #fff; /* 设置文字颜色，可根据需要调整 */
+  background: linear-gradient(45deg, #ff7e5f, #feb47b, #ff6b6b, #48dbfb, #1dd1a1); /* 新的炫彩背景渐变 */
+  background-size: 200% auto;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* 文字阴影效果 */
+  animation: shine 5s linear infinite; /* 添加动画效果 */
+  display: inline-block; /* 为了让 padding 生效 */
+  padding: 0 5px; /* 文字内边距 */
+  margin: 0 5px; /* 文字外边距 */
+  border-radius: 5px; /* 圆角边框 */
+}
+
+.refundable-title {
+  font-size: 14px; /* 设置文字大小 */
+  letter-spacing: -1px; /* 减小字母间距 */
+  color: #fff; /* 设置文字颜色，可根据需要调整 */
+  background: linear-gradient(45deg, #8E2DE2, #4A00E0, #00c6ff, #0072ff, #8E2DE2); /* 又一个新的炫彩背景渐变 */
+  background-size: 200% auto;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* 文字阴影效果 */
+  animation: shine 5s linear infinite; /* 添加动画效果 */
+  display: inline-block; /* 为了让 padding 生效 */
+  padding: 0 5px; /* 文字内边距 */
+  margin: 0 5px; /* 文字外边距 */
+  border-radius: 5px; /* 圆角边框 */
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+
+/*
+.freeleech-title {
+  font-size: 14px; !* 设置文字大小 *!
+  letter-spacing: -0.5px; !* 减少字母间距 *!
+  color: #333; !* 设置深灰色文字 *!
+  background-color: #f8f8f8; !* 更浅的灰色背景 *!
+  padding: 0px 5px; !* 增加文字内边距 *!
+  margin: 0px 5px; !* 增加文字外边距 *!
+  border-radius: 15px; !* 增加圆角边框 *!
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1); !* 增加盒子阴影效果 *!
+  display: inline-block;
+  transition: all 0.3s ease; !* 平滑过渡效果 *!
+  border: 1px solid #76b5c5; !* 淡蓝色边框 *!
+  background-color: #e6f7ff; !* 淡蓝色背景 *!
+}
+
+.doubleup-title {
+  font-size: 14px; !* 设置文字大小 *!
+  letter-spacing: -0.5px; !* 减少字母间距 *!
+  color: #333; !* 设置深灰色文字 *!
+  background-color: #f8f8f8; !* 更浅的灰色背景 *!
+  padding: 0px 5px; !* 增加文字内边距 *!
+  margin: 0px 5px; !* 增加文字外边距 *!
+  border-radius: 15px; !* 增加圆角边框 *!
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1); !* 增加盒子阴影效果 *!
+  display: inline-block;
+  transition: all 0.3s ease; !* 平滑过渡效果 *!
+  border: 1px solid #d6a8a5; !* 淡玫瑰色边框 *!
+  background-color: #fff0f6; !* 淡玫瑰色背景 *!
+}
+
+.refundable-title {
+  font-size: 14px; !* 设置文字大小 *!
+  letter-spacing: -0.5px; !* 减少字母间距 *!
+  color: #333; !* 设置深灰色文字 *!
+  background-color: #f8f8f8; !* 更浅的灰色背景 *!
+  padding: 0px 5px; !* 增加文字内边距 *!
+  margin: 0px 5px; !* 增加文字外边距 *!
+  border-radius: 15px; !* 增加圆角边框 *!
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1); !* 增加盒子阴影效果 *!
+  display: inline-block;
+  transition: all 0.3s ease; !* 平滑过渡效果 *!
+}
+*/
+
+

@@ -251,7 +251,7 @@
                                     style="display: inline-block;">
                                 @csrf
                                 <input type="hidden" name="old_status" value="{{ $torrent->status }}">
-                                <input type="hidden" name="status" value="{{ \App\Models\Torrent::APPROVED }}">
+                                <input type="hidden" name="status" value="{{ trans('torrent.' . strtolower(\App\Models\Torrent::APPROVED)) }}">
                                 <button class="form__button form__button--outlined">
                                     <i class="{{ config('other.font-awesome') }} fa-thumbs-up"></i> {{ __('common.moderation-approve') }}
                                 </button>
@@ -277,7 +277,7 @@
                                     <input id="type" name="type" type="hidden" value="{{ __('torrent.torrent') }}">
                                     <input id="id" name="id" type="hidden" value="{{ $torrent->id }}">
                                     <input type="hidden" name="old_status" value="{{ $torrent->status }}">
-                                    <input type="hidden" name="status" value="{{ \App\Models\Torrent::POSTPONED }}">
+                                    <input type="hidden" name="status" value="{{ trans('torrent.' . strtolower(\App\Models\Torrent::POSTPONED)) }}">
                                     <p class="form__group">
                                         <textarea
                                             id="message"
@@ -320,7 +320,7 @@
                                     <input id="type" name="type" type="hidden" value="{{ __('torrent.torrent') }}">
                                     <input id="id" name="id" type="hidden" value="{{ $torrent->id }}">
                                     <input type="hidden" name="old_status" value="{{ $torrent->status }}">
-                                    <input type="hidden" name="status" value="{{ \App\Models\Torrent::REJECTED }}">
+                                    <input type="hidden" name="status" value="{{ trans('torrent.' . strtolower(\App\Models\Torrent::REJECTED)) }}">
                                     <p class="form__group">
                                         <textarea
                                             id="message"

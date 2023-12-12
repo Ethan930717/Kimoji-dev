@@ -140,17 +140,21 @@
     font-family: 'Font Awesome 5 Pro';
     opacity: 60%;
     padding-left: 0.5ch;
+    text-shadow: 0 0 2px #ff4a4a;
 }
 
 .breadcrumb--active {
     color: var(--breadcrumb-active-fg);
+    font-size: large;
+    text-shadow: 0 0 2px #ff4a4a;
 }
 
 .breadcrumb__link {
     text-decoration: var(--breadcrumb-inactive-text-decoration);
     color: var(--breadcrumb-fg);
     cursor: pointer;
-
+    font-size: large;
+    text-shadow: 0 0 2px #ff4a4a;
     &:hover {
         color: var(--breadcrumb-hover-fg);
     }

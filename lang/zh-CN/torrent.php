@@ -139,6 +139,7 @@ return [
     'poster-view'              => '海报视图',
     'posters'                  => '海报',
     'postponed-torrents'       => '待修改',
+    'postponed'                => '推迟',
     'prewarn'                  => '预警',
     'progress'                 => '进度',
     'publish-time'             => '发布时间',
