@@ -169,6 +169,16 @@ class AutoBonAllocation extends Command
             ->get()
             ->toArray();
 
+        $blurayTorrentSizeSum = DB::table('peers')
+            ->select(DB::raw('SUM(torrents.size) as total_size'), 'peers.user_id')
+            ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
+            ->whereIn('torrents.type_id', [1, 2]) // 判断是否为 Blu-ray 种子
+            ->where('peers.seeder', 1)
+            ->where('peers.active', 1)
+            ->groupBy('peers.user_id')
+            ->get()
+            ->toArray();
+
         $internalTorrentSizeSum = DB::table('peers')
             ->select(DB::raw('SUM(torrents.size) as total_size'), 'peers.user_id')
             ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
@@ -268,6 +278,16 @@ class AutoBonAllocation extends Command
                 $array[$value->user_id] += $value->value * 2;
             } else {
                 $array[$value->user_id] = $value->value * 2;
+            }
+        }
+
+        foreach ($blurayTorrentSizeSum as $value) {
+            $bonusCoefficient = $this->calculateBonusCoefficient($value->total_size, 0.015); // 使用 0.015 作为系数
+
+            if (\array_key_exists($value->user_id, $array)) {
+                $array[$value->user_id] += $bonusCoefficient;
+            } else {
+                $array[$value->user_id] = $bonusCoefficient;
             }
         }
 

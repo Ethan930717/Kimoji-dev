@@ -48,7 +48,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{ __('torrent.participant') }}</td>
+                        <td class="seed-class-1">{{ __('torrent.participant') }}</td>
                         <td>{{ __('torrent.seed-time') }} &ge; 1 {{ strtolower(__('common.month')) }} {{ strtolower(__('common.but')) }} < 2 {{ strtolower(__('common.months')) }} 的资源</td>
                         <td>0.25 &times; {{ $participant }}</strong></td>
                         <td>{{ $participant * 0.25 }}</td>
@@ -57,7 +57,7 @@
                         <td x-cloak x-show="extendStats">{{ $participant * 0.25 * 24 * 30 }}</td>
                     </tr>
                     <tr>
-                        <td>{{ __('torrent.team-player') }}</td>
+                        <td class="seed-class-2">{{ __('torrent.team-player') }}</td>
                         <td>{{ __('torrent.seed-time') }} &ge; 2 {{ strtolower(__('common.months')) }} {{ strtolower(__('common.but')) }} < 3 {{ strtolower(__('common.months')) }} 的资源</td>
                         <td>0.50 &times; {{ $teamplayer }}</strong></td>
                         <td>{{ $teamplayer * 0.5 }}</td>
@@ -66,7 +66,7 @@
                         <td x-cloak x-show="extendStats">{{ $teamplayer * 0.5 * 24 * 30 }}</td>
                     </tr>
                     <tr>
-                        <td>{{ __('torrent.commited') }}</td>
+                        <td class="seed-class-3">{{ __('torrent.commited') }}</td>
                         <td>{{ __('torrent.seed-time') }} &ge; 3 {{ strtolower(__('common.months')) }} {{ strtolower(__('common.but')) }} < 6 {{ strtolower(__('common.months')) }} 的资源</td>
                         <td>0.75 &times; {{ $committed }}</td>
                         <td>{{ $committed * 0.75 }}</td>
@@ -76,7 +76,7 @@
                     </tr>
 
                     <tr>
-                        <td>{{ __('torrent.mvp') }}</td>
+                        <td class="seed-class-4">{{ __('torrent.mvp') }}</td>
                         <td>{{ __('torrent.seed-time') }} &ge; 6 {{ strtolower(__('common.months')) }} {{ strtolower(__('common.but')) }} < 1 {{ strtolower(__('common.year')) }} 的资源</td>
                         <td>1.00 &times; {{ $mvp }}</td>
                         <td>{{ $mvp * 1 }}</td>
@@ -86,7 +86,7 @@
                     </tr>
 
                     <tr>
-                        <td>{{ __('torrent.legendary-seeder') }}</td>
+                        <td class="seed-class-5">{{ __('torrent.legendary-seeder') }}</td>
                         <td>{{ __('torrent.seed-time') }} &ge; 1 {{ strtolower(__('common.year')) }} 的资源</td>
                         <td>2.00 &times; {{ $legend }}</td>
                         <td>{{ $legend * 2 }}</td>
@@ -96,7 +96,7 @@
                     </tr>
 
                     <tr>
-                        <td>平平无奇</td>
+                        <td class="seed-class-6">平平无奇</td>
                         <td>{{ __('torrent.size') }} &ge; 1&nbsp;GiB {{ strtolower(__('common.but')) }} < 25GiB 的资源</td>
                         <td>0.25 &times; {{ $regular }}</td>
                         <td>{{ $regular * 0.25 }}</td>
@@ -105,7 +105,7 @@
                         <td x-cloak x-show="extendStats">{{ $regular * 0.25 * 24 * 30 }}</td>
                     </tr>
                     <tr>
-                        <td>璞玉浑金</td>
+                        <td class="seed-class-7">璞玉浑金</td>
                         <td>{{ __('torrent.size') }} &ge; 25&nbsp;GiB {{ strtolower(__('common.but')) }} < 100GiB 的资源</td>
                         <td>0.50 &times; {{ $large }}</td>
                         <td>{{ $large * 0.5 }}</td>
@@ -114,7 +114,7 @@
                         <td x-cloak x-show="extendStats">{{ $large * 0.5 * 24 * 30 }}</td>
                     </tr>
                     <tr>
-                        <td>沧海遗珠</td>
+                        <td class="seed-class-8">沧海遗珠</td>
                         <td>{{ __('torrent.size') }} &gt; 100&nbsp;GiB 的资源</td>
                         <td>0.75 &times; {{ $huge }}</td>
                         <td>{{ $huge * 0.75 }}</td>
@@ -124,7 +124,7 @@
                     </tr>
 
                     <tr>
-                        <td>沉香余烬</td>
+                        <td class="seed-class-9">沉香余烬</td>
                         <td>发布时间超过6个月的资源</td>
                         <td>1.00 &times; {{ $old }}</td>
                         <td>{{ $old * 1 }}</td>
@@ -133,7 +133,7 @@
                         <td x-cloak x-show="extendStats">{{ $old * 1 * 24 * 30 }}</td>
                     </tr>
                     <tr>
-                        <td>老骥伏枥</td>
+                        <td class="seed-class-10">老骥伏枥</td>
                         <td>发布时间超过12个月的资源</td>
                         <td>1.50 &times; {{ $legendary }}</td>
                         <td>{{ $legendary * 1.5 }}</td>
@@ -142,7 +142,7 @@
                         <td x-cloak x-show="extendStats">{{ $legendary * 1.5 * 24 * 30 }}</td>
                     </tr>
                     <tr>
-                        <td>稀世珍宝</td>
+                        <td class="seed-class-11">稀世珍宝</td>
                         <td>{{ __('torrent.last-seeder') }}</td>
                         <td>2.00 &times; {{ $dying }}</td>
                         <td>{{ $dying * 2 }}</td>
@@ -151,8 +151,17 @@
                         <td x-cloak x-show="extendStats">{{ $dying * 2 * 24 * 30 }}</td>
                     </tr>
                     <tr>
+                        <td class="bluray-seed">原盘大师</td>
+                        <td>正在保种的原盘资源总体积（超过15T可晋升保种员，拥有邀请权限）</td>
+                        <td>{{ $blurayTorrentsSize }}</td>
+                        <td>{{ number_format($blurayBonusPerHour, 2) }}</td>
+                        <td x-cloak x-show="extendStats">{{ number_format($blurayBonusPerHour * 24, 2) }}</td>
+                        <td x-cloak x-show="extendStats">{{ number_format($blurayBonusPerHour * 24 * 7, 2) }}</td>
+                        <td x-cloak x-show="extendStats">{{ number_format($blurayBonusPerHour * 24 * 30, 2) }}</td>
+                    </tr>
+                    <tr>
                         <td class="internal-seed">镇国大将</td>
-                        <td>正在保种的KIMOJI官种总体积</td>
+                        <td>正在保种的KIMOJI官种总体积（超过10T可晋升保种员，拥有邀请权限）</td>
                         <td>{{ $internalTorrentsSize }}</td>
                         <td>{{ number_format($internalBonusPerHour, 2) }}</td>
                         <td x-cloak x-show="extendStats">{{ number_format($internalBonusPerHour * 24, 2) }}</td>

@@ -957,7 +957,7 @@ td.torrent-search--grouped__age time {
   letter-spacing: -1px;
   color: #fff;
   background: linear-gradient(60deg, #00fa9a, #00bfff, #7fffd4, #40e0d0, #00fa9a, #00bfff, #7fffd4);
-  background-size: 300% 300%;
+  background-size: 200% 200%;
   text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   animation: shine 8s linear infinite;
   display: inline-block;
@@ -966,6 +966,179 @@ td.torrent-search--grouped__age time {
   border-radius: 5px;
 }
 
+.bluray-seed {
+  font-size: 12px;
+  letter-spacing: -1px;
+  color: #fff;
+  background: linear-gradient(60deg, #3cb371, #20b2aa, #48d1cc, #66cdaa, #3cb371, #20b2aa, #48d1cc);
+  background-size: 200% 200%;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  animation: shine 6s linear infinite;
+  display: inline-block;
+  padding: 0 5px;
+  margin: 0 2px;
+  border-radius: 5px;
+}
+
+
+.seed-class-1 {
+  background: linear-gradient(60deg, #708090, #778899, #696969, #808080, #708090, #778899, #696969);
+  font-size: 12px;
+  letter-spacing: -1px;
+  color: #fff;
+  background-size: 200% 200%;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  animation: shine 6s linear infinite;
+  display: inline-block;
+  padding: 0 5px;
+  margin: 0 2px;
+  border-radius: 5px;
+}
+
+.seed-class-2 {
+  background: linear-gradient(60deg, #778899, #708090, #808080, #696969, #778899, #708090, #808080);
+  font-size: 12px;
+  letter-spacing: -1px;
+  color: #fff;
+  background-size: 200% 200%;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  animation: shine 6s linear infinite;
+  display: inline-block;
+  padding: 0 5px;
+  margin: 0 2px;
+  border-radius: 5px;
+}
+
+.seed-class-6 {
+  background: linear-gradient(60deg, #808080, #696969, #778899, #708090, #808080, #696969, #778899);
+  font-size: 12px;
+  letter-spacing: -1px;
+  color: #fff;
+  background-size: 200% 200%;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  animation: shine 6s linear infinite;
+  display: inline-block;
+  padding: 0 5px;
+  margin: 0 2px;
+  border-radius: 5px;
+}
+
+.seed-class-7 {
+  background: linear-gradient(60deg, #696969, #808080, #708090, #778899, #696969, #808080, #708090);
+  font-size: 12px;
+  letter-spacing: -1px;
+  color: #fff;
+  background-size: 200% 200%;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  animation: shine 6s linear infinite;
+  display: inline-block;
+  padding: 0 5px;
+  margin: 0 2px;
+  border-radius: 5px;
+}
+
+/* 等级较高，颜色略为明亮 */
+.seed-class-3 {
+  background: linear-gradient(60deg, #a9a9a9, #b0c4de, #add8e6, #b0e0e6, #a9a9a9, #b0c4de, #add8e6);
+  font-size: 12px;
+  letter-spacing: -1px;
+  color: #fff;
+  background-size: 200% 200%;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  animation: shine 6s linear infinite;
+  display: inline-block;
+  padding: 0 5px;
+  margin: 0 2px;
+  border-radius: 5px;
+}
+
+.seed-class-4 {
+  background: linear-gradient(60deg, #b0c4de, #a9a9a9, #b0e0e6, #add8e6, #b0c4de, #a9a9a9, #b0e0e6);
+  font-size: 12px;
+  letter-spacing: -1px;
+  color: #fff;
+  background-size: 200% 200%;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  animation: shine 6s linear infinite;
+  display: inline-block;
+  padding: 0 5px;
+  margin: 0 2px;
+  border-radius: 5px;
+
+
+}
+
+.seed-class-8 {
+  background: linear-gradient(60deg, #add8e6, #b0e0e6, #a9a9a9, #b0c4de, #add8e6, #b0e0e6, #a9a9a9);
+  font-size: 12px;
+  letter-spacing: -1px;
+  color: #fff;
+  background-size: 200% 200%;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  animation: shine 6s linear infinite;
+  display: inline-block;
+  padding: 0 5px;
+  margin: 0 2px;
+  border-radius: 5px;
+}
+
+.seed-class-9 {
+  background: linear-gradient(60deg, #b0e0e6, #add8e6, #b0c4de, #a9a9a9, #b0e0e6, #add8e6, #b0c4de);
+  font-size: 12px;
+  letter-spacing: -1px;
+  color: #fff;
+  background-size: 200% 200%;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  animation: shine 6s linear infinite;
+  display: inline-block;
+  padding: 0 5px;
+  margin: 0 2px;
+  border-radius: 5px;
+}
+
+/* 最高级别，高贵明亮的颜色 */
+.seed-class-5 {
+  background: linear-gradient(60deg, #ffd700, #ff8c00, #daa520, #d2691e, #ffd700, #ff8c00, #daa520);
+  font-size: 12px;
+  letter-spacing: -1px;
+  color: #fff;
+  background-size: 200% 200%;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  animation: shine 6s linear infinite;
+  display: inline-block;
+  padding: 0 5px;
+  margin: 0 2px;
+  border-radius: 5px;
+}
+
+.seed-class-10 {
+  background: linear-gradient(60deg, #d2691e, #daa520, #ffd700, #ff8c00, #d2691e, #daa520, #ffd700);
+  font-size: 12px;
+  letter-spacing: -1px;
+  color: #fff;
+  background-size: 200% 200%;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  animation: shine 6s linear infinite;
+  display: inline-block;
+  padding: 0 5px;
+  margin: 0 2px;
+  border-radius: 5px;
+}
+
+.seed-class-11 {
+  background: linear-gradient(60deg, #ff7e5f, #feb47b, #ff6b6b, #48dbfb, #1dd1a1); /* 新的炫彩背景渐变 */
+  font-size: 12px;
+  letter-spacing: -1px;
+  color: #fff;
+  background-size: 200% 200%;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  animation: shine 6s linear infinite;
+  display: inline-block;
+  padding: 0 5px;
+  margin: 0 2px;
+  border-radius: 5px;
+
+}
 @keyframes shine {
   0% { background-position: 0% 50% }
   50% { background-position: 100% 50% }
