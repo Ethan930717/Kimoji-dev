@@ -952,6 +952,20 @@ td.torrent-search--grouped__age time {
   border-radius: 5px; /* 圆角边框 */
 }
 
+.internal-seed {
+  font-size: 12px;
+  letter-spacing: -1px;
+  color: #fff;
+  background: linear-gradient(60deg, #00fa9a, #00bfff, #7fffd4, #40e0d0, #00fa9a, #00bfff, #7fffd4);
+  background-size: 300% 300%;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  animation: shine 8s linear infinite;
+  display: inline-block;
+  padding: 0 5px;
+  margin: 0 2px;
+  border-radius: 5px;
+}
+
 @keyframes shine {
   0% { background-position: 0% 50% }
   50% { background-position: 100% 50% }
