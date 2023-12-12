@@ -154,8 +154,8 @@
                         <td class="internal-seed">镇国大将</td>
                         <td>正在保种的KIMOJI官种总体积</td>
                         <td>{{ $internalTorrentsSize }}</td>
-                        <td>{{ $internalBonusPerHour }}</td>
-                        <td x-cloak x-show="extendStats">{{ number_format($internalBonusPerHour * 24, 1) }}</td>
+                        <td>{{ number_format($internalBonusPerHour, 2) }}</td>
+                        <td x-cloak x-show="extendStats">{{ number_format($internalBonusPerHour * 24, 2) }}</td>
                         <td x-cloak x-show="extendStats">{{ number_format($internalBonusPerHour * 24 * 7, 2) }}</td>
                         <td x-cloak x-show="extendStats">{{ number_format($internalBonusPerHour * 24 * 30, 2) }}</td>
                     </tr>
@@ -165,9 +165,9 @@
                         <td colspan="2">{{ __('bon.total') }}</td>
                         <td></td>
                         <td>{{ $total }}</td>
-                        <td x-cloak x-show="extendStats">{{ $total * 24 }}</td>
-                        <td x-cloak x-show="extendStats">{{ $total * 24 * 7 }}</td>
-                        <td x-cloak x-show="extendStats">{{ $total * 24 * 30 }}</td>
+                        <td x-cloak x-show="extendStats">{{ number_format($total * 24, 2) }}</td>
+                        <td x-cloak x-show="extendStats">{{ number_format($total * 24 * 7, 2) }}</td>
+                        <td x-cloak x-show="extendStats">{{ number_format($total * 24 * 30, 2) }}</td>
                     </tr>
                 </tfoot>
             </table>
