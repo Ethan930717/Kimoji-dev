@@ -48,6 +48,15 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td>镇国大将</td>
+                        <td>正在保种的KIMOJI官种总体积</td>
+                        <td>{{ $internalTorrentsSize }}</td>
+                        <td>{{ $internalBonusPerHour }}</td>
+                        <td x-cloak x-show="extendStats">{{ $internalBonusPerHour * 24 }}</td>
+                        <td x-cloak x-show="extendStats">{{ $internalBonusPerHour * 24 * 7 }}</td>
+                        <td x-cloak x-show="extendStats">{{ $internalBonusPerHour * 24 * 30 }}</td>
+                    </tr>
+                    <tr>
                         <td>稀世珍宝</td>
                         <td>{{ __('torrent.last-seeder') }}</td>
                         <td>2.00 &times; {{ $dying }}</td>

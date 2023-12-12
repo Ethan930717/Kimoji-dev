@@ -40,6 +40,19 @@ class AutoBonAllocation extends Command
     /**
      * Execute the console command.
      */
+    /**
+     * 根据保种的总体积（GB）计算每小时魔力的增加量。
+     *
+     * @param int $bytes
+     * @return float
+     */
+    private function calculateBonusCoefficient($bytes) {
+        $gb = $bytes / (1024 * 1024 * 1024); // 将字节转换为 GB
+        $bonusPerGb = 0.09765625; // 每 GB 的魔力增加量
+
+        return $gb * $bonusPerGb; // 总保种 GB 数乘以每 GB 的魔力增加量
+    }
+
     public function handle(ByteUnits $byteUnits): void
     {
         $dyingTorrent = DB::table('peers')
@@ -156,6 +169,16 @@ class AutoBonAllocation extends Command
             ->get()
             ->toArray();
 
+        $internalTorrentSizeSum = DB::table('peers')
+            ->select(DB::raw('SUM(torrents.size) as total_size'), 'peers.user_id')
+            ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
+            ->where('torrents.internal', 1) // 确保 torrents 是 internal 的
+            ->where('peers.seeder', 1)
+            ->where('peers.active', 1)
+            ->groupBy('peers.user_id')
+            ->get()
+            ->toArray();
+
         //Move data from SQL to array
 
         $array = [];
@@ -248,6 +271,18 @@ class AutoBonAllocation extends Command
             }
         }
 
+        foreach ($internalTorrentSizeSum as $value) {
+            // 计算每小时魔力的增加系数
+            $bonusCoefficient = $this->calculateBonusCoefficient($value->total_size);
+
+            // 更新 $array
+            if (\array_key_exists($value->user_id, $array)) {
+                $array[$value->user_id] += $bonusCoefficient;
+            } else {
+                $array[$value->user_id] = $bonusCoefficient;
+            }
+        }
+
         //Move data from array to BonTransactions table
         /*foreach ($array as $key => $value) {
             $log = new BonTransactions();
@@ -265,6 +300,8 @@ class AutoBonAllocation extends Command
                 'seedbonus' => DB::raw('seedbonus + '.$value),
             ]);
         }
+
+
 
         $this->comment('Automated BON Allocation Command Complete');
     }
