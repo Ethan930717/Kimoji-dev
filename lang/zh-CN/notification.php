@@ -26,7 +26,7 @@ return [
     'post-tags'          => '帖子被标记',
     'post-tips'          => '帖子打赏',
     'read'               => '读取',
-    'request-approvals'  => '求种获准',
+    'request-approvals'  => '求种批准',
     'request-bounties'   => '求种',
     'request-claims'     => '求种成功',
     'request-fills'      => '求种达成',
