@@ -33,6 +33,7 @@
                         title="{{ __('mediahub.shows') }}"
                 ></i>
             </label>
+
             <label class="quick-search__radio-label">
                 <input
                         type="radio"
@@ -104,6 +105,27 @@
                                                 datetime="{{ $search_result->first_air_date }}"
                                         >
                                             {{ substr($search_result->first_air_date, 0, 4) }}
+                                        </time>
+                                    </h2>
+                                </a>
+                                @break
+                            @case ("movies")
+                                <a
+                                        class="quick-search__result-link"
+                                        href="{{ route('torrents.similar', ['category_id' => '1', 'tmdb' => $search_result->id]) }}"
+                                >
+                                    <img
+                                            class="quick-search__image"
+                                            src="{{ isset($search_result->poster) ? \tmdb_image('poster_small', $search_result->poster) : 'https://via.placeholder.com/90x135' }}"
+                                            alt=""
+                                    />
+                                    <h2 class="quick-search__result-text">
+                                        {{ $search_result->title }}
+                                        <time
+                                                class="quick-search__result-year"
+                                                datetime="{{ $search_result->release_date }}"
+                                        >
+                                            {{ substr($search_result->release_date, 0, 4) }}
                                         </time>
                                     </h2>
                                 </a>
