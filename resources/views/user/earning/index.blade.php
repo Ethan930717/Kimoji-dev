@@ -164,7 +164,7 @@
                     <tr>
                         <td colspan="2">{{ __('bon.total') }}</td>
                         <td></td>
-                        <td>{{ $total }}</td>
+                        <td>{{ number_format($total, 2) }}</td>
                         <td x-cloak x-show="extendStats">{{ number_format($total * 24, 2) }}</td>
                         <td x-cloak x-show="extendStats">{{ number_format($total * 24 * 7, 2) }}</td>
                         <td x-cloak x-show="extendStats">{{ number_format($total * 24 * 30, 2) }}</td>
