@@ -58,7 +58,7 @@ class EarningController extends Controller
      */
     private function calculateBonusPerHour($bytes) {
         $gb = $bytes / (1024 * 1024 * 1024); // 将字节转换为 GB
-        $bonusPerGb = 0.09765625; // 每 GB 的魔力增加量
+        $bonusPerGb = 0.1; // 每 GB 的魔力增加量
 
         return $gb * $bonusPerGb; // 总保种 GB 数乘以每 GB 的魔力增加量
     }
