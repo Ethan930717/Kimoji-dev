@@ -155,7 +155,7 @@
                         <td>正在保种的KIMOJI官种总体积</td>
                         <td>{{ $internalTorrentsSize }}</td>
                         <td>{{ $internalBonusPerHour }}</td>
-                        <td x-cloak x-show="extendStats">{{ number_format($internalBonusPerHour * 24, 2) }}</td>
+                        <td x-cloak x-show="extendStats">{{ number_format($internalBonusPerHour * 24, 1) }}</td>
                         <td x-cloak x-show="extendStats">{{ number_format($internalBonusPerHour * 24 * 7, 2) }}</td>
                         <td x-cloak x-show="extendStats">{{ number_format($internalBonusPerHour * 24 * 30, 2) }}</td>
                     </tr>
