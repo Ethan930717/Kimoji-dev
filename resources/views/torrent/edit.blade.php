@@ -38,7 +38,7 @@
                 @method('PATCH')
                 <p class="form__group" x-show="cats[cat].type === 'no'">
                     <label class="form__label" for="torrent-cover">
-                        歌手海报（必选）
+                        专辑封面（必选）
                     </label>
                     <input
                         id="torrent-cover"
@@ -50,7 +50,7 @@
                 </p>
                 <p class="form__group" x-show="cats[cat].type === 'no'">
                     <label class="form__label" for="torrent-banner">
-                        专辑封面（必选
+                        歌手海报（必选）
                     </label>
                     <input
                         id="torrent-banner"

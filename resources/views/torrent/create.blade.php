@@ -96,13 +96,13 @@
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'no'">
                         <label for="torrent-cover" class="form__label">
-                            歌手海报（必选） ({{ __('torrent.optional') }})
+                            专辑封面（必选）
                         </label>
                         <input id="torrent-cover" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg, .png" name="torrent-cover">
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'no'">
                         <label for="torrent-banner" class="form__label">
-                            专辑封面 (必选)
+                            歌手海报 (必选)
                         </label>
                         <input id="torrent-banner" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg, .png" name="torrent-banner">
                     </p>
@@ -144,8 +144,8 @@
                                 name="type_id"
                                 id="autotype_music"
                                 class="form__select"
-                                required
-                                x-show="cats[cat].type === 'no'"
+                                x-bind:required="cats[cat].type === 'no'"
+                                x-show="cats[cat].type === 'no'">
                         >
                             <option hidden disabled selected value=""></option>
                             @foreach ($types as $index => $type)
@@ -160,8 +160,8 @@
                                 name="type_id"
                                 id="autotype"
                                 class="form__select"
-                                required
-                                x-show="cats[cat].type !== 'no'"
+                                x-bind:required="cats[cat].type !== 'no'"
+                                x-show="cats[cat].type !== 'no'">
                         >
                             <option hidden disabled selected value=""></option>
                             @foreach ($types as $index => $type)
