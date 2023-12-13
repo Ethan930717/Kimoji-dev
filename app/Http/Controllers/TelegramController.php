@@ -82,7 +82,7 @@ class TelegramController extends Controller
                 "传送门:" . "https://kimoji.club/torrents/" . $id;
 
             $photo = $poster; // 海报图片 URL
-            $chatId = "-1002007902628"; // Telegram 聊天 ID 或群组 ID
+            $chatId = "-1001999315645"; // Telegram 聊天 ID 或群组 ID
 
             // 记录发送前的日志
             Log::info("Sending torrent notification to Telegram", [
@@ -117,7 +117,7 @@ class TelegramController extends Controller
                 "传送门:" . "https://kimoji.club/torrents/" . $id;
 
             $photo = 'https://kimoji.club/files/img/torrent-cover_' . $id .'.jpg'; // 海报图片 URL
-            $chatId = "-1002007902628"; // Telegram 聊天 ID 或群组 ID
+            $chatId = "-1001999315645"; // Telegram 聊天 ID 或群组 ID
 
             // 记录发送前的日志
             Log::info("Sending torrent notification to Telegram", [
