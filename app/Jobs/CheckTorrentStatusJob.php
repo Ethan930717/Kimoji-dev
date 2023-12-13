@@ -27,8 +27,9 @@ class CheckTorrentStatusJob implements ShouldQueue
         $torrent = Torrent::find($this->torrent->id);
 
         if ($torrent && $torrent->status == 0) {
-            // 如果 30 秒后状态仍然是 0，则发送待审核通知
-            (new TelegramController)->sendModerationNotification($torrent->name, $torrent->id);
+            // 如果 10 秒后状态仍然是 0，则发送待审核通知
+            $telegramController = new TelegramController();
+            $telegramController->sendModerationNotification($torrent->name, $torrent->id);
         }
     }
 }
