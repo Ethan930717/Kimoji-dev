@@ -17,7 +17,6 @@ use App\Models\Torrent;
 use App\Http\Controllers\TelegramController;
 use App\Services\Tmdb\Client\Movie;
 use App\Services\Tmdb\Client\TV;
-use Illuminate\Support\Facades\Log;
 
 class TorrentObserver
 {
@@ -28,54 +27,7 @@ class TorrentObserver
     {
         cache()->put(sprintf('torrent:%s', $torrent->info_hash), $torrent);
 
-        if ($torrent->status == 1) {
-            $category = $torrent->category_id;
-
-            switch ($category) {
-                case 1:
-                case 3:
-                    $tmdbService = new Movie($torrent->tmdb);
-                    break;
-                case 2:
-                case 4:
-                case 5:
-                    $tmdbService = new TV($torrent->tmdb);
-                    break;
-                case 6:
-                    $fileSizeGB = round($torrent->size / 1e9, 2); // 将字节转换为 GB，并保留两位小数
-                    $fileSizeText = "{$fileSizeGB} GB";
-                    $telegramController = new TelegramController();
-                    $telegramController->sendMusicTorrentNotification(
-                        $torrent->id,
-                        $torrent->name,
-                        $fileSizeText
-                    );
-                    break;
-                default:
-                    return;
-            }
-
-            $tmdbData = $this->fetchTmdbData($tmdbService);
-
-            if ($tmdbData) {
-                $fileSizeGB = round($torrent->size / 1e9, 2); // 将字节转换为 GB，并保留两位小数
-                $fileSizeText = "{$fileSizeGB} GB";
-
-                $telegramController = new TelegramController();
-                $telegramController->sendTorrentNotification(
-                    $torrent->id,
-                    $torrent->name,
-                    $tmdbData['poster'],
-                    $tmdbData['overview'],
-                    $fileSizeText
-                );
-            }
-        } else {
-            Log::info("status0id", ['torrent_id' => $torrent->id]);
-            CheckTorrentStatusJob::dispatch($torrent)->delay(now()->addSeconds(10));
-            Log::info("Dispatched CheckTorrentStatusJob", ['torrent_id' => $torrent->id]);
-
-        }
+        CheckTorrentStatusJob::dispatch($torrent)->delay(now()->addSeconds(5));
     }
 
 
