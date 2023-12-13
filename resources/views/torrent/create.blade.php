@@ -561,16 +561,22 @@
                 const link = this.getAttribute('data-link');
                 navigator.clipboard.writeText(link).then(() => {
                     Swal.fire({
-                        title: "Good job!",
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
                         icon: 'success',
-                        text: '链接已复制到剪贴板',
-                    });
+                        title: 'Tracker地址复制成功'
+                    })
                 }).catch(err => {
                     Swal.fire({
-                        title: "Bad job!",
-                        icon: 'success',
-                        text:  '复制失败:'+err,
-                    });
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        icon: 'error',
+                        title: 'Tracker地址复制失败'
+                    })
                 });
             })
         })
