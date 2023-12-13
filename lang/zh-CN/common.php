@@ -38,6 +38,7 @@ return [
     'balance'              => '余额',
     'blacklist'            => 'BT客户端黑名单',
     'buffer'               => '额度',
+    'bookmarked'           => '收藏',
     'bug'                  => '报告Bug',
     'but'                  => '但',
     'cancel'               => '取消',
@@ -232,6 +233,7 @@ return [
     'bornyear'             => '年份',
     'system-message'       => '这是一条系统消息，请勿回复!',
     'similar'              => '相似资源',
+    'wished'               => '心愿卡',
 
 
 ];

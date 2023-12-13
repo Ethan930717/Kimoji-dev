@@ -134,13 +134,22 @@
     }
 }
 
-.breadcrumbV2:not(:first-child)::before,
 .breadcrumb--active:not(:first-child)::before {
     content: '\f105';
     font-family: 'Font Awesome 5 Pro';
     opacity: 60%;
     padding-left: 0.5ch;
     text-shadow: 0 0 2px #ff4a4a;
+}
+
+.breadcrumbV2:not(:first-child)::before,{
+    content: '\f105';
+    font-family: 'Font Awesome 5 Pro';
+    opacity: 60%;
+    padding-left: 0.5ch;
+    text-shadow: 0 0 2px #ff4a4a;
+    position: relative;
+    bottom: 2px;
 }
 
 .breadcrumb--active {
@@ -153,8 +162,10 @@
     text-decoration: var(--breadcrumb-inactive-text-decoration);
     color: var(--breadcrumb-fg);
     cursor: pointer;
-    font-size: large;
+    font-size: 15px;
     text-shadow: 0 0 2px #ff4a4a;
+    position: relative;
+    bottom: 2px;
     &:hover {
         color: var(--breadcrumb-hover-fg);
     }

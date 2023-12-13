@@ -240,7 +240,7 @@
                     </div>
                     <div class="form__group">
                         <fieldset class="form__fieldset">
-                            <legend class="form__legend">Buff</legend>
+                            <legend class="form__legend">状态</legend>
                             <div class="form__fieldset-checkbox-container">
                                 <p class="form__group">
                                     <label class="form__label">
@@ -324,7 +324,7 @@
                     </div>
                     <div class="form__group">
                         <fieldset class="form__fieldset">
-                            <legend class="form__legend">Tags</legend>
+                            <legend class="form__legend">标签</legend>
                             <div class="form__fieldset-checkbox-container">
                                 <p class="form__group">
                                     <label class="form__label">
