@@ -12,7 +12,7 @@
  */
 
 namespace App\Observers;
-
+use App\Jobs\CheckTorrentStatusJob;
 use App\Models\Torrent;
 use App\Http\Controllers\TelegramController;
 use App\Services\Tmdb\Client\Movie;
