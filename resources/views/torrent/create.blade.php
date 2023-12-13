@@ -539,7 +539,12 @@
                 </a>
                 <br>
                 <br>
-                <a href="{{ route('announce', ['passkey' => $user->passkey]) }}" style="font-size:18px; text-align:center; cursor:pointer;" id="trackerLink" onclick="copyToClipboard(event)">
+                <a
+                    href="javascript:;"
+                    style="font-size:18px; text-align:center; cursor:pointer;"
+                    id="trackerLink"
+                    data-link="{{ route('announce', ['passkey' => $user->passkey]) }}"
+                >
                     <i class="fas fa-link"></i> 复制Tracker地址
                 </a>
             </div>
@@ -549,21 +554,25 @@
 
 @section('javascripts')
     <script src="{{ mix('js/imgbb.js') }}" crossorigin="anonymous"></script>
-    <script>
-        function copyToClipboard(e) {
-            e.preventDefault();
-            var link = e.currentTarget.getAttribute('href');
-            navigator.clipboard.writeText(link).then(() => {
-                alert('链接已复制到剪贴板');
-            }).catch(err => {
-                console.error('复制失败:', err);
-            });
-        }
+    <script nonce="{{ HDVinnie\SecureHeaders\SecureHeaders::nonce('script') }}">
+        $(function(){
+            console.log(1111);
+            $("#trackerLink").click(function () {
+                const link = this.getAttribute('data-link');
+                navigator.clipboard.writeText(link).then(() => {
+                    Swal.fire({
+                        title: "Good job!",
+                        icon: 'success',
+                        text: '链接已复制到剪贴板',
+                    });
+                }).catch(err => {
+                    Swal.fire({
+                        title: "Bad job!",
+                        icon: 'success',
+                        text:  '复制失败:'+err,
+                    });
+                });
+            })
+        })
     </script>
 @endsection
-
-
-
-
-
-
