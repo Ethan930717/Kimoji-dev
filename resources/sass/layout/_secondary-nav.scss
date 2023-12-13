@@ -154,8 +154,10 @@
 
 .breadcrumb--active {
     color: var(--breadcrumb-active-fg);
-    font-size: large;
+    font-size: 15px;
     text-shadow: 0 0 2px #ff4a4a;
+    position: relative;
+    bottom: 2px;
 }
 
 .breadcrumb__link {
