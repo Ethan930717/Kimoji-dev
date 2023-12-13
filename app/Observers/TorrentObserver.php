@@ -28,7 +28,7 @@ class TorrentObserver
     public function created(Torrent $torrent): void
     {
         cache()->put(sprintf('torrent:%s', $torrent->info_hash), $torrent);
-        Log::info("新种监测", ['torrentId' => $this->torrentId]);
+        Log::info("新种监测", ['torrentId' => $torrent->id]);
         CheckTorrentStatusJob::dispatch($torrent->id)->delay(now()->addSeconds(5));
     }
 
