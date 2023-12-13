@@ -15,7 +15,8 @@ namespace App\Observers;
 
 use App\Models\Torrent;
 use App\Http\Controllers\TelegramController;
-
+use App\Services\Tmdb\Client\Movie;
+use App\Services\Tmdb\Client\TV;
 class TorrentObserver
 {
     /**
