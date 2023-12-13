@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 use Livewire\WithPagination;
 use voku\helper\AntiXSS;
+use Illuminate\Support\Facades\Log;
 
 class Comments extends Component
 {
