@@ -83,7 +83,7 @@ class TelegramController extends Controller
                 "传送门:" . "https://kimoji.club/torrents/" . $id;
 
             $photo = $poster; // 海报图片 URL
-            $chatId = "-4047467856"; // Telegram 聊天 ID 或群组 ID
+            $chatId = "-1002007902628"; // Telegram 聊天 ID 或群组 ID
 
             // 记录发送前的日志
             Log::info("Sending torrent notification to Telegram", [
@@ -118,7 +118,7 @@ class TelegramController extends Controller
                 "传送门:" . "https://kimoji.club/torrents/" . $id;
 
             $photo = 'https://kimoji.club/files/img/torrent-cover_' . $id .'.jpg'; // 海报图片 URL
-            $chatId = "-4047467856"; // Telegram 聊天 ID 或群组 ID
+            $chatId = "-1002007902628"; // Telegram 聊天 ID 或群组 ID
 
             // 记录发送前的日志
             Log::info("Sending torrent notification to Telegram", [
@@ -146,8 +146,10 @@ class TelegramController extends Controller
     public function sendModerationNotification($torrentName, $torrentId)
     {
         try {
-            $chatId = "-4083300344"; // 您的 Telegram 群组ID
-            $message = "有新的待审核种子：{$torrentName} (ID: {$torrentId})";
+            $chatId = "-1002007902628"; // 您的 Telegram 群组ID
+            $message = "有新的待审核种子：" . PHP_EOL . PHP_EOL .
+                $torrentName . PHP_EOL . PHP_EOL .
+                "传送门:" . "https://kimoji.club/torrents/" . $torrentId;
 
             // 发送消息
             Telegram::sendMessage([
@@ -155,16 +157,16 @@ class TelegramController extends Controller
                 'text' => $message
             ]);
 
-            Log::info("Sent moderation notification to Telegram", ['chat_id' => $chatId, 'message' => $message]);
+            Log::info("发送待审通知", ['chat_id' => $chatId, 'message' => $message]);
         } catch (\Exception $e) {
-            Log::error("Error sending moderation notification to Telegram", ['error' => $e->getMessage()]);
+            Log::error("发送待审通知异常", ['error' => $e->getMessage()]);
         }
     }
 
     public function sendNewApplicationNotification($applicationDetails, $images = [])
     {
         try {
-            $chatId = "-4083300344"; // 替换为你的 Telegram 群组ID
+            $chatId = "-1002007902628"; // 替换为你的 Telegram 群组ID
             $message = "收到了新的入站申请：\n\n" . $applicationDetails;
 
             // 发送文本消息
