@@ -88,15 +88,13 @@ class Comments extends Component
     {
         if ($this->user->can_comment === false) {
             $this->dispatchBrowserEvent('error', ['type' => 'error',  'message' => trans('comment.rights-revoked')]);
-
             return;
         }
 
- /*       if (strtolower(class_basename($this->model)) === 'torrent' && $this->model->status !== Torrent::APPROVED) {
-            $this->dispatchBrowserEvent('error', ['type' => 'error',  'message' => trans('comment.torrent-status')]);
-
-            return;
-        }*/
+        //if (strtolower(class_basename($this->model)) === 'torrent' && $this->model->status !== Torrent::APPROVED) {
+        //    $this->dispatchBrowserEvent('error', ['type' => 'error',  'message' => trans('comment.torrent-status')]);
+        //    return;
+        //}
 
         $this->validate([
             'newCommentState.content' => 'required',
