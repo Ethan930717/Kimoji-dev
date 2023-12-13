@@ -31,7 +31,6 @@ class TorrentObserver
     }
 
 
-
     /**
      * Handle the Torrent "updated" event.
      */
