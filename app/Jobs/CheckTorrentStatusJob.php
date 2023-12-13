@@ -17,34 +17,39 @@ class CheckTorrentStatusJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $torrent;
+    protected $torrentId;
 
-    public function __construct(Torrent $torrent)
+    public function __construct($torrentId)
     {
-        $this->torrent = $torrent;
-        Log::info("CheckTorrentStatusJob 构造函数执行，Torrent ID: " . $torrent->id);
-
+        $this->torrentId = $torrentId;
+        Log::info("CheckTorrentStatusJob 构造函数执行，Torrent ID: " . $torrentId);
     }
 
     public function handle()
     {
-        // 重新获取 Torrent 实例以确保状态是最新的
-        $torrent = Torrent::find($this->torrent->id);
+        $torrent = Torrent::find($this->torrentId);
+
+        if (!$torrent) {
+            Log::error("Torrent 不存在或已被删除", ['torrentId' => $this->torrentId]);
+            return;
+        }
 
         Log::info("CheckTorrentStatusJob 执行中，检查 Torrent 状态", ['torrentId' => $torrent->id, 'status' => $torrent->status]);
 
-        if ($torrent && $torrent->status == 1) {
+        if ($torrent->status == 1) {
             $category = $torrent->category_id;
 
             switch ($category) {
                 case 1:
                 case 3:
                     $tmdbService = new Movie($torrent->tmdb);
+                    $tmdbData = $this->fetchTmdbData($tmdbService);
                     break;
                 case 2:
                 case 4:
                 case 5:
                     $tmdbService = new TV($torrent->tmdb);
+                    $tmdbData = $this->fetchTmdbData($tmdbService);
                     break;
                 case 6:
                     $fileSizeGB = round($torrent->size / 1e9, 2); // 将字节转换为 GB，并保留两位小数
@@ -55,12 +60,11 @@ class CheckTorrentStatusJob implements ShouldQueue
                         $torrent->name,
                         $fileSizeText
                     );
-                    break;
+                    return;
                 default:
+                    Log::warning("未知的 Torrent 类别", ['category_id' => $category]);
                     return;
             }
-
-            $tmdbData = $this->fetchTmdbData($tmdbService);
 
             if ($tmdbData) {
                 $fileSizeGB = round($torrent->size / 1e9, 2); // 将字节转换为 GB，并保留两位小数
@@ -75,16 +79,15 @@ class CheckTorrentStatusJob implements ShouldQueue
                     $fileSizeText
                 );
             }
-        } elseif ($torrent && $torrent->status == 0) {
+        } elseif ($torrent->status == 0) {
             Log::info("Torrent 状态为 0，发送待审核通知", ['torrentId' => $torrent->id]);
-
-            // 执行状态为 0 的相关操作，例如发送待审核通知
             $telegramController = new TelegramController();
             $telegramController->sendModerationNotification($torrent->name, $torrent->id);
         } else {
-            Log::warning("Torrent 状态不是 0 或 1，或者 Torrent 不存在", ['torrentId' => $this->torrent->id]);
+            Log::warning("Torrent 状态不是 0 或 1", ['torrentId' => $this->torrentId]);
         }
     }
+
     private function fetchTmdbData($tmdbService)
     {
         return [

@@ -27,7 +27,7 @@ class TorrentObserver
     {
         cache()->put(sprintf('torrent:%s', $torrent->info_hash), $torrent);
 
-        CheckTorrentStatusJob::dispatch($torrent)->delay(now()->addSeconds(5));
+        CheckTorrentStatusJob::dispatch($torrent->id)->delay(now()->addSeconds(5));
     }
 
 
