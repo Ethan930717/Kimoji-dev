@@ -50,6 +50,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // User Observer For Cache
         User::observe(UserObserver::class);
+        Torrent::observe(TorrentObserver::class);
 
         // Torrent Observer For Cache
         // Torrent::observe(TorrentObserver::class);

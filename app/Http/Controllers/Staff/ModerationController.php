@@ -84,13 +84,6 @@ class ModerationController extends Controller
                 );
         }
 
-        if ($request->integer('status') === Torrent::PENDING) {
-            // 创建 TelegramController 实例
-            $telegramController = new TelegramController(new InviteService());
-
-            // 调用方法发送通知
-            $telegramController->sendModerationNotification($torrent->name, $torrent->id);
-        }
         $staff = auth()->user();
 
         switch ($request->status) {

@@ -12,8 +12,6 @@
  */
 
 namespace App\Http\Controllers\API;
-use Telegram\Bot\Laravel\Facades\Telegram;
-use App\Http\Controllers\TelegramController;
 use App\Helpers\Bencode;
 use App\Helpers\TorrentHelper;
 use App\Helpers\TorrentTools;
@@ -366,23 +364,6 @@ class TorrentController extends BaseController
             }
 
             TorrentHelper::approveHelper($torrent->id);
-        }
-        try {
-            if ($user->group->is_trusted) {
-                // 直接使用 TelegramController 调用新方法
-                $telegramController = new TelegramController();
-                $telegramController->notifyNewTorrent($torrent);
-            } else {
-                // 需要审核的种子：发送通知到工作人员群组
-                $telegramController = new TelegramController();
-                $telegramController->notifyNewTorrent($torrent);
-            }
-            Log::info('新种子通知已发送到 Telegram。');
-        } catch (\Exception $e) {
-            Log::error('发送新种子通知到 Telegram 失败。', [
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
         }
         return $this->sendResponse(route('torrent.download.rsskey', ['id' => $torrent->id, 'rsskey' => auth('api')->user()->rsskey]), 'Torrent uploaded successfully.');
     }

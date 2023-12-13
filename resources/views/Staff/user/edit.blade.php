@@ -223,7 +223,7 @@
                         value="1"
                         @checked($user->can_upload)
                     >
-                    <label for="can_upload">{{ __('user.can-upload') }}?</label>
+                    <label for="can_upload">{{ __('user.can-upload') }}</label>
                 </p>
                 <p class="form__group">
                     <input type="hidden" name="can_download" value="0">
@@ -235,7 +235,7 @@
                         value="1"
                         @checked($user->can_download)
                     >
-                    <label for="can_download">{{ __('user.can-download') }}?</label>
+                    <label for="can_download">{{ __('user.can-download') }}</label>
                 </p>
                 <p class="form__group">
                     <input type="hidden" name="can_comment" value="0">
@@ -247,7 +247,7 @@
                         value="1"
                         @checked($user->can_comment)
                     >
-                    <label for="can_comment">{{ __('user.can-comment') }}?</label>
+                    <label for="can_comment">{{ __('user.can-comment') }}</label>
                 </p>
                 <p class="form__group">
                     <input type="hidden" name="can_invite" value="0">
@@ -259,7 +259,7 @@
                         value="1"
                         @checked($user->can_invite)
                     >
-                    <label for="can_invite">{{ __('user.can-invite') }}?</label>
+                    <label for="can_invite">{{ __('user.can-invite') }}</label>
                 </p>
                 <p class="form__group">
                     <input type="hidden" name="can_request" value="0">
@@ -271,7 +271,7 @@
                         value="1"
                         @checked($user->can_request)
                     >
-                    <label for="can_request">{{ __('user.can-request') }}?</label>
+                    <label for="can_request">{{ __('user.can-request') }}</label>
                 </p>
                 <p class="form__group">
                     <input type="hidden" name="can_chat" value="0">
@@ -283,7 +283,7 @@
                         value="1"
                         @checked($user->can_chat)
                     >
-                    <label for="can_chat">{{ __('user.can-chat') }}?</label>
+                    <label for="can_chat">{{ __('user.can-chat') }}</label>
                 </p>
                 <p class="form__group">
                     <button class="form__button form__button--filled">
