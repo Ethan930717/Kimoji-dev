@@ -70,7 +70,9 @@ class TorrentObserver
             }
         } else {
             // 发送待审核通知
-            (new TelegramController)->sendModerationNotification($torrent->name, $torrent->id);
+            if ($torrent->status == 0) {
+                CheckTorrentStatusJob::dispatch($torrent)->delay(now()->addSeconds(10));
+            }
         }
     }
 
