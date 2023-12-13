@@ -72,7 +72,7 @@ class TelegramController extends Controller
         }
     }
 
-    public function sendTorrentNotification($poster, $overview, $size, $name, $id)
+    public function sendTorrentNotification($id, $name,$poster, $overview, $size)
     {
         try {
             // 构建消息文本
