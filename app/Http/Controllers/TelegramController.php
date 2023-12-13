@@ -72,11 +72,14 @@ class TelegramController extends Controller
         }
     }
 
-    public function sendTorrentNotification($id, $name,$poster, $overview, $size)
+    public function sendTorrentNotification($id, $name, $poster, $overview, $size)
     {
         try {
+            // 检查名称中是否包含 "KIMOJI"
+            $prefixMessage = str_contains($name, "KIMOJI") ? "勤劳的阿K发官种啦" : "来自阿K的新种播报：";
+
             // 构建消息文本
-            $message = "来自阿K的新种通知：" . PHP_EOL . PHP_EOL .
+            $message = $prefixMessage . PHP_EOL . PHP_EOL .
                 $name . PHP_EOL . PHP_EOL .
                 "体积:" . $size . PHP_EOL . PHP_EOL .
                 "传送门:" . "https://kimoji.club/torrents/" . $id;
@@ -110,8 +113,10 @@ class TelegramController extends Controller
     public function sendMusicTorrentNotification($id, $name , $size)
     {
         try {
+            $prefixMessage = str_contains($name, "KIMOJI") ? "DJ阿K发官种啦：" : "DJ阿K的新音乐播送通知：";
+
             // 构建消息文本
-            $message = "DJ阿K的新音乐播送通知：" . PHP_EOL . PHP_EOL .
+            $message = $prefixMessage . PHP_EOL . PHP_EOL .
                 $name . PHP_EOL . PHP_EOL .
                 "体积:" . $size . PHP_EOL . PHP_EOL .
                 "传送门:" . "https://kimoji.club/torrents/" . $id;
