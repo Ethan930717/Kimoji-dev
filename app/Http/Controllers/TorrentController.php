@@ -423,7 +423,7 @@ class TorrentController extends Controller
             $image_cover = $request->file('torrent-cover');
             $filename_cover = 'torrent-cover_'.$torrent->id.'.jpg';
             $path_cover = public_path('/files/img/'.$filename_cover);
-            Image::make($image_cover->getRealPath())->fit(400, 600)->encode('jpg', 90)->save($path_cover);
+            Image::make($image_cover->getRealPath())->fit(500, 500)->encode('jpg', 90)->save($path_cover);
         }
 
         // Banner Image for No-Meta Torrents
