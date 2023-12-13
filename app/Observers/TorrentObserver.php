@@ -49,7 +49,8 @@ class TorrentObserver
                 $fileSizeGB = round($torrent->size / 1e9, 2); // 将字节转换为 GB，并保留两位小数
                 $fileSizeText = "{$fileSizeGB} GB";
 
-                TelegramController::sendTorrentNotification(
+                $telegramController = new TelegramController();
+                $telegramController->sendTorrentNotification(
                     $torrent->id,
                     $torrent->name,
                     $tmdbData['poster'],
@@ -95,7 +96,8 @@ class TorrentObserver
             if ($tmdbData) {
                 $fileSizeGB = round($torrent->size / 1e9, 2); // 将字节转换为 GB，并保留两位小数
                 $fileSizeText = "{$fileSizeGB} GB";
-                TelegramController::sendTorrentNotification(
+                $telegramController = new TelegramController();
+                $telegramController->sendTorrentNotification(
                     $torrent->id,
                     $torrent->name,
                     $tmdbData['poster'],
