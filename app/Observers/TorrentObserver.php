@@ -17,6 +17,8 @@ use App\Models\Torrent;
 use App\Http\Controllers\TelegramController;
 use App\Services\Tmdb\Client\Movie;
 use App\Services\Tmdb\Client\TV;
+use Illuminate\Support\Facades\Log;
+
 
 class TorrentObserver
 {
@@ -26,7 +28,7 @@ class TorrentObserver
     public function created(Torrent $torrent): void
     {
         cache()->put(sprintf('torrent:%s', $torrent->info_hash), $torrent);
-
+        Log::info("新种监测", ['torrentId' => $this->torrentId]);
         CheckTorrentStatusJob::dispatch($torrent->id)->delay(now()->addSeconds(5));
     }
 
