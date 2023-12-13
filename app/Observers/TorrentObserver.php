@@ -39,6 +39,16 @@ class TorrentObserver
                 case 5:
                     $tmdbService = new TV($torrent->tmdb);
                     break;
+                case 6:
+                    $fileSizeGB = round($torrent->size / 1e9, 2); // 将字节转换为 GB，并保留两位小数
+                    $fileSizeText = "{$fileSizeGB} GB";
+                    $telegramController = new TelegramController();
+                    $telegramController->sendMusicTorrentNotification(
+                        $torrent->id,
+                        $torrent->name,
+                        $fileSizeText
+                    );
+                    break;
                 default:
                     return;
             }
@@ -86,6 +96,16 @@ class TorrentObserver
                 case 4:
                 case 5:
                     $tmdbService = new TV($torrent->tmdb);
+                    break;
+                case 6:
+                    $fileSizeGB = round($torrent->size / 1e9, 2); // 将字节转换为 GB，并保留两位小数
+                    $fileSizeText = "{$fileSizeGB} GB";
+                    $telegramController = new TelegramController();
+                    $telegramController->sendMusicTorrentNotification(
+                        $torrent->id,
+                        $torrent->name,
+                        $fileSizeText
+                    );
                     break;
                 default:
                     return;

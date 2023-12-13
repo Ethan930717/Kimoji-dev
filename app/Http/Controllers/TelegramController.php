@@ -107,6 +107,42 @@ class TelegramController extends Controller
             Log::error("Error sending torrent notification to Telegram", ['error' => $e->getMessage()]);
         }
     }
+
+    public function sendMusicTorrentNotification($id, $name , $size)
+    {
+        try {
+            // 构建消息文本
+            $message = "DJ阿K的新音乐播送通知：" . PHP_EOL . PHP_EOL .
+                $name . PHP_EOL . PHP_EOL .
+                "体积:" . $size . PHP_EOL . PHP_EOL .
+                "传送门:" . "https://kimoji.club/torrents/" . $id;
+
+            $photo = 'https://kimoji.club/files/img/torrent-cover_' . $id .'.jpg'; // 海报图片 URL
+            $chatId = "-4047467856"; // Telegram 聊天 ID 或群组 ID
+
+            // 记录发送前的日志
+            Log::info("Sending torrent notification to Telegram", [
+                'chat_id' => $chatId,
+                'message' => $message,
+                'photo' => $photo
+            ]);
+
+            // 发送带图片的消息
+            $response = Telegram::sendPhoto([
+                'chat_id' => $chatId,
+                'photo' => InputFile::create($photo, basename($photo)),
+                'caption' => $message
+            ]);
+
+            // 记录发送后的日志
+            Log::info("新种推送", ['response' => $response]);
+
+        } catch (\Exception $e) {
+            // 记录异常
+            Log::error("音乐新种TG推送错误", ['error' => $e->getMessage()]);
+        }
+    }
+
     public function sendModerationNotification($torrentName, $torrentId)
     {
         try {
