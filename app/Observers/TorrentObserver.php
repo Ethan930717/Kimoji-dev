@@ -45,10 +45,15 @@ class TorrentObserver
             $tmdbData = $this->fetchTmdbData($tmdbService);
 
             if ($tmdbData) {
+                $fileSizeGB = round($torrent->size / 1e9, 2); // 将字节转换为 GB，并保留两位小数
+                $fileSizeText = "{$fileSizeGB} GB";
+
                 TelegramController::sendTorrentNotification(
+                    $torrent->id,
+                    $torrent->name,
                     $tmdbData['poster'],
                     $tmdbData['overview'],
-                    $torrent->user->username
+                    $fileSizeText
                 );
             }
         } else {
@@ -68,11 +73,37 @@ class TorrentObserver
         cache()->put(sprintf('torrent:%s', $torrent->info_hash), $torrent);
 
         if ($torrent->isDirty('status') && $torrent->status == 1) {
-            // 如果 status 从 0 变为 1
-            TelegramController::sendMessage('数据更新，状态从 0 变为 1');
+            $category = $torrent->category_id;
+
+            switch ($category) {
+                case 1:
+                case 3:
+                    $tmdbService = new Movie($torrent->tmdb);
+                    break;
+                case 2:
+                case 4:
+                case 5:
+                    $tmdbService = new TV($torrent->tmdb);
+                    break;
+                default:
+                    return;
+            }
+
+            $tmdbData = $this->fetchTmdbData($tmdbService);
+
+            if ($tmdbData) {
+                $fileSizeGB = round($torrent->size / 1e9, 2); // 将字节转换为 GB，并保留两位小数
+                $fileSizeText = "{$fileSizeGB} GB";
+                TelegramController::sendTorrentNotification(
+                    $torrent->id,
+                    $torrent->name,
+                    $tmdbData['poster'],
+                    $tmdbData['overview'],
+                    $fileSizeText
+                );
+            }
         }
     }
-
     private function fetchTmdbData($tmdbService)
     {
         return [

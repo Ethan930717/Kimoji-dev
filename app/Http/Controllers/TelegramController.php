@@ -72,12 +72,19 @@ class TelegramController extends Controller
         }
     }
 
-    public function sendTorrentNotification($poster, $overview, $uploader)
+    public function sendTorrentNotification($poster, $overview, $size, $name, $id)
     {
         try {
-            $message = "$uploader 上传了新资源：\n\n" . $overview; // 使用上传者的用户名
+            // 构建消息文本
+            $message = "来自阿K的新种通知：" . PHP_EOL . PHP_EOL .
+                $name . PHP_EOL . PHP_EOL .
+                "影片简介:" . $overview . PHP_EOL . PHP_EOL .
+                "体积:" . $size . PHP_EOL . PHP_EOL .
+                "传送门:" . "https://kimoji.club/torrents/" . $id;
+
             $photo = $poster; // 海报图片 URL
-            $chatId = "-4047467856";
+            $chatId = "-4047467856"; // Telegram 聊天 ID 或群组 ID
+
             // 记录发送前的日志
             Log::info("Sending torrent notification to Telegram", [
                 'chat_id' => $chatId,
@@ -85,6 +92,7 @@ class TelegramController extends Controller
                 'photo' => $photo
             ]);
 
+            // 发送带图片的消息
             $response = Telegram::sendPhoto([
                 'chat_id' => $chatId,
                 'photo' => InputFile::create($photo, basename($photo)),
