@@ -22,7 +22,7 @@ class CheckTorrentStatusJob implements ShouldQueue
     public function __construct($torrentId)
     {
         $this->torrentId = $torrentId;
-        Log::info("CheckTorrentStatusJob 构造函数执行，Torrent ID: " . $torrentId);
+        Log::info("CheckTorrentStatusJob 构造函数执行，Torrent ID: " . $this->torrentId);
     }
 
     public function handle()
@@ -33,6 +33,7 @@ class CheckTorrentStatusJob implements ShouldQueue
             Log::error("Torrent 不存在或已被删除", ['torrentId' => $this->torrentId]);
             return;
         }
+
 
         Log::info("CheckTorrentStatusJob 执行中，检查 Torrent 状态", ['torrentId' => $torrent->id, 'status' => $torrent->status]);
 
