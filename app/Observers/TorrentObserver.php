@@ -17,6 +17,8 @@ use App\Models\Torrent;
 use App\Http\Controllers\TelegramController;
 use App\Services\Tmdb\Client\Movie;
 use App\Services\Tmdb\Client\TV;
+use Illuminate\Support\Facades\Log;
+
 class TorrentObserver
 {
     /**
@@ -69,10 +71,10 @@ class TorrentObserver
                 );
             }
         } else {
-            // 发送待审核通知
-            if ($torrent->status == 0) {
-                CheckTorrentStatusJob::dispatch($torrent)->delay(now()->addSeconds(10));
-            }
+            Log::info("status0id", ['torrent_id' => $torrent->id]);
+            CheckTorrentStatusJob::dispatch($torrent)->delay(now()->addSeconds(10));
+            Log::info("Dispatched CheckTorrentStatusJob", ['torrent_id' => $torrent->id]);
+
         }
     }
 
