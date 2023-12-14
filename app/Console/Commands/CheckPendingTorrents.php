@@ -13,7 +13,7 @@ class CheckPendingTorrents extends Command
 
     public function handle()
     {
-        $pendingTorrents = Torrent::where('status', Torrent::PENDING)->get();
+        $pendingTorrents = Torrent::where('status', 0)->get();
 
         if ($pendingTorrents->isNotEmpty()) {
             $message = "以下种子处于待审核状态:\n\n";
