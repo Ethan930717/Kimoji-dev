@@ -40,7 +40,7 @@ return [
         'array'   => '该 :attribute 必须有 :min 至 :max 项目',
     ],
     'boolean'        => '该 :attribute 值必须是true或false',
-    'confirmed'      => '该 :attribute 确认不符',
+    'confirmed'      => '该 :attribute 不符合要求',
     'date'           => '该 :attribute 不是有效的日期',
     'date_equals'    => '该 :attribute 必须等于 :date',
     'date_format'    => '该 :attribute 与格式 :format不匹配',
