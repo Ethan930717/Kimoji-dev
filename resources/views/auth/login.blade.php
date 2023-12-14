@@ -44,7 +44,7 @@
         <a href="{{ route('loginsponsor')  }}">
             <h2 class="inactive underlineHover" style="margin-left:30px;margin-right:30px;color:#97fbff;font-size:20px;text-shadow: 0 0 8px #ffb6d3;">{{ __('common.sponsor') }} </h2>
         </a>
-        <a href="{{ route('registrationForm', ['code' => 'null']) }}">
+        <a href="{{ route('register') }}">
             <h2 class="inactive underlineHover">{{ __('auth.signup') }} </h2>
         </a>
     <svg viewBox="0 0 800 100" class="sitebanner">

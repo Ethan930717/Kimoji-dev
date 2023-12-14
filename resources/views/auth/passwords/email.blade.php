@@ -37,7 +37,7 @@
         <a href="{{ route('login') }}">
             <h2 class="inactive underlineHover">{{ __('auth.login') }}</h2>
         </a>
-        <a href="{{ route('registrationForm', ['code' => 'null']) }}">
+        <a href="{{ route('register') }}">
             <h2 class="inactive underlineHover">{{ __('auth.signup') }}</h2>
         </a>
 
