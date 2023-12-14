@@ -21,18 +21,6 @@
 </head>
 <body>
 <div class="wrapper fadeInDown">
-    <svg viewBox="0 0 800 100" class="sitebanner">
-        <symbol id="s-text">
-            <text text-anchor="middle" x="50%" y="50%" dy=".35em">
-                {{ config('other.title') }}
-            </text>
-        </symbol>
-        <use xlink:href="#s-text" class="text"></use>
-        <use xlink:href="#s-text" class="text"></use>
-        <use xlink:href="#s-text" class="text"></use>
-        <use xlink:href="#s-text" class="text"></use>
-        <use xlink:href="#s-text" class="text"></use>
-    </svg>
     <div id="formContent">
         <a href="{{ route('login') }}">
             <h2 class="inactive underlineHover">{{ __('auth.login') }} </h2>
@@ -40,9 +28,19 @@
         <a href="{{ route('register', ['code' => request()->query('code')]) }}">
             <h2 class="active">{{ __('auth.signup') }} </h2>
         </a>
-        <div class="fadeIn first">
-            <img src="{{ url('/img/icon.svg') }}" id="icon" alt="{{ __('auth.user-icon') }}"/>
-        </div>
+        <svg viewBox="0 0 800 100" class="sitebanner">
+            <symbol id="s-text">
+                <text text-anchor="middle" x="50%" y="50%" dy=".35em">
+                    {{ config('other.title') }}
+                </text>
+            </symbol>
+            <use xlink:href="#s-text" class="text"></use>
+            <use xlink:href="#s-text" class="text"></use>
+            <use xlink:href="#s-text" class="text"></use>
+            <use xlink:href="#s-text" class="text"></use>
+            <use xlink:href="#s-text" class="text"></use>
+        </svg>
+
         <p>
             我们即将给您发送一条验证通知，请您尽快完成验证
         </p>

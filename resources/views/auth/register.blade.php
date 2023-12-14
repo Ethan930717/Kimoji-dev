@@ -36,20 +36,28 @@
             {{ __('auth.need-invite') }}
         </div>
     @endif
-    <svg viewBox="0 0 800 100" class="sitebanner">
-        <symbol id="s-text">
-            <text text-anchor="middle" x="50%" y="50%" dy=".35em">
-                {{ config('other.title') }}
-            </text>
-        </symbol>
-        <use xlink:href="#s-text" class="text"></use>
-        <use xlink:href="#s-text" class="text"></use>
-        <use xlink:href="#s-text" class="text"></use>
-        <use xlink:href="#s-text" class="text"></use>
-        <use xlink:href="#s-text" class="text"></use>
-    </svg>
 
 
+    <div id="formContent">
+        <a href="{{ route('login') }}">
+            <h2 class="inactive underlineHover">{{ __('auth.login') }} </h2>
+        </a>
+        <a href="{{ route('register', ['code' => request()->query('code')]) }}">
+            <h2 class="active">{{ __('auth.signup') }} </h2>
+        </a>
+
+        <svg viewBox="0 0 800 100" class="sitebanner">
+            <symbol id="s-text">
+                <text text-anchor="middle" x="50%" y="50%" dy=".35em">
+                    {{ config('other.title') }}
+                </text>
+            </symbol>
+            <use xlink:href="#s-text" class="text"></use>
+            <use xlink:href="#s-text" class="text"></use>
+            <use xlink:href="#s-text" class="text"></use>
+            <use xlink:href="#s-text" class="text"></use>
+            <use xlink:href="#s-text" class="text"></use>
+        </svg>
         <form role="form" method="POST" action="{{ route('register', ['code' => request()->query('code')]) }}">
             @csrf
             <label for="username"></label><input type="text" id="username" class="fadeIn second" name="username"
@@ -81,6 +89,7 @@
             @endif
         </div>
     </div>
+</div>
 
 <script src="{{ mix('js/app.js') }}" crossorigin="anonymous"></script>
 @foreach (['warning', 'success', 'info'] as $key)
