@@ -130,7 +130,7 @@ class ModerationController extends Controller
                 PrivateMessage::create([
                     'sender_id'   => $staff->id,
                     'receiver_id' => $torrent->user_id,
-                    'subject' => "您上传的 [url=" . route('torrents', ['id' => $torrent->id]) . "]" . $torrent->name . "[/url] 没有通过审核",
+                    'subject' => "您上传的 [url=" . route('torrents.show', ['id' => $torrent->id]) . "]" . $torrent->name . "[/url] 没有通过审核",
                     'message' => "审种员： " . $staff->username . "\n原因如下，请尽快更新您的种子信息并重新上传。\n\n" . $request->message,
                 ]);
 
@@ -151,7 +151,7 @@ class ModerationController extends Controller
                 PrivateMessage::create([
                     'sender_id'   => $staff->id,
                     'receiver_id' => $torrent->user_id,
-                    'subject' => "您上传的 [url=" . route('torrents', ['id' => $torrent->id]) . "]" . $torrent->name . "[/url] 已被延期处理",
+                    'subject' => "您上传的 [url=" . route('torrents.show', ['id' => $torrent->id]) . "]" . $torrent->name . "[/url] 已被延期处理",
                     'message' => "审种员： " . $staff->username . "\n原因如下，请尽快更新您的种子信息并重新上传。\n\n" . $request->message,
                 ]);
 
