@@ -28,12 +28,7 @@ class TorrentObserver
     public function created(Torrent $torrent): void
     {
         cache()->put(sprintf('torrent:%s', $torrent->info_hash), $torrent);
-        Log::info("新种监测", ['torrentId' => $torrent->id]);
 
-        if ($torrent->status === Torrent::PENDING) {
-            $telegramController = new TelegramController();
-            $telegramController->sendModerationNotification($torrent->name, $torrent->id);
-        }
     }
 
     /**
