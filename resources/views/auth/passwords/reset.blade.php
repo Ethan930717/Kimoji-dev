@@ -53,19 +53,6 @@
         <use xlink:href="#s-text" class="text"></use>
     </svg>
 
-
-    <div id="formContent">
-        <a href="{{ route('login') }}">
-            <h2 class="inactive underlineHover">{{ __('auth.login') }} </h2>
-        </a>
-        <a href="{{ route('register') }}">
-            <h2 class="inactive underlineHover">{{ __('auth.signup') }} </h2>
-        </a>
-
-        <div class="fadeIn first">
-            <img src="{{ url('/img/icon.svg') }}" id="icon" alt="{{ __('auth.user-icon') }}"/>
-        </div>
-
         <form class="form-horizontal" role="form" method="POST" action="{{ route('password.request') }}">
             @csrf
             <input type="hidden" name="token" value="{{ request()->route('token') }}">

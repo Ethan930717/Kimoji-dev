@@ -44,13 +44,11 @@
             <img src="{{ url('/img/icon.svg') }}" id="icon" alt="{{ __('auth.user-icon') }}"/>
         </div>
         <p>
-            Almost done...
-            <br>
-            We'll send you an email shortly. Open it up to activate your account.
+            我们即将给您发送一条验证通知，请您尽快完成验证
         </p>
         <div id="formFooter">
             <a href="{{ route('verification.send') }}">
-                <h2 class="active">Resend confirmation email</h2>
+                <h2 class="active">重发邮件</h2>
             </a>
         </div>
     </div>

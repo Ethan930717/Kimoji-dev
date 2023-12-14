@@ -49,18 +49,6 @@
         <use xlink:href="#s-text" class="text"></use>
     </svg>
 
-    <div id="formContent">
-        <a href="{{ route('login') }}">
-            <h2 class="inactive underlineHover">{{ __('auth.login') }} </h2>
-        </a>
-        <a href="{{ route('register', ['code' => request()->query('code')]) }}">
-            <h2 class="active">{{ __('auth.signup') }} </h2>
-        </a>
-
-
-        <div class="fadeIn first">
-            <img src="{{ url('/img/icon.svg') }}" id="icon" alt="{{ __('auth.user-icon') }}"/>
-        </div>
 
         <form role="form" method="POST" action="{{ route('register', ['code' => request()->query('code')]) }}">
             @csrf
@@ -93,7 +81,6 @@
             @endif
         </div>
     </div>
-</div>
 
 <script src="{{ mix('js/app.js') }}" crossorigin="anonymous"></script>
 @foreach (['warning', 'success', 'info'] as $key)
