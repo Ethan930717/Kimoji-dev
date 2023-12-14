@@ -28,8 +28,12 @@ Route::get('/test-telegram', function () {
         return 'Error: ' . $e->getMessage();
     }
 });
+
 #图片展示
 Route::get('/gallery', [ImageGalleryController::class, 'showGallery']);
+
+// loginsponsor
+Route::get('/loginsponsor', [App\Http\Controllers\Auth\LoginSponsorController::class, 'showSponsorPage'])->name('loginsponsor');
 
 /**
  * NOTICE OF LICENSE.
@@ -543,9 +547,6 @@ Route::middleware('language')->group(function (): void {
             Route::patch('/', [App\Http\Controllers\User\EmailController::class, 'update'])->name('update');
         });
 
-        // loginsponsor
-
-        Route::get('/loginsponsor', [App\Http\Controllers\Auth\LoginSponsorController::class, 'showSponsorPage'])->name('loginsponsor');
 
         // Password
         Route::prefix('password')->name('password.')->group(function (): void {
@@ -1026,6 +1027,8 @@ Route::middleware('language')->group(function (): void {
                 Route::delete('/{internal}', [App\Http\Controllers\Staff\InternalController::class, 'destroy'])->name('destroy');
             });
         });
+
+
 
         // Watchlist
         Route::prefix('watchlist')->group(function (): void {
