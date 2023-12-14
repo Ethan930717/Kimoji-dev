@@ -81,7 +81,6 @@ class TelegramController extends Controller
             // 构建消息文本
             $message = $prefixMessage . PHP_EOL . PHP_EOL .
                 $name . PHP_EOL . PHP_EOL .
-                "简介:" . $overview . PHP_EOL . PHP_EOL .
                 "体积:" . $size . PHP_EOL . PHP_EOL .
                 "传送门:" . "https://kimoji.club/torrents/" . $id;
 
