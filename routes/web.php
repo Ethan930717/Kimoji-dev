@@ -543,6 +543,10 @@ Route::middleware('language')->group(function (): void {
             Route::patch('/', [App\Http\Controllers\User\EmailController::class, 'update'])->name('update');
         });
 
+        // loginsponsor
+
+        Route::get('/loginsponsor', [App\Http\Controllers\Auth\LoginSponsorController::class, 'showSponsorPage'])->name('loginsponsor');
+
         // Password
         Route::prefix('password')->name('password.')->group(function (): void {
             Route::get('/edit', [App\Http\Controllers\User\PasswordController::class, 'edit'])->name('edit');
