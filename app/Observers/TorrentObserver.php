@@ -29,7 +29,10 @@ class TorrentObserver
     {
         cache()->put(sprintf('torrent:%s', $torrent->info_hash), $torrent);
         Log::info("新种监测", ['torrentId' => $torrent->id]);
-        CheckTorrentStatusJob::dispatch($torrent->id)->delay(now()->addSeconds(30));
+
+        if ($torrent->status === Torrent::PENDING) {
+            $telegramController = new TelegramController();
+            $telegramController->sendModerationNotification($torrent->name, $torrent->id);        }
     }
 
     /**

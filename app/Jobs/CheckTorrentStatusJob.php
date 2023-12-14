@@ -17,6 +17,10 @@ class CheckTorrentStatusJob implements ShouldQueue
 
     protected $torrentId;
 
+    public function getTorrentId()
+    {
+        return $this->torrentId;
+    }
     public function __construct($torrentId)
     {
         $this->torrentId = $torrentId;
