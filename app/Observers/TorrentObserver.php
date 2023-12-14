@@ -32,7 +32,8 @@ class TorrentObserver
 
         if ($torrent->status === Torrent::PENDING) {
             $telegramController = new TelegramController();
-            $telegramController->sendModerationNotification($torrent->name, $torrent->id);        }
+            $telegramController->sendModerationNotification($torrent->name, $torrent->id);
+        }
     }
 
     /**

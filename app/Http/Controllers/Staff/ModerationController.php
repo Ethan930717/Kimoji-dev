@@ -64,6 +64,14 @@ class ModerationController extends Controller
     {
         $torrent = Torrent::withoutGlobalScope(ApprovedScope::class)->with('user')->findOrFail($id);
 
+        // 检查 Torrent 状态是否更新为待审核
+        if ($request->integer('status') === Torrent::PENDING) {
+            $telegramController = new TelegramController();
+            $telegramController->sendModerationNotification($torrent->name, $torrent->id);
+
+            // 其他逻辑...
+        }
+
         if ($request->integer('old_status') !== $torrent->status) {
             return to_route('torrents.show', ['id' => $id])
                 ->withInput()
