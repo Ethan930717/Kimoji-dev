@@ -138,7 +138,7 @@ class ModerationController extends Controller
                     'sender_id'   => $staff->id,
                     'receiver_id' => $torrent->user_id,
                     'subject'     => '你上传的 '.$torrent->name.' ,没有通过审核，审种员： '.$staff->username,
-                    'message' => "你好, \n\n你上传的 [url=" . route('torrents', ['id' => $torrent->id]) . "]" . $torrent->name . "[/url] 没有通过审核，原因如下，请尽快更新您的种子信息并重新上传。\n\n" . $request->message,
+                    'message' => "你好, \n\n你上传的 [url=" . route('torrents.show', ['id' => $torrent->id]) . "]" . $torrent->name . "[/url] 没有通过审核，原因如下，请尽快更新您的种子信息并重新上传。\n\n" . $request->message,
                 ]);
 
                 cache()->forget('announce-torrents:by-infohash:'.$torrent->info_hash);
