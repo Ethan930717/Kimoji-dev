@@ -43,7 +43,6 @@
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-{{ __('Regards') }},<br>
 {{ config('app.name') }}
 @endif
 
@@ -51,8 +50,7 @@
 @isset($actionText)
 @slot('subcopy')
 {{ __(
-    "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below\n".
-    'into your web browser:',
+    "如果您无法点击 \":actionText\" 按钮, 请手动访问以下链接:',
     [
         'actionText' => $actionText,
     ]

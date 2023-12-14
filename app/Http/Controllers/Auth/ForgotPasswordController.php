@@ -37,4 +37,18 @@ class ForgotPasswordController extends Controller
             ]);
         }
     }
+    public function sendResetLinkEmail(Request $request)
+    {
+        $this->validateEmail($request);
+
+        // try to send reset link
+        $response = $this->broker()->sendResetLink(
+            $request->only('email')
+        );
+
+        // 根据响应类型，返回相应的响应
+        return $response == Password::RESET_LINK_SENT
+            ? back()->withSuccess(trans('passwords.sent'))
+            : back()->withErrors(['email' => trans($response)]);
+    }
 }
