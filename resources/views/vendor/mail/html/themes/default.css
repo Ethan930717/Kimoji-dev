@@ -4,7 +4,7 @@ body,
 body *:not(html):not(style):not(br):not(tr):not(code) {
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
-        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     position: relative;
 }
 
@@ -222,18 +222,17 @@ img {
 }
 
 .button {
-    padding: 10px 20px;
-    margin: 10px 0;
-    background-color: #3498db; /* 默认为蓝色，可以根据需要更改 */
-    color: white;
+    -webkit-text-size-adjust: none;
+    border-radius: 4px;
+    color: #fff;
+    display: inline-block;
+    overflow: hidden;
     text-decoration: none;
-    border-radius: 5px;
-    font-size: 16px;
 }
 
 .button-blue,
 .button-primary {
-    background-color: #3498db;
+    background-color: #2d3748;
     border-bottom: 8px solid #2d3748;
     border-left: 18px solid #2d3748;
     border-right: 18px solid #2d3748;

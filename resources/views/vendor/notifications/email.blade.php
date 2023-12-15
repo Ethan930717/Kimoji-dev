@@ -31,8 +31,10 @@
     @endisset
 
     {{-- Outro Lines --}}
-    如果您不知晓本条邮件所述内容，请您无需理会
+    @foreach ($outroLines as $line)
+        {{ $line }}
 
+    @endforeach
     {{-- Salutation --}}
     @if (! empty($salutation))
         {{ $salutation }}
