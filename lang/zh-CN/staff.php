@@ -22,6 +22,7 @@ return [
     'audit-log'                => '活动日志',
     'bans-log'                 => '封禁日志',
     'blocks'                   => '区块',
+    'blocked-ips'              => '禁用ip',
     'bot'                      => '机器人',
     'bots'                     => '机器人',
     'chat'                     => '聊天',

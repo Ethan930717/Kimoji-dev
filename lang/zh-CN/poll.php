@@ -24,7 +24,7 @@ return [
     'results'         => '结果',
     'title'           => '标题',
     'total'           => '目前总投票数',
-    'vote'            => '票',
+    'vote'            => '投票',
     'vote-now'        => '马上投票吧！',
-    'votes'           => '票',
+    'votes'           => '投票',
 ];

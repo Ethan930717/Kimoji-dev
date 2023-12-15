@@ -395,4 +395,7 @@ return [
     'top-dead'                => '死种排行榜',
     'top-bountied'            => '悬赏大厅',
     'seedbox-added-success'   => '盒子登记成功',
+    'apikeys'                 => 'apikey管理',
+    'passkeys'                => 'passkey管理',
+    'rsskeys'                 => 'rsskey管理',
 ];
