@@ -87,13 +87,13 @@ class CreateNewUser implements CreatesNewUsers
         $profileUrl = href_profile($user);
 
         $welcomeArray = [
-            sprintf('[url=%s]%s[/url], Welcome to ', $profileUrl, $user->username).config('other.title').'! Hope you enjoy the community :rocket:',
-            sprintf("[url=%s]%s[/url], We've been expecting you :space_invader:", $profileUrl, $user->username),
-            sprintf("[url=%s]%s[/url] has arrived. Party's over. :cry:", $profileUrl, $user->username),
-            sprintf("It's a bird! It's a plane! Nevermind, it's just [url=%s]%s[/url].", $profileUrl, $user->username),
-            sprintf('Ready player [url=%s]%s[/url].', $profileUrl, $user->username),
-            sprintf('A wild [url=%s]%s[/url] appeared.', $profileUrl, $user->username),
-            'Welcome to '.config('other.title').sprintf(' [url=%s]%s[/url]. We were expecting you ( ͡° ͜ʖ ͡°)', $profileUrl, $user->username),
+            sprintf('[url=%s]欢迎你，%s[/url]！来到%s，希望你能喜欢KIMOJI的大家庭！ :rocket:', $profileUrl, $user->username, config('other.title')),
+            sprintf("[url=%s]哎呀，%s[/url]，我们一直在等你呢！ :space_invader:", $profileUrl, $user->username),
+            sprintf("[url=%s]%s[/url] 来啦。 :cry:", $profileUrl, $user->username),
+            sprintf("是小鸟！是飞机！咦，其实是[url=%s]%s[/url]来啦。", $profileUrl, $user->username),
+            sprintf('准备好了吗，[url=%s]%s[/url]。', $profileUrl, $user->username),
+            sprintf('野生的[url=%s]%s[/url]出现了。', $profileUrl, $user->username),
+            sprintf('欢迎来到%s[url=%s]%s[/url]。我们已经等你很久了 ( ͡° ͜ʖ ͡°)', config('other.title'), $profileUrl, $user->username),
         ];
 
         $this->chatRepository->systemMessage(
