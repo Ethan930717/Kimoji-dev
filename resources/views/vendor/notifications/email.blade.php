@@ -26,7 +26,7 @@ $color = 'primary';
 }
 ?>
 @component('mail::button', ['url' => $actionUrl, 'color' => $color])
-{{ $actionText }}
+验证邮箱
 @endcomponent
 @endisset
 
@@ -44,7 +44,7 @@ KIMOJI 敬上
 @isset($actionText)
 @slot('subcopy')
 {{ __(
-"如果您无法点击 \":actionText\" 按钮, 请手动访问链接:\n\n",
+"如果您无法点击按钮, 请手动访问链接:\n\n",
 [
 'actionText' => $actionText,
 ]
