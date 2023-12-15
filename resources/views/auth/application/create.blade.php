@@ -83,44 +83,29 @@
                         required
                     ></textarea>
                 </p>
-                <label class="auth-form__label">
-                    Proofs
-                </label>
                 <template x-for="proof in proofs">
                     <fieldset class="auth-form__fieldset">
                         <legend
-                            class="auth-form__legend"
-                            x-text="'Proof ' + proof"
+                                class="auth-form__legend"
+                                x-text="'证明 ' + proof"
                         ></legend>
                         <p class="auth-form__text-input-group">
-                            <label
-                                class="auth-form__label"
-                                x-bind:for="'image' + proof"
-                            >
-                                {{ __('auth.proof-image') }}
-                            </label>
                             <input
-                                x-bind:id="'image' + proof"
-                                class="auth-form__text-input"
-                                name="images[]"
-                                type="url"
-                                placeholder=" "
-                                required
+                                    x-bind:id="'image' + proof"
+                                    class="auth-form__text-input"
+                                    name="images[]"
+                                    type="url"
+                                    x-bind:placeholder="'{{ __('auth.proof-image') }} ' + proof"
+                                    required
                             >
                         </p>
                         <p class="auth-form__text-input-group">
-                            <label
-                                class="auth-form__label"
-                                x-bind:for="'profile' + proof"
-                            >
-                                {{ __('auth.proof-profile') }}
-                            </label>
                             <input
-                                x-bind:id="'profile' + proof"
-                                class="auth-form__text-input"
-                                name="links[]"
-                                type="url"
-                                placeholder=" "
+                                    x-bind:id="'profile' + proof"
+                                    class="auth-form__text-input"
+                                    name="links[]"
+                                    type="url"
+                                    x-bind:placeholder="'{{ __('auth.proof-profile') }} ' + proof"
                             >
                         </p>
                     </fieldset>

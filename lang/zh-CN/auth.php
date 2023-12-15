@@ -27,7 +27,7 @@ return [
     'apply'                     => '填写申请表',
     'application'               => '填写申请表',
     'appl-closed'               => '申请已关闭',
-    'appl-intro'                => '限时申注中，请您如实填写您的申请资料',
+    'appl-intro'                => '限时申注，请您如实填写您的申请资料',
     'appl-reason'               => '你如何得知 :sitename ？为何要加入？',
     'application-submitted'     => '申请已提交。若审批通过，你会收到电子邮件通知。',
     'send-verification-email'   => '发送验证邮件',
