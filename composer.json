@@ -28,7 +28,8 @@
         "irazasyed/telegram-bot-sdk": "^3.13",
         "joypixels/assets": "^6.6",
         "laravel/fortify": "^1.17",
-        "laravel/framework": "^10.11",
+
+        "laravel/framework": "^10.14.1",
         "laravel/tinker": "^2.8.1",
         "league/flysystem-sftp-v3": "^3.15",
         "livewire/livewire": "^2.12.3",

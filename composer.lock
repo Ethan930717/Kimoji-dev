@@ -5,7 +5,7 @@
         "This file is @generated automatically"
     ],
 
-    "content-hash": "e8f113daa066c3707475dfedac0529c9",
+    "content-hash": "befa43336eff547c72d8f8957b47cd30",
     "packages": [
         {
             "name": "assada/laravel-achievements",

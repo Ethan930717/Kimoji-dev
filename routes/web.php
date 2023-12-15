@@ -71,6 +71,7 @@ Route::middleware('language')->group(function (): void {
     |---------------------------------------------------------------------------------
     */
 
+
     Route::group(['before' => 'auth', 'middleware' => 'guest'], function (): void {
         // Application Signup
         Route::get('/application', [App\Http\Controllers\Auth\ApplicationController::class, 'create'])->name('application.create');
@@ -86,6 +87,7 @@ Route::middleware('language')->group(function (): void {
     | Website (When Authorized) (Alpha Ordered)
     |---------------------------------------------------------------------------------
     */
+
 
     Route::group(['middleware' => ['auth', 'twostep', 'banned', 'verified']], function (): void {
         // General
