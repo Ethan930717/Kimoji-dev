@@ -6,6 +6,7 @@ use App\Models\Invite;
 use App\Mail\InviteUser;
 use Illuminate\Support\Facades\Mail;
 use Ramsey\Uuid\Uuid;
+use Exception;
 
 class InviteService
 {
@@ -24,11 +25,10 @@ class InviteService
             ]);
 
             Mail::to($email)->send(new InviteUser($invite));
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw $e;
         }
 
         return $invite;
     }
 }
-

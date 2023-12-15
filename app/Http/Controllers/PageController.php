@@ -36,7 +36,6 @@ class PageController extends Controller
         return view('page.friendsiteimage');
     }
 
-
     public function chatroom()
     {
         return view('page.chatroom');

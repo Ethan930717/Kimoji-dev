@@ -73,6 +73,7 @@ class TrackerException extends Exception
         998 => '内部服务器错误 :msg',
         999 => ':test',
     ];
+
     /**
      * TrackerException constructor.
      */

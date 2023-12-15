@@ -43,10 +43,11 @@ class AutoBonAllocation extends Command
     /**
      * 根据保种的总体积（GB）计算每小时魔力的增加量。
      *
-     * @param int $bytes
+     * @param  int   $bytes
      * @return float
      */
-    private function calculateBonusCoefficient($bytes) {
+    private function calculateBonusCoefficient($bytes)
+    {
         $gb = $bytes / (1024 * 1024 * 1024); // 将字节转换为 GB
         $bonusPerGb = 0.02; // 每 GB 的魔力增加量
 
@@ -320,8 +321,6 @@ class AutoBonAllocation extends Command
                 'seedbonus' => DB::raw('seedbonus + '.$value),
             ]);
         }
-
-
 
         $this->comment('Automated BON Allocation Command Complete');
     }

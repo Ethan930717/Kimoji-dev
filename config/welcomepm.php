@@ -33,5 +33,4 @@ return [
     */
 
     'message' => '亲爱的旅人，欢迎你来到 [b]KIMOJI[/b]，Once KIMOJI, Always KIMOJI!'
-
 ];

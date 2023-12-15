@@ -75,5 +75,4 @@ return [
     'created-at'                => '创建时间',
     'subscribe'                 => '订阅',
     'unsubscribe'               => '取消订阅',
-
 ];

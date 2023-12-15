@@ -92,11 +92,13 @@ class Comments extends Component
 
         if ($modelName !== 'ticket' && $this->user->can_comment === false) {
             $this->dispatchBrowserEvent('error', ['type' => 'error',  'message' => trans('comment.rights-revoked')]);
+
             return;
         }
 
         if (strtolower(class_basename($this->model)) === 'torrent' && $this->model->status !== Torrent::APPROVED) {
             $this->dispatchBrowserEvent('error', ['type' => 'error',  'message' => trans('comment.torrent-status')]);
+
             return;
         }
 
@@ -128,7 +130,7 @@ class Comments extends Component
             case 'torrent request':
             case 'torrent':
                 if ($this->user->id !== $this->model->user_id) {
-                    Log::info("Sending notification to user ID: " . $this->model->user_id);
+                    Log::info("Sending notification to user ID: ".$this->model->user_id);
                     User::find($this->model->user_id)->notify(new NewComment($modelName, $comment));
                 }
 

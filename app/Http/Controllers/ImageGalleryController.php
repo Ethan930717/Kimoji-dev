@@ -6,8 +6,10 @@ use App\Models\FriendsiteImage;
 
 class ImageGalleryController extends Controller
 {
-    public function showGallery() {
+    public function showGallery()
+    {
         $images = FriendsiteImage::all();
+
         return view('page.friendsiteimage', compact('images'));
     }
 }

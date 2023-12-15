@@ -26,6 +26,7 @@ use App\Models\User;
 use App\Models\UserAudible;
 use App\Models\UserEcho;
 use Illuminate\Support\Str;
+use Log;
 
 class ChatRepository
 {
@@ -278,12 +279,13 @@ class ChatRepository
             $this->message($systemUserId, $this->systemChatroom(), $message, null, $bot);
         } else {
             $systemBot = Bot::where('command', 'kk')->first();
+
             if ($systemBot) {
                 $systemBotId = $systemBot->id;
                 $this->message($systemUserId, $this->systemChatroom(), $message, null, $systemBotId);
             } else {
                 // 处理没有找到 systembot 的情况
-                \Log::error('SystemBot not found', [
+                Log::error('SystemBot not found', [
                     'message' => $message,
                     'context' => 'Attempt to send system message without systembot'
                 ]);
@@ -293,7 +295,6 @@ class ChatRepository
 
         return $this;
     }
-
 
     public function systemChatroom($room = null)
     {

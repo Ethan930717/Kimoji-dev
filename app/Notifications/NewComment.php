@@ -81,14 +81,14 @@ class NewComment extends Notification
             if ($this->comment->anon == 0) {
                 return [
                     'title' => '收到新的工单评论',
-                    'body' => $this->comment->user->username.' 评论了 '.$this->comment->commentable->subject,
+                    'body'  => $this->comment->user->username.' 评论了 '.$this->comment->commentable->subject,
                     'url'   => '/tickets/'.$this->comment->commentable->id,
                 ];
             }
 
             return [
                 'title' => '收到新的工单评论',
-                'body' => '一位匿名用户评论了 '.$this->comment->commentable->subject,
+                'body'  => '一位匿名用户评论了 '.$this->comment->commentable->subject,
                 'url'   => '/tickets/'.$this->comment->commentable->id,
             ];
         }

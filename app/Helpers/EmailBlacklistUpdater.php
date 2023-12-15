@@ -41,12 +41,14 @@ class EmailBlacklistUpdater
                 $domains = $response->json();
             } else {
                 // 如果响应不成功，记录错误或采取其他措施
-                Log::error("获取黑名单域名失败，响应状态码：" . $response->status());
+                Log::error("获取黑名单域名失败，响应状态码：".$response->status());
+
                 return false;
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // 处理连接或其他异常
-            Log::error("更新邮件黑名单时出错: " . $e->getMessage());
+            Log::error("更新邮件黑名单时出错: ".$e->getMessage());
+
             return false;
         }
 

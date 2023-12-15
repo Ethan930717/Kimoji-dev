@@ -22,7 +22,6 @@ class BlockIpAddress
     /**
      * Handle an incoming request.
      */
-
     public function handle(Request $request, Closure $next): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
     {
         $ipAddresses = cache()->remember(

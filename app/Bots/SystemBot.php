@@ -85,9 +85,8 @@ class SystemBot
         if ($v->passes()) {
             $recipient = User::where('username', 'LIKE', $receiver)->first();
 
-            if (! $recipient || $recipient->id === $this->target->id) {
+            if (!$recipient || $recipient->id === $this->target->id) {
                 return '魔力赠送失败';
-
             }
 
             $value = $amount;

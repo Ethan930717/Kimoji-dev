@@ -57,7 +57,7 @@ class ApprovedRequestFillController extends Controller
             'name'            => 'request',
             'cost'            => $torrentRequest->bounty,
             'receiver_id'     => $torrentRequest->filled_by,
-            'comment' => sprintf('%s 已经完成了 %s 的请求，并获得了 %s 魔力值。', $filler->username, $torrentRequest->name, $torrentRequest->bounty),
+            'comment'         => sprintf('%s 已经完成了 %s 的请求，并获得了 %s 魔力值。', $filler->username, $torrentRequest->name, $torrentRequest->bounty),
         ]);
 
         $filler->increment('seedbonus', $torrentRequest->bounty);
@@ -111,7 +111,7 @@ class ApprovedRequestFillController extends Controller
             'name'            => 'request',
             'cost'            => $refunded,
             'sender_id'       => $torrentRequest->filled_by,
-            'comment' => sprintf('%s 未完成请求 %s ，扣除 %s 魔力值。', $filler->username, $torrentRequest->name, $refunded),
+            'comment'         => sprintf('%s 未完成请求 %s ，扣除 %s 魔力值。', $filler->username, $torrentRequest->name, $refunded),
         ]);
 
         $filler->decrement('seedbonus', $refunded);

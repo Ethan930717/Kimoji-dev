@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Log;
 
 class CheckTorrentStatusJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     protected $torrentId;
 
@@ -24,15 +27,16 @@ class CheckTorrentStatusJob implements ShouldQueue
     public function __construct($torrentId)
     {
         $this->torrentId = $torrentId;
-        Log::info("CheckTorrentStatusJob 构造函数执行，Torrent ID: " . $this->torrentId);
+        Log::info("CheckTorrentStatusJob 构造函数执行，Torrent ID: ".$this->torrentId);
     }
 
-    public function handle()
+    public function handle(): void
     {
         $torrent = Torrent::find($this->torrentId);
 
         if (!$torrent) {
             Log::error("Torrent 不存在或已被删除", ['torrentId' => $this->torrentId]);
+
             return;
         }
 
@@ -44,5 +48,4 @@ class CheckTorrentStatusJob implements ShouldQueue
             $telegramController->sendModerationNotification($torrent->name, $torrent->id);
         }
     }
-
 }

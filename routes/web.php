@@ -14,18 +14,18 @@ Route::get('/test-telegram', function () {
     $chatId = '-4047467856'; // 替换为您的 Telegram 聊天 ID 或群组 ID
 
     try {
-        $message = "$uploader 上传了新资源：\n\n" . $overview; // 使用上传者的用户名
+        $message = "{$uploader} 上传了新资源：\n\n".$overview; // 使用上传者的用户名
         $photo = $poster; // 海报图片 URL
 
         $response = Telegram::sendPhoto([
             'chat_id' => $chatId,
-            'photo' => InputFile::create($photo, basename($photo)),
+            'photo'   => InputFile::create($photo, basename($photo)),
             'caption' => $message
         ]);
 
-        return 'Message sent! Message ID: ' . $response->getMessageId();
+        return 'Message sent! Message ID: '.$response->getMessageId();
     } catch (Exception $e) {
-        return 'Error: ' . $e->getMessage();
+        return 'Error: '.$e->getMessage();
     }
 });
 
@@ -544,7 +544,6 @@ Route::middleware('language')->group(function (): void {
             Route::patch('/', [App\Http\Controllers\User\EmailController::class, 'update'])->name('update');
         });
 
-
         // Password
         Route::prefix('password')->name('password.')->group(function (): void {
             Route::get('/edit', [App\Http\Controllers\User\PasswordController::class, 'edit'])->name('edit');
@@ -1051,8 +1050,6 @@ Route::middleware('language')->group(function (): void {
                 Route::delete('/{internal}', [App\Http\Controllers\Staff\InternalController::class, 'destroy'])->name('destroy');
             });
         });
-
-
 
         // Watchlist
         Route::prefix('watchlist')->group(function (): void {

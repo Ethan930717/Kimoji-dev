@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use Telegram\Bot\Laravel\Facades\Telegram;
 use Illuminate\Support\Facades\Log;
 use Telegram\Bot\FileUpload\InputFile;
-use App\Models\Torrent;
+use Exception;
+
 class TelegramController extends Controller
 {
-
     public function handleWebhook(Request $request)
     {
         $update = Telegram::commandsHandler(true);
@@ -24,25 +24,28 @@ class TelegramController extends Controller
 
             // 记录更多的消息详细信息
             Log::info("Message details", [
-                'chat_id' => $chatId,
+                'chat_id'   => $chatId,
                 'sender_id' => $senderId,
                 'chat_type' => $chatType
             ]);
+
             // 先检查 'text' 字段是否存在
             if (isset($update['message']['text'])) {
                 $text = $update['message']['text'];
                 Log::info("Received message: {$text}");
-                
+
                 // 检查更新中是否有新成员加入
                 if (isset($update['message']['new_chat_members'])) {
                     $newMembers = $update['message']['new_chat_members'];
+
                     foreach ($newMembers as $member) {
-                        $welcomeMessage = "欢迎 " . $member['first_name'] . " 来到Kimoji ";
+                        $welcomeMessage = "欢迎 ".$member['first_name']." 来到Kimoji ";
                         Telegram::sendMessage([
                             'chat_id' => $chatId,
-                            'text' => $welcomeMessage
+                            'text'    => $welcomeMessage
                         ]);
                     }
+
                     return response()->json(['status' => 'success']);
                 }
             } else {
@@ -54,19 +57,17 @@ class TelegramController extends Controller
         return response()->json(['status' => 'success']);
     }
 
-
-
-    public function sendTorrentNotification($id, $name, $poster, $overview, $size)
+    public function sendTorrentNotification($id, $name, $poster, $overview, $size): void
     {
         try {
             // 检查名称中是否包含 "KIMOJI"
             $prefixMessage = str_contains($name, "KIMOJI") ? "勤劳的阿K发官种啦" : "来自阿K的新种播报：";
 
             // 构建消息文本
-            $message = $prefixMessage . PHP_EOL . PHP_EOL .
-                $name . PHP_EOL . PHP_EOL .
-                "体积:" . $size . PHP_EOL . PHP_EOL .
-                "传送门:" . "https://kimoji.club/torrents/" . $id;
+            $message = $prefixMessage.PHP_EOL.PHP_EOL.
+                $name.PHP_EOL.PHP_EOL.
+                "体积:".$size.PHP_EOL.PHP_EOL.
+                "传送门:"."https://kimoji.club/torrents/".$id;
 
             $photo = $poster; // 海报图片 URL
             $chatId = "-1002109790916"; // Telegram 聊天 ID 或群组 ID
@@ -75,91 +76,89 @@ class TelegramController extends Controller
             Log::info("Sending torrent notification to Telegram", [
                 'chat_id' => $chatId,
                 'message' => $message,
-                'photo' => $photo
+                'photo'   => $photo
             ]);
 
             // 发送带图片的消息
             $response = Telegram::sendPhoto([
                 'chat_id' => $chatId,
-                'photo' => InputFile::create($photo, basename($photo)),
+                'photo'   => InputFile::create($photo, basename($photo)),
                 'caption' => $message
             ]);
 
             // 记录发送后的日志
             Log::info("Torrent notification sent", ['response' => $response]);
-
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // 记录异常
             Log::error("Error sending torrent notification to Telegram", ['error' => $e->getMessage()]);
         }
     }
 
-    public function sendMusicTorrentNotification($id, $name , $size)
+    public function sendMusicTorrentNotification($id, $name, $size): void
     {
         try {
             $prefixMessage = str_contains($name, "KIMOJI") ? "DJ阿K发官种啦：" : "DJ阿K的新音乐播送通知：";
 
             // 构建消息文本
-            $message = $prefixMessage . PHP_EOL . PHP_EOL .
-                $name . PHP_EOL . PHP_EOL .
-                "体积:" . $size . PHP_EOL . PHP_EOL .
-                "传送门:" . "https://kimoji.club/torrents/" . $id;
+            $message = $prefixMessage.PHP_EOL.PHP_EOL.
+                $name.PHP_EOL.PHP_EOL.
+                "体积:".$size.PHP_EOL.PHP_EOL.
+                "传送门:"."https://kimoji.club/torrents/".$id;
 
-            $photo = 'https://kimoji.club/files/img/torrent-cover_' . $id .'.jpg'; // 海报图片 URL
+            $photo = 'https://kimoji.club/files/img/torrent-cover_'.$id.'.jpg'; // 海报图片 URL
             $chatId = "-1002109790916"; // Telegram 聊天 ID 或群组 ID
 
             // 记录发送前的日志
             Log::info("Sending torrent notification to Telegram", [
                 'chat_id' => $chatId,
                 'message' => $message,
-                'photo' => $photo
+                'photo'   => $photo
             ]);
 
             // 发送带图片的消息
             $response = Telegram::sendPhoto([
                 'chat_id' => $chatId,
-                'photo' => InputFile::create($photo, basename($photo)),
+                'photo'   => InputFile::create($photo, basename($photo)),
                 'caption' => $message
             ]);
 
             // 记录发送后的日志
             Log::info("新种推送", ['response' => $response]);
-
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // 记录异常
             Log::error("音乐新种TG推送错误", ['error' => $e->getMessage()]);
         }
     }
 
-    public function sendModerationNotification($message)
+    public function sendModerationNotification($message): void
     {
         try {
             $chatId = "-1002007902628"; // 您的 Telegram 群组ID
-            $fullMessage = $message . PHP_EOL . PHP_EOL .
-                "请尽快处理:" . "https://kimoji.club/dashboard/moderation";
+            $fullMessage = $message.PHP_EOL.PHP_EOL.
+                "请尽快处理:"."https://kimoji.club/dashboard/moderation";
 
             // 发送消息
             Telegram::sendMessage([
                 'chat_id' => $chatId,
-                'text' => $fullMessage
+                'text'    => $fullMessage
             ]);
 
             Log::info("发送待审通知", ['chat_id' => $chatId, 'message' => $fullMessage]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error("发送待审通知异常", ['error' => $e->getMessage()]);
         }
     }
 
-    public function sendNewApplicationNotification($applicationDetails, $images = [])
+    public function sendNewApplicationNotification($applicationDetails, $images = []): void
     {
         try {
             $chatId = "-1002007902628"; // 替换为你的 Telegram 群组ID
-            $message = "收到了新的入站申请：\n\n" . $applicationDetails;
+            $message = "收到了新的入站申请：\n\n".$applicationDetails;
 
             // 发送文本消息
             Telegram::sendMessage([
                 'chat_id' => $chatId,
-                'text' => $message
+                'text'    => $message
             ]);
 
             // 如果提供了图片链接数组，发送图片
@@ -167,15 +166,14 @@ class TelegramController extends Controller
                 foreach ($images as $image) {
                     Telegram::sendPhoto([
                         'chat_id' => $chatId,
-                        'photo' => InputFile::create($image)
+                        'photo'   => InputFile::create($image)
                     ]);
                 }
             }
 
             Log::info("Sent new application notification to Telegram", ['chat_id' => $chatId, 'message' => $message]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error("Error sending new application notification to Telegram", ['error' => $e->getMessage()]);
         }
     }
 }
-

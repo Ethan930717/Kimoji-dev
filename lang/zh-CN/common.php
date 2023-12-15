@@ -234,6 +234,4 @@ return [
     'system-message'       => '这是一条系统消息，请勿回复!',
     'similar'              => '相似资源',
     'wished'               => '心愿卡',
-
-
 ];

@@ -203,7 +203,6 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Telegram\Bot\Laravel\TelegramServiceProvider::class,
 
-
         /*
          * Package Service Providers...
          */
@@ -240,6 +239,5 @@ return [
         'Irc'           => App\Bots\IRCAnnounceBot::class,
         'Redis'         => Illuminate\Support\Facades\Redis::class,
         'Telegram'      => Telegram\Bot\Laravel\Facades\Telegram::class,
-
     ])->toArray(),
 ];

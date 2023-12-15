@@ -36,11 +36,9 @@ class ApikeyController extends Controller
         DB::transaction(function () use ($user, $changedByStaff): void {
             $user->apikeys()->latest()->first()?->update(['deleted_at' => now()]);
 
-
             $user->update([
                 'api_token' => Str::random(100),
             ]);
-
 
             $user->apikeys()->create(['content' => $user->api_token]);
 

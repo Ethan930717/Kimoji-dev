@@ -69,7 +69,6 @@ class StoreTorrentRequest extends FormRequest
                     foreach (TorrentTools::getFilenameArray($decodedTorrent) as $name) {
                         if (!TorrentTools::isValidFilename($name)) {
                             $fail('种子名称无效');
-
                         }
                     }
 
