@@ -21,6 +21,7 @@
 </head>
 <body>
 <div class="wrapper fadeInDown">
+
     <div id="formContent">
         <a href="{{ route('login') }}">
             <h2 class="inactive underlineHover">{{ __('auth.login') }} </h2>
@@ -47,6 +48,7 @@
         <div id="formFooter">
             <a href="{{ route('verification.send') }}">
                 <h2 class="active">重发邮件</h2>
+
             </a>
         </div>
     </div>

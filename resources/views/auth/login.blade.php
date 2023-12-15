@@ -59,7 +59,7 @@
         <use xlink:href="#s-text" class="text"></use>
         <use xlink:href="#s-text" class="text"></use>
     </svg>
-        
+
 
         <form role="form" method="POST" action="{{ route('login') }}">
             @csrf

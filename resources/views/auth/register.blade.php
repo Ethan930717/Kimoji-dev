@@ -58,6 +58,7 @@
             <use xlink:href="#s-text" class="text"></use>
             <use xlink:href="#s-text" class="text"></use>
         </svg>
+
         <form role="form" method="POST" action="{{ route('register', ['code' => request()->query('code')]) }}">
             @csrf
             <label for="username"></label><input type="text" id="username" class="fadeIn second" name="username"

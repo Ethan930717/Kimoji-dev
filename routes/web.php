@@ -76,7 +76,6 @@ Route::middleware('language')->group(function (): void {
         Route::get('/application', [App\Http\Controllers\Auth\ApplicationController::class, 'create'])->name('application.create');
         Route::post('/application', [App\Http\Controllers\Auth\ApplicationController::class, 'store'])->name('application.store');
 
-
         // This redirect must be kept until all invite emails that use the old syntax have expired
         // Hack so that Fortify can be used (allows query parameters but not route parameters)
         Route::get('/register/{code?}', fn (string $code) => to_route('register', ['code' => $code]));

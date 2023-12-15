@@ -1,6 +1,7 @@
 @component('mail::message')
 
 **{{ __('email.invite-message') }}:**  {{ $invite->custom }}
+
 @component('mail::button', ['url' => route('register', ['code' => $invite->code]), 'color' => 'blue'])
 {{ __('email.invite-signup') }}
 @endcomponent

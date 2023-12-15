@@ -53,6 +53,7 @@
         <use xlink:href="#s-text" class="text"></use>
     </svg>
 
+
         <form class="form-horizontal" role="form" method="POST" action="{{ route('password.request') }}">
             @csrf
             <input type="hidden" name="token" value="{{ request()->route('token') }}">
