@@ -12,6 +12,7 @@
  */
 
 namespace App\Http\Controllers\API;
+
 use App\Helpers\Bencode;
 use App\Helpers\TorrentHelper;
 use App\Helpers\TorrentTools;
@@ -32,8 +33,6 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Exception;
-use Illuminate\Support\Facades\Log;
-
 
 /**
  * @see \Tests\Todo\Feature\Http\Controllers\TorrentControllerTest
@@ -102,9 +101,8 @@ class TorrentController extends BaseController
 
         $requestFile = $request->file('torrent');
 
-        if (! $request->hasFile('torrent')) {
+        if (!$request->hasFile('torrent')) {
             return $this->sendError('验证错误', '你必须上传一个有效的种子文件!');
-
         }
 
         if ($requestFile->getError() !== 0 || $requestFile->getClientOriginalExtension() !== 'torrent') {
@@ -122,9 +120,8 @@ class TorrentController extends BaseController
         }
 
         foreach (TorrentTools::getFilenameArray($decodedTorrent) as $name) {
-            if (! TorrentTools::isValidFilename($name)) {
+            if (!TorrentTools::isValidFilename($name)) {
                 return $this->sendError('验证错误', '种子名称无效！');
-
             }
         }
 
@@ -205,7 +202,6 @@ class TorrentController extends BaseController
             $seasonRule = 'required|numeric';
         }
 
-
         // Validation
         $v = validator($torrent->toArray(), [
             'name'             => 'required|unique:torrents',
@@ -248,7 +244,6 @@ class TorrentController extends BaseController
 
         // Save The Torrent
         $torrent->save();
-
 
         // Set torrent to featured
         if ($torrent->featured == 1) {
@@ -306,8 +301,6 @@ class TorrentController extends BaseController
             $free = $torrent->free;
             $doubleup = $torrent->doubleup;
 
-
-
             // Announce To Shoutbox
             if ($anon == 0) {
                 $this->chatRepository->systemMessage(
@@ -321,12 +314,25 @@ class TorrentController extends BaseController
 
             if ($anon == 1 && $featured == 1) {
                 $this->chatRepository->systemMessage(
-                    sprintf('大哥大姐们，[url=%s/torrents/%s]%s[/url] 刚刚被一位匿名用户加精了！快瞅瞅！:fire:', $appurl, $torrent->id, $torrent->name
-                    ));
+                    sprintf(
+                        '大哥大姐们，[url=%s/torrents/%s]%s[/url] 刚刚被一位匿名用户加精了！快瞅瞅！:fire:',
+                        $appurl,
+                        $torrent->id,
+                        $torrent->name
+                    )
+                );
             } elseif ($anon == 0 && $featured == 1) {
                 $this->chatRepository->systemMessage(
-                    sprintf('大哥大姐们, [url=%s/torrents/%s]%s[/url] 刚刚有人在 [url=%s/users/%s]%s[/url] 发出了一个救种请求，能帮帮忙吗？ :fire:', $appurl, $torrent->id, $torrent->name, $appurl, $username, $username
-                    ));
+                    sprintf(
+                        '大哥大姐们, [url=%s/torrents/%s]%s[/url] 刚刚有人在 [url=%s/users/%s]%s[/url] 发出了一个救种请求，能帮帮忙吗？ :fire:',
+                        $appurl,
+                        $torrent->id,
+                        $torrent->name,
+                        $appurl,
+                        $username,
+                        $username
+                    )
+                );
             }
 
             if ($free >= 1 && $featured == 0) {
@@ -367,6 +373,7 @@ class TorrentController extends BaseController
 
             TorrentHelper::approveHelper($torrent->id);
         }
+
         return $this->sendResponse(route('torrent.download.rsskey', ['id' => $torrent->id, 'rsskey' => auth('api')->user()->rsskey]), 'Torrent uploaded successfully.');
     }
 

@@ -82,5 +82,4 @@ return [
     'added-bonus'         => '赏金追加成功',
     'claimed-success'     => '认领成功',
     'unclaimed-success'   => '取消认领',
-
 ];

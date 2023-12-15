@@ -12,13 +12,11 @@
  */
 
 namespace App\Observers;
-use App\Jobs\CheckTorrentStatusJob;
+
 use App\Models\Torrent;
 use App\Http\Controllers\TelegramController;
 use App\Services\Tmdb\Client\Movie;
 use App\Services\Tmdb\Client\TV;
-use Illuminate\Support\Facades\Log;
-
 
 class TorrentObserver
 {
@@ -28,7 +26,6 @@ class TorrentObserver
     public function created(Torrent $torrent): void
     {
         cache()->put(sprintf('torrent:%s', $torrent->info_hash), $torrent);
-
     }
 
     /**
@@ -46,12 +43,14 @@ class TorrentObserver
                 case 1:
                 case 3:
                     $tmdbService = new Movie($torrent->tmdb);
+
                     break;
                 case 2:
                 case 4:
                 case 5:
                 case 6:
-                $tmdbService = new TV($torrent->tmdb);
+                    $tmdbService = new TV($torrent->tmdb);
+
                     break;
                 case 7:
                     $fileSizeGB = round($torrent->size / 1e9, 2); // 将字节转换为 GB，并保留两位小数
@@ -62,6 +61,7 @@ class TorrentObserver
                         $torrent->name,
                         $fileSizeText
                     );
+
                     break;
                 default:
                     return;
@@ -86,7 +86,7 @@ class TorrentObserver
     private function fetchTmdbData($tmdbService)
     {
         return [
-            'poster' => $tmdbService->get_poster(),
+            'poster'   => $tmdbService->get_poster(),
             'overview' => $tmdbService->get_overview()
         ];
     }

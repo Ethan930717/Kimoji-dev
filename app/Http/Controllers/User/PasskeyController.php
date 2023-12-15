@@ -45,7 +45,6 @@ class PasskeyController extends Controller
 
         $changedByStaff = $request->user()->isNot($user);
 
-
         abort_if($changedByStaff && !$request->user()->group->is_owner && $request->user()->group->level <= $user->group->level, 403);
 
         cache()->forget('user:'.$user->passkey);
@@ -65,7 +64,7 @@ class PasskeyController extends Controller
                     'receiver_id' => $user->id,
                     'subject'     => '请注意，PASSKEY已重置',
                     'message'     => "您的PASSKEY已被工作人员重置。您需要在所有的客户端中更新您的PASSKEY，以继续做种。\n\n如需更多信息，请提交工单求助。\n\n[color=red][b]这是一条系统消息，请勿回复！[/b][/color]",
-              ]);
+                ]);
             }
         });
 

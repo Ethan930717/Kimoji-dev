@@ -50,14 +50,14 @@ class NewCommentTag extends Notification implements ShouldQueue
             if ($this->comment->anon == 0) {
                 return [
                     'title' => $this->comment->user->username.' 标记了你',
-                    'body' => $this->comment->user->username.' 在种子 '.$this->comment->commentable->name.' 的评论中标记了你',
+                    'body'  => $this->comment->user->username.' 在种子 '.$this->comment->commentable->name.' 的评论中标记了你',
                     'url'   => '/torrents/'.$this->comment->commentable->id,
                 ];
             }
 
             return [
                 'title' => '你被标记了',
-                'body' => '一位匿名用户在种子 '.$this->comment->commentable->name.' 的评论中标记了你',
+                'body'  => '一位匿名用户在种子 '.$this->comment->commentable->name.' 的评论中标记了你',
                 'url'   => '/torrents/'.$this->comment->commentable->id,
             ];
         }
@@ -66,14 +66,14 @@ class NewCommentTag extends Notification implements ShouldQueue
             if ($this->comment->anon == 0) {
                 return [
                     'title' => $this->comment->user->username.' 标记了你',
-                    'body' => $this->comment->user->username.' 在求种信息 '.$this->comment->commentable->name.' 的评论中标记了你',
+                    'body'  => $this->comment->user->username.' 在求种信息 '.$this->comment->commentable->name.' 的评论中标记了你',
                     'url'   => '/requests/'.$this->comment->commentable->id,
                 ];
             }
 
             return [
                 'title' => '你被标记了',
-                'body' => '一位匿名用户在种子请求 '.$this->comment->commentable->name.' 的评论中标记了你',
+                'body'  => '一位匿名用户在种子请求 '.$this->comment->commentable->name.' 的评论中标记了你',
                 'url'   => '/requests/'.$this->comment->commentable->id,
             ];
         }
@@ -82,14 +82,14 @@ class NewCommentTag extends Notification implements ShouldQueue
             if ($this->comment->anon == 0) {
                 return [
                     'title' => $this->comment->user->username.' 标记了你',
-                    'body' => $this->comment->user->username.' 在工单 '.$this->comment->commentable->subject.' 的评论中标记了你',
+                    'body'  => $this->comment->user->username.' 在工单 '.$this->comment->commentable->subject.' 的评论中标记了你',
                     'url'   => '/tickets/'.$this->comment->commentable->id,
                 ];
             }
 
             return [
                 'title' => '你被标记了',
-                'body' => '一位匿名用户在工单 '.$this->comment->commentable->subject.' 的评论中标记了你',
+                'body'  => '一位匿名用户在工单 '.$this->comment->commentable->subject.' 的评论中标记了你',
                 'url'   => '/tickets/'.$this->comment->commentable->id,
             ];
         }
@@ -98,14 +98,14 @@ class NewCommentTag extends Notification implements ShouldQueue
             if ($this->comment->anon == 0) {
                 return [
                     'title' => $this->comment->user->username.' 标记了你',
-                    'body' => $this->comment->user->username.' 在播单 '.$this->comment->commentable->name.' 的评论中标记了你',
+                    'body'  => $this->comment->user->username.' 在播单 '.$this->comment->commentable->name.' 的评论中标记了你',
                     'url'   => '/playlists/'.$this->comment->commentable->id,
                 ];
             }
 
             return [
                 'title' => '你被标记了',
-                'body' => '一位匿名用户在集合 '.$this->comment->commentable->name.' 的评论中标记了你',
+                'body'  => '一位匿名用户在集合 '.$this->comment->commentable->name.' 的评论中标记了你',
                 'url'   => '/playlists/'.$this->comment->commentable->id,
             ];
         }
@@ -114,14 +114,14 @@ class NewCommentTag extends Notification implements ShouldQueue
             if ($this->comment->anon == 0) {
                 return [
                     'title' => $this->comment->user->username.' 标记了你',
-                    'body' => $this->comment->user->username.' 在收藏列表 '.$this->comment->commentable->name.' 的评论中标记了你',
+                    'body'  => $this->comment->user->username.' 在收藏列表 '.$this->comment->commentable->name.' 的评论中标记了你',
                     'url'   => '/mediahub/collections/'.$this->comment->commentable->id,
                 ];
             }
 
             return [
                 'title' => '你被标记了',
-                'body' => '一位匿名用户在收藏列表 '.$this->comment->commentable->name.' 的评论中标记了你',
+                'body'  => '一位匿名用户在收藏列表 '.$this->comment->commentable->name.' 的评论中标记了你',
                 'url'   => '/mediahub/collections/'.$this->comment->commentable->id,
             ];
         }
@@ -129,14 +129,14 @@ class NewCommentTag extends Notification implements ShouldQueue
         if ($this->comment->anon == 0) {
             return [
                 'title' => $this->comment->user->username.' 标记了你',
-                'body' => $this->comment->user->username.' 在公告 '.$this->comment->commentable->title.' 的评论中标记了你',
+                'body'  => $this->comment->user->username.' 在公告 '.$this->comment->commentable->title.' 的评论中标记了你',
                 'url'   => '/articles/'.$this->comment->commentable->id,
             ];
         }
 
         return [
             'title' => '你被标记了',
-            'body' => '一位匿名用户在公告 '.$this->comment->commentable->title.' 的评论中标记了你',
+            'body'  => '一位匿名用户在公告 '.$this->comment->commentable->title.' 的评论中标记了你',
             'url'   => '/articles/'.$this->comment->commentable->id,
         ];
     }

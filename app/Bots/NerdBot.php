@@ -89,7 +89,7 @@ class NerdBot
             fn () => Torrent::orderByDesc('times_completed')->first()
         );
 
-            return sprintf('目前 [url=/torrents/%s]%s[/url] 是在 ', $snatched->id, $snatched->name).config('other.title').' 上最抢手的种子！';
+        return sprintf('目前 [url=/torrents/%s]%s[/url] 是在 ', $snatched->id, $snatched->name).config('other.title').' 上最抢手的种子！';
     }
 
     public function getLeeched(): string

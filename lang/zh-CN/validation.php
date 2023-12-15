@@ -137,9 +137,9 @@ return [
     |
     */
 
-    'email_list' => '很抱歉，你无法使用此邮箱进行注册请参见邮箱白名单',
-    'recaptcha'  => '请完成人机验证',
-    'current_password'  => '您提供的密码不正确',
+    'email_list'       => '很抱歉，你无法使用此邮箱进行注册请参见邮箱白名单',
+    'recaptcha'        => '请完成人机验证',
+    'current_password' => '您提供的密码不正确',
 
     'custom' => [
         'attribute-name' => [
@@ -147,10 +147,10 @@ return [
         ],
     ],
     'password' => [
-        'mixed' => ':Attribute 必须包含至少一个大写和一个小写字母',
-        'letters' => ':Attribute 必须至少包含一个字母',
-        'symbols' => ':Attribute 必须至少包含一个符号',
-        'numbers' => ':Attribute 必须至少包含一个数字',
+        'mixed'         => ':Attribute 必须包含至少一个大写和一个小写字母',
+        'letters'       => ':Attribute 必须至少包含一个字母',
+        'symbols'       => ':Attribute 必须至少包含一个符号',
+        'numbers'       => ':Attribute 必须至少包含一个数字',
         'uncompromised' => '提供的 :Attribute 出现在数据泄露中请使用其他 :Attribute',
     ],
 
@@ -166,14 +166,13 @@ return [
     */
 
     'attributes' => [
-        'username' => '用户名',
-        'password' => '密码',
-        'email'    => '邮箱',
-        'bounty'   => '赏金',
-        'tip'      => '内容',
+        'username'          => '用户名',
+        'password'          => '密码',
+        'email'             => '邮箱',
+        'bounty'            => '赏金',
+        'tip'               => '内容',
         'receiver_username' => '收件人',
-        'name'     => '名称',
-        'attachment'  => '附件',
-
+        'name'              => '名称',
+        'attachment'        => '附件',
     ],
-    ];
+];

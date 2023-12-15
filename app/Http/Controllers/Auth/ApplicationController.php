@@ -40,7 +40,6 @@ class ApplicationController extends Controller
      */
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
-
         abort_unless(config('other.application_signups'), 403);
 
         $application = resolve(Application::class);
@@ -114,6 +113,7 @@ class ApplicationController extends Controller
 
         if ($v->fails()) {
             Log::error('申请验证失败', ['errors' => $v->errors()]);
+
             return to_route('application.create')
                 ->withErrors($v->errors());
         }

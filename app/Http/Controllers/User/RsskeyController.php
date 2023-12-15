@@ -35,11 +35,9 @@ class RsskeyController extends Controller
         DB::transaction(function () use ($user, $changedByStaff): void {
             $user->rsskeys()->latest()->first()?->update(['deleted_at' => now()]);
 
-
             $user->update([
                 'rsskey' => md5(random_bytes(60).$user->password),
             ]);
-
 
             $user->rsskeys()->create(['content' => $user->rsskey]);
 
