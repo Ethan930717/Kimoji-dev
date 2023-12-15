@@ -115,6 +115,7 @@
     align-items: center;
     overflow-x: hidden;
     max-width: 100%;
+    z-index: -1
 }
 
 .breadcrumbV2,
@@ -156,7 +157,6 @@
     color: var(--breadcrumb-active-fg);
     font-size: 15px;
     text-shadow: 0 0 2px #ff4a4a;
-    position: relative;
     bottom: 2px;
 }
 
