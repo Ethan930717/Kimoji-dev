@@ -4,9 +4,9 @@
 # {{ $greeting }}
 @else
 @if ($level === 'error')
-# {{ __('Whoops!') }}
+# {{ __('哎呀') }}
 @else
-# {{ __('Hello!') }}
+# {{ __('喔唷') }}
 @endif
 @endif
 
@@ -54,7 +54,8 @@
     [
         'actionText' => $actionText,
     ]
-) }} <span class="break-all">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>
+) }}
+<span class="break-all">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>
 @endslot
 @endisset
 @endcomponent
