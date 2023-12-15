@@ -19,6 +19,7 @@ use App\Models\PrivateMessage;
 use App\Models\Torrent;
 use App\Models\User;
 use App\Repositories\ChatRepository;
+use App\Services\Unit3dAnnounce;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 
@@ -89,6 +90,8 @@ class AutoRewardResurrection extends Command
                     sprintf('各位, [url=%s]%s[/url] 已限免3天并置顶. :stopwatch:', $torrentUrl, $torrent->name)
                 );
                 $torrent->save();
+
+                Unit3dAnnounce::addTorrent($torrent);
 
                 // Send Private Message
                 $pm = new PrivateMessage();

@@ -53,6 +53,7 @@
                                     @else
                                         <x-user_tag :user="$tip->receiver" :anon="$tip->torrent->anon" />
                                     @endif
+
                                     @break
                                 @case($tip->post_id !== null)
                                     @if ($tip->post === null)
