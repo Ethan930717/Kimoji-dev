@@ -139,6 +139,7 @@ return [
 
     'email_list' => '很抱歉，你无法使用此邮箱进行注册请参见邮箱白名单',
     'recaptcha'  => '请完成人机验证',
+    'current_password'  => '您提供的密码不正确',
 
     'custom' => [
         'attribute-name' => [

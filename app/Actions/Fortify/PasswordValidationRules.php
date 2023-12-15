@@ -16,7 +16,7 @@ trait PasswordValidationRules
         return [
             'required',
             'string',
-            Password::min(6)->letters()->numbers(),
+            Password::min(8)->mixedCase()->letters()->numbers()->uncompromised(),
         ];
     }
 }
