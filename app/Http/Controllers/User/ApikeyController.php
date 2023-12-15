@@ -17,6 +17,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PrivateMessage;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ApikeyController extends Controller
@@ -30,32 +31,43 @@ class ApikeyController extends Controller
 
         $changedByStaff = $request->user()->isNot($user);
 
-        abort_if($changedByStaff && ! $request->user()->group->is_owner && $request->user()->group->level <= $user->group->level, 403);
+        abort_if($changedByStaff && !$request->user()->group->is_owner && $request->user()->group->level <= $user->group->level, 403);
 
-        $user->update([
-            'api_token' => Str::random(100),
-        ]);
+        DB::transaction(function () use ($user, $changedByStaff): void {
+            $user->apikeys()->latest()->first()?->update(['deleted_at' => now()]);
 
-        if ($changedByStaff) {
-            PrivateMessage::create([
-                'sender_id'   => 1,
-                'receiver_id' => $user->id,
-                'subject'     => '请注意：API key已重置',
-                'message'     => "您的 API 密钥已被工作人员重置。您需要在所有脚本中更新您的 API 密钥才能继续使用 API\n\n如需更多信息，请提交工单求助。\n\n[color=red][b]这是一条系统消息，请勿回复![/b][/color]",
+
+            $user->update([
+                'api_token' => Str::random(100),
             ]);
-        }
 
-        return to_route('users.apikey.edit', ['user' => $user])
-            ->withSuccess('API key更新成功');
+
+            $user->apikeys()->create(['content' => $user->api_token]);
+
+            if ($changedByStaff) {
+                PrivateMessage::create([
+                    'sender_id'   => 1,
+                    'receiver_id' => $user->id,
+                    'subject'     => '您的API Key已被重置',
+                    'message'     => "您的API Key已被工作人员重置，如需帮助请提交工单",
+                ]);
+            }
+        });
+
+        return to_route('users.apikeys.index', ['user' => $user])
+            ->withSuccess('API Key更新成功');
     }
 
     /**
      * Edit user apikey.
      */
-    public function edit(Request $request, User $user): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+    public function index(Request $request, User $user): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
         abort_unless($request->user()->is($user) || $request->user()->group->is_modo, 403);
 
-        return view('user.apikey.edit', ['user' => $user]);
+        return view('user.apikey.index', [
+            'user'    => $user,
+            'apikeys' => $user->apikeys()->latest()->get()
+        ]);
     }
 }

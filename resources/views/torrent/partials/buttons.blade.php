@@ -27,7 +27,7 @@
         @endif
     </li>
     @if ($fileExists)
-        @if ($torrent->free !== 100 && config('other.freeleech') == false && ! $personal_freeleech && $user->group->is_freeleech == 0 && ! $freeleech_token)
+        @if ($torrent->free !== 100 && config('other.freeleech') == false && ! $personal_freeleech && $user->group->is_freeleech == 0 && ! $torrent->freeleechToken_exists)
             <li class="form__group form__group--short-horizontal">
                 <form
                     action="{{ route('freeleech_token', ['id' => $torrent->id]) }}"
@@ -38,7 +38,7 @@
                     @csrf
                     <button
                         class="form__button form__button--outlined form__button--centered"
-                        title='{!! __('torrent.fl-tokens-left', ['tokens' => $user->fl_tokens]) !!}!'
+                        title="{{ __('torrent.fl-tokens-left', ['tokens' => $user->fl_tokens]) }}!"
                         x-on:click.prevent="
                             Swal.fire({
                                 title: '请确认',
@@ -113,6 +113,7 @@
                 </div>
                 <div class="form__group">
                     <input
+                        id="tip"
                         class="form__text"
 
                         list="torrent_quick_tips"
@@ -122,7 +123,7 @@
                         pattern="[0-9]*"
                         inputmode="numeric"
                     >
-                    <label class="form__label form__label--floating">
+                    <label class="form__label form__label--floating" for="tip">
                         {{ __('torrent.define-tip-amount') }}
                     </label>
                     <datalist id="torrent_quick_tips">
@@ -383,7 +384,7 @@
                             {{ $history === null ? App\Helpers\StringHelper::timeElapsed(config('graveyard.time')) : App\Helpers\StringHelper::timeElapsed($history->seedtime + config('graveyard.time')) }}
                         </span>
                         {{ strtolower(__('graveyard.howto-desc2')) }}
-                        <span class="badge-user text-bold text-pink" style="background-image:url(/img/sparkels.gif);">
+                        <span class="badge-user text-bold text-pink" style="background-image:url({{ url('/img/sparkels.gif') }};">
                             {{ config('graveyard.reward') }} {{ __('torrent.freeleech') }} Token(s)!
                         </span>
                     </p>
@@ -422,7 +423,7 @@
                         name="message"
                         required
                     ></textarea>
-                    <label for="report_reason" class="form__label form__label--floating">
+                    <label for="report_reason" class="form__label form__label--floating" for="message">
                         {{ __('common.reason') }}
                     </label>
                 </p>

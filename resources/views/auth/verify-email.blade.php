@@ -20,38 +20,43 @@
     <link rel="stylesheet" href="{{ mix('css/main/login.css') }}" crossorigin="anonymous">
 </head>
 <body>
-<div class="wrapper fadeInDown">
 
-    <div id="formContent">
-        <a href="{{ route('login') }}">
-            <h2 class="inactive underlineHover">{{ __('auth.login') }} </h2>
-        </a>
-        <a href="{{ route('register', ['code' => request()->query('code')]) }}">
-            <h2 class="active">{{ __('auth.signup') }} </h2>
-        </a>
-        <svg viewBox="0 0 800 100" class="sitebanner">
-            <symbol id="s-text">
-                <text text-anchor="middle" x="50%" y="50%" dy=".35em">
-                    {{ config('other.title') }}
-                </text>
-            </symbol>
-            <use xlink:href="#s-text" class="text"></use>
-            <use xlink:href="#s-text" class="text"></use>
-            <use xlink:href="#s-text" class="text"></use>
-            <use xlink:href="#s-text" class="text"></use>
-            <use xlink:href="#s-text" class="text"></use>
-        </svg>
-
-        <p>
-            我们即将给您发送一条验证通知，请您尽快完成验证
-        </p>
-        <div id="formFooter">
-            <a href="{{ route('verification.send') }}">
-                <h2 class="active">重发邮件</h2>
-
+<main>
+    <section class="auth-form">
+        <form class="auth-form__form" method="POST" action="{{ route('verification.send') }}">
+            @csrf
+            <a class="auth-form__branding" href="{{ route('home.index') }}">
+                <i class="fal fa-tv-retro"></i>
+                <span class="auth-form__site-logo">{{ \config('other.title') }}</span>
             </a>
-        </div>
-    </div>
-</div>
+            <ul class="auth-form__important-infos">
+                <li class="auth-form__important-info">激活账号</li>
+                @if (Session::has('warning'))
+                    <li class="auth-form__important-info">警告: {{ Session::get('warning') }}</li>
+                @endif
+                @if (Session::has('info'))
+                    <li class="auth-form__important-info">信息: {{ Session::get('info') }}</li>
+                @endif
+                @if (Session::has('success'))
+                    <li class="auth-form__important-info">成功: {{ Session::get('success') }}</li>
+                @endif
+            </ul>
+            @if (config('captcha.enabled'))
+                @hiddencaptcha
+            @endif
+            <button class="auth-form__primary-button">{{ __('auth.send-verification-email') }}</button>
+            @if (Session::has('errors') || Session::has('status'))
+                <ul class="auth-form__errors">
+                    @foreach ($errors->all() as $error)
+                        <li class="auth-form__error">{{ $error }}</li>
+                    @endforeach
+                    @if (session('status') == 'verification-link-sent')
+                        <li class="auth-form__error">{{ __('auth.email-verification-link') }}</li>
+                    @endif
+                </ul>
+            @endif
+        </form>
+    </section>
+</main>
 </body>
 </html>

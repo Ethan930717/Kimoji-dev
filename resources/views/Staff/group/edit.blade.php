@@ -30,6 +30,7 @@
                 @method('PATCH')
                 <p class="form__group">
                     <input
+                        id="name"
                         class="form__text"
 
                         type="text"
@@ -37,12 +38,13 @@
                         placeholder=" "
                         value="{{ $group->name }}"
                     />
-                    <label class="form__label form__label--floating">
+                    <label class="form__label form__label--floating" for="name">
                         {{ __('common.name') }}
                     </label>
                 </p>
                 <p class="form__group">
                     <input
+                        id="position"
                         class="form__text"
 
                         type="text"
@@ -50,12 +52,13 @@
                         placeholder=" "
                         value="{{ $group->position }}"
                     />
-                    <label class="form__label form__label--floating">
+                    <label class="form__label form__label--floating" for="position">
                         {{ __('common.position') }}
                     </label>
                 </p>
                 <p class="form__group">
                     <input
+                        id="level"
                         class="form__text"
 
                         type="text"
@@ -63,12 +66,13 @@
                         placeholder=" "
                         value="{{ $group->level }}"
                     />
-                    <label class="form__label form__label--floating">
+                    <label class="form__label form__label--floating" for="level">
                         Level
                     </label>
                 </p>
                 <p class="form__group">
                     <input
+                        id="download_slots"
                         class="form__text"
 
                         type="text"
@@ -76,12 +80,13 @@
                         placeholder=" "
                         value="{{ $group->download_slots }}"
                     />
-                    <label class="form__label form__label--floating">
+                    <label class="form__label form__label--floating" for="download_slots">
                         DL Slots
                     </label>
                 </p>
                 <p class="form__group">
                     <input
+                        id="color"
                         class="form__text"
 
                         type="text"
@@ -89,12 +94,13 @@
                         placeholder=" "
                         value="{{ $group->color }}"
                     />
-                    <label class="form__label form__label--floating">
+                    <label class="form__label form__label--floating" for="color">
                         Color (e.g. #ff0000)
                     </label>
                 </p>
                 <p class="form__group">
                     <input
+                        id="icon"
                         class="form__text"
 
                         type="text"
@@ -102,12 +108,13 @@
                         placeholder=" "
                         value="{{ $group->icon }}"
                     />
-                    <label class="form__label form__label--floating">
+                    <label class="form__label form__label--floating" for="icon">
                         FontAwesome Icon (e.g. fas fa-user)
                     </label>
                 </p>
                 <p class="form__group">
                     <input
+                        id="effect"
                         class="form__text"
 
                         type="text"
@@ -115,7 +122,7 @@
                         placeholder="GIF Effect"
                         value="{{ $group->effect }}"
                     />
-                    <label class="form__label form__label--floating">
+                    <label class="form__label form__label--floating" for="effect">
                         Effect (e.g. url(/img/sparkels.gif))
                     </label>
                 </p>

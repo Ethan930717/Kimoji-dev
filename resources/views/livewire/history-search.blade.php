@@ -7,49 +7,46 @@
             <form class="form">
                 <div class="form__group--short-horizontal">
                     <p class="form__group">
-                        <input wire:model="torrent" class="form__text"
- placeholder=" ">
-                        <label class="form__label form__label--floating">Torrent Name</label>
+                        <input id="torrent" wire:model="torrent" class="form__text" placeholder=" ">
+                        <label class="form__label form__label--floating" for="torrent">种子</label>
                     </p>
                     <p class="form__group">
-                        <input wire:model="user" class="form__text"
- placeholder=" ">
-                        <label class="form__label form__label--floating">Username</label>
+                        <input id="user" wire:model="user" class="form__text" placeholder=" ">
+                        <label class="form__label form__label--floating" for="user">用户</label>
                     </p>
                     <p class="form__group">
-                        <input wire:model="agent" class="form__text"
- placeholder=" ">
-                        <label class="form__label form__label--floating">Agent</label>
+                        <input id="agent" wire:model="agent" class="form__text" placeholder=" ">
+                        <label class="form__label form__label--floating" for="agent">代理</label>
                     </p>
                     <p class="form__group">
-                        <select wire:model="seeder" class="form__select" placeholder=" ">
-                            <option value="any">全部</option>
+                        <select id="seeder" wire:model="seeder" class="form__select" placeholder=" ">
+                            <option value="any">Any</option>
                             <option value="include">Completed</option>
                             <option value="exclude">Incomplete</option>
                         </select>
-                        <label class="form__label form__label--floating">Completed</label>
+                        <label class="form__label form__label--floating" for="seeder">已完成</label>
                     </p>
                     <p class="form__group">
-                        <select wire:model="active" class="form__select" placeholder=" ">
+                        <select id="active" wire:model="active" class="form__select" placeholder=" ">
                             <option value="any">全部</option>
-                            <option value="exclude">Inactive</option>
-                            <option value="include">Active</option>
+                            <option value="exclude">休息中</option>
+                            <option value="include">活跃中</option>
                         </select>
-                        <label class="form__label form__label--floating">Active</label>
+                        <label class="form__label form__label--floating" for="active">Active</label>
                     </p>
                     <p class="form__group">
-                        <select wire:model="groupBy" class="form__select" placeholder=" ">
+                        <select id="groupBy" wire:model="groupBy" class="form__select" placeholder=" ">
                             <option value="none">None</option>
-                            <option value="user_id">User</option>
+                            <option value="user_id">用户</option>
                         </select>
-                        <label class="form__label form__label--floating">Group By</label>
+                        <label class="form__label form__label--floating" for="groupBy">Group By</label>
                     </p>
                 </div>
             </form>
         </div>
     </section>
     <section class="panelV2">
-        <h2 class="panel__heading">Histories</h2>
+        <h2 class="panel__heading">历史</h2>
         <div class="panel__body" wire:loading.block>
             Loading...
         </div>

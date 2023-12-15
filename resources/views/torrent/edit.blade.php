@@ -61,8 +61,7 @@
                     >
                 </p>
                 <p class="form__group">
-                    <input type="text" class="form__text"
- name="name" value="{{ old('name') ?? $torrent->name }}" required>
+                    <input id="name" type="text" class="form__text" name="name" value="{{ old('name') ?? $torrent->name }}" required>
                     <label class="form__label form__label--floating" for="name">
                         {{ __('torrent.title') }}
                     </label>
@@ -137,7 +136,7 @@
                         <select id="distributor_id" name="distributor_id" class="form__select">
                             @if (! $torrent->distributor)
                                 <option hidden="" disabled="disabled" selected="selected" value="">
-                                    --Select Distributor--
+                                    --选择发行商--
                                 </option>)
                             @else
                                 <option
@@ -147,7 +146,7 @@
                                     {{ $torrent->distributor->name }} ({{ __('torrent.current') }})
                                 </option>
                             @endif
-                            <option value="">No Distributor</option>
+                            <option value="">无发行商</option>
                             @foreach ($distributors as $distributor)
                                 <option
                                     x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') && types[type].name === 'Full Disc' ? '{{ $distributor->id }}' : ''"
@@ -166,7 +165,7 @@
                         <select id="region_id" name="region_id" class="form__select">
                             @if (! $torrent->region)
                                 <option hidden="" disabled="disabled" selected="selected" value="">
-                                    --Select Region--
+                                    --选择发行地--
                                 </option>)
                             @else
                                 <option
@@ -176,7 +175,7 @@
                                     {{ $torrent->region->name }} ({{ __('torrent.current') }})
                                 </option>
                             @endif
-                            <option value="">No Region</option>
+                            <option value="">无发行地</option>
                             @foreach ($regions as $region)
                                 <option
                                     x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') && types[type].name === 'Full Disc' ? '{{ $region->id }}' : ''"
@@ -356,8 +355,8 @@
                         name="bdinfo"
                         placeholder=" "
                     >{{ old('bdinfo') ?? $torrent->bdinfo }}</textarea>
-                    <label class="form__label form__label--floating" for="description">
-                        BDInfo (快扫)
+                    <label class="form__label form__label--floating" for="bdinfo">
+                        BDInfo (Quick Summary)
                     </label>
                 </p>
 
@@ -396,7 +395,7 @@
                         class="form__checkbox"
                         id="sd"
                         name="sd"
-                        x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') ? '1' : '0'""
+                        x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') ? '1' : '0'"
                         @checked(old('stream') ?? $torrent->sd)
                     >
                     <label class="form__label" for="sd">{{ __('torrent.sd-content') }} </label>

@@ -190,6 +190,7 @@
                     ])
                     <p class="form__group">
                         <input
+                            id="bounty"
                             class="form__text"
 
                             name="bounty"
@@ -197,7 +198,7 @@
                             pattern="[0-9]*?[1-9][0-9]{2,}"
                             value="100"
                             required>
-                        <label class="form__label form__label--floating" for="bonus_point">
+                        <label class="form__label form__label--floating" for="bounty">
                             {{ __('request.reward') }} ({{ __('request.reward-desc') }})
                         </label>
                     </p>
@@ -239,6 +240,6 @@
             <div class="panel__body">
                 {{ __('request.no-imdb-id') }}
             </div>
-        </div>
+        </section>
     @endsection
 @endif

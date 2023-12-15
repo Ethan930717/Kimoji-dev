@@ -115,11 +115,12 @@
                 <fieldset class="form form__fieldset">
                     <legend class="form__legend">资源相关</legend>
                     <p class="form__group">
-                        <select id="show_poster" class="form__select" name="torrent_layout" required>
+                        <select id="torrent_layout" class="form__select" name="torrent_layout" required>
                             <option class="form__option" value="0" @selected($user->torrent_layout === 0)>列表模式</option>
                             <option class="form__option" value="1" @selected($user->torrent_layout === 1)>卡片模式</option>
                             <option class="form__option" value="2" @selected($user->torrent_layout === 2)>分组模式</option>
                             <option class="form__option" value="3" @selected($user->torrent_layout === 3)>海报墙</option>
+
                         </select>
                         <label class="form__label form__label--floating" for="torrent_layout">
                             默认资源布局

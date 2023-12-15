@@ -59,7 +59,7 @@ class ForumController extends Controller
         }
 
         // Check if the user has permission to view the forum
-        if (! $forum->getPermission()->show_forum) {
+        if (!$forum->getPermission()->show_forum) {
             return to_route('forums.index')
                 ->withErrors('您无权访问该板块！');
         }

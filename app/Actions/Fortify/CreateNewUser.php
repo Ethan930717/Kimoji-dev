@@ -8,10 +8,14 @@ use App\Models\PrivateMessage;
 use App\Models\User;
 use App\Repositories\ChatRepository;
 use App\Rules\EmailBlacklist;
+use Exception;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
@@ -25,9 +29,11 @@ class CreateNewUser implements CreatesNewUsers
     /**
      * Validate and create a newly registered user.
      *
-     * @param array<string, string> $input
+     * @param  array<string, string> $input
+     * @throws ValidationException
+     * @throws Exception
      */
-    public function create(array $input): User
+    public function create(array $input): RedirectResponse | User
     {
         Validator::make($input, [
             'username' => 'required|alpha_dash|string|between:3,25|unique:users',
@@ -52,12 +58,13 @@ class CreateNewUser implements CreatesNewUsers
         ])->validate();
 
         // Make sure open reg is off and invite code exists and has not been used already
-
         $invite = Invite::query()->where('code', '=', $input['code'])->first();
 
         if (config('other.invite-only') === true && ($invite === null || $invite->accepted_by !== null)) {
-            return to_route('registrationForm', ['code' => $input['code']])
-                ->withErrors(trans('auth.invalid-key'));
+            throw new HttpResponseException(
+                to_route('register', ['code' => $input['code']])
+                    ->withErrors(trans('auth.invalid-key'))
+            );
         }
 
         $validatingGroup = cache()->rememberForever('validating_group', fn () => Group::query()->where('slug', '=', 'validating')->pluck('id'));
@@ -75,6 +82,10 @@ class CreateNewUser implements CreatesNewUsers
             'group_id'   => $validatingGroup[0],
         ]);
 
+        $user->passkeys()->create(['content' => $user->passkey]);
+
+        $user->rsskeys()->create(['content' => $user->rsskey]);
+
         if ($invite !== null) {
             $invite->update([
                 'accepted_by' => $user->id,
@@ -83,7 +94,6 @@ class CreateNewUser implements CreatesNewUsers
         }
 
         // Select A Random Welcome Message
-
         $profileUrl = href_profile($user);
 
         $welcomeArray = [
@@ -101,7 +111,6 @@ class CreateNewUser implements CreatesNewUsers
         );
 
         // Send Welcome PM
-
         PrivateMessage::create([
             'sender_id'   => 1,
             'receiver_id' => $user->id,
@@ -109,7 +118,6 @@ class CreateNewUser implements CreatesNewUsers
             'message'     => config('welcomepm.message'),
         ]);
 
-        return to_route('login')
-            ->withSuccess(trans('auth.register-thanks'));
+        return $user;
     }
 }

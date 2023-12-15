@@ -17,6 +17,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PrivateMessage;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RsskeyController extends Controller
 {
@@ -29,32 +30,43 @@ class RsskeyController extends Controller
 
         $changedByStaff = $request->user()->isNot($user);
 
-        abort_if($changedByStaff && ! $request->user()->group->is_owner && $request->user()->group->level <= $user->group->level, 403);
+        abort_if($changedByStaff && !$request->user()->group->is_owner && $request->user()->group->level <= $user->group->level, 403);
 
-        $user->update([
-            'rsskey' => md5(random_bytes(60).$user->password),
-        ]);
+        DB::transaction(function () use ($user, $changedByStaff): void {
+            $user->rsskeys()->latest()->first()?->update(['deleted_at' => now()]);
 
-        if ($changedByStaff) {
-            PrivateMessage::create([
-                'sender_id'   => 1,
-                'receiver_id' => $user->id,
-                'subject'     => '请注意，RSS key已重置',
-                'message'     => "您的 RSS 密钥已被工作人员重置。您需要在您的客户端中更新您的 RSS 密钥，以继续接收新的种子。\n\n如需更多信息，请提交工单求助。\n\n[color=red][b]这是一条系统消息，请勿回复！[/b][/color]",
+
+            $user->update([
+                'rsskey' => md5(random_bytes(60).$user->password),
             ]);
-        }
 
-        return to_route('users.rsskey.edit', ['user' => $user])
-            ->withSuccess('RSS key更新成功');
+
+            $user->rsskeys()->create(['content' => $user->rsskey]);
+
+            if ($changedByStaff) {
+                PrivateMessage::create([
+                    'sender_id'   => 1,
+                    'receiver_id' => $user->id,
+                    'subject'     => '请注意，RSS key已重置',
+                    'message'     => "您的 RSS 密钥已被工作人员重置。您需要在您的客户端中更新您的 RSS 密钥，以继续接收新的种子。\n\n如需更多信息，请提交工单求助。\n\n[color=red][b]这是一条系统消息，请勿回复！[/b][/color]",
+                ]);
+            }
+        });
+
+        return to_route('users.rsskeys.index', ['user' => $user])
+            ->withSuccess('RSS key更新成功.');
     }
 
     /**
      * Edit user rsskey.
      */
-    public function edit(Request $request, User $user): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+    public function index(Request $request, User $user): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
         abort_unless($request->user()->is($user) || $request->user()->group->is_modo, 403);
 
-        return view('user.rsskey.edit', ['user' => $user]);
+        return view('user.rsskey.index', [
+            'user'    => $user,
+            'rsskeys' => $user->rsskeys()->latest()->get(),
+        ]);
     }
 }

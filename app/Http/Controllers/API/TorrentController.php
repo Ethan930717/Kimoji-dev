@@ -104,6 +104,7 @@ class TorrentController extends BaseController
 
         if (! $request->hasFile('torrent')) {
             return $this->sendError('验证错误', '你必须上传一个有效的种子文件!');
+
         }
 
         if ($requestFile->getError() !== 0 || $requestFile->getClientOriginalExtension() !== 'torrent') {
@@ -123,6 +124,7 @@ class TorrentController extends BaseController
         foreach (TorrentTools::getFilenameArray($decodedTorrent) as $name) {
             if (! TorrentTools::isValidFilename($name)) {
                 return $this->sendError('验证错误', '种子名称无效！');
+
             }
         }
 

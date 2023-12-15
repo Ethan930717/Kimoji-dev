@@ -40,14 +40,16 @@ class ApplicationController extends Controller
      */
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
-        Log::info('开始处理新的入站申请');
+
+        abort_unless(config('other.application_signups'), 403);
+
         $application = resolve(Application::class);
         $application->type = $request->input('type');
         $application->email = $request->input('email');
         $application->referrer = $request->input('referrer');
 
         if (config('email-blacklist.enabled')) {
-            if (! config('captcha.enabled')) {
+            if (!config('captcha.enabled')) {
                 $v = validator($request->all(), [
                     'type'  => 'required',
                     'email' => [
@@ -87,7 +89,7 @@ class ApplicationController extends Controller
                     'captcha'  => 'hiddencaptcha',
                 ]);
             }
-        } elseif (! config('captcha.enabled')) {
+        } elseif (!config('captcha.enabled')) {
             $v = validator($request->all(), [
                 'type'     => 'required',
                 'email'    => 'required|string|email|max:70|unique:invites|unique:users|unique:applications',

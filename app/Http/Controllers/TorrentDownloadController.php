@@ -40,20 +40,20 @@ class TorrentDownloadController extends Controller
     {
         $user = $request->user();
 
-        if (! $user && $rsskey) {
+        if (!$user && $rsskey) {
             $user = User::where('rsskey', '=', $rsskey)->sole();
         }
         $torrent = Torrent::withoutGlobalScope(ApprovedScope::class)->findOrFail($id);
         $hasHistory = $user->history()->where([['torrent_id', '=', $torrent->id], ['seeder', '=', 1]])->exists();
 
         // User's ratio is too low
-        if ($user->ratio < config('other.ratio') && ! ($torrent->user_id === $user->id || $hasHistory)) {
+        if ($user->ratio < config('other.ratio') && !($torrent->user_id === $user->id || $hasHistory)) {
             return to_route('torrents.show', ['id' => $torrent->id])
                 ->withErrors('你的分享率太低了，无法下载资源！');
         }
 
         // User's download rights are revoked
-        if ($user->can_download == 0 && ! ($torrent->user_id === $user->id || $hasHistory)) {
+        if ($user->can_download == 0 && !($torrent->user_id === $user->id || $hasHistory)) {
             return to_route('torrents.show', ['id' => $torrent->id])
                 ->withErrors('你没有下载权限！');
         }
@@ -65,12 +65,12 @@ class TorrentDownloadController extends Controller
         }
 
         // The torrent file exist ?
-        if (! file_exists(getcwd().'/files/torrents/'.$torrent->file_name)) {
+        if (!file_exists(getcwd().'/files/torrents/'.$torrent->file_name)) {
             return to_route('torrents.show', ['id' => $torrent->id])
                 ->withErrors('没有找到种子文件，请报告该资源');
         }
 
-        if (! $request->user() && !($rsskey && $user)) {
+        if (!$request->user() && !($rsskey && $user)) {
             return to_route('login');
         }
 

@@ -102,6 +102,7 @@
         </i>-->
             <span class="refundable-title">{{ __('torrent.refundable') }}</span>
 
+
     @endif
     @if ($torrent->sticky)
         <i

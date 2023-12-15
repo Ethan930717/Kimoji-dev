@@ -74,6 +74,7 @@ class AppServiceProvider extends ServiceProvider
                 if (! HiddenCaptcha::check($validator, $minLimit, $maxLimit)) {
                     $validator->setCustomMessages(['hiddencaptcha' => '验证失败']);
 
+
                     return false;
                 }
 

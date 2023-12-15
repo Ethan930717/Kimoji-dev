@@ -180,7 +180,7 @@
                                 type="text"
                                 value="{{ $torrentRequest->igdb ?: (old('igdb') ?? '0') }}"
                             >
-                            <label class="form__label form__label--floating" for="name">
+                            <label class="form__label form__label--floating" for="igdb">
                                 IGDB ID ({{ __('request.required') }} For Games)
                             </label>
                         </p>

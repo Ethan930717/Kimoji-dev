@@ -86,6 +86,6 @@
             <dd>{{ $receivedTips }}</dd>
             <dt>{{ __('bon.you-have-sent-tips') }}</dt>
             <dd>{{ $sentTips }}</dd>
-        </div>
+        </dl>
     </section>
 @endsection

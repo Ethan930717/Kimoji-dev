@@ -97,7 +97,7 @@
                             {{ __('user.invites') }}
                         </option>
                     </select>
-                    <label class="form__label form__label--floating" for="autocat">
+                    <label class="form__label form__label--floating" for="type">
                         {{ __('common.type') }}
                     </label>
                 </p>
