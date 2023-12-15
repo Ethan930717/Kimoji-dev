@@ -222,17 +222,18 @@ img {
 }
 
 .button {
-    -webkit-text-size-adjust: none;
-    border-radius: 4px;
-    color: #fff;
-    display: inline-block;
-    overflow: hidden;
+    padding: 10px 20px;
+    margin: 10px 0;
+    background-color: #3498db; /* 默认为蓝色，可以根据需要更改 */
+    color: white;
     text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 .button-blue,
 .button-primary {
-    background-color: #2d3748;
+    background-color: #3498db;
     border-bottom: 8px solid #2d3748;
     border-left: 18px solid #2d3748;
     border-right: 18px solid #2d3748;

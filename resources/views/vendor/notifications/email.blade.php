@@ -6,13 +6,12 @@
         @if ($level === 'error')
             # {{ __('哎呀') }}
         @else
-            # {{ __('喔唷') }}
+            # {{ __('您好') }}
         @endif
     @endif
 
     {{-- Intro Lines --}}
-    @foreach ($introLines as $line)
-        {{ $line }}
+    欢迎您加入KIMOJI，请点击下面的按钮来验证您的电子邮件地址。
 
     @endforeach
 
@@ -34,8 +33,7 @@
     @endisset
 
     {{-- Outro Lines --}}
-    @foreach ($outroLines as $line)
-        {{ $line }}
+    如果您不知晓本条邮件所述内容，请您无需理会
 
     @endforeach
 
@@ -43,7 +41,6 @@
     @if (! empty($salutation))
         {{ $salutation }}
     @else
-        {{ __('Regards') }},<br>
         {{ config('app.name') }}
     @endif
 
@@ -51,7 +48,7 @@
     @isset($actionText)
         @slot('subcopy')
             {{ __(
-                "如果您无法点击 \":actionText\" 按钮, 请手动访问链接:\n",
+                "如果您无法点击 \":actionText\" 按钮, 请手动访问链接:\n\n",
                 [
                     'actionText' => $actionText,
                 ]
