@@ -32,6 +32,7 @@ return [
     'download'           => 'Download',
     'fix-errors'         => 'Please fix the following error(s) and try again:',
     'helpdesk'           => 'Helpdesk',
+    'no-attach'          => 'No attachments found',
     'priority'           => 'Priority',
     'opened-by'          => 'Opened By:',
     'reset'              => 'Reset',
