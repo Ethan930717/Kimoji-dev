@@ -37,14 +37,14 @@
     @if (! empty($salutation))
         {{ $salutation }}
     @else
-        {{ config('app.name') }}
+    KIMOJI 敬上
     @endif
 
     {{-- Subcopy --}}
     @isset($actionText)
         @slot('subcopy')
             {{ __(
-                "如果您无法点击 \":actionText\" 按钮, 请手动访问链接:\n\n",
+                "如果您无法点击按钮, 请尝试访问以下链接:\n\n",
                 [
                     'actionText' => $actionText,
                 ]
