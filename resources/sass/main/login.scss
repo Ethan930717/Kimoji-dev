@@ -102,7 +102,7 @@ body {
   background-color: #ffffff57;
   border: none;
   border-radius: 24px;
-  color: #000000d9;
+  color: #ffffff;
   font-size: 16px;
   font-weight: 800;
   height: 48px;
@@ -250,9 +250,12 @@ body {
 }
 
 .auth-form__error,.auth-form__important-info {
-  color: #22183a;
-  font-size: 16px;
-  font-weight: 700
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  margin: auto;
+
+
 }
 
 [x-cloak] {
