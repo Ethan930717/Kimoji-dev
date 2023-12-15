@@ -28,11 +28,7 @@ class TorrentObserver
     public function created(Torrent $torrent): void
     {
         cache()->put(sprintf('torrent:%s', $torrent->info_hash), $torrent);
-        Log::info("新种监测", ['torrentId' => $torrent->id]);
 
-        if ($torrent->status === Torrent::PENDING) {
-            $telegramController = new TelegramController();
-            $telegramController->sendModerationNotification($torrent->name, $torrent->id);        }
     }
 
     /**
@@ -54,9 +50,10 @@ class TorrentObserver
                 case 2:
                 case 4:
                 case 5:
-                    $tmdbService = new TV($torrent->tmdb);
-                    break;
                 case 6:
+                $tmdbService = new TV($torrent->tmdb);
+                    break;
+                case 7:
                     $fileSizeGB = round($torrent->size / 1e9, 2); // 将字节转换为 GB，并保留两位小数
                     $fileSizeText = "{$fileSizeGB} GB";
                     $telegramController = new TelegramController();

@@ -15,6 +15,7 @@
                 >
                     <i class='{{ config("other.font-awesome") }} fa-download'></i> {{ __('common.download') }}
                 </a>
+
             @endif
         @else
             <a

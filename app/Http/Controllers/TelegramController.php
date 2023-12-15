@@ -55,22 +55,6 @@ class TelegramController extends Controller
     }
 
 
-    public function notifyNewTorrent(Torrent $torrent)
-    {
-        Log::info("notifyNewTorrent method called for torrent: {$torrent->id}");
-
-        // 获取电影或电视剧的信息
-        $meta = $torrent->category->movie_meta ? Movie::find($torrent->tmdb) : Tv::find($torrent->tmdb);
-
-        if ($meta) {
-            $poster = $meta->poster;
-            $overview = $meta->overview;
-            $uploader = $torrent->user->username;
-
-            // 使用 sendTorrentNotification 方法发送通知
-            $this->sendTorrentNotification($poster, $overview, $uploader);
-        }
-    }
 
     public function sendTorrentNotification($id, $name, $poster, $overview, $size)
     {
@@ -147,21 +131,20 @@ class TelegramController extends Controller
         }
     }
 
-    public function sendModerationNotification($torrentName, $torrentId)
+    public function sendModerationNotification($message)
     {
         try {
             $chatId = "-1002007902628"; // 您的 Telegram 群组ID
-            $message = "有新的待审核种子：" . PHP_EOL . PHP_EOL .
-                $torrentName . PHP_EOL . PHP_EOL .
-                "传送门:" . "https://kimoji.club/torrents/" . $torrentId;
+            $fullMessage = $message . PHP_EOL . PHP_EOL .
+                "请尽快处理:" . "https://kimoji.club/dashboard/moderation";
 
             // 发送消息
             Telegram::sendMessage([
                 'chat_id' => $chatId,
-                'text' => $message
+                'text' => $fullMessage
             ]);
 
-            Log::info("发送待审通知", ['chat_id' => $chatId, 'message' => $message]);
+            Log::info("发送待审通知", ['chat_id' => $chatId, 'message' => $fullMessage]);
         } catch (\Exception $e) {
             Log::error("发送待审通知异常", ['error' => $e->getMessage()]);
         }
