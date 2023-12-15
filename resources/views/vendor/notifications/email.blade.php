@@ -13,20 +13,18 @@
     {{-- Intro Lines --}}
     欢迎您加入KIMOJI，请点击下面的按钮来验证您的电子邮件地址。
 
-    @endforeach
-
     {{-- Action Button --}}
     @isset($actionText)
-            <?php
-            switch ($level) {
-                case 'success':
-                case 'error':
-                    $color = $level;
-                    break;
-                default:
-                    $color = 'primary';
-            }
-            ?>
+        <?php
+        switch ($level) {
+            case 'success':
+            case 'error':
+                $color = $level;
+                break;
+            default:
+                $color = 'primary';
+        }
+        ?>
         @component('mail::button', ['url' => $actionUrl, 'color' => $color])
             {{ $actionText }}
         @endcomponent
@@ -34,8 +32,6 @@
 
     {{-- Outro Lines --}}
     如果您不知晓本条邮件所述内容，请您无需理会
-
-    @endforeach
 
     {{-- Salutation --}}
     @if (! empty($salutation))
