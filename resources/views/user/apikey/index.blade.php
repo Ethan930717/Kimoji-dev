@@ -48,7 +48,7 @@
                             </td>
                             <td>
                                 <time datetime="{{ $apikey->deleted_at }}" title="{{ $apikey->deleted_at }}">
-                                    {{ $apikey->deleted_at ?? 'Currently in use' }}
+                                    {{ $apikey->deleted_at ?? '正在使用' }}
                                 </time>
                             </td>
                             <td>
@@ -85,16 +85,16 @@
                 @method('PATCH')
                 <p>{{ __('user.reset-api-help') }}.</p>
                 @if ($user->api_token === null)
-                    <p>You currently do not have an API key.</p>
+                    <p>目前暂无API Key</p>
                     <p class="form__group--horizontal">
                         <button class="form__button form__button--filled form__button--centered">
-                            Generate API Key
+                            生成API Key
                         </button>
                     </p>
                 @else
                     <p class="form__group--horizontal">
                         <button class="form__button form__button--filled form__button--centered">
-                            Reset
+                            重置
                         </button>
                     </p>
                 @endif

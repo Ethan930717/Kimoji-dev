@@ -48,7 +48,7 @@
                             </td>
                             <td>
                                 <time datetime="{{ $rsskey->deleted_at }}" title="{{ $rsskey->deleted_at }}">
-                                    {{ $rsskey->deleted_at ?? 'Currently in use' }}
+                                    {{ $rsskey->deleted_at ?? '正在使用' }}
                                 </time>
                             </td>
                             <td>

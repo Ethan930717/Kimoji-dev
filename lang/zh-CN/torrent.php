@@ -236,4 +236,5 @@ return [
     'revokefeatured'           => '取消精选',
     'search-by-name'           => '按姓名搜索',
     'recent-bumped'            => '最近更新',
+    'Runtime'                  => '影片时长',
 ];

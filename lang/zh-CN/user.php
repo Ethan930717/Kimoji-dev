@@ -396,6 +396,8 @@ return [
     'top-bountied'            => '悬赏大厅',
     'seedbox-added-success'   => '盒子登记成功',
     'apikeys'                 => 'apikey管理',
-    'passkeys'                => 'passkey管理',
     'rsskeys'                 => 'rsskey管理',
+    'apikeys'                 => 'API Key',
+    'rsskey'                  => 'RSS Key',
+    'two-step-auth.title'     => '两步验证',
 ];

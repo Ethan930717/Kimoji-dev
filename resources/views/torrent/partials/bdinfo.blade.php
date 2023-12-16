@@ -17,7 +17,7 @@
                               showConfirmButton: false,
                               timer: 3000,
                               icon: 'success',
-                              title: 'Copied to clipboard!'
+                              title: '复制成功'
                         })
                     "
                 >

@@ -48,7 +48,7 @@
                             </td>
                             <td>
                                 <time datetime="{{ $passkey->deleted_at }}" title="{{ $passkey->deleted_at }}">
-                                    {{ $passkey->deleted_at ?? 'Currently in use' }}
+                                    {{ $passkey->deleted_at ?? '正在使用' }}
                                 </time>
                             </td>
                             <td>
