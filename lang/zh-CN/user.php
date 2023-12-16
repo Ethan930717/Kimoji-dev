@@ -397,7 +397,7 @@ return [
     'seedbox-added-success'   => '盒子登记成功',
     'apikeys'                 => 'apikey管理',
     'rsskeys'                 => 'rsskey管理',
-    'apikeys'                 => 'API Key',
+    'apikey'                  => 'API Key',
     'rsskey'                  => 'RSS Key',
     'two-step-auth.title'     => '两步验证',
 ];
