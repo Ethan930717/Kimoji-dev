@@ -73,5 +73,4 @@ return [
     'bon-exchange'             => '商店设置',
     'gifts-log'                => '赠送日志',
     'passkeys'                 => 'passkey管理',
-
 ];
