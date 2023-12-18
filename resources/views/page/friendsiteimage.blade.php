@@ -60,12 +60,54 @@
             @endforeach
         </div>
 
-        <div x-show="modalOpen" id="myModal" class="modal" @click.away="modalOpen = false">
-            <span class="close" @click="modalOpen = false">&times;</span>
-            <img class="modal-content" :src="currentImage">
-            <a class="prev" @click="currentSlide = currentSlide > 0 ? currentSlide - 1 : images.length - 1; currentImage = images[currentSlide].url">&#10094;</a>
-            <a class="next" @click="currentSlide = currentSlide < images.length - 1 ? currentSlide + 1 : 0; currentImage = images[currentSlide].url">&#10095;</a>
+        <div x-data="imageViewer()" class="image-viewer">
+            <div class="stats__panels">
+                <template x-for="(image, index) in images" :key="index">
+                    <div class="image-container">
+                        <img :src="image.url" :alt="'Image ' + index" @click="openModal(image.url, index)" class="thumbnail">
+                        <div class="image-title" x-text="image.name"></div>
+                    </div>
+                </template>
+            </div>
+
+            <div x-show="modalOpen" class="modal" @click.away="closeModal()">
+                <span class="close" @click="closeModal()">&times;</span>
+                <img :src="currentImage" class="modal-content">
+                <a class="prev" @click="changeSlide(-1)">&#10094;</a>
+                <a class="next" @click="changeSlide(1)">&#10095;</a>
+            </div>
         </div>
+
+        <script>
+            function imageViewer() {
+                return {
+                    images: <?php echo json_encode($images); ?>,
+                    modalOpen: false,
+                    currentImage: '',
+                    currentSlide: 0,
+
+                    openModal(image, index) {
+                        this.currentImage = image;
+                        this.currentSlide = index;
+                        this.modalOpen = true;
+                    },
+
+                    closeModal() {
+                        this.modalOpen = false;
+                    },
+
+                    changeSlide(direction) {
+                        this.currentSlide += direction;
+                        if (this.currentSlide >= this.images.length) {
+                            this.currentSlide = 0;
+                        } else if (this.currentSlide < 0) {
+                            this.currentSlide = this.images.length - 1;
+                        }
+                        this.currentImage = this.images[this.currentSlide].url;
+                    }
+                }
+            }
+        </script>
 
     <style>
         .panel--grid-item {
