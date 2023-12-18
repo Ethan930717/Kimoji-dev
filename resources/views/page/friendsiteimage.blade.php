@@ -63,20 +63,13 @@
         </div>
         <div id="myModal" class="modal"
              x-show="showModal"
-             x-transition:enter="transition ease-out duration-500"
+             x-transition:enter="transition ease-out duration-300"
              x-transition:enter-start="opacity-0"
              x-transition:enter-end="opacity-100"
-             x-transition:leave="transition ease-in duration-500"
+             x-transition:leave="transition ease-in duration-300"
              x-transition:leave-start="opacity-100"
              x-transition:leave-end="opacity-0">
-            <img :src="images[currentSlide]" class="modal-content" id="img01"
-                 x-show="imageTransition"
-                 x-transition:enter="transition ease-out duration-500"
-                 x-transition:enter-start="opacity-0"
-                 x-transition:enter-end="opacity-100"
-                 x-transition:leave="transition ease-in duration-500"
-                 x-transition:leave-start="opacity-100"
-                 x-transition:leave-end="opacity-0">
+            <img :src="images[currentSlide]" class="modal-content" id="img01">
             <span @click="closeModal()" class="close">&times;</span>
             <span @click="changeSlide(-1)" class="prev">&#10094;</span>
             <span @click="changeSlide(1)" class="next">&#10095;</span>
