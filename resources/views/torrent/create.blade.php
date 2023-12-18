@@ -540,7 +540,7 @@
                 <br>
                 <br>
                 <a style="font-size:18px; text-align:center; cursor:pointer;" id="trackerLink" data-link="{{ route('announce', ['passkey' => $user->passkey]) }}" x-data x-on:click.stop="
-    navigator.clipboard.writeText(this.dataset.link);
+    navigator.clipboard.writeText($el.dataset.link);
     Swal.fire({
           toast: true,
           position: 'top-end',
