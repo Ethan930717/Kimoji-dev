@@ -1,7 +1,4 @@
 window._ = require('lodash');
-import { Howl, Howler } from 'howler';
-// 导出 Howl，以便在其他地方使用
-export { Howl, Howler };
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
