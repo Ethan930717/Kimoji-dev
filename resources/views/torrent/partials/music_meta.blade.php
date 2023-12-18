@@ -13,31 +13,6 @@
             <button x-on:click="pause()">暂停</button>
             <input type="range" x-model="volume" x-on:input="setVolume()">
         </div>
-
-        <script>
-            function audioPlayer() {
-                const sound = new Howl({
-                    src: ['sounds/daodai.mp3'],
-                    volume: 1
-                });
-
-                return {
-                    volume: 1,
-
-                    play() {
-                        sound.play();
-                    },
-
-                    pause() {
-                        sound.pause();
-                    },
-
-                    setVolume() {
-                        sound.volume(this.volume);
-                    }
-                };
-            }
-        </script>
         <div class="meta__actions">
         <a class="meta__dropdown-button" href="#">
             <i class="{{ config('other.font-awesome') }} fa-ellipsis-v"></i>
@@ -69,3 +44,32 @@
         </section>
     </div>
 </section>
+{{-- Alpine.js 音乐播放器组件 --}}
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('audioPlayer', () => ({
+            sound: null,
+            volume: 1,
+
+            init() {
+                // 初始化 Howler 音乐播放器
+                this.sound = new Howl({
+                    src: ['path/to/your/audio.mp3'],
+                    volume: this.volume
+                });
+            },
+
+            play() {
+                this.sound.play();
+            },
+
+            pause() {
+                this.sound.pause();
+            },
+
+            setVolume() {
+                this.sound.volume(this.volume);
+            }
+        }));
+    });
+</script>
