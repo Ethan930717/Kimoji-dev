@@ -193,7 +193,8 @@
     display: none;
     position: absolute;
     flex-direction: column;
-    left: 87%;
+    left: -87%;
+    top: 0;
     padding: 6px;
     row-gap: 6px;
     backdrop-filter: blur(20px);
@@ -219,17 +220,6 @@
     backdrop-filter: blur(20px);
 }
 
-.top-nav__dropdown > ul > li > ul.sub-menu::before{
-    content: '';
-    display: block;
-    height: 5px;
-    left: -87%;
-    position: absolute;
-    top: -5px;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0);
-    backdrop-filter: blur(20px);
-}
 .top-nav__icon-bar .top-nav__dropdown > ul {
     right: 10px;
 }
