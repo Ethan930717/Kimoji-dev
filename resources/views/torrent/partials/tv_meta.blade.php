@@ -7,26 +7,12 @@
             {{ $meta->name ?? 'No Meta Found' }} ({{ substr($meta->first_air_date ?? '', 0, 4) ?? '' }})
         </h1>
     </a>
-        <div x-data="imageModal()">
-    <span class="meta__poster-link" @click="openModal('{{ $meta?->poster ? tmdb_image('poster_big', $meta->poster) : 'https://via.placeholder.com/400x600' }}')">
+    <a class="meta__poster-link" href="{{ route('torrents.similar', ['category_id' => $category->id, 'tmdb' => $tmdb]) }}">
         <img
-                src="{{ $meta?->poster ? tmdb_image('poster_big', $meta->poster) : 'https://via.placeholder.com/400x600' }}"
-                class="meta__poster thumbnail"
+            src="{{ $meta?->poster ? tmdb_image('poster_big', $meta->poster) : 'https://via.placeholder.com/400x600' }}"
+            class="meta__poster"
         >
-    </span>
-
-            <div id="myModal" class="modal"
-                 x-show="showModal"
-                 @click="closeModal()"
-                 x-transition:enter="transition ease-out duration-300"
-                 x-transition:enter-start="opacity-0"
-                 x-transition:enter-end="opacity-100"
-                 x-transition:leave="transition ease-in duration-300"
-                 x-transition:leave-start="opacity-100"
-                 x-transition:leave-end="opacity-0">
-                <img :src="imageUrl" class="modal-content" id="img01">
-            </div>
-        </div>
+    </a>
     <div class="meta__actions">
         <a class="meta__dropdown-button" href="#">
             <i class="{{ config('other.font-awesome') }} fa-ellipsis-v"></i>
