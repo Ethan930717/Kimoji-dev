@@ -20,7 +20,8 @@
                  x-transition:leave-end="opacity-0">
                 <img :src="imageUrl" class="modal-content" id="img01">
             </div>
-        </div>        <div x-data="audioPlayer()">
+        </div>
+        <div x-data="audioPlayer()">
             <button x-on:click="play()">播放</button>
             <button x-on:click="pause()">暂停</button>
             <input type="range" x-model="volume" x-on:input="setVolume()">
