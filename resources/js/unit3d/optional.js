@@ -20,3 +20,19 @@ function imageGallery(images) {
         }
     }
 }
+
+function imageModal() {
+    return {
+        showModal: false,
+        imageUrl: '',
+
+        openModal(url) {
+            this.imageUrl = url;
+            this.showModal = true;
+        },
+
+        closeModal() {
+            this.showModal = false;
+        }
+    }
+}
