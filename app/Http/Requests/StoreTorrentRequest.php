@@ -79,7 +79,7 @@ class StoreTorrentRequest extends FormRequest
                             Torrent::PENDING   => $fail('当前已有相同的种子正在等待审核'),
                             Torrent::APPROVED  => $fail('当前种子已存在'),
                             Torrent::REJECTED  => $fail('有相同的种子正在拒绝列表中，请PM管理处理'),
-                            Torrent::POSTPONED => $fail('有相同的种子正在推迟列表中，请PM管理处理'),
+                            Torrent::POSTPONED => $fail('有相同的种子正在延期列表中，请PM管理处理'),
                             default            => null,
                         };
                     }

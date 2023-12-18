@@ -54,7 +54,7 @@
             init() {
                 // 初始化 Howler 音乐播放器
                 this.sound = new Howl({
-                    src: ['path/to/your/audio.mp3'],
+                    src: ['sounds/daodai.mp3'],
                     volume: this.volume
                 });
             },

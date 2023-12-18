@@ -350,7 +350,7 @@
                                 批准人: <x-user_tag :user="$torrent->moderated" :anon="false" />
                                 @break
                             @case(\App\Models\Torrent::POSTPONED)
-                                推迟人: <x-user_tag :user="$torrent->moderated" :anon="false" />
+                                延期人: <x-user_tag :user="$torrent->moderated" :anon="false" />
                                 @break
                             @case(\App\Models\Torrent::REJECTED)
                                 拒收人: <x-user_tag :user="$torrent->moderated" :anon="false" />

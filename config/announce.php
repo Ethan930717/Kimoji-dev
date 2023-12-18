@@ -126,5 +126,5 @@ return [
     |
     */
 
-    'log_announces' => false,
+    'log_announces' => true,
 ];
