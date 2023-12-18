@@ -7,7 +7,6 @@
             {{ $meta->name ?? 'No Meta Found' }} ({{ substr($meta->first_release_date ?? '', 0, 4) ?? '' }})
         </h1>
     </a>
-
     <a class="meta__poster-link" href="{{ route('torrents.similar', ['category_id' => $category->id, 'tmdb' => $igdb]) }}">
         <img
             src="{{ $meta?->cover ? 'https://images.igdb.com/igdb/image/upload/t_original/'.$meta->cover['image_id'].'.jpg' : 'https://via.placeholder.com/400x600' }}"
