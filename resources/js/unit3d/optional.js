@@ -1,38 +1,22 @@
-$(function(){
-    const modal = $("#myModal");
-    const close = modal.find(".close");
-    const modalImg = modal.find(".modal-content");
-    const prev = modal.find(".prev");
-    const next = modal.find(".next");
-    const images = $('.thumbnail');
-    let currentSlide = 0;
+function imageGallery() {
+    return {
+        images: [], // Populate this array with your image URLs
+        currentSlide: 0,
+        showModal: false,
 
-    images.click(function(){
-        const imgSrc = $(this).attr('src');
-        const index = images.index(this);
-        currentSlide = index;
-        modalImg.attr('src', imgSrc);
-        modal.fadeIn(); // 使用 fadeIn() 替代 show()
-    });
+        openModal(index) {
+            this.currentSlide = index;
+            this.showModal = true;
+        },
 
-    close.click(function(){
-        modal.fadeOut(); // 使用 fadeOut() 替代 hide()
-    });
+        closeModal() {
+            this.showModal = false;
+        },
 
-    function plusSlides(n) {
-        currentSlide += n;
-        if (currentSlide >= images.length) currentSlide = 0;
-        if (currentSlide < 0) currentSlide = images.length - 1;
-        modalImg.fadeOut(function() {
-            $(this).attr('src', $(images[currentSlide]).attr('src')).fadeIn();
-        });
+        changeSlide(n) {
+            this.currentSlide += n;
+            if (this.currentSlide >= this.images.length) this.currentSlide = 0;
+            if (this.currentSlide < 0) this.currentSlide = this.images.length - 1;
+        }
     }
-
-    next.click(function() {
-        plusSlides(1);
-    });
-
-    prev.click(function() {
-        plusSlides(-1);
-    });
-});
+}
