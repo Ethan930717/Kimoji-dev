@@ -544,3 +544,8 @@
     max-height: calc(100vh - 212px);
     overflow-y: auto;
 }
+
+.thumbnail:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
