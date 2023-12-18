@@ -1,5 +1,4 @@
 window._ = require('lodash');
-import 'select2';
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -46,4 +45,20 @@ if (document.getElementById('vue')) {
  */
 // Sweet Alert
 window.Swal = require('sweetalert2');
+
+// howler js
+import { Howl } from 'howler';
+
+document.addEventListener('DOMContentLoaded', function () {
+    var playButton = document.getElementById('play-sound');
+    var soundPath = playButton.getAttribute('data-sound-path');
+
+    var sound = new Howl({
+        src: [soundPath]
+    });
+
+    playButton.addEventListener('click', function() {
+        sound.play();
+    });
+});
 
