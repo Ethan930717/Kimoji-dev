@@ -1,16 +1,17 @@
-function imageGallery() {
+function imageGallery(images) {
+    console.log('images: ', images);
     return {
-        images: [], // Populate this array with your image URLs
+        images, // Populate this array with your image URLs
         currentSlide: 0,
         showModal: false,
 
         openModal(index) {
             this.images = []
             this.currentSlide = index;
-            const list = document.querySelectorAll(".thumbnail")
-            list.forEach((v)=>{
-                this.images.push(v.src)
-            })
+            // const list = document.querySelectorAll(".thumbnail")
+            // list.forEach((v)=>{
+            //     this.images.push(v.src)
+            // })
             this.showModal = true;
         },
 
