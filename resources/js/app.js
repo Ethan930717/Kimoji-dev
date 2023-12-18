@@ -47,17 +47,3 @@ if (document.getElementById('vue')) {
 window.Swal = require('sweetalert2');
 
 // howler js
-import { Howl } from 'howler';
-
-document.addEventListener('DOMContentLoaded', function () {
-    var playButton = document.getElementById('play-sound');
-
-    playButton.addEventListener('click', function() {
-        var sound = new Howl({
-            src: [playButton.getAttribute('data-audio-src')]
-        });
-
-        sound.play();
-    });
-});
-

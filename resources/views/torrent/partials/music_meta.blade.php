@@ -8,8 +8,36 @@
             class="meta__poster"
         >
     </span>
-        <button id="play-sound" data-sound-path="{{ asset('sounds/daodai.mp3') }}">播放音乐</button>
-        
+        <div x-data="audioPlayer()">
+            <button x-on:click="play()">播放</button>
+            <button x-on:click="pause()">暂停</button>
+            <input type="range" x-model="volume" x-on:input="setVolume()">
+        </div>
+
+        <script>
+            function audioPlayer() {
+                const sound = new Howl({
+                    src: ['sounds/daodai.mp3'],
+                    volume: 1
+                });
+
+                return {
+                    volume: 1,
+
+                    play() {
+                        sound.play();
+                    },
+
+                    pause() {
+                        sound.pause();
+                    },
+
+                    setVolume() {
+                        sound.volume(this.volume);
+                    }
+                };
+            }
+        </script>
         <div class="meta__actions">
         <a class="meta__dropdown-button" href="#">
             <i class="{{ config('other.font-awesome') }} fa-ellipsis-v"></i>
