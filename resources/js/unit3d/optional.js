@@ -5,7 +5,12 @@ function imageGallery() {
         showModal: false,
 
         openModal(index) {
+            this.images = []
             this.currentSlide = index;
+            const list = document.querySelectorAll(".thumbnail")
+            list.forEach(function(v){
+                this.images.push(v.src)
+            })
             this.showModal = true;
         },
 

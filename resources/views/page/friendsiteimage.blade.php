@@ -59,21 +59,18 @@
             </div>
         @endforeach
     </div>
+    <!-- <div id="myModal" class="modal" style="display: none;">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div> -->
 
-
-    <div x-data="imageGallery()" id="myModal" class="modal" style="display: none;">
-        <!-- Thumbnails -->
-        <template x-for="(image, index) in images" :key="index">
-            <img :src="image" @click="openModal(index)" class="thumbnail">
-        </template>
-
-        <!-- Modal -->
-        <div x-show="showModal" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
-            <img :src="images[currentSlide]" class="modal-content" id="img01">
-            <span @click="closeModal()" class="close">&times;</span>
-            <span @click="changeSlide(-1)" class="prev">&#10094;</span>
-            <span @click="changeSlide(1)" class="next">&#10095;</span>
-        </div>
+    <div x-data="imageGallery()" id="myModal" class="modal" x-show="showModal" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+        <img :src="images[currentSlide]" class="modal-content" id="img01">
+        <span @click="closeModal()" class="close">&times;</span>
+        <span @click="changeSlide(-1)" class="prev">&#10094;</span>
+        <span @click="changeSlide(1)" class="next">&#10095;</span>
     </div>
 
     <style>
