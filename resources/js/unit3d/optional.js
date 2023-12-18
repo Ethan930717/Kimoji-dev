@@ -1,7 +1,8 @@
 function imageGallery(images) {
     console.log('images: ', images);
+    const list = images.map(v=>v.url)
     return {
-        images, // Populate this array with your image URLs
+        images:list, // Populate this array with your image URLs
         currentSlide: 0,
         showModal: false,
 
