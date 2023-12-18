@@ -8,7 +8,12 @@
             class="meta__poster"
         >
     </span>
-        <button id="play-sound" data-sound-path="{{ asset('sounds/alert.mp3') }}">播放音乐</button>
+        <div id="audio-player" data-sound-path="{{ asset('path/to/your/song.mp3') }}">
+            <button id="play-btn">播放</button>
+            <button id="pause-btn">暂停</button>
+            <input type="range" id="volume-control" min="0" max="1" step="0.1" value="1">
+            <canvas id="frequency-display" width="800" height="100"></canvas>
+        </div>
 
         <div class="meta__actions">
         <a class="meta__dropdown-button" href="#">
