@@ -4,7 +4,7 @@
     @endif
     <span class="meta__poster-link">
         <img
-            src="{{ file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg') ? url('/files/img/torrent-cover_'.$torrent->id.'.jpg') : 'https://via.placeholder.com/400x600' }}"
+            src="{{ file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg') ? url('/files/img/torrent-cover_'.$torrent->id.'.jpg') : 'https://via.placeholder.com/500x500' }}"
             class="meta__poster"
         >
     </span>
@@ -25,56 +25,6 @@
             </li>
         </ul>
     </div>
-    <ul class="meta__ids">
-        @if (isset($torrent) && $torrent->imdb > 0)
-            <li class="meta__imdb">
-                <a
-                    class="meta-id-tag"
-                    href="https://www.imdb.com/title/tt{{ \str_pad((int) $torrent->imdb, \max(\strlen((int) $torrent->imdb), 7), '0', STR_PAD_LEFT) }}"
-                    title="Internet Movie Database"
-                    target="_blank"
-                >
-                    IMDB: {{ \str_pad((int) $torrent->imdb, \max(\strlen((int) $torrent->imdb), 7), '0', STR_PAD_LEFT) }}
-                </a>
-            </li>
-        @endif
-        @if (isset($torrent) && $torrent->tmdb > 0)
-            <li class="meta__tmdb">
-                <a
-                    class="meta-id-tag"
-                    href="https://www.themoviedb.org/movie/{{ $torrent->tmdb }}"
-                    title="The Movie Database"
-                    target="_blank"
-                >
-                    TMDB: {{ $torrent->tmdb }}
-                </a>
-            </li>
-        @endif
-        @if (isset($torrent) && $torrent->mal > 0)
-            <li class="meta__mal">
-                <a
-                    class="meta-id-tag"
-                    href="https://myanimelist.net/anime/{{ $torrent->mal }}"
-                    title="MyAnimeList"
-                    target="_blank"
-                >
-                    MAL: {{ $torrent->mal }}
-                </a>
-            </li>
-        @endif
-        @if (isset($torrent) && $torrent->tvdb > 0)
-            <li class="meta__tvdb">
-                <a
-                    class="meta-id-tag"
-                    href="https://www.thetvdb.com/?tab=series&id={{ $torrent->tvdb }}"
-                    title="MyAnimeList"
-                    target="_blank"
-                >
-                    TVDB: {{ $torrent->tvdb }}
-                </a>
-            </li>
-        @endif
-    </ul>
     <div class="meta__chips">
         <section class="meta__chip-container">
             @if (isset($torrent->keywords) && $torrent->keywords->isNotEmpty())

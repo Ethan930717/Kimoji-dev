@@ -35,14 +35,23 @@
                         alt="{{ __('torrent.poster') }}"
                     >
                 @endif
-                @if ($torrent->category->music_meta)
-                    <img
-                        src="https://via.placeholder.com/90x135"
-                        class="torrent-search--list__poster-img"
-                        loading="lazy"
-                        alt="{{ __('torrent.poster') }}"
-                    >
-                @endif
+                    @if ($torrent->category->music_meta)
+                        @if(file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg'))
+                            <img
+                                    src="{{ url('files/img/torrent-cover_'.$torrent->id.'.jpg') }}"
+                                    class="torrent-search--list__poster-img"
+                                    loading="lazy"
+                                    alt="{{ __('torrent.poster') }}"
+                            >
+                        @else
+                            <img
+                                    src="https://via.placeholder.com/500x500"
+                                    class="torrent-search--list__poster-img"
+                                    loading="lazy"
+                                    alt="{{ __('torrent.poster') }}"
+                            >
+                        @endif
+                    @endif
                 @if ($torrent->category->no_meta)
                     @if(file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg'))
                         <img
