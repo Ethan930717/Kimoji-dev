@@ -66,18 +66,17 @@
             <h2 class="meta__heading">Platforms</h2>
             @foreach ($platforms ?? [] as $platform)
                 <article class="meta-chip-wrapper meta-chip">
-                        @if ($platform->image_id)
-                            <img
-                                class="meta-chip__image"
-                                src="https://images.igdb.com/igdb/image/upload/t_logo_med/{{ $platform->image_id }}.png"
-                                alt=""
-                            />
-                        @else
-                            <i class="{{ config('other.font-awesome') }} fa-user meta-chip__icon"></i>
-                        @endif
-                        <h2 class="meta-chip__name"></h2>
-                        <h3 class="meta-chip__value"></h3>
-                    </a>
+                    @if ($platform->image_id)
+                        <img
+                            class="meta-chip__image"
+                            src="https://images.igdb.com/igdb/image/upload/t_logo_med/{{ $platform->image_id }}.png"
+                            alt=""
+                        />
+                    @else
+                        <i class="{{ config('other.font-awesome') }} fa-user meta-chip__icon"></i>
+                    @endif
+                    <h2 class="meta-chip__name"></h2>
+                    <h3 class="meta-chip__value"></h3>
                 </article>
             @endforeach
         </section>
@@ -96,7 +95,7 @@
                         @else
                             <i class="{{ config('other.font-awesome') }} fa-camera-movie meta-chip__icon"></i>
                         @endif
-                        <h2 class="meta-chip__name">Company</h2>
+                        <h2 class="meta-chip__name">发行</h2>
                         <h3 class="meta-chip__value">{{ $company['company']['name'] }}</h3>
                     </a>
                 </article>
@@ -113,15 +112,15 @@
                 <article class="meta__trailer show-trailer">
                     <a class="meta-chip" href="#">
                         <i class="{{ config('other.font-awesome') }} fa-external-link meta-chip__icon"></i>
-                        <h2 class="meta-chip__name">Trailer</h2>
-                        <h3 class="meta-chip__value">View</h3>
+                        <h2 class="meta-chip__name">预告片</h2>
+                        <h3 class="meta-chip__value">观看</h3>
                     </a>
                 </article>
             @endisset
             @if ($meta->genres !== [] && $meta->genres !== null)
                 <article class="meta__genres meta-chip">
                     <i class="{{ config('other.font-awesome') }} fa-theater-masks meta-chip__icon"></i>
-                    <h2 class="meta-chip__name">Genres</h2>
+                    <h2 class="meta-chip__name">题材</h2>
                     <h3 class="meta-chip__value">{{ implode(' / ', array_map(fn ($genre) => $genre['name'], $meta->genres)) }}</h3>
                 </article>
             @endif

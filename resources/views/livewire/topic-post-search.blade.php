@@ -7,6 +7,7 @@
                     <input
                         id="search"
                         class="form__text"
+
                         type="text"
                         wire:model="search"
                         placeholder=" "

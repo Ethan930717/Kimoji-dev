@@ -39,6 +39,7 @@
                         name="title"
                         id="title"
                         class="form__text"
+
                         required
                     >
                     <label class="form__label form__label--floating" for="title">
@@ -56,7 +57,7 @@
                 </p>
                 @livewire('bbcode-input', ['name' => 'content', 'label' => __('content'), 'required' => true ])
                 <p class="form__group">
-                    <button class="form__button form__button--filled">{{ __('common.submit') }}
+                    <button class="form__button form__button--filled">{{ __('common.submit') }}</button>
                 </p>
             </form>
         </div>

@@ -44,7 +44,7 @@
   --bbcode-input-body-bg: #272727;
   --bbcode-input-border: 1px solid #424242;
   --bbcode-input-border-radius: 0;
-
+  --bbcode-input-bg : #ffffff00;
   --bbcode-rendered-fg-default: #c9d1d9;
   --bbcode-rendered-fg-muted: #8b949e;
   --bbcode-rendered-fg-subtle: #484f58;
@@ -999,7 +999,7 @@ a:hover {
   height: 36px;
 }
 
-.form__select {
+.select2 {
   font-size: 11px;
   height: 36px;
 }

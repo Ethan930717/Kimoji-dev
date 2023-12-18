@@ -17,7 +17,7 @@
                     observe: 0,
                     observeCache: 1,
                     html: '<div class="%cClass"><button %x class="%bClass"><span class="%iClass">%iconSvg</span><span class="%tClass">%text</span></button></div>',
-                    css: '.%cClass{display:inline-block;margin-top:5px;margin-bottom:5px}.%bClass{line-height:normal;-webkit-transition:all .2s;-o-transition:all .2s;transition:all .2s;outline:0;color:%2;border:none;cursor:pointer;background:#ffffff00;border-radius:.2em;padding:.5em 1em;font-size:12px;font-weight:700;text-shadow:none}.%bClass:hover{background:%3;color:%4;border-color:rgba(0,0,0,.1)}.%iClass,.%tClass{display:inline-block;vertical-align:middle}.%iClass svg{display:block;width:1em;height:1em;fill:currentColor}.%tClass{margin-left:.25em}',
+                    css: '.%cClass{display:inline-block;margin-top:5px;margin-bottom:5px}.%bClass{line-height:normal;-webkit-transition:all .2s;-o-transition:all .2s;transition:all .2s;outline:0;color:#fff;border:none;cursor:pointer;background:#ffffff00;border-radius:.2em;padding:.5em 1em;font-size:12px;font-weight:700;text-shadow:0 0 2px #ff5a5a}.%bClass:hover{background:#aaff964d;color:#fff;border-color:rgba(0,0,0,.1);border-radius:12px}.%iClass,.%tClass{display:inline-block;vertical-align:middle}.%iClass svg{display:block;width:1em;height:1em;fill:currentColor}.%tClass{margin-left:.25em}',
                 },
                 ns: {
                     plugin: 'imgbb',

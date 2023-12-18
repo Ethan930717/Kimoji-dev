@@ -39,6 +39,7 @@
                         name="description"
                         id="description"
                         class="form__text"
+
                         value="{{ $bonExchange->description }}"
                         required
                     >
@@ -50,6 +51,7 @@
                         name="value"
                         id="value"
                         class="form__text"
+
                         inputmode="numeric"
                         pattern="[0-9]*"
                         value="{{ $bonExchange->value }}"
@@ -65,6 +67,7 @@
                         name="cost"
                         id="cost"
                         class="form__text"
+
                         inputmode="numeric"
                         pattern="[0-9]*"
                         value="{{ $bonExchange->cost }}"
@@ -95,7 +98,7 @@
                             {{ __('user.invites') }}
                         </option>
                     </select>
-                    <label class="form__label form__label--floating" for="autocat">
+                    <label class="form__label form__label--floating" for="type">
                         {{ __('common.type') }}
                     </label>
                 </p>

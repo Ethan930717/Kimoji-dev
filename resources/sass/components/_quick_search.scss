@@ -120,13 +120,14 @@
     left: 0;
     top: 100%;
     width: 100%;
-    border-radius: 0 0 var(--quick-search-border-radius) var(--quick-search-border-radius);
+    border-radius: var(--quick-search-border-radius) var(--quick-search-border-radius) var(--quick-search-border-radius) var(--quick-search-border-radius);
     border-bottom: var(--quick-search-border);
     border-left: var(--quick-search-border);
     border-right: var(--quick-search-border);
     box-shadow: var(--quick-search-box-shadow);
     max-height: 80vh;
     overflow-y: auto;
+    background-color: #00000059;
 }
 
 .quick-search__result {

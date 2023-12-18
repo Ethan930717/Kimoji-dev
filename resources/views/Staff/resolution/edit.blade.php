@@ -38,6 +38,7 @@
                     <input
                         id="name"
                         class="form__text"
+
                         name="name"
                         required
                         type="text"
@@ -51,6 +52,7 @@
                     <input
                         id="position"
                         class="form__text"
+
                         inputmode="numeric"
                         name="position"
                         pattern="[0-9]*"
@@ -58,7 +60,7 @@
                         type="text"
                         value="{{ $resolution->position }}"
                     >
-                    <label class="form__label form__label--floating" for="name">
+                    <label class="form__label form__label--floating" for="position">
                         {{ __('common.position') }}
                     </label>
                 </p>
@@ -69,5 +71,5 @@
                 </p>
             </form>
         </div>
-    </div>
+    </section>
 @endsection

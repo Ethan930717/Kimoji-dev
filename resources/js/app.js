@@ -1,22 +1,5 @@
 window._ = require('lodash');
-
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
-
-try {
-    // Note: Eventually we will end up 100% jQuery free.
-    window.$ = window.jQuery = require('jquery');
-} catch (e) {}
-
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-    },
-});
-
+import 'select2';
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -63,3 +46,4 @@ if (document.getElementById('vue')) {
  */
 // Sweet Alert
 window.Swal = require('sweetalert2');
+

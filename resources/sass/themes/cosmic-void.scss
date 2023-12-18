@@ -86,12 +86,12 @@
     --icon-button-filled-fg: white;
     --icon-button-filled-border: none;
 
-    --input-text-border: 1px solid #555;
-    --input-text-border-active: 2px solid #2195f3;
-    --input-text-border-error: 1px solid #ba1b1b;
-    --input-text-border-hover: 2px solid #999;
+    --input-text-border: 1px solid #55555500;
+    --input-text-border-active: 2px solid #2195f300;
+    --input-text-border-error: 1px solid #ba1b1b00;
+    --input-text-border-hover: 2px solid rgba(153, 153, 153, 0);
     --input-text-border-radius: 5px;
-    --input-text-fg: #bbb;
+    --input-text-fg: #ffffff;
     --input-text-padding: 12px;
     --input-text-padding-active: 11px;
     --input-text-padding-hover: 11px;
@@ -209,7 +209,7 @@
     --select-border-error: 1px solid #ba1b1b;
     --select-border-hover: 2px solid #999;
     --select-border-radius: 5px;
-    --select-fg: #bbb;
+    --select-fg: #f32b2b;
     --select-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='%23bbb' d='M6 8l-1 1l5 5l5-5l-1-1l-4 4l-4-4z'/></svg>");
     --select-padding: 11px 23px 11px 11px;
     --select-padding-active: 10px 22px 10px 10px;

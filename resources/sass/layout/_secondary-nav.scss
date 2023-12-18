@@ -42,7 +42,7 @@
     border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
     border-right: 2px rgba(40, 40, 40, 0.35) solid;
     border-radius: 20px;
-    text-shadow: 0 0 4px #fff;
+    text-shadow: 0 0 2px #fff;
 
     &:hover {
         color: var(--secondary-nav-tab-hover-fg);
@@ -115,6 +115,7 @@
     align-items: center;
     overflow-x: hidden;
     max-width: 100%;
+    z-index: -1
 }
 
 .breadcrumbV2,
@@ -134,23 +135,39 @@
     }
 }
 
-.breadcrumbV2:not(:first-child)::before,
 .breadcrumb--active:not(:first-child)::before {
     content: '\f105';
     font-family: 'Font Awesome 5 Pro';
     opacity: 60%;
     padding-left: 0.5ch;
+    text-shadow: 0 0 2px #ff4a4a;
+}
+
+.breadcrumbV2:not(:first-child)::before,{
+    content: '\f105';
+    font-family: 'Font Awesome 5 Pro';
+    opacity: 60%;
+    padding-left: 0.5ch;
+    text-shadow: 0 0 2px #ff4a4a;
+    position: relative;
+    bottom: 2px;
 }
 
 .breadcrumb--active {
     color: var(--breadcrumb-active-fg);
+    font-size: 15px;
+    text-shadow: 0 0 2px #ff4a4a;
+    bottom: 2px;
 }
 
 .breadcrumb__link {
     text-decoration: var(--breadcrumb-inactive-text-decoration);
     color: var(--breadcrumb-fg);
     cursor: pointer;
-
+    font-size: 15px;
+    text-shadow: 0 0 2px #ff4a4a;
+    position: relative;
+    bottom: 2px;
     &:hover {
         color: var(--breadcrumb-hover-fg);
     }

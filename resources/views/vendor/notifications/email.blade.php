@@ -4,58 +4,50 @@
 # {{ $greeting }}
 @else
 @if ($level === 'error')
-# {{ __('Whoops!') }}
+# {{ __('哎呀') }}
 @else
-# {{ __('Hello!') }}
+# {{ __('您好') }}
 @endif
 @endif
 
 {{-- Intro Lines --}}
-@foreach ($introLines as $line)
-{{ $line }}
-
-@endforeach
+欢迎您加入KIMOJI，请点击下面的按钮来验证您的电子邮件地址。
 
 {{-- Action Button --}}
 @isset($actionText)
 <?php
-    switch ($level) {
-        case 'success':
-        case 'error':
-            $color = $level;
-            break;
-        default:
-            $color = 'primary';
-    }
+switch ($level) {
+case 'success':
+case 'error':
+$color = $level;
+break;
+default:
+$color = 'primary';
+}
 ?>
 @component('mail::button', ['url' => $actionUrl, 'color' => $color])
-{{ $actionText }}
+验证邮箱
 @endcomponent
 @endisset
 
 {{-- Outro Lines --}}
-@foreach ($outroLines as $line)
-{{ $line }}
-
-@endforeach
+如果您不知晓本条邮件所述内容，请您无需理会
 
 {{-- Salutation --}}
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-{{ __('Regards') }},<br>
-{{ config('app.name') }}
+KIMOJI 敬上
 @endif
 
 {{-- Subcopy --}}
 @isset($actionText)
 @slot('subcopy')
 {{ __(
-    "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below\n".
-    'into your web browser:',
-    [
-        'actionText' => $actionText,
-    ]
+"如果您无法点击按钮, 请手动访问链接:\n\n",
+[
+'actionText' => $actionText,
+]
 ) }} <span class="break-all">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>
 @endslot
 @endisset

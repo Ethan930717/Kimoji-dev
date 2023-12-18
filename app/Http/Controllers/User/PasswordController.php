@@ -32,17 +32,17 @@ class PasswordController extends Controller
 
         $changedByStaff = $request->user()->isNot($user);
 
-        abort_if($changedByStaff && ! $request->user()->group->is_owner && $request->user()->group->level <= $user->group->level, 403);
+        abort_if($changedByStaff && !$request->user()->group->is_owner && $request->user()->group->level <= $user->group->level, 403);
 
         $request->validate([
-            'current_password' => Rule::when(! $changedByStaff, [
+            'current_password' => Rule::when(!$changedByStaff, [
                 'required',
                 'current_password',
             ]),
             'new_password' => [
                 'required',
                 'confirmed',
-                Password::min(12)->mixedCase()->letters()->numbers()->uncompromised(),
+                Password::min(8)->mixedCase()->letters()->numbers()->uncompromised(),
             ],
         ]);
 
@@ -55,7 +55,7 @@ class PasswordController extends Controller
                 'sender_id'   => 1,
                 'receiver_id' => $user->id,
                 'subject'     => '请注意，您的密码已变更',
-                'message' => "您的密码已由工作人员进行更改。\n\n如需更多信息，请提交工单求助。\n\n[color=red][b]这是一条系统消息，请勿回复！[/b][/color]",
+                'message'     => "您的密码已由工作人员进行更改。\n\n如需更多信息，请提交工单求助。\n\n[color=red][b]这是一条系统消息，请勿回复！[/b][/color]",
             ]);
         }
 

@@ -40,7 +40,7 @@ return [
         'array'   => '该 :attribute 必须有 :min 至 :max 项目',
     ],
     'boolean'        => '该 :attribute 值必须是true或false',
-    'confirmed'      => '该 :attribute 确认不符',
+    'confirmed'      => '该 :attribute 不符合要求',
     'date'           => '该 :attribute 不是有效的日期',
     'date_equals'    => '该 :attribute 必须等于 :date',
     'date_format'    => '该 :attribute 与格式 :format不匹配',
@@ -137,8 +137,9 @@ return [
     |
     */
 
-    'email_list' => '很抱歉，你无法使用此邮箱进行注册请参见邮箱白名单',
-    'recaptcha'  => '请完成人机验证',
+    'email_list'       => '很抱歉，你无法使用此邮箱进行注册请参见邮箱白名单',
+    'recaptcha'        => '请完成人机验证',
+    'current_password' => '您提供的密码不正确',
 
     'custom' => [
         'attribute-name' => [
@@ -146,10 +147,10 @@ return [
         ],
     ],
     'password' => [
-        'mixed' => ':Attribute 必须包含至少一个大写和一个小写字母',
-        'letters' => ':Attribute 必须至少包含一个字母',
-        'symbols' => ':Attribute 必须至少包含一个符号',
-        'numbers' => ':Attribute 必须至少包含一个数字',
+        'mixed'         => ':Attribute 必须包含至少一个大写和一个小写字母',
+        'letters'       => ':Attribute 必须至少包含一个字母',
+        'symbols'       => ':Attribute 必须至少包含一个符号',
+        'numbers'       => ':Attribute 必须至少包含一个数字',
         'uncompromised' => '提供的 :Attribute 出现在数据泄露中请使用其他 :Attribute',
     ],
 
@@ -165,13 +166,13 @@ return [
     */
 
     'attributes' => [
-        'username' => '用户名',
-        'password' => '密码',
-        'email'    => '邮箱',
-        'bounty'   => '赏金',
-        'tip'      => '内容',
+        'username'          => '用户名',
+        'password'          => '密码',
+        'email'             => '邮箱',
+        'bounty'            => '赏金',
+        'tip'               => '内容',
         'receiver_username' => '收件人',
-        'name'     => '名称',
-
+        'name'              => '名称',
+        'attachment'        => '附件',
     ],
-    ];
+];

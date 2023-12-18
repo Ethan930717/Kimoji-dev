@@ -28,6 +28,7 @@
                         <input
                             id="search"
                             class="form__text"
+
                             type="text"
                             wire:model="search"
                             placeholder=" "
@@ -43,7 +44,7 @@
                             class="form__select"
                             wire:model="forumId"
                         >
-                            <option value="">Any</option>
+                            <option value="">全部</option>
                             @foreach ($forumCategories->sortBy('position') as $category)
                                 <option value="{{ $category->id }}">
                                     {{ $category->name }}
@@ -66,7 +67,7 @@
                             name="sorting"
                             wire:model="label"
                         >
-                            <option value="" selected default>Any</option>
+                            <option value="" selected default>全部</option>
                             <option value="approved">
                                 {{ __('forum.approved') }}
                             </option>
@@ -95,7 +96,7 @@
                     </p>
                     <p class="form__group">
                         <select
-                            id="sorting"
+                            id="sorting2"
                             class="form__select"
                             name="sorting"
                             required
@@ -114,7 +115,7 @@
                     </p>
                     <p class="form__group">
                         <select
-                            id="direction"
+                            id="direction1"
                             class="form__select"
                             name="direction"
                             required
@@ -133,12 +134,12 @@
                     </p>
                     <p class="form__group">
                         <select
-                            id="direction"
+                            id="direction2"
                             class="form__select"
                             name="direction"
                             wire:model="state"
                         >
-                            <option value="" selected default>Any</option>
+                            <option value="" selected default>全部</option>
                             <option value="open">
                                 {{ __('forum.open') }}
                             </option>
@@ -152,12 +153,12 @@
                     </p>
                     <p class="form__group">
                         <select
-                            id="direction"
+                            id="direction3"
                             class="form__select"
                             name="direction"
                             wire:model="subscribed"
                         >
-                            <option value="" selected default>Any</option>
+                            <option value="" selected default>全部</option>
                             <option value="include">
                                 {{ __('forum.subscribed') }}
                             </option>

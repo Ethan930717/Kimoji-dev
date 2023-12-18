@@ -74,9 +74,9 @@
                                             <tr>
                                                 <th>{{ __('common.name') }}</th>
                                                 <th>{{ __('torrent.size') }}</th>
-                                                <th>S</th>
-                                                <th>L</th>
-                                                <th>C</th>
+                                                <th>做种</th>
+                                                <th>下载</th>
+                                                <th>完成</th>
                                             </tr>
                                             </thead>
                                             <tbody>

@@ -9,7 +9,7 @@
                 {{ chatstatus.name }}
             </option>
         </select>
-        <label for="currentChatroom" class="form__label form__label--floating">Change Chat Status</label>
+        <label for="currentChatroom" class="form__label form__label--floating">设置状态</label>
     </div>
 </template>
 

@@ -36,6 +36,7 @@
                     <input
                         id="name"
                         class="form__text"
+
                         type="text"
                         name="name"
                         placeholder=" "

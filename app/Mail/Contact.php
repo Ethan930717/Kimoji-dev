@@ -38,6 +38,6 @@ class Contact extends Mailable
     {
         return $this->markdown('emails.contact')
             ->from($this->input['email'], config('other.title'))
-            ->subject('New contact mail');
+            ->subject('新邮件提醒 - KIMOJI');
     }
 }

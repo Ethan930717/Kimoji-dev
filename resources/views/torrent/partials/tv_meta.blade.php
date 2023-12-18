@@ -173,11 +173,18 @@
                     </a>
                 </article>
             @endisset
+            <article class="meta__runtime">
+                <a class="meta-chip" href="#">
+                    <i class="{{ config('other.font-awesome') }} fa-clock meta-chip__icon"></i>
+                    <h2 class="meta-chip__name">Runtime</h2>
+                    <h3 class="meta-chip__value">{{ $meta->episode_run_time ?? 0 }} Minutes</h3>
+                </a>
+            </article>
             @if ($meta?->genres?->isNotEmpty())
                 <article class="meta__genres">
                     <a class="meta-chip" href="{{ route('torrents.index', ['view' => 'group', 'genres' => $meta->genres->pluck('id')->toArray()]) }}">
                         <i class="{{ config('other.font-awesome') }} fa-theater-masks meta-chip__icon"></i>
-                        <h2 class="meta-chip__name">Genres</h2>
+                        <h2 class="meta-chip__name">题材</h2>
                         <h3 class="meta-chip__value">{{ $meta->genres->pluck('name')->join(' / ') }}</h3>
                     </a>
                 </article>
@@ -190,7 +197,7 @@
                         @else
                             <i class="{{ config('other.font-awesome') }} fa-signal-stream meta-chip__icon"></i>
                         @endif
-                        <h2 class="meta-chip__name">Network</h2>
+                        <h2 class="meta-chip__name">流媒体</h2>
                         <h3 class="meta-chip__value">{{ $network->name }}</h3>
                     </a>
                 </article>
@@ -203,7 +210,7 @@
                         @else
                             <i class="{{ config('other.font-awesome') }} fa-camera-movie meta-chip__icon"></i>
                         @endif
-                        <h2 class="meta-chip__name">Company</h2>
+                        <h2 class="meta-chip__name">发行</h2>
                         <h3 class="meta-chip__value">{{ $company->name }}</h3>
                     </a>
                 </article>
@@ -212,7 +219,7 @@
                 <article class="meta__keywords">
                     <a class="meta-chip" href="{{ route('torrents.index', ['view' => 'group', 'keywords' => $torrent->keywords->pluck('name')->join(', ')]) }}">
                         <i class="{{ config('other.font-awesome') }} fa-tag meta-chip__icon"></i>
-                        <h2 class="meta-chip__name">Keywords</h2>
+                        <h2 class="meta-chip__name">关键词</h2>
                         <h3 class="meta-chip__value">{{ $torrent->keywords->pluck('name')->join(', ') }}</h3>
                     </a>
                 </article>

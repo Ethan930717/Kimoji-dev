@@ -38,6 +38,7 @@
                         name="description"
                         id="description"
                         class="form__text"
+
                         value="{{ old('description') }}"
                         required
                     >
@@ -49,6 +50,7 @@
                         name="value"
                         id="value"
                         class="form__text"
+
                         inputmode="numeric"
                         pattern="[0-9]*"
                         value="{{ old('value') }}"
@@ -64,6 +66,7 @@
                         name="cost"
                         id="cost"
                         class="form__text"
+
                         inputmode="numeric"
                         pattern="[0-9]*"
                         value="{{ old('cost') }}"
@@ -94,7 +97,7 @@
                             {{ __('user.invites') }}
                         </option>
                     </select>
-                    <label class="form__label form__label--floating" for="autocat">
+                    <label class="form__label form__label--floating" for="type">
                         {{ __('common.type') }}
                     </label>
                 </p>

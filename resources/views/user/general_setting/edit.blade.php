@@ -57,7 +57,8 @@
                     <p class="form__group">
                         <input
                             id="custom_css"
-                            class="form__text"
+                            class="class="form__text"
+"
                             name="custom_css"
                             placeholder=" "
                             type="url"
@@ -70,7 +71,8 @@
                     <p class="form__group">
                         <input
                             id="standalone_css"
-                            class="form__text"
+                            class="class="form__text"
+"
                             name="standalone_css"
                             placeholder=" "
                             type="url"
@@ -96,15 +98,29 @@
                             语言审查（带有敏感词的内容将被过滤）
                         </label>
                     </p>
+                    <p class="form__group" style="visibility: hidden">
+                        <label class="form__label">
+                            <input type="hidden" name="chat_hidden" value="0">
+                            <input
+                                    class="form__checkbox"
+                                    type="checkbox"
+                                    name="chat_hidden"
+                                    value="0"
+                                    @checked($user->chat_hidden)
+                            />
+                            Hide Chat
+                        </label>
+                    </p>
                 </fieldset>
                 <fieldset class="form form__fieldset">
                     <legend class="form__legend">资源相关</legend>
                     <p class="form__group">
-                        <select id="show_poster" class="form__select" name="torrent_layout" required>
+                        <select id="torrent_layout" class="form__select" name="torrent_layout" required>
                             <option class="form__option" value="0" @selected($user->torrent_layout === 0)>列表模式</option>
                             <option class="form__option" value="1" @selected($user->torrent_layout === 1)>卡片模式</option>
                             <option class="form__option" value="2" @selected($user->torrent_layout === 2)>分组模式</option>
                             <option class="form__option" value="3" @selected($user->torrent_layout === 3)>海报墙</option>
+
                         </select>
                         <label class="form__label form__label--floating" for="torrent_layout">
                             默认资源布局

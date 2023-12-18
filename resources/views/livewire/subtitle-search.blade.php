@@ -106,6 +106,7 @@
                             wire:model="search"
                             type="search"
                             class="form__text"
+
                             placeholder=" "
                         >
                         <label for="search" class="form__label form__label--floating">
@@ -158,6 +159,7 @@
                             wire:model="username"
                             type="search"
                             class="form__text"
+
                             placeholder=" "
                         >
                         <label for="username" class="form__label form__label--floating">
@@ -175,7 +177,7 @@
                             <option>50</option>
                             <option>100</option>
                         </select>
-                        <label class="form__label form__label--floating">
+                        <label class="form__label form__label--floating" for="quantity">
                             {{ __('common.quantity') }}
                         </label>
                     </p>

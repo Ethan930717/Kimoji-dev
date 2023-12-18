@@ -15,6 +15,7 @@ namespace App\Helpers;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Exception;
 
 class EmailBlacklistUpdater
@@ -30,15 +31,25 @@ class EmailBlacklistUpdater
         // Define parameters for the cache
         $key = config('email-blacklist.cache-key');
         $duration = Carbon::now()->addMonth();
+        $timeout = 30; // 定义超时时间为30秒
 
-        if (cache()->get($key) === null) {
-            try {
-                $domains = Http::get($url)->json();
-            } catch (Exception) {
-                $domains = [];
+        try {
+            // 使用超时设置来发送请求
+            $response = Http::timeout($timeout)->get($url);
+
+            if ($response->successful()) {
+                $domains = $response->json();
+            } else {
+                // 如果响应不成功，记录错误或采取其他措施
+                Log::error("获取黑名单域名失败，响应状态码：".$response->status());
+
+                return false;
             }
-        } else {
-            $domains = Http::get($url)->json();
+        } catch (Exception $e) {
+            // 处理连接或其他异常
+            Log::error("更新邮件黑名单时出错: ".$e->getMessage());
+
+            return false;
         }
 
         $count = is_countable($domains) ? \count($domains) : 0;

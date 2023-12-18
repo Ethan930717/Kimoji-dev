@@ -57,13 +57,13 @@ class ApprovedRequestFillController extends Controller
             'name'            => 'request',
             'cost'            => $torrentRequest->bounty,
             'receiver_id'     => $torrentRequest->filled_by,
-            'comment' => sprintf('%s 已经完成了 %s 的请求，并获得了 %s 魔力值。', $filler->username, $torrentRequest->name, $torrentRequest->bounty),
+            'comment'         => sprintf('%s 已经完成了 %s 的请求，并获得了 %s 魔力值。', $filler->username, $torrentRequest->name, $torrentRequest->bounty),
         ]);
 
         $filler->increment('seedbonus', $torrentRequest->bounty);
 
         // Achievements
-        if (! $torrentRequest->filled_anon) {
+        if (!$torrentRequest->filled_anon) {
             $filler->addProgress(new UserFilled25Requests(), 1);
             $filler->addProgress(new UserFilled50Requests(), 1);
             $filler->addProgress(new UserFilled75Requests(), 1);
@@ -73,7 +73,7 @@ class ApprovedRequestFillController extends Controller
         // Auto Shout
         if ($torrentRequest->filled_anon) {
             $this->chatRepository->systemMessage(
-s               printf('一位匿名用户已经满足了请求，[url=%s]%s[/url]', href_request($torrentRequest), $torrentRequest->name)
+                sprintf('一位匿名用户已经满足了请求，[url=%s]%s[/url]', href_request($torrentRequest), $torrentRequest->name)
             );
         } else {
             $this->chatRepository->systemMessage(
@@ -111,7 +111,7 @@ s               printf('一位匿名用户已经满足了请求，[url=%s]%s[/ur
             'name'            => 'request',
             'cost'            => $refunded,
             'sender_id'       => $torrentRequest->filled_by,
-            'comment' => sprintf('%s 未完成请求 %s ，扣除 %s 魔力值。', $filler->username, $torrentRequest->name, $refunded),
+            'comment'         => sprintf('%s 未完成请求 %s ，扣除 %s 魔力值。', $filler->username, $torrentRequest->name, $refunded),
         ]);
 
         $filler->decrement('seedbonus', $refunded);

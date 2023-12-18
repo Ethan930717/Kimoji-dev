@@ -150,7 +150,7 @@ return [
     'remaining'                => '剩餘',
     'request-reseed'           => '要求續種',
     'requires-reseed'          => '需要續種',
-    'resurrections'            => '救活',
+    'resurrections'            => '救种',
     'revoke'                   => '撤回',
     'rss'                      => 'RSS',
     'runtime'                  => '片長',

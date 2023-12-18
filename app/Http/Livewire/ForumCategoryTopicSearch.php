@@ -85,4 +85,13 @@ class ForumCategoryTopicSearch extends Component
             'topics' => $this->topics,
         ]);
     }
+    public function setSortField($value): void
+    {
+        $this->sortField = $value;
+    }
+
+    public function setSortDirection($value): void
+    {
+        $this->sortDirection = $value;
+    }
 }

@@ -24,6 +24,7 @@
                     <input
                         id="search"
                         class="form__text"
+
                         type="text"
                         wire:model="search"
                         placeholder=" "
@@ -67,7 +68,9 @@
                     </td>
                     <td>{{ $watching->message }}</td>
                     <td>
-                        <time datetime="{{ $watching->created_at }}">{{ $watching->created_at }}</time>
+                        <time datetime="{{ $watching->created_at }}" title="{{ $watching->created_at }}">
+                            {{ $watching->created_at }}
+                        </time>
                     </td>
                     <td>
                         <menu class="data-table__actions">

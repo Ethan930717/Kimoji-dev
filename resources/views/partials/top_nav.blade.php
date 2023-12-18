@@ -36,43 +36,73 @@
                         }]) }}"
                     >
                         <i class="{{ config('other.font-awesome') }} fa-seedling"></i>
-                        综合
+                        万事屋
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/torrents?sd=true') }}">
+                    <a href="{{ url('torrents?perPage=24&view=poster&sd=true') }}">
                         <i class="{{ config('other.font-awesome') }} fa-flower"></i>
                         KIMOJI PARK
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('torrents.create', ['category_id' => 1]) }}">
-                        <i class="{{ config('other.font-awesome') }} fa-sun-plant-wilt"></i>
-                        {{ __('common.upload') }}
+                    <a href="{{ url('torrents?perPage=48&categories[0]=1&view=poster') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-camera-movie"></i>
+                        荧幕大亨
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('requests.index') }}">
-                        <i class="{{ config('other.font-awesome') }} fa-hands-helping"></i>
-                        {{ __('request.requests') }}
+                    <a href="{{ url('torrents?perPage=24&view=poster&categories[0]=2') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-party-horn"></i>
+                        追剧乐园
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('rss.index') }}">
-                        <i class="{{ config('other.font-awesome') }} fa-rss"></i>
-                        {{ __('rss.rss') }}
+                    <a href="{{ url('torrents?perPage=24&view=poster&categories[0]=4&categories[1]=3') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-tree"></i>
+                        动漫森林
                     </a>
                 </li>
                 <li>
-                    <a  href="{{ route('playlists.index') }}">
-                        <i class="{{ config('other.font-awesome') }} fa-list-ol"></i>
-                        {{ __('playlist.playlists') }}
+                    <a href="{{ url('torrents?perPage=24&categories[0]=5&view=poster') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-planet-ringed"></i>
+                        娱乐星球
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('torrents?perPage=48&categories[0]=1&types[0]=2&types[1]=1&view=card') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-compact-disc"></i>
+                        蓝光宝盒
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('torrents?perPage=24&view=card&categories[0]=7') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-music"></i>
+                        旋律海洋
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('torrents?perPage=24&view=card&categories[0]=8') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-basketball-ball"></i>
+                        竞技秀场
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('mediahub.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-database"></i>
-                        影视库
+                        KIMOJI HUB
+                    </a>
+                </li>
+                <li>
+                    <a  href="{{ route('playlists.index') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-list-ol"></i>
+                        播单推荐
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('torrents.create', ['category_id' => 1]) }}">
+                        <i class="{{ config('other.font-awesome') }} fa-sun-plant-wilt"></i>
+                        发布资源
                     </a>
                 </li>
             </ul>
@@ -208,6 +238,18 @@
             </a>
             <ul>
                 <li>
+                    <a href="{{ route('requests.index') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-hands-helping"></i>
+                        {{ __('request.requests') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('missing.index') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-ballot-check"></i>
+                        {{ __('common.missing') }}
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('subtitles.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-closed-captioning"></i>
                         {{ __('common.subtitles') }}
@@ -219,16 +261,23 @@
                         {{ __('common.top-10') }}
                     </a>
                 </li>
+
                 <li>
-                    <a href="{{ route('missing.index') }}">
-                        <i class="{{ config('other.font-awesome') }} fa-ballot-check"></i>
-                        {{ __('common.missing') }}
+                    <a href="{{ route('rss.index') }}">
+                        <i class="{{ config('other.font-awesome') }} fa-rss"></i>
+                        {{ __('rss.rss') }}
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('internal') }}">
                         <i class="{{ config('other.font-awesome') }} fa-star-shooting"></i>
                         {{ __('common.internal') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="/gallery">
+                        <i class="{{ config('other.font-awesome') }} fa-camera"></i>
+                        KIMOJI 画廊
                     </a>
                 </li>
                 <li>

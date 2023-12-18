@@ -35,6 +35,6 @@ class DisableUser extends Mailable
     public function build(): static
     {
         return $this->markdown('emails.disabled')
-            ->subject('Your Account Has Been Disabled - '.config('other.title'));
+            ->subject('您的账号已被冻结 - '.config('other.title'));
     }
 }

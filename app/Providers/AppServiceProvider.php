@@ -50,6 +50,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // User Observer For Cache
         User::observe(UserObserver::class);
+        Torrent::observe(TorrentObserver::class);
 
         // Torrent Observer For Cache
         // Torrent::observe(TorrentObserver::class);
@@ -70,7 +71,7 @@ class AppServiceProvider extends ServiceProvider
                 $minLimit = (isset($parameters[0]) && is_numeric($parameters[0])) ? $parameters[0] : 0;
                 $maxLimit = (isset($parameters[1]) && is_numeric($parameters[1])) ? $parameters[1] : 1_200;
 
-                if (! HiddenCaptcha::check($validator, $minLimit, $maxLimit)) {
+                if (!HiddenCaptcha::check($validator, $minLimit, $maxLimit)) {
                     $validator->setCustomMessages(['hiddencaptcha' => '验证失败']);
 
                     return false;

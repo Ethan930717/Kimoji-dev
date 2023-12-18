@@ -201,6 +201,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Telegram\Bot\Laravel\TelegramServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -216,6 +217,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        App\Providers\FortifyServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
     ],
 
@@ -236,5 +238,6 @@ return [
         'Image'         => Intervention\Image\Facades\Image::class,
         'Irc'           => App\Bots\IRCAnnounceBot::class,
         'Redis'         => Illuminate\Support\Facades\Redis::class,
+        'Telegram'      => Telegram\Bot\Laravel\Facades\Telegram::class,
     ])->toArray(),
 ];

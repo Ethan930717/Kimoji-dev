@@ -279,7 +279,7 @@ return [
     'reset-rss'                       => '重設RID (RSS Key)',
     'reset-rss-help'                  => '重設RID後,你必須刷新所有活躍中的RSS簡訊',
     'restore'                         => '回復',
-    'resurrections'                   => '救活',
+    'resurrections'                   => '救种',
     'satisfied-immune'                => '已達標 / 豁免',
     'search'                          => '快速搜镸用戶名',
     'security'                        => '安全性',

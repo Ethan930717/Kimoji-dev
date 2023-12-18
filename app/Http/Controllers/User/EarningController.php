@@ -33,6 +33,38 @@ class EarningController extends Controller
     }
 
     /**
+     * 转换字节到 GB 或 TB。
+     *
+     * @param  int    $bytes
+     * @return string
+     */
+    private function convertToGbOrTb($bytes)
+    {
+        $gb = $bytes / (1024 * 1024 * 1024); // 将字节转换为 GB
+
+        if ($gb < 105) {
+            return number_format($gb, 2).' GB'; // 如果小于100 GB，保持 GB 单位
+        }
+        $tb = $gb / 1024; // 将 GB 转换为 TB
+
+        return number_format($tb, 2).' TB'; // 如果大于等于100 GB，使用 TB 单位
+    }
+
+    /**
+     * 根据保种的总体积（字节）计算每小时魔力的增加量。
+     *
+     * @param  int   $bytes
+     * @return float
+     */
+    private function calculateBonusPerHour($bytes)
+    {
+        $gb = $bytes / (1024 * 1024 * 1024); // 将字节转换为 GB
+        $bonusPerGb = 0.02; // 每 GB 的魔力增加量
+
+        return $gb * $bonusPerGb; // 总保种 GB 数乘以每 GB 的魔力增加量
+    }
+
+    /**
      * Show Bonus Earnings System.
      */
     public function index(Request $request, User $user): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -133,6 +165,26 @@ class EarningController extends Controller
             ->where('seedtime', '>=', $SECONDS_PER_MONTH * 12)
             ->count();
 
+        $blurayTorrentsSize = Peer::query()
+            ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
+            ->where('peers.user_id', '=', $user->id)
+            ->where('peers.seeder', '=', 1)
+            ->where('peers.active', '=', 1)
+            ->whereIn('torrents.type_id', [1, 2]) // 使用 type_id 来判断
+            ->sum('torrents.size');
+
+        $blurayBonusPerHour = $this->calculateBonusPerHour($blurayTorrentsSize, 0.015); // 使用 0.015 作为系数
+
+        $internalTorrentsSize = Peer::query()
+            ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
+            ->where('peers.user_id', '=', $user->id)
+            ->where('peers.seeder', '=', 1)
+            ->where('peers.active', '=', 1)
+            ->where('torrents.internal', '=', 1)
+            ->sum('torrents.size');
+
+        $bonusPerHour = $this->calculateBonusPerHour($internalTorrentsSize);
+
         //Total points per hour
         $total = 2.00 * $dying
             + 1.50 * $legendary
@@ -144,23 +196,29 @@ class EarningController extends Controller
             + 0.50 * $teamplayer
             + 0.75 * $committed
             + 1.00 * $mvp
-            + 2.00 * $legend;
+            + 2.00 * $legend
+            + $bonusPerHour
+            + $blurayBonusPerHour;
 
         return view('user.earning.index', [
-            'user'        => $user,
-            'bon'         => $user->formatted_seedbonus,
-            'dying'       => $dying,
-            'legendary'   => $legendary,
-            'old'         => $old,
-            'huge'        => $huge,
-            'large'       => $large,
-            'regular'     => $regular,
-            'participant' => $participant,
-            'teamplayer'  => $teamplayer,
-            'committed'   => $committed,
-            'mvp'         => $mvp,
-            'legend'      => $legend,
-            'total'       => $total,
+            'user'                 => $user,
+            'bon'                  => $user->formatted_seedbonus,
+            'dying'                => $dying,
+            'legendary'            => $legendary,
+            'old'                  => $old,
+            'huge'                 => $huge,
+            'large'                => $large,
+            'regular'              => $regular,
+            'participant'          => $participant,
+            'teamplayer'           => $teamplayer,
+            'committed'            => $committed,
+            'mvp'                  => $mvp,
+            'legend'               => $legend,
+            'internalTorrentsSize' => $this->convertToGbOrTb($internalTorrentsSize),
+            'internalBonusPerHour' => $bonusPerHour,
+            'blurayTorrentsSize'   => $this->convertToGbOrTb($blurayTorrentsSize),
+            'blurayBonusPerHour'   => $blurayBonusPerHour,
+            'total'                => $total,
         ]);
     }
 }

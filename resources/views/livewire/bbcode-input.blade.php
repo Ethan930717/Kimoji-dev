@@ -1,9 +1,6 @@
-
 <div
     class="bbcode-input"
     x-data="{
-<<<<<<< Updated upstream
-=======
 
                             confirmInsertion() {
             const input = this.$refs.bbcode;
@@ -30,7 +27,7 @@
                 cancelButtonText: '否'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    this.insert('[center][color=#bbff88][size=24][b][spoiler=制作说明]', '[/spoiler][/b][/size][/color][/center]\n');
+                    this.insert('[center][color=#bbff88][size=24][b][spoiler=制作说明][size=16][color=white]', '[/color][/size][/spoiler][/b][/size][/color][/center]\n');
                 }
             });
         }
@@ -186,7 +183,6 @@
                 });
             }
         },
->>>>>>> Stashed changes
         insert(openTag, closeTag) {
             input = $refs.bbcode;
             start = input.selectionStart;
@@ -205,6 +201,7 @@
             } else {
                 input.setSelectionRange(start, end + openTag.length + closeTag.length);
             }
+
         },
         showButtons: false,
         bbcodePreviewHeight: null,
@@ -219,6 +216,7 @@
         <input class="bbcode-input__tab-input" type="radio" id="{{ $name }}-bbcode-preview-enabled" name="isPreviewEnabled" value="1" wire:model="isPreviewEnabled" />
         <label class="bbcode-input__tab-label" for="{{ $name }}-bbcode-preview-enabled">{{ __('common.preview') }}</label>
     </p>
+
     <p class="bbcode-input__icon-bar-toggle">
         <button type="button" class="form__button form__button--text" x-on:click="showButtons = ! showButtons">BBCode</button>
     </p>
@@ -253,7 +251,7 @@
         </li>
         <hr class="bbcode-input__icon-separator">
         <li>
-            <button type="button" class="form__standard-icon-button" x-on:click="insert('[img=350]', '[/img]')">
+            <button type="button" class="form__standard-icon-button" x-on:click="insert('[img]', '[/img]')">
                 <abbr title="Insert Image">
                     <i class="{{ config('other.font-awesome') }} fa-image"></i>
                 </abbr>
@@ -380,8 +378,8 @@
                 type="button"
                 class="form__standard-icon-button"
                 x-on:click="Swal.fire({
-                    title: 'Emoji Picker',
-                    html: 'If using MacOS, press Ctrl + Cmd + Space bar<br>If using Windows or Linux, press Windows logo key + .',
+                    title: 'Emoji选择器',
+                    html: '如果您使用的是MacOS，请按 Ctrl + Cmd + 空格键<br>如果您使用的是Windows或Linux，请按 Windows 徽标键 + . (句号键)',
                     icon: 'info',
                     showConfirmButton: true,
                 })"
@@ -391,13 +389,10 @@
                 </abbr>
             </button>
         </li>
-<<<<<<< Updated upstream
-=======
         <li><button type="button" class="form__button form__button--text" x-on:click="insertThanks('[center][color=#bbff88][size=24][b][spoiler=转载致谢]', '[/spoiler][/b][/size][/color][/center]\n')">转载致谢</button></li>
         <li><button type="button" class="form__button form__button--text" x-on:click="confirmInsertion">制作说明</button></li>
         <li><button type="button" class="form__button form__button--text" x-on:click="insertWithCheck('[center][color=#bbff88][size=24][b][spoiler=截图赏析]', '[/spoiler][/b][/size][/color][/center]\n')">截图赏析</button></li>
         <li><button type="button" class="form__button form__button--text" x-on:click="convertImages()">转换大图</button></li>
->>>>>>> Stashed changes
     </menu>
     <div class="bbcode-input__tab-pane">
         <div class="bbcode-input__preview bbcode-rendered" x-show="isPreviewEnabled">
@@ -418,7 +413,7 @@
                 x-on:mousedown="previousActiveElement = document.activeElement;"
                 x-on:mouseover="isOverInput = true"
                 x-on:mouseleave="isOverInput = false"
-                wire:model.defer="contentBbcode"
+                wire:model="contentBbcode"
                 x-bind:style="{ height: bbcodePreviewHeight !== null && bbcodePreviewHeight, transition: previousActiveElement === $el ? 'none' : 'border-color 600ms cubic-bezier(0.25, 0.8, 0.25, 1), height 600ms cubic-bezier(0.25, 0.8, 0.25, 1)' }"
                 @if ($isRequired)
                     required

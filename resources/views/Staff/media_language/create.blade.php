@@ -30,6 +30,7 @@
                     <input
                         id="name"
                         class="form__text"
+
                         name="name"
                         type="text"
                         required
@@ -42,11 +43,12 @@
                     <input
                         id="code"
                         class="form__text"
+
                         name="code"
                         type="text"
                         required
                     >
-                    <label class="form__label form__label--floating" for="name">
+                    <label class="form__label form__label--floating" for="code">
                         {{ __('common.code') }}
                     </label>
                 </p>
@@ -57,5 +59,5 @@
                 </p>
             </form>
         </div>
-    </div>
+    </section>
 @endsection

@@ -69,6 +69,7 @@
                         name="note"
                         id="note"
                         class="form__text"
+
                         placeholder=" "
                         required
                     >

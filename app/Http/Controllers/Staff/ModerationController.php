@@ -128,8 +128,8 @@ class ModerationController extends Controller
                 PrivateMessage::create([
                     'sender_id'   => $staff->id,
                     'receiver_id' => $torrent->user_id,
-                    'subject'     => '你上传的 '.$torrent->name.' ,没有通过审核，审种员： '.$staff->username,
-                    'message'     => "你好, \n\n你上传的 ".$torrent->name." 没有通过审核，原因如下，请尽快更新您的种子信息并重新上传。\n\n".$request->message,
+                    'subject'     => "您上传的 ".$torrent->name." 已被拒绝" ,
+                    'message'     => "拒绝原因如下，请尽快更新您的种子信息后回复本邮件。\n\n".$request->message."\n\n点击跳转：[url=".route('torrents.show', ['id' => $torrent->id])."]".$torrent->name."[/url]",
                 ]);
 
                 cache()->forget('announce-torrents:by-infohash:'.$torrent->info_hash);
@@ -137,7 +137,7 @@ class ModerationController extends Controller
                 Unit3dAnnounce::addTorrent($torrent);
 
                 return to_route('staff.moderation.index')
-                    ->withSuccess('Torrent Rejected');
+                    ->withSuccess('种子已拒绝');
 
             case Torrent::POSTPONED:
                 $torrent->update([
@@ -149,8 +149,8 @@ class ModerationController extends Controller
                 PrivateMessage::create([
                     'sender_id'   => $staff->id,
                     'receiver_id' => $torrent->user_id,
-                    'subject'     => '你上传的 '.$torrent->name.' ,已被 '.$staff->username.' 延期处理',
-                    'message'     => "你好, \n\n你上传的 ".$torrent->name." 已被延期处理。请查看以下来自审种员的消息。\n\n".$request->message,
+                    'subject'     => "您上传的 ".$torrent->name." 已被延期处理" ,
+                    'message'     => "延期原因如下，请尽快更新您的种子信息后回复本邮件。\n\n".$request->message."\n\n点击跳转：[url=".route('torrents.show', ['id' => $torrent->id])."]".$torrent->name."[/url]",
                 ]);
 
                 cache()->forget('announce-torrents:by-infohash:'.$torrent->info_hash);
@@ -158,8 +158,7 @@ class ModerationController extends Controller
                 Unit3dAnnounce::addTorrent($torrent);
 
                 return to_route('staff.moderation.index')
-                    ->withSuccess('种子处理已延期');
-
+                    ->withSuccess('已设置延期处理');
 
             default: // Undefined status
                 return to_route('torrents.show', ['id' => $id])

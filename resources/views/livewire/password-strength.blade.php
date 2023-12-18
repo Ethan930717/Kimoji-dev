@@ -3,6 +3,7 @@
         <input
                 id="new_password"
                 class="form__text"
+
                 autocomplete="new-password"
                 minlength="12"
                 name="new_password"
@@ -18,6 +19,7 @@
         <input
                 id="new_password_confirmation"
                 class="form__text"
+
                 autocomplete="new-password"
                 minlength="12"
                 name="new_password_confirmation"

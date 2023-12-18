@@ -70,7 +70,8 @@
                     >
                     <label class="form__label form__label--floating" for="position">{{ __('common.position') }}</label>
                 </p>
-                <p class="form__group">
+
+                <div class="form__group">
                     <h3>权限</h3>
                     <div class="data-table-wrapper">
                         <table class="data-table">
@@ -104,7 +105,7 @@
                             </tbody>
                         </table>
                     </div>
-                </p>
+                </div>
                 <p class="form__group">
                     <button class="form__button form__button--filled">保存</button>
                 </p>

@@ -96,13 +96,13 @@
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'no'">
                         <label for="torrent-cover" class="form__label">
-                            背景图片 ({{ __('torrent.optional') }})
+                            专辑封面（必选）
                         </label>
                         <input id="torrent-cover" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg, .png" name="torrent-cover">
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'no'">
                         <label for="torrent-banner" class="form__label">
-                            海报 (必选)
+                            歌手海报 (必选)
                         </label>
                         <input id="torrent-banner" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg, .png" name="torrent-banner">
                     </p>
@@ -112,6 +112,7 @@
                             name="name"
                             id="title"
                             class="form__text"
+
                             value="{{ $title ?: old('name') }}"
                             required
                         >
@@ -141,14 +142,14 @@
                     <p class="form__group">
                         <select
                                 name="type_id"
-                                id="autotype"
+                                id="autotype_music"
                                 class="form__select"
-                                required
-                                x-show="cats[cat].type === 'no'"
+                                x-bind:required="cats[cat].type === 'no'"
+                                x-show="cats[cat].type === 'no'">
                         >
                             <option hidden disabled selected value=""></option>
                             @foreach ($types as $index => $type)
-                                @if ($index >= 8 && $index < 29)
+                                @if ($index >= 7)
                                     <option value="{{ $type->id }}" @selected(old('type_id')==$type->id) x-show="cats[cat].type === 'no'">
                                         {{ $type->name }}
                                     </option>
@@ -159,12 +160,12 @@
                                 name="type_id"
                                 id="autotype"
                                 class="form__select"
-                                required
-                                x-show="cats[cat].type !== 'no'"
+                                x-bind:required="cats[cat].type !== 'no'"
+                                x-show="cats[cat].type !== 'no'">
                         >
                             <option hidden disabled selected value=""></option>
                             @foreach ($types as $index => $type)
-                                @if ($index < 8)
+                                @if ($index < 7)
                                     <option value="{{ $type->id }}" @selected(old('type_id')==$type->id) x-show="cats[cat].type !== 'no'">
                                         {{ $type->name }}
                                     </option>
@@ -242,6 +243,7 @@
                                 name="season_number"
                                 id="season_number"
                                 class="form__text"
+
                                 inputmode="numeric"
                                 pattern="[0-9]*"
                                 value="{{ old('season_number') }}"
@@ -257,6 +259,7 @@
                                 name="episode_number"
                                 id="episode_number"
                                 class="form__text"
+
                                 inputmode="numeric"
                                 pattern="[0-9]*"
                                 value="{{ old('episode_number') }}"
@@ -275,6 +278,7 @@
                                 name="tmdb"
                                 id="autotmdb"
                                 class="form__text"
+
                                 inputmode="numeric"
                                 pattern="[0-9]*"
                                 x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') ? '{{ $tmdb ?: old('tmdb') }}' : '0'"
@@ -290,6 +294,7 @@
                                 name="imdb"
                                 id="autoimdb"
                                 class="form__text"
+
                                 inputmode="numeric"
                                 pattern="[0-9]*"
                                 x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') ? '{{ $imdb ?: old('imdb') }}' : '0'"
@@ -307,6 +312,7 @@
                                 pattern="[0-9]*"
                                 x-bind:value="cats[cat].type === 'tv' ? '{{ $tvdb ?: old('tvdb') }}' : '0'"
                                 class="form__text"
+
                                 x-bind:required="cats[cat].type === 'tv'"
                             >
                             <label class="form__label form__label--floating" for="autotvdb">TVDB ID</label>
@@ -322,6 +328,7 @@
                                 x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') ? '{{ $mal ?: old('mal') }}' : '0'"
                                 x-bind:required="cats[cat].type === 'movie' || cats[cat].type === 'tv'"
                                 class="form__text"
+
                                 placeholder=" "
                             >
                             <label class="form__label form__label--floating" for="automal">MAL ID ({{ __('torrent.required-anime') }})</label>
@@ -336,6 +343,7 @@
                             pattern="[0-9]*"
                             x-bind:value="cats[cat].type === 'game' ? '{{ $igdb ?: old('igdb') }}' : '0'"
                             class="form__text"
+
                             x-bind:required="cats[cat].type === 'game'"
                         >
                         <label class="form__label form__label--floating" for="autoigdb">IGDB ID <b>({{ __('torrent.required-games') }})</b></label>
@@ -346,6 +354,7 @@
                             name="keywords"
                             id="autokeywords"
                             class="form__text"
+
                             value="{{ old('keywords') }}"
                             placeholder=" "
                         >
@@ -497,20 +506,10 @@
         <section class="panelV2">
             <h2 class="panel__heading">
                 <i class="{{ config('other.font-awesome') }} fa-info"></i>
-                {{ __('common.info') }}
+                发布须知(首次发种请详细阅读）
             </h2>
             <div class="panel__body">
-                <a href="{{ route('announce', ['passkey' => $user->passkey]) }}" style="font-size:14px; text-align:center; cursor:pointer;" id="trackerLink">
-                    右键复制Tracker地址
-                </a>
-                <br>
-                <p>{{ __('torrent.announce-url-desc', ['source' => config('torrent.source')]) }}</p>
-                <img src="{{ asset('/img/akay.png') }}" alt="akay_img" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
-
-                <br>
                 <p class="text-success">{!! __('torrent.announce-url-desc-url', ['url' => config('other.upload-guide_url')]) !!}</p>
-<<<<<<< Updated upstream
-=======
                 <a href="/pages/3" style="font-size:18px; text-align:center; cursor:pointer;" id="generalRulesLink">
                     <i class="fas fa-gavel"></i> 发布总则
                 </a>
@@ -536,14 +535,24 @@
                 <br>
 
                 <a href="/pages/7" style="font-size:18px; text-align:center; cursor:pointer;" id="repostRulesLink">
-                    <i class="fas fa-copy"></i> 音乐媒介说明
+                    <i class="fas fa-music"></i> 音乐媒介说明
                 </a>
                 <br>
                 <br>
-                <a href="{{ route('announce', ['passkey' => $user->passkey]) }}" style="font-size:18px; text-align:center; cursor:pointer;" id="trackerLink" onclick="copyToClipboard(event)">
+                <a style="font-size:18px; text-align:center; cursor:pointer;" id="trackerLink" data-link="{{ route('announce', ['passkey' => $user->passkey]) }}" x-data x-on:click.stop="
+    navigator.clipboard.writeText($el.dataset.link);
+    Swal.fire({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          icon: 'success',
+          title: '复制成功'
+    })
+">
                     <i class="fas fa-link"></i> 复制Tracker地址
                 </a>
->>>>>>> Stashed changes
+
             </div>
         </section>
     @endsection
@@ -552,9 +561,3 @@
 @section('javascripts')
     <script src="{{ mix('js/imgbb.js') }}" crossorigin="anonymous"></script>
 @endsection
-
-
-
-
-
-

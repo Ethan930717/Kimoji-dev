@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://i.postimg.cc/GpMQ3bj2/68747470733a2f2f692e706f7374696d672e63632f765a623674706e772f53637265656e2d53686f742d323032312d31302d.png" alt="UNIT3D-Community-Edition Cover Image">
+    <img src="https://i.postimg.cc/c4zVJKG6/Screen-Shot-2023-11-20-at-10-21-19-AM.png" alt="UNIT3D-Community-Edition Cover Image">
 </p>
 
 <p align="center">
@@ -34,7 +34,7 @@
 
 ## <a name="introduction"></a> 🧐 Introduction
 
-We have been developing a Private Torrent Tracker Software called `UNIT3D`. This is a PHP software based on Laravel 9, Livewire and AlpineJS. It is MySQL Strict Mode Compliant, and PHP 8.2 Ready. The code is well-designed and follows the PSR-2 coding style. It uses an MVC Architecture to ensure clarity between logic and presentation. As a hashing algorithm of Bcrypt or Argon2 is used, to ensure a safe and proper way to store the passwords for the users. A lightweight Blade Templating Engine. Caching System Supporting: "apc,” "array,” "database,” "file," "memcached," and "redis" methods. Eloquent and much more!
+We have been developing a Private Torrent Tracker Software called `UNIT3D`. This is a PHP software based on Laravel 10, Livewire and AlpineJS. It is MySQL Strict Mode Compliant, and PHP 8.2 Ready. The code is well-designed and follows the PSR-2 coding style. It uses an MVC Architecture to ensure clarity between logic and presentation. As a hashing algorithm of Bcrypt or Argon2 is used, to ensure a safe and proper way to store the passwords for the users. A lightweight Blade Templating Engine. Caching System Supporting: "apc,” "array,” "database,” "file," "memcached," and "redis" methods. Eloquent and much more!
 
 ## <a name="features"></a> 💎 Some Features
 

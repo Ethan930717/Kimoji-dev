@@ -36,6 +36,6 @@ class InviteUser extends Mailable
     public function build(): static
     {
         return $this->markdown('emails.invite')
-            ->subject('Invite Received '.config('other.title'));
+            ->subject('来自'.config('other.title').'的邀请');
     }
 }

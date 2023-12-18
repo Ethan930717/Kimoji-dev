@@ -89,7 +89,7 @@ class NerdBot
             fn () => Torrent::orderByDesc('times_completed')->first()
         );
 
-            return sprintf('目前 [url=/torrents/%s]%s[/url] 是在 ', $snatched->id, $snatched->name).config('other.title').' 上最抢手的种子！';
+        return sprintf('目前 [url=/torrents/%s]%s[/url] 是在 ', $snatched->id, $snatched->name).config('other.title').' 上最抢手的种子！';
     }
 
     public function getLeeched(): string
@@ -354,7 +354,7 @@ class NerdBot
             $receiverDirty = false;
             $receiverEchoes = cache()->get('user-echoes'.$target->id);
 
-            if (! $receiverEchoes || ! \is_array($receiverEchoes)) {
+            if (!$receiverEchoes || !\is_array($receiverEchoes)) {
                 $receiverEchoes = UserEcho::with(['room', 'target', 'bot'])->where('user_id', '=', $target->id)->get();
             }
 
@@ -368,7 +368,7 @@ class NerdBot
                 }
             }
 
-            if (! $receiverListening) {
+            if (!$receiverListening) {
                 $receiverPort = new UserEcho();
                 $receiverPort->user_id = $target->id;
                 $receiverPort->bot_id = $this->bot->id;
@@ -386,7 +386,7 @@ class NerdBot
             $receiverDirty = false;
             $receiverAudibles = cache()->get('user-audibles'.$target->id);
 
-            if (! $receiverAudibles || ! \is_array($receiverAudibles)) {
+            if (!$receiverAudibles || !\is_array($receiverAudibles)) {
                 $receiverAudibles = UserAudible::with(['room', 'target', 'bot'])->where('user_id', '=', $target->id)->get();
             }
 
@@ -400,7 +400,7 @@ class NerdBot
                 }
             }
 
-            if (! $receiverListening) {
+            if (!$receiverListening) {
                 $receiverPort = new UserAudible();
                 $receiverPort->user_id = $target->id;
                 $receiverPort->bot_id = $this->bot->id;

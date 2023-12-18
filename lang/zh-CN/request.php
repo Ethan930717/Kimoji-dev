@@ -34,13 +34,13 @@ return [
     'dont-have-bps'       => '你没有足够的奖金',
     'edit-request'        => '编辑',
     'enter-bp'            => '填写赏金（下限为 100）',
-    'enter-hash'          => '填写所上传的torrent文件的校验码',
+    'enter-hash'          => '填写所上传的torrent文件的校验码(在种子页面的文件结构中查看）',
     'fill'                => '达成',
     'fill-request'        => '达成此请求',
     'filled'              => '已达成',
     'filled-by'           => '达成于',
     'for'                 => '对于',
-    'fulfill'             => '证明',
+    'fulfill'             => '领赏',
     'last-vote'           => '最后的投票',
     'my-voted'            => '已投票',
     'my-filled'           => '已达成',
@@ -80,5 +80,6 @@ return [
     'yes'                 => 'Yes',
     'resolution'          => '分辨率',
     'added-bonus'         => '赏金追加成功',
-
+    'claimed-success'     => '认领成功',
+    'unclaimed-success'   => '取消认领',
 ];

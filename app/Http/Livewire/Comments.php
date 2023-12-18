@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 use Livewire\WithPagination;
 use voku\helper\AntiXSS;
+use Illuminate\Support\Facades\Log;
 
 class Comments extends Component
 {
@@ -83,9 +84,13 @@ class Comments extends Component
         $this->perPage += 10;
     }
 
+    /// TODO: Find a better data structure to avoid this mess of exception cases
     final public function postComment(): void
     {
-        if ($this->user->can_comment === false) {
+        // Set Polymorhic Model Name
+        $modelName = str()->snake(class_basename($this->model), ' ');
+
+        if ($modelName !== 'ticket' && $this->user->can_comment === false) {
             $this->dispatchBrowserEvent('error', ['type' => 'error',  'message' => trans('comment.rights-revoked')]);
 
             return;
@@ -106,9 +111,6 @@ class Comments extends Component
         $comment->anon = $this->anon;
         $comment->save();
 
-        // Set Polymorhic Model Name
-        $modelName = str()->snake(class_basename($this->model), ' ');
-
         // New Comment Notification
         switch ($modelName) {
             case 'ticket':
@@ -128,6 +130,7 @@ class Comments extends Component
             case 'torrent request':
             case 'torrent':
                 if ($this->user->id !== $this->model->user_id) {
+                    Log::info("Sending notification to user ID: ".$this->model->user_id);
                     User::find($this->model->user_id)->notify(new NewComment($modelName, $comment));
                 }
 

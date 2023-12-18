@@ -16,7 +16,7 @@
     --bbcode-input-header-bg: #ffffff00;
     --bbcode-input-body-bg: #ffffff00;
     --bbcode-input-border: 1px solid #555;
-    --bbcode-input-border-radius: 5px;
+    --bbcode-input-border-radius: 16px;
 
     --bbcode-rendered-fg-default: #ffffff;
     --bbcode-rendered-fg-muted: #ffffff;
@@ -26,7 +26,7 @@
     --bbcode-rendered-border-default: #bebebe;
     --bbcode-rendered-border-muted: #babbbd;
     --bbcode-rendered-neutral-muted: #aeb3b833;
-    --bbcode-rendered-accent-fg: #0969da;
+    --bbcode-rendered-accent-fg: #00a287;
     --bbcode-rendered-accent-emphasis: #0969da;
     --bbcode-rendered-attention-subtle: #7289da;
     --bbcode-rendered-danger-fg: #ff141ccc;
@@ -58,7 +58,7 @@
     --data-table-fg: inherit;
     --data-table-th-bg: #ffffff00;
     --data-table-thead-border: 1px solid rgba(14, 21, 34, 0.25);
-    --data-table-tr-border: 1px solid #ddd;
+    --data-table-tr-border: 1px solid #dddddd00;
     --data-table-tr-even-bg: #ffffff00;
     --data-table-tr-hover-bg: #ffffff00;
     --data-table-tr-odd-bg: #ffffff00;
@@ -82,19 +82,19 @@
     --icon-button-border-radius: 9999px;
     --icon-button-fg: currentColor;
 
-    --icon-button-filled-bg: #5cb579 linear-gradient(to bottom right, #0ba360, #2bb673);
+    --icon-button-filled-bg: #5cb57900;
     --icon-button-filled-fg: white;
     --icon-button-filled-border: none;
 
     --input-text-border: 1px solid #ffffff00;
     --input-text-border-active: 2px solid #ffffff00;
-    --input-text-border-error: 1px solid #ba1b1b;
+    --input-text-border-error: 1px solid #ff000000;
     --input-text-border-hover: 2px solid #ffffff00;
-    --input-text-border-radius: 5px;
-    --input-text-fg: #ffffff;
-    --input-text-padding: 12px;
-    --input-text-padding-active: 11px;
-    --input-text-padding-hover: 11px;
+    --input-text-border-radius: 16px;
+    --input-text-fg: #000000;
+    --input-text-padding: 5px 10px;
+    --input-text-padding-active: 5px 10px;
+    --input-text-padding-hover: 5px 10px;
 
     --key-value-even-bg: #ffffff00;
     --key-value-fg: inherit;
@@ -103,7 +103,7 @@
 
     --label-bg: #ffffff00;
     --label-fg: #ffffff;
-    --label-fg-active: #ffffff;
+    --label-fg-active: rgba(255, 255, 255, 0);
     --label-fg-error: #ba1b1b;
     --label-fg-hover: #ffffff;
 
@@ -128,7 +128,7 @@
     --meta-chip-backdrop-filter-hover:  brightness(130%) blur(10px);
     --meta-chip-hover-bg: rgba(255,255,255,0.4);
     --meta-chip-icon-fg: #ffffff;
-    --meta-chip-icon-hover-bg: #fff;
+    --meta-chip-icon-hover-bg: #ffffff00;
     --meta-chip-icon-bg: #ffffff00;
     --meta-chip-name-fg: #ffffff;
     --meta-chip-value-fg: #ffffff;
@@ -137,13 +137,13 @@
     --meter-bg: #ffffff00;
 
     --notification-read: transparent;
-    --notification-unread: #2bb666;
+    --notification-unread: #db6969;
 
     --paginate-bg: #ffffff00;
     --paginate-bg-hover: #ffffff00;
     --paginate-bg-current: #ffffff00;
     --paginate-fg: #ffffff;
-    --paginate-fg-disabled: #40a690;
+    --paginate-fg-disabled: #eaee4c;
     --paginate-divider: #888;
 
     --panel-action-fg: #ffffff;
@@ -179,10 +179,10 @@
     --quick-search-selector-hover-fg: #ddd;
     --quick-search-selector-selected-bg: #rgba(135, 85, 195, 0.8);
     --quick-search-selector-selected-fg: #ffffff;
-    --quick-search-result-bg: #444;
+    --quick-search-result-bg: #60625263;
     --quick-search-result-fg: #ffffff;
-    --quick-search-result-hover-bg: #555;
-    --quick-search-result-hover-fg: #ffffff;
+    --quick-search-result-hover-bg: #CBCEB5A1;
+    --quick-search-result-hover-fg: rgb(255, 255, 255);
     --quick-search-result-image-border-radius: 5px;
     --quick-search-result-year-fg: #ffffff;
     --quick-search-result-border: none;
@@ -191,7 +191,7 @@
 
     --secondary-nav-bg: #ffffff00;
     --secondary-nav-tab-fg: #ffffff;
-    --secondary-nav-tab-bg: inherit;
+    --secondary-nav-tab-bg: #8db888c2;
     --secondary-nav-tab-active-text-decoration: underline #ffffff00 2px;
     --secondary-nav-tab-hover-fg: #ddd;
     --secondary-nav-tab-hover-bg: transparent;
@@ -201,17 +201,17 @@
     --secondary-nav-tab-menu-border: none;
     --secondary-nav-tab-menu-border-radius: 6px;
     --secondary-nav-tab-menu-box-shadow: none;
-
-    --select-border: 1px solid #ffffff00;
-    --select-border-active: 2px solid #ffffff00;
-    --select-border-error: 1px solid #ba1b1b;
-    --select-border-hover: 2px solid #ffffff00;
-    --select-border-radius: 5px;
-    --select-fg: #ffffff;
-    --select-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='%23444' d='M6 8l-1 1l5 5l5-5l-1-1l-4 4l-4-4z'/></svg>");
+/*    --select-border: 1px solid #55555500;
+    --select-border-active: 2px solid #2195f300;
+    --select-border-error: 1px solid #ba1b1b00;
+    --select-border-hover: 2px solid #99999900;*/
+    --select-border-radius: 25px;
+    --select-fg: #000000;
+    --select-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='%23bbb' d='M6 8l-1 1l5 5l5-5l-1-1l-4 4l-4-4z'/></svg>");
     --select-padding: 11px 23px 11px 11px;
     --select-padding-active: 10px 22px 10px 10px;
     --select-padding-hover: 10px 22px 10px 10px;
+
 
     --subforum-listing-odd-bg: #ffffff00;
     --subforum-listing-even-bg: transparent;
@@ -269,22 +269,22 @@
     --torrent-group-chip-border: #eee;
 
     --torrent-row-fg: #ffffff;
-    --torrent-row-visited-fg: #ffc8c8;
-    --torrent-row-sticky-bg: #dff0d8;
-    --torrent-row-format-fg: #000000;
+    --torrent-row-visited-fg: #affff2;
+    --torrent-row-sticky-bg: #df430930;
+    --torrent-row-format-fg: #ffffff;
     --torrent-row-format-bg: #ffffff00;
     --torrent-row-buttons-fg: currentColor;
     --torrent-row-seeders-fg: #3cff00;
     --torrent-row-leechers-fg: #ff0039;
     --torrent-row-completed-fg: #00ffd8;
     --torrent-row-thanks-fg: #f92672;
-    --torrent-row-comments-fg: #3fb618;
-    --torrent-row-internal-fg: #baaf94;
+    --torrent-row-comments-fg: #51ff17;
+    --torrent-row-internal-fg: #ff00ca;
     --torrent-row-personal-fg: #865be9;
     --torrent-row-stream-optimized-fg: #ff0039;
     --torrent-row-featured-fg: #f92672;
-    --torrent-row-freeleech-fg: #ffb800;
-    --torrent-row-double-upload-fg: #4cb828;
+    --torrent-row-freeleech-fg: #f8ff00;
+    --torrent-row-double-upload-fg: #43ff04;
     --torrent-row-sticky-fg: #ffffff;
     --torrent-row-highspeed-fg: #ff0039;
     --torrent-row-sd-fg: #ff7518;
@@ -425,6 +425,7 @@ textarea {
     overflow: auto;
 }
 
+
 code,
 kbd,
 pre {
@@ -433,7 +434,6 @@ pre {
 
 button,
 input,
-select,
 textarea {
     color: inherit;
     font: inherit;
@@ -444,8 +444,7 @@ button {
     overflow: visible;
 }
 
-button,
-select {
+button {
     text-transform: none;
 }
 
@@ -577,16 +576,36 @@ body {
 
 button,
 input,
-select,
 textarea {
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
+/*    color: var(--select-fg);
+    !* height: 40px; *!
+    !* max-width: 100%; *!
+    !* outline: none; *!
+    !*
+    padding: var(--select-padding);
+    *!
+    text-shadow: 0 0 3px #f7f742;
+    background: none;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;*/
 }
 
+input#custom_css,
+input#standalone_css,{
+    background-color: transparent;
+    /* color: black; */
+    border: none;
+    padding: 8px 12px;
+    box-sizing: border-box;
+    width: 100%;
+}
 a {
     color: #ffffff;
-    text-shadow: 0 0 2px #fff;
+    text-shadow: 0 0 1px #fff;
 }
 
 a:focus,
@@ -771,12 +790,12 @@ mark {
 }
 
 .text-success {
-    color: #00bc63;
+    color: #02ff87;
 }
 
 a.text-success:focus,
 a.text-success:hover {
-    color: #008948;
+    color: #00ffd8;
 }
 
 .text-bright {
@@ -1275,10 +1294,6 @@ input[type='range'] {
     width: 100%;
 }
 
-select[multiple],
-select[size] {
-    height: auto;
-}
 
 input[type='file']:focus,
 input[type='checkbox']:focus,
@@ -2225,7 +2240,6 @@ pre {
 .list-group,
 blockquote small {
     font-weight: bold;
-    text-shadow: 0 0 2px #ffffff;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -2495,7 +2509,7 @@ th.torrents-icon {
 }
 
 i.torrent-icon {
-    color: #325d88;
+    color: #ffffff;
     font-size: 32px;
 }
 
@@ -2611,7 +2625,7 @@ img.torrent-poster-img-small {
 }
 
 .text-blue {
-    color: #2780e3;
+    color: #76faff;
 }
 
 .text-yellow {
@@ -2882,7 +2896,9 @@ body.tvshow .movie-poster {
 ul,
 time {
     color: #ffffff;
-    text-shadow: 0 0 4px #fff;
+    /*
+    text-shadow: 0 0 2px #fff;
+    */
 }
 
 .topic .topic-posts {
@@ -4262,6 +4278,8 @@ div.pagination p {
     text-align: initial;
     color: #000000;
 }
+
+
 
 div:where(.swal2-container) div:where(.swal2-popup) {
     background: #ffffff00;

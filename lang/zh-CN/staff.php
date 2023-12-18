@@ -22,6 +22,7 @@ return [
     'audit-log'                => '活动日志',
     'bans-log'                 => '封禁日志',
     'blocks'                   => '区块',
+    'blocked-ips'              => '禁用ip',
     'bot'                      => '机器人',
     'bots'                     => '机器人',
     'chat'                     => '聊天',
@@ -70,6 +71,6 @@ return [
     'you-have'                 => '你拥有',
     'torrent-resolutions'      => '分辨率参数设置',
     'bon-exchange'             => '商店设置',
-    'gifts-log'                 => '赠送日志',
-
+    'gifts-log'                => '赠送日志',
+    'passkeys'                 => 'passkey管理',
 ];

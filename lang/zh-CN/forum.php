@@ -19,7 +19,7 @@ return [
     'bug'                       => 'Bug',
     'category-quick-search'     => '快速搜索标题 (在类别内)',
     'close-topic'               => '关闭并锁定主题',
-    'closed'                    => '已关闭',
+    'closed'                    => '关闭',
     'create-new-topic'          => '发帖',
     'created'                   => '已创建',
     'current'                   => '目前',
@@ -44,7 +44,7 @@ return [
     'moderation'                => '审批',
     'name'                      => '名字',
     'not-connected'             => '你必须处于已连接状态',
-    'not-subscribed'            => '没有订阅',
+    'not-subscribed'            => '未订阅',
     'open'                      => '打开',
     'open-topic'                => '打开该主题',
     'permalink'                 => '永久连接',
@@ -75,5 +75,4 @@ return [
     'created-at'                => '创建时间',
     'subscribe'                 => '订阅',
     'unsubscribe'               => '取消订阅',
-
 ];

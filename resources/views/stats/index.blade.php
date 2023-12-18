@@ -51,7 +51,7 @@
 @section('main')
     <section class="panelV2">
         <h2 class="panel__heading">{{ __('stat.nerd-stats') }}</h2>
-        <div class="panel__body">{{ __('stat.nerd-stats-desc') }}. {{ __('stat.updated') }}</div>
+        <div class="panel__body">{{ __('stat.updated') }}{{ __('stat.nerd-stats-desc') }} </div>
     </section>
     <div class="stats__panels">
         <section class="panelV2 panel--grid-item">
@@ -63,7 +63,7 @@
                 @endforeach
                 <dt>高清资源</dt>
                 <dd>{{ $num_hd }}</dd>
-                <dt>PG-12资源</dt>
+                <dt>PG-12儿童资源</dt>
                 <dd>{{ $num_sd }}</dd>
                 <dt>{{ __('stat.total-torrents') }}</dt>
                 <dd>{{ $num_torrent }}</dd>

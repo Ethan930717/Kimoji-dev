@@ -39,31 +39,40 @@
                     <input
                         id="name"
                         class="form__text"
+
                         type="text"
                         name="name"
                         value="{{ $category->name }}"
                     >
-                    <label class="form__label form__label--floating" for="name">{{ __('common.name') }}<label>
+                    <label class="form__label form__label--floating" for="name">
+                        {{ __('common.name') }}
+                    </label>
                 </p>
                 <p class="form__group">
                     <input
                         id="position"
                         class="form__text"
+
                         type="text"
                         name="position"
                         value="{{ $category->position }}"
                     >
-                    <label class="form__label form__label--floating" for="positon">{{ __('common.position') }}</label>
+                    <label class="form__label form__label--floating" for="position" for="position">
+                        {{ __('common.position') }}
+                    </label>
                 </p>
                 <p class="form__group">
                     <input
                         id="position"
                         class="form__text"
+
                         type="text"
                         name="icon"
                         value="{{ $category->icon }}"
                     >
-                    <label class="form__label form__label--floating" for="icon">{{ __('common.icon') }} (FontAwesome)</label>
+                    <label class="form__label form__label--floating" for="icon">
+                        {{ __('common.icon') }} (FontAwesome)
+                    </label>
                 </p>
                 <p class="form__group">
                     <label for="image">

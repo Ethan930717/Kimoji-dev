@@ -19,6 +19,8 @@ use App\Models\ApplicationImageProof;
 use App\Models\ApplicationUrlProof;
 use App\Rules\EmailBlacklist;
 use Illuminate\Http\Request;
+use App\Http\Controllers\TelegramController;
+use Illuminate\Support\Facades\Log;
 
 /**
  * @see \Tests\Todo\Feature\Http\Controllers\Staff\ApplicationControllerTest
@@ -38,13 +40,15 @@ class ApplicationController extends Controller
      */
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
+        abort_unless(config('other.application_signups'), 403);
+
         $application = resolve(Application::class);
         $application->type = $request->input('type');
         $application->email = $request->input('email');
         $application->referrer = $request->input('referrer');
 
         if (config('email-blacklist.enabled')) {
-            if (! config('captcha.enabled')) {
+            if (!config('captcha.enabled')) {
                 $v = validator($request->all(), [
                     'type'  => 'required',
                     'email' => [
@@ -84,7 +88,7 @@ class ApplicationController extends Controller
                     'captcha'  => 'hiddencaptcha',
                 ]);
             }
-        } elseif (! config('captcha.enabled')) {
+        } elseif (!config('captcha.enabled')) {
             $v = validator($request->all(), [
                 'type'     => 'required',
                 'email'    => 'required|string|email|max:70|unique:invites|unique:users|unique:applications',
@@ -108,17 +112,30 @@ class ApplicationController extends Controller
         }
 
         if ($v->fails()) {
+            Log::error('申请验证失败', ['errors' => $v->errors()]);
+
             return to_route('application.create')
                 ->withErrors($v->errors());
         }
 
         $application->save();
+        Log::info('新申请已保存', ['application_id' => $application->id]);
+
         // Map And Save IMG Proofs
         $applicationImageProofs = collect($request->input('images'))->map(fn ($value) => new ApplicationImageProof(['image' => $value]));
         $application->imageProofs()->saveMany($applicationImageProofs);
         // Map And Save URL Proofs
         $applicationUrlProofs = collect($request->input('links'))->map(fn ($value) => new ApplicationUrlProof(['url' => $value]));
         $application->urlProofs()->saveMany($applicationUrlProofs);
+
+        // 准备 Telegram 消息
+        $images = $request->input('images', []);
+        $applicationDetails = "申请类型：{$application->type}\n电子邮件：{$application->email}\n申请理由：{$application->referrer}";
+
+        // 发送 Telegram 通知
+        $telegramController = new TelegramController();
+        $telegramController->sendNewApplicationNotification($applicationDetails, $images);
+        Log::info('Telegram 通知已发送');
 
         return to_route('login')
             ->withSuccess(trans('auth.application-submitted'));

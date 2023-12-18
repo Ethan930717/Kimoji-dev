@@ -15,6 +15,7 @@ namespace App\Console\Commands;
 
 use App\Models\Torrent;
 use App\Repositories\ChatRepository;
+use App\Services\Unit3dAnnounce;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 
@@ -63,6 +64,8 @@ class AutoRemoveTimedTorrentBuffs extends Command
             $this->chatRepository->systemMessage(
                 sprintf('大哥大姐们, [url=%s/torrents/%s]%s[/url] 的免费时间到期啦', $appurl, $torrent->id, $torrent->name)
             );
+
+            Unit3dAnnounce::addTorrent($torrent);
         }
 
         $duTorrents = Torrent::whereNotNull('du_until')->where('du_until', '<', Carbon::now()->toDateTimeString())->get();
@@ -76,6 +79,8 @@ class AutoRemoveTimedTorrentBuffs extends Command
             $this->chatRepository->systemMessage(
                 sprintf('大哥大姐们, [url=%s/torrents/%s]%s[/url] 双倍上传下钟了.', $appurl, $torrent->id, $torrent->name)
             );
+
+            Unit3dAnnounce::addTorrent($torrent);
         }
 
         $this->comment('自动移除过期种子的命令已完成');

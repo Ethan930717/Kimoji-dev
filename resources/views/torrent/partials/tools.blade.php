@@ -77,29 +77,29 @@
                                 >
                                     @csrf
                                     <p class="form__group">
-                                        <select name="freeleech" class="form__select">
+                                        <select id="freeleech" name="freeleech" class="form__select">
                                             <option value="0" @selected($torrent->free === 0)>No</option>
                                             <option value="25" @selected($torrent->free === 25)>25%</option>
                                             <option value="50" @selected($torrent->free === 50)>50%</option>
                                             <option value="75" @selected($torrent->free === 75)>75%</option>
                                             <option value="100" @selected($torrent->free === 100)>100%</option>
                                         </select>
-                                        <label class="form__label form__label--floating" for="free">
-                                            免费下载
+                                        <label class="form__label form__label--floating" for="freeleech">
+                                            设置免费
                                         </label>
                                     </p>
                                     <p class="form__group">
-                                        <select class="form__select" name="fl_until">
+                                        <select id="fl_until" class="form__select" name="fl_until">
                                             <option value="">永久</option>
-                                            <option value="1">1 天</option>
-                                            <option value="2">2 天</option>
-                                            <option value="3">3 天</option>
-                                            <option value="4">4 天</option>
-                                            <option value="5">5 天</option>
-                                            <option value="6">6 天</option>
-                                            <option value="7">7 天</option>
+                                            <option value="1">1 Day</option>
+                                            <option value="2">2 Days</option>
+                                            <option value="3">3 Days</option>
+                                            <option value="4">4 Days</option>
+                                            <option value="5">5 Days</option>
+                                            <option value="6">6 Days</option>
+                                            <option value="7">7 Days</option>
                                         </select>
-                                        <label for="fl_until" class="form__label form__label--floating">
+                                        <label for="fl_until" class="form__label form__label--floating" for="fl_until">
                                             持续时间
                                         </label>
                                     </p>
@@ -131,17 +131,17 @@
                                 >
                                     @csrf
                                     <p class="form__group">
-                                        <select class="form__select" name="du_until">
+                                        <select id="du_until" class="form__select" name="du_until">
                                             <option value="">永久</option>
-                                            <option value="1">1 天</option>
-                                            <option value="2">2 天</option>
-                                            <option value="3">3 天</option>
-                                            <option value="4">4 天</option>
-                                            <option value="5">5 天</option>
-                                            <option value="6">6 天</option>
-                                            <option value="7">7 天</option>
+                                            <option value="1">1 Day</option>
+                                            <option value="2">2 Days</option>
+                                            <option value="3">3 Days</option>
+                                            <option value="4">4 Days</option>
+                                            <option value="5">5 Days</option>
+                                            <option value="6">6 Days</option>
+                                            <option value="7">7 Days</option>
                                         </select>
-                                        <label for="fl_until" class="form__label form__label--floating">
+                                        <label class="form__label form__label--floating" for="du_until">
                                             持续时间
                                         </label>
                                     </p>

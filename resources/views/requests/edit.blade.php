@@ -42,6 +42,7 @@
                         <input
                             id="title"
                             class="form__text"
+
                             name="name"
                             required
                             type="text"
@@ -111,6 +112,7 @@
                             <input
                                 id="autotmdb"
                                 class="form__text"
+
                                 inputmode="numeric"
                                 name="tmdb"
                                 pattern="[0-9]*"
@@ -126,6 +128,7 @@
                             <input
                                 id="autoimdb"
                                 class="form__text"
+
                                 inputmode="numeric"
                                 name="imdb"
                                 pattern="[0-9]*"
@@ -140,6 +143,7 @@
                             <input
                                 id="autotvdb"
                                 class="form__text"
+
                                 inputmode="numeric"
                                 name="tvdb"
                                 pattern="[0-9]*"
@@ -154,6 +158,7 @@
                             <input
                                 id="automal"
                                 class="form__text"
+
                                 inputmode="numeric"
                                 name="mal"
                                 pattern="[0-9]*"
@@ -167,6 +172,7 @@
                             <input
                                 id="igdb"
                                 class="form__text"
+
                                 inputmode="numeric"
                                 name="igdb"
                                 pattern="[0-9]*"
@@ -174,7 +180,7 @@
                                 type="text"
                                 value="{{ $torrentRequest->igdb ?: (old('igdb') ?? '0') }}"
                             >
-                            <label class="form__label form__label--floating" for="name">
+                            <label class="form__label form__label--floating" for="igdb">
                                 IGDB ID ({{ __('request.required') }} For Games)
                             </label>
                         </p>

@@ -45,13 +45,14 @@
 /* Buttons */
 
 .form__button {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     line-height: 1;
     padding: 8px 12px;
     border-radius: 9999px;
     align-self: flex-start;
     transition: filter 300ms;
+    white-space: nowrap;
 
     &:hover {
         filter: brightness(1.1);

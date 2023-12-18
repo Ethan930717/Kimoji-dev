@@ -37,31 +37,40 @@
                     <input
                         id="name"
                         class="form__text"
+
                         type="text"
                         name="name"
                         placeholder=" "
                     >
-                    <label class="form__label form__label--floating" for="name">{{ __('common.name') }}<label>
+                    <label class="form__label form__label--floating" for="name">
+                        {{ __('common.name') }}
+                    </label>
                 </p>
                 <p class="form__group">
                     <input
                         id="position"
                         class="form__text"
+
                         type="text"
                         name="position"
                         placeholder=" "
                     >
-                    <label class="form__label form__label--floating" for="positon">{{ __('common.position') }}</label>
+                    <label class="form__label form__label--floating" for="position">
+                        {{ __('common.position') }}
+                    </label>
                 </p>
                 <p class="form__group">
                     <input
-                        id="position"
+                        id="icon"
                         class="form__text"
+
                         type="text"
                         name="icon"
                         placeholder=" "
                     >
-                    <label class="form__label form__label--floating" for="icon">{{ __('common.icon') }} (FontAwesome)</label>
+                    <label class="form__label form__label--floating" for="icon">
+                        {{ __('common.icon') }} (FontAwesome)
+                    </label>
                 </p>
                 <p class="form__group">
                     <label for="image">

@@ -24,6 +24,7 @@
                     <input
                         id="search"
                         class="form__text"
+
                         type="text"
                         wire:model="search"
                         placeholder=" "
@@ -137,7 +138,7 @@
                         @if ($ticket->staff)
                             <x-user_tag :user="$ticket->staff" :anon="false" />
                         @else
-                            Unassigned
+                            未分配
                         @endif
                     </td>
                     <td>

@@ -38,6 +38,7 @@
                     <input
                         id="name"
                         class="form__text"
+
                         name="name"
                         required
                         type="text"
@@ -54,5 +55,5 @@
                 </p>
             </form>
         </div>
-    </div>
+    </section>
 @endsection
