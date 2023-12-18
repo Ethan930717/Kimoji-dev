@@ -26,6 +26,21 @@
             </a>
         @endif
     </li>
+    <li class="form__group form__group--short-horizontal">
+        <a class="form__button form__button--filled form__button--centered" href="javascript:void(0);" data-link="{{ route('torrent.download.rsskey', ['id' => $this->id, 'rsskey' => auth('api')->user()->rsskey]) }}" x-data x-on:click.stop="
+        navigator.clipboard.writeText($el.dataset.link);
+        Swal.fire({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              icon: 'success',
+              title: '复制成功'
+        })
+    ">
+            <i class="{{ config('other.font-awesome') }} fa-download"></i> {{ __('common.download') }}
+        </a>
+    </li>
     @if ($fileExists)
         @if ($torrent->free !== 100 && config('other.freeleech') == false && ! $personal_freeleech && $user->group->is_freeleech == 0 && ! $torrent->freeleechToken_exists)
             <li class="form__group form__group--short-horizontal">
