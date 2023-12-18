@@ -400,4 +400,6 @@ return [
     'apikey'                  => 'API Key',
     'rsskey'                  => 'RSS Key',
     'two-step-auth.title'     => '两步验证',
+
+    'Disclaimer'              => '免责声明',
 ];
