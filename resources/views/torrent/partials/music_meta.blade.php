@@ -8,7 +8,7 @@
             class="meta__poster"
         >
     </span>
-        <div id="audio-player" data-sound-path="{{ asset('sounds/倒带.mp3') }}">
+        <div id="audio-player" data-sound-path="{{ asset('sounds/daodai.mp3') }}">
             <button id="play-btn">播放</button>
             <button id="pause-btn">暂停</button>
             <input type="range" id="volume-control" min="0" max="1" step="0.1" value="1">
