@@ -401,5 +401,5 @@ return [
     'rsskey'                  => 'RSS Key',
     'two-step-auth.title'     => '两步验证',
 
-    'Disclaimer'              => '免责声明',
+    'Disclaimer' => '免责声明',
 ];
