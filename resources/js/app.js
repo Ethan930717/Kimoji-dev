@@ -46,7 +46,7 @@ if (document.getElementById('vue')) {
 // Sweet Alert
 window.Swal = require('sweetalert2');
 
-// howler
+// howler js
 import { Howl } from 'howler';
 
 document.addEventListener('DOMContentLoaded', function () {
