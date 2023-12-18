@@ -27,7 +27,7 @@
         @endif
     </li>
     <li class="form__group form__group--short-horizontal">
-        <a class="form__button form__button--filled form__button--centered" href="javascript:void(0);" data-link="{{ route('torrent.download.rsskey', ['id' => $torrent->id, 'rsskey' => auth('api')->user()->rsskey]) }}" x-data x-on:click.stop="
+        <a class="form__button form__button--filled form__button--centered" href="javascript:void(0);" data-link="{{ route('torrent.download.rsskey', ['id' => $torrent->id, 'rsskey' => auth()->user()->rsskey]) }}" x-data x-on:click.stop="
         navigator.clipboard.writeText($el.dataset.link);
         Swal.fire({
               toast: true,
