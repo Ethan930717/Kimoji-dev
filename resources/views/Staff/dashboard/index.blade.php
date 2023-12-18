@@ -476,7 +476,7 @@
                 <dd>{{ $torrents->pending }}</dd>
                 <dt>已批准</dt>
                 <dd>{{ $torrents->approved }}</dd>
-                <dt>已推迟</dt>
+                <dt>已延期</dt>
                 <dd>{{ $torrents->postponed }}</dd>
                 <dt>已拒绝</dt>
                 <dd>{{ $torrents->rejected }}</dd>

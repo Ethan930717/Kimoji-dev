@@ -53,7 +53,7 @@
                             <p class="form__group">
                                 <label class="form__label">
                                     <input class="user-uploads__checkbox" type="checkbox" value="{{ \App\Models\Torrent::POSTPONED }}" wire:model="status">
-                                    推迟
+                                    延期
                                 </label>
                             </p>
                         </div>

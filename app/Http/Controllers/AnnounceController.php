@@ -42,8 +42,8 @@ final class AnnounceController extends Controller
     protected const POSTPONED = 3;
 
     // Announce Intervals
-    private const MIN = 1_800;
-    private const MAX = 3_600;
+    private const MIN = 600;
+    private const MAX = 1_800;
 
     // Port Blacklist
     private const BLACK_PORTS = [

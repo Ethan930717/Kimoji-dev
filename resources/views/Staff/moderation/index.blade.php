@@ -163,7 +163,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="9">暂无推迟种子</td>
+                        <td colspan="9">暂无延期种子</td>
                     </tr>
                 @endforelse
                 </tbody>
