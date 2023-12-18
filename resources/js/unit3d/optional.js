@@ -8,7 +8,7 @@ function imageGallery() {
             this.images = []
             this.currentSlide = index;
             const list = document.querySelectorAll(".thumbnail")
-            list.forEach(function(v){
+            list.forEach((v)=>{
                 this.images.push(v.src)
             })
             this.showModal = true;
