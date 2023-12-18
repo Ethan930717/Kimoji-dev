@@ -57,32 +57,3 @@
         </section>
     </div>
 </section>
-{{-- Alpine.js 音乐播放器组件 --}}
-<script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('audioPlayer', () => ({
-            sound: null,
-            volume: 1,
-
-            init() {
-                // 初始化 Howler 音乐播放器
-                this.sound = new Howl({
-                    src: ['sounds/daodai.mp3'],
-                    volume: this.volume
-                });
-            },
-
-            play() {
-                this.sound.play();
-            },
-
-            pause() {
-                this.sound.pause();
-            },
-
-            setVolume() {
-                this.sound.volume(this.volume);
-            }
-        }));
-    });
-</script>
