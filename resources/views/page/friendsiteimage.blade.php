@@ -44,70 +44,29 @@
 @endsection
 
 @section('main')
-    <section class="panelV2" x-data="{ modalOpen: false, currentImage: '', currentSlide: 0, images: @json($images) }">
+    <section class="panelV2">
         <h2 class="panel__heading center-text">
             KIMOJI 画廊今日共计展出作品: {{ count($images) }} 幅
         </h2>
-
-        <div class="stats__panels">
-            @foreach ($images as $index => $image)
-                <div class="image-container">
-                    <section class="panelV2 panel--grid-item">
-                        <img class="thumbnail" src="{{ asset($image->url) }}" alt="缩略图" @click="modalOpen = true; currentImage = '{{ asset($image->url) }}'; currentSlide = {{ $index }}">
-                    </section>
-                    <div class="image-title">{{ pathinfo($image->name, PATHINFO_FILENAME) }}</div>
-                </div>
-            @endforeach
-        </div>
-
-        <div x-data="imageViewer()" class="image-viewer">
-            <div class="stats__panels">
-                <template x-for="(image, index) in images" :key="index">
-                    <div class="image-container">
-                        <img :src="image.url" :alt="'Image ' + index" @click="openModal(image.url, index)" class="thumbnail">
-                        <div class="image-title" x-text="image.name"></div>
-                    </div>
-                </template>
+    </section>
+    <div class="stats__panels">
+        @foreach ($images as $index => $image)
+            <div class="image-container">
+                <section class="panelV2 panel--grid-item">
+                    <img class="thumbnail" src="{{ asset($image->url) }}" alt="缩略图" onclick="openModal(this, {{ $index }})">
+                </section>
+                <div class="image-title">{{ pathinfo($image->name, PATHINFO_FILENAME) }}</div>
             </div>
+        @endforeach
+    </div>
 
-            <div x-show="modalOpen" class="modal" @click.away="closeModal()">
-                <span class="close" @click="closeModal()">&times;</span>
-                <img :src="currentImage" class="modal-content">
-                <a class="prev" @click="changeSlide(-1)">&#10094;</a>
-                <a class="next" @click="changeSlide(1)">&#10095;</a>
-            </div>
-        </div>
 
-        <script>
-            function imageViewer() {
-                return {
-                    images: <?php echo json_encode($images); ?>,
-                    modalOpen: false,
-                    currentImage: '',
-                    currentSlide: 0,
-
-                    openModal(image, index) {
-                        this.currentImage = image;
-                        this.currentSlide = index;
-                        this.modalOpen = true;
-                    },
-
-                    closeModal() {
-                        this.modalOpen = false;
-                    },
-
-                    changeSlide(direction) {
-                        this.currentSlide += direction;
-                        if (this.currentSlide >= this.images.length) {
-                            this.currentSlide = 0;
-                        } else if (this.currentSlide < 0) {
-                            this.currentSlide = this.images.length - 1;
-                        }
-                        this.currentImage = this.images[this.currentSlide].url;
-                    }
-                }
-            }
-        </script>
+    <div id="myModal" class="modal" style="display: none;">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
 
     <style>
         .panel--grid-item {
