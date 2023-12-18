@@ -44,30 +44,36 @@
 @endsection
 
 @section('main')
-    <section class="panelV2">
-        <h2 class="panel__heading center-text">
-            KIMOJI 画廊今日共计展出作品: {{ count($images) }} 幅
-        </h2>
-    </section>
-    <div class="stats__panels">
-        @foreach ($images as $index => $image)
-            <div class="image-container">
-                <section class="panelV2 panel--grid-item">
-                    <img class="thumbnail" src="{{ asset($image->url) }}" alt="缩略图" onclick="openModal(this, {{ $index }})">
-                </section>
-                <div class="image-title">{{ pathinfo($image->name, PATHINFO_FILENAME) }}</div>
-            </div>
-        @endforeach
+    <div x-data="imageGallery({{$images}})">
+        <section class="panelV2">
+            <h2 class="panel__heading center-text">
+                KIMOJI 画廊今日共计展出作品: {{ count($images) }} 幅
+            </h2>
+        </section>
+        <div class="stats__panels" >
+            @foreach ($images as $index => $image)
+                <div class="image-container">
+                    <section class="panelV2 panel--grid-item">
+                        <img class="thumbnail" src="{{ asset($image->url) }}" alt="缩略图" @click="openModal({{ $index }})">
+                    </section>
+                    <div class="image-title">{{ pathinfo($image->name, PATHINFO_FILENAME) }}</div>
+                </div>
+            @endforeach
+        </div>
+        <!-- <div id="myModal" class="modal" style="display: none;">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img class="modal-content" id="img01">
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div> -->
+
+        <div id="myModal" style='display:none;' class="modal" x-show="showModal" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+            <img :src="images[currentSlide]" class="modal-content" id="img01">
+            <span @click="closeModal()" class="close">&times;</span>
+            <span @click="changeSlide(-1)" class="prev">&#10094;</span>
+            <span @click="changeSlide(1)" class="next">&#10095;</span>
+        </div>
     </div>
-
-
-    <div id="myModal" class="modal" style="display: none;">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="img01">
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-    </div>
-
     <style>
         .panel--grid-item {
             display: flex;
