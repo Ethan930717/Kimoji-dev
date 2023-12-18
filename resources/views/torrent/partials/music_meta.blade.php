@@ -8,18 +8,7 @@
             class="meta__poster"
         >
     </span>
-        <section class="audio-player">
-            <audio controls>
-                <source src="{{ asset('sounds/alert.mp3') }}" type="audio/mpeg">
-                您的浏览器不支持 audio 元素。
-            </audio>
-        </section>
-        <style>
-            .audio-player audio {
-                /* 在这里添加您的自定义样式 */
-                width: 100%; /* 例如，设置播放器宽度 */
-            }
-        </style>
+        <button id="play-sound" data-sound-path="{{ asset('sounds/alert.mp3') }}">播放音乐</button>
 
         <div class="meta__actions">
         <a class="meta__dropdown-button" href="#">
