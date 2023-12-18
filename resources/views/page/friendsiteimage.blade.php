@@ -91,7 +91,8 @@
             transition: 0.3s;
         }
         .thumbnail:hover {
-            opacity: 0.7;
+            cursor: pointer;
+            opacity: 0.8;
         }
         .panelV2 {
             border-radius: 12px;
