@@ -30,6 +30,9 @@
           @case($torrent->category->game_meta)
               @include('torrent.partials.game_meta', ['category' => $torrent->category, 'igdb' => $torrent->igdb])
               @break
+          @case($torrent->category->music_meta)
+              @include('torrent.partials.music_meta', ['category' => $torrent->category])
+              @break
           @default
               @include('torrent.partials.no_meta', ['category' => $torrent->category])
               @break

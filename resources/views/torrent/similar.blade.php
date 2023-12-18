@@ -32,6 +32,9 @@
         @case ($category->game_meta)
             @include('torrent.partials.game_meta')
             @break
+        @case ($category->music_meta)
+            @include('torrent.partials.music_meta')
+            @break
         @default
             @include('torrent.partials.no_meta')
             @break
