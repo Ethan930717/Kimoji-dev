@@ -539,7 +539,7 @@
                 </a>
                 <br>
                 <br>
-                <a href="javascript:;" style="font-size:18px; text-align:center; cursor:pointer;" id="trackerLink" data-link="{{ route('announce', ['passkey' => $user->passkey]) }}" x-data x-on:click.stop="
+                <a style="font-size:18px; text-align:center; cursor:pointer;" id="trackerLink" data-link="{{ route('announce', ['passkey' => $user->passkey]) }}" x-data x-on:click.stop="
     navigator.clipboard.writeText(this.dataset.link);
     Swal.fire({
           toast: true,
@@ -552,6 +552,7 @@
 ">
                     <i class="fas fa-link"></i> 复制Tracker地址
                 </a>
+
             </div>
         </section>
     @endsection
