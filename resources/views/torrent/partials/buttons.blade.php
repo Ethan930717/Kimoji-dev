@@ -38,7 +38,7 @@
               title: '复制成功'
         })
     ">
-            <i class="{{ config('other.font-awesome') }} fa-download"></i> {{ __('common.download') }}
+            <i class="{{ config('other.font-awesome') }} fas fa-link"></i> 复制下载链接
         </a>
     </li>
     @if ($fileExists)

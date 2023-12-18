@@ -44,29 +44,28 @@
 @endsection
 
 @section('main')
-    <section class="panelV2">
+    <section class="panelV2" x-data="{ modalOpen: false, currentImage: '', currentSlide: 0, images: @json($images) }">
         <h2 class="panel__heading center-text">
             KIMOJI 画廊今日共计展出作品: {{ count($images) }} 幅
         </h2>
-    </section>
-    <div class="stats__panels">
-        @foreach ($images as $index => $image)
-            <div class="image-container">
-                <section class="panelV2 panel--grid-item">
-                    <img class="thumbnail" src="{{ asset($image->url) }}" alt="缩略图" onclick="openModal(this, {{ $index }})">
-                </section>
-                <div class="image-title">{{ pathinfo($image->name, PATHINFO_FILENAME) }}</div>
-            </div>
-        @endforeach
-    </div>
 
+        <div class="stats__panels">
+            @foreach ($images as $index => $image)
+                <div class="image-container">
+                    <section class="panelV2 panel--grid-item">
+                        <img class="thumbnail" src="{{ asset($image->url) }}" alt="缩略图" @click="modalOpen = true; currentImage = '{{ asset($image->url) }}'; currentSlide = {{ $index }}">
+                    </section>
+                    <div class="image-title">{{ pathinfo($image->name, PATHINFO_FILENAME) }}</div>
+                </div>
+            @endforeach
+        </div>
 
-    <div id="myModal" class="modal" style="display: none;">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="img01">
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-    </div>
+        <div x-show="modalOpen" id="myModal" class="modal" @click.away="modalOpen = false">
+            <span class="close" @click="modalOpen = false">&times;</span>
+            <img class="modal-content" :src="currentImage">
+            <a class="prev" @click="currentSlide = currentSlide > 0 ? currentSlide - 1 : images.length - 1; currentImage = images[currentSlide].url">&#10094;</a>
+            <a class="next" @click="currentSlide = currentSlide < images.length - 1 ? currentSlide + 1 : 0; currentImage = images[currentSlide].url">&#10095;</a>
+        </div>
 
     <style>
         .panel--grid-item {
