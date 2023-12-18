@@ -49,11 +49,11 @@
             KIMOJI 画廊今日共计展出作品: {{ count($images) }} 幅
         </h2>
     </section>
-    <div class="stats__panels">
+    <div class="stats__panels" x-data="imageGallery()">
         @foreach ($images as $index => $image)
             <div class="image-container">
                 <section class="panelV2 panel--grid-item">
-                    <img class="thumbnail" src="{{ asset($image->url) }}" alt="缩略图" onclick="openModal(this, {{ $index }})">
+                    <img class="thumbnail" src="{{ asset($image->url) }}" alt="缩略图" @click="openModal({{ $index }})">
                 </section>
                 <div class="image-title">{{ pathinfo($image->name, PATHINFO_FILENAME) }}</div>
             </div>
