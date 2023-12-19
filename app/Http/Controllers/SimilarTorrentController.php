@@ -117,35 +117,36 @@ class SimilarTorrentController extends Controller
                 // Removed the time check
                 cache()->put($cacheKey, now(), now()->addDay());
                 $tmdbScraper->movie($tmdbId);
+
                 break;
+                /*                $cacheKey = 'tmdb-movie-scraper:'.$tmdbId;
+                                /** @var Carbon $lastUpdated */
+                /*                $lastUpdated = cache()->get($cacheKey);*/
+                /*                abort_if($lastUpdated !== null && $lastUpdated->addDay()->isFuture() && !$request->user()->group->is_modo, 403);*/
+                /*                cache()->put($cacheKey, now(), now()->addDay());*/
+                /*                $tmdbScraper->movie($tmdbId);*/
+                /*                break;*/
 
-/*                $cacheKey = 'tmdb-movie-scraper:'.$tmdbId;
-                /** @var Carbon $lastUpdated */
-/*                $lastUpdated = cache()->get($cacheKey);*/
-/*                abort_if($lastUpdated !== null && $lastUpdated->addDay()->isFuture() && !$request->user()->group->is_modo, 403);*/
-/*                cache()->put($cacheKey, now(), now()->addDay());*/
-/*                $tmdbScraper->movie($tmdbId);*/
-/*                break;*/
-
-              case $category->tv_meta:
+            case $category->tv_meta:
                 $cacheKey = 'tmdb-tv-scraper:'.$tmdbId;
                 // Removed the time check
                 cache()->put($cacheKey, now(), now()->addDay());
                 $tmdbScraper->tv($tmdbId);
+
                 break;
-/*            case $category->tv_meta:
-                $cacheKey = 'tmdb-tv-scraper:'.$tmdbId;
+                /*            case $category->tv_meta:
+                                $cacheKey = 'tmdb-tv-scraper:'.$tmdbId;
 
-                /** @var Carbon $lastUpdated */
-/*                $lastUpdated = cache()->get($cacheKey);*/
+                                /** @var Carbon $lastUpdated */
+                /*                $lastUpdated = cache()->get($cacheKey);*/
 
-/*                abort_if($lastUpdated !== null && $lastUpdated->addDay()->isFuture() && !$request->user()->group->is_modo, 403);*/
+                /*                abort_if($lastUpdated !== null && $lastUpdated->addDay()->isFuture() && !$request->user()->group->is_modo, 403);*/
 
-/*                cache()->put($cacheKey, now(), now()->addDay());*/
+                /*                cache()->put($cacheKey, now(), now()->addDay());*/
 
-/*                $tmdbScraper->tv($tmdbId);*/
+                /*                $tmdbScraper->tv($tmdbId);*/
 
-/*                break;*/
+                /*                break;*/
         }
 
         return to_route('torrents.similar', ['category_id' => $category->id, 'tmdb' => $tmdbId])
