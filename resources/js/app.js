@@ -48,17 +48,18 @@ window.Swal = require('sweetalert2');
 
 import 'APlayer/dist/APlayer.min.css';
 import APlayer from 'APlayer';
+
 document.addEventListener('DOMContentLoaded', function() {
-    const coverUrl = window.torrentCoverUrl || '/img/green.png'; // 使用默认封面作为后备
+    // 获取封面图片 URL
+    const coverUrl = document.getElementById('aplayer-container').dataset.cover;
+
     const ap = new APlayer({
         container: document.getElementById('aplayer'),
         audio: [{
             name: '倒带',
-            artist: '蔡依林', // 可以替换成实际的艺术家名
-            url: coverUrl,
-            cover: '/path/to/cover.jpg' // 封面图片路径，可选
+            artist: '蔡依琳', // 可以替换成实际的艺术家名
+            url: '/sounds/daodai.mp3',
+            cover: coverUrl // 使用从 Blade 模板获取的封面图片 URL
         }]
     });
 });
-
-

@@ -89,6 +89,4 @@
         </section>
     </div>
 </section>
-<script>
-    window.torrentCoverUrl = "{{ file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg') ? url('/files/img/torrent-cover_'.$torrent->id.'.jpg') : 'https://via.placeholder.com/400x600' }}";
-</script>
+
