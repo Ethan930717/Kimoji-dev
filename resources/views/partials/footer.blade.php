@@ -1,7 +1,9 @@
 <footer class="footer">
     <div class="footer__wrapper">
         <section class="footer__section" style="text-align: center; display: flex; justify-content: center; align-items: center; height: 100%;">
-            <img src="/img/indexlogo.png" alt="Footer Logo" style="max-width: 100%; height: auto;margin-top: 30px">
+            <a href="/">
+                <img src="/img/indexlogo.png" alt="Footer Logo" style="max-width: 100%; height: auto;margin-top: 30px">
+            </a>
         </section>
         <section class="footer__section">
             <h2 class="footer__section-title">{{ __('common.account') }}</h2>

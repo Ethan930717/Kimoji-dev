@@ -1,18 +1,6 @@
 <span class="torrent-icons">
-    @if ($torrent->seeding)
-        <i class="{{ config('other.font-awesome') }} fa-arrow-circle-up text-success torrent-icons" title="{{ __('torrent.currently-seeding') }}"></i>
-    @endif
-    @if ($torrent->leeching)
-        <i class="{{ config('other.font-awesome') }} fa-arrow-circle-down text-danger torrent-icons" title="{{ __('torrent.currently-leeching') }}"></i>
-    @endif
-    @if ($torrent->not_completed)
-        <i class="{{ config('other.font-awesome') }} fa-do-not-enter text-info torrent-icons" title="{{ __('torrent.not-completed') }}"></i>
-    @endif
-    @if ($torrent->not_seeding)
-        <i class="{{ config('other.font-awesome') }} fa-thumbs-down text-warning torrent-icons" title="{{ __('torrent.completed-not-seeding') }}"></i>
-    @endif
     @isset($torrent->thanks_count)
-        <i class="{{ config('other.font-awesome') }} fa-heartbeat torrent-icons__thanks">{{ $torrent->thanks_count }}</i>
+        <i class="{{ config('other.font-awesome') }} fa-heartbeat torrent-icons__thanks" title="{{ __('torrent.already-thanks') }}">{{ $torrent->thanks_count }}</i>
     @endisset
     @isset($torrent->comments_count)
         <a href="{{ route('torrents.show', ['id' => $torrent->id]) }}#comments">
@@ -127,5 +115,17 @@
             class="{{ config('other.font-awesome') }} fa-level-up-alt torrent-icons__bumped"
             title="{{ __('torrent.recent-bumped') }}: {{ $torrent->bumped_at }}"
         ></i>
+    @endif
+    @if ($torrent->seeding)
+        <i class="{{ config('other.font-awesome') }} fa-arrow-circle-up text-success torrent-icons" title="{{ __('torrent.currently-seeding') }}"></i>
+    @endif
+    @if ($torrent->leeching)
+        <i class="{{ config('other.font-awesome') }} fa-arrow-circle-down text-danger torrent-icons" title="{{ __('torrent.currently-leeching') }}"></i>
+    @endif
+    @if ($torrent->not_completed)
+        <i class="{{ config('other.font-awesome') }} fa-do-not-enter text-info torrent-icons" title="{{ __('torrent.not-completed') }}"></i>
+    @endif
+    @if ($torrent->not_seeding)
+        <i class="{{ config('other.font-awesome') }} fa-thumbs-down text-warning torrent-icons" title="{{ __('torrent.completed-not-seeding') }}"></i>
     @endif
 </span>

@@ -401,17 +401,25 @@
 }
 
 #audio-container {
-    background: rgba(255, 255, 255, 0.5); /* 半透明背景 */
-    backdrop-filter: blur(10px); /* 磨砂玻璃效果 */
-    border-radius: 10px;
-    padding: 15px;
-    max-width: 300px;
-    margin: auto;
-    display: flex;
     align-items: center;
-    justify-content: space-around;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: hsl(0deg 0% 100% / 0%);
+    /* border-radius: 10px; */
+    /* box-shadow: 0 4px 8px rgba(0,0,0,.1); */
+    display: flex;
     flex-wrap: wrap;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    justify-content: space-around;
+    /* margin: auto; */
+    /* max-width: 300px; */
+    padding: 15px;
+    border-bottom: 2px solid hsla(0, 0%, 100%, .4);
+    border-radius: 12px;
+    border-right: 2px solid hsla(0, 0%, 100%, .4);
+    border-color: hsla(0, 0%, 100%, .4) rgba(40, 40, 40, .35) rgba(40, 40, 40, .35) hsla(0, 0%, 100%, .4);
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: 2px 8px 8px rgba(0, 0, 0, .3);
 }
 
 #audio-container button {
@@ -419,12 +427,12 @@
     border: none;
     cursor: pointer;
     font-size: 20px;
-    color: #4a90e2;
+    color: #ffffff;
     transition: color 0.3s;
 }
 
 #audio-container button:hover {
-    color: #2a7bc2;
+    color: #ffffff;
 }
 
 #audio-container #volume-slider {
@@ -438,3 +446,26 @@
     height: 50px;
     border-radius: 5px;
 }
+
+#progress-container {
+    width: 100%;
+    background-color: #ddd;
+    height: 20px;
+    position: relative;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: white;
+}
+
+#time-display {
+    text-align: center;
+}
+
+#time-display span {
+    color: white;
+    font-size: 14px;
+}
+

@@ -54,9 +54,11 @@ const soundSrc = audioContainer.getAttribute('data-sound-src');
 const sound = new Howl({
     src: [soundSrc],
     autoplay: false,
+    html5: true, // 开启流式播放
     loop: false,
     volume: 1.0,
     onend: function() {
+        requestAnimationFrame(updateProgress);
         console.log('Finished playing');
     }
 });
@@ -68,6 +70,22 @@ volumeSlider.addEventListener('input', function() {
 
 const playButton = document.getElementById('play-button');
 const pauseButton = document.getElementById('pause-button');
+// 音量控制
+document.getElementById('volume-decrease').addEventListener('click', function() {
+    let volume = sound.volume();
+    volume = Math.max(0, volume - 0.1); // 减小音量
+    sound.volume(volume);
+});
+
+document.getElementById('volume-increase').addEventListener('click', function() {
+    let volume = sound.volume();
+    volume = Math.min(1, volume + 0.1); // 增加音量
+    sound.volume(volume);
+});
+
+document.getElementById('mute').addEventListener('click', function() {
+    sound.mute(!sound.mute()); // 切换静音状态
+});
 
 playButton.addEventListener('click', function() {
     if (!sound.playing()) {
@@ -121,3 +139,43 @@ function draw() {
 }
 
 draw();
+
+// 获取进度条元素
+const progressBar = document.getElementById('progress-bar');
+
+function updateProgress() {
+    const seek = sound.seek() || 0; // 获取当前播放时间
+    const percent = ((seek / sound.duration()) * 100) || 0; // 计算百分比
+    progressBar.style.width = percent + "%"; // 更新进度条宽度
+
+    // 如果音频仍在播放，继续更新进度条
+    if (sound.playing()) {
+        requestAnimationFrame(updateProgress);
+    }
+}
+
+// 播放音频
+sound.play();
+
+function updateProgress() {
+    const seek = sound.seek() || 0;
+    const percent = ((seek / sound.duration()) * 100) || 0;
+    progressBar.style.width = percent + "%";
+
+    // 更新时间显示
+    document.getElementById('current-time').textContent = formatTime(seek);
+    document.getElementById('total-time').textContent = formatTime(sound.duration());
+
+    if (sound.playing()) {
+        requestAnimationFrame(updateProgress);
+    }
+}
+
+// 格式化时间为分:秒
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const secondsLeft = Math.floor(seconds % 60);
+    return `${minutes}:${secondsLeft < 10 ? '0' : ''}${secondsLeft}`;
+}
+
+updateProgress(); // 初始调用以设置时间
