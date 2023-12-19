@@ -418,7 +418,7 @@ class TorrentController extends Controller
             Keyword::upsert($keywords->toArray(), ['torrent_id', 'name'], []);
         }
 
-        // Cover Image for No-Meta Torrents
+        // Cover Image for No-Meta Torrents and Music-Meta Torrents
         if ($request->hasFile('torrent-cover')) {
             $image_cover = $request->file('torrent-cover');
             $filename_cover = 'torrent-cover_'.$torrent->id.'.jpg';
@@ -426,13 +426,15 @@ class TorrentController extends Controller
             Image::make($image_cover->getRealPath())->fit(500, 500)->encode('jpg', 90)->save($path_cover);
         }
 
-        // Banner Image for No-Meta Torrents
+        // Banner Image for No-Meta Torrents and Music-Meta Torrents
         if ($request->hasFile('torrent-banner')) {
             $image_cover = $request->file('torrent-banner');
             $filename_cover = 'torrent-banner_'.$torrent->id.'.jpg';
             $path_cover = public_path('/files/img/'.$filename_cover);
             Image::make($image_cover->getRealPath())->fit(960, 540)->encode('jpg', 90)->save($path_cover);
         }
+
+
 
         // check for trusted user and update torrent
         if ($user->group->is_trusted && !$request->boolean('mod_queue_opt_in')) {
