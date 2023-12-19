@@ -545,6 +545,11 @@ return [
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/media-src
         'media-src' => [
+            'self' => true,
+            'allow' => [
+                '*.kimoji.club',
+            ],
+
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/navigate-to
@@ -604,7 +609,7 @@ return [
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src
         'script-src' => [
-            'none' => false,
+            'none' => true,
 
             'self' => true,
 

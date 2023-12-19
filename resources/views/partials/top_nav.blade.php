@@ -78,7 +78,7 @@
                         <li>
                             <a href="{{ url('torrents?perPage=48&view=card&categories[0]=6') }}">
                                 <i class="{{ config('other.font-awesome') }} fa-book"></i>
-                                纪录之家
+                                纪录盛会
                             </a>
                         </li>
                         <li>
