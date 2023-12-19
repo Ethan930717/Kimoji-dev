@@ -46,6 +46,7 @@ if (document.getElementById('vue')) {
 // Sweet Alert
 window.Swal = require('sweetalert2');
 
+import 'APlayer/dist/APlayer.min.css';
 import APlayer from 'APlayer';
 document.addEventListener('DOMContentLoaded', function() {
     // 获取封面图片 URL
