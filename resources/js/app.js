@@ -49,16 +49,13 @@ window.Swal = require('sweetalert2');
 import APlayer from 'aplayer';
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 获取封面图片 URL
-    const coverUrl = document.getElementById('aplayer-container').dataset.cover;
-
     const ap = new APlayer({
         container: document.getElementById('aplayer'),
         audio: [{
             name: '倒带',
             artist: '蔡依琳', // 可以替换成实际的艺术家名
-            url: '/sounds/daodai.mp3',
-            cover: coverUrl // 使用从 Blade 模板获取的封面图片 URL
+            url: '/sounds/daodai.mp3'
+            // cover 属性已被移除
         }]
     });
 });

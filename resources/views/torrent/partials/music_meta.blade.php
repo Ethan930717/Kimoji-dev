@@ -8,6 +8,9 @@
                     class="meta__poster"
             >
         </a>
+        <div id="aplayer-container">
+            <div id="aplayer" class="aplayer"></div>
+        </div>
         <div class="meta__actions">
         <a class="meta__dropdown-button" href="#">
             <i class="{{ config('other.font-awesome') }} fa-ellipsis-v"></i>
@@ -25,9 +28,7 @@
             </li>
         </ul>
     </div>
-    <div id="aplayer-container" data-cover="{{ file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg') ? url('/files/img/torrent-cover_'.$torrent->id.'.jpg') : 'https://via.placeholder.com/400x600' }}">
-        <div id="aplayer" class="aplayer"></div>
-    </div>
+
     <div class="meta__chips">
         <section class="meta__chip-container">
             @if (isset($torrent->keywords) && $torrent->keywords->isNotEmpty())
