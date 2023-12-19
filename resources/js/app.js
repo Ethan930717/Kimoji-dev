@@ -72,3 +72,46 @@ playButton.addEventListener('click', function() {
 pauseButton.addEventListener('click', function() {
     sound.pause();
 });
+
+// 获取 Howler 的 Web Audio API AudioContext 和 Master GainNode
+const audioCtx = Howler.ctx;
+const masterGain = Howler.masterGain;
+
+// 创建 AnalyserNode
+const analyser = audioCtx.createAnalyser();
+analyser.fftSize = 2048; // FFT 大小，影响细节
+const bufferLength = analyser.frequencyBinCount;
+const dataArray = new Uint8Array(bufferLength);
+
+// 将 AnalyserNode 连接到 Master GainNode
+masterGain.connect(analyser);
+
+// 设置 Canvas
+const canvas = document.getElementById('audioCanvas');
+const canvasCtx = canvas.getContext('2d');
+
+function draw() {
+    // 设置动画循环
+    requestAnimationFrame(draw);
+
+    // 获取频率数据
+    analyser.getByteFrequencyData(dataArray);
+
+    // 使用 Canvas 绘制频率数据
+    canvasCtx.fillStyle = 'rgb(0, 0, 0)';
+    canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
+
+    const barWidth = (canvas.width / bufferLength) * 2.5;
+    let barHeight;
+    let x = 0;
+
+    for (let i = 0; i < bufferLength; i++) {
+        barHeight = dataArray[i];
+        canvasCtx.fillStyle = `rgb(${barHeight + 100},50,50)`;
+        canvasCtx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight / 2);
+
+        x += barWidth + 1;
+    }
+}
+
+draw();

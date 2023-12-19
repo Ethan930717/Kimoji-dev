@@ -29,7 +29,7 @@
             <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
             <button id="play-button">播放</button>
             <button id="pause-button">暂停</button>
-            <canvas id="frequency-display"></canvas> <!-- 用于显示频率 -->
+            <canvas id="audioCanvas"></canvas>
             <div id="audio-player"></div>
         </div>
 
