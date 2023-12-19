@@ -2,17 +2,12 @@
     @if (file_exists(public_path().'/files/img/torrent-banner_'.$torrent->id.'.jpg'))
         <img class="meta__backdrop" src="{{ url('/files/img/torrent-banner_'.$torrent->id.'.jpg') }}" alt="Backdrop">
     @endif
-        <span class="meta__poster-link" @click="modalOpen = true; previewImage = '{{ file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg') ? url('/files/img/torrent-cover_'.$torrent->id.'.jpg') : 'https://via.placeholder.com/400x600' }}'">
+        <a class="meta__poster-link">
             <img
                     src="{{ file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg') ? url('/files/img/torrent-cover_'.$torrent->id.'.jpg') : 'https://via.placeholder.com/400x600' }}"
                     class="meta__poster"
             >
-        </span>
-        <!-- 图片预览模态窗口 -->
-        <div x-show="modalOpen" class="modal" @click.away="modalOpen = false">
-            <span class="close" @click="modalOpen = false">&times;</span>
-            <img :src="previewImage" class="modal-content">
-        </div>
+        </a>
         <div class="meta__actions">
         <a class="meta__dropdown-button" href="#">
             <i class="{{ config('other.font-awesome') }} fa-ellipsis-v"></i>
@@ -94,3 +89,6 @@
         </section>
     </div>
 </section>
+<script>
+    window.torrentCoverUrl = "{{ file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg') ? url('/files/img/torrent-cover_'.$torrent->id.'.jpg') : 'https://via.placeholder.com/400x600' }}";
+</script>

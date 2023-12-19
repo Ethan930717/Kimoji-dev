@@ -46,4 +46,19 @@ if (document.getElementById('vue')) {
 // Sweet Alert
 window.Swal = require('sweetalert2');
 
+import 'APlayer/dist/APlayer.min.css';
+import APlayer from 'APlayer';
+document.addEventListener('DOMContentLoaded', function() {
+    const coverUrl = window.torrentCoverUrl || '/img/green.png'; // 使用默认封面作为后备
+    const ap = new APlayer({
+        container: document.getElementById('aplayer'),
+        audio: [{
+            name: '倒带',
+            artist: '蔡依林', // 可以替换成实际的艺术家名
+            url: coverUrl,
+            cover: '/path/to/cover.jpg' // 封面图片路径，可选
+        }]
+    });
+});
+
 
