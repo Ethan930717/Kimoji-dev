@@ -48,8 +48,11 @@ window.Swal = require('sweetalert2');
 
 
 import { Howl, Howler } from 'howler';
+const audioContainer = document.getElementById('audio-container');
+const soundSrc = audioContainer.getAttribute('data-sound-src');
+
 const sound = new Howl({
-    src: ['/sounds/daodai.mp3'],
+    src: [soundSrc],
     autoplay: false,
     loop: false,
     volume: 1.0,
@@ -57,6 +60,7 @@ const sound = new Howl({
         console.log('Finished playing');
     }
 });
+
 const volumeSlider = document.getElementById('volume-slider');
 volumeSlider.addEventListener('input', function() {
     sound.volume(this.value);
@@ -66,7 +70,9 @@ const playButton = document.getElementById('play-button');
 const pauseButton = document.getElementById('pause-button');
 
 playButton.addEventListener('click', function() {
-    sound.play();
+    if (!sound.playing()) {
+        sound.play();
+    }
 });
 
 pauseButton.addEventListener('click', function() {

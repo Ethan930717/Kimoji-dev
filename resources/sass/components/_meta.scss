@@ -399,3 +399,42 @@
         -webkit-box-orient: vertical;
     }
 }
+
+#audio-container {
+    background: rgba(255, 255, 255, 0.5); /* 半透明背景 */
+    backdrop-filter: blur(10px); /* 磨砂玻璃效果 */
+    border-radius: 10px;
+    padding: 15px;
+    max-width: 300px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#audio-container button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #4a90e2;
+    transition: color 0.3s;
+}
+
+#audio-container button:hover {
+    color: #2a7bc2;
+}
+
+#audio-container #volume-slider {
+    width: 100%;
+    margin: 10px 0;
+}
+
+#audio-container canvas {
+    display: block;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+}

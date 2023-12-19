@@ -25,14 +25,12 @@
             </li>
         </ul>
     </div>
-        <div id="audio-container">
+        <div id="audio-container" data-sound-src="/sounds/daodai.mp3">
             <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
-            <button id="play-button">播放</button>
-            <button id="pause-button">暂停</button>
+            <button id="play-button">&#9658;</button> <!-- 使用播放符号 -->
+            <button id="pause-button">&#10074;&#10074;</button> <!-- 使用暂停符号 -->
             <canvas id="audioCanvas"></canvas>
-            <div id="audio-player"></div>
         </div>
-
     <div class="meta__chips">
         <section class="meta__chip-container">
             @if (isset($torrent->keywords) && $torrent->keywords->isNotEmpty())
