@@ -1,31 +1,27 @@
 <section class="meta">
-    @if (file_exists(public_path().'/files/img/torrent-banner_'.$torrent->id.'.jpg'))
-        <img class="meta__backdrop" src="{{ url('/files/img/torrent-banner_'.$torrent->id.'.jpg') }}" alt="Backdrop">
-    @endif
-        <div x-data="imageModal()">
+    <div x-data="imageModal()">
     <span class="meta__poster-link" @click="openModal('{{ file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg') ? url('/files/img/torrent-cover_'.$torrent->id.'.jpg') : 'https://via.placeholder.com/500x500' }}')">
         <img
                 src="{{ file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg') ? url('/files/img/torrent-cover_'.$torrent->id.'.jpg') : 'https://via.placeholder.com/500x500' }}"
                 class="meta__poster thumbnail"
         >
     </span>
-            <div id="myModal" class="modal"
-                 x-show="showModal"
-                 @click="closeModal()"
-                 x-transition:enter="transition ease-out duration-300"
-                 x-transition:enter-start="opacity-0"
-                 x-transition:enter-end="opacity-100"
-                 x-transition:leave="transition ease-in duration-300"
-                 x-transition:leave-start="opacity-100"
-                 x-transition:leave-end="opacity-0">
-                <img :src="imageUrl" class="modal-content" id="img01">
-            </div>
+        <div id="myModal" class="modal"
+             x-show="showModal"
+             @click="closeModal()"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="transition ease-in duration-300"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0">
+            <img :src="imageUrl" class="modal-content" id="img01">
         </div>
-        <div x-data="audioPlayer()">
-            <button x-on:click="play()">播放</button>
-            <button x-on:click="pause()">暂停</button>
-            <input type="range" x-model="volume" x-on:input="setVolume()">
-        </div>
+    </div>
+    @if (file_exists(public_path().'/files/img/torrent-banner_'.$torrent->id.'.jpg'))
+        <img class="meta__backdrop" src="{{ url('/files/img/torrent-banner_'.$torrent->id.'.jpg') }}" alt="Backdrop">
+    @endif
+
         <div class="meta__actions">
         <a class="meta__dropdown-button" href="#">
             <i class="{{ config('other.font-awesome') }} fa-ellipsis-v"></i>
