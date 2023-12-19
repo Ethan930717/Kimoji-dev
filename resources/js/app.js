@@ -47,6 +47,7 @@ if (document.getElementById('vue')) {
 window.Swal = require('sweetalert2');
 
 
+//Howler
 import { Howl, Howler } from 'howler';
 const audioContainer = document.getElementById('audio-container');
 const soundSrc = audioContainer.getAttribute('data-sound-src');
@@ -143,19 +144,6 @@ draw();
 // 获取进度条元素
 const progressBar = document.getElementById('progress-bar');
 
-function updateProgress() {
-    const seek = sound.seek() || 0; // 获取当前播放时间
-    const percent = ((seek / sound.duration()) * 100) || 0; // 计算百分比
-    progressBar.style.width = percent + "%"; // 更新进度条宽度
-
-    // 如果音频仍在播放，继续更新进度条
-    if (sound.playing()) {
-        requestAnimationFrame(updateProgress);
-    }
-}
-
-// 播放音频
-sound.play();
 
 function updateProgress() {
     const seek = sound.seek() || 0;
