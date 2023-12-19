@@ -25,9 +25,14 @@
             </li>
         </ul>
     </div>
-    <div id="aplayer-container" data-cover="{{ file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg') ? url('/files/img/torrent-cover_'.$torrent->id.'.jpg') : 'https://via.placeholder.com/400x600' }}">
-        <div id="aplayer" class="aplayer"></div>
-    </div>
+        <div id="audio-container">
+            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+            <button id="play-button">播放</button>
+            <button id="pause-button">暂停</button>
+            <canvas id="frequency-display"></canvas> <!-- 用于显示频率 -->
+            <div id="audio-player"></div>
+        </div>
+
     <div class="meta__chips">
         <section class="meta__chip-container">
             @if (isset($torrent->keywords) && $torrent->keywords->isNotEmpty())

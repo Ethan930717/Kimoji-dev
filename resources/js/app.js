@@ -46,19 +46,29 @@ if (document.getElementById('vue')) {
 // Sweet Alert
 window.Swal = require('sweetalert2');
 
-import APlayer from 'aplayer';
 
-document.addEventListener('DOMContentLoaded', function() {
-    // 获取封面图片 URL
-    const coverUrl = document.getElementById('aplayer-container').dataset.cover;
+import { Howl, Howler } from 'howler';
+const sound = new Howl({
+    src: ['/sounds/daodai.mp3'],
+    autoplay: false,
+    loop: false,
+    volume: 1.0,
+    onend: function() {
+        console.log('Finished playing');
+    }
+});
+const volumeSlider = document.getElementById('volume-slider');
+volumeSlider.addEventListener('input', function() {
+    sound.volume(this.value);
+});
 
-    const ap = new APlayer({
-        container: document.getElementById('aplayer'),
-        audio: [{
-            name: '倒带',
-            artist: '蔡依琳', // 可以替换成实际的艺术家名
-            url: '/sounds/daodai.mp3',
-            cover: coverUrl // 使用从 Blade 模板获取的封面图片 URL
-        }]
-    });
+const playButton = document.getElementById('play-button');
+const pauseButton = document.getElementById('pause-button');
+
+playButton.addEventListener('click', function() {
+    sound.play();
+});
+
+pauseButton.addEventListener('click', function() {
+    sound.pause();
 });
