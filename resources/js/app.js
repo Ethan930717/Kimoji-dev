@@ -46,7 +46,6 @@ if (document.getElementById('vue')) {
 // Sweet Alert
 window.Swal = require('sweetalert2');
 
-import 'aplayer/dist/APlayer.min.css';
 import APlayer from 'aplayer';
 
 document.addEventListener('DOMContentLoaded', function() {
