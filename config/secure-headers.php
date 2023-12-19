@@ -545,11 +545,10 @@ return [
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/media-src
         'media-src' => [
-            'self' => true,
+            'self'  => true,
             'allow' => [
                 '*.kimoji.club',
             ],
-
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/navigate-to
