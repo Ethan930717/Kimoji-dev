@@ -434,8 +434,6 @@ class TorrentController extends Controller
             Image::make($image_cover->getRealPath())->fit(960, 540)->encode('jpg', 90)->save($path_cover);
         }
 
-
-
         // check for trusted user and update torrent
         if ($user->group->is_trusted && !$request->boolean('mod_queue_opt_in')) {
             $appurl = config('app.url');
