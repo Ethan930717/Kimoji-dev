@@ -1,13 +1,6 @@
 .meta {
     display: grid;
-    grid-template-areas: "poster title actions" "poster ids ids" "poster description description" "poster chips chips";
-    grid-template-columns: auto 1fr auto;
-    grid-template-rows: auto auto auto minmax(0, 1fr);
-    gap: 16px 32px;
-    padding: 16px;
-    max-height: 510px;.meta {
-    display: grid;
-    grid-template-areas: "poster title actions" "poster ids ids" "poster description description" "poster chips chips" "poster player player";
+    grid-template-areas: "poster title actions" "poster ids ids" "poster description description" "poster player player" "poster chips chips" ;
     grid-template-columns: auto 1fr auto;
     grid-template-rows: auto auto auto minmax(0, 1fr);
     gap: 16px 32px;
@@ -408,7 +401,7 @@
     }
 
     /*APlayer*/
-    
+
     #aplayer-container {
         grid-area: player; /* 指定到新区域 */
         /* 可能需要的其他样式调整 */
@@ -948,5 +941,4 @@
             -webkit-transform: rotate(360deg);
             transform: rotate(360deg); } }
 
-}
 
