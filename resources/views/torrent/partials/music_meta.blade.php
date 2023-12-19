@@ -28,15 +28,8 @@
         </div>
         <div id="audio-container" data-sound-src="/sounds/daodai.mp3">
             <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
-            <button id="play-button" class="fa fas fa-play"></button> <!-- 使用播放符号 -->
-            <button id="pause-button" class="fa fas fa-pause"></button> <!-- 使用暂停符号 -->
-            <!-- 音量控制按钮 -->
-            <!-- 音量减小 -->
-            <button id="volume-decrease" class="fa fas fa-minus"></button>
-            <!-- 音量增加 -->
-            <button id="volume-increase" class="fa fas fa-plus"></button>
-            <!-- 静音 -->
-            <button id="mute" class="fa fas fa-volume-mute"></button>
+            <button id="play-pause-button" class="fa fas fa-play"></button> <!-- 合并的播放/暂停按钮 -->
+            <button id="mute" class="fa fas fa-volume-mute"></button> <!-- 静音按钮 -->
             <!-- 进度条和时间显示 -->
             <div id="progress-container">
                 <div id="progress-bar"></div>

@@ -415,10 +415,9 @@
                     g && (settings.langString = this.l10n[g]);
                     var f = document.createElement('a');
                     (f.href = settings.url),
-                        (this.originUrlPattern =
-                            '^' +
-                            (f.protocol + '//' + f.hostname).replace(/\./g, '\\.').replace(/\ / / g, '\\/') +
-                            '$');
+                        this.originUrlPattern = '^' +
+                            (f.protocol + '//' + f.hostname).replace(/\./g, '\\.').replace(/\//g, '\\/') +
+                            '$';
                     var h = document.querySelectorAll(this.ns.selDataPluginTrigger + '[data-target]');
                     if (h.length > 0)
                         for (d = 0; d < h.length; d++) {
