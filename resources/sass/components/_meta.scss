@@ -408,7 +408,11 @@
     }
 
     /*APlayer*/
-
+    
+    #aplayer-container {
+        grid-area: player; /* 指定到新区域 */
+        /* 可能需要的其他样式调整 */
+    }
     .aplayer {
         font-family: Arial,Helvetica,sans-serif;
         line-height: normal;
