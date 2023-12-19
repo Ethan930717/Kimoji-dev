@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
             name: '倒带',
             artist: '蔡依琳', // 可以替换成实际的艺术家名
             url: '/sounds/daodai.mp3'
-            // cover 属性已被移除
         }]
     });
 });

@@ -608,7 +608,7 @@ return [
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src
         'script-src' => [
-            'none' => true,
+            'none' => false,
 
             'self' => true,
 
@@ -624,12 +624,12 @@ return [
 
             /* followings are only work for `script` and `style` related directives */
 
-            'unsafe-inline' => false,
+            'unsafe-inline' => true,
 
             'unsafe-eval' => true,
 
             // https://www.w3.org/TR/CSP3/#unsafe-hashes-usage
-            'unsafe-hashes' => false,
+            'unsafe-hashes' => true,
 
             // Enable `strict-dynamic` will *ignore* `self`, `unsafe-inline`,
             // `allow` and `schemes`. You can find more information from:
