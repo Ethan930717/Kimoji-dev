@@ -403,18 +403,36 @@
 /*APlayer*/
 
 .aplayer {
-    background: #fff;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial,Helvetica,sans-serif;
+    line-height: normal;
     margin: 5px;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.07), 0 1px 5px 0 rgba(0, 0, 0, 0.1);
-    border-radius: 2px;
     overflow: hidden;
+    position: relative;
     -webkit-user-select: none;
     -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
-    line-height: initial;
-    position: relative; }
+    align-items: center;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: hsl(0deg 0% 100% / 0%);
+    /* border-radius: 10px; */
+    /* box-shadow: 0 4px 8px rgba(0,0,0,.1); */
+    /* display: flex; */
+    flex-wrap: wrap;
+    justify-content: space-around;
+    /* margin: auto; */
+    /* max-width: 300px; */
+    /*
+    padding: 20px;
+    */
+    border-bottom: 2px solid hsla(0, 0%, 100%, .4);
+    border-radius: 12px;
+    border-right: 2px solid hsla(0, 0%, 100%, .4);
+    border-color: hsla(0, 0%, 100%, .4) rgba(40, 40, 40, .35) rgba(40, 40, 40, .35) hsla(0, 0%, 100%, .4);
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: 2px 8px 8px rgba(0, 0, 0, .3);
+}
 .aplayer * {
     box-sizing: content-box; }
 .aplayer svg {

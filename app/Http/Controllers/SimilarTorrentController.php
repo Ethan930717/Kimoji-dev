@@ -114,30 +114,38 @@ class SimilarTorrentController extends Controller
         switch (true) {
             case $category->movie_meta:
                 $cacheKey = 'tmdb-movie-scraper:'.$tmdbId;
-
-                /** @var Carbon $lastUpdated */
-                $lastUpdated = cache()->get($cacheKey);
-
-                abort_if($lastUpdated !== null && $lastUpdated->addDay()->isFuture() && !$request->user()->group->is_modo, 403);
-
+                // Removed the time check
                 cache()->put($cacheKey, now(), now()->addDay());
-
                 $tmdbScraper->movie($tmdbId);
-
                 break;
-            case $category->tv_meta:
+
+/*                $cacheKey = 'tmdb-movie-scraper:'.$tmdbId;
+                /** @var Carbon $lastUpdated */
+/*                $lastUpdated = cache()->get($cacheKey);*/
+/*                abort_if($lastUpdated !== null && $lastUpdated->addDay()->isFuture() && !$request->user()->group->is_modo, 403);*/
+/*                cache()->put($cacheKey, now(), now()->addDay());*/
+/*                $tmdbScraper->movie($tmdbId);*/
+/*                break;*/
+
+              case $category->tv_meta:
+                $cacheKey = 'tmdb-tv-scraper:'.$tmdbId;
+                // Removed the time check
+                cache()->put($cacheKey, now(), now()->addDay());
+                $tmdbScraper->tv($tmdbId);
+                break;
+/*            case $category->tv_meta:
                 $cacheKey = 'tmdb-tv-scraper:'.$tmdbId;
 
                 /** @var Carbon $lastUpdated */
-                $lastUpdated = cache()->get($cacheKey);
+/*                $lastUpdated = cache()->get($cacheKey);*/
 
-                abort_if($lastUpdated !== null && $lastUpdated->addDay()->isFuture() && !$request->user()->group->is_modo, 403);
+/*                abort_if($lastUpdated !== null && $lastUpdated->addDay()->isFuture() && !$request->user()->group->is_modo, 403);*/
 
-                cache()->put($cacheKey, now(), now()->addDay());
+/*                cache()->put($cacheKey, now(), now()->addDay());*/
 
-                $tmdbScraper->tv($tmdbId);
+/*                $tmdbScraper->tv($tmdbId);*/
 
-                break;
+/*                break;*/
         }
 
         return to_route('torrents.similar', ['category_id' => $category->id, 'tmdb' => $tmdbId])
