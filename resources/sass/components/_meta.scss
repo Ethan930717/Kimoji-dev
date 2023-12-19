@@ -50,7 +50,7 @@
 
     @media only screen and (max-width: 1200px) {
         .meta {
-            grid-template-areas: "poster title actions" "poster ids ids" "poster description description" "chips chips chips";
+            grid-template-areas: "poster title actions" "poster ids ids" "poster description description" "poster player player" "chips chips chips";
             grid-template-columns: 140px minmax(0, 1fr) auto;
         }
 
@@ -403,8 +403,8 @@
     /*APlayer*/
 
     #aplayer-container {
-        grid-area: player; /* 指定到新区域 */
-        /* 可能需要的其他样式调整 */
+        grid-area: player;
+        margin-top: auto;
     }
     .aplayer {
         font-family: Arial,Helvetica,sans-serif;
@@ -594,8 +594,8 @@
     .aplayer .aplayer-pic {
         position: relative;
         float: left;
-        height: 66px;
-        width: 66px;
+        height: 100px;
+        width: 100px;
         background-size: cover;
         background-position: center;
         transition: all 0.3s ease;
@@ -640,9 +640,9 @@
         height: 12px;
         width: 12px; }
     .aplayer .aplayer-info {
-        margin-left: 66px;
-        padding: 14px 7px 0 10px;
-        height: 66px;
+        margin-left: 100px;
+        padding: 25px 12px 0 20px;
+        height: 100px;
         box-sizing: border-box; }
     .aplayer .aplayer-info .aplayer-music {
         overflow: hidden;
@@ -656,10 +656,14 @@
         cursor: default;
         padding-bottom: 2px; }
     .aplayer .aplayer-info .aplayer-music .aplayer-title {
-        font-size: 14px; }
+        font-size: 22px;
+        text-shadow: 0 0 2px #e1bd2e;
+    }
     .aplayer .aplayer-info .aplayer-music .aplayer-author {
-        font-size: 12px;
-        color: #666; }
+        font-size: 15px;
+        text-shadow: 0 0 2px #d7dba1;
+        color: #ffffff
+    }
     .aplayer .aplayer-info .aplayer-controller {
         position: relative;
         display: flex; }
@@ -673,16 +677,16 @@
         transform: scale(1); }
     .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar {
         position: relative;
-        height: 2px;
+        height: 3px;
         width: 100%;
-        background: #cdcdcd; }
+        background: #ffffff; }
     .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-loaded {
         position: absolute;
         left: 0;
         top: 0;
         bottom: 0;
-        background: #aaa;
-        height: 2px;
+        background: #add8e6;
+        height: 3px;
         transition: all 0.5s ease; }
     .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played {
         position: absolute;
@@ -708,8 +712,8 @@
         right: 0;
         bottom: 4px;
         height: 17px;
-        color: #999;
-        font-size: 11px;
+        color: #ffffff;
+        font-size: 14px;
         padding-left: 7px; }
     .aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-time-inner {
         vertical-align: middle; }
@@ -717,11 +721,11 @@
         cursor: pointer;
         transition: all 0.2s ease; }
     .aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon path {
-        fill: #666; }
+        fill: #ffffff; }
     .aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon.aplayer-icon-loop {
         margin-right: 2px; }
     .aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon:hover path {
-        fill: #000; }
+        fill: #a1fff4; }
     .aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon.aplayer-icon-menu {
         display: none; }
     .aplayer .aplayer-info .aplayer-controller .aplayer-time.aplayer-time-narrow .aplayer-icon-mode {

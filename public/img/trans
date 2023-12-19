@@ -1,4 +1,4 @@
-for file in 'kimoji-music.png'; do
+for file in 'kimoji-audiobook.png'; do
     webpfile="${file%.png}.webp"
     if [ ! -f "$webpfile" ]; then
         mogrify -format webp "$file"
