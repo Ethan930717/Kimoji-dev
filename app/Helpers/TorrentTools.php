@@ -13,6 +13,8 @@
 
 namespace App\Helpers;
 
+use Exception;
+
 class TorrentTools
 {
     /**
@@ -251,13 +253,14 @@ class TorrentTools
     public static function extractPiecesHash($torrentFile): string
     {
         $torrentData = Bencode::bdecode_file($torrentFile);
-        if (isset($torrentData['info']) && isset($torrentData['info']['pieces'])) {
+
+        if (isset($torrentData['info'], $torrentData['info']['pieces'])) {
             // 计算pieces字段的SHA-1散列
             $piecesSha1 = sha1($torrentData['info']['pieces']);
+
             return $piecesSha1;
         }
 
-        throw new \Exception('Invalid torrent file');
+        throw new Exception('Invalid torrent file');
     }
-
 }

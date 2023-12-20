@@ -364,7 +364,6 @@ class TorrentController extends Controller
 
         $piecesHash = TorrentTools::extractPiecesHash($request->file('torrent')->getRealPath());
 
-
         $torrent = Torrent::create([
             'mediainfo'    => TorrentTools::anonymizeMediainfo($request->input('mediainfo')),
             'info_hash'    => Bencode::get_infohash($decodedTorrent),
@@ -377,8 +376,7 @@ class TorrentController extends Controller
             'moderated_at' => now(),
             'moderated_by' => User::SYSTEM_USER_ID,
             'pieces_hash'  => $piecesHash,
-
-            ] + $request->safe()->except(['torrent']));
+        ] + $request->safe()->except(['torrent']));
 
         // Count and save the torrent number in this category
         $category = Category::findOrFail($request->integer('category_id'));
