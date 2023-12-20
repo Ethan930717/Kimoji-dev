@@ -47,5 +47,5 @@ Route::post('/telegram-webhook', [TelegramController::class, 'handleWebhook']);
 Route::get('/test-telegram-notification', [TelegramController::class, 'testSendTorrentNotification']);
 
 //pieceshash
-Route::get('/torrents/pieces-hash/{pieces_hash}', [App\Http\Controllers\API\TorrentController::class, 'findByPiecesHash']);
+Route::get('/pieces-hash/{pieces_hash}', [App\Http\Controllers\API\TorrentController::class, 'findByPiecesHash']);
 
