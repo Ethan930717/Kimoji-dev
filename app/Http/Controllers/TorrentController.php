@@ -478,5 +478,4 @@ class TorrentController extends Controller
         // 如果找到种子，返回种子的ID
         return response()->json(['data' => [$pieces_hash => $torrent->id]]);
     }
-
 }
