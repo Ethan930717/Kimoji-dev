@@ -464,5 +464,4 @@ class TorrentController extends Controller
         return to_route('download_check', ['id' => $torrent->id])
             ->withSuccess('您的种子文件已准备好下载和做种');
     }
-    
 }
