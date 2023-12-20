@@ -36,6 +36,7 @@ if (config('unit3d.root_url_override')) {
 }
 // Torrents System
 Route::middleware(['auth:api', 'banned'])->prefix('torrents')->group(function (): void {
+    Route::get('/pieces-hash/{pieces_hash}', [App\Http\Controllers\API\TorrentController::class, 'findByPiecesHash']);
     Route::get('/', [App\Http\Controllers\API\TorrentController::class, 'index'])->name('api.torrents.index');
     Route::get('/filter', [App\Http\Controllers\API\TorrentController::class, 'filter']);
     Route::get('/{id}', [App\Http\Controllers\API\TorrentController::class, 'show'])->where('id', '[0-9]+');
