@@ -6,18 +6,15 @@
                 <div class="panel__actions">
                     @if ($forum->getPermission()->start_topic == true)
                         <div class="panel__action">
-                            <div class="form__group">
                                 <a
                                     href="{{ route('topics.create', ['id' => $forum->id]) }}"
                                     class="panel__action form__button form__button--text"
                                 >
                                     {{ __('forum.create-new-topic') }}
                                 </a>
-                            </div>
                         </div>
                     @endif
                     <div class="panel__action">
-                        <div class="form__group">
                             @if ($subscription === null)
                                 <form
                                     class="panel__action"
@@ -44,7 +41,6 @@
                                     </button>
                                 </form>
                             @endif
-                        </div>
                     </div>
                 </div>
             </header>
