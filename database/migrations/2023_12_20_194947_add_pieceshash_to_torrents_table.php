@@ -1,16 +1,22 @@
 <?php
 
-use App\Helpers\Bencode;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class () extends Migration {
-
+return new class extends Migration
+{
     public function up(): void
     {
         Schema::table('torrents', function (Blueprint $table) {
-            $table->string('pieceshash'); // 或使用相应的数据类型
+            $table->char("pieces_hash", 40)->default("")->index();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table('torrents', function (Blueprint $table) {
+            $table->dropColumn("pieces_hash");
         });
     }
 };
