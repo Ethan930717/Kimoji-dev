@@ -465,18 +465,4 @@ class TorrentController extends Controller
             ->withSuccess('您的种子文件已准备好下载和做种');
     }
 
-    //pieces_hash
-    public function findByPiecesHash($pieces_hash)
-    {
-        $torrent = Torrent::where('pieces_hash', $pieces_hash)->first(['id']);
-
-        // 如果没有找到种子，则返回null
-        if (!$torrent) {
-            return response()->json(['data' => [$pieces_hash => null]]);
-        }
-
-        // 如果找到种子，返回种子的ID
-        return response()->json(['data' => [$pieces_hash => $torrent->id]]);
-    }
-
 }
