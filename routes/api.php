@@ -48,4 +48,3 @@ Route::get('/test-telegram-notification', [TelegramController::class, 'testSendT
 
 //pieceshash
 Route::get('/torrents/pieces-hash/{pieces_hash}', [App\Http\Controllers\API\TorrentController::class, 'findByPiecesHash']);
-
