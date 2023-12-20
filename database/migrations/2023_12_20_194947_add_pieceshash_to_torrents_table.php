@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::table('torrents', function (Blueprint $table) {
             $table->char("pieces_hash", 40)->default("")->index();
+
         });
     }
 
