@@ -414,10 +414,10 @@
     }
 
 .aplayer-title {
-    font-size: 1em; /* 设置标题字体大小 */
+    font-size: 1.5em; /* 设置标题字体大小 */
     color: #ffffff; /* 设置标题字体颜色 */
     text-shadow:0 0 2px #0dffff;
-    margin-bottom: 8px; /* 在标题和播放器之间添加一些间距 */
+    margin-bottom: 10px; /* 在标题和播放器之间添加一些间距 */
     text-align: left; /* 标题靠左对齐 */
 }
 
@@ -579,8 +579,8 @@
     .aplayer .aplayer-body {
         position: relative; }
     .aplayer .aplayer-icon {
-        width: 15px;
-        height: 15px;
+        width: 2em;
+        height: 2em;
         border: none;
         background-color: transparent;
         outline: none;
@@ -588,7 +588,7 @@
         opacity: .8;
         vertical-align: middle;
         padding: 0;
-        font-size: 12px;
+        font-size: 0.7em;
         margin: 0;
         display: inline-block; }
     .aplayer .aplayer-icon path {
@@ -609,8 +609,8 @@
     .aplayer .aplayer-pic {
         position: relative;
         float: left;
-        height: 100px;
-        width: 100px;
+        height: 6.2em;
+        width: 6.2em;
         background-size: cover;
         background-position: center;
         transition: all 0.3s ease;
@@ -638,22 +638,24 @@
         margin: 0 -15px -15px 0; }
     .aplayer .aplayer-pic .aplayer-play svg {
         position: absolute;
-        top: 3px;
-        left: 4px;
-        height: 20px;
-        width: 20px; }
+        top: 0.3em;
+        left: 0.2em;
+        height: 1.2em;
+        width: 1.2em; }
     .aplayer .aplayer-pic .aplayer-pause {
-        width: 20px;
-        height: 20px;
-        border: 2px solid #fff;
-        bottom: 4px;
-        right: 4px; }
-    .aplayer .aplayer-pic .aplayer-pause svg {
+        height: 0.8em;
+        left: 0.25em;
         position: absolute;
-        top: 2px;
-        left: 2px;
-        height: 12px;
-        width: 12px; }
+        top: 0.2em;
+        width: 0.8em;
+    }
+    .aplayer .aplayer-pic .aplayer-pause svg {
+        height: 0.8em;
+        left: 0.25em;
+        position: absolute;
+        top: 0.2em;
+        width: 0.8em;
+    }
     .aplayer .aplayer-info {
         margin-left: 100px;
         padding: 25px 12px 0 20px;
@@ -671,11 +673,11 @@
         cursor: default;
         padding-bottom: 2px; }
     .aplayer .aplayer-info .aplayer-music .aplayer-title {
-        font-size: 22px;
+        font-size: 1.5em;
         text-shadow: 0 0 2px #e1bd2e;
     }
     .aplayer .aplayer-info .aplayer-music .aplayer-author {
-        font-size: 15px;
+        font-size: 1em;
         text-shadow: 0 0 2px #d7dba1;
         color: #ffffff
     }
@@ -683,8 +685,8 @@
         position: relative;
         display: flex; }
     .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap {
-        margin: 0 0 0 5px;
-        padding: 4px 0;
+        margin: 0 0 0 0.25em;
+        padding: 0.25em 0;
         cursor: pointer !important;
         flex: 1; }
     .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap:hover .aplayer-bar .aplayer-played .aplayer-thumb {
@@ -692,7 +694,7 @@
         transform: scale(1); }
     .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar {
         position: relative;
-        height: 3px;
+        height: 0.2em;
         width: 100%;
         background: #ffffff; }
     .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-loaded {
@@ -701,7 +703,7 @@
         top: 0;
         bottom: 0;
         background: #add8e6;
-        height: 3px;
+        height: 0.2em;
         transition: all 0.5s ease; }
     .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played {
         position: absolute;
@@ -728,7 +730,7 @@
         bottom: 4px;
         height: 17px;
         color: #ffffff;
-        font-size: 14px;
+        font-size: 0.8em;
         padding-left: 7px; }
     .aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-time-inner {
         vertical-align: middle; }
@@ -755,14 +757,15 @@
     .aplayer .aplayer-info .aplayer-controller .aplayer-volume-wrap:hover .aplayer-volume-bar-wrap {
         height: 40px; }
     .aplayer .aplayer-info .aplayer-controller .aplayer-volume-wrap .aplayer-volume-bar-wrap {
-        position: absolute;
-        bottom: 15px;
-        right: -3px;
-        width: 25px;
+        bottom: 1.5em;
         height: 0;
-        z-index: 99;
         overflow: hidden;
-        transition: all .2s ease-in-out; }
+        position: absolute;
+        right: -0.2em;
+        transition: all .2s ease-in-out;
+        width: 2em;
+        z-index: 99;
+    }
     .aplayer .aplayer-info .aplayer-controller .aplayer-volume-wrap .aplayer-volume-bar-wrap.aplayer-volume-bar-wrap-active {
         height: 40px; }
     .aplayer .aplayer-info .aplayer-controller .aplayer-volume-wrap .aplayer-volume-bar-wrap .aplayer-volume-bar {
