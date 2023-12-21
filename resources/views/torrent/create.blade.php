@@ -88,21 +88,21 @@
                             @change="uploadExtension.hook(); cat = $refs.catId.value"
                         >
                     </p>
-                    <p class="form__group">
+                    <p class="form__group" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
                         <label for="nfo" class="form__label">
                             NFO {{ __('torrent.file') }} ({{ __('torrent.optional') }})
                         </label>
                         <input id="nfo" class="upload-form-file form__file" type="file" accept=".nfo" name="nfo">
                     </p>
-                    <p class="form__group" x-show="cats[cat].type === 'no'">
+                    <p class="form__group" x-show="cats[cat].type === 'music'">
                         <label for="torrent-cover" class="form__label">
-                            专辑封面（必选）
+                            封面（必选）
                         </label>
                         <input id="torrent-cover" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg, .png" name="torrent-cover">
                     </p>
-                    <p class="form__group" x-show="cats[cat].type === 'no'">
+                    <p class="form__group" x-show="cats[cat].type === 'music'">
                         <label for="torrent-banner" class="form__label">
-                            歌手海报 (必选)
+                            海报 (必选)
                         </label>
                         <input id="torrent-banner" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg, .png" name="torrent-banner">
                     </p>
@@ -112,7 +112,6 @@
                             name="name"
                             id="title"
                             class="form__text"
-
                             value="{{ $title ?: old('name') }}"
                             required
                         >
@@ -150,7 +149,7 @@
                             <option hidden disabled selected value=""></option>
                             @foreach ($types as $index => $type)
                                 @if ($index >= 7)
-                                    <option value="{{ $type->id }}" @selected(old('type_id')==$type->id) x-show="cats[cat].type === 'no'">
+                                    <option value="{{ $type->id }}" @selected(old('type_id')==$type->id) x-show="cats[cat].type === 'music'">
                                         {{ $type->name }}
                                     </option>
                                 @endif
@@ -160,8 +159,8 @@
                                 name="type_id"
                                 id="autotype"
                                 class="form__select"
-                                x-bind:required="cats[cat].type !== 'no'"
-                                x-show="cats[cat].type !== 'no'">
+                                x-bind:required="cats[cat].type !== 'music'"
+                                x-show="cats[cat].type !== 'music'">
                         >
                             <option hidden disabled selected value=""></option>
                             @foreach ($types as $index => $type)
@@ -194,7 +193,7 @@
                             {{ __('torrent.resolution') }}
                         </label>
                     </p>
-                    <div class="form__group--horizontal" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
+                    <div class="form__group--horizontal" x-show="cats[cat].type === 'music'">
                         <p class="form__group">
                             <select
                                 name="distributor_id"
@@ -304,6 +303,7 @@
                         </p>
                         <p class="form__group" x-show="cats[cat].type === 'tv'">
                             <input type="hidden" name="tvdb" value="0" />
+<!--
                             <input
                                 type="text"
                                 name="tvdb"
@@ -315,10 +315,14 @@
 
                                 x-bind:required="cats[cat].type === 'tv'"
                             >
-                            <label class="form__label form__label--floating" for="autotvdb">TVDB ID</label>
+-->
+<!--
+                            <label class="form__label form__label&#45;&#45;floating" for="autotvdb">TVDB ID</label>
+-->
                         </p>
                         <p class="form__group">
                             <input type="hidden" name="mal" value="0" />
+<!--
                             <input
                                 type="text"
                                 name="mal"
@@ -331,7 +335,10 @@
 
                                 placeholder=" "
                             >
-                            <label class="form__label form__label--floating" for="automal">MAL ID ({{ __('torrent.required-anime') }})</label>
+-->
+<!--
+                            <label class="form__label form__label&#45;&#45;floating" for="automal">MAL ID ({{ __('torrent.required-anime') }})</label>
+-->
                         </p>
                     </div>
                     <p class="form__group" x-show="cats[cat].type === 'game'">
@@ -354,9 +361,9 @@
                             name="keywords"
                             id="autokeywords"
                             class="form__text"
-
                             value="{{ old('keywords') }}"
                             placeholder=" "
+                            x-bind:required="cats[cat].type === 'movie' || cats[cat].type === 'tv'"
                         >
                         <label class="form__label form__label--floating" for="autokeywords">
                             {{ __('torrent.keywords') }} (<i>{{ __('torrent.keywords-example') }}</i>)
