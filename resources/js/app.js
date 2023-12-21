@@ -48,16 +48,19 @@ window.Swal = require('sweetalert2');
 
 import APlayer from 'aplayer';
 document.addEventListener('DOMContentLoaded', function() {
-    // 获取封面图片 URL
-    const coverUrl = document.getElementById('aplayer-container').dataset.cover;
+    const aplayerContainer = document.getElementById('aplayer-container');
+    const coverUrl = aplayerContainer.dataset.cover;
+    const songName = aplayerContainer.dataset.name;
+    const artistName = aplayerContainer.dataset.artist;
+    const songUrl = aplayerContainer.dataset.url;
 
     const ap = new APlayer({
         container: document.getElementById('aplayer'),
         audio: [{
-            name: '喷涌',
-            artist: '小霞', // 可以替换成实际的艺术家名
-            url: 'https://file.kimoji.club/kimoji/%E5%B0%8F%E9%9C%9E%20-%20%E5%B0%8F%E9%9C%9E3.0%202023%20-%20FLAC%2024bit%2048khz%20-%20KIMOJI/08.%20%E5%99%B4%E6%B9%A7.flac',
-            cover: coverUrl // 使用从 Blade 模板获取的封面图片 URL
+            name: songName,
+            artist: artistName,
+            url: songUrl,
+            cover: coverUrl
         }]
     });
 });

@@ -54,7 +54,12 @@
             @endif
         </ul>
         <p class="meta__description">王朝是一个新的具有里程碑意义的系列。这个系列将记录世界上最具标志性的动物的故事，在世界最知名的地点，他们为了维系自己的王朝而努力奋斗着。在每一集里面，他们每个个体的故事都会通过激烈的、引人入胜的戏剧情节展开。</p>
-        <div id="aplayer-container" data-cover="{{ url('img/kimoji-music.webp') }}">
+        <div id="aplayer-container"
+             data-cover="{{ url('img/kimoji-music.webp') }}"
+             data-name="倒带"
+             data-artist="小霞"
+             data-url="https://file.kimoji.club/kimoji/1830117258.mp3">
             <div class="aplayer-title">单曲试听</div>
             <div id="aplayer" class="aplayer"></div>
-        </div></section>
+        </div>
+</section>
