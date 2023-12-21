@@ -58,7 +58,7 @@
              data-cover="{{ url('img/kimoji-music.webp') }}"
              data-name="倒带"
              data-artist="小霞"
-             data-url="https://file.kimoji.club/kimoji/1830117258.mp3">
+             data-url="https://file.kimoji.club/d/kimoji/%E5%B0%8F%E9%9C%9E%20-%20%E5%B0%8F%E9%9C%9E3.0%202023%20-%20FLAC%2024bit%2048khz%20-%20KIMOJI/09.%20%E5%A8%9B%E6%A8%82%E5%85%88%E7%94%9F.flac?sign=24_RjPYN2cEJ5SxwSca5ZnDu-3JZvl7ouM07_bhQWUk=:0">
             <div class="aplayer-title">单曲试听</div>
             <div id="aplayer" class="aplayer"></div>
         </div>
