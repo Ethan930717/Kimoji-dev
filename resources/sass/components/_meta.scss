@@ -414,11 +414,12 @@
     }
 
 .aplayer-title {
-    font-size: 1.5em; /* 设置标题字体大小 */
-    color: #ffffff; /* 设置标题字体颜色 */
+    font-size: 1.5em;
+    color: #ffffff;
     text-shadow:0 0 2px #0dffff;
-    margin-bottom: 10px; /* 在标题和播放器之间添加一些间距 */
-    text-align: left; /* 标题靠左对齐 */
+    margin-bottom: 10px;
+    margin-left: 10px;
+    text-align: left;
 }
 
     .aplayer {

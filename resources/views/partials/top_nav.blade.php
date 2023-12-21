@@ -46,21 +46,39 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('torrents?perPage=24&view=poster&categories[0]=2') }}">
+                            <a href="{{ url('torrents?perPage=48&view=poster&categories[0]=2') }}">
                                 <i class="{{ config('other.font-awesome') }} fa-party-horn"></i>
                                 追剧乐园
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('torrents?perPage=24&view=poster&categories[0]=4&categories[1]=3') }}">
+                            <a href="{{ url('torrents?perPage=48&view=poster&genres[0]=16') }}">
                                 <i class="{{ config('other.font-awesome') }} fa-tree"></i>
                                 动漫森林
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('torrents?perPage=24&categories[0]=5&view=poster') }}">
+                            <a href="{{ url('torrents?perPage=24&genres[0]=10764&genres[1]=10767&view=poster') }}">
                                 <i class="{{ config('other.font-awesome') }} fa-planet-ringed"></i>
                                 娱乐星球
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('torrents?perPage=48&view=card&genres[0]=99') }}">
+                                <i class="{{ config('other.font-awesome') }} fa-book"></i>
+                                纪录盛会
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('torrents?perPage=48&view=card&categories[0]=3') }}">
+                                <i class="{{ config('other.font-awesome') }} fa-music"></i>
+                                旋律海洋
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('torrents?perPage=48&view=card&categories[0]=4') }}">
+                                <i class="{{ config('other.font-awesome') }} fa-radio-alt"></i>
+                                有声王国
                             </a>
                         </li>
                         <li>
@@ -69,34 +87,10 @@
                                 蓝光宝盒
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ url('torrents?perPage=24&view=card&categories[0]=7') }}">
-                                <i class="{{ config('other.font-awesome') }} fa-music"></i>
-                                旋律海洋
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('torrents?perPage=48&view=card&categories[0]=6') }}">
-                                <i class="{{ config('other.font-awesome') }} fa-book"></i>
-                                纪录盛会
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('torrents?perPage=48&view=card&categories[0]=9') }}">
-                                <i class="{{ config('other.font-awesome') }} fa-radio-alt"></i>
-                                有声王国
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('torrents?perPage=24&view=card&categories[0]=8') }}">
-                                <i class="{{ config('other.font-awesome') }} fa-basketball-ball"></i>
-                                竞技秀场
-                            </a>
-                        </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="{{ url('torrents?perPage=24&view=poster&sd=true') }}">
+                    <a href="{{ url('torrents?perPage=48&view=poster&genres[0]=10762') }}">
                         <i class="{{ config('other.font-awesome') }} fa-flower"></i>
                         KIMOJI PARK
                     </a>
