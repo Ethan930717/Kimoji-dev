@@ -65,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-import UploadMusic from 'upload-music';
 // 前端 JavaScript 代码
 document.addEventListener('DOMContentLoaded', function() {
     const uploadButton = document.getElementById('uploadButton');
