@@ -177,7 +177,7 @@
             <article class="meta__runtime">
                 <a class="meta-chip" href="#">
                     <i class="{{ config('other.font-awesome') }} fa-clock meta-chip__icon"></i>
-                    <h2 class="meta-chip__name">Runtime</h2>
+                    <h2 class="meta-chip__name">时长</h2>
                     <h3 class="meta-chip__value">{{ $meta->runtime ?? 0 }} Minutes</h3>
                 </a>
             </article>

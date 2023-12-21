@@ -63,7 +63,7 @@
                 </li>
                 <li>
                     <a href="https://github.com/HDInnovations/UNIT3D-Community-Edition/wiki/Torrent-API-(UNIT3D-v7.0.0)">
-                        API Documentation
+                        API 文档
                     </a>
                 </li>
             </ul>

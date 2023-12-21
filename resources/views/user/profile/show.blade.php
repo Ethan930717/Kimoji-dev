@@ -696,7 +696,7 @@
                     <dd>{{ $user->id }}</dd>
                     <dt>{{ __('common.email') }}</dt>
                     <dd>{{ $user->email }}</dd>
-                    <dt>2FA Enabled</dt>
+                    <dt>两步验证</dt>
                     <dd>
                         @if ($user->two_factor_confirmed_at !== null)
                             <i class="{{ config('other.font-awesome') }} fa-lock text-green"></i>
