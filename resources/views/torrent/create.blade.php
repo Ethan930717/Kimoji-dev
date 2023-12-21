@@ -106,6 +106,15 @@
                         </label>
                         <input id="torrent-banner" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg, .png" name="torrent-banner">
                     </p>
+                    <p class="form__group" x-show="cats[cat].type === 'music'">
+                        <label for="single-music" class="form__label">
+                            试听单曲
+                        </label>
+                        <input id="single-music" class="upload-form-file form__file" type="file" accept="audio/*" name="single-music">
+                    <div id="progress-container" style="width: 100%; background: #eee;">
+                        <div id="progress-bar" style="height: 20px; width: 0%; background: #b4d455;"></div>
+                    </div>
+                    </p>
                     <p class="form__group">
                         <input
                             type="text"
@@ -159,6 +168,7 @@
                                 name="type_id"
                                 id="autotype"
                                 class="form__select"
+                                x-model="type_id"
                                 x-bind:required="cats[cat].type !== 'music'"
                                 x-show="cats[cat].type !== 'music'">
                         >
@@ -301,7 +311,7 @@
                             >
                             <label class="form__label form__label--floating" for="autoimdb">IMDB ID</label>
                         </p>
-                        <p class="form__group" x-show="cats[cat].type === 'tv'">
+                        <p class="form__group" style="display:none" x-show="cats[cat].type === 'tv'">
                             <input type="hidden" name="tvdb" value="0" />
 <!--
                             <input
@@ -320,7 +330,7 @@
                             <label class="form__label form__label&#45;&#45;floating" for="autotvdb">TVDB ID</label>
 -->
                         </p>
-                        <p class="form__group">
+                        <p class="form__group" style="display:none">
                             <input type="hidden" name="mal" value="0" />
 <!--
                             <input
@@ -355,7 +365,7 @@
                         >
                         <label class="form__label form__label--floating" for="autoigdb">IGDB ID <b>({{ __('torrent.required-games') }})</b></label>
                     </p>
-                    <p class="form__group" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
+                    <p class="form__group" style="display: none;" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
                         <input
                             type="text"
                             name="keywords"

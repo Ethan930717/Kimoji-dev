@@ -64,3 +64,51 @@ document.addEventListener('DOMContentLoaded', function() {
         }]
     });
 });
+
+import UploadMusic from 'upload-music';
+// 前端 JavaScript 代码
+document.addEventListener('DOMContentLoaded', function() {
+    const uploadButton = document.getElementById('uploadButton');
+    const fileInput = document.getElementById('single-music');
+    const progressBar = document.getElementById('progress-bar'); // 获取进度条元素
+
+    uploadButton.addEventListener('click', function(e) {
+        const file = fileInput.files[0];
+
+        if (file && file.type.startsWith('audio/')) {
+            e.preventDefault();
+            const formData = new FormData();
+            formData.append('file', file);
+
+            // 使用 XMLHttpRequest 来支持上传进度事件
+            const xhr = new XMLHttpRequest();
+
+            // 监听上传进度事件
+            xhr.upload.addEventListener('progress', function(e) {
+                if (e.lengthComputable) {
+                    const percentComplete = (e.loaded / e.total) * 100;
+                    progressBar.style.width = percentComplete + '%'; // 更新进度条宽度
+                }
+            }, false);
+
+            xhr.open('PUT', 'https://file.kimoji.club', true);
+            xhr.setRequestHeader('Authorization', 'Basic ' + btoa('kimoji:forever')); // 如果需要身份验证的话
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    const status = xhr.status;
+                    if (status === 0 || (status >= 200 && status < 400)) {
+                        // 请求成功
+                        console.log('上传结果:', xhr.responseText);
+                        // 处理上传后的响应
+                    } else {
+                        // 请求出错
+                        console.error('错误:', xhr.statusText);
+                    }
+                }
+            };
+            xhr.send(formData);
+        } else {
+            alert('请选择一个音频文件');
+        }
+    });
+});
