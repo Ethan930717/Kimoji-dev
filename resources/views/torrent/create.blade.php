@@ -143,8 +143,8 @@
                                 name="type_id"
                                 id="autotype_music"
                                 class="form__select"
-                                x-bind:required="cats[cat].type === 'no'"
-                                x-show="cats[cat].type === 'no'">
+                                x-bind:required="cats[cat].type === 'music'"
+                                x-show="cats[cat].type === 'music'">
                         >
                             <option hidden disabled selected value=""></option>
                             @foreach ($types as $index => $type)
@@ -194,7 +194,7 @@
                         </label>
                     </p>
                     <div class="form__group--horizontal" x-show="cats[cat].type === 'music'">
-                        <p class="form__group">
+                        <p class="form__group" x-show="cat == 3">
                             <select
                                 name="distributor_id"
                                 id="autodis"
@@ -211,10 +211,10 @@
                                 @endforeach
                             </select>
                             <label class="form__label form__label--floating" for="autodis">
-                                {{ __('torrent.distributor') }} (仅限原盘)
+                                {{ __('torrent.distributor') }}
                             </label>
                         </p>
-                        <p class="form__group">
+                        <p class="form__group" x-show="cat == 4">
                             <select
                                 name="region_id"
                                 id="autoreg"
@@ -231,7 +231,7 @@
                                 @endforeach
                             </select>
                             <label class="form__label form__label--floating" for="autoreg">
-                                {{ __('torrent.region') }} (仅限原盘)
+                                {{ __('torrent.region') }}
                             </label>
                         </p>
                     </div>
@@ -355,7 +355,7 @@
                         >
                         <label class="form__label form__label--floating" for="autoigdb">IGDB ID <b>({{ __('torrent.required-games') }})</b></label>
                     </p>
-                    <p class="form__group">
+                    <p class="form__group" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
                         <input
                             type="text"
                             name="keywords"
@@ -363,14 +363,13 @@
                             class="form__text"
                             value="{{ old('keywords') }}"
                             placeholder=" "
-                            x-bind:required="cats[cat].type === 'movie' || cats[cat].type === 'tv'"
                         >
                         <label class="form__label form__label--floating" for="autokeywords">
                             {{ __('torrent.keywords') }} (<i>{{ __('torrent.keywords-example') }}</i>)
                         </label>
                     </p>
                     @livewire('bbcode-input', ['name' => 'description', 'label' => __('common.description'), 'required' => true])
-                    <p class="form__group" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
+                    <p class="form__group" x-show="(cats[cat].type === 'movie' || cats[cat].type === 'tv') && (type_id != 1 && type_id != 2)">
                         <textarea
                             id="upload-form-mediainfo"
                             name="mediainfo"
@@ -381,7 +380,7 @@
                             {{ __('torrent.media-info-parser') }}
                         </label>
                     </p>
-                    <p class="form__group" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
+                    <p class="form__group" x-show="(cats[cat].type === 'movie' || cats[cat].type === 'tv') && (type_id == 1 && type_id == 2)">
                         <textarea
                             id="upload-form-bdinfo"
                             name="bdinfo"
