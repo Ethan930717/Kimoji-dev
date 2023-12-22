@@ -375,7 +375,7 @@
                         </label>
                     </p>
                     @livewire('bbcode-input', ['name' => 'description', 'label' => __('common.description'), 'required' => true])
-                    <p class="form__group" x-show="(cats[cat].type !== 'music') && (type_id != 1 && type_id != 2)">
+                    <p class="form__group" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
                         <textarea
                             id="upload-form-mediainfo"
                             name="mediainfo"
@@ -386,7 +386,7 @@
                             {{ __('torrent.media-info-parser') }}
                         </label>
                     </p>
-                    <p class="form__group" x-show="(cats[cat].type !== 'music') && (type_id == 1 && type_id == 2)">
+                    <p class="form__group" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
                         <textarea
                             id="upload-form-bdinfo"
                             name="bdinfo"
