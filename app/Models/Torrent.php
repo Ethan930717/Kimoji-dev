@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\Model;
 use voku\helper\AntiXSS;
 
 /**
- * @property string $info_hash
+ * @property string      $info_hash
  * @property string|null $music_text
  */
 class Torrent extends Model
@@ -394,10 +394,10 @@ class Torrent extends Model
     /**
      * Set the torrent's music_text.
      *
-     * @param  string  $value
+     * @param  string $value
      * @return void
      */
-    public function setMusicTextAttribute($value)
+    public function setMusicTextAttribute($value): void
     {
         $antiXSS = new AntiXSS();
         $this->attributes['music_text'] = $antiXSS->xss_clean($value);
