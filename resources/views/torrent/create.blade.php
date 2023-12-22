@@ -110,6 +110,7 @@
                         <label for="single-music" class="form__label">
                             试听单曲
                         </label>
+
                         <input id="single-music" class="upload-form-file form__file" type="file" accept="audio/*" name="single-music">
                     </p>
                     <p class="form__group">

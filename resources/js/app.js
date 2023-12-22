@@ -66,15 +66,19 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 //上传音乐
-document.getElementById('single-music').addEventListener('change', function() {
-    var file = this.files[0];
+document.getElementById('uploadButton').addEventListener('click', function (e) {
+    var fileInput = document.getElementById('single-music');
+    console.log('fileInput: ', fileInput);
+    var file = fileInput.files[0];
+    console.log('file: ', file);
+    e.preventDefault();
     var formData = new FormData();
-    formData.append('single-music', file);
-
+    formData.append('musicfile', file)
     fetch('http://localhost:3000/upload', {
         method: 'POST',
         body: formData
-    }).then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error(error));
+    })
+        .then(response => response.json())
+        .then(data => console.log('http://localhost:3000' + data.url))
+        .catch(error => console.error('Error:', error));
 });
