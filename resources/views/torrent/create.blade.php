@@ -60,6 +60,7 @@
             x-data="{
                 cat: {{(int)$category_id}},
                 cats: JSON.parse(atob('{!! base64_encode(json_encode($categories)) !!}'))
+                type_id: ''
             }"
         >
             <h2 class="upload-title panel__heading">
@@ -306,7 +307,7 @@
                             >
                             <label class="form__label form__label--floating" for="autoimdb">IMDB ID</label>
                         </p>
-                        <p class="form__group" x-show="cats[cat].type === 'tv'" style="display:none">
+                        <p class="form__group" style="display:none">
                             <input type="hidden" name="tvdb" value="0" />
 <!--
                             <input
