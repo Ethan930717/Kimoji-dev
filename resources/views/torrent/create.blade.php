@@ -111,9 +111,6 @@
                             试听单曲
                         </label>
                         <input id="single-music" class="upload-form-file form__file" type="file" accept="audio/*" name="single-music">
-                    <div id="progress-container" style="width: 100%; background: #eee;">
-                        <div id="progress-bar" style="height: 20px; width: 0%; background: #b4d455;"></div>
-                    </div>
                     </p>
                     <p class="form__group">
                         <input
@@ -311,7 +308,7 @@
                             >
                             <label class="form__label form__label--floating" for="autoimdb">IMDB ID</label>
                         </p>
-                        <p class="form__group" style="display:none" x-show="cats[cat].type === 'tv'">
+                        <p class="form__group" x-show="cats[cat].type === 'tv'" style="display:none">
                             <input type="hidden" name="tvdb" value="0" />
 <!--
                             <input
