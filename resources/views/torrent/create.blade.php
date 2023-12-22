@@ -200,48 +200,46 @@
                             {{ __('torrent.resolution') }}
                         </label>
                     </p>
-                    <div class="form__group--horizontal" x-show="cats[cat].type === 'music'">
-                        <p class="form__group" x-show="cat == 3">
-                            <select
-                                name="distributor_id"
-                                id="autodis"
-                                class="form__select"
-                                x-data="{ distributor: '' }"
-                                x-model="distributor"
-                                x-bind:class="distributor === '' ? 'form__select--default' : ''"
-                            >
-                                <option selected value=""></option>
-                                @foreach ($distributors as $distributor)
-                                    <option value="{{ $distributor->id }}" @selected(old('distributor_id')==$distributor->id)>
-                                        {{ $distributor->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <label class="form__label form__label--floating" for="autodis">
-                                {{ __('torrent.distributor') }}
-                            </label>
+                    <p class="form__group" x-show="cat == 3">
+                        <select
+                            name="distributor_id"
+                            id="autodis"
+                            class="form__select"
+                            x-data="{ distributor: '' }"
+                            x-model="distributor"
+                            x-bind:class="distributor === '' ? 'form__select--default' : ''"
+                        >
+                            <option selected value=""></option>
+                            @foreach ($distributors as $distributor)
+                                <option value="{{ $distributor->id }}" @selected(old('distributor_id')==$distributor->id)>
+                                    {{ $distributor->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <label class="form__label form__label--floating" for="autodis">
+                            {{ __('torrent.distributor') }}
+                        </label>
+                    </p>
+                    <p class="form__group" x-show="cat == 4">
+                        <select
+                            name="region_id"
+                            id="autoreg"
+                            class="form__select"
+                            x-data="{ region: '' }"
+                            x-model="region"
+                            x-bind:class="region === '' ? 'form__select--default' : ''"
+                        >
+                            <option selected value=""></option>
+                            @foreach ($regions as $region)
+                                <option value="{{ $region->id }}" @selected(old('region_id')==$region->id)>
+                                    {{ $region->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <label class="form__label form__label--floating" for="autoreg">
+                            {{ __('torrent.region') }}
+                        </label>
                         </p>
-                        <p class="form__group" x-show="cat == 4">
-                            <select
-                                name="region_id"
-                                id="autoreg"
-                                class="form__select"
-                                x-data="{ region: '' }"
-                                x-model="region"
-                                x-bind:class="region === '' ? 'form__select--default' : ''"
-                            >
-                                <option selected value=""></option>
-                                @foreach ($regions as $region)
-                                    <option value="{{ $region->id }}" @selected(old('region_id')==$region->id)>
-                                        {{ $region->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <label class="form__label form__label--floating" for="autoreg">
-                                {{ __('torrent.region') }}
-                            </label>
-                        </p>
-                    </div>
                     <div class="form__group--horizontal" x-show="cats[cat].type === 'tv'">
                         <p class="form__group">
                             <input
@@ -376,7 +374,7 @@
                         </label>
                     </p>
                     @livewire('bbcode-input', ['name' => 'description', 'label' => __('common.description'), 'required' => true])
-                    <p class="form__group" x-show="(cats[cat].type === 'movie' || cats[cat].type === 'tv') && (type_id != 1 && type_id != 2)">
+                    <p class="form__group" x-show="(cats[cat].type !== 'music') && (type_id != 1 && type_id != 2)">
                         <textarea
                             id="upload-form-mediainfo"
                             name="mediainfo"
@@ -387,7 +385,7 @@
                             {{ __('torrent.media-info-parser') }}
                         </label>
                     </p>
-                    <p class="form__group" x-show="(cats[cat].type === 'movie' || cats[cat].type === 'tv') && (type_id == 1 && type_id == 2)">
+                    <p class="form__group" x-show="(cats[cat].type !== 'music') && (type_id == 1 && type_id == 2)">
                         <textarea
                             id="upload-form-bdinfo"
                             name="bdinfo"
