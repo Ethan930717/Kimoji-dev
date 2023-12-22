@@ -60,7 +60,6 @@
             x-data="{
                 cat: {{(int)$category_id}},
                 cats: JSON.parse(atob('{!! base64_encode(json_encode($categories)) !!}'))
-                type_id: ''
             }"
         >
             <h2 class="upload-title panel__heading">
