@@ -42,9 +42,11 @@ class TorrentObserver
             switch ($category) {
                 case 1:
                     $tmdbService = new Movie($torrent->tmdb);
+
                     break;
                 case 2:
                     $tmdbService = new TV($torrent->tmdb);
+
                     break;
                 case 3:
                 case 4:
