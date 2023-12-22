@@ -240,7 +240,16 @@
                         <label class="form__label form__label--floating" for="autoreg">
                             {{ __('torrent.region') }}
                         </label>
-                        </p>
+                    </p>
+                    <p class="form__group" x-show="cats[cat].type === 'music'">
+                        <textarea
+                            id="music_text"
+                            name="music_text"
+                            class="form__textarea"
+                            placeholder="{{ __('请填写专辑/歌曲的文字简介') }}"
+                        >{{ old('context') }}</textarea>
+                    <label class="form__label form__label--floating" for="context">{{ __('common.context') }}</label>
+                    </p>
                     <div class="form__group--horizontal" x-show="cats[cat].type === 'tv'">
                         <p class="form__group">
                             <input
