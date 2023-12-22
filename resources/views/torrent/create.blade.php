@@ -96,21 +96,20 @@
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'music'">
                         <label for="torrent-cover" class="form__label">
-                            封面（必选）
+                            封面 (必选,仅支持JPG格式)
                         </label>
-                        <input id="torrent-cover" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg, .png" name="torrent-cover">
+                        <input id="torrent-cover" class="upload-form-file form__file" type="file" accept=".jpg" name="torrent-cover">
                     </p>
-                    <p class="form__group" x-show="cats[cat].type === 'music'">
+                    <p class="form__group" x-show="cats[cat].type === 'music'" style="display:none">
                         <label for="torrent-banner" class="form__label">
-                            海报 (必选)
+                            海报 (必选,仅支持JPG格式)
                         </label>
-                        <input id="torrent-banner" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg, .png" name="torrent-banner">
+                        <input id="torrent-banner" class="upload-form-file form__file" type="file" accept=".jpg" name="torrent-banner">
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'music'">
                         <label for="single-music" class="form__label">
-                            试听单曲
+                            上传试听单曲
                         </label>
-
                         <input id="single-music" class="upload-form-file form__file" type="file" accept="audio/*" name="single-music">
                     </p>
                     <p class="form__group">
