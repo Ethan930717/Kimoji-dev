@@ -191,7 +191,7 @@
                 <p class="form__group form__group--horizontal">
                     <a class="form__button form__button--text" href="{{ route('staff.distributors.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-columns"></i>
-                        发行商
+                        音乐风格
                     </a>
                 </p>
                 <p class="form__group form__group--horizontal">

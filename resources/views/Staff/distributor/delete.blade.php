@@ -36,7 +36,7 @@
                 @csrf
                 @method('DELETE')
                 <p class="form__group">
-                    可能已经有资源使用了该发行商作为种子信息，你需要更换吗？
+                    可能已经有资源匹配了该风格，你需要更换吗？
                 </p>
                 <p class="form__group">
                     <select

@@ -99,7 +99,7 @@
                     </p>
                     <p class="form__group">
                         <input id="companyId" wire:model="companyId" class="form__text" placeholder=" ">
-                        <label class="form__label form__label--floating" for="companyId">发行商</label>
+                        <label class="form__label form__label--floating" for="companyId">音乐风格</label>
                     </p>
                     <p class="form__group">
                         <input id="networkId" wire:model="networkId" class="form__text" placeholder=" ">
@@ -727,7 +727,7 @@
             options: myRegions,
             multiple: true,
             search: true,
-            placeholder: "{{__('选择发行地区')}}",
+            placeholder: "{{__('选择小说分类')}}",
             noOptionsText: "{{__('无匹配信息')}}",
           })
 
@@ -749,7 +749,7 @@
             options: myDistributors,
             multiple: true,
             search: true,
-            placeholder: "{{__('选择发行商')}}",
+            placeholder: "{{__('选择音乐风格')}}",
             noOptionsText: "{{__('无匹配信息')}}",
           })
 

@@ -136,7 +136,7 @@
                         <select id="distributor_id" name="distributor_id" class="form__select">
                             @if (! $torrent->distributor)
                                 <option hidden="" disabled="disabled" selected="selected" value="">
-                                    --选择发行商--
+                                    --选择音乐风格--
                                 </option>)
                             @else
                                 <option
@@ -146,7 +146,7 @@
                                     {{ $torrent->distributor->name }} ({{ __('torrent.current') }})
                                 </option>
                             @endif
-                            <option value="">无发行商</option>
+                            <option value="">无音乐风格</option>
                             @foreach ($distributors as $distributor)
                                 <option
                                     x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') && types[type].name === 'Full Disc' ? '{{ $distributor->id }}' : ''"
@@ -165,7 +165,7 @@
                         <select id="region_id" name="region_id" class="form__select">
                             @if (! $torrent->region)
                                 <option hidden="" disabled="disabled" selected="selected" value="">
-                                    --选择发行地--
+                                    --选择小说分类--
                                 </option>)
                             @else
                                 <option
@@ -175,7 +175,7 @@
                                     {{ $torrent->region->name }} ({{ __('torrent.current') }})
                                 </option>
                             @endif
-                            <option value="">无发行地</option>
+                            <option value="">无分类</option>
                             @foreach ($regions as $region)
                                 <option
                                     x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') && types[type].name === 'Full Disc' ? '{{ $region->id }}' : ''"
