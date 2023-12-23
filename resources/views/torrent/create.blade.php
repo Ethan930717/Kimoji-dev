@@ -162,7 +162,6 @@
                                 name="type_id"
                                 id="autotype"
                                 class="form__select"
-                                x-model="type_id"
                                 x-bind:required="cats[cat].type !== 'music'"
                                 x-show="cats[cat].type !== 'music'">
                         >
