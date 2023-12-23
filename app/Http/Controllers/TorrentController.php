@@ -196,7 +196,6 @@ class TorrentController extends Controller
 
         $torrent->update($request->validated());
 
-
         // Cover Image for No-Meta Torrents
         if ($request->hasFile('torrent-cover')) {
             $image_cover = $request->file('torrent-cover');
