@@ -66,6 +66,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 //上传音乐
+document.addEventListener('DOMContentLoaded', function() {
+    var uploadButton = document.getElementById('uploadMusic');
+    if (uploadButton) {
+        uploadButton.addEventListener('click', openUploadWindow);
+    }
+});
 function openUploadWindow() {
     const uploadWindowWidth = 600; // 设置窗口宽度
     const uploadWindowHeight = 400; // 设置窗口高度
@@ -82,10 +88,10 @@ function openUploadWindow() {
         // 检查消息类型
         if (event.data.type && event.data.type === 'uploadSuccess') {
             // 获取上传的文件 URL
-            var uploadedMusicUrl = event.data.url;
+            var music_url = event.data.url;
 
             // 更新隐藏输入字段的值
-            document.getElementById('uploadedMusicUrl').value = uploadedMusicUrl;
+            document.getElementById('music_url').value = music_url;
         }
     }, false);
 }
@@ -95,9 +101,9 @@ window.addEventListener('message', function(event) {
     // 检查消息类型
     if (event.data.type && event.data.type === 'uploadSuccess') {
         // 获取上传的文件 URL
-        var uploadedMusicUrl = event.data.url;
+        var music_url = event.data.url;
         // 更新隐藏输入字段的值
-        document.getElementById('uploadedMusicUrl').value = uploadedMusicUrl;
+        document.getElementById('music_url').value = music_url;
         // 显示“上传成功”提醒
         // 假设您有一个用于显示消息的元素
         document.getElementById('uploadStatus').innerText = '上传成功';

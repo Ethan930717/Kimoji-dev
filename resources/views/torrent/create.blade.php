@@ -107,12 +107,9 @@
                         <input id="torrent-banner" class="upload-form-file form__file" type="file" accept=".jpg" name="torrent-banner">
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'music'">
-                        <label for="uploadMusic" class="form__label">
-                            试听单曲
-                        </label>
-                        <input type="hidden" name="uploadedMusicUrl" id="uploadedMusicUrl" value="">
-                        <button id="uploadMusic" class="upload-form-file form__file" onclick="openUploadWindow()">点击上传</button>
-                        <div id="uploadStatus"></div>
+                        <input type="hidden" name="music_url" id="music_url" value="">
+                        <button id="uploadMusic" class="upload-form-file form__file" onclick="openUploadWindow()">试听文件</button>
+                        <span id="uploadStatus"></span>
                     </p>
                     <p class="form__group">
                         <input
@@ -247,9 +244,9 @@
                             id="music_text"
                             name="music_text"
                             class="form__textarea"
-                            placeholder="{{ __('请填写专辑/歌曲的文字简介') }}"
+                            placeholder=""
                         >{{ old('context') }}</textarea>
-                    <label class="form__label form__label--floating" for="context">{{ __('common.context') }}</label>
+                    <label class="form__label form__label--floating" for="context">{{ __('文字简介') }}</label>
                     </p>
                     <div class="form__group--horizontal" x-show="cats[cat].type === 'tv'">
                         <p class="form__group">

@@ -402,4 +402,23 @@ class Torrent extends Model
         $antiXSS = new AntiXSS();
         $this->attributes['music_text'] = $antiXSS->xss_clean($value);
     }
+
+    /**
+     * Set the torrent's music_url.
+     *
+     * @param  string $value
+     * @return void
+     */
+    public function setMusicUrlAttribute($value): void
+    {
+        // 检查是否是有效的 URL
+        if (filter_var($value, FILTER_VALIDATE_URL)) {
+            $this->attributes['music_url'] = $value;
+        } else {
+            // 如果不是有效的 URL，则可以选择设置为空或保留原值
+            $this->attributes['music_url'] = '';
+            // 或抛出异常
+            // throw new \InvalidArgumentException("上传的试听文件URL格式有误");
+        }
+    }
 }

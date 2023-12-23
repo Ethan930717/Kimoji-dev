@@ -50,6 +50,11 @@ class UpdateTorrentRequest extends FormRequest
                 'string',
                 'max:1000',
             ],
+            'music_url' => [
+                'nullable',
+                'url',
+                'max:255',
+            ],
             'description' => [
                 'required',
                 'max:4294967296'

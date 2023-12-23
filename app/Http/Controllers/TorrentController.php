@@ -178,6 +178,7 @@ class TorrentController extends Controller
             'distributors' => Distributor::orderBy('name')->get(),
             'keywords'     => Keyword::where('torrent_id', '=', $torrent->id)->pluck('name'),
             'music_text'   => $torrent->music_text,
+            'music_url'    => $torrent->music_url,
             'torrent'      => $torrent,
             'user'         => $user,
         ]);
