@@ -58,25 +58,25 @@ class TorrentObserver
                         $torrent->name,
                         $fileSizeText
                     );
-
                     break;
                 default:
                     return;
             }
+            if (isset($tmdbService)) {
+                $tmdbData = $this->fetchTmdbData($tmdbService);
 
-            $tmdbData = $this->fetchTmdbData($tmdbService);
-
-            if ($tmdbData) {
-                $fileSizeGB = round($torrent->size / 1e9, 2); // 将字节转换为 GB，并保留两位小数
-                $fileSizeText = "{$fileSizeGB} GB";
-                $telegramController = new TelegramController();
-                $telegramController->sendTorrentNotification(
-                    $torrent->id,
-                    $torrent->name,
-                    $tmdbData['poster'],
-                    $tmdbData['overview'],
-                    $fileSizeText
-                );
+                if ($tmdbData) {
+                    $fileSizeGB = round($torrent->size / 1e9, 2); // 将字节转换为 GB，并保留两位小数
+                    $fileSizeText = "{$fileSizeGB} GB";
+                    $telegramController = new TelegramController();
+                    $telegramController->sendTorrentNotification(
+                        $torrent->id,
+                        $torrent->name,
+                        $tmdbData['poster'],
+                        $tmdbData['overview'],
+                        $fileSizeText
+                    );
+                }
             }
         }
     }

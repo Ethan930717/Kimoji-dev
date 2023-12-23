@@ -177,7 +177,6 @@ class TorrentController extends Controller
             'regions'      => Region::orderBy('position')->get(),
             'distributors' => Distributor::orderBy('name')->get(),
             'keywords'     => Keyword::where('torrent_id', '=', $torrent->id)->pluck('name'),
-            'music_text'   => $torrent->music_text,
             'music_url'    => $torrent->music_url,
             'torrent'      => $torrent,
             'user'         => $user,
@@ -190,12 +189,15 @@ class TorrentController extends Controller
     public function update(UpdateTorrentRequest $request, int $id): \Illuminate\Http\RedirectResponse
     {
         $user = $request->user();
+
         $torrent = Torrent::withoutGlobalScope(ApprovedScope::class)->findOrFail($id);
+
 
         abort_unless($user->group->is_modo || $user->id === $torrent->user_id, 403);
 
-        $torrent->update($request->validated());
-
+        $torrent->update($request->validated() + [
+                'music_url' => $request->input('music_url'),
+            ]);
         // Cover Image for No-Meta Torrents
         if ($request->hasFile('torrent-cover')) {
             $image_cover = $request->file('torrent-cover');
@@ -378,7 +380,9 @@ class TorrentController extends Controller
             'moderated_at' => now(),
             'moderated_by' => User::SYSTEM_USER_ID,
             'pieces_hash'  => $piecesHash,
-        ] + $request->safe()->except(['torrent']));
+            'music_url'    => $request->input('music_url'),
+
+            ] + $request->safe()->except(['torrent']));
 
         // Count and save the torrent number in this category
         $category = Category::findOrFail($request->integer('category_id'));

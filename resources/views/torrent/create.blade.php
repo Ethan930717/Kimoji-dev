@@ -96,31 +96,29 @@
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'music'">
                         <label for="torrent-cover" class="form__label">
-                            封面 (必选,仅支持JPG格式)
+                            封面 (必选)
                         </label>
-                        <input id="torrent-cover" class="upload-form-file form__file" type="file" accept=".jpg" name="torrent-cover">
+                        <input id="torrent-cover" class="upload-form-file form__file" type="file" accept=".jpg .jpeg .png .webp" name="torrent-cover">
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'music'" style="display:none">
                         <label for="torrent-banner" class="form__label">
-                            海报 (可选,仅支持JPG格式)
+                            海报 (可选)
                         </label>
-                        <input id="torrent-banner" class="upload-form-file form__file" type="file" accept=".jpg" name="torrent-banner">
+                        <input id="torrent-banner" class="upload-form-file form__file" type="file" accept=".jpg .jpeg .png .webp" name="torrent-banner">
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'music'">
-                        <input type="hidden" name="music_url" id="music_url" value="">
-                        <button id="uploadMusic" class="upload-form-file form__file" onclick="openUploadWindow()">试听文件</button>
-                        <span id="uploadStatus"></span>
-                    </p>
-                    <p class="form__group">
                         <input
-                            type="text"
-                            name="name"
-                            id="title"
-                            class="form__text"
-                            value="{{ $title ?: old('name') }}"
-                            required
+                                type="text"
+                                name="music_url"
+                                id="music_url"
+                                class="form__text"
+                                value="{{ old('music_url') }}"
+                                placeholder=" "
                         >
-                        <label class="form__label form__label--floating" for="title">{{ __('torrent.title') }}</label>
+                        <label class="form__label form__label--floating" for="music_url">
+                            {{ __('试听链接') }}
+                        </label>
+                        <button onclick="openUploadWindow()" class="upload-form-file form__file">上传试听文件</button>
                     </p>
                     <p class="form__group">
                         <select
@@ -382,7 +380,7 @@
                         </label>
                     </p>
                     @livewire('bbcode-input', ['name' => 'description', 'label' => __('common.description'), 'required' => true])
-                    <p class="form__group" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
+                    <p class="form__group" >
                         <textarea
                             id="upload-form-mediainfo"
                             name="mediainfo"
