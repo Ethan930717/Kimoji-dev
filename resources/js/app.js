@@ -74,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 function openUploadWindow() {
     event.preventDefault(); // 阻止按钮的默认提交行为
-
     const uploadWindowWidth = 600; // 设置窗口宽度
     const uploadWindowHeight = 400; // 设置窗口高度
     const left = (screen.width / 2) - (uploadWindowWidth / 2);

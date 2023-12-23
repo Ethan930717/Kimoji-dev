@@ -121,6 +121,18 @@
                         <button id="uploadMusic" class="upload-form-file form__file">试听文件</button>
                     </p>
                     <p class="form__group">
+                        <input
+                                type="text"
+                                name="name"
+                                id="title"
+                                class="form__text"
+
+                                value="{{ $title ?: old('name') }}"
+                                required
+                        >
+                        <label class="form__label form__label--floating" for="title">{{ __('torrent.title') }}</label>
+                    </p>
+                    <p class="form__group">
                         <select
                             x-ref="catId"
                             name="category_id"
@@ -369,7 +381,7 @@
                             {{ __('torrent.keywords') }} (<i>{{ __('torrent.keywords-example') }}</i>)
                         </label>
                     </p>
-                    @livewire('bbcode-input', ['name' => 'description', 'label' => __('common.description'), 'required' => true])
+                    @livewire('bbcode-input', ['name' => 'description', 'label' => __('common.description'), 'required' => false])
                     <p class="form__group" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
                         <textarea
                             id="upload-form-mediainfo"
