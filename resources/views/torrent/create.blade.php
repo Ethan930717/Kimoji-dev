@@ -402,7 +402,7 @@
                         <label class="form__label form__label--floating" for="music_url" id="uploadMusic">
                             {{ __('试听链接') }}
                         </label>
-                        <button id="uploadMusic" class="upload-form-file form__file">试听文件</button>
+                        <button type="button" id="uploadMusic" class="upload-form-file form__file">上传试听文件</button>
                     </p>
 
                     <p class="form__group" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
