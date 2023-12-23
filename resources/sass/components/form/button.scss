@@ -47,7 +47,6 @@
     border-radius: var(--button-filled-border-radius);
 }
 
-.upload-form-button,
 .form__button_copy--filled {
     background: #63ca85 linear-gradient(to bottom right, #6bdadd, #648073);
     color: var(--button-filled-fg);
@@ -56,6 +55,7 @@
 }
 
 /* Text */
+
 
 .form__button--text {
     background: var(--button-text-bg);

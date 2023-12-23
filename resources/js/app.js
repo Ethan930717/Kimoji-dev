@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (uploadButton) {
         uploadButton.addEventListener('click', openUploadWindow);
     }
+
 });
 function openUploadWindow() {
     const uploadWindowWidth = 600; // 设置窗口宽度
