@@ -616,7 +616,6 @@ return [
 
             'allow' => [
                 'https://*.kimoji.club',
-
             ],
 
             'schemes' => [
