@@ -106,20 +106,6 @@
                         </label>
                         <input id="torrent-banner" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg, .png, .webp" name="torrent-banner">
                     </p>
-                    <p class="form__group" x-show="cats[cat].type === 'music'">
-                        <input
-                                type="text"
-                                name="music_url"
-                                id="music_url"
-                                class="form__text"
-                                value="{{ old('music_url') }}"
-                                placeholder=" "
-                        >
-                        <label class="form__label form__label--floating" for="music_url" id="uploadMusic">
-                            {{ __('试听链接') }}
-                        </label>
-                        <button id="uploadMusic" class="upload-form-file form__file">试听文件</button>
-                    </p>
                     <p class="form__group">
                         <input
                                 type="text"
@@ -404,6 +390,21 @@
                             {{ __('文字简介') }}
                         </label>
                     </p>
+                    <p class="form__group" x-show="cats[cat].type === 'music'">
+                        <input
+                                type="text"
+                                name="music_url"
+                                id="music_url"
+                                class="form__text"
+                                value="{{ old('music_url') }}"
+                                placeholder=" "
+                        >
+                        <label class="form__label form__label--floating" for="music_url" id="uploadMusic">
+                            {{ __('试听链接') }}
+                        </label>
+                        <button id="uploadMusic" class="upload-form-file form__file">试听文件</button>
+                    </p>
+
                     <p class="form__group" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
                         <textarea
                             id="upload-form-bdinfo"
