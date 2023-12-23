@@ -354,7 +354,7 @@
                         >
                         <label class="form__label form__label--floating" for="autoigdb">IGDB ID <b>({{ __('torrent.required-games') }})</b></label>
                     </p>
-                    <p class="form__group" style="display: none;" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
+                    <p class="form__group" style="display: none;" >
                         <input
                             type="text"
                             name="keywords"
