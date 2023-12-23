@@ -118,7 +118,7 @@
                         <label class="form__label form__label--floating" for="music_url" id="uploadMusic">
                             {{ __('试听链接') }}
                         </label>
-                        <button onclick="openUploadWindow()" class="form-button" id="uploadMusic">上传试听文件</button>
+                        <button id="uploadMusic" class="upload-form-file form__file" onclick="openUploadWindow()">试听文件</button>
                     </p>
                     <p class="form__group">
                         <select

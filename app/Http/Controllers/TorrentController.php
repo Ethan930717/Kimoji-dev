@@ -194,9 +194,8 @@ class TorrentController extends Controller
 
         abort_unless($user->group->is_modo || $user->id === $torrent->user_id, 403);
 
-        $torrent->update($request->validated() + [
-            'music_url' => $request->input('music_url'),
-        ]);
+        $torrent->update($request->validated());
+
 
         // Cover Image for No-Meta Torrents
         if ($request->hasFile('torrent-cover')) {
