@@ -66,14 +66,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 //上传音乐
-document.addEventListener('DOMContentLoaded', function() {
-    var uploadButton = document.getElementById('uploadMusic');
-    if (uploadButton) {
-        uploadButton.addEventListener('click', openUploadWindow);
-    }
-});
-function openUploadWindow() {
+function openUploadWindow(event) {
     event.preventDefault(); // 阻止按钮的默认提交行为
+
     const uploadWindowWidth = 600; // 设置窗口宽度
     const uploadWindowHeight = 400; // 设置窗口高度
     const left = (screen.width / 2) - (uploadWindowWidth / 2);
@@ -85,6 +80,13 @@ function openUploadWindow() {
         `width=${uploadWindowWidth},height=${uploadWindowHeight},top=${top},left=${left}`
     );
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    var uploadButton = document.getElementById('uploadMusic');
+    if (uploadButton) {
+        uploadButton.addEventListener('click', openUploadWindow);
+    }
+});
 
 
 
