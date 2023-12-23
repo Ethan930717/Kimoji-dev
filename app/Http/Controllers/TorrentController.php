@@ -192,12 +192,12 @@ class TorrentController extends Controller
 
         $torrent = Torrent::withoutGlobalScope(ApprovedScope::class)->findOrFail($id);
 
-
         abort_unless($user->group->is_modo || $user->id === $torrent->user_id, 403);
 
         $torrent->update($request->validated() + [
-                'music_url' => $request->input('music_url'),
-            ]);
+            'music_url' => $request->input('music_url'),
+        ]);
+
         // Cover Image for No-Meta Torrents
         if ($request->hasFile('torrent-cover')) {
             $image_cover = $request->file('torrent-cover');
@@ -381,8 +381,7 @@ class TorrentController extends Controller
             'moderated_by' => User::SYSTEM_USER_ID,
             'pieces_hash'  => $piecesHash,
             'music_url'    => $request->input('music_url'),
-
-            ] + $request->safe()->except(['torrent']));
+        ] + $request->safe()->except(['torrent']));
 
         // Count and save the torrent number in this category
         $category = Category::findOrFail($request->integer('category_id'));

@@ -58,10 +58,12 @@ class TorrentObserver
                         $torrent->name,
                         $fileSizeText
                     );
+
                     break;
                 default:
                     return;
             }
+
             if (isset($tmdbService)) {
                 $tmdbData = $this->fetchTmdbData($tmdbService);
 
