@@ -45,11 +45,6 @@ class UpdateTorrentRequest extends FormRequest
                 Rule::unique('torrents')->whereNot('id', $request->route('id')),
                 'max:255',
             ],
-            'music_text' => [
-                'nullable',
-                'string',
-                'max:1000',
-            ],
             'music_url' => [
                 'nullable',
                 'url',

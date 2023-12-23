@@ -615,7 +615,7 @@ return [
             'report-sample' => false,
 
             'allow' => [
-                'https://*.kimoji.club',
+                '*.kimoji.club',
             ],
 
             'schemes' => [

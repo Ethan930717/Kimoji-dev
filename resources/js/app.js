@@ -83,32 +83,9 @@ function openUploadWindow() {
         'UploadWindow',
         `width=${uploadWindowWidth},height=${uploadWindowHeight},top=${top},left=${left}`
     );
-
-    window.addEventListener('message', function(event) {
-        // 检查消息类型
-        if (event.data.type && event.data.type === 'uploadSuccess') {
-            // 获取上传的文件 URL
-            var uploadedMusicUrl = event.data.url;
-
-            // 更新隐藏输入字段的值
-            document.getElementById('music_url').value = music_url;
-        }
-    }, false);
 }
 
-//全局监听器
-window.addEventListener('message', function(event) {
-    // 检查消息类型
-    if (event.data.type && event.data.type === 'uploadSuccess') {
-        // 获取上传的文件 URL
-        var music_url = event.data.url;
-        // 更新隐藏输入字段的值
-        document.getElementById('music_url').value = music_url;
-        // 显示“上传成功”提醒
-        // 假设您有一个用于显示消息的元素
-        document.getElementById('uploadStatus').innerText = '上传成功';
-    }
-}, false);
+
 
 
 

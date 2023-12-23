@@ -29,7 +29,6 @@ use voku\helper\AntiXSS;
 
 /**
  * @property string      $info_hash
- * @property string|null $music_text
  */
 class Torrent extends Model
 {
@@ -391,17 +390,6 @@ class Torrent extends Model
         return $this->free || config('other.freeleech') || $pfree;
     }
 
-    /**
-     * Set the torrent's music_text.
-     *
-     * @param  string $value
-     * @return void
-     */
-    public function setMusicTextAttribute($value): void
-    {
-        $antiXSS = new AntiXSS();
-        $this->attributes['music_text'] = $antiXSS->xss_clean($value);
-    }
 
     /**
      * Set the torrent's music_url.
