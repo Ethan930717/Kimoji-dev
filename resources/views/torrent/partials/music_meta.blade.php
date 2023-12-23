@@ -44,11 +44,13 @@
             </li>
         </ul>
         <p class="meta__description">{{ $torrent->mediainfo }}</p>
-        <div id="aplayer-container"
-             data-cover="{{ url('img/kimoji-music.webp') }}"
-             data-name="单曲试听"
-             data-artist="Kimoji"
-             data-url= "{{ $torrent?->music_url }}">
-            <div id="aplayer" class="aplayer"></div>
-        </div>
+        @if ($torrent?->music_url)
+            <div id="aplayer-container"
+                 data-cover="{{ url('img/kimoji-music.webp') }}"
+                 data-name="单曲试听"
+                 data-artist="Kimoji"
+                 data-url= "{{ $torrent?->music_url }}">
+                <div id="aplayer" class="aplayer"></div>
+            </div>
+        @endif
 </section>
