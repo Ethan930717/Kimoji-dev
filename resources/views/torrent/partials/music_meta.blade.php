@@ -1,5 +1,7 @@
 <section class="meta">
-    @if (file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg'))
+    @if (file_exists(public_path().'/files/img/torrent-banner_'.$torrent->id.'.jpg'))
+        <img class="meta__backdrop" src="{{ url('/files/img/torrent-banner_'.$torrent->id.'.jpg') }}" alt="Backdrop">
+    @else
         <img class="meta__backdrop" src="{{ url('/files/img/torrent-cover_'.$torrent->id.'.jpg') }}" alt="Backdrop">
     @endif
         <a class="meta__title-link">
