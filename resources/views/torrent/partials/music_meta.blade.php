@@ -39,29 +39,16 @@
                         title="Internet Movie Database"
                         target="_blank"
                 >
-                    蓝调爵士
+                    {{ $torrent?->distributor->name ?? '未知风格' }}
                 </a>
             </li>
-            @if ($meta->id ?? 0 > 0)
-                <li class="meta__tmdb">
-                    <a
-                            class="meta-id-tag"
-                            href="https://www.themoviedb.org/movie/{{ $meta->id }}"
-                            title="The Movie Database"
-                            target="_blank"
-                    >
-                        TMDB: {{ $meta->id }}
-                    </a>
-                </li>
-            @endif
         </ul>
-        <p class="meta__description">王朝是一个新的具有里程碑意义的系列。这个系列将记录世界上最具标志性的动物的故事，在世界最知名的地点，他们为了维系自己的王朝而努力奋斗着。在每一集里面，他们每个个体的故事都会通过激烈的、引人入胜的戏剧情节展开。</p>
+        <p class="meta__description">{{ $torrent->mediainfo }}</p>
         <div id="aplayer-container"
              data-cover="{{ url('img/kimoji-music.webp') }}"
-             data-name="倒带"
-             data-artist="小霞"
-             data-url="https://file.kimoji.club/%e5%80%92%e5%b8%a6.mp3">
-            <div class="aplayer-title">单曲试听</div>
+             data-name="单曲试听"
+             data-artist="Kimoji"
+             data-url= "{{ $torrent?->music_url }}">
             <div id="aplayer" class="aplayer"></div>
         </div>
 </section>

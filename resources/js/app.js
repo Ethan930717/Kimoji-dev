@@ -99,7 +99,7 @@ window.addEventListener('message', function(event) {
 //动态更换mediainfo
 function updateMediaInfoDisplay(catType) {
     var label = document.getElementById('mediainfo-label');
-    label.innerText = (catType === 'music' || catType === 'no') ? '文字简介' : '{{ __('torrent.media-info-parser') }}';
+    label.innerText = (catType === 'music' || catType === 'no') ? '文字简介' : 'MediaInfo';
 }
 
 
