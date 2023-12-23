@@ -102,15 +102,17 @@
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'music'" style="display:none">
                         <label for="torrent-banner" class="form__label">
-                            海报 (必选,仅支持JPG格式)
+                            海报 (可选,仅支持JPG格式)
                         </label>
                         <input id="torrent-banner" class="upload-form-file form__file" type="file" accept=".jpg" name="torrent-banner">
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'music'">
-                        <label for="single-music" class="form__label">
-                            上传试听单曲
+                        <label for="uploadMusic" class="form__label">
+                            试听单曲
                         </label>
-                        <input id="single-music" class="upload-form-file form__file" type="file" accept="audio/*" name="single-music">
+                        <input type="hidden" name="uploadedMusicUrl" id="uploadedMusicUrl" value="">
+                        <button id="uploadMusic" class="upload-form-file form__file" onclick="openUploadWindow()">点击上传</button>
+                        <div id="uploadStatus"></div>
                     </p>
                     <p class="form__group">
                         <input

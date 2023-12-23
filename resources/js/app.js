@@ -66,19 +66,43 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 //上传音乐
-document.getElementById('uploadButton').addEventListener('click', function (e) {
-    var fileInput = document.getElementById('single-music');
-    console.log('fileInput: ', fileInput);
-    var file = fileInput.files[0];
-    console.log('file: ', file);
-    e.preventDefault();
-    var formData = new FormData();
-    formData.append('musicfile', file)
-    fetch('http://localhost:3000/upload', {
-        method: 'POST',
-        body: formData
-    })
-        .then(response => response.json())
-        .then(data => console.log('http://localhost:3000' + data.url))
-        .catch(error => console.error('Error:', error));
-});
+function openUploadWindow() {
+    const uploadWindowWidth = 600; // 设置窗口宽度
+    const uploadWindowHeight = 400; // 设置窗口高度
+    const left = (screen.width / 2) - (uploadWindowWidth / 2);
+    const top = (screen.height / 2) - (uploadWindowHeight / 2);
+
+    window.open(
+        'https://file.kimoji.club',
+        'UploadWindow',
+        `width=${uploadWindowWidth},height=${uploadWindowHeight},top=${top},left=${left}`
+    );
+
+    window.addEventListener('message', function(event) {
+        // 检查消息类型
+        if (event.data.type && event.data.type === 'uploadSuccess') {
+            // 获取上传的文件 URL
+            var uploadedMusicUrl = event.data.url;
+
+            // 更新隐藏输入字段的值
+            document.getElementById('uploadedMusicUrl').value = uploadedMusicUrl;
+        }
+    }, false);
+}
+
+//全局监听器
+window.addEventListener('message', function(event) {
+    // 检查消息类型
+    if (event.data.type && event.data.type === 'uploadSuccess') {
+        // 获取上传的文件 URL
+        var uploadedMusicUrl = event.data.url;
+        // 更新隐藏输入字段的值
+        document.getElementById('uploadedMusicUrl').value = uploadedMusicUrl;
+        // 显示“上传成功”提醒
+        // 假设您有一个用于显示消息的元素
+        document.getElementById('uploadStatus').innerText = '上传成功';
+    }
+}, false);
+
+
+
