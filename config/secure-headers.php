@@ -493,7 +493,7 @@ return [
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/default-src
         'default-src' => [
-            'none' => true,
+            'none' => false,
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/font-src
@@ -608,13 +608,15 @@ return [
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src
         'script-src' => [
-            'none' => false,
+            'none' => true,
 
             'self' => true,
 
-            'report-sample' => false,
+            'report-sample' => true,
 
             'allow' => [
+                'https://*.kimoji.club',
+
             ],
 
             'schemes' => [
