@@ -60,6 +60,7 @@ button#uploadMusic {
     border: var(--button-filled-border);
     border-radius: var(--button-filled-border-radius);
     font-size: 14px;
+    padding: 4px 8px;
     &:hover {
         filter: brightness(1.1);
     }
