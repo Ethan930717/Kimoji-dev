@@ -94,17 +94,17 @@
                         </label>
                         <input id="nfo" class="upload-form-file form__file" type="file" accept=".nfo" name="nfo">
                     </p>
-                    <p class="form__group" x-show="cats[cat].type === 'music'">
+                    <p class="form__group" x-show="cats[cat].type === 'music'" x-bind:required="cats[cat].type == 'music'">
                         <label for="torrent-cover" class="form__label">
                             封面 (必选)
                         </label>
-                        <input id="torrent-cover" class="upload-form-file form__file" type="file" accept=".jpg .jpeg .png .webp" name="torrent-cover">
+                        <input id="torrent-cover" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg, .png, .webp" name="torrent-cover">
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'music'" style="display:none">
                         <label for="torrent-banner" class="form__label">
                             海报 (可选)
                         </label>
-                        <input id="torrent-banner" class="upload-form-file form__file" type="file" accept=".jpg .jpeg .png .webp" name="torrent-banner">
+                        <input id="torrent-banner" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg, .png, .webp" name="torrent-banner">
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'music'">
                         <input
@@ -118,7 +118,7 @@
                         <label class="form__label form__label--floating" for="music_url">
                             {{ __('试听链接') }}
                         </label>
-                        <button onclick="openUploadWindow()" class="upload-form-file form__file">上传试听文件</button>
+                        <button onclick="openUploadWindow()" class="upload-form-button">上传试听文件</button>
                     </p>
                     <p class="form__group">
                         <select
@@ -236,15 +236,6 @@
                         <label class="form__label form__label--floating" for="autoreg">
                             {{ __('torrent.region') }}
                         </label>
-                    </p>
-                    <p class="form__group" x-show="cats[cat].type === 'music'">
-                        <textarea
-                            id="music_text"
-                            name="music_text"
-                            class="form__textarea"
-                            placeholder=""
-                        >{{ old('context') }}</textarea>
-                    <label class="form__label form__label--floating" for="context">{{ __('文字简介') }}</label>
                     </p>
                     <div class="form__group--horizontal" x-show="cats[cat].type === 'tv'">
                         <p class="form__group">
@@ -380,7 +371,7 @@
                         </label>
                     </p>
                     @livewire('bbcode-input', ['name' => 'description', 'label' => __('common.description'), 'required' => true])
-                    <p class="form__group" >
+                    <p class="form__group" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
                         <textarea
                             id="upload-form-mediainfo"
                             name="mediainfo"
@@ -389,6 +380,17 @@
                         >{{ old('mediainfo') }}</textarea>
                         <label class="form__label form__label--floating" for="upload-form-mediainfo">
                             {{ __('torrent.media-info-parser') }}
+                        </label>
+                    </p>
+                    <p class="form__group" x-show="cats[cat].type === 'music'">
+                        <textarea
+                                id="upload-form-musicinfo"
+                                name="mediainfo"
+                                class="form__textarea"
+                                placeholder=" "
+                        >{{ old('mediainfo') }}</textarea>
+                        <label class="form__label form__label--floating" for="upload-form-musicinfo">
+                            {{ __('文字简介') }}
                         </label>
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">

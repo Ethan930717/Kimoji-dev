@@ -83,23 +83,16 @@ function openUploadWindow() {
         'UploadWindow',
         `width=${uploadWindowWidth},height=${uploadWindowHeight},top=${top},left=${left}`
     );
-}
 
-//全局监听器
-window.addEventListener('message', function(event) {
-    // 检查消息类型
-    if (event.data.type && event.data.type === 'uploadSuccess') {
-        // 获取上传的文件 URL
-        var music_url = event.data.url;
-        // 更新隐藏输入字段的值
-        document.getElementById('music_url').value = music_url;
-    }
-}, false);
-
-//动态更换mediainfo
-function updateMediaInfoDisplay(catType) {
-    var label = document.getElementById('mediainfo-label');
-    label.innerText = (catType === 'music' || catType === 'no') ? '文字简介' : 'MediaInfo';
+    window.addEventListener('message', function(event) {
+        // 检查消息类型
+        if (event.data.type && event.data.type === 'uploadSuccess') {
+            // 获取上传的文件 URL
+            var uploadedMusicUrl = event.data.url;
+            // 更新隐藏输入字段的值
+            document.getElementById('music_url').value = uploadedMusicUrl;
+        }
+    }, false);
 }
 
 
