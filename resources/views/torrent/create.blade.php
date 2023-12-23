@@ -399,7 +399,7 @@
                                 value="{{ old('music_url') }}"
                                 placeholder=" "
                         >
-                        <label class="form__label form__label--floating" for="music_url" id="uploadMusic">
+                        <label class="form__label form__label--floating" for="music_url" id="uploadMusic_text">
                             {{ __('试听链接') }}
                         </label>
                         <button type="button" id="uploadMusic" class="upload-form-file form__file">上传试听文件</button>
