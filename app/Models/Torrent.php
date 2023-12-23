@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\Model;
 use voku\helper\AntiXSS;
 
 /**
- * @property string      $info_hash
+ * @property string $info_hash
  */
 class Torrent extends Model
 {
@@ -389,7 +389,6 @@ class Torrent extends Model
 
         return $this->free || config('other.freeleech') || $pfree;
     }
-
 
     /**
      * Set the torrent's music_url.
