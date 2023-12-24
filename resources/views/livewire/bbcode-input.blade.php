@@ -89,6 +89,34 @@
                         }
                         },
 
+ConfirmCatEDU() {
+    const input = this.$refs.bbcode;
+    const inputValue = input.value.trim();
+
+    if (inputValue.length > 0) {
+        Swal.fire({
+            title: '确认使用CatEDU专用模板',
+            html: '使用当前模板将会清空当前输入框中的所有内容，是否确认？',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '是',
+            cancelButtonText: '否'
+        }).then((result) => {
+            if (result.isConfirmed) {
+               input.value = '[center][color=#bbff88][size=24][b][spoiler=Made by CatEDU][size=16][color=white][img]/img/friendsite/CatEDU.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=制作说明][size=16][color=white]请在此添加制作说明信息，如果没有，请删除本条[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接[/color][/size][/spoiler][/b][/size][/color][/center]';
+                        }
+        });
+    } else {
+       input.value = '[center][color=#bbff88][size=24][b][spoiler=Made by CatEDU][size=16][color=white][img]/img/friendsite/CatEDU.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=制作说明][size=16][color=white]请在此添加制作说明信息，如果没有，请删除本条[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接[/color][/size][/spoiler][/b][/size][/color][/center]';
+                        }
+                        },
+
 
  ConfirmMusic() {
     const input = this.$refs.bbcode;
@@ -523,7 +551,7 @@
             <li><button type="button" class="form__button form__button--text" x-on:click="showOfficialButtons = ! showOfficialButtons">官方专用</button></li>
                 <menu class="bbcode-input__icon-bar" x-cloak x-show="showOfficialButtons">
                     <li><button type="button" class="form__button form__button--text" x-on:click="ConfirmMusic">KIMOJI音乐</button></li>
-                    <li><button type="button" class="form__button form__button--text" x-on:click="ConfirmMusic">KIMOJI音乐</button></li>
+                    <li><button type="button" class="form__button form__button--text" x-on:click="ConfirmCatEDU">CatEDU</button></li>
 
                 </menu>
 
