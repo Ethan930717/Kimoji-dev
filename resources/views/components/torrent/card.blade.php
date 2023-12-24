@@ -115,13 +115,34 @@
                     @endforeach
                 </ul>
             @elseif ($torrent->category_id == 3)
-                <span class="torrent-card__distributor">
-            {{ $torrent->distributor->name ?? '未知风格' }}
+                <ul class="torrent-card__genres">
+                    <li class="torrent-card__genre-item">
+                        {{ $torrent->distributor->name ?? '' }}
+                        </a>
+                    </li>
+                </ul>
+                @if (!empty($torrent->music_url))
+                    <li class="torrent-card__genre-item">
+                        <a class="torrent-card__genre">
+                            <i class="{{ config('other.font-awesome') }} fa-headphones-alt" title="{{ __('单曲试听') }}"></i>
+                        </a>
+                    </li>
+                    @endif
         </span>
             @elseif ($torrent->category_id == 4)
-                <span class="torrent-card__region">
-            {{ $torrent->region->name ?? '未知类型' }}
-        </span>
+                <ul class="torrent-card__genres">
+                    <li class="torrent-card__genre-item">
+                        {{ $torrent->region->name ?? '' }}
+                        </a>
+                    </li>
+                </ul>
+                @if (!empty($torrent->music_url))
+                    <li class="torrent-card__genre-item">
+                        <a class="torrent-card__genre">
+                            <i class="{{ config('other.font-awesome') }} fa-headphones-alt" title="{{ __('单章试听') }}"></i>
+                        </a>
+                    </li>
+                @endif
             @endif
         </div>
         <p class="torrent-card__plot">
