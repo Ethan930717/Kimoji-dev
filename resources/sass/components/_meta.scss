@@ -479,15 +479,16 @@
     .aplayer.aplayer-withlrc .aplayer-lrc {
         display: block; }
     .aplayer.aplayer-narrow {
-        width: 66px; }
+        width: 220px;
+        height: 220px}
     .aplayer.aplayer-narrow .aplayer-info {
         display: none; }
     .aplayer.aplayer-narrow .aplayer-list {
         display: none; }
     .aplayer.aplayer-narrow .aplayer-pic,
     .aplayer.aplayer-narrow .aplayer-body {
-        height: 66px;
-        width: 66px; }
+        height: 220px;
+        width: 220px; }
     .aplayer.aplayer-fixed {
         position: fixed;
         bottom: 0;
