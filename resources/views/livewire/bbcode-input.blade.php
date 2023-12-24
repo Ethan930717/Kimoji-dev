@@ -521,10 +521,7 @@
             <menu class="bbcode-input__icon-bar" x-cloak x-show="showOfficialButtons">
                 <li><button type="button" class="form__button form__button--text" x-on:click="ConfirmMusic">KIMOJI音乐</button></li>
             </menu>
-
         </menu>
-
-    </menu>
     <div class="bbcode-input__tab-pane">
         <div class="bbcode-input__preview bbcode-rendered" x-show="isPreviewEnabled">
             @joypixels($contentHtml)
