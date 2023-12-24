@@ -71,6 +71,7 @@
             <div id="mini-aplayer"
                  data-cover="{{ url('files/img/torrent-cover_'.$torrent->id.'.jpg') }}"
                  data-url="{{ $torrent->music_url }}">
+                <div id="aplayer" class="aplayer"></div>
             </div>
         @else
             <!-- 原来的图片显示 -->
