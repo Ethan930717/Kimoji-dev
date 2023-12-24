@@ -89,7 +89,7 @@
                         }
                         },
 
-        ConfirmMusic() {
+ConfirmMusic() {
     const input = this.$refs.bbcode;
     const inputValue = input.value.trim();
 
@@ -513,6 +513,7 @@
         <li><button type="button" class="form__button form__button--text" x-on:click="insertWithCheck('[center][color=#bbff88][size=24][b][spoiler=截图赏析]', '[/spoiler][/b][/size][/color][/center]\n')">截图赏析</button></li>
         <li><button type="button" class="form__button form__button--text" x-on:click="convertImages()">转换大图</button></li>
         <li><button type="button" class="form__button form__button--text" x-on:click="showoneclickbuttons = ! showoneclickbuttons">一键模板</button></li>
+        </p>
         <menu class="bbcode-input__icon-bar" x-cloak x-show="showoneclickbuttons">
             <li><button type="button" class="form__button form__button--text" x-on:click="ConfirmMovieTrans">影视模板</button></li>
             <li><button type="button" class="form__button form__button--text" x-on:click="ConfirmMusicTrans">音乐模板</button></li>
