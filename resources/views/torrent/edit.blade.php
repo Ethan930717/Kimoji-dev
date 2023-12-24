@@ -340,7 +340,7 @@
                             id="music_url"
                             class="form__text"
                             value="{{ old('music_url', $torrent->music_url) }}"
-                            placeholder=" "
+                            placeholder="请在此输入url"
                     >
                     <label class="form__label form__label--floating" for="music_url" id="uploadMusic_text">
                         {{ __('试听链接') }}

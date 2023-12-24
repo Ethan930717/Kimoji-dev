@@ -206,7 +206,7 @@ class TorrentController extends BaseController
         // Validation
         $v = validator($torrent->toArray(), [
             'name'             => 'required|unique:torrents',
-            'music_url'        => 'nullable|url|max:255',
+            'music_url'        => 'nullable|string|max:255',
             'description'      => 'required',
             'info_hash'        => 'required|unique:torrents',
             'file_name'        => 'required',
