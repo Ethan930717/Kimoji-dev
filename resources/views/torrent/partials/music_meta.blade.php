@@ -44,8 +44,8 @@
             </li>
         </ul>
         @php
-            $description = $torrent->mediainfo;
-            $pattern = '/\[专辑介绍\](.*?)\[\/spoiler\]/s';
+            $description = $torrent->description;
+            $pattern = '/专辑介绍\]\[size=16\]\[color=white\](.*?)\[\/color\]/s';
             $matches = [];
 
             if (preg_match($pattern, $description, $matches)) {

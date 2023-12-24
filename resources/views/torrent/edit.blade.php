@@ -339,7 +339,7 @@
                             name="music_url"
                             id="music_url"
                             class="form__text"
-                            value="{{ old('music_url') }}"
+                            value="{{ old('music_url', $torrent->music_url) }}"
                             placeholder=" "
                     >
                     <label class="form__label form__label--floating" for="music_url" id="uploadMusic_text">
