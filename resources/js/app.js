@@ -47,15 +47,17 @@ if (document.getElementById('vue')) {
 window.Swal = require('sweetalert2');
 
 import APlayer from 'aplayer';
+
 document.addEventListener('DOMContentLoaded', function() {
+    // 常规模式播放器
     const aplayerContainer = document.getElementById('aplayer-container');
     const coverUrl = aplayerContainer.dataset.cover;
     const songName = aplayerContainer.dataset.name;
     const artistName = aplayerContainer.dataset.artist;
     const songUrl = aplayerContainer.dataset.url;
 
-    const ap = new APlayer({
-        container: document.getElementById('aplayer'),
+    const apRegular = new APlayer({
+        container: aplayerContainer,
         audio: [{
             name: songName,
             artist: artistName,
@@ -63,7 +65,27 @@ document.addEventListener('DOMContentLoaded', function() {
             cover: coverUrl
         }]
     });
+
+    // 迷你模式播放器
+    // 确保页面中有一个用于迷你播放器的容器元素
+    const miniPlayerContainer = document.getElementById('mini-aplayer');
+    const minicoverUrl = aplayerContainer.dataset.cover;
+    const miniSongUrl = miniPlayerContainer.dataset.url;
+
+    const apMini = new APlayer({
+        container: miniPlayerContainer,
+        audio: [{
+            name: '单曲试听',
+            artist: 'Kimoji',
+            url: miniSongUrl,
+            cover: minicoverUrl,
+
+        }],
+        mini: true,
+        autoplay: false
+    });
 });
+
 
 //上传音乐
 document.addEventListener('DOMContentLoaded', function() {

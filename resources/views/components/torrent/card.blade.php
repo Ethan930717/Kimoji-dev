@@ -66,30 +66,35 @@
         </div>
     </header>
     <aside class="torrent-card__aside">
-        <a
-            class="torrent-card__similar-link"
-            href="{{ route('torrents.show', ['id' => $torrent->id]) }}">
-            <figure class="torrent-card__figure">
-                <img
-                    class="torrent-card__image"
-                    @switch (true)
-                        @case ($torrent->category->movie_meta || $torrent->category->tv_meta)
-                            src="{{ isset($meta->poster) ? tmdb_image('poster_mid', $meta->poster) : 'https://via.placeholder.com/160x240' }}"
-                            @break
-                        @case ($torrent->category->game_meta && isset($torrent->meta) && $meta->cover->image_id && $meta->name)
-                            src="https://images.igdb.com/igdb/image/upload/t_cover_big/{{ $torrent->meta->cover->image_id }}.jpg"
-                            @break
-                    @case ($torrent->category->music_meta && file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg'))
-                        src="{{ url('files/img/torrent-cover_'.$torrent->id.'.jpg') }}"
-                    @break
-                        @case ($torrent->category->no_meta && file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg'))
-                            src="{{ url('files/img/torrent-cover_'.$torrent->id.'.jpg') }}"
-                            @break
-                    @endswitch
-                    alt="{{ __('torrent.poster') }}"
-                />
-            </figure>
-        </a>
+        @if (!empty($torrent->music_url))
+            <!-- APlayer 迷你播放器 -->
+            <div id="mini-aplayer"
+                 data-cover="{{ url('files/img/torrent-cover_'.$torrent->id.'.jpg') }}"
+                 data-url="{{ $torrent->music_url }}">
+            </div>
+        @else
+            <!-- 原来的图片显示 -->
+            <a class="torrent-card__similar-link" href="{{ route('torrents.show', ['id' => $torrent->id]) }}">
+                <figure class="torrent-card__figure">
+                    <img class="torrent-card__image"
+                         @switch(true)
+                             @case($torrent->category->movie_meta || $torrent->category->tv_meta)
+                                 src="{{ isset($meta->poster) ? tmdb_image('poster_mid', $meta->poster) : 'https://via.placeholder.com/160x240' }}"
+                         @break
+                         @case($torrent->category->game_meta && isset($torrent->meta) && $meta->cover->image_id && $meta->name)
+                             src="https://images.igdb.com/igdb/image/upload/t_cover_big/{{ $torrent->meta->cover->image_id }}.jpg"
+                         @break
+                         @case($torrent->category->music_meta && file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg'))
+                             src="{{ url('files/img/torrent-cover_'.$torrent->id.'.jpg') }}"
+                         @break
+                         @case($torrent->category->no_meta && file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg'))
+                             src="{{ url('files/img/torrent-cover_'.$torrent->id.'.jpg') }}"
+                         @break
+                         @endswitch
+                         alt="{{ __('torrent.poster') }}">
+                </figure>
+            </a>
+        @endif
     </aside>
     <div class="torrent-card__body">
         <h2 class="torrent-card__title">
@@ -116,11 +121,11 @@
                 </ul>
             @elseif ($torrent->category_id == 3)
                 <span class="torrent-card__distributor">
-            {{ $torrent->distributor->name ?? 'N/A' }}
+            {{ $torrent->distributor->name ?? '' }}
         </span>
             @elseif ($torrent->category_id == 4)
                 <span class="torrent-card__region">
-            {{ $torrent->region->name ?? 'N/A' }}
+            {{ $torrent->region->name ?? '' }}
         </span>
             @endif
         </div>
