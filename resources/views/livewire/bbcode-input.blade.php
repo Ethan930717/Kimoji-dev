@@ -89,6 +89,37 @@
                         }
                         },
 
+
+ ConfirmMusic() {
+    const input = this.$refs.bbcode;
+    const inputValue = input.value.trim();
+
+    if (inputValue.length > 0) {
+        Swal.fire({
+            title: '本模版为KIMOJI音乐组专用',
+            html: '使用当前模板将会清空当前输入框中的所有内容，是否确认？',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '是',
+            cancelButtonText: '否'
+        }).then((result) => {
+            if (result.isConfirmed) {
+               input.value = '[center][color=#bbff88][size=24][b][spoiler=Made by KIMOJI][size=16][color=white][img]/img/friendsite/kimoji12.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=专辑介绍][size=16][color=white]请在此添加专辑的文字介绍，如有条件，请使用优质翻译工具进行汉化[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=歌曲列表][size=16][color=white]在此添加歌曲列表信息[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接，如专辑海报、频率截图等[/color][/size][/spoiler][/b][/size][/color][/center]';
+                        }
+        });
+    } else {
+       input.value = '[center][color=#bbff88][size=24][b][spoiler=Made by KIMOJI][size=16][color=white][img]/img/friendsite/kimoji12.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=专辑介绍][size=16][color=white]请在此添加专辑的文字介绍，如有条件，请使用优质翻译工具进行汉化[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=歌曲列表][size=16][color=white]在此添加歌曲列表信息[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接，如专辑海报、频率截图等[/color][/size][/spoiler][/b][/size][/color][/center]';
+                        }
+                        },
+
        ConfirmVoiceTrans() {
     const input = this.$refs.bbcode;
     const inputValue = input.value.trim();
@@ -481,11 +512,11 @@
         <li><button type="button" class="form__button form__button--text" x-on:click="insertWithCheck('[center][color=#bbff88][size=24][b][spoiler=截图赏析]', '[/spoiler][/b][/size][/color][/center]\n')">截图赏析</button></li>
         <li><button type="button" class="form__button form__button--text" x-on:click="convertImages()">转换大图</button></li>
         <li><button type="button" class="form__button form__button--text" x-on:click="showoneclickbuttons = ! showoneclickbuttons">一键模板</button></li>
-        </p>
         <menu class="bbcode-input__icon-bar" x-cloak x-show="showoneclickbuttons">
             <li><button type="button" class="form__button form__button--text" x-on:click="ConfirmMovieTrans">影视模板</button></li>
             <li><button type="button" class="form__button form__button--text" x-on:click="ConfirmMusicTrans">音乐模板</button></li>
             <li><button type="button" class="form__button form__button--text" x-on:click="ConfirmVoiceTrans">有声模板</button></li>
+            <li><button type="button" class="form__button form__button--text" x-on:click="ConfirmMusic">KIMOJI音乐</button></li>
 
         </menu>
 
