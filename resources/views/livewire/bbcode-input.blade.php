@@ -48,13 +48,13 @@
             cancelButtonText: '否'
         }).then((result) => {
             if (result.isConfirmed) {
-               input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]img/friendsite/请替换成制作组的组名.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+               input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]/img/friendsite/请替换成制作组的组名.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                        '[center][color=#bbff88][size=24][b][spoiler=制作说明][size=16][color=white]如果有制作说明信息，请在此添加，否则请删除本条[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                        '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接[/color][/size][/spoiler][/b][/size][/color][/center]';
                         }
         });
     } else {
-        input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]img/friendsite/请替换成制作组的组名.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+        input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]/img/friendsite/请替换成制作组的组名.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                        '[center][color=#bbff88][size=24][b][spoiler=制作说明][size=16][color=white]如果有制作说明信息，请在此添加，否则请删除本条[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                        '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接[/color][/size][/spoiler][/b][/size][/color][/center]';
     }
@@ -75,14 +75,44 @@
             cancelButtonText: '否'
         }).then((result) => {
             if (result.isConfirmed) {
-               input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]img/friendsite/请替换成制作组的组名.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+               input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]/img/friendsite/请替换成制作组的组名.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                              '[center][color=#bbff88][size=24][b][spoiler=专辑介绍][size=16][color=white]请在此添加专辑的文字介绍，如有条件，请使用优质翻译工具进行汉化[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                              '[center][color=#bbff88][size=24][b][spoiler=歌曲列表][size=16][color=white]在此添加歌曲列表信息[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                              '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接，如专辑海报、频率截图等[/color][/size][/spoiler][/b][/size][/color][/center]';
                         }
         });
     } else {
-       input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]img/friendsite/请替换成制作组的组名.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+       input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]/img/friendsite/请替换成制作组的组名.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=专辑介绍][size=16][color=white]请在此添加专辑的文字介绍，如有条件，请使用优质翻译工具进行汉化[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=歌曲列表][size=16][color=white]在此添加歌曲列表信息[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接，如专辑海报、频率截图等[/color][/size][/spoiler][/b][/size][/color][/center]';
+                        }
+                        },
+
+        ConfirmMusic() {
+    const input = this.$refs.bbcode;
+    const inputValue = input.value.trim();
+
+    if (inputValue.length > 0) {
+        Swal.fire({
+            title: '本模板为KIMOJI音乐官组专用',
+            html: '使用后将会清空当前输入框中的所有内容，是否确认？',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '是',
+            cancelButtonText: '否'
+        }).then((result) => {
+            if (result.isConfirmed) {
+               input.value = '[center][color=#bbff88][size=24][b][spoiler=Made by KIMOJI][size=16][color=white][img]/img/friendsite/kimoji12.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=专辑介绍][size=16][color=white]请在此添加专辑的文字介绍，如有条件，请使用优质翻译工具进行汉化[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=歌曲列表][size=16][color=white]在此添加歌曲列表信息[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接，如专辑海报、频率截图等[/color][/size][/spoiler][/b][/size][/color][/center]';
+                        }
+        });
+    } else {
+       input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]/img/friendsite/kimoji12.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                              '[center][color=#bbff88][size=24][b][spoiler=专辑介绍][size=16][color=white]请在此添加专辑的文字介绍，如有条件，请使用优质翻译工具进行汉化[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                              '[center][color=#bbff88][size=24][b][spoiler=歌曲列表][size=16][color=white]在此添加歌曲列表信息[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                              '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接，如专辑海报、频率截图等[/color][/size][/spoiler][/b][/size][/color][/center]';
@@ -105,14 +135,14 @@
             cancelButtonText: '否'
         }).then((result) => {
             if (result.isConfirmed) {
-               input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]img/friendsite/请替换成制作组的组名.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+               input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]/img/friendsite/请替换成制作组的组名.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                              '[center][color=#bbff88][size=24][b][spoiler=音源简介][size=16][color=white]请在此添加书籍或节目内容的基本介绍[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                              '[center][color=#bbff88][size=24][b][spoiler=节目列表][size=16][color=white]如有节目详细列表，请在此添加，否则请删除本条[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                              '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接，如书籍海报、插画或其他相关图片内容[/color][/size][/spoiler][/b][/size][/color][/center]';
                         }
         });
     } else {
-        input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]img/friendsite/请替换成制作组的组名.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+        input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]/img/friendsite/请替换成制作组的组名.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                              '[center][color=#bbff88][size=24][b][spoiler=音源简介][size=16][color=white]请在此添加书籍或节目内容的基本介绍[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                              '[center][color=#bbff88][size=24][b][spoiler=节目列表][size=16][color=white]如有节目详细列表，请在此添加，否则请删除本条[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                              '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接，如书籍海报、插画或其他相关图片内容[/color][/size][/spoiler][/b][/size][/color][/center]';
@@ -292,6 +322,7 @@
         },
         showButtons: false,
         showOneClickButtons: false,
+        showOfficialButtons：false,
         bbcodePreviewHeight: null,
         isPreviewEnabled: @entangle('isPreviewEnabled'),
         isOverInput: false,
@@ -477,15 +508,19 @@
                 </abbr>
             </button>
         </li>
-        <li><button type="button" class="form__button form__button--text" x-on:click="insertThanks('[center][color=#bbff88][size=24][b][spoiler=转载致谢]', '[/spoiler][/b][/size][/color][/center]\n')">转载致谢</button></li>
-        <li><button type="button" class="form__button form__button--text" x-on:click="confirm-making-announce">制作说明</button></li>
-        <li><button type="button" class="form__button form__button--text" x-on:click="insertWithCheck('[center][color=#bbff88][size=24][b][spoiler=截图赏析]', '[/spoiler][/b][/size][/color][/center]\n')">截图赏析</button></li>
-        <li><button type="button" class="form__button form__button--text" x-on:click="convertImages()">转换大图</button></li>
         <li><button type="button" class="form__button form__button--text" x-on:click="showOneClickButtons = ! showOneClickButtons">一键模板</button></li>
         <menu class="bbcode-input__icon-bar" x-cloak x-show="showOneClickButtons">
             <li><button type="button" class="form__button form__button--text" x-on:click="ConfirmMovieTrans">影视模板</button></li>
             <li><button type="button" class="form__button form__button--text" x-on:click="ConfirmMusicTrans">音乐模板</button></li>
             <li><button type="button" class="form__button form__button--text" x-on:click="ConfirmVoiceTrans">有声模板</button></li>
+            <li><button type="button" class="form__button form__button--text" x-on:click="insertThanks('[center][color=#bbff88][size=24][b][spoiler=转载致谢]', '[/spoiler][/b][/size][/color][/center]\n')">转载致谢</button></li>
+            <li><button type="button" class="form__button form__button--text" x-on:click="confirm-making-announce">制作说明</button></li>
+            <li><button type="button" class="form__button form__button--text" x-on:click="insertWithCheck('[center][color=#bbff88][size=24][b][spoiler=截图赏析]', '[/spoiler][/b][/size][/color][/center]\n')">截图赏析</button></li>
+            <li><button type="button" class="form__button form__button--text" x-on:click="convertImages()">转换大图</button></li>
+            <li><button type="button" class="form__button form__button--text" x-on:click="showOfficialButtons = ! showOfficialButtons">官组专用</button></li>
+            <menu class="bbcode-input__icon-bar" x-cloak x-show="showOfficialButtons">
+                <li><button type="button" class="form__button form__button--text" x-on:click="ConfirmMusic">KIMOJI音乐</button></li>
+            </menu>
 
         </menu>
 
