@@ -96,26 +96,52 @@
             <a class="torrent-card__link" href="{{ route('torrents.show', ['id' => $torrent->id]) }}">{{ $torrent->name }}</a>
         </h2>
         <div class="torrent-card__rating-and-genres">
-            <span
-                class="torrent-card__rating"
-                title="{{ $meta->vote_average }}/10 ({{ $meta->vote_count }} {{ __('torrent.votes') }})"
-            >
-                <i class="{{ \config('other.font-awesome') }} fa-star"></i>
-                {{ $meta->vote_average }}
-            </span>
-            <span class="torrent-card__meta-seperator"> &bull; </span>
-            <ul class="torrent-card__genres">
-                @foreach($meta->genres as $genre)
-                    <li class="torrent-card__genre-item">
-                        <a class="torrent-card__genre" href="{{ route('torrents.index', ['view' => 'group', 'genres' => [$genre->id]]) }}">
-                            {{ $genre->name }}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
+            @if (in_array($torrent->category_id, [1, 2]))
+                <span
+                        class="torrent-card__rating"
+                        title="{{ $meta->vote_average }}/10 ({{ $meta->vote_count }} {{ __('torrent.votes') }})"
+                >
+            <i class="{{ config('other.font-awesome') }} fa-star"></i>
+            {{ $meta->vote_average }}
+        </span>
+                <span class="torrent-card__meta-seperator"> &bull; </span>
+                <ul class="torrent-card__genres">
+                    @foreach($meta->genres as $genre)
+                        <li class="torrent-card__genre-item">
+                            <a class="torrent-card__genre" href="{{ route('torrents.index', ['view' => 'group', 'genres' => [$genre->id]]) }}">
+                                {{ $genre->name }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            @elseif ($torrent->category_id == 3)
+                <span class="torrent-card__distributor">
+            {{ $torrent->distributor->name ?? 'N/A' }}
+        </span>
+            @elseif ($torrent->category_id == 4)
+                <span class="torrent-card__region">
+            {{ $torrent->region->name ?? 'N/A' }}
+        </span>
+            @endif
         </div>
         <p class="torrent-card__plot">
-            {{ Str::limit(strip_tags($meta->overview ?: $meta->summary), 350, '...') }}
+            @if (in_array($torrent->category_id, [1, 2]))
+                {{ Str::limit(strip_tags($meta->overview ?: $meta->summary), 350, '...') }}
+            @elseif (in_array($torrent->category_id, [3, 4]))
+                @php
+                    $description = $torrent->description;
+                    $pattern = '/专辑介绍\]\[size=16\]\[color=white\](.*?)\[\/color\]/s';
+                    $matches = [];
+
+                    if (preg_match($pattern, $description, $matches)) {
+                        $spoilerContent = $matches[1]; // 获取[spoiler]标签内的内容
+                    } else {
+                        $spoilerContent = '';
+                    }
+                @endphp
+                {{ Str::limit(strip_tags($spoilerContent), 350, '...') }}
+            @endif
+
         </p>
     </div>
     <footer class="torrent-card__footer">
