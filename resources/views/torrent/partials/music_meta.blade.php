@@ -6,7 +6,7 @@
     @endif
         <a class="meta__title-link">
             <h1 class="meta__title">
-                {{ $torrent?->name}}
+                {{ count($parts = explode('-', $torrent->name)) > 2 ? implode('-', array_slice($parts, 0, 2)) : $torrent->name }}
             </h1>
         </a>
         <a class="meta__poster-link">
@@ -43,7 +43,19 @@
                 </a>
             </li>
         </ul>
-        <p class="meta__description">{{ $torrent->mediainfo }}</p>
+        @php
+            $description = $torrent->mediainfo;
+            $pattern = '/\[专辑介绍\](.*?)\[\/spoiler\]/s';
+            $matches = [];
+
+            if (preg_match($pattern, $description, $matches)) {
+                $spoilerContent = $matches[1]; // 获取[spoiler]标签内的内容
+            } else {
+                $spoilerContent = '';
+            }
+        @endphp
+        <p class="meta__description">{{ $spoilerContent }}</p>
+
         @if ($torrent?->music_url)
             <div id="aplayer-container"
                  data-cover="{{ url('img/kimoji-music.webp') }}"

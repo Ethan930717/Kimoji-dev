@@ -100,7 +100,7 @@
                         </label>
                         <input id="torrent-cover" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg, .png, .webp" name="torrent-cover">
                     </p>
-                    <p class="form__group" x-show="cats[cat].type === 'music'" style="display:none">
+                    <p class="form__group" x-show="cats[cat].type === 'music'">
                         <label for="torrent-banner" class="form__label">
                             海报 (可选)
                         </label>
@@ -377,17 +377,6 @@
                         >{{ old('mediainfo') }}</textarea>
                         <label class="form__label form__label--floating" for="upload-form-mediainfo">
                             {{ __('torrent.media-info-parser') }}
-                        </label>
-                    </p>
-                    <p class="form__group" x-show="cats[cat].type === 'music'">
-                        <textarea
-                                id="upload-form-musicinfo"
-                                name="mediainfo"
-                                class="form__textarea"
-                                placeholder=" "
-                        >{{ old('mediainfo') }}</textarea>
-                        <label class="form__label form__label--floating" for="upload-form-musicinfo">
-                            {{ __('文字简介') }}
                         </label>
                     </p>
                     <p class="form__group" x-show="cats[cat].type === 'music'">

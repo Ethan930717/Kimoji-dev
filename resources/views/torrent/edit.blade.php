@@ -36,29 +36,17 @@
             >
                 @csrf
                 @method('PATCH')
-                <p class="form__group" x-show="cats[cat].type === 'no'">
-                    <label class="form__label" for="torrent-cover">
-                        专辑封面（必选）
+                <p class="form__group" x-show="cats[cat].type === 'music'" >
+                    <label for="torrent-cover" class="form__label">
+                        封面 (必选)
                     </label>
-                    <input
-                        id="torrent-cover"
-                        class="form__file"
-                        accept=".jpg, .jpeg, .png"
-                        name="torrent-cover"
-                        type="file"
-                    >
+                    <input id="torrent-cover" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg, .png, .webp" name="torrent-cover">
                 </p>
-                <p class="form__group" x-show="cats[cat].type === 'no'">
-                    <label class="form__label" for="torrent-banner">
-                        歌手海报（必选）
+                <p class="form__group" x-show="cats[cat].type === 'music'">
+                    <label for="torrent-banner" class="form__label">
+                        海报 (可选)
                     </label>
-                    <input
-                        id="torrent-banner"
-                        class="form__file"
-                        accept=".jpg, .jpeg, .png"
-                        name="torrent-banner"
-                        type="file"
-                    >
+                    <input id="torrent-banner" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg, .png, .webp" name="torrent-banner">
                 </p>
                 <p class="form__group">
                     <input id="name" type="text" class="form__text" name="name" value="{{ old('name') ?? $torrent->name }}" required>
@@ -90,23 +78,38 @@
                 </p>
                 <p class="form__group">
                     <select
-                        id="type_id"
-                        class="form__select"
-                        name="type_id"
-                        x-model="type"
-                        x-ref="typeId"
-                        @change="types[type].name = types[$event.target.value].name"
-                    >
-                        <option value="{{ old('type_id') ?? $torrent->type->id }}" selected>
-                            {{ $torrent->type->name }} ({{ __('torrent.current') }})
-                        </option>
-                        @foreach ($types as $id => $type)
-                            <option value="{{ $id }}" @selected(old('type_id') === $id)>
-                                {{ $type['name'] }}
-                            </option>
+                            name="type_id"
+                            id="autotype_music"
+                            class="form__select"
+                            x-bind:required="cats[cat].type === 'music'"
+                            x-show="cats[cat].type === 'music'">
+                        >
+                        <option hidden disabled selected value=""></option>
+                        @foreach ($types as $index => $type)
+                            @if ($index >= 7)
+                                <option value="{{ $type->id }}" @selected(old('type_id') == $type->id || $torrent->type->id == $type->id) x-show="cats[cat].type === 'music'">
+                                    {{ $type->name }}
+                                </option>
+                            @endif
                         @endforeach
                     </select>
-                    <label class="form__label form__label--floating" for="type_id">
+                    <select
+                            name="type_id"
+                            id="autotype"
+                            class="form__select"
+                            x-bind:required="cats[cat].type !== 'music'"
+                            x-show="cats[cat].type !== 'music'">
+                        >
+                        <option hidden disabled selected value=""></option>
+                        @foreach ($types as $index => $type)
+                            @if ($index < 7)
+                                <option value="{{ $type->id }}" @selected(old('type_id') == $type->id || $torrent->type->id == $type->id) x-show="cats[cat].type !== 'music'">
+                                    {{ $type->name }}
+                                </option>
+                            @endif
+                        @endforeach
+                    </select>
+                    <label class="form__label form__label--floating" for="autotype">
                         {{ __('torrent.type') }}
                     </label>
                 </p>
@@ -131,65 +134,63 @@
                         {{ __('torrent.resolution') }}
                     </label>
                 </p>
-                <div class="form__group--horizontal" x-show="(cats[cat].type === 'movie' || cats[cat].type === 'tv') && types[type].name === 'Full Disc'">
-                    <p class="form__group">
-                        <select id="distributor_id" name="distributor_id" class="form__select">
-                            @if (! $torrent->distributor)
-                                <option hidden="" disabled="disabled" selected="selected" value="">
-                                    --选择音乐风格--
-                                </option>)
-                            @else
-                                <option
-                                    x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') && types[type].name === 'Full Disc' ? '{{ $torrent->distributor->id }}' : ''"
-                                    selected
-                                >
-                                    {{ $torrent->distributor->name }} ({{ __('torrent.current') }})
-                                </option>
-                            @endif
-                            <option value="">无音乐风格</option>
-                            @foreach ($distributors as $distributor)
-                                <option
-                                    x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') && types[type].name === 'Full Disc' ? '{{ $distributor->id }}' : ''"
-                                    value="{{ $distributor->id }}"
-                                    @selected(old('distributor_id') === $distributor->id)
-                                >
-                                    {{ $distributor->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <label class="form__label form__label--floating" for="distributor_id">
-                            {{ __('torrent.distributor') }}
-                        </label>
-                    </p>
-                    <p class="form__group">
-                        <select id="region_id" name="region_id" class="form__select">
-                            @if (! $torrent->region)
-                                <option hidden="" disabled="disabled" selected="selected" value="">
-                                    --选择小说分类--
-                                </option>)
-                            @else
-                                <option
-                                    x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') && types[type].name === 'Full Disc' ? '{{ $torrent->region->id }}' : ''"
-                                    selected
-                                >
-                                    {{ $torrent->region->name }} ({{ __('torrent.current') }})
-                                </option>
-                            @endif
-                            <option value="">无分类</option>
-                            @foreach ($regions as $region)
-                                <option
-                                    x-bind:value="(cats[cat].type === 'movie' || cats[cat].type === 'tv') && types[type].name === 'Full Disc' ? '{{ $region->id }}' : ''"
-                                    @selected(old('region_id') === $region->id)
-                                >
-                                    {{ $region->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <label class="form__label form__label--floating" for="region_id">
-                            {{ __('torrent.region') }}
-                        </label>
-                    </p>
-                </div>
+                <p class="form__group" x-show="cat == 3">
+                    <select id="distributor_id" name="distributor_id" class="form__select">
+                        @if (! $torrent->distributor)
+                            <option hidden="" disabled="disabled" selected="selected" value="">
+                                --选择音乐风格--
+                            </option>)
+                        @else
+                            <option
+                                x-bind:value="(cat === 3) ? '{{ $torrent->distributor->id }}' : ''"
+                                selected
+                            >
+                                {{ $torrent->distributor->name }} ({{ __('torrent.current') }})
+                            </option>
+                        @endif
+                        <option value="">无音乐风格</option>
+                        @foreach ($distributors as $distributor)
+                            <option
+                                x-bind:value="(cat === 3) ? '{{ $distributor->id }}' : ''"
+                                value="{{ $distributor->id }}"
+                                @selected(old('distributor_id') === $distributor->id)
+                            >
+                                {{ $distributor->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <label class="form__label form__label--floating" for="distributor_id">
+                        {{ __('torrent.distributor') }}
+                    </label>
+                </p>
+                <p class="form__group" x-show="cat == 4">
+                    <select id="region_id" name="region_id" class="form__select">
+                        @if (! $torrent->region)
+                            <option hidden="" disabled="disabled" selected="selected" value="">
+                                --选择小说分类--
+                            </option>)
+                        @else
+                            <option
+                                x-bind:value="(cat === 4) ? '{{ $torrent->region->id }}' : ''"
+                                selected
+                            >
+                                {{ $torrent->region->name }} ({{ __('torrent.current') }})
+                            </option>
+                        @endif
+                        <option value="">无分类</option>
+                        @foreach ($regions as $region)
+                            <option
+                                x-bind:value=" (cat === 4) ? '{{ $region->id }}' : ''"
+                                @selected(old('region_id') === $region->id)
+                            >
+                                {{ $region->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <label class="form__label form__label--floating" for="region_id">
+                        {{ __('torrent.region') }}
+                    </label>
+                </p>
                 <div class="form__group--horizontal" x-show="cats[cat].type === 'tv'">
                     <p class="form__group">
                         <input
@@ -316,7 +317,7 @@
                         IGDB ID <b>游戏必填</b>
                     </label>
                 </p>
-                <p class="form__group">
+                <p class="form__group" style="display: none;" >
                     <input
                         id="keywords"
                         class="form__text"
@@ -336,19 +337,32 @@
                     'required' => true,
                     'content'  => $torrent->description
                 ])
-                <p class="form__group">
-                    <textarea
-                        id="description"
-                        class="form__textarea"
-                        name="mediainfo"
-                        placeholder=" "
-                    >{{ old('mediainfo') ?? $torrent->mediainfo }}</textarea>
-                    <label class="form__label form__label--floating" for="description">
-                        {{ __('torrent.media-info') }}
+                <p class="form__group"  x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
+                        <textarea
+                                id="upload-form-mediainfo"
+                                name="mediainfo"
+                                class="form__textarea"
+                                placeholder=" "
+                        >{{ old('mediainfo') }}</textarea>
+                    <label class="form__label form__label--floating" for="upload-form-mediainfo">
+                        {{ __('torrent.media-info-parser') }}
                     </label>
                 </p>
-
-                <p class="form__group">
+                <p class="form__group" x-show="cats[cat].type === 'music'">
+                    <input
+                            type="text"
+                            name="music_url"
+                            id="music_url"
+                            class="form__text"
+                            value="{{ old('music_url') }}"
+                            placeholder=" "
+                    >
+                    <label class="form__label form__label--floating" for="music_url" id="uploadMusic_text">
+                        {{ __('试听链接') }}
+                    </label>
+                    <button type="button" id="uploadMusic" class="upload-form-file form__file">上传试听文件</button>
+                </p>
+                <p class="form__group" x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
                     <textarea
                         id="bdinfo"
                         class="form__textarea"
