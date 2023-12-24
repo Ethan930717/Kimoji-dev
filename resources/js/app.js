@@ -67,25 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }]
         });
     }
-
-    // 迷你模式播放器
-    document.querySelectorAll('[id^="mini-aplayer-"]').forEach(function(miniPlayerContainer) {
-        const minicoverUrl = miniPlayerContainer.dataset.cover;
-        const miniSongUrl = miniPlayerContainer.dataset.url;
-        const miniAPlayerContainer = miniPlayerContainer.querySelector('.aplayer');
-
-        new APlayer({
-            container: miniAPlayerContainer,
-            mini: true,
-            audio: [{
-                name: '单曲试听',
-                artist: 'Kimoji',
-                url: miniSongUrl,
-                cover: minicoverUrl,
-            }],
-            autoplay: false
-        });
-    });
 });
 
 
