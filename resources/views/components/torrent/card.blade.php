@@ -67,12 +67,14 @@
     </header>
     <aside class="torrent-card__aside">
         @if (!empty($torrent->music_url))
-            <!-- APlayer 迷你播放器 -->
             <div id="mini-aplayer"
                  data-cover="{{ url('files/img/torrent-cover_'.$torrent->id.'.jpg') }}"
-                 data-url="{{ $torrent->music_url }}">
+                 data-name="单曲试听"
+                 data-artist="Kimoji"
+                 data-url= "{{ $torrent?->music_url }}">
                 <div id="aplayer" class="aplayer"></div>
             </div>
+            <!-- APlayer 迷你播放器 -->
         @else
             <!-- 原来的图片显示 -->
             <a class="torrent-card__similar-link" href="{{ route('torrents.show', ['id' => $torrent->id]) }}">
