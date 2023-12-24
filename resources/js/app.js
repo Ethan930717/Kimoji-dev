@@ -51,35 +51,40 @@ import APlayer from 'aplayer';
 document.addEventListener('DOMContentLoaded', function() {
     // 常规模式播放器
     const aplayerContainer = document.getElementById('aplayer-container');
-    const coverUrl = aplayerContainer.dataset.cover;
-    const songName = aplayerContainer.dataset.name;
-    const artistName = aplayerContainer.dataset.artist;
-    const songUrl = aplayerContainer.dataset.url;
+    if (aplayerContainer) {
+        const coverUrl = aplayerContainer.dataset.cover;
+        const songName = aplayerContainer.dataset.name;
+        const artistName = aplayerContainer.dataset.artist;
+        const songUrl = aplayerContainer.dataset.url;
 
-    const apRegular = new APlayer({
-        container: aplayerContainer,
-        audio: [{
-            name: songName,
-            artist: artistName,
-            url: songUrl,
-            cover: coverUrl
-        }]
-    });
+        new APlayer({
+            container: aplayerContainer,
+            audio: [{
+                name: songName,
+                artist: artistName,
+                url: songUrl,
+                cover: coverUrl
+            }]
+        });
+    }
+
     // 迷你模式播放器
-    const miniPlayerContainer = document.getElementById('mini-aplayer');
-    const minicoverUrl = miniPlayerContainer.dataset.cover;
-    const minisongName = miniPlayerContainer.dataset.name;
-    const miniartistName = miniPlayerContainer.dataset.artist;
-    const miniSongUrl = miniPlayerContainer.dataset.url;
-    const apMini = new APlayer({
-        container: miniPlayerContainer,
-        mini: true,
-        audio: [{
-            name: minisongName,
-            artist: miniartistName,
-            url: miniSongUrl,
-            cover: minicoverUrl,
-        }],
+    document.querySelectorAll('[id^="mini-aplayer-"]').forEach(function(miniPlayerContainer) {
+        const minicoverUrl = miniPlayerContainer.dataset.cover;
+        const miniSongUrl = miniPlayerContainer.dataset.url;
+        const miniAPlayerContainer = miniPlayerContainer.querySelector('.aplayer');
+
+        new APlayer({
+            container: miniAPlayerContainer,
+            mini: true,
+            audio: [{
+                name: '单曲试听',
+                artist: 'Kimoji',
+                url: miniSongUrl,
+                cover: minicoverUrl,
+            }],
+            autoplay: false
+        });
     });
 });
 
