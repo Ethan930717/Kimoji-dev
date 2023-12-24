@@ -70,7 +70,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('torrents?perPage=48&view=card&categories[0]=3') }}">
+                            <a href="{{ url('torrents?perPage=24&view=card&categories[0]=3') }}">
                                 <i class="{{ config('other.font-awesome') }} fa-music"></i>
                                 旋律海洋
                             </a>

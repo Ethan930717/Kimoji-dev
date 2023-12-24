@@ -69,9 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // 迷你模式播放器
     // 确保页面中有一个用于迷你播放器的容器元素
     const miniPlayerContainer = document.getElementById('mini-aplayer');
-    const minicoverUrl = aplayerContainer.dataset.cover;
+    const minicoverUrl = miniPlayerContainer.dataset.cover;
     const miniSongUrl = miniPlayerContainer.dataset.url;
-
     const apMini = new APlayer({
         container: miniPlayerContainer,
         audio: [{
