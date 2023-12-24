@@ -141,16 +141,6 @@
                                 {{ $torrent->distributor->name ?? '' }}
                             </a>
                         </li>
-                  <!--
-                         @if (!empty($torrent->music_url))
-                        <li class="torrent-card__genre-item">
-                            <a class="torrent-card__genre">
-                            <i class="{{ config('other.font-awesome') }} fa-headphones-alt" title="{{ __('单曲试听') }}"></i>
-                            </a>
-                        </li>
-                       @endif
-                    -->
-
                 </ul>
             @elseif ($torrent->category_id == 4)
                 <span class="torrent-card__meta-seperator"> &bull; </span>
@@ -160,15 +150,6 @@
                             {{ $torrent->region->name ?? '' }}
                         </a>
                     </li>
-{{--
-                    @if (!empty($torrent->music_url))
-                        <li class="torrent-card__genre-item">
-                            <a class="torrent-card__genre">
-                                <i class="{{ config('other.font-awesome') }} fa-headphones-alt" title="{{ __('单章试听') }}"></i>
-                            </a>
-                        </li>
-                    @endif
---}}
                 </ul>
             @endif
         </div>
