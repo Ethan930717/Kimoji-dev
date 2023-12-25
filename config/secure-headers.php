@@ -548,6 +548,7 @@ return [
             'self'  => true,
             'allow' => [
                 '*.kimoji.club',
+                '*.leaves.red',
             ],
         ],
 
@@ -616,6 +617,7 @@ return [
 
             'allow' => [
                 '*.kimoji.club',
+                '*.leaves.red',
             ],
 
             'schemes' => [

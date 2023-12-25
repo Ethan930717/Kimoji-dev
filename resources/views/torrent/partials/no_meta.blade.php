@@ -39,7 +39,7 @@
                     title="Internet Movie Database"
                     target="_blank"
             >
-                {{ $torrent?->distributor->name ?? '未知类型' }}
+                {{ $torrent?->region->name ?? '未知类型' }}
             </a>
         </li>
     </ul>
