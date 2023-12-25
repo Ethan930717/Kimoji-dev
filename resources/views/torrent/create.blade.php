@@ -144,8 +144,8 @@
                                 name="type_id"
                                 id="autotype_music"
                                 class="form__select"
-                                x-bind:required="cats[cat].type === 'music' || cats[cat].type === 'no'"
-                                x-show="cats[cat].type === 'music' || cats[cat].type === 'no'">
+                                x-bind:required="cats[cat].type === 'music'"
+                                x-show="cats[cat].type === 'music'">
                         >
                             <option hidden disabled selected value=""></option>
                             @foreach ($types as $index => $type)
@@ -160,13 +160,13 @@
                                 name="type_id"
                                 id="autotype"
                                 class="form__select"
-                                x-bind:required="cats[cat].type !== 'music' || cats[cat].type === 'no'"
-                                x-show="cats[cat].type !== 'music' || cats[cat].type === 'no'">
+                                x-bind:required="cats[cat].type === 'movie' || cats[cat].type === 'tv'"
+                                x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
                         >
                             <option hidden disabled selected value=""></option>
                             @foreach ($types as $index => $type)
                                 @if ($index < 7)
-                                    <option value="{{ $type->id }}" @selected(old('type_id')==$type->id) x-show="cats[cat].type !== 'no'">
+                                    <option value="{{ $type->id }}" @selected(old('type_id')==$type->id) x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'">
                                         {{ $type->name }}
                                     </option>
                                 @endif

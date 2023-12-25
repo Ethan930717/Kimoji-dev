@@ -165,14 +165,14 @@ ConfirmCatEDU() {
         }).then((result) => {
             if (result.isConfirmed) {
                input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]/img/friendsite/请替换成制作组的组名.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=音源简介][size=16][color=white]请在此添加书籍或节目内容的基本介绍[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=内容简介][size=16][color=white]请在此添加书籍或节目内容的基本介绍[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                              '[center][color=#bbff88][size=24][b][spoiler=节目列表][size=16][color=white]如有节目详细列表，请在此添加，否则请删除本条[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                              '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接，如书籍海报、插画或其他相关图片内容[/color][/size][/spoiler][/b][/size][/color][/center]';
                         }
         });
     } else {
         input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]/img/friendsite/请替换成制作组的组名.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=音源简介][size=16][color=white]请在此添加书籍或节目内容的基本介绍[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=内容简介][size=16][color=white]请在此添加书籍或节目内容的基本介绍[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                              '[center][color=#bbff88][size=24][b][spoiler=节目列表][size=16][color=white]如有节目详细列表，请在此添加，否则请删除本条[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
                              '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接，如书籍海报、插画或其他相关图片内容[/color][/size][/spoiler][/b][/size][/color][/center]';
                         }
