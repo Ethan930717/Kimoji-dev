@@ -86,7 +86,7 @@
                         @change="types[type].name = types[$event.target.value].name"
                 >
                     <option value="{{ old('type_id') ?? $torrent->type->id }}" selected>
-                        {{ $torrent->type->name }} ({{ __('torrent.current') }})
+                        {{ $torrent->type->name ?? '' }} ({{ __('torrent.current') }})
                     </option>
                     @foreach ($types as $id => $type)
                         <option value="{{ $id }}" @selected(old('type_id') === $id)>

@@ -101,11 +101,11 @@
             <div class="torrent-search--list__resolution-and-type">
                 @if ($torrent->category->movie_meta || $torrent->category->tv_meta)
                     <span class="torrent-search--list__resolution">
-                        {{ $torrent->resolution->name ?? 'No Res' }}
+                        {{ $torrent->resolution->name ?? '' }}
                     </span>
                 @endif
                 <span class="torrent-search--list__type">
-                    {{ $torrent->type->name ?? 'No Type' }}
+                    {{ $torrent->type->name ?? '' }}
                 </span>
             </div>
         </div>

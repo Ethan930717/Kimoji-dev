@@ -21,7 +21,7 @@
     @isset($torrent->type)
         <li class="torrent__type">
             <a class="torrent__type-link" href="{{ route('torrents.index', ['types' => [$torrent->type->id]]) }}">
-                {{ $torrent->type->name }}
+                {{ $torrent->type->name ?? '' }}
             </a>
         </li>
     @endisset

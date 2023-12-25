@@ -53,8 +53,8 @@
                                 data-original-title="{{ $torrent->category->name }} Torrent"
                             ></i>
                         </td>
-                        <td>{{ $torrent->type->name }}</td>
-                        <td>{{ $torrent->resolution->name ?? 'No Res' }}</td>
+                        <td>{{ $torrent->type->name ?? '' }}</td>
+                        <td>{{ $torrent->resolution->name ?? '' }}</td>
                         <td>{{ $torrent->getSize() }}</td>
                         <td>
                             <x-user_tag :anon="false" :user="$torrent->user" />
@@ -204,8 +204,8 @@
                                 title="{{ $torrent->category->name }} Torrent"
                             ></i>
                         </td>
-                        <td>{{ $torrent->type->name }}</td>
-                        <td>{{ $torrent->resolution->name ?? 'No Res' }}</td>
+                        <td>{{ $torrent->type->name ?? '' }}</td>
+                        <td>{{ $torrent->resolution->name ?? '' }}</td>
                         <td>{{ $torrent->getSize() }}</td>
                         <td>
                             <x-user_tag :anon="false" :user="$torrent->user" />
