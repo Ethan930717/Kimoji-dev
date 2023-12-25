@@ -288,12 +288,6 @@
                         KIMOJI 画廊
                     </a>
                 </li>
-                <li>
-                    <a href="https://music.kimoji.club">
-                        <i class="{{ config('other.font-awesome') }} fa-music"></i>
-                        KIMOJI FM
-                    </a>
-                </li>
             </ul>
         </li>
     </ul>

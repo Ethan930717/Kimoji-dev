@@ -124,7 +124,7 @@
                 @if (!empty($torrent->music_url))
                     <li class="torrent-card__genre-item">
                         <a class="torrent-card__genre">
-                            <i class="{{ config('other.font-awesome') }} fa-headphones-alt" title="{{ __('单曲试听') }}"></i>
+                            <i class="{{ config('other.font-awesome') }} fa-headphones-alt" title="{{ __('试听') }}"></i>
                         </a>
                     </li>
                     @endif

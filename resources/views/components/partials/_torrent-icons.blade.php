@@ -129,7 +129,7 @@
         <i class="{{ config('other.font-awesome') }} fa-thumbs-down text-warning torrent-icons" title="{{ __('torrent.completed-not-seeding') }}"></i>
     @endif
     @if (!empty($torrent->music_url))
-        <i class="{{ config('other.font-awesome') }} fa-headphones-alt" title="{{ __('单曲试听') }}"></i>
+        <i class="{{ config('other.font-awesome') }} fa-headphones-alt" title="{{ __('试听') }}"></i>
     @endif
 
 </span>

@@ -11,7 +11,7 @@
         </ul>
     @else
         <div class="panel__body">
-            No forums in category.
+            暂无版块
         </div>
     @endif
     {{ $forums->links('partials.pagination') }}
