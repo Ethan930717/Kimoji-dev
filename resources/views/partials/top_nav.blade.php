@@ -46,7 +46,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('torrents?perPage=48&view=poster&categories[0]=2') }}">
+                            <a href="{{ url('torrents?perPage=25&view=group&categories[0]=2') }}">
                                 <i class="{{ config('other.font-awesome') }} fa-party-horn"></i>
                                 追剧乐园
                             </a>
@@ -249,12 +249,6 @@
                     <a href="{{ route('requests.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-hands-helping"></i>
                         {{ __('request.requests') }}
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('missing.index') }}">
-                        <i class="{{ config('other.font-awesome') }} fa-ballot-check"></i>
-                        {{ __('common.missing') }}
                     </a>
                 </li>
                 <li>

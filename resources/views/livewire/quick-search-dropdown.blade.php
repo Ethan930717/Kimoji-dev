@@ -10,7 +10,7 @@
                         type="radio"
                         class="quick-search__radio"
                         name="quicksearchRadio"
-                        value="movies"
+                        value="电影"
                         wire:model.debounce.0="quicksearchRadio"
                         x-on:click="$nextTick(() => $refs.quickSearch.focus());"
                 />
@@ -24,7 +24,7 @@
                         type="radio"
                         class="quick-search__radio"
                         name="quicksearchRadio"
-                        value="series"
+                        value="剧集"
                         wire:model.debounce.0="quicksearchRadio"
                         x-on:click="$nextTick(() => $refs.quickSearch.focus());"
                 />
@@ -38,7 +38,7 @@
                         type="radio"
                         class="quick-search__radio"
                         name="quicksearchRadio"
-                        value="persons"
+                        value="人物"
                         wire:model.debounce.0="quicksearchRadio"
                         x-on:click="$nextTick(() => $refs.quickSearch.focus());"
                 />

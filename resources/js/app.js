@@ -84,7 +84,7 @@ function openUploadWindow() {
     const top = (screen.height / 2) - (uploadWindowHeight / 2);
 
     window.open(
-        'https://file.kimoji.club',
+        '/music-upload',
         'UploadWindow',
         `width=${uploadWindowWidth},height=${uploadWindowHeight},top=${top},left=${left}`
     );

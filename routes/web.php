@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\URL;
 use Telegram\Bot\Laravel\Facades\Telegram;
 use Telegram\Bot\FileUpload\InputFile;
 use App\Http\Controllers\ImageGalleryController;
+use App\Http\Controllers\MusicUploadController;
+
 
 #测试TG机器人
 Route::get('/test-telegram', function () {
@@ -31,9 +33,10 @@ Route::get('/test-telegram', function () {
 
 #图片展示
 Route::get('/gallery', [ImageGalleryController::class, 'showGallery']);
-
 // loginsponsor
 Route::get('/loginsponsor', [App\Http\Controllers\Auth\LoginSponsorController::class, 'showSponsorPage'])->name('loginsponsor');
+// 上传歌曲
+Route::get('/music-upload', [MusicUploadController::class, 'index']);
 
 /**
  * NOTICE OF LICENSE.
