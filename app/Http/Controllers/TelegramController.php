@@ -97,7 +97,7 @@ class TelegramController extends Controller
     public function sendMusicTorrentNotification($id, $name, $size): void
     {
         try {
-            $prefixMessage = str_contains($name, "KIMOJI") ? "DJ阿K发官种啦：" : "DJ阿K播送通知：";
+            $prefixMessage = str_contains($name, "KIMOJI") ? "DJ阿K发官种啦：" : "DJ阿K的新音乐播送通知：";
 
             // 构建消息文本
             $message = $prefixMessage.PHP_EOL.PHP_EOL.
