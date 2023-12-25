@@ -36,13 +36,13 @@
             >
                 @csrf
                 @method('PATCH')
-                <p class="form__group" x-show="cats[cat].type === 'music'" >
+                <p class="form__group" x-show="cats[cat].type === 'music' || cats[cat].type === 'no'">
                     <label for="torrent-cover" class="form__label">
                         封面 (必选)
                     </label>
                     <input id="torrent-cover" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg, .png, .webp" name="torrent-cover">
                 </p>
-                <p class="form__group" x-show="cats[cat].type === 'music'">
+                <p class="form__group" x-show="cats[cat].type === 'music' || cats[cat].type === 'no'">
                     <label for="torrent-banner" class="form__label">
                         海报 (可选)
                     </label>
@@ -76,7 +76,7 @@
                         {{ __('torrent.category') }}
                     </label>
                 </p>
-                <p class="form__group">
+                <p class="form__group" x-show="cats[cat].type !== 'no'">
                 <select
                         id="type_id"
                         class="form__select"
@@ -333,7 +333,7 @@
                         {{ __('torrent.media-info-parser') }}
                     </label>
                 </p>
-                <p class="form__group" x-show="cats[cat].type === 'music'">
+                <p class="form__group" x-show="cats[cat].type === 'music' || cats[cat].type === 'no'">
                     <input
                             type="text"
                             name="music_url"

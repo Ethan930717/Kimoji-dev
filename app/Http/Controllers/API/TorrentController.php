@@ -213,7 +213,7 @@ class TorrentController extends BaseController
             'num_file'         => 'required|numeric',
             'size'             => 'required',
             'category_id'      => 'required|exists:categories,id',
-            'type_id'          => 'required|exists:types,id',
+            'type_id'          => 'nullable|exists:types,id',
             'resolution_id'    => $resolutionRule,
             'region_id'        => 'nullable|exists:regions,id',
             'distributor_id'   => 'nullable|exists:distributors,id',
