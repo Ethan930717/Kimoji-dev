@@ -14,5 +14,4 @@ class FriendsiteImage extends Model
     // 如果你不想让 Eloquent 自动维护 created_at 和 updated_at 字段，
     // 可以设置 $timestamps 为 false
     // protected $timestamps = false;
-
 }
