@@ -476,7 +476,8 @@ return [
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/child-src
         'child-src' => [
             'allow' => [
-                'https://www.youtube-nocookie.com/embed/'
+                'https://www.youtube-nocookie.com/embed/',
+                'https://www.youtube.com/'
             ],
         ],
 
@@ -522,6 +523,7 @@ return [
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-src
         'frame-src' => [
+            'https://www.youtube.com/',
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/img-src
