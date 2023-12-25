@@ -58,7 +58,7 @@
 
     @if ($torrent?->music_url)
         <div id="aplayer-container"
-             data-cover="{{ url('img/kimoji-music.webp') }}"
+             data-cover="{{ url('img/kimoji-audiobook.webp') }}"
              data-name="试听"
              data-artist="Kimoji"
              data-url= "{{ $torrent?->music_url }}">
