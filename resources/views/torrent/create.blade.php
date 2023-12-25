@@ -94,13 +94,13 @@
                         </label>
                         <input id="nfo" class="upload-form-file form__file" type="file" accept=".nfo" name="nfo">
                     </p>
-                    <p class="form__group" x-show="cats[cat].type === 'music'" x-bind:required="cats[cat].type == 'music'">
+                    <p class="form__group" x-show="cats[cat].type === 'music' || cats[cat].type === 'no'"  x-bind:required="cats[cat].type == 'music' || cats[cat].type === 'no'">
                         <label for="torrent-cover" class="form__label">
                             封面 (必选)
                         </label>
                         <input id="torrent-cover" class="upload-form-file form__file" type="file" accept=".jpg, .jpeg, .png, .webp" name="torrent-cover">
                     </p>
-                    <p class="form__group" x-show="cats[cat].type === 'music'">
+                    <p class="form__group" x-show="cats[cat].type === 'music' || cats[cat].type === 'no'">
                         <label for="torrent-banner" class="form__label">
                             海报 (可选)
                         </label>
@@ -144,13 +144,13 @@
                                 name="type_id"
                                 id="autotype_music"
                                 class="form__select"
-                                x-bind:required="cats[cat].type === 'music'"
-                                x-show="cats[cat].type === 'music'">
+                                x-bind:required="cats[cat].type === 'music' || cats[cat].type === 'no'"
+                                x-show="cats[cat].type === 'music' || cats[cat].type === 'no'">
                         >
                             <option hidden disabled selected value=""></option>
                             @foreach ($types as $index => $type)
                                 @if ($index >= 7)
-                                    <option value="{{ $type->id }}" @selected(old('type_id')==$type->id) x-show="cats[cat].type === 'music'">
+                                    <option value="{{ $type->id }}" @selected(old('type_id')==$type->id) x-show="cats[cat].type === 'music' || cats[cat].type === 'no'">
                                         {{ $type->name }}
                                     </option>
                                 @endif
@@ -160,8 +160,8 @@
                                 name="type_id"
                                 id="autotype"
                                 class="form__select"
-                                x-bind:required="cats[cat].type !== 'music'"
-                                x-show="cats[cat].type !== 'music'">
+                                x-bind:required="cats[cat].type !== 'music' || cats[cat].type === 'no'"
+                                x-show="cats[cat].type !== 'music' || cats[cat].type === 'no'">
                         >
                             <option hidden disabled selected value=""></option>
                             @foreach ($types as $index => $type)
@@ -379,7 +379,7 @@
                             {{ __('torrent.media-info-parser') }}
                         </label>
                     </p>
-                    <p class="form__group" x-show="cats[cat].type === 'music'">
+                    <p class="form__group" x-show="cats[cat].type === 'music' || cats[cat].type === 'no'">
                         <input
                                 type="text"
                                 name="music_url"
