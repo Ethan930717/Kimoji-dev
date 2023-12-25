@@ -37,5 +37,33 @@ function imageModal() {
     }
 }
 
+function openImageModal(imageUrl) {
+    const imageModal = document.createElement('div');
+    imageModal.style.position = 'fixed';
+    imageModal.style.top = '0';
+    imageModal.style.left = '0';
+    imageModal.style.width = '100%';
+    imageModal.style.height = '100%';
+    imageModal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    imageModal.style.display = 'flex';
+    imageModal.style.justifyContent = 'center';
+    imageModal.style.alignItems = 'center';
+    imageModal.style.zIndex = '1000';
+
+    const img = document.createElement('img');
+    img.src = imageUrl;
+    img.style.maxWidth = '90%';
+    img.style.maxHeight = '90%';
+    img.style.margin = 'auto';
+
+    imageModal.appendChild(img);
+    document.body.appendChild(imageModal);
+
+    imageModal.addEventListener('click', function() {
+        document.body.removeChild(imageModal);
+    });
+}
+
+
 
 

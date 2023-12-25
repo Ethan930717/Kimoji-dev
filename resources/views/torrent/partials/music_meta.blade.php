@@ -13,7 +13,9 @@
             <img
                     src="{{ file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg') ? url('/files/img/torrent-cover_'.$torrent->id.'.jpg') : 'https://via.placeholder.com/500x500' }}"
                     class="meta__poster"
+                    @click="openImageModal('{{ file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg') ? url('/files/img/torrent-cover_'.$torrent->id.'.jpg') : 'https://via.placeholder.com/500x500' }}')"
             >
+
         </a>
         <div class="meta__actions">
             <a class="meta__dropdown-button" href="#">
