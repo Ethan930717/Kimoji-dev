@@ -139,7 +139,7 @@
                             {{ __('torrent.category') }}
                         </label>
                     </p>
-                    <p class="form__group" x-show="cats[cat].type ！== 'no'">
+                    <p class="form__group" x-show="cats[cat].type !== 'no'">
                         <select
                                 name="type_id"
                                 id="autotype_music"
