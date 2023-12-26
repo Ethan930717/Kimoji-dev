@@ -44,7 +44,7 @@
                                     type="text"
                                     required
                                 >{{ old('torrent_urls') }}</textarea>
-                                <label class="form__label form__label--floating" for="torrent_urls">Torrent IDs/URLs (One per line)</label>
+                                <label class="form__label form__label--floating" for="torrent_urls">输入种子ID或地址（每行一个）</label>
                             </p>
                             <p class="form__group">
                                 <button class="form__button form__button--filled">

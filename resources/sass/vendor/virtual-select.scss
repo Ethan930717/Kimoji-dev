@@ -762,3 +762,7 @@ body.vscomp-popup-active {
 .pop-comp-disable-events {
   pointer-events: none
 }
+
+.vscomp-dropbox-container pop-comp-wrapper position-bottom{
+  transform: translate3d(0px, -244px, 0px) !important;
+}
