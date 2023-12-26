@@ -247,7 +247,7 @@
                             IMDB ID <b>选填（可填0）</b>
                         </label>
                     </p>
-                    <p class="form__group" x-show="cats[cat].type === 'tv'">
+                    <p class="form__group" style="display: none">
                         <input type="hidden" name="tvdb" value="0">
                         <input
                             id="tvdb"
@@ -265,7 +265,7 @@
                             TVDB ID <b>选填（可填0）</b>
                         </label>
                     </p>
-                    <p class="form__group">
+                    <p class="form__group" style="display: none">
                         <input type="hidden" name="mal" value="0">
                         <input
                             id="mal"
@@ -328,6 +328,7 @@
                                 name="mediainfo"
                                 class="form__textarea"
                                 placeholder=" "
+                                value="{{ old('mediainfo') ?? $torrent->mediainfo }}"
                         >{{ old('mediainfo') }}</textarea>
                     <label class="form__label form__label--floating" for="upload-form-mediainfo">
                         {{ __('torrent.media-info-parser') }}
@@ -352,6 +353,7 @@
                         id="bdinfo"
                         class="form__textarea"
                         name="bdinfo"
+                        value="{{ old('bdinfo', $torrent->bdinfo) }}"
                         placeholder=" "
                     >{{ old('bdinfo') ?? $torrent->bdinfo }}</textarea>
                     <label class="form__label form__label--floating" for="bdinfo">
