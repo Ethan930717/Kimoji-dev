@@ -328,8 +328,8 @@
                                 name="mediainfo"
                                 class="form__textarea"
                                 placeholder=" "
-                                value="{{ old('mediainfo') ?? $torrent->mediainfo }}"
-                        >{{ old('mediainfo') }}</textarea>
+                        >{{ old('mediainfo') ?? $torrent->mediainfo }}
+                        </textarea>
                     <label class="form__label form__label--floating" for="upload-form-mediainfo">
                         {{ __('torrent.media-info-parser') }}
                     </label>
@@ -353,7 +353,6 @@
                         id="bdinfo"
                         class="form__textarea"
                         name="bdinfo"
-                        value="{{ old('bdinfo', $torrent->bdinfo) }}"
                         placeholder=" "
                     >{{ old('bdinfo') ?? $torrent->bdinfo }}</textarea>
                     <label class="form__label form__label--floating" for="bdinfo">
