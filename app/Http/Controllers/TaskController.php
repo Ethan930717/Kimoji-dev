@@ -16,7 +16,6 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
-
 class TasksController extends Controller
 {
     /**
@@ -25,6 +24,7 @@ class TasksController extends Controller
     public function index()
     {
         $tasks = Task::all(); // 获取所有任务
+
         return view('tasks.index', ['tasks' => $tasks]);
     }
 
@@ -42,10 +42,10 @@ class TasksController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
+            'title'       => 'required|string|max:255',
             'description' => 'required|string',
-            'deadline' => 'required|integer|min:1', // 期限（天）
-            'reward' => 'required|numeric|min:100' // 赏金
+            'deadline'    => 'required|integer|min:1', // 期限（天）
+            'reward'      => 'required|numeric|min:100' // 赏金
         ]);
 
         $task = new Task();
@@ -77,10 +77,10 @@ class TasksController extends Controller
     public function update(Request $request, Task $task)
     {
         $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
+            'title'       => 'required|string|max:255',
             'description' => 'required|string',
-            'deadline' => 'required|integer|min:1', // 期限（天）
-            'reward' => 'required|numeric|min:100' // 赏金
+            'deadline'    => 'required|integer|min:1', // 期限（天）
+            'reward'      => 'required|numeric|min:100' // 赏金
         ]);
 
         $task->fill($validatedData);
@@ -88,12 +88,14 @@ class TasksController extends Controller
 
         return redirect()->route('tasks.show', $task)->with('success', '任务更新成功！');
     }
+
     /**
      * 删除任务。
      */
     public function destroy(Task $task)
     {
         $task->delete();
+
         return redirect()->route('tasks.index')->with('success', '任务删除成功！');
     }
 }

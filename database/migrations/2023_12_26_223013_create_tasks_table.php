@@ -11,9 +11,9 @@ class CreateTasksTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('tasks', function (Blueprint $table): void {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // 发布人ID，外键关联到 users 表
             $table->foreignId('assignee_id')->nullable()->constrained('users')->onDelete('set null'); // 接收人ID，外键关联到 users 表，可为空
@@ -35,7 +35,7 @@ class CreateTasksTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('tasks');
     }
