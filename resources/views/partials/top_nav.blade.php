@@ -152,7 +152,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://t.me/Kimoji_office">
+                    <a href="https://t.me/Kimoji_office" target="_blank" rel="noopener noreferrer">
                         <i class="fa-brands fa-telegram"></i>
                         Telegram
                     </a>

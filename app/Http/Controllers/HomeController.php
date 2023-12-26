@@ -123,7 +123,7 @@ class HomeController extends Controller
                 ")
                         ->withCount(['thanks', 'comments'])
                         ->latest()
-                        ->take(5)
+                        ->take(10)
                         ->get();
 
                     $movieIds = $newest->where('meta', '=', 'movie')->pluck('tmdb');
@@ -189,7 +189,7 @@ class HomeController extends Controller
                 ")
                         ->withCount(['thanks', 'comments'])
                         ->latest('seeders')
-                        ->take(5)
+                        ->take(10)
                         ->get();
 
                     $movieIds = $seeded->where('meta', '=', 'movie')->pluck('tmdb');
@@ -257,7 +257,7 @@ class HomeController extends Controller
                         ->where('seeders', '=', 1)
                         ->where('times_completed', '>=', 1)
                         ->latest('leechers')
-                        ->take(5)
+                        ->take(10)
                         ->get();
 
                     $movieIds = $dying->where('meta', '=', 'movie')->pluck('tmdb');
@@ -323,7 +323,7 @@ class HomeController extends Controller
                 ")
                         ->withCount(['thanks', 'comments'])
                         ->latest('leechers')
-                        ->take(5)
+                        ->take(10)
                         ->get();
 
                     $movieIds = $leeched->where('meta', '=', 'movie')->pluck('tmdb');
@@ -390,7 +390,7 @@ class HomeController extends Controller
                         ->withCount(['thanks', 'comments'])
                         ->where('seeders', '=', 0)
                         ->latest('leechers')
-                        ->take(5)
+                        ->take(10)
                         ->get();
 
                     $movieIds = $dead->where('meta', '=', 'movie')->pluck('tmdb');
@@ -426,7 +426,7 @@ class HomeController extends Controller
                     ->with('user', 'user.group', 'latestPoster')
                     ->whereRelation('forumPermissions', [['show_forum', '=', 1], ['group_id', '=', auth()->user()->group_id]])
                     ->latest()
-                    ->take(5)
+                    ->take(10)
                     ->get()
             ),
             'posts' => cache()->remember(
@@ -456,7 +456,7 @@ class HomeController extends Controller
                             ->select('id')
                     )
                     ->latest()
-                    ->take(5)
+                    ->take(10)
                     ->get()
             ),
             'featured' => cache()->remember(
