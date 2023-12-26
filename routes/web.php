@@ -7,7 +7,6 @@ use Telegram\Bot\FileUpload\InputFile;
 use App\Http\Controllers\ImageGalleryController;
 use App\Http\Controllers\MusicUploadController;
 
-
 #测试TG机器人
 Route::get('/test-telegram', function () {
     $poster = 'https://image.tmdb.org/t/p/w500/kciiX68V94RM8oAuNZUuUFQP2TZ.jpg'; // 有效的图片 URL
