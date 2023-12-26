@@ -90,7 +90,7 @@ background-color: rgba(255, 255, 255, 0);border-radius: 20px;    backdrop-filter
 
 @section('sidebar')
     <section class="panelV2">
-        <h2 class="panel__heading">Disclaimer</h2>
+        <h2 class="panel__heading">声明</h2>
         <div class="panel__body" style="text-align: center">
             {{ __('mediahub.disclaimer') }}
             <img class="" src="{{ url('/img/tmdb_long.svg') }}" style="width: 200px;">

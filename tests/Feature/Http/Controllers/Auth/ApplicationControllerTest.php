@@ -31,5 +31,5 @@ test('store returns an ok response', function (): void {
         'referrer' => $application->referrer,
     ]);
     $response->assertRedirect(route('login'));
-    $response->assertSessionHas('success', trans('auth.application-submitted'));
+    $response->assertSessionHas('申请提交成功', trans('auth.application-submitted'));
 });
