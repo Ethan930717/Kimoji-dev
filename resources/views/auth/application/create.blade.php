@@ -30,7 +30,7 @@
             </a>
             @if(config('other.application_signups'))
                 <ul class="auth-form__important-infos">
-                    <li class="auth-form__important-info">{{ config('other.title') }} {{ __('auth.appl-intro') }}</li>
+                    <li class="auth-form__important-info">{{ __('auth.appl-intro') }}</li>
                     @if (Session::has('warning'))
                         <li class="auth-form__important-info">Warning: {{ Session::get('warning') }}</li>
                     @endif
