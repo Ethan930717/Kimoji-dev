@@ -14,6 +14,7 @@
 return [
     'activity'                 => '个人现况',
     'age'                      => '时间',
+    'add-to-playlist'          => '添加播单',
     'agent'                    => '客户端',
     'alive'                    => '健康',
     'announce-url'             => 'Tracker地址',

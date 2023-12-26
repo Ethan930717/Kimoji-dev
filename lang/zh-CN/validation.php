@@ -172,7 +172,10 @@ return [
         'bounty'            => '赏金',
         'tip'               => '内容',
         'receiver_username' => '收件人',
-        'name'              => '名称',
+        'name'              => '标题',
         'attachment'        => '附件',
+        'playlist id'       => '播单id',
+        'torrent id'        => '种子id',
+
     ],
 ];

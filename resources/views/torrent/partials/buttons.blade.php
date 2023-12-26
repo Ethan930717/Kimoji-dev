@@ -306,7 +306,7 @@
             </button>
             <dialog class="dialog" x-ref="dialog">
                 <h4 class="dialog__heading">
-                    Add Torrent To Playlist
+                    添加当前资源到播单
                 </h4>
                 <form
                     class="dialog__form"
@@ -323,7 +323,7 @@
                             @endforeach
                         </select>
                         <label for="playlist_id" class="form__label form__label--floating">
-                            Your Playlists
+                            您的播单
                         </label>
                     </p>
                     <p class="form__group" style="text-align: left">
