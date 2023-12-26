@@ -176,6 +176,5 @@ return [
         'attachment'        => '附件',
         'playlist id'       => '播单id',
         'torrent id'        => '种子id',
-
     ],
 ];
