@@ -129,7 +129,7 @@
                 @if (config('captcha.enabled'))
                     @hiddencaptcha
                 @endif
-                <button class="auth-form__primary-button">{{ __('auth.apply') }}</button>
+                <button class="auth-form__primary-button">{{ __('提交') }}</button>
                 @if (Session::has('errors'))
 
                     <ul class="auth-form__errors">
