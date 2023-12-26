@@ -24,7 +24,7 @@ return [
     'allow-invite-appl'         => '已经打烊了哦～请下次再来吧',
     'allow-invite'              => '已经打烊了哦～请下次再来吧',
     'are-you'                   => '你是：',
-    'apply'                     => '填写申请表',
+    'apply'                     => '提交',
     'application'               => '填写申请表',
     'appl-closed'               => '申请已关闭',
     'appl-intro'                => '请您如实填写您的申请资料',
