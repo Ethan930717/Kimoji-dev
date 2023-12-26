@@ -76,7 +76,7 @@
                         {{ __('torrent.category') }}
                     </label>
                 </p>
-                <p class="form__group" x-show="cats[cat].type !== 'no'">
+                <p class="form__group">
                 <select
                         id="type_id"
                         class="form__select"

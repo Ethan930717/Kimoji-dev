@@ -139,12 +139,12 @@
                             {{ __('torrent.category') }}
                         </label>
                     </p>
-                    <p class="form__group" x-show="cats[cat].type !== 'no'">
+                    <p class="form__group">
                         <select
                                 name="type_id"
                                 id="autotype_music"
                                 class="form__select"
-                                x-bind:required="cats[cat].type === 'music'"
+                                x-bind:required="cats[cat].type === 'music' || cats[cat].type === 'no'"
                                 x-show="cats[cat].type === 'music'">
                         >
                             <option hidden disabled selected value=""></option>
