@@ -139,7 +139,7 @@ class PrivacySettingController extends Controller
         ]);
 
         return to_route('users.privacy_settings.edit', ['user' => $user])
-            ->withSuccess('Your privacy settings have been successfully saved.');
+            ->withSuccess('更新成功');
     }
 
     /**

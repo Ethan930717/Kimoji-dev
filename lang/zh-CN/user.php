@@ -110,7 +110,7 @@ return [
     若不勾选任何触发用户组，或你已<strong>取消全局性</strong>通知，以下设定将会无效。',
     'formats-are-supported'    => '支援:formats',
     'forum-notification'       => '论坛通知设定',
-    'forum-notification-topic' => '当你建立的标题有回复时，发出一个通知',
+    'forum-notification-topic' => '当你建立的主题有回复时，发出一个通知',
     'forum-notification-help'  => '调整论坛相关的通知设定。
     若不勾选任何触发用户组，或你已<strong>取消全局性</strong>通知，以下设定将会无效。',
     'forum-privacy'       => '论坛记录设定',
@@ -273,8 +273,8 @@ return [
     'request-notification-fill'         => '当求种达成时，发出一个通知',
     'request-notification-fill-approve' => '当求种获批准时，发出一个通知',
     'request-notification-fill-reject'  => '当求种被拒绝时，发出一个通知',
-    'request-notification-claim'        => '当有人应征时，发出一个通知',
-    'request-notification-unclaim'      => '当应征被取消时，发出一个通知',
+    'request-notification-claim'        => '当有人应求时，发出一个通知',
+    'request-notification-unclaim'      => '当应求被取消时，发出一个通知',
     'request-notification-help'         => '调整有关求种的通知设定。
     若不勾选任何触发用户组，或你已<strong>取消全局性</strong>通知，以下设定将会无效。',
     'request-privacy'                 => '求种设定',
