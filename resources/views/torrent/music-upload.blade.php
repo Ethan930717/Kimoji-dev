@@ -93,7 +93,6 @@
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
 
-
         // 显示进度条
         document.getElementById('progressContainer').style.display = 'block';
         xhr.upload.addEventListener('progress', function (e) {
