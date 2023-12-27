@@ -8,6 +8,12 @@ use Carbon\Carbon;
 
 class MusicUploadController extends Controller
 {
+
+    public function index()
+    {
+        // 注意这里的路径改变
+        return view('torrent.music-upload'); // 更新视图路径
+    }
     public function upload(Request $request)
     {
         $request->validate([
