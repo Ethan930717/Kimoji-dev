@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Log;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,21 +16,32 @@ class MusicUploadController extends Controller
     }
     public function upload(Request $request)
     {
-        $request->validate([
-            'musicfile' => 'required|file|max:102400' // 最大 100MB
-        ]);
+        try {
+            $request->validate([
+                'musicfile' => 'required|file|max:102400' // 最大 100MB
+            ]);
 
-        $file = $request->file('musicfile');
-        $date = Carbon::now()->format('Y-m-d');
-        $randomName = uniqid(); // 生成一个唯一的随机字符串
-        $extension = $file->getClientOriginalExtension(); // 获取文件原始扩展名
-        $fileName = $randomName.'.'.$extension; // 生成新的文件名
-        $filePath = "uploads/{$date}/{$fileName}"; // 包括日期的文件路径
+            Log::info('开始文件上传');
 
-        Storage::disk('s3')->put($filePath, file_get_contents($file), 'public');
+            $file = $request->file('musicfile');
+            $date = Carbon::now()->format('Y-m-d');
+            $randomName = uniqid();
+            $extension = $file->getClientOriginalExtension();
+            $fileName = $randomName . '.' . $extension;
+            $filePath = "uploads/{$date}/{$fileName}";
 
-        $fileUrl = Storage::disk('s3')->url($filePath);
+            Log::info("文件上传到S3: {$filePath}");
 
-        return response()->json(['url' => $fileUrl]);
+            Storage::disk('s3')->put($filePath, file_get_contents($file), 'public');
+
+            $fileUrl = Storage::disk('s3')->url($filePath);
+
+            Log::info("文件上传成功: {$fileUrl}");
+
+            return response()->json(['url' => $fileUrl]);
+        } catch (\Exception $e) {
+            Log::error("文件上传失败: " . $e->getMessage());
+            return response()->json(['error' => '上传失败'], 500);
+        }
     }
 }
