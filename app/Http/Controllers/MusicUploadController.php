@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Log;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Exception;
 
 class MusicUploadController extends Controller
 {
@@ -27,7 +28,7 @@ class MusicUploadController extends Controller
             $date = Carbon::now()->format('Y-m-d');
             $randomName = uniqid();
             $extension = $file->getClientOriginalExtension();
-            $fileName = $randomName . '.' . $extension;
+            $fileName = $randomName.'.'.$extension;
             $filePath = "uploads/{$date}/{$fileName}";
 
             Log::info("文件上传到S3: {$filePath}");
@@ -39,8 +40,9 @@ class MusicUploadController extends Controller
             Log::info("文件上传成功: {$fileUrl}");
 
             return response()->json(['url' => $fileUrl]);
-        } catch (\Exception $e) {
-            Log::error("文件上传失败: " . $e->getMessage());
+        } catch (Exception $e) {
+            Log::error("文件上传失败: ".$e->getMessage());
+
             return response()->json(['error' => '上传失败'], 500);
         }
     }
