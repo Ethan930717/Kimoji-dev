@@ -20,17 +20,17 @@ class MusicUploadController extends Controller
             'filetype' => 'required|string',
         ]);
 
-        $filePath = 'uploads/' . $request->filename;
+        $filePath = 'uploads/'.$request->filename;
         $filetype = $request->filetype;
 
         $s3Client = Storage::disk('s3')->getClient(); // 获取 S3 客户端
         $bucket = env('AWS_BUCKET');
 
         $cmd = $s3Client->getCommand('PutObject', [
-            'Bucket' => $bucket,
-            'Key' => $filePath,
+            'Bucket'      => $bucket,
+            'Key'         => $filePath,
             'ContentType' => $filetype,
-            'ACL' => 'public-read'
+            'ACL'         => 'public-read'
         ]);
 
         $request = $s3Client->createPresignedRequest($cmd, '+20 minutes');
