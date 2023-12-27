@@ -37,7 +37,6 @@ Route::get('/loginsponsor', [App\Http\Controllers\Auth\LoginSponsorController::c
 Route::get('/music-upload', [MusicUploadController::class, 'index']);
 Route::post('/music-upload', [MusicUploadController::class, 'upload']);
 
-
 /**
  * NOTICE OF LICENSE.
  *
