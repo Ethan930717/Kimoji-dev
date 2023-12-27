@@ -9,7 +9,7 @@
                     <menu style="display: flex; list-style-type: none; margin: 0; padding: 0; flex-wrap: wrap;">
                         <li>
                             <a class="form__button form__button--outlined" href="{{ route('torrents.edit', ['id' => $torrent->id]) }}"
-                                role="button">
+                                role="button" style="display:flex;">
                                 <i class="{{ config('other.font-awesome') }} fa-pencil-alt"></i> {{ __('common.edit') }}
                             </a>
                         </li>
