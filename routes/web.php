@@ -35,7 +35,10 @@ Route::get('/gallery', [ImageGalleryController::class, 'showGallery']);
 // loginsponsor
 Route::get('/loginsponsor', [App\Http\Controllers\Auth\LoginSponsorController::class, 'showSponsorPage'])->name('loginsponsor');
 // 上传歌曲
-Route::get('/music-upload', [MusicUploadController::class, 'index']);
+Route::get('/music-upload', function () {
+    return view('music-upload'); // 显示上传页面的 Blade 视图
+});
+Route::post('/music-upload', 'MusicUploadController@upload');
 
 /**
  * NOTICE OF LICENSE.

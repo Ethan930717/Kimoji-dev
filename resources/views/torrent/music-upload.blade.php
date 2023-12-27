@@ -113,7 +113,7 @@
             document.getElementById('uploadStatus').innerText = '上传失败：网络或服务器错误';
         };
 
-        xhr.open('POST', `${api}/upload`, true);
+        xhr.open('POST', `${api}/music-upload`, true);
         xhr.send(formData);
     }
 
