@@ -3,7 +3,6 @@
         x-data="{ ...quickSearchKeyboardNavigation() }"
         x-on:keydown.escape.window="$refs.movieSearch.blur(); $refs.seriesSearch.blur(); $refs.personSearch.blur()"
 >
-    <div x-data="{ selectedSearchType: 'movies', getPlaceholder() { return this.selectedSearchType === 'movies' ? '电影' : this.selectedSearchType === 'series' ? '剧集' : '人物'; } }">
     <div class="quick-search__inputs">
         <div class="quick-search__radios">
             <label class="quick-search__radio-label">
@@ -13,7 +12,7 @@
                         name="quicksearchRadio"
                         value="movies"
                         wire:model.debounce.0="quicksearchRadio"
-                        x-on:click="selectedSearchType = 'movies'; $nextTick(() => $refs.quickSearch.focus());"
+                        x-on:click="$nextTick(() => $refs.quickSearch.focus());"
                 />
                 <i
                         class="quick-search__radio-icon {{ \config('other.font-awesome') }} fa-camera-movie"
@@ -27,7 +26,7 @@
                         name="quicksearchRadio"
                         value="series"
                         wire:model.debounce.0="quicksearchRadio"
-                        x-on:click="selectedSearchType = 'series'; $nextTick(() => $refs.quickSearch.focus());"
+                        x-on:click="$nextTick(() => $refs.quickSearch.focus());"
                 />
                 <i
                         class="quick-search__radio-icon {{ \config('other.font-awesome') }} fa-tv-retro"
@@ -41,7 +40,7 @@
                         name="quicksearchRadio"
                         value="persons"
                         wire:model.debounce.0="quicksearchRadio"
-                        x-on:click="selectedSearchType = 'persons'; $nextTick(() => $refs.quickSearch.focus());"
+                        x-on:click="$nextTick(() => $refs.quickSearch.focus());"
                 />
                 <i
                         class="quick-search__radio-icon {{ \config('other.font-awesome') }} fa-user"
@@ -53,7 +52,7 @@
                 class="quick-search__input"
                 wire:model.debounce.250ms="quicksearchText"
                 type="text"
-                placeholder="{{ $quicksearchRadio }}"
+                placeholder="{{ $quicksearchRadio === 'movies' ? '电影' : ($quicksearchRadio === 'series' ? '剧集' : ($quicksearchRadio === 'persons' ? '人物' : '')) }}"
                 x-ref="quickSearch"
                 x-on:keydown.down.prevent="$refs.searchResults.firstElementChild?.firstElementChild?.focus()"
                 x-on:keydown.up.prevent="$refs.searchResults.lastElementChild?.firstElementChild?.focus()"
@@ -141,7 +140,6 @@
                 </article>
             </div>
         @endif
-    </div>
     </div>
     <script nonce="{{ HDVinnie\SecureHeaders\SecureHeaders::nonce('script') }}">
         function quickSearchKeyboardNavigation() {
