@@ -17,28 +17,24 @@ class MusicUploadController extends Controller
     {
         $request->validate([
             'filename' => 'required|string',
-            'filetype' => 'required|string|in:audio/*', // 示例文件类型
+            'filetype' => 'required|string',
         ]);
 
-        $filePath = 'uploads/'.$request->filename;
+        $filePath = 'uploads/' . $request->filename;
         $filetype = $request->filetype;
 
-        // 检查文件类型
-        if (!\in_array($filetype, ['audio/*'])) {
-            return response()->json(['error' => '不支持的文件类型'], 400);
-        }
+        $s3Client = Storage::disk('s3')->getClient(); // 获取 S3 客户端
+        $bucket = env('AWS_BUCKET');
 
-        $disk = Storage::disk('s3');
-        $command = $disk->getDriver()->getAdapter()->getClient()->getCommand('PutObject', [
-            'Bucket'      => env('AWS_BUCKET'),
-            'Key'         => $filePath,
+        $cmd = $s3Client->getCommand('PutObject', [
+            'Bucket' => $bucket,
+            'Key' => $filePath,
             'ContentType' => $filetype,
-            'ACL'         => 'public-read',
+            'ACL' => 'public-read'
         ]);
 
-        $presignedRequest = $disk->getDriver()->getAdapter()->getClient()->createPresignedRequest($command, '+20 minutes');
-
-        $presignedUrl = (string) $presignedRequest->getUri();
+        $request = $s3Client->createPresignedRequest($cmd, '+20 minutes');
+        $presignedUrl = (string) $request->getUri();
 
         return response()->json(['url' => $presignedUrl]);
     }
