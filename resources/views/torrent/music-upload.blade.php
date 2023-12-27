@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="UTF-8" name="csrf-token" content="{{ csrf_token() }}">
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>KIMOJI Music Upload</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+@csrf
 <div id="uploadContainer" style="border: 2px dashed #4CAF50; padding: 20px; text-align: center;">
     <input id="single-music" class="upload-form-file form__file" type="file" accept="audio/*" name="single-music" style="display: none;">
     <img src="/img/indexlogo.png" alt="KIMOJI Music Upload" style="margin-bottom: 20px;">
@@ -78,7 +78,6 @@
             }
         }
     });
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     function uploadFile(file) {
         const api = location.origin;
         const formData = new FormData();
