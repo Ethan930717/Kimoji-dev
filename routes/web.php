@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\URL;
 use Telegram\Bot\Laravel\Facades\Telegram;
 use Telegram\Bot\FileUpload\InputFile;
 use App\Http\Controllers\ImageGalleryController;
-use App\Http\Controllers\MusicUploadController;
 
 #测试TG机器人
 Route::get('/test-telegram', function () {
