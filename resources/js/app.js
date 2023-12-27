@@ -78,8 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 function openUploadWindow() {
-    const uploadWindowWidth = 600; // 设置窗口宽度
-    const uploadWindowHeight = 400; // 设置窗口高度
+    const uploadWindowWidth = 900; // 设置窗口宽度
+    const uploadWindowHeight = 600; // 设置窗口高度
     const left = (screen.width / 2) - (uploadWindowWidth / 2);
     const top = (screen.height / 2) - (uploadWindowHeight / 2);
 
