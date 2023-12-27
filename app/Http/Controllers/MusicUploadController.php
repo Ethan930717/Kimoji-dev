@@ -24,7 +24,7 @@ class MusicUploadController extends Controller
         $date = Carbon::now()->format('Y-m-d');
         $randomName = uniqid(); // 生成一个唯一的随机字符串
         $extension = $file->getClientOriginalExtension(); // 获取文件原始扩展名
-        $fileName = $randomName . '.' . $extension; // 生成新的文件名
+        $fileName = $randomName.'.'.$extension; // 生成新的文件名
         $filePath = "uploads/{$date}/{$fileName}"; // 包括日期的文件路径
 
         Storage::disk('s3')->put($filePath, file_get_contents($file), 'public');
