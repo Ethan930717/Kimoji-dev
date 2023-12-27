@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>KIMOJI Music Upload</title>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.766.0.min.js"></script>
+
 </head>
 <body>
 
@@ -65,7 +67,7 @@
         if (this.files && this.files[0]) {
             const file = this.files[0];
 
-            // 检查文件大小是否超过 150MB
+            // 检查文件大小是否超过 100MB
             if (file.size > 100 * 1024 * 1024) {
                 alert('请上传小于100M的音频文件');
                 return;
@@ -80,43 +82,69 @@
             }
         }
     });
-    function uploadFile(file) {
-        const api = location.origin;
-        const formData = new FormData();
-        formData.append('musicfile', file);
+    function getPresignedUrl(file, callback) {
+        // 发送请求到您的服务器以获取预签名 URL
+        fetch('/get-presigned-url', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                filename: file.name,
+                filetype: file.type
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.url) {
+                    callback(null, data.url);
+                } else {
+                    callback('Unable to retrieve presigned URL.');
+                }
+            })
+            .catch(error => callback(error));
+    }
 
+    function uploadFileToS3(file, presignedUrl) {
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', `${api}/music-upload`, true);
+        xhr.open('PUT', presignedUrl, true);
 
-        // 显示进度条
-        document.getElementById('progressContainer').style.display = 'block';
-        xhr.upload.addEventListener('progress', function (e) {
-            if (e.lengthComputable) {
-                const percentComplete = e.loaded / e.total * 100;
+        // 监听上传进度
+        xhr.upload.onprogress = function(event) {
+            if (event.lengthComputable) {
+                const percentComplete = Math.round((event.loaded / event.total) * 100);
+                // 更新进度条
                 document.getElementById('progressBar').style.width = percentComplete + '%';
-                document.getElementById('uploadStatus').innerText = '上传中请稍后...';
-            }
-        });
-        xhr.onload = function (res) {
-            if (res.target.status == 200) {
-                document.getElementById('uploadStatus').innerText = '上传成功！';
-                const data = JSON.parse(res.target.response);
-                const uploadedMusicUrl = data.url;
-                console.log('上传地址是：', uploadedMusicUrl);
-                let modifiedUrl = uploadedMusicUrl.replace(/\.flac$/, '.mp3');
-                document.getElementById('uploadedUrl').value = modifiedUrl;
-                document.getElementById('uploadResult').style.display = 'block';
-            } else {
-                let errorMsg = '上传失败：' + (xhr.statusText || '无响应文本');
-                document.getElementById('uploadStatus').innerText = errorMsg;
             }
         };
-        xhr.onerror = function () {
+
+        // 上传完成后的处理
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                document.getElementById('uploadStatus').innerText = '上传成功！';
+                const uploadedUrl = presignedUrl.split('?')[0]; // 移除查询字符串
+                document.getElementById('uploadedUrl').value = uploadedUrl;
+                document.getElementById('uploadResult').style.display = 'block';
+            } else {
+                document.getElementById('uploadStatus').innerText = '上传失败：' + xhr.statusText;
+            }
+        };
+
+        xhr.onerror = function() {
             document.getElementById('uploadStatus').innerText = '上传失败：网络或服务器错误';
         };
 
-        xhr.open('POST', `${api}/music-upload`, true);
-        xhr.send(formData);
+        xhr.send(file);
+    }
+
+    function uploadFile(file) {
+        getPresignedUrl(file, function(error, url) {
+            if (error) {
+                console.error('获取预签名URL失败:', error);
+                return;
+            }
+            uploadFileToS3(file, url);
+        });
     }
 
     var modal = document.getElementById('uploadModal');

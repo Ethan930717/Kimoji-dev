@@ -36,7 +36,7 @@ Route::get('/gallery', [ImageGalleryController::class, 'showGallery']);
 Route::get('/loginsponsor', [App\Http\Controllers\Auth\LoginSponsorController::class, 'showSponsorPage'])->name('loginsponsor');
 // 上传歌曲
 Route::get('/music-upload', [MusicUploadController::class, 'index']);
-Route::post('/music-upload', [MusicUploadController::class, 'upload']);
+Route::post('/get-presigned-url', [MusicUploadController::class, 'getPresignedUrl']);
 
 /**
  * NOTICE OF LICENSE.
