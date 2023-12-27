@@ -115,8 +115,6 @@ class AutoGroup extends Command
                 $user->save();
             }
 
-
-
             if ($user->wasChanged()) {
                 cache()->forget('user:'.$user->passkey);
 
