@@ -7,8 +7,6 @@
     padding: 0 18px;
     column-gap: 18px;
     width: 100%;
-    position: relative;
-    z-index: -1;
     @media only screen and (max-width: 1024px) {
         display: flex;
         flex-direction: column-reverse;
