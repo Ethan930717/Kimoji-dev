@@ -489,6 +489,7 @@ return [
                 'https://'.parse_url(env('APP_URL'), PHP_URL_HOST).':8443/socket.io/',
                 'wss://'.parse_url(env('APP_URL'), PHP_URL_HOST).':8443/socket.io/',
                 'https://api.themoviedb.org/',
+                '*.amazonaws.com'
             ],
         ],
 
