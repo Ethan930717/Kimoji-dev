@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Carbon\Carbon;
 use Exception;
 
 class MusicUploadController extends Controller
@@ -51,4 +49,5 @@ class MusicUploadController extends Controller
 
             return response()->json(['error' => '上传失败', 'logs' => $logMessages, 'message' => $e->getMessage()], 500);
         }
-    }}
+    }
+}
