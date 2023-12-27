@@ -90,13 +90,17 @@
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken
             },
             body: JSON.stringify({
                 filename: file.name,
                 filetype: file.type
             })
         })
-            .then(response => response.json())
+            .then(response => {
+                console.log(response); // 调试输出
+                return response.json();
+            })
             .then(data => {
                 if (data.url) {
                     callback(null, data.url);
@@ -104,7 +108,10 @@
                     callback('Unable to retrieve presigned URL.');
                 }
             })
-            .catch(error => callback(error));
+            .catch(error => {
+                console.error('Error:', error); // 调试输出
+                callback(error);
+            });
     }
 
     function uploadFileToS3(file, presignedUrl) {
