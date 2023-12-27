@@ -29,7 +29,7 @@ class MusicUploadController extends Controller
             $randomName = uniqid();
             $extension = $file->getClientOriginalExtension();
             $fileName = $randomName.'.'.$extension;
-            $filePath = "uploads/{$date}/{$fileName}";
+            $filePath = "{$date}/{$fileName}";
 
             Log::info("文件上传到S3: {$filePath}");
 

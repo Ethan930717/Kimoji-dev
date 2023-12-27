@@ -2,7 +2,6 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>KIMOJI Music Upload</title>
 </head>
 <body>
@@ -89,10 +88,6 @@
         const xhr = new XMLHttpRequest();
         xhr.open('POST', `${api}/music-upload`, true);
 
-        // 添加 CSRF 令牌
-        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
-
         // 显示进度条
         document.getElementById('progressContainer').style.display = 'block';
         xhr.upload.addEventListener('progress', function (e) {
@@ -106,7 +101,7 @@
             if (res.target.status == 200) {
                 document.getElementById('uploadStatus').innerText = '上传成功！';
                 const data = JSON.parse(res.target.response);
-                const uploadedMusicUrl = api + data.url;
+                const uploadedMusicUrl = data.url;
                 console.log('上传地址是：', uploadedMusicUrl);
                 let modifiedUrl = uploadedMusicUrl.replace(/\.flac$/, '.mp3');
                 document.getElementById('uploadedUrl').value = modifiedUrl;
