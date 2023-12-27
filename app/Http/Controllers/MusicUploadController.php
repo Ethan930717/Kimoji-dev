@@ -39,7 +39,7 @@ class MusicUploadController extends Controller
                 Log::warning("文件 {$filePath} 已存在于 S3 上。");
             }
 
-            Storage::disk('s3')->put($filePath, file_get_contents($file), 'public');
+            Storage::disk('s3')->put($filePath, fopen($file, 'r+'), 'public');
 
             if (Storage::disk('s3')->exists($filePath)) {
                 $fileUrl = Storage::disk('s3')->url($filePath);
