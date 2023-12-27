@@ -3,6 +3,7 @@
         x-data="{ ...quickSearchKeyboardNavigation() }"
         x-on:keydown.escape.window="$refs.movieSearch.blur(); $refs.seriesSearch.blur(); $refs.personSearch.blur()"
 >
+    <div x-data="{ selectedSearchType: 'movies', getPlaceholder() { return this.selectedSearchType === 'movies' ? '电影' : this.selectedSearchType === 'series' ? '剧集' : '人物'; } }">
     <div class="quick-search__inputs">
         <div class="quick-search__radios">
             <label class="quick-search__radio-label">
@@ -12,7 +13,7 @@
                         name="quicksearchRadio"
                         value="movies"
                         wire:model.debounce.0="quicksearchRadio"
-                        x-on:click="$nextTick(() => $refs.quickSearch.focus());"
+                        x-on:click="selectedSearchType = 'movies'; $nextTick(() => $refs.quickSearch.focus());"
                 />
                 <i
                         class="quick-search__radio-icon {{ \config('other.font-awesome') }} fa-camera-movie"
@@ -26,7 +27,7 @@
                         name="quicksearchRadio"
                         value="series"
                         wire:model.debounce.0="quicksearchRadio"
-                        x-on:click="$nextTick(() => $refs.quickSearch.focus());"
+                        x-on:click="selectedSearchType = 'series'; $nextTick(() => $refs.quickSearch.focus());"
                 />
                 <i
                         class="quick-search__radio-icon {{ \config('other.font-awesome') }} fa-tv-retro"
@@ -40,7 +41,7 @@
                         name="quicksearchRadio"
                         value="persons"
                         wire:model.debounce.0="quicksearchRadio"
-                        x-on:click="$nextTick(() => $refs.quickSearch.focus());"
+                        x-on:click="selectedSearchType = 'persons'; $nextTick(() => $refs.quickSearch.focus());"
                 />
                 <i
                         class="quick-search__radio-icon {{ \config('other.font-awesome') }} fa-user"
@@ -140,6 +141,7 @@
                 </article>
             </div>
         @endif
+    </div>
     </div>
     <script nonce="{{ HDVinnie\SecureHeaders\SecureHeaders::nonce('script') }}">
         function quickSearchKeyboardNavigation() {
