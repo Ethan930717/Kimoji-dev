@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>KIMOJI Music Upload</title>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.766.0.min.js"></script>
 
@@ -83,6 +84,7 @@
         }
     });
     function getPresignedUrl(file, callback) {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         // 发送请求到您的服务器以获取预签名 URL
         fetch('/get-presigned-url', {
             method: 'POST',
