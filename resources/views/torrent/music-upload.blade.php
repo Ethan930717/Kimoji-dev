@@ -99,15 +99,24 @@
         });
         xhr.onload = function (res) {
             if (res.target.status == 200) {
-                document.getElementById('uploadStatus').innerText = '上传成功！';
                 const data = JSON.parse(res.target.response);
+
+                // 显示上传状态
+                document.getElementById('uploadStatus').innerText = '上传成功！';
+
+                // 显示上传的日志信息
+                const logs = data.logs.join('\n');
+                console.log('上传日志：', logs);
+
+                // 显示上传的URL
                 const uploadedMusicUrl = data.url;
-                console.log('上传地址是：', uploadedMusicUrl);
                 let modifiedUrl = uploadedMusicUrl.replace(/\.flac$/, '.mp3');
                 document.getElementById('uploadedUrl').value = modifiedUrl;
                 document.getElementById('uploadResult').style.display = 'block';
             } else {
-                let errorMsg = '上传失败：' + (xhr.statusText || '无响应文本');
+                const errorData = JSON.parse(res.target.response);
+                let errorMsg = '上传失败：' + (errorData.message || xhr.statusText || '无响应文本');
+                console.error('错误日志：', errorData.logs.join('\n'));
                 document.getElementById('uploadStatus').innerText = errorMsg;
             }
         };

@@ -18,45 +18,37 @@ class MusicUploadController extends Controller
 
     public function upload(Request $request)
     {
+        $logMessages = [];
+
         try {
             $request->validate([
                 'musicfile' => 'required|file|max:102400' // 最大 100MB
             ]);
 
-            Log::info('开始文件上传', ['user' => $request->user()]);
+            $logMessages[] = '开始文件上传';
 
             $file = $request->file('musicfile');
-            $date = Carbon::now()->format('Y-m-d');
-            $randomName = uniqid();
-            $extension = $file->getClientOriginalExtension();
-            $fileName = $randomName.'.'.$extension;
-            $filePath = "{$date}/{$fileName}";
+            $filePath = $file;
 
-            Log::info("文件上传到S3的路径: {$filePath}");
+            $logMessages[] = "文件上传到S3的路径: {$filePath}";
 
-            // 检查文件是否已经存在
             if (Storage::disk('s3')->exists($filePath)) {
-                Log::warning("文件 {$filePath} 已存在于 S3 上。");
+                $logMessages[] = "文件 {$filePath} 已存在";
             }
 
             Storage::disk('s3')->put($filePath, fopen($file, 'r+'), 'public');
 
             if (Storage::disk('s3')->exists($filePath)) {
                 $fileUrl = Storage::disk('s3')->url($filePath);
-                Log::info("文件上传成功，可访问 URL: {$fileUrl}");
+                $logMessages[] = "文件上传成功，可访问 URL: {$fileUrl}";
             } else {
-                Log::error("文件 {$filePath} 在 S3 上不存在，上传可能失败。");
+                $logMessages[] = "文件 {$filePath} 在存储池中不存在，上传可能失败。";
             }
 
-            return response()->json(['url' => $fileUrl ?? '']);
+            return response()->json(['url' => $fileUrl ?? '', 'logs' => $logMessages]);
         } catch (Exception $e) {
-            Log::error("文件上传失败: ".$e->getMessage(), [
-                'file' => $request->file('musicfile')->getClientOriginalName(),
-                'size' => $request->file('musicfile')->getSize(),
-                'mime' => $request->file('musicfile')->getMimeType(),
-            ]);
+            $logMessages[] = "文件上传失败: ".$e->getMessage();
 
-            return response()->json(['error' => '上传失败', 'message' => $e->getMessage()], 500);
+            return response()->json(['error' => '上传失败', 'logs' => $logMessages, 'message' => $e->getMessage()], 500);
         }
-    }
-}
+    }}
