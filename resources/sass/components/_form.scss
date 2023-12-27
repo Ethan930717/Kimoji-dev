@@ -68,6 +68,8 @@
     background: var(--button-filled-bg);
     color: var(--button-filled-fg);
     border: 0;
+    display: flex;
+    white-space: nowrap;
 }
 
 .form__button--text {
