@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="csrf-token" content="{{ csrf_token() }}">
     <title>KIMOJI Music Upload</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
@@ -64,8 +64,8 @@
             const file = this.files[0];
 
             // 检查文件大小是否超过 150MB
-            if (file.size > 150 * 1024 * 1024) {
-                alert('请上传小于150M的音频文件');
+            if (file.size > 100 * 1024 * 1024) {
+                alert('请上传小于100M的音频文件');
                 return;
             }
 
@@ -78,8 +78,8 @@
             }
         }
     });
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     function uploadFile(file) {
-
         const api = location.origin;
         const formData = new FormData();
         formData.append('musicfile', file);
