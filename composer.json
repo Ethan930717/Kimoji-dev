@@ -29,6 +29,7 @@
         "laravel/fortify": "^1.19.1",
         "laravel/framework": "^10.37.3",
         "laravel/tinker": "^2.8.2",
+        "league/flysystem-aws-s3-v3": "^3.22",
         "livewire/livewire": "^2.12.6",
         "marcreichel/igdb-laravel": "^3.8.1",
         "paragonie/constant_time_encoding": "^2.6.3",

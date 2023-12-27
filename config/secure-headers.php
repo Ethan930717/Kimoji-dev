@@ -551,6 +551,7 @@ return [
             'allow' => [
                 '*.kimoji.club',
                 '*.leaves.red',
+                '*.amazonaws.com',
             ],
         ],
 
@@ -620,6 +621,7 @@ return [
             'allow' => [
                 '*.kimoji.club',
                 '*.leaves.red',
+                '*.amazonaws.com',
             ],
 
             'schemes' => [
