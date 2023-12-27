@@ -6,13 +6,16 @@
     <title>KIMOJI Music Upload</title>
 </head>
 <body>
-@csrf
+
 <div id="uploadContainer" style="border: 2px dashed #4CAF50; padding: 20px; text-align: center;">
-    <input id="single-music" class="upload-form-file form__file" type="file" accept="audio/*" name="single-music" style="display: none;">
-    <img src="/img/indexlogo.png" alt="KIMOJI Music Upload" style="margin-bottom: 20px;">
-    <h2>拖放音乐到此处或点击上传</h2>
-    <h3 style="color:#4caf50">为了保证站点试听效率，上传的FLAC文件将会在后台转码为MP3格式</h3>
-    <button id="selectButton">选择文件</button>
+    <form id="uploadForm" action="/music-upload" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input id="single-music" class="upload-form-file form__file" type="file" accept="audio/*" name="musicfile" style="display: none;">
+        <img src="/img/indexlogo.png" alt="KIMOJI Music Upload" style="margin-bottom: 20px;">
+        <h2>拖放音乐到此处或点击上传</h2>
+        <h3 style="color:#4caf50">为了保证站点试听效率，上传的FLAC文件将会在后台转码为MP3格式</h3>
+        <button type="button" id="selectButton">选择文件</button>
+    </form>
     <div id="progressContainer" style="width: 100%; background-color: #ddd; margin-top: 20px;">
         <div id="progressBar" style="height: 20px; width: 0%; background-color: #4CAF50;"></div>
         <div id="uploadStatus" style="position: absolute; top: 0; left: 0; width: 100%; text-align: center; line-height: 20px;">等待上传...</div>
@@ -84,6 +87,12 @@
         formData.append('musicfile', file);
 
         const xhr = new XMLHttpRequest();
+        xhr.open('POST', `${api}/music-upload`, true);
+
+        // 添加 CSRF 令牌
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+
 
         // 显示进度条
         document.getElementById('progressContainer').style.display = 'block';
