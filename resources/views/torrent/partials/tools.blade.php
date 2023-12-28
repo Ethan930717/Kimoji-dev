@@ -371,6 +371,7 @@
                                             class="form__textarea"
                                             name="message"
                                             required
+                                            x-model="message"
                                         ></textarea>
                                         <label for="report_reason" class="form__label form__label--floating">
                                             {{ __('common.reason') }}
