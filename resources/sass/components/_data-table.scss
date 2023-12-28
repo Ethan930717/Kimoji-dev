@@ -79,6 +79,12 @@
     list-style-type: none;
 }
 
+.data-table__action {
+    white-space: nowrap;     /* 防止文本换行 */
+    display: inline-flex;    /* 让每个动作项也使用 flex 布局 */
+    align-items: center;     /* 使动作项内部的元素垂直居中 */
+}
+
 .data-table__action > :not(.dialog) {
     @media (hover: hover) {
         visibility: hidden;
