@@ -11,14 +11,15 @@ class PostponeTorrent extends Component
     public $message;
     public $showModal = false;
 
-    public function mount($torrentId)
+    public function mount($torrentId): void
     {
         $this->torrentId = $torrentId;
     }
 
-    public function postpone()
+    public function postpone(): void
     {
         $torrent = Torrent::find($this->torrentId);
+
         if ($torrent) {
             $torrent->status = Torrent::POSTPONED;
             $torrent->save();
@@ -36,4 +37,3 @@ class PostponeTorrent extends Component
         return view('livewire.postpone-torrent');
     }
 }
-
