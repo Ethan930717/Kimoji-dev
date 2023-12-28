@@ -259,7 +259,7 @@
                         </li>
                     @endif
                     @if ($torrent->status !== \App\Models\Torrent::POSTPONED)
-                        @livewire('postpone-torrent', ['torrent' => $torrent])
+                        @livewire('postpone-torrent', ['torrentId' => $torrent->id])
                     @endif
                     @if ($torrent->status !== \App\Models\Torrent::REJECTED)
                         <li x-data>
