@@ -29,10 +29,10 @@
                 <input id="id" type="hidden" name="id" value="{{ $torrent->id }}">
             </p>
             <p class="form__group">
-                <button type="button" class="form__button--mod" @click="appendMessage('不接受任何分辨率在720p以下的资源！请仔细阅读[url=https://kimoji.club/pages/3]发布规则[/url]')">720P</button>
-                <button type="button" class="form__button--mod" @click="appendMessage('不接受任何除官组外的分集资源！请仔细阅读[url=https://kimoji.club/pages/3]发布规则[/url]')">分集</button>
-                <button type="button" class="form__button--mod" @click="appendMessage('不接受带台标的资源！请仔细阅读[url=https://kimoji.club/pages/3]发布规则[/url]')">台标</button>
-                <button type="button" class="form__button--mod" @click="appendMessage('除特许发布的极优资源外，不接受任何形式的打包资源！请仔细阅读[url=https://kimoji.club/pages/3]发布规则[/url]')">打包</button>
+                <button type="button" class="form__button--mod" @click="appendMessage('不接受任何分辨率在720p以下的资源！请仔细阅读[url=https://kimoji.club/pages/3]发布规则[/url]\\n')">720P</button>
+                <button type="button" class="form__button--mod" @click="appendMessage('不接受任何除官组外的分集资源！请仔细阅读[url=https://kimoji.club/pages/3]发布规则[/url]\\n')">分集</button>
+                <button type="button" class="form__button--mod" @click="appendMessage('不接受带台标的资源！请仔细阅读[url=https://kimoji.club/pages/3]发布规则[/url]\\n')">台标</button>
+                <button type="button" class="form__button--mod" @click="appendMessage('除特许发布的极优资源外，不接受任何形式的打包资源！请仔细阅读[url=https://kimoji.club/pages/3]发布规则[/url]\\n')">打包</button>
             </p>
             <p class="form__group">
                 <textarea class="form__textarea" name="message" id="message" required x-model="message"></textarea>
