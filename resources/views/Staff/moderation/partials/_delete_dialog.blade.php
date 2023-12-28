@@ -12,7 +12,15 @@
             method="POST"
             action="{{ route('torrents.destroy', ['id' => $torrent->id]) }}"
             x-on:click.outside="$refs.dialog.close()"
-            x-data="{ message: '' }"
+            x-data="{
+                        message: '',
+                        appendMessage(newMessage) {
+                            if (this.message.length > 0 && !this.message.endsWith('\\n')) {
+                                this.message += '\\n';
+                            }
+                            this.message += newMessage.replace(/\\n/g, '\n');
+                        }
+                    }"
         >
             @csrf
             @method('DELETE')
@@ -21,13 +29,13 @@
                 <input id="id" type="hidden" name="id" value="{{ $torrent->id }}">
             </p>
             <p class="form__group">
-                <button type="button" class="form__button--mod" @click="message = '不接受任何分辨率在720p以下的资源！请仔细阅读[url=https://kimoji.club/pages/3]发布规则[/url]\\n'.replace(/\\n/g, '\n')">720P</button>
-                <button type="button" class="form__button--mod" @click="message = '不接受任何除官组外的分集资源！请仔细阅读[url=https://kimoji.club/pages/3]发布规则[/url]\\n'.replace(/\\n/g, '\n')">分集</button>
-                <button type="button" class="form__button--mod" @click="message = '不接受带台标的资源！请仔细阅读[url=https://kimoji.club/pages/3]发布规则[/url]\\n'.replace(/\\n/g, '\n')">台标</button>
-                <button type="button" class="form__button--mod" @click="message = '除特许发布的极优资源外，不接受任何形式的打包资源！请仔细阅读[url=https://kimoji.club/pages/3]发布规则[/url]\\n'.replace(/\\n/g, '\n')">打包</button>
+                <button type="button" class="form__button--mod" @click="appendMessage('不接受任何分辨率在720p以下的资源！请仔细阅读[url=https://kimoji.club/pages/3]发布规则[/url]')">720P</button>
+                <button type="button" class="form__button--mod" @click="appendMessage('不接受任何除官组外的分集资源！请仔细阅读[url=https://kimoji.club/pages/3]发布规则[/url]')">分集</button>
+                <button type="button" class="form__button--mod" @click="appendMessage('不接受带台标的资源！请仔细阅读[url=https://kimoji.club/pages/3]发布规则[/url]')">台标</button>
+                <button type="button" class="form__button--mod" @click="appendMessage('除特许发布的极优资源外，不接受任何形式的打包资源！请仔细阅读[url=https://kimoji.club/pages/3]发布规则[/url]')">打包</button>
             </p>
             <p class="form__group">
-                <textarea class="form__textarea" name="message" id="message"></textarea>
+                <textarea class="form__textarea" name="message" id="message" required x-model="message"></textarea>
                 <label class="form__label form__label--floating" for="message">删除原因</label>
             </p>
             <p class="form__group">
