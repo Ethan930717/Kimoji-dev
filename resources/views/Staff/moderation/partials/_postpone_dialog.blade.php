@@ -28,13 +28,13 @@
             <input type="hidden" name="old_status" value="{{ $torrent->status }}">
             <input type="hidden" name="status" value="{{ \App\Models\Torrent::POSTPONED }}">
             <p class="form__group">
-                <button type="button" class="form__button--mod" @click="appendMessage('规范主标题命名，详见 [url=https://kimoji.club/pages/3]发布规则[/url]')">标题命名</button>
-                <button type="button" class="form__button--mod" @click="appendMessage('请提交完整的 Mediainfo 扫描信息')">Mediainfo</button>
-                <button type="button" class="form__button--mod" @click="appendMessage('原盘请提供BDinfo，详见[url=https://kimoji.club/pages/4]原盘发布规则[/url]')">BDinfo</button>
-                <button type="button" class="form__button--mod" @click="appendMessage('请检查基本信息填写：类别/媒介等')">基本信息</button>
-                <button type="button" class="form__button--mod" @click="appendMessage('请补充TMDb/IMDb信息')">T/IMDb</button>
-                <button type="button" class="form__button--mod" @click="appendMessage('提供至少三张 BBCODE 格式的截图（非缩略图），原盘则需提供PNG原图')">截图</button>
-                <button type="button" class="form__button--mod" @click="appendMessage('请按固定的格式编辑描述信息，详见[url=https://kimoji.club/pages/3]发布规则[/url]或参考已发布的资源')">描述格式</button>
+                <button type="button" class="form__button--mod" @click="appendMessage('规范主标题命名，详见 [url=https://kimoji.club/pages/3]发布规则[/url]\\n')">标题命名</button>
+                <button type="button" class="form__button--mod" @click="appendMessage('请提交完整的 Mediainfo 扫描信息\\n')">Mediainfo</button>
+                <button type="button" class="form__button--mod" @click="appendMessage('原盘请提供BDinfo，详见[url=https://kimoji.club/pages/4]原盘发布规则[/url]\\n')">BDinfo</button>
+                <button type="button" class="form__button--mod" @click="appendMessage('请检查基本信息填写：类别/媒介等\\n')">基本信息</button>
+                <button type="button" class="form__button--mod" @click="appendMessage('请补充TMDb/IMDb信息\\n')">T/IMDb</button>
+                <button type="button" class="form__button--mod" @click="appendMessage('提供至少三张 BBCODE 格式的截图（非缩略图），原盘则需提供PNG原图\\n')">截图</button>
+                <button type="button" class="form__button--mod" @click="appendMessage('请按固定的格式编辑描述信息，详见[url=https://kimoji.club/pages/3]发布规则[/url]或参考已发布的资源\\n')">描述格式</button>
             </p>
             <p class="form__group">
                 <textarea class="form__textarea" name="message" id="message" required x-model="message">{{ old('message') }}</textarea>
