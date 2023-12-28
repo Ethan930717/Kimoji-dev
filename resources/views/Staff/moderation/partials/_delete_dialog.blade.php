@@ -13,14 +13,11 @@
             action="{{ route('torrents.destroy', ['id' => $torrent->id]) }}"
             x-on:click.outside="$refs.dialog.close()"
             x-data="{
-                        message: '',
-                        appendMessage(newMessage) {
-                            if (this.message.length > 0 && !this.message.endsWith('\\n')) {
-                                this.message += '\\n';
-                            }
-                            this.message += newMessage.replace(/\\n/g, '\n');
-                        }
-                    }"
+                    message: '',
+                    appendMessage(newMessage) {
+                        this.message += newMessage.replace(/\\n/g, '\n');
+                    }
+                }"
         >
             @csrf
             @method('DELETE')
