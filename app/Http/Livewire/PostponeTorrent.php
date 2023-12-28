@@ -11,12 +11,12 @@ class PostponeTorrent extends Component
     public $message;
     public $showModal = false;
 
-    public function mount(Torrent $torrent)
+    public function mount(Torrent $torrent): void
     {
         $this->torrent = $torrent;
     }
 
-    public function postpone()
+    public function postpone(): void
     {
         // 更新种子状态
         $this->torrent->status = Torrent::POSTPONED;
