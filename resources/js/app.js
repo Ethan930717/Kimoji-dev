@@ -91,14 +91,17 @@ function openUploadWindow() {
 }
 
 //审核插入文本
+function insertText(text, textareaId) {
+    var textarea = document.getElementById(textareaId);
+    textarea.value += text.replace(/\\n/g, '\n');
+}
 document.addEventListener('DOMContentLoaded', (event) => {
     const buttons = document.querySelectorAll('.form__button--mod');
 
     buttons.forEach(button => {
         button.addEventListener('click', function() {
-            var textarea = document.getElementById('message');
-            var text = this.getAttribute('data-text').replace(/\\n/g, '\n'); // 将 \\n 替换为真正的换行符
-            textarea.value += text; // 插入文本
+            var text = this.getAttribute('data-text');
+            insertText(text, 'message'); // 使用 insertText 函数
         });
     });
 });
