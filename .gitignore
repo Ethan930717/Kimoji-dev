@@ -45,3 +45,4 @@ supervisor.ini
 /.phpunit.cache/
 
 tests
+composer.lock
