@@ -223,6 +223,7 @@
   display: flex;
   align-items: center;
   color: var(--torrent-row-buttons-fg);
+  justify-content: center;
 }
 
 .torrent-search--list__rating {
