@@ -4,7 +4,7 @@
     </h2>
     <div class="panel__body">
         <menu style="display: flex; justify-content: space-between; padding: 0; margin: 0; list-style-type: none; flex-wrap: wrap">
-            @if (auth()->user()->group->is_modo || auth()->id() === $torrent->user_id)
+            @if (auth()->user()->group->is_modo || auth()->id() === $torrent->user_id || auth()->user()->group->is_internal)
                 <li>
                     <menu style="display: flex; list-style-type: none; margin: 0; padding: 0; flex-wrap: wrap;">
                         <li>
