@@ -15,9 +15,6 @@
             x-data="{
                         message: '',
                         appendMessage(newMessage) {
-                            if (this.message.length > 0 && !this.message.endsWith('\\n')) {
-                                this.message += '\\n';
-                            }
                             this.message += newMessage.replace(/\\n/g, '\n');
                         }
                     }"
