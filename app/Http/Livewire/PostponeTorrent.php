@@ -7,29 +7,24 @@ use App\Models\Torrent;
 
 class PostponeTorrent extends Component
 {
-    public $torrentId;
+    public $torrent;
     public $message;
     public $showModal = false;
 
-    public function mount($torrentId): void
+    public function mount(Torrent $torrent)
     {
-        $this->torrentId = $torrentId;
+        $this->torrent = $torrent;
     }
 
-    public function postpone(): void
+    public function postpone()
     {
-        $torrent = Torrent::find($this->torrentId);
+        // 更新种子状态
+        $this->torrent->status = Torrent::POSTPONED;
+        $this->torrent->save();
 
-        if ($torrent) {
-            $torrent->status = Torrent::POSTPONED;
-            $torrent->save();
-
-            // 重置表单和关闭模态框
-            $this->reset('message');
-            $this->showModal = false;
-
-            // 可以添加其他处理，如通知用户
-        }
+        // 重置状态并关闭模态框
+        $this->reset('message');
+        $this->showModal = false;
     }
 
     public function render()
