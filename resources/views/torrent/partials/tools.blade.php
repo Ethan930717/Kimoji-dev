@@ -347,8 +347,9 @@
                                                     if (this.message.length > 0) {
                                                         this.message += '\\n';
                                                     }
-                                                    }
-                                                }"
+                                                    this.message += newMessage.replace(/\\n/g, '\n');
+                                                }
+                                            }"
                                 >
                                     @csrf
                                     <input id="type" name="type" type="hidden" value="{{ __('torrent.torrent') }}">
