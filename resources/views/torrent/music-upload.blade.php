@@ -118,7 +118,7 @@
         const xhr = new XMLHttpRequest();
         xhr.open('PUT', presignedUrl, true);
         xhr.setRequestHeader('Content-Type', file.type);
-        
+
         // 监听上传进度
         xhr.upload.onprogress = function(event) {
             if (event.lengthComputable) {
