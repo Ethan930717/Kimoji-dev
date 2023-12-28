@@ -12,13 +12,22 @@
             method="POST"
             action="{{ route("staff.moderation.update", ['id' => $torrent->id]) }}"
             x-on:click.outside="$refs.dialog.close()"
+            x-data="{
+        message: '',
+        appendMessage(newMessage) {
+            if (this.message.length > 0) {
+                this.message += '\\n'; // 在现有消息后添加换行符
+            }
+            this.message += newMessage.replace(/\\n/g, '\n'); // 添加新消息
+        }
+    }"
         >
             @csrf
             <input id="type" type="hidden" name="type" value="{{ __('torrent.torrent') }}">
             <input id="id" type="hidden" name="id" value="{{ $torrent->id }}">
             <input type="hidden" name="old_status" value="{{ $torrent->status }}">
             <input type="hidden" name="status" value="{{ \App\Models\Torrent::REJECTED }}">
-            <div class="form__group">
+            <p class="form__group">
                 <button type="button" class="form__button--mod" @click="message = '规范主标题命名，详见 [url=https://kimoji.club/pages/3]发布规则[/url]\\n'.replace(/\\n/g, '\n')">标题命名</button>
                 <button type="button" class="form__button--mod" @click="message = '请提交完整的 Mediainfo 扫描信息\\n'.replace(/\\n/g, '\n')">Mediainfo</button>
                 <button type="button" class="form__button--mod" @click="message = '原盘请提供BDinfo，详见[url=https://kimoji.club/pages/4]原盘发布规则[/url]\n'.replace(/\\n/g, '\n')">BDinfo</button>
@@ -26,7 +35,7 @@
                 <button type="button" class="form__button--mod" @click="message = '请补充TMDb/IMDb信息\n'.replace(/\\n/g, '\n')">T/IMDb</button>
                 <button type="button" class="form__button--mod" @click="message = '提供至少三张 BBCODE 格式的截图（非缩略图），原盘则需提供PNG原图\n'.replace(/\\n/g, '\n')">截图</button>
                 <button type="button" class="form__button--mod" @click="message = '请按固定的格式编辑描述信息，详见[url=https://kimoji.club/pages/3]发布规则[/url]或参考已发布的资源\n'.replace(/\\n/g, '\n')">描述格式</button>
-            </div>
+            </p>
             <p class="form__group">
                 <textarea id="message" class="form__textarea" name="message">{{ old('message') }}</textarea>
                 <label for="message" class="form__label form__label__floating">Rejection Message</label>
