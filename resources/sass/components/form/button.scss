@@ -39,6 +39,12 @@
 }
 
 /* Filled */
+.form__button--mod {
+    background:  #51e7e1 linear-gradient(to bottom right,#57d4e0,#658a78);
+    color: var(--button-filled-fg);
+    border: var(--button-filled-border);
+    border-radius: var(--button-filled-border-radius);
+}
 
 .form__button--filled {
     background: var(--button-filled-bg);
