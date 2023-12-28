@@ -95,6 +95,8 @@ function insertText(text, textareaId) {
     var textarea = document.getElementById(textareaId);
     textarea.value += text.replace(/\\n/g, '\n');
 }
+// 使函数在 window 对象上可用，以便在模块外部访问
+window.insertText = insertText;
 document.addEventListener('DOMContentLoaded', (event) => {
     const buttons = document.querySelectorAll('.form__button--mod');
 
