@@ -90,6 +90,12 @@ function openUploadWindow() {
     );
 }
 
+//审核插入文本
+function insertText(text) {
+    var textarea = document.getElementById('message');
+    textarea.value += text; // 这将在文本区域的末尾追加文本
+}
+
 
 
 

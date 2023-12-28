@@ -259,7 +259,51 @@
                         </li>
                     @endif
                     @if ($torrent->status !== \App\Models\Torrent::POSTPONED)
-                        @livewire('postpone-torrent', ['torrent' => $torrent])
+                        <li x-data>
+                            <button class="form__button form__button--outlined" x-on:click.stop="$refs.dialog.showModal()">
+                                <i class="{{ config('other.font-awesome') }} fa-pause"></i> {{ __('common.moderation-postpone') }}
+                            </button>
+                            <dialog class="dialog" x-ref="dialog">
+                                <h4 class="dialog__heading">
+                                    {{ __('common.moderation-postpone') }}: {{ $torrent->name }}
+                                </h4>
+                                <form
+                                    class="dialog__form"
+                                    method="POST"
+                                    action="{{ route('staff.moderation.update', ['id' => $torrent->id]) }}"
+                                    x-on:click.outside="$refs.dialog.close()"
+                                >
+                                    @csrf
+                                    <input id="type" name="type" type="hidden" value="{{ __('torrent.torrent') }}">
+                                    <input id="id" name="id" type="hidden" value="{{ $torrent->id }}">
+                                    <input type="hidden" name="old_status" value="{{ $torrent->status }}">
+                                    <input type="hidden" name="status" value="{{ \App\Models\Torrent::POSTPONED }}">
+                                    <div class="form__group">
+                                        <button type="button" onclick="insertText('1.规范主标题命名，详见 [url=https://kimoji.club/pages/3]发布规则[/url]')">标题命名</button>
+                                        <button type="button" onclick="insertText('2.请提交完整的 Mediainfo 扫描信息')">Mediainfo</button>
+                                    </div>
+                                    <p class="form__group">
+                                        <textarea
+                                            id="message"
+                                            class="form__textarea"
+                                            name="message"
+                                            required
+                                        ></textarea>
+                                        <label for="report_reason" class="form__label form__label--floating">
+                                            {{ __('common.reason') }}
+                                        </label>
+                                    </p>
+                                    <p class="form__group">
+                                        <button class="form__button form__button--filled">
+                                            {{ __('common.moderation-postpone') }}
+                                        </button>
+                                        <button formmethod="dialog" formnovalidate class="form__button form__button--outlined">
+                                            {{ __('common.cancel') }}
+                                        </button>
+                                    </p>
+                                </form>
+                            </dialog>
+                        </li>
                     @endif
                     @if ($torrent->status !== \App\Models\Torrent::REJECTED)
                         <li x-data>
