@@ -93,10 +93,23 @@ function openUploadWindow() {
 //审核插入文本
 function insertText(text, textareaId) {
     var textarea = document.getElementById(textareaId);
-    textarea.value += text.replace(/\\n/g, '\n');
+    if (!textarea) return; // 如果没有找到textarea，直接返回
+
+    // 如果textarea已有内容，先添加一个换行符
+    if (textarea.value.length > 0) {
+        textarea.value += '\n';
+    }
+    // 追加新的文本
+    textarea.value += text;
+    // 更新光标位置到新内容的末尾
+    textarea.selectionStart = textarea.selectionEnd = textarea.value.length;
+    textarea.focus(); // 确保textarea获得焦点
 }
-// 使函数在 window 对象上可用，以便在模块外部访问
+
+// 使函数在 window 对象上可用
 window.insertText = insertText;
+
+// 设置事件监听器
 document.addEventListener('DOMContentLoaded', (event) => {
     const buttons = document.querySelectorAll('.form__button--mod');
 
@@ -107,6 +120,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     });
 });
+
 
 
 
