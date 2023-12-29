@@ -46,4 +46,4 @@ supervisor.ini
 
 tests
 composer.lock
-*.lock
+
