@@ -47,9 +47,7 @@
                         {{ __('playlist.title') }}
                     </label>
                 </p>
-                <p class="form__group">
-                    @livewire('bbcode-input', ['name' => 'description', 'label' => __('common.description'), 'required' => true])
-                </p>
+                @livewire('bbcode-input', ['name' => 'description', 'label' => __('common.description'), 'required' => true])
                 <p class="form__group">
                     <label for="cover_image" class="form__label">
                         {{ __('playlist.cover') }}
