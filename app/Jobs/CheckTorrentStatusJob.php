@@ -35,7 +35,7 @@ class CheckTorrentStatusJob implements ShouldQueue
         $torrent = Torrent::find($this->torrentId);
 
         if (!$torrent) {
-            Log::error("Torrent 不存在或已被删除", ['torrentId' => $this->torrentId]);
+            Log::error("该种子不存在或已被删除", ['torrentId' => $this->torrentId]);
 
             return;
         }
