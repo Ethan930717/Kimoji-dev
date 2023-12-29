@@ -202,12 +202,14 @@ class TorrentController extends Controller
             $filename_cover = 'torrent-cover_'.$torrent->id.'.jpg';
             $path_cover = public_path('/files/img/'.$filename_cover);
             $width = $height = 500;
+
             if ($torrent->category && $torrent->category->no_meta) {
                 $width = 600;
                 $height = 400;
             }
             Image::make($image_cover->getRealPath())->fit($width, $height)->encode('jpg', 90)->save($path_cover);
         }
+
         // Banner Image for No-Meta Torrents
         if ($request->hasFile('torrent-banner')) {
             $image_cover = $request->file('torrent-banner');
@@ -434,7 +436,8 @@ class TorrentController extends Controller
             $filename_cover = 'torrent-cover_'.$torrent->id.'.jpg';
             $path_cover = public_path('/files/img/'.$filename_cover);
 
-            $width = $height = 500; //
+            $width = $height = 500;
+
             if ($category->no_meta) {
                 $width = 600;
                 $height = 400;
