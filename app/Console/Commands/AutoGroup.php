@@ -59,7 +59,7 @@ class AutoGroup extends Command
             // Leech ratio dropped below sites minimum
             if ($user->ratio < config('other.ratio') &&
                 $user->group_id != UserGroups::LEECH->value &&
-                !in_array($user->group_id, $excludedGroups)) {
+                !\in_array($user->group_id, $excludedGroups)) {
                 $user->group_id = UserGroups::LEECH->value;
                 $user->can_request = false;
                 $user->can_invite = false;
@@ -71,7 +71,7 @@ class AutoGroup extends Command
             if ($user->uploaded >= 0 &&
                 $user->ratio >= config('other.ratio') &&
                 $user->group_id != UserGroups::USER->value &&
-                !in_array($user->group_id, $excludedGroups)) {
+                !\in_array($user->group_id, $excludedGroups)) {
                 $user->group_id = UserGroups::USER->value;
                 $user->can_request = true;
                 $user->can_invite = false;
@@ -84,7 +84,7 @@ class AutoGroup extends Command
                 $user->ratio >= config('other.ratio') &&
                 $user->created_at < $current->copy()->subDays(45)->toDateTimeString() &&
                 $user->group_id != UserGroups::POWERUSER->value &&
-                !in_array($user->group_id, $excludedGroups)) {
+                !\in_array($user->group_id, $excludedGroups)) {
                 $user->group_id = UserGroups::POWERUSER->value;
                 $user->save();
             }
@@ -94,7 +94,7 @@ class AutoGroup extends Command
                 $user->ratio >= config('other.ratio') &&
                 $user->created_at < $current->copy()->subDays(90)->toDateTimeString() &&
                 $user->group_id != UserGroups::SUPERUSER->value &&
-                !in_array($user->group_id, $excludedGroups)) {
+                !\in_array($user->group_id, $excludedGroups)) {
                 $user->group_id = UserGroups::SUPERUSER->value;
                 $user->save();
             }
@@ -104,7 +104,7 @@ class AutoGroup extends Command
                 $user->ratio >= config('other.ratio') &&
                 $user->created_at < $current->copy()->subDays(150)->toDateTimeString() &&
                 $user->group_id != UserGroups::EXTREMEUSER->value &&
-                !in_array($user->group_id, $excludedGroups)) {
+                !\in_array($user->group_id, $excludedGroups)) {
                 $user->group_id = UserGroups::EXTREMEUSER->value;
                 $user->save();
             }
@@ -114,7 +114,7 @@ class AutoGroup extends Command
                 $user->ratio >= config('other.ratio') &&
                 $user->created_at < $current->copy()->subDays(240)->toDateTimeString() &&
                 $user->group_id != UserGroups::INSANEUSER->value &&
-                !in_array($user->group_id, $excludedGroups)) {
+                !\in_array($user->group_id, $excludedGroups)) {
                 $user->group_id = UserGroups::INSANEUSER->value;
                 $user->save();
             }
@@ -125,7 +125,7 @@ class AutoGroup extends Command
                 round($user->history()->sum('seedtime') / max(1, $hiscount)) > 2_592_000 &&
                 $user->created_at < $current->copy()->subDays(365)->toDateTimeString() &&
                 $user->group_id != UserGroups::SEEDER->value &&
-                !in_array($user->group_id, $excludedGroups)) {
+                !\in_array($user->group_id, $excludedGroups)) {
                 $user->group_id = UserGroups::SEEDER->value;
                 $user->save();
             }
@@ -136,7 +136,7 @@ class AutoGroup extends Command
                 round($user->history()->sum('seedtime') / max(1, $hiscount)) > 2_592_000 * 2 &&
                 $user->created_at < $current->copy()->subDays(545)->toDateTimeString() &&
                 $user->group_id != UserGroups::ARCHIVIST->value &&
-                !in_array($user->group_id, $excludedGroups)) {
+                !\in_array($user->group_id, $excludedGroups)) {
                 $user->group_id = UserGroups::ARCHIVIST->value;
                 $user->save();
             }
@@ -146,7 +146,7 @@ class AutoGroup extends Command
                 $user->ratio >= config('other.ratio') &&
                 $user->created_at < $current->copy()->subDays(730)->toDateTimeString() &&
                 $user->group_id != UserGroups::VETERAN->value &&
-                !in_array($user->group_id, $excludedGroups)) {
+                !\in_array($user->group_id, $excludedGroups)) {
                 $user->group_id = UserGroups::VETERAN->value;
                 $user->save();
             }
