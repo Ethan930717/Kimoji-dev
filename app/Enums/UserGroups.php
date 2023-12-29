@@ -39,7 +39,7 @@ enum UserGroups: int
     case INTERNAL = 19;
     case DISABLED = 20;
     case PRUNED = 21;
-    case keeper = 22;
-    case retire = 23;
-    case vip = 24;
+    case KEEPER = 22;
+    case RETIRE = 23;
+    case VIP = 24;
 }
