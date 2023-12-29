@@ -44,7 +44,7 @@
         $matches = [];
 
         if (preg_match($pattern, $description, $matches)) {
-            $spoilerContent = $matches[1]; // 获取[spoiler]标签内的内容
+            $spoilerContent = html_entity_decode($matches[1]);
         } else {
             $spoilerContent = '';
         }
