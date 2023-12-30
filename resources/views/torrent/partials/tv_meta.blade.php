@@ -4,7 +4,8 @@
     @endif
     <a class="meta__title-link" href="{{ route('torrents.similar', ['category_id' => $category->id, 'tmdb' => $tmdb]) }}">
         <h1 class="meta__title">
-            {{ $meta->name ?? 'No Meta Found' }} ({{ substr($meta->first_air_date ?? '', 0, 4) ?? '' }})
+            {{ $meta->name ?? 'No Meta Found' }} {{ !empty($meta->first_air_date) ? '('.substr($meta->first_air_date, 0, 4).')' : '' }}
+
         </h1>
     </a>
     <a class="meta__poster-link" href="{{ route('torrents.similar', ['category_id' => $category->id, 'tmdb' => $tmdb]) }}">
