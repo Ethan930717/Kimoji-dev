@@ -349,7 +349,7 @@ ConfirmCatEDU() {
             }
 
         },
-        showButtons: ture,
+        showButtons: false,
         showOneClickButtons: false,
         showOfficialButtons: false,
         bbcodePreviewHeight: null,
