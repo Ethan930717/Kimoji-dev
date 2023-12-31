@@ -174,7 +174,6 @@ class EarningController extends Controller
             ->sum('torrents.size');
         $blurayBonusPerHour = $this->calculateBonusPerHour($blurayTorrentsSize, 0.015); // 使用 0.015 作为系数
 
-
         $internalTorrentsSize = Peer::query()
             ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
             ->where('peers.user_id', '=', $user->id)

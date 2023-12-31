@@ -175,15 +175,13 @@ class AutoGroup extends Command
                 ->where('peers.active', '=', 1)
                 ->sum('torrents.size');
 
-
             // 将字节转换为TB
             $blurayTorrentsSizeTB = $blurayTorrentsSize / (1024 * 1024 * 1024 * 1024);
             $internalTorrentsSizeTB = $internalTorrentsSize / (1024 * 1024 * 1024 * 1024);
             $totalTorrentsSizeTB = $TotalTorrentsSize / (1024 * 1024 * 1024 * 1024);
 
-
             // 升级到KEEPER的条件
-            if (($blurayTorrentsSizeTB >= 15 || $internalTorrentsSizeTB >= 10 || $totalTorrentsSizeTB >= 20 ) &&
+            if (($blurayTorrentsSizeTB >= 15 || $internalTorrentsSizeTB >= 10 || $totalTorrentsSizeTB >= 20) &&
                 $user->group_id != UserGroups::KEEPER->value) {
                 $user->group_id = UserGroups::KEEPER->value;
                 $user->save();
@@ -192,7 +190,6 @@ class AutoGroup extends Command
             // 如果是KEEPER但不再满足条件，则根据其他规则自动降级
             if ($user->group_id == UserGroups::KEEPER->value &&
                 $blurayTorrentsSizeTB < 15 && $internalTorrentsSizeTB < 10 && $totalTorrentsSizeTB < 20) {
-
                 // 检查是否满足Veteran等级的条件
                 if ($user->uploaded >= $byteUnits->bytesFromUnit('100TiB') &&
                     $user->ratio >= config('other.ratio') &&
