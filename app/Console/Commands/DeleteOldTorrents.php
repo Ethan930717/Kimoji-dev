@@ -13,10 +13,15 @@ class DeleteOldTorrents extends Command
 
     public function handle()
     {
-        $threshold = Carbon::now()->subDays(2);
-        $deletedCount = Torrent::whereIn('status', [2, 3])
-            ->where('created_at', '<', $threshold)
-            ->delete();
+        $threshold = Carbon::now()->subDays(3);
+        $query = Torrent::whereIn('status', [2, 3])
+            ->where('created_at', '<', $threshold);
+
+        $count = $query->count();
+
+        $this->info("About to delete {$count} torrents.");
+
+        $deletedCount = $query->delete();
 
         $this->info("Deleted {$deletedCount} old torrents.");
     }
