@@ -251,15 +251,19 @@ class AutoGroup extends Command
             // 检查是否应该升级到INTERNAL
             // 确保用户当前不是KEEPER等级
             if ($user->group_id != UserGroups::KEEPER->value) {
-                $nonInternalTorrentCount = $user->torrents()->where('internal', 0)->count();
+                $nonInternalTorrentCount = $user->torrents()
+                    ->where('internal', 0)
+                    ->where('status', 1)
+                    ->count();
                 $recentNonInternalTorrentCount = $user->torrents()
                     ->where('internal', 0)
+                    ->where('status', 1)
                     ->where('created_at', '>=', Carbon::now()->subMonth())
                     ->count();
 
                 if ($user->group_id != UserGroups::INTERNAL->value) {
-                    if ($nonInternalTorrentCount >= 2 ||
-                        ($user->hasBeenDemotedFromInternal && $recentNonInternalTorrentCount >= 1)) {
+                    if ($nonInternalTorrentCount >= 200 ||
+                        ($user->hasBeenDemotedFromInternal && $recentNonInternalTorrentCount >= 60)) {
                         $user->group_id = UserGroups::INTERNAL->value;
                         $user->save();
                     }
@@ -268,7 +272,7 @@ class AutoGroup extends Command
 
             // 如果是INTERNAL但不再满足条件，则根据其他规则自动降级
             if ($user->group_id == UserGroups::INTERNAL->value &&
-                $recentNonInternalTorrentCount < 1) {
+                $recentNonInternalTorrentCount < 30) {
                 // 检查是否满足Veteran等级的条件
                 if ($user->uploaded >= $byteUnits->bytesFromUnit('100TiB') &&
                     $user->ratio >= config('other.ratio') &&
