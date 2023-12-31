@@ -172,8 +172,8 @@ class EarningController extends Controller
             ->where('peers.active', '=', 1)
             ->whereIn('torrents.type_id', [1, 2]) // 使用 type_id 来判断
             ->sum('torrents.size');
-
         $blurayBonusPerHour = $this->calculateBonusPerHour($blurayTorrentsSize, 0.015); // 使用 0.015 作为系数
+
 
         $internalTorrentsSize = Peer::query()
             ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
@@ -182,7 +182,6 @@ class EarningController extends Controller
             ->where('peers.active', '=', 1)
             ->where('torrents.internal', '=', 1)
             ->sum('torrents.size');
-
         $bonusPerHour = $this->calculateBonusPerHour($internalTorrentsSize);
 
         //Total points per hour
