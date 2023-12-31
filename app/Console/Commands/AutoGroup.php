@@ -258,8 +258,8 @@ class AutoGroup extends Command
                     ->count();
 
                 if ($user->group_id != UserGroups::INTERNAL->value) {
-                    if ($nonInternalTorrentCount >= 200 ||
-                        ($user->hasBeenDemotedFromInternal && $recentNonInternalTorrentCount >= 60)) {
+                    if ($nonInternalTorrentCount >= 2 ||
+                        ($user->hasBeenDemotedFromInternal && $recentNonInternalTorrentCount >= 1)) {
                         $user->group_id = UserGroups::INTERNAL->value;
                         $user->save();
                     }

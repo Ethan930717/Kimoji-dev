@@ -90,7 +90,7 @@ class UserGroupChanged extends Notification implements ShouldQueue
             case '守卫':
                 return '您作为守卫，确保了社区资源的规范性和准确性';
             default:
-                return '您的用户组已更新';
+                return '您的等级已更新';
         }
     }
 
