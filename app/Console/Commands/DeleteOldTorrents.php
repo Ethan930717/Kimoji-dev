@@ -11,7 +11,7 @@ class DeleteOldTorrents extends Command
     protected $signature = 'torrents:delete-old';
     protected $description = 'Delete torrents older than 3 days with status 2 or 3';
 
-    public function handle()
+    public function handle(): void
     {
         $threshold = Carbon::now()->subDays(3);
         $query = Torrent::whereIn('status', [2, 3])
