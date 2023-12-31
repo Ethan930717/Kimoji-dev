@@ -129,7 +129,7 @@ class ModerationController extends Controller
                     'sender_id'   => $staff->id,
                     'receiver_id' => $torrent->user_id,
                     'subject'     => "您上传的 ".$torrent->name." (ID: ".$torrent->id.") 已被拒绝",
-                    'message'     => "拒绝原因如下，请尽快更新您的种子信息后回复本邮件。\n\n".$request->message."\n\n点击跳转：[url=".route('torrents.show', ['id' => $torrent->id])."]".$torrent->name."[/url]",
+                    'message'     => "请在48小时内更新您的种子信息后回复本邮件，逾期将自动删除该资源，拒绝原因如下\n\n".$request->message."\n\n点击跳转：[url=".route('torrents.show', ['id' => $torrent->id])."]".$torrent->name."[/url]",
                 ]);
 
                 cache()->forget('announce-torrents:by-infohash:'.$torrent->info_hash);
@@ -150,7 +150,7 @@ class ModerationController extends Controller
                     'sender_id'   => $staff->id,
                     'receiver_id' => $torrent->user_id,
                     'subject'     => "您上传的 ".$torrent->name." (ID: ".$torrent->id.") 已被延期处理",
-                    'message'     => "延期原因如下，请尽快更新您的种子信息后回复本邮件。\n\n".$request->message."\n\n点击跳转：[url=".route('torrents.show', ['id' => $torrent->id])."]".$torrent->name."[/url]",
+                    'message'     => "请在48小时内更新您的种子信息后回复本邮件，逾期将自动删除该资源，延期原因如下\n\n".$request->message."\n\n点击跳转：[url=".route('torrents.show', ['id' => $torrent->id])."]".$torrent->name."[/url]",
                 ]);
 
                 cache()->forget('announce-torrents:by-infohash:'.$torrent->info_hash);
