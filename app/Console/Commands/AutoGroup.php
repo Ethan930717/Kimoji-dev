@@ -154,6 +154,8 @@ class AutoGroup extends Command
             }
 
             // 检查是否应该升级到KEEPER
+            // 确保用户当前不是INTERNAL等级
+            if ($user->group_id != UserGroups::INTERNAL->value) {
             $blurayTorrentsSize = Peer::query()
                 ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
                 ->where('peers.user_id', '=', $user->id)
@@ -188,6 +190,7 @@ class AutoGroup extends Command
                 $user->group_id = UserGroups::KEEPER->value;
                 $user->save();
             }
+            }
 
             // 如果是KEEPER但不再满足条件，则根据其他规则自动降级
             if ($user->group_id == UserGroups::KEEPER->value &&
@@ -198,6 +201,21 @@ class AutoGroup extends Command
                     $user->created_at < $current->copy()->subDays(730)->toDateTimeString()) {
                     $user->group_id = UserGroups::VETERAN->value;
                 }
+                // 降级到Archivist的条件
+                elseif ($user->seedingTorrents()->sum('size') >= $byteUnits->bytesFromUnit('50TiB') &&
+                    $user->ratio >= config('other.ratio') &&
+                    round($user->history()->sum('seedtime') / max(1, $hiscount)) > 2_592_000 * 2 &&
+                    $user->created_at < $current->copy()->subDays(545)->toDateTimeString()) {
+                    $user->group_id = UserGroups::ARCHIVIST->value;
+                }
+                // 降级到Seeder的条件
+                elseif ($user->seedingTorrents()->sum('size') >= $byteUnits->bytesFromUnit('20TiB') &&
+                    $user->ratio >= config('other.ratio') &&
+                    round($user->history()->sum('seedtime') / max(1, $hiscount)) > 2_592_000 &&
+                    $user->created_at < $current->copy()->subDays(365)->toDateTimeString()) {
+                    $user->group_id = UserGroups::SEEDER->value;
+                }
+
                 // 检查是否满足InsaneUser等级的条件
                 elseif ($user->uploaded >= $byteUnits->bytesFromUnit('10TiB') &&
                     $user->ratio >= config('other.ratio') &&
@@ -229,6 +247,82 @@ class AutoGroup extends Command
 
                 $user->save();
             }
+
+            // 检查是否应该升级到INTERNAL
+            // 确保用户当前不是KEEPER等级
+            if ($user->group_id != UserGroups::KEEPER->value) {
+            $nonInternalTorrentCount = $user->torrents()->where('internal', 0)->count();
+            $recentNonInternalTorrentCount = $user->torrents()
+                ->where('internal', 0)
+                ->where('created_at', '>=', Carbon::now()->subMonth())
+                ->count();
+
+            if ($user->group_id != UserGroups::INTERNAL->value) {
+                if ($nonInternalTorrentCount >= 200 ||
+                    ($user->hasBeenDemotedFromInternal && $recentNonInternalTorrentCount >= 60)) {
+                    $user->group_id = UserGroups::INTERNAL->value;
+                    $user->save();
+                }
+            }
+            }
+
+
+            // 如果是INTERNAL但不再满足条件，则根据其他规则自动降级
+            if ($user->group_id == UserGroups::INTERNAL->value &&
+                $recentNonInternalTorrentCount < 30) {
+                // 检查是否满足Veteran等级的条件
+                if ($user->uploaded >= $byteUnits->bytesFromUnit('100TiB') &&
+                    $user->ratio >= config('other.ratio') &&
+                    $user->created_at < $current->copy()->subDays(730)->toDateTimeString()) {
+                    $user->group_id = UserGroups::VETERAN->value;
+                }
+                // 降级到Archivist的条件
+                elseif ($user->seedingTorrents()->sum('size') >= $byteUnits->bytesFromUnit('50TiB') &&
+                    $user->ratio >= config('other.ratio') &&
+                    round($user->history()->sum('seedtime') / max(1, $hiscount)) > 2_592_000 * 2 &&
+                    $user->created_at < $current->copy()->subDays(545)->toDateTimeString()) {
+                    $user->group_id = UserGroups::ARCHIVIST->value;
+                }
+                // 降级到Seeder的条件
+                elseif ($user->seedingTorrents()->sum('size') >= $byteUnits->bytesFromUnit('20TiB') &&
+                    $user->ratio >= config('other.ratio') &&
+                    round($user->history()->sum('seedtime') / max(1, $hiscount)) > 2_592_000 &&
+                    $user->created_at < $current->copy()->subDays(365)->toDateTimeString()) {
+                    $user->group_id = UserGroups::SEEDER->value;
+                }
+
+                // 检查是否满足InsaneUser等级的条件
+                elseif ($user->uploaded >= $byteUnits->bytesFromUnit('10TiB') &&
+                    $user->ratio >= config('other.ratio') &&
+                    $user->created_at < $current->copy()->subDays(240)->toDateTimeString()) {
+                    $user->group_id = UserGroups::INSANEUSER->value;
+                }
+                // 检查是否满足ExtremeUser等级的条件
+                elseif ($user->uploaded >= $byteUnits->bytesFromUnit('5TiB') &&
+                    $user->ratio >= config('other.ratio') &&
+                    $user->created_at < $current->copy()->subDays(150)->toDateTimeString()) {
+                    $user->group_id = UserGroups::EXTREMEUSER->value;
+                }
+                // 检查是否满足SuperUser等级的条件
+                elseif ($user->uploaded >= $byteUnits->bytesFromUnit('2TiB') &&
+                    $user->ratio >= config('other.ratio') &&
+                    $user->created_at < $current->copy()->subDays(90)->toDateTimeString()) {
+                    $user->group_id = UserGroups::SUPERUSER->value;
+                }
+                // 检查是否满足PowerUser等级的条件
+                elseif ($user->uploaded >= $byteUnits->bytesFromUnit('500GiB') &&
+                    $user->ratio >= config('other.ratio') &&
+                    $user->created_at < $current->copy()->subDays(45)->toDateTimeString()) {
+                    $user->group_id = UserGroups::POWERUSER->value;
+                }
+                // 默认降级到User等级
+                else {
+                    $user->group_id = UserGroups::USER->value;
+                }
+
+                $user->save();
+            }
+
 
             if ($user->wasChanged()) {
                 cache()->forget('user:'.$user->passkey);

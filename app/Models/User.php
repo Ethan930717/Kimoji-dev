@@ -65,6 +65,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'can_invite'   => 'boolean',
         'can_upload'   => 'boolean',
         'can_chat'     => 'boolean',
+        'hasBeenDemotedFromInternal' => 'boolean',
+
     ];
 
     /**
