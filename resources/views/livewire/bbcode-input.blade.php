@@ -26,7 +26,7 @@
                 cancelButtonText: '否'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    this.insert('[center][color=#bbff88][size=24][b][spoiler=制作说明][size=16][color=white]', '[/color][/size][/spoiler][/b][/size][/color][/center]\n');
+                    this.insert('[center][color=#bbff88][size=24][b][spoiler=制作说明][size=16][color=white][center]', '[/center][/color][/size][/spoiler][/b][/size][/color][/center]\n');
                 }
             });
         }
@@ -48,15 +48,15 @@
             cancelButtonText: '否'
         }).then((result) => {
             if (result.isConfirmed) {
-               input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]/img/friendsite/请替换成制作组的组名.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                       '[center][color=#bbff88][size=24][b][spoiler=制作说明][size=16][color=white]如果有制作说明信息，请在此添加，否则请删除本条[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                       '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接[/color][/size][/spoiler][/b][/size][/color][/center]';
+               input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][center][img]/img/friendsite/请替换成制作组的组名.webp[/img][/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                       '[center][color=#bbff88][size=24][b][spoiler=制作说明][size=16][color=white][center]如果有制作说明信息，请在此添加，否则请删除本条[/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                       '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white][center]请在此添加截图的BBcode链接[/center][/color][/size][/spoiler][/b][/size][/color][/center]';
                         }
         });
     } else {
-        input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]/img/friendsite/请替换成制作组的组名.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                       '[center][color=#bbff88][size=24][b][spoiler=制作说明][size=16][color=white]如果有制作说明信息，请在此添加，否则请删除本条[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                       '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接[/color][/size][/spoiler][/b][/size][/color][/center]';
+        input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][center][img]/img/friendsite/请替换成制作组的组名.webp[/img][/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                       '[center][color=#bbff88][size=24][b][spoiler=制作说明][size=16][color=white][center]如果有制作说明信息，请在此添加，否则请删除本条[/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                       '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white][center]请在此添加截图的BBcode链接[/center][/color][/size][/spoiler][/b][/size][/color][/center]';
     }
 },
  ConfirmMusicTrans() {
