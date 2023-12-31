@@ -235,7 +235,6 @@ class AutoGroup extends Command
 
                 Unit3dAnnounce::addUser($user);
                 $user->notify(new UserGroupChanged($user));
-
             }
         }
 

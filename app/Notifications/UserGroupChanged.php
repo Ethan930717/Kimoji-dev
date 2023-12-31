@@ -5,6 +5,7 @@ namespace App\Notifications;
 use App\Models\Group;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
+
 class UserGroupChanged extends Notification
 {
     use Queueable;
@@ -20,7 +21,6 @@ class UserGroupChanged extends Notification
     {
         $this->user = $user;
     }
-
 
     /**
      * Get the notification's delivery channels.
@@ -41,6 +41,7 @@ class UserGroupChanged extends Notification
     {
         // 假设 Group 模型代表用户组，且有 name 字段
         $group = Group::find($this->user->group_id);
+
         return $group ? $group->name : '神秘组';
     }
 
@@ -92,7 +93,6 @@ class UserGroupChanged extends Notification
         }
     }
 
-
     /**
      * Get the array representation of the notification.
      *
@@ -106,7 +106,7 @@ class UserGroupChanged extends Notification
         return [
             'title' => '升级通知',
             'body'  => $groupMessage,
-            'url'   => '/pages/8', 
+            'url'   => '/pages/8',
         ];
     }
 }
