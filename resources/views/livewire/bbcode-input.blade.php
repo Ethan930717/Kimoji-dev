@@ -75,17 +75,17 @@
             cancelButtonText: '否'
         }).then((result) => {
             if (result.isConfirmed) {
-               input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]/img/friendsite/请替换成制作组的组名.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=专辑介绍][size=16][color=white]请在此添加专辑的文字介绍，如有条件，请使用优质翻译工具进行汉化[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=歌曲列表][size=16][color=white]在此添加歌曲列表信息[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接，如专辑海报、频率截图等[/color][/size][/spoiler][/b][/size][/color][/center]';
+               input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][center][img]/img/friendsite/请替换成制作组的组名.webp[/img][/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=专辑介绍][size=16][color=white][center]请在此添加专辑的文字介绍，如有条件，请使用优质翻译工具进行汉化[/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=歌曲列表][size=16][color=white][center]在此添加歌曲列表信息[/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white][center]请在此添加截图的BBcode链接，如专辑海报、频率截图等[/center][/color][/size][/spoiler][/b][/size][/color][/center]';
                         }
         });
     } else {
-       input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]/img/friendsite/请替换成制作组的组名.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=专辑介绍][size=16][color=white]请在此添加专辑的文字介绍，如有条件，请使用优质翻译工具进行汉化[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=歌曲列表][size=16][color=white]在此添加歌曲列表信息[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接，如专辑海报、频率截图等[/color][/size][/spoiler][/b][/size][/color][/center]';
+       input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][center][img]/img/friendsite/请替换成制作组的组名.webp[/img][/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=专辑介绍][size=16][color=white][center]请在此添加专辑的文字介绍，如有条件，请使用优质翻译工具进行汉化[/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=歌曲列表][size=16][color=white][center]在此添加歌曲列表信息[/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white][center]请在此添加截图的BBcode链接，如专辑海报、频率截图等[/center][/color][/size][/spoiler][/b][/size][/color][/center]';
                         }
                         },
 
@@ -105,15 +105,15 @@ ConfirmCatEDU() {
             cancelButtonText: '否'
         }).then((result) => {
             if (result.isConfirmed) {
-               input.value = '[center][color=#bbff88][size=24][b][spoiler=Made by CatEDU][size=16][color=white][img]/img/friendsite/CatEDU.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=制作说明][size=16][color=white]请在此添加制作说明信息，如果没有，请删除本条[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接[/color][/size][/spoiler][/b][/size][/color][/center]';
+               input.value = '[center][color=#bbff88][size=24][b][spoiler=Made by CatEDU][size=16][color=white][center][img]/img/friendsite/CatEDU.webp[/img][/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=制作说明][size=16][color=white][center]请在此添加制作说明信息，如果没有，请删除本条[/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white][center]请在此添加截图的BBcode链接[/center][/color][/size][/spoiler][/b][/size][/color][/center]';
                         }
         });
     } else {
-       input.value = '[center][color=#bbff88][size=24][b][spoiler=Made by CatEDU][size=16][color=white][img]/img/friendsite/CatEDU.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=制作说明][size=16][color=white]请在此添加制作说明信息，如果没有，请删除本条[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接[/color][/size][/spoiler][/b][/size][/color][/center]';
+       input.value = '[center][color=#bbff88][size=24][b][spoiler=Made by CatEDU][size=16][color=white][center][img]/img/friendsite/CatEDU.webp[/img][/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=制作说明][size=16][color=white][center]请在此添加制作说明信息，如果没有，请删除本条[/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white][center]请在此添加截图的BBcode链接[/center][/color][/size][/spoiler][/b][/size][/color][/center]';
                         }
                         },
 
@@ -134,17 +134,17 @@ ConfirmCatEDU() {
             cancelButtonText: '否'
         }).then((result) => {
             if (result.isConfirmed) {
-               input.value = '[center][color=#bbff88][size=24][b][spoiler=Made by KIMOJI][size=16][color=white][img]/img/friendsite/kimoji12.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=专辑介绍][size=16][color=white]请在此添加专辑的文字介绍，如有条件，请使用优质翻译工具进行汉化[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=歌曲列表][size=16][color=white]在此添加歌曲列表信息[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接，如专辑海报、频率截图等[/color][/size][/spoiler][/b][/size][/color][/center]';
+               input.value = '[center][color=#bbff88][size=24][b][spoiler=Made by KIMOJI][size=16][color=white][center][img]/img/friendsite/kimoji12.webp[/img][/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=专辑介绍][size=16][color=white][center]请在此添加专辑的文字介绍，如有条件，请使用优质翻译工具进行汉化[/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=歌曲列表][size=16][color=white][center]在此添加歌曲列表信息[/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white][center]请在此添加截图的BBcode链接，如专辑海报、频率截图等[/center][/color][/size][/spoiler][/b][/size][/color][/center]';
                         }
         });
     } else {
-       input.value = '[center][color=#bbff88][size=24][b][spoiler=Made by KIMOJI][size=16][color=white][img]/img/friendsite/kimoji12.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=专辑介绍][size=16][color=white]请在此添加专辑的文字介绍，如有条件，请使用优质翻译工具进行汉化[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=歌曲列表][size=16][color=white]在此添加歌曲列表信息[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接，如专辑海报、频率截图等[/color][/size][/spoiler][/b][/size][/color][/center]';
+       input.value = '[center][color=#bbff88][size=24][b][spoiler=Made by KIMOJI][size=16][color=white][center][img]/img/friendsite/kimoji12.webp[/img][/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=专辑介绍][size=16][color=white][center]请在此添加专辑的文字介绍，如有条件，请使用优质翻译工具进行汉化[/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=歌曲列表][size=16][color=white][center]在此添加歌曲列表信息[/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white][center]请在此添加截图的BBcode链接，如专辑海报、频率截图等[/center][/color][/size][/spoiler][/b][/size][/color][/center]';
                         }
                         },
 
@@ -164,10 +164,10 @@ ConfirmCatEDU() {
             cancelButtonText: '否'
         }).then((result) => {
             if (result.isConfirmed) {
-               input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][img]/img/friendsite/请替换成制作组的组名.webp[/img][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=内容简介][size=16][color=white]请在此添加书籍或节目内容的基本介绍[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=节目列表][size=16][color=white]如有节目详细列表，请在此添加，否则请删除本条[/color][/size][/spoiler][/b][/size][/color][/center]\n' +
-                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white]请在此添加截图的BBcode链接，如书籍海报、插画或其他相关图片内容[/color][/size][/spoiler][/b][/size][/color][/center]';
+               input.value = '[center][color=#bbff88][size=24][b][spoiler=转载致谢][size=16][color=white][center][img]/img/friendsite/请替换成制作组的组名.webp[/img][/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=内容简介][size=16][color=white][center]请在此添加书籍或节目内容的基本介绍[/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=节目列表][size=16][color=white][center]如有节目详细列表，请在此添加，否则请删除本条[/center][/color][/size][/spoiler][/b][/size][/color][/center]\n' +
+                             '[center][color=#bbff88][size=24][b][spoiler=截图赏析][size=16][color=white][center]请在此添加截图的BBcode链接，如书籍海报、插画或其他相关图片内容[/center][/color][/size][/spoiler][/b][/size][/color][/center]';
                         }
         });
     } else {
