@@ -366,7 +366,7 @@ ConfirmCatEDU() {
     </p>
 
     <p class="bbcode-input__icon-bar-toggle">
-        <button type="button" class="form__button form__button--text" x-on:click="showButtons = ! showButtons">BBCode</button>
+        <button type="button" class="form__button form__button--text" x-on:click="! showButtons = showButtons">BBCode</button>
     </p>
     <menu class="bbcode-input__icon-bar" x-cloak x-show="showButtons">
         <li>
