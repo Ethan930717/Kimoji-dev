@@ -322,7 +322,7 @@ class AutoGroup extends Command
                 else {
                     $user->group_id = UserGroups::USER->value;
                 }
-
+                $user->hasBeenDemotedFromInternal = 1;
                 $user->save();
             }
 
