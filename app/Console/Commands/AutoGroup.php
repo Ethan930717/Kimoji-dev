@@ -20,6 +20,7 @@ use App\Models\History;
 use App\Models\User;
 use App\Models\Peer;
 use App\Services\Unit3dAnnounce;
+use App\Notifications\UserGroupChanged;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 
@@ -233,6 +234,8 @@ class AutoGroup extends Command
                 cache()->forget('user:'.$user->passkey);
 
                 Unit3dAnnounce::addUser($user);
+                $user->notify(new UserGroupChanged($user));
+
             }
         }
 
