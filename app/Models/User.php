@@ -56,17 +56,16 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<string, string>
      */
     protected $casts = [
-        'last_login'   => 'datetime',
-        'last_action'  => 'datetime',
-        'hidden'       => 'boolean',
-        'can_comment'  => 'boolean',
-        'can_download' => 'boolean',
-        'can_request'  => 'boolean',
-        'can_invite'   => 'boolean',
-        'can_upload'   => 'boolean',
-        'can_chat'     => 'boolean',
+        'last_login'                 => 'datetime',
+        'last_action'                => 'datetime',
+        'hidden'                     => 'boolean',
+        'can_comment'                => 'boolean',
+        'can_download'               => 'boolean',
+        'can_request'                => 'boolean',
+        'can_invite'                 => 'boolean',
+        'can_upload'                 => 'boolean',
+        'can_chat'                   => 'boolean',
         'hasBeenDemotedFromInternal' => 'boolean',
-
     ];
 
     /**
