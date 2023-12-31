@@ -268,7 +268,7 @@ class AutoGroup extends Command
 
             // 如果是INTERNAL但不再满足条件，则根据其他规则自动降级
             if ($user->group_id == UserGroups::INTERNAL->value &&
-                $recentNonInternalTorrentCount < 30) {
+                $recentNonInternalTorrentCount < 1) {
                 // 检查是否满足Veteran等级的条件
                 if ($user->uploaded >= $byteUnits->bytesFromUnit('100TiB') &&
                     $user->ratio >= config('other.ratio') &&
