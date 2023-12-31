@@ -156,40 +156,40 @@ class AutoGroup extends Command
             // 检查是否应该升级到KEEPER
             // 确保用户当前不是INTERNAL等级
             if ($user->group_id != UserGroups::INTERNAL->value) {
-            $blurayTorrentsSize = Peer::query()
-                ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
-                ->where('peers.user_id', '=', $user->id)
-                ->where('peers.seeder', '=', 1)
-                ->where('peers.active', '=', 1)
-                ->whereIn('torrents.type_id', [1, 2])
-                ->sum('torrents.size');
+                $blurayTorrentsSize = Peer::query()
+                    ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
+                    ->where('peers.user_id', '=', $user->id)
+                    ->where('peers.seeder', '=', 1)
+                    ->where('peers.active', '=', 1)
+                    ->whereIn('torrents.type_id', [1, 2])
+                    ->sum('torrents.size');
 
-            $internalTorrentsSize = Peer::query()
-                ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
-                ->where('peers.user_id', '=', $user->id)
-                ->where('peers.seeder', '=', 1)
-                ->where('peers.active', '=', 1)
-                ->where('torrents.internal', '=', 1)
-                ->sum('torrents.size');
+                $internalTorrentsSize = Peer::query()
+                    ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
+                    ->where('peers.user_id', '=', $user->id)
+                    ->where('peers.seeder', '=', 1)
+                    ->where('peers.active', '=', 1)
+                    ->where('torrents.internal', '=', 1)
+                    ->sum('torrents.size');
 
-            $TotalTorrentsSize = Peer::query()
-                ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
-                ->where('peers.user_id', '=', $user->id)
-                ->where('peers.seeder', '=', 1)
-                ->where('peers.active', '=', 1)
-                ->sum('torrents.size');
+                $TotalTorrentsSize = Peer::query()
+                    ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
+                    ->where('peers.user_id', '=', $user->id)
+                    ->where('peers.seeder', '=', 1)
+                    ->where('peers.active', '=', 1)
+                    ->sum('torrents.size');
 
-            // 将字节转换为TB
-            $blurayTorrentsSizeTB = $blurayTorrentsSize / (1024 * 1024 * 1024 * 1024);
-            $internalTorrentsSizeTB = $internalTorrentsSize / (1024 * 1024 * 1024 * 1024);
-            $totalTorrentsSizeTB = $TotalTorrentsSize / (1024 * 1024 * 1024 * 1024);
+                // 将字节转换为TB
+                $blurayTorrentsSizeTB = $blurayTorrentsSize / (1024 * 1024 * 1024 * 1024);
+                $internalTorrentsSizeTB = $internalTorrentsSize / (1024 * 1024 * 1024 * 1024);
+                $totalTorrentsSizeTB = $TotalTorrentsSize / (1024 * 1024 * 1024 * 1024);
 
-            // 升级到KEEPER的条件
-            if (($blurayTorrentsSizeTB >= 15 || $internalTorrentsSizeTB >= 10 || $totalTorrentsSizeTB >= 20) &&
-                $user->group_id != UserGroups::KEEPER->value) {
-                $user->group_id = UserGroups::KEEPER->value;
-                $user->save();
-            }
+                // 升级到KEEPER的条件
+                if (($blurayTorrentsSizeTB >= 15 || $internalTorrentsSizeTB >= 10 || $totalTorrentsSizeTB >= 20) &&
+                    $user->group_id != UserGroups::KEEPER->value) {
+                    $user->group_id = UserGroups::KEEPER->value;
+                    $user->save();
+                }
             }
 
             // 如果是KEEPER但不再满足条件，则根据其他规则自动降级
@@ -251,21 +251,20 @@ class AutoGroup extends Command
             // 检查是否应该升级到INTERNAL
             // 确保用户当前不是KEEPER等级
             if ($user->group_id != UserGroups::KEEPER->value) {
-            $nonInternalTorrentCount = $user->torrents()->where('internal', 0)->count();
-            $recentNonInternalTorrentCount = $user->torrents()
-                ->where('internal', 0)
-                ->where('created_at', '>=', Carbon::now()->subMonth())
-                ->count();
+                $nonInternalTorrentCount = $user->torrents()->where('internal', 0)->count();
+                $recentNonInternalTorrentCount = $user->torrents()
+                    ->where('internal', 0)
+                    ->where('created_at', '>=', Carbon::now()->subMonth())
+                    ->count();
 
-            if ($user->group_id != UserGroups::INTERNAL->value) {
-                if ($nonInternalTorrentCount >= 200 ||
-                    ($user->hasBeenDemotedFromInternal && $recentNonInternalTorrentCount >= 60)) {
-                    $user->group_id = UserGroups::INTERNAL->value;
-                    $user->save();
+                if ($user->group_id != UserGroups::INTERNAL->value) {
+                    if ($nonInternalTorrentCount >= 200 ||
+                        ($user->hasBeenDemotedFromInternal && $recentNonInternalTorrentCount >= 60)) {
+                        $user->group_id = UserGroups::INTERNAL->value;
+                        $user->save();
+                    }
                 }
             }
-            }
-
 
             // 如果是INTERNAL但不再满足条件，则根据其他规则自动降级
             if ($user->group_id == UserGroups::INTERNAL->value &&
@@ -322,7 +321,6 @@ class AutoGroup extends Command
 
                 $user->save();
             }
-
 
             if ($user->wasChanged()) {
                 cache()->forget('user:'.$user->passkey);
