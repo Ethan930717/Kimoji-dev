@@ -40,7 +40,7 @@
     </ul>
     @php
         $description = $torrent->description;
-        $pattern = '/内容简介\]\[size=16\]\[color=white\](.*?)\[\/color\]/s';
+        $pattern = '/内容简介\]\[size=16\]\[color=white\]\[center\](.*?)\[\/center\]/s';
         $matches = [];
 
         if (preg_match($pattern, $description, $matches)) {

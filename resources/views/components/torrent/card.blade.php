@@ -151,7 +151,7 @@
             @elseif (in_array($torrent->category_id, [3, 4]))
                 @php
                     $description = $torrent->description;
-                    $pattern = '/专辑介绍\]\[size=16\]\[color=white\](.*?)\[\/color\]/s';
+                    $pattern = '/专辑介绍\]\[size=16\]\[color=white\]\[center\](.*?)\[\/center\]/s';
                     $matches = [];
 
                     if (preg_match($pattern, $description, $matches)) {
