@@ -18,6 +18,7 @@ use App\Helpers\ByteUnits;
 use App\Models\Group;
 use App\Models\History;
 use App\Models\User;
+use App\Models\Peer;
 use App\Services\Unit3dAnnounce;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;

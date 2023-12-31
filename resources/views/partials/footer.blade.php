@@ -84,6 +84,6 @@
         </section>
     </div>
     <p class="footer__stats">
-        当前页面加载时间 {{ number_format(microtime(true) - (defined('LARAVEL_START') ? LARAVEL_START : request()->server('REQUEST_TIME_FLOAT')), 3) }} 秒， 占用内存 {{ number_format(memory_get_peak_usage(true) / 1024 / 1024, 2) }} MB
+        KIMOJI提供的所有资源均是在网上搜集且由用户上传，KIMOJI对资源的具体内容毫不知情，如有侵权，请及时告知！
     </p>
 </footer>
