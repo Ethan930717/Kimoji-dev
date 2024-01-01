@@ -102,3 +102,25 @@
         </div>
     </section>
 @endsection
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+
+        if (urlParams.has('category_id')) {
+            document.getElementById('category_id').value = urlParams.get('category_id');
+        }
+
+        if (urlParams.has('priority_id')) {
+            document.getElementById('priority_id').value = urlParams.get('priority_id');
+        }
+
+        if (urlParams.has('subject')) {
+            document.getElementById('ticket_subject').value = decodeURIComponent(urlParams.get('subject'));
+        }
+
+        if (urlParams.has('body')) {
+            document.getElementById('body').value = decodeURIComponent(urlParams.get('body'));
+        }
+    });
+</script>
+
