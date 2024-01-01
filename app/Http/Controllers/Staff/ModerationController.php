@@ -65,7 +65,6 @@ class ModerationController extends Controller
         $encodedBBCode = urlencode("[url]/torrents/" . $torrent->id . "[/url]");
         $link = "https://mirror.kimoji.club/tickets/create?category_id=6&priority_id=1&subject=种子编辑完成&body=" . $encodedBBCode;
 
-
         if ($request->integer('old_status') !== $torrent->status) {
             return to_route('torrents.show', ['id' => $id])
                 ->withInput()
@@ -138,6 +137,7 @@ class ModerationController extends Controller
                         . "[color=red]". $request->message . "[/color]\n\n点击跳转种子链接：[url=" . route('torrents.show', ['id' => $torrent->id]) . "]" . $torrent->name . "[/url]",
                     ]);
 
+
                 cache()->forget('announce-torrents:by-infohash:'.$torrent->info_hash);
 
                 Unit3dAnnounce::addTorrent($torrent);
@@ -153,7 +153,6 @@ class ModerationController extends Controller
                 ]);
 
                 PrivateMessage::create([
-
                     'sender_id'   => $staff->id,
                     'receiver_id' => $torrent->user_id,
                     'subject'     => "您上传的 ".$torrent->name." (ID: ".$torrent->id.") 已被延期处理",
