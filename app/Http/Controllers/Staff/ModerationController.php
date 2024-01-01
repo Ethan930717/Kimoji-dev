@@ -62,7 +62,7 @@ class ModerationController extends Controller
     public function update(UpdateModerationRequest $request, int $id): \Illuminate\Http\RedirectResponse
     {
         $torrent = Torrent::withoutGlobalScope(ApprovedScope::class)->with('user')->findOrFail($id);
-        $encodedBBCode = urlencode("[url]/torrents/此处请修改为种子ID[/url]");
+        $encodedBBCode = urlencode("[url]/torrents/" . $torrent->id . "[/url]");
         $link = "https://mirror.kimoji.club/tickets/create?category_id=6&priority_id=1&subject=种子编辑完成&body=" . $encodedBBCode;
 
 
@@ -135,7 +135,7 @@ class ModerationController extends Controller
                     'message' => "请在48小时内更新您的种子信息点击\n\n"
                         . "[url=" . $link . "]提交工单[/url]"
                         . "申请再次审核，逾期将自动删除该资源，拒绝原因如下\n\n"
-                        . $request->message . "\n\n点击跳转种子链接：[url=" . route('torrents.show', ['id' => $torrent->id]) . "]" . $torrent->name . "[/url]",
+                        . "[color=red]". $request->message . "[/color]\n\n点击跳转种子链接：[url=" . route('torrents.show', ['id' => $torrent->id]) . "]" . $torrent->name . "[/url]",
                     ]);
 
                 cache()->forget('announce-torrents:by-infohash:'.$torrent->info_hash);
@@ -160,7 +160,7 @@ class ModerationController extends Controller
                     'message' => "请在48小时内更新您的种子信息点击\n\n"
                         . "[url=" . $link . "]提交工单[/url]"
                         . "申请再次审核，逾期将自动删除该资源，延期原因如下\n\n"
-                        . $request->message . "\n\n点击跳转种子链接：[url=" . route('torrents.show', ['id' => $torrent->id]) . "]" . $torrent->name . "[/url]",
+                        . "[color=red]". $request->message . "[/color]\n\n点击跳转种子链接：[url=" . route('torrents.show', ['id' => $torrent->id]) . "]" . $torrent->name . "[/url]",
                 ]);
 
                 cache()->forget('announce-torrents:by-infohash:'.$torrent->info_hash);
