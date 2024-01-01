@@ -145,7 +145,7 @@
                                 id="autotype_music"
                                 class="form__select"
                                 x-bind:required="cats[cat].type === 'music' || cats[cat].type === 'no'"
-                                x-show="cats[cat].type === 'music'">
+                                x-show="cats[cat].type === 'music' || cats[cat].type === 'no'">
                         >
                             <option hidden disabled selected value=""></option>
                             @foreach ($types as $index => $type)

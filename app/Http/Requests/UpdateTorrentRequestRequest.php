@@ -72,20 +72,11 @@ class UpdateTorrentRequestRequest extends FormRequest
             'description' => [
                 'required',
                 'string',
-                'regex:/\[spoiler=/'
             ],
             'anon' => [
                 'required',
                 'boolean',
             ],
-        ];
-    }
-
-
-    public function messages()
-    {
-        return [
-            'description.regex' => '描述内容不符合要求，请根据《发种规则》要求添加专用模板，详见或参考其他已发布的种子。',
         ];
     }
 }

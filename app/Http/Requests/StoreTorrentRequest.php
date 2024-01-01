@@ -78,8 +78,8 @@ class StoreTorrentRequest extends FormRequest
                         match ($torrent->status) {
                             Torrent::PENDING   => $fail('当前已有相同的种子正在等待审核'),
                             Torrent::APPROVED  => $fail('当前种子已存在'),
-                            Torrent::REJECTED  => $fail('有相同的种子正在拒绝列表中，请PM管理处理'),
-                            Torrent::POSTPONED => $fail('有相同的种子正在延期列表中，请PM管理处理'),
+                            Torrent::REJECTED  => $fail('有相同的种子正在拒绝列表中，请联系管理处理'),
+                            Torrent::POSTPONED => $fail('有相同的种子正在延期列表中，请联系管理处理'),
                             default            => null,
                         };
                     }
@@ -99,10 +99,23 @@ class StoreTorrentRequest extends FormRequest
                 'required',
                 'unique:torrents',
                 'max:255',
+                Rule::when(
+                    $category->movie_meta || $category->tv_meta,
+                    function (string $attribute, mixed $value, Closure $fail) {
+                        if (!preg_match('/[\p{Han}]/u', $value)) {
+                            $fail('请在标题头部添加资源中文名，如果当前资源没有中文名，请您填写任意中文字符并在上传成功后编辑删除');
+                        }
+                    }
+                ),
             ],
             'description' => [
                 'required',
-                'max:4294967296'
+                'max:4294967296',
+                function (string $attribute, mixed $value, Closure $fail): void {
+                    if (!str_contains($value, '[spoiler=')) {
+                        $fail('描述内容不符合要求，请参考其他已发布的种子并根据《发种规则》要求添加专用模板，');
+                    }
+                },
             ],
             'mediainfo' => [
                 'nullable',
@@ -119,7 +132,7 @@ class StoreTorrentRequest extends FormRequest
                 'exists:categories,id',
             ],
             'type_id' => [
-                'nullable',
+                'required',
                 'exists:types,id',
             ],
             'resolution_id' => [
@@ -128,11 +141,13 @@ class StoreTorrentRequest extends FormRequest
                 'exists:resolutions,id',
             ],
             'region_id' => [
-                'nullable',
+                Rule::when($category->no_meta, 'required'),
+                Rule::when(!$category->no_meta, 'nullable'),
                 'exists:regions,id',
             ],
             'distributor_id' => [
-                'nullable',
+                Rule::when($category->music_meta, 'required'),
+                Rule::when(!$category->music_meta, 'nullable'),
                 'exists:distributors,id',
             ],
             'imdb' => [
@@ -249,6 +264,9 @@ class StoreTorrentRequest extends FormRequest
             'imdb.in' => '如果媒体不存在于IMDB上或您未上传电视节目或电影，IMDB ID必须为0。',
             'tvdb.in' => '如果媒体不存在于TVDB上或您未上传电视节目，TVDB ID必须为0。',
             'mal.in'  => '如果媒体不存在于MAL上或您未上传电视或电影，MAL ID必须为0。',
+            'region_id.required' => '请选择小说分类',
+            'distributor_id.required' => '请选择音乐风格',
+
         ];
     }
 }
