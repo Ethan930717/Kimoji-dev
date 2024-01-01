@@ -99,16 +99,14 @@ class StoreTorrentRequest extends FormRequest
                 'required',
                 'unique:torrents',
                 'max:255',
-                Rule::when(
-                    $category->movie_meta || $category->tv_meta,
-                    function (string $attribute, mixed $value, Closure $fail) {
+                function ($attribute, $value, $fail) use ($category) {
+                    if ($category->movie_meta || $category->tv_meta) {
                         if (!preg_match('/[\p{Han}]/u', $value)) {
-                            $fail('请在标题头部添加资源中文名，如果当前资源没有中文名，请您填写任意中文字符并在上传成功后编辑删除');
+                            $fail('请在标题头部添加资源中文名，如果当前资源没有中文名，请您填写任意中文字符并在上传成功后编辑取消。');
                         }
                     }
-                ),
-            ],
-            'description' => [
+                },
+            ],            'description' => [
                 'required',
                 'max:4294967296',
                 function (string $attribute, mixed $value, Closure $fail): void {
