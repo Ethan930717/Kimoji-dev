@@ -257,14 +257,13 @@ class StoreTorrentRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'igdb.in' => '如果媒体不存在于IGDB上或您未上传游戏，IGDB ID必须为0。',
-            'tmdb.in' => '如果媒体不存在于TMDB上或您未上传电视节目或电影，TMDB ID必须为0。',
-            'imdb.in' => '如果媒体不存在于IMDB上或您未上传电视节目或电影，IMDB ID必须为0。',
-            'tvdb.in' => '如果媒体不存在于TVDB上或您未上传电视节目，TVDB ID必须为0。',
-            'mal.in'  => '如果媒体不存在于MAL上或您未上传电视或电影，MAL ID必须为0。',
-            'region_id.required' => '请选择小说分类',
+            'igdb.in'                 => '如果媒体不存在于IGDB上或您未上传游戏，IGDB ID必须为0。',
+            'tmdb.in'                 => '如果媒体不存在于TMDB上或您未上传电视节目或电影，TMDB ID必须为0。',
+            'imdb.in'                 => '如果媒体不存在于IMDB上或您未上传电视节目或电影，IMDB ID必须为0。',
+            'tvdb.in'                 => '如果媒体不存在于TVDB上或您未上传电视节目，TVDB ID必须为0。',
+            'mal.in'                  => '如果媒体不存在于MAL上或您未上传电视或电影，MAL ID必须为0。',
+            'region_id.required'      => '请选择小说分类',
             'distributor_id.required' => '请选择音乐风格',
-
         ];
     }
 }
