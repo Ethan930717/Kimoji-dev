@@ -131,7 +131,7 @@ class ModerationController extends Controller
                     'sender_id'   => $staff->id,
                     'receiver_id' => $torrent->user_id,
                     'subject'     => "您上传的 ".$torrent->name." (ID: ".$torrent->id.") 已被拒绝",
-                    'message' => "请在48小时内更新您的种子信息点击\n\n"
+                    'message' => "请在[color=red]48小时[/color]内更新您的种子信息，随后点击\n\n"
                         . "[url=" . $link . "]提交工单[/url]"
                         . "申请再次审核，逾期将自动删除该资源，拒绝原因如下\n\n"
                         . "[color=red]". $request->message . "[/color]\n\n点击跳转种子链接：[url=" . route('torrents.show', ['id' => $torrent->id]) . "]" . $torrent->name . "[/url]",
@@ -156,7 +156,7 @@ class ModerationController extends Controller
                     'sender_id'   => $staff->id,
                     'receiver_id' => $torrent->user_id,
                     'subject'     => "您上传的 ".$torrent->name." (ID: ".$torrent->id.") 已被延期处理",
-                    'message' => "请在48小时内更新您的种子信息点击\n\n"
+                    'message' => "请在[color=red]48小时[/color]内更新您的种子信息，随后点击\n\n"
                         . "[url=" . $link . "]提交工单[/url]"
                         . "申请再次审核，逾期将自动删除该资源，延期原因如下\n\n"
                         . "[color=red]". $request->message . "[/color]\n\n点击跳转种子链接：[url=" . route('torrents.show', ['id' => $torrent->id]) . "]" . $torrent->name . "[/url]",
