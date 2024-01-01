@@ -81,7 +81,6 @@ class UpdateTorrentRequestRequest extends FormRequest
         ];
     }
 
-
     public function messages()
     {
         return [
