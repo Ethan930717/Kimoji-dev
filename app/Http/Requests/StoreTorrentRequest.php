@@ -101,7 +101,7 @@ class StoreTorrentRequest extends FormRequest
                 'max:255',
                 Rule::when(
                     $category->movie_meta || $category->tv_meta,
-                    function (string $attribute, mixed $value, Closure $fail) {
+                    function (string $attribute, mixed $value, Closure $fail): void {
                         if (!preg_match('/[\p{Han}]/u', $value)) {
                             $fail('请在标题头部添加资源中文名，如果当前资源没有中文名，请您填写任意中文字符并在上传成功后编辑删除');
                         }
@@ -259,14 +259,13 @@ class StoreTorrentRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'igdb.in' => '如果媒体不存在于IGDB上或您未上传游戏，IGDB ID必须为0。',
-            'tmdb.in' => '如果媒体不存在于TMDB上或您未上传电视节目或电影，TMDB ID必须为0。',
-            'imdb.in' => '如果媒体不存在于IMDB上或您未上传电视节目或电影，IMDB ID必须为0。',
-            'tvdb.in' => '如果媒体不存在于TVDB上或您未上传电视节目，TVDB ID必须为0。',
-            'mal.in'  => '如果媒体不存在于MAL上或您未上传电视或电影，MAL ID必须为0。',
-            'region_id.required' => '请选择小说分类',
+            'igdb.in'                 => '如果媒体不存在于IGDB上或您未上传游戏，IGDB ID必须为0。',
+            'tmdb.in'                 => '如果媒体不存在于TMDB上或您未上传电视节目或电影，TMDB ID必须为0。',
+            'imdb.in'                 => '如果媒体不存在于IMDB上或您未上传电视节目或电影，IMDB ID必须为0。',
+            'tvdb.in'                 => '如果媒体不存在于TVDB上或您未上传电视节目，TVDB ID必须为0。',
+            'mal.in'                  => '如果媒体不存在于MAL上或您未上传电视或电影，MAL ID必须为0。',
+            'region_id.required'      => '请选择小说分类',
             'distributor_id.required' => '请选择音乐风格',
-
         ];
     }
 }
