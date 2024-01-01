@@ -102,7 +102,7 @@ class StoreTorrentRequest extends FormRequest
                 function ($attribute, $value, $fail) use ($category) {
                     if ($category->movie_meta || $category->tv_meta) {
                         if (!preg_match('/[\p{Han}]/u', $value)) {
-                            $fail('请在标题头部添加资源中文名，如果当前资源没有中文名，请您填写任意中文字符并在上传成功后编辑取消。');
+                            $fail('请在标题头部添加资源中文名，如果当前资源没有中文名，请您填写任意中文字符并在上传成功后编辑取消');
                         }
                     }
                 },
@@ -111,7 +111,7 @@ class StoreTorrentRequest extends FormRequest
                 'max:4294967296',
                 function (string $attribute, mixed $value, Closure $fail): void {
                     if (!str_contains($value, '[spoiler=')) {
-                        $fail('描述内容不符合要求，请参考其他已发布的种子并根据《发种规则》要求添加专用模板，');
+                        $fail('描述内容不符合要求，请参考其他已发布的种子并根据《发种规则》要求添加专用模板');
                     }
                 },
             ],
