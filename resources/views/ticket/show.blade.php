@@ -20,7 +20,9 @@
 @section('main')
     <section class="panelV2">
         <h2 class="panel__heading">{{ $ticket->subject }}</h2>
-        <div class="panel__body" style="white-space: pre-wrap">{{ $ticket->body }}</div>
+        <div class="panel__body bbcode-rendered">
+            @joypixels($ticket->getDescriptionHtml())
+        </div>
     </section>
     <livewire:comments :model="$ticket"/>
 @endsection

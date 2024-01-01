@@ -107,8 +107,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (urlParams.has('body')) {
-        document.getElementById('body').value = decodeURIComponent(urlParams.get('body'));
+        document.getElementById('bbcode-body').value = decodeURIComponent(urlParams.get('body'));
     }
+
 });
 
 
