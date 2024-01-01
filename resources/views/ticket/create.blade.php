@@ -82,17 +82,7 @@
                         {{ __('ticket.subject') }}
                     </label>
                 </p>
-                <p class="form__group">
-                    <textarea
-                        id="body"
-                        class="form__textarea"
-                        name="body"
-                        required
-                    ></textarea>
-                    <label for="body" class="form__label form__label--floating">
-                        {{ __('ticket.body') }}
-                    </label>
-                </p>
+                @livewire('bbcode-input', ['name' => 'body', 'label' => __('ticket.body'), 'required' => true])
                 <p class="form__group">
                     <button class="form__button form__button--filled">
                         {{ __('common.submit') }}
