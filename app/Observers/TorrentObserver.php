@@ -27,8 +27,8 @@ class TorrentObserver
     {
         cache()->put(sprintf('torrent:%s', $torrent->info_hash), $torrent);
 
-        $user = $torrent->user_id;
-        $group = $user->group_id;
+        $user = $torrent->user;
+        $group = $user->group;
 
         if ($group->is_internal === 0 && $group->is_modo === 0) {
             $telegramController = new TelegramController();
