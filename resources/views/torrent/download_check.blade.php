@@ -111,7 +111,7 @@
                        class="form__button form__button--filled">
                         <i class='{{ config('other.font-awesome') }} fa-download'></i> {{ __('common.download') }}
                     </a>
-                    <a class="form__button form__button_copy--filled form__button--centered" x-data data-link="{{ route('torrent.download.rsskey', ['id' => $torrent->id, 'rsskey' => auth()->user()->rsskey]) }}" x-on:click.stop="navigator.clipboard.writeText($el.getAttribute('data-link')).then(() => Swal.fire({toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, icon: 'success', title: '复制成功'}))">
+                    <a class="form__button form__button_copy--filled form__button--centered" style="margin-left: 24px;" x-data data-link="{{ route('torrent.download.rsskey', ['id' => $torrent->id, 'rsskey' => auth()->user()->rsskey]) }}" x-on:click.stop="navigator.clipboard.writeText($el.getAttribute('data-link')).then(() => Swal.fire({toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, icon: 'success', title: '复制成功'}))">
                         <i class="{{ config('other.font-awesome') }} fas fa-link"></i> 复制下载链接
                     </a>
                 @endif
