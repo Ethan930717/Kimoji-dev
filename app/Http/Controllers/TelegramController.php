@@ -130,6 +130,52 @@ class TelegramController extends Controller
         }
     }
 
+    public function sendTicketNotification($id, $category_id, $subject): void
+    {
+        try {
+            // 根据 category_id 转换为实际的工单类型
+            $categories = [
+                1 => '账号',
+                2 => '申诉',
+                3 => '论坛',
+                4 => '求种',
+                5 => '字幕',
+                6 => '种子',
+                7 => '影视库',
+                8 => '技术相关',
+                9 => '播单',
+                10 => '上报Bug',
+                11 => '其他',
+            ];
+            $categoryName = $categories[$category_id] ?? '未知';
+
+            // 构建消息文本
+            $message = "收到新的工单，请及时处理".PHP_EOL.PHP_EOL.
+                "工单类型: ".$categoryName.PHP_EOL.
+                "工单主题: ".$subject.PHP_EOL.PHP_EOL.
+                "传送门: https://kimoji.club/tickets/".$id;
+
+            $chatId = "-1002007902628"; // Telegram 聊天 ID 或群组 ID
+
+            // 记录发送前的日志
+            Log::info("Sending ticket notification to Telegram", [
+                'chat_id' => $chatId,
+                'message' => $message,
+            ]);
+
+            // 发送文本消息
+            $response = Telegram::sendMessage([
+                'chat_id' => $chatId,
+                'text' => $message,
+            ]);
+
+            // 记录发送后的日志
+            Log::info("Ticket notification sent", ['response' => $response]);
+        } catch (Exception $e) {
+            // 记录异常
+            Log::error("Error sending ticket notification to Telegram", ['error' => $e->getMessage()]);
+        }
+    }
     public function sendModerationNotification($message): void
     {
         try {

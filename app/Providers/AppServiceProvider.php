@@ -18,7 +18,9 @@ use App\Helpers\HiddenCaptcha;
 use App\Interfaces\ByteUnitsInterface;
 use App\Models\Page;
 use App\Models\Torrent;
+use App\Models\Ticket;
 use App\Models\User;
+use App\Observers\TicketObserver;
 use App\Observers\TorrentObserver;
 use App\Observers\UserObserver;
 use Illuminate\Support\Facades\Blade;
@@ -51,6 +53,7 @@ class AppServiceProvider extends ServiceProvider
         // User Observer For Cache
         User::observe(UserObserver::class);
         Torrent::observe(TorrentObserver::class);
+        Ticket::observe(TicketObserver::class);
 
         // Torrent Observer For Cache
         // Torrent::observe(TorrentObserver::class);
