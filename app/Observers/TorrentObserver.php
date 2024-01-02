@@ -93,9 +93,10 @@ class TorrentObserver
     }
     private function fetchTmdbData($tmdbService)
     {
+        $tmdbData = $tmdbService->getTv();
         return [
-            'poster'   => $tmdbService->get_poster(),
-            'overview' => $tmdbService->get_overview()
+            'poster'   => $tmdbData['poster'] ?? null,
+            'overview' => $tmdbData['overview'] ?? null
         ];
     }
 
