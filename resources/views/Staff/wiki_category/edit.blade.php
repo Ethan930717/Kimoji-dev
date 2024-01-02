@@ -29,10 +29,12 @@
         <div class="panel__body">
             <form
                 class="form"
-                method="PATCH"
+                name="_method"
+                method="POST"
                 action="{{ route('staff.wiki_categories.update', ['wikiCategory' => $wikiCategory]) }}"
             >
                 @csrf
+                <input type="hidden" name="_method" value="PATCH">
                 <p class="form__group">
                     <input
                         id="name"
