@@ -51,11 +51,9 @@ class TorrentObserver
             switch ($category) {
                 case 1:
                     $tmdbService = new Movie($torrent->tmdb);
-
                     break;
                 case 2:
                     $tmdbService = new TV($torrent->tmdb);
-
                     break;
                 case 3:
                 case 4:
@@ -93,13 +91,19 @@ class TorrentObserver
     }
     private function fetchTmdbData($tmdbService)
     {
-        $tmdbData = $tmdbService->getTv();
+        if ($tmdbService instanceof Movie) {
+            $data = $tmdbService->getMovie();
+        } elseif ($tmdbService instanceof TV) {
+            $data = $tmdbService->getTv();
+        } else {
+            return null;
+        }
+
         return [
-            'poster'   => $tmdbData['poster'] ?? null,
-            'overview' => $tmdbData['overview'] ?? null
+            'poster'   => $data['poster'] ?? null,
+            'overview' => $data['overview'] ?? null
         ];
     }
-
     /**
      * Handle the Torrent "deleted" event.
      */
