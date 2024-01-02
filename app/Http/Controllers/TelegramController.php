@@ -135,15 +135,15 @@ class TelegramController extends Controller
         try {
             // 根据 category_id 转换为实际的工单类型
             $categories = [
-                1 => '账号',
-                2 => '申诉',
-                3 => '论坛',
-                4 => '求种',
-                5 => '字幕',
-                6 => '种子',
-                7 => '影视库',
-                8 => '技术相关',
-                9 => '播单',
+                1  => '账号',
+                2  => '申诉',
+                3  => '论坛',
+                4  => '求种',
+                5  => '字幕',
+                6  => '种子',
+                7  => '影视库',
+                8  => '技术相关',
+                9  => '播单',
                 10 => '上报Bug',
                 11 => '其他',
             ];
@@ -166,7 +166,7 @@ class TelegramController extends Controller
             // 发送文本消息
             $response = Telegram::sendMessage([
                 'chat_id' => $chatId,
-                'text' => $message,
+                'text'    => $message,
             ]);
 
             // 记录发送后的日志
