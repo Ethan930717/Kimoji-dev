@@ -29,7 +29,7 @@
         <div class="panel__body">
             <form
                 class="form"
-                method="POST"
+                method="PATCH"
                 action="{{ route('staff.wiki_categories.update', ['wikiCategory' => $wikiCategory]) }}"
             >
                 @csrf
