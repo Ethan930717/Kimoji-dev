@@ -119,9 +119,11 @@ class StoreTorrentRequest extends FormRequest
                 'nullable',
                 'sometimes',
                 'max:4294967296',
-                function (string $attribute, mixed $value, Closure $fail): void {
-                    if (!str_contains($value, 'Format')) {
-                        $fail('请提供完整版本的Mediainfo信息');
+                function ($attribute, $value, $fail) use ($category): void {
+                    if ($category->movie_meta || $category->tv_meta) {
+                        if (!str_contains($value, 'Format')) {
+                            $fail('请提供完整版本的Mediainfo信息');
+                        }
                     }
                 },
             ],
