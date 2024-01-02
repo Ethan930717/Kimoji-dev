@@ -19,4 +19,3 @@ class TicketObserver
 
     // 你可以根据需要添加其他方法，比如 updated, deleted 等
 }
-
