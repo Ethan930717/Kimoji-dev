@@ -18,7 +18,6 @@ use App\Http\Controllers\TelegramController;
 use App\Services\Tmdb\Client\Movie;
 use App\Services\Tmdb\Client\TV;
 
-
 class TorrentObserver
 {
     /**
@@ -33,7 +32,7 @@ class TorrentObserver
 
         if ($group->is_internal === 0 && $group->is_modo === 0) {
             $telegramController = new TelegramController();
-            $message = "有新的上传待审核: " . $torrent->name;
+            $message = "有新的上传待审核: ".$torrent->name;
             $telegramController->sendModerationNotification($message);
         }
     }
