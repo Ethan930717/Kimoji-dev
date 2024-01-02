@@ -176,6 +176,7 @@ class TelegramController extends Controller
             Log::error("Error sending ticket notification to Telegram", ['error' => $e->getMessage()]);
         }
     }
+
     public function sendModerationNotification($message): void
     {
         try {
