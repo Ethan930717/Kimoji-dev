@@ -63,7 +63,7 @@ class ModerationController extends Controller
     {
         $torrent = Torrent::withoutGlobalScope(ApprovedScope::class)->with('user')->findOrFail($id);
         $encodedBBCode = urlencode("[url]/torrents/" . $torrent->id . "[/url]");
-        $link = "https://mirror.kimoji.club/tickets/create?category_id=6&priority_id=1&subject=种子编辑完成&body=" . $encodedBBCode;
+        $link = "/tickets/create?category_id=6&priority_id=1&subject=种子编辑完成&body=" . $encodedBBCode;
 
         if ($request->integer('old_status') !== $torrent->status) {
             return to_route('torrents.show', ['id' => $id])
