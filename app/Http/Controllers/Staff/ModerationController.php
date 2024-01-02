@@ -62,8 +62,8 @@ class ModerationController extends Controller
     public function update(UpdateModerationRequest $request, int $id): \Illuminate\Http\RedirectResponse
     {
         $torrent = Torrent::withoutGlobalScope(ApprovedScope::class)->with('user')->findOrFail($id);
-        $encodedBBCode = urlencode("[url]/torrents/" . $torrent->id . "[/url]");
-        $link = "/tickets/create?category_id=6&priority_id=1&subject=种子编辑完成&body=" . $encodedBBCode;
+        $encodedBBCode = urlencode("[url]/torrents/".$torrent->id."[/url]");
+        $link = "/tickets/create?category_id=6&priority_id=1&subject=种子编辑完成&body=".$encodedBBCode;
 
         if ($request->integer('old_status') !== $torrent->status) {
             return to_route('torrents.show', ['id' => $id])
@@ -131,12 +131,11 @@ class ModerationController extends Controller
                     'sender_id'   => $staff->id,
                     'receiver_id' => $torrent->user_id,
                     'subject'     => "您上传的 ".$torrent->name." (ID: ".$torrent->id.") 已被拒绝",
-                    'message' => "请在[color=red]48小时[/color]内更新您的种子信息，随后点击\n\n"
-                        . "[url=" . $link . "]提交工单[/url]"
-                        . "申请再次审核，逾期将自动删除该资源，拒绝原因如下\n\n"
-                        . "[color=red]". $request->message . "[/color]\n\n点击跳转种子链接：[url=" . route('torrents.show', ['id' => $torrent->id]) . "]" . $torrent->name . "[/url]",
-                    ]);
-
+                    'message'     => "请在[color=red]48小时[/color]内更新您的种子信息，随后点击\n\n"
+                        ."[url=".$link."]提交工单[/url]"
+                        ."申请再次审核，逾期将自动删除该资源，拒绝原因如下\n\n"
+                        ."[color=red]".$request->message."[/color]\n\n点击跳转种子链接：[url=".route('torrents.show', ['id' => $torrent->id])."]".$torrent->name."[/url]",
+                ]);
 
                 cache()->forget('announce-torrents:by-infohash:'.$torrent->info_hash);
 
@@ -156,10 +155,10 @@ class ModerationController extends Controller
                     'sender_id'   => $staff->id,
                     'receiver_id' => $torrent->user_id,
                     'subject'     => "您上传的 ".$torrent->name." (ID: ".$torrent->id.") 已被延期处理",
-                    'message' => "请在[color=red]48小时[/color]内更新您的种子信息，随后点击\n\n"
-                        . "[url=" . $link . "]提交工单[/url]"
-                        . "申请再次审核，逾期将自动删除该资源，延期原因如下\n\n"
-                        . "[color=red]". $request->message . "[/color]\n\n点击跳转种子链接：[url=" . route('torrents.show', ['id' => $torrent->id]) . "]" . $torrent->name . "[/url]",
+                    'message'     => "请在[color=red]48小时[/color]内更新您的种子信息，随后点击\n\n"
+                        ."[url=".$link."]提交工单[/url]"
+                        ."申请再次审核，逾期将自动删除该资源，延期原因如下\n\n"
+                        ."[color=red]".$request->message."[/color]\n\n点击跳转种子链接：[url=".route('torrents.show', ['id' => $torrent->id])."]".$torrent->name."[/url]",
                 ]);
 
                 cache()->forget('announce-torrents:by-infohash:'.$torrent->info_hash);
