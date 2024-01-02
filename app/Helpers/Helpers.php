@@ -149,7 +149,7 @@ if (!\function_exists('language_flag')) {
             'Burmese' => 'mm',
             'Sichuan' => 'sichuan',
             '未知'      => 'unknown',
-            'Chinese', 'Mandarin', 'Mandarin (Hans)', 'Mandarin (Hant)', 'Cantonese', 'Cantonese (Hant)', 'Chinese (Simplied)', 'Chinese (Traditional)', 'Chinese (Simplified)', 'Chinese-yue-Hant', 'Chinese-cmn-Hans', 'Chinese-cmn-Hant', 'guoyu','国', '普通话', '简', => 'cn',
+            'Chinese', 'Mandarin', 'Mandarin (Hans)', 'Mandarin (Hant)', 'Cantonese', 'Cantonese (Hant)', 'Chinese (Simplied)', 'Chinese (Traditional)', 'Chinese (Simplified)', 'Chinese-yue-Hant', 'Chinese-cmn-Hans', 'Chinese-Hans', 'Chinese-cmn-Hant', 'Chinese-Hant', 'guoyu','国', '普通话', '简', => 'cn',
             'Chinese (HK)', 'Chinese-Hant-HK', 'Mandarin (HK)', 'Cantonese (HK)', 'yue', '粤语', '繁', 'Chinese-cmn-HK' => 'hk',
             'Chinese (Taiwan)' => 'tw',
             'Croatian', 'Croatian (HR)' => 'hr',

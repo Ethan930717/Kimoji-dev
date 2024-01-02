@@ -65,7 +65,6 @@ class AutoGroup extends Command
                 $user->group_id = UserGroups::LEECH->value;
                 $user->can_request = false;
                 $user->can_invite = false;
-                $user->can_download = false;
                 $user->save();
             }
 

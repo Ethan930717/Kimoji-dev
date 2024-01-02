@@ -119,6 +119,11 @@ class StoreTorrentRequest extends FormRequest
                 'nullable',
                 'sometimes',
                 'max:4294967296',
+                function (string $attribute, mixed $value, Closure $fail): void {
+                    if (!str_contains($value, 'Format')) {
+                        $fail('请提供完整版本的Mediainfo信息');
+                    }
+                },
             ],
             'bdinfo' => [
                 'nullable',
