@@ -39,8 +39,10 @@
                         required
                         type="text"
                         value="{{ old('name') }}"
-                    >
-                    <label class="form__label form__label--floating" for="name">{{ __('common.name') }}</label>
+                    />
+                    <label class="form__label form__label--floating" for="name">
+                        {{ __('common.name') }}
+                    </label>
                 </p>
                 <p class="form__group">
                     <input
@@ -51,7 +53,7 @@
                         required
                         type="text"
                         value="{{ old('reason') }}"
-                    >
+                    />
                     <label class="form__label form__label--floating" for="reason">
                         {{ __('common.reason') }}
                     </label>

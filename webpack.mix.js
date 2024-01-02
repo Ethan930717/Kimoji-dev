@@ -25,7 +25,7 @@ mix.options({
     /*
      * Themes
      */
-/*    .sass('resources/sass/themes/galactic.scss', 'public/css/themes/galactic.css')
+    .sass('resources/sass/themes/galactic.scss', 'public/css/themes/galactic.css')
     .sass('resources/sass/themes/dark-blue.scss', 'public/css/themes/dark-blue.css')
     .sass('resources/sass/themes/dark-green.scss', 'public/css/themes/dark-green.css')
     .sass('resources/sass/themes/dark-pink.scss', 'public/css/themes/dark-pink.css')
@@ -35,7 +35,10 @@ mix.options({
     .sass('resources/sass/themes/dark-yellow.scss', 'public/css/themes/dark-yellow.css')
     .sass('resources/sass/themes/cosmic-void.scss', 'public/css/themes/cosmic-void.css')
     .sass('resources/sass/themes/nord.scss', 'public/css/themes/nord.css')
-    .sass('resources/sass/themes/revel.scss', 'public/css/themes/revel.css')*/
+    .sass('resources/sass/themes/revel.scss', 'public/css/themes/revel.css')
+    .sass('resources/sass/themes/material-design-v3-light.scss', 'public/css/themes/material-design-v3-light.css')
+    .sass('resources/sass/themes/material-design-v3-dark.scss', 'public/css/themes/material-design-v3-dark.css')
+    .sass('resources/sass/themes/material-design-v3-amoled.scss', 'public/css/themes/material-design-v3-amoled.css')
 
     /*
      * Auth styles
@@ -49,7 +52,7 @@ mix.options({
      *
      * Note: The order of this array will matter, no different then linking these assets manually in the html
      */
-    .babel(['resources/js/unit3d/tmdb.js', 'resources/js/unit3d/parser.js', 'resources/js/unit3d/helper.js', 'resources/js/unit3d/optional.js'], 'public/js/unit3d.js')
+    .babel(['resources/js/unit3d/tmdb.js', 'resources/js/unit3d/parser.js', 'resources/js/unit3d/helper.js'], 'public/js/unit3d.js')
 
     /*
      * Copy assets
@@ -62,4 +65,4 @@ mix.options({
     .js('resources/js/unit3d/imgbb.js', 'public/js')
     .js('resources/js/vendor/alpine.js', 'public/js')
     .js('resources/js/vendor/virtual-select.js', 'public/js')
-    .js('resources/js/unit3d/chat.js', 'public/js')
+    .js('resources/js/unit3d/chat.js', 'public/js');
