@@ -62,9 +62,8 @@ class ModerationController extends Controller
     public function update(UpdateModerationRequest $request, int $id): \Illuminate\Http\RedirectResponse
     {
         $torrent = Torrent::withoutGlobalScope(ApprovedScope::class)->with('user')->findOrFail($id);
-        $encodedBBCode = urlencode("[url]/torrents/".$torrent->id."[/url]");
-        $link = "/tickets/create?category_id=6&priority_id=1&subject=种子编辑完成&body=".$encodedBBCode;
-
+        $encodedBBCode = urlencode("[color=red]".$request->message."[/color]\n\n[url]/torrents/".$torrent->id."[/url]");
+        $link = "/tickets/create?category_id=6&priority_id=1&subject=已完成编辑&body=".$encodedBBCode;
         if ($request->integer('old_status') !== $torrent->status) {
             return to_route('torrents.show', ['id' => $id])
                 ->withInput()
