@@ -247,27 +247,6 @@ class TorrentController extends BaseController
         // Save The Torrent
         $torrent->save();
 
-        // 添加封面图片处理的代码块
-        if ($request->hasFile('torrent-cover')) {
-            $image_cover = $request->file('torrent-cover');
-            $filename_cover = 'torrent-cover_'.$torrent->id.'.jpg';
-            $path_cover = public_path('/files/img/'.$filename_cover);
-            $width = $height = 500;
-            if (isset($torrent->category) && $torrent->category->no_meta) {
-                $width = 600;
-                $height = 400;
-            }
-            Image::make($image_cover->getRealPath())->fit($width, $height)->encode('jpg', 90)->save($path_cover);
-        }
-
-        if ($request->hasFile('torrent-banner')) {
-            $image_cover = $request->file('torrent-banner');
-            $filename_cover = 'torrent-banner_'.$torrent->id.'.jpg';
-            $path_cover = public_path('/files/img/'.$filename_cover);
-            Image::make($image_cover->getRealPath())->fit(960, 540)->encode('jpg', 90)->save($path_cover);
-        }
-
-
         // Set torrent to featured
         if ($torrent->featured == 1) {
             $featuredTorrent = new FeaturedTorrent();
@@ -393,6 +372,26 @@ class TorrentController extends BaseController
                     );
                 }
             }
+            // 添加封面图片处理的代码块
+            if ($request->hasFile('torrent-cover')) {
+                $image_cover = $request->file('torrent-cover');
+                $filename_cover = 'torrent-cover_'.$torrent->id.'.jpg';
+                $path_cover = public_path('/files/img/'.$filename_cover);
+                $width = $height = 500;
+                if (isset($torrent->category) && $torrent->category->no_meta) {
+                    $width = 600;
+                    $height = 400;
+                }
+                Image::make($image_cover->getRealPath())->fit($width, $height)->encode('jpg', 90)->save($path_cover);
+            }
+
+            if ($request->hasFile('torrent-banner')) {
+                $image_cover = $request->file('torrent-banner');
+                $filename_cover = 'torrent-banner_'.$torrent->id.'.jpg';
+                $path_cover = public_path('/files/img/'.$filename_cover);
+                Image::make($image_cover->getRealPath())->fit(960, 540)->encode('jpg', 90)->save($path_cover);
+            }
+
 
             TorrentHelper::approveHelper($torrent->id);
         }
