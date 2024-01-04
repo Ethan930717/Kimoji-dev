@@ -16,6 +16,7 @@ namespace App\Http\Controllers\API;
 use App\Helpers\Bencode;
 use App\Helpers\TorrentHelper;
 use App\Helpers\TorrentTools;
+use Intervention\Image\Facades\Image;
 use App\Http\Resources\TorrentResource;
 use App\Http\Resources\TorrentsResource;
 use App\Models\Category;
