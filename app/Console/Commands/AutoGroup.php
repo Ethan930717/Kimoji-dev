@@ -54,6 +54,8 @@ class AutoGroup extends Command
 
         foreach (User::whereIntegerInRaw('group_id', $groups)->get() as $user) {
             $hiscount = History::where('user_id', '=', $user->id)->count();
+            $oldGroupId = $user->group_id;
+
 
             // Temp Hard Coding of Group Requirements (Config Files To Come) (Upload in Bytes!) (Seedtime in Seconds!)
             $excludedGroups = [UserGroups::INTERNAL->value, UserGroups::KEEPER->value];
@@ -325,7 +327,7 @@ class AutoGroup extends Command
                 $user->save();
             }
 
-            if ($user->wasChanged()) {
+            if ($user->group_id != $oldGroupId) {
                 cache()->forget('user:'.$user->passkey);
 
                 Unit3dAnnounce::addUser($user);
