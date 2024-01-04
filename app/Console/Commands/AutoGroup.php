@@ -56,7 +56,6 @@ class AutoGroup extends Command
             $hiscount = History::where('user_id', '=', $user->id)->count();
             $oldGroupId = $user->group_id;
 
-
             // Temp Hard Coding of Group Requirements (Config Files To Come) (Upload in Bytes!) (Seedtime in Seconds!)
             $excludedGroups = [UserGroups::INTERNAL->value, UserGroups::KEEPER->value];
 
