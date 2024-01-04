@@ -253,6 +253,7 @@ class TorrentController extends BaseController
             $filename_cover = 'torrent-cover_'.$torrent->id.'.jpg';
             $path_cover = public_path('/files/img/'.$filename_cover);
             $width = $height = 500;
+
             if (isset($torrent->category) && $torrent->category->no_meta) {
                 $width = 600;
                 $height = 400;
@@ -266,7 +267,6 @@ class TorrentController extends BaseController
             $path_cover = public_path('/files/img/'.$filename_cover);
             Image::make($image_cover->getRealPath())->fit(960, 540)->encode('jpg', 90)->save($path_cover);
         }
-
 
         // Set torrent to featured
         if ($torrent->featured == 1) {
