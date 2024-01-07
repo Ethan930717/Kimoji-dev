@@ -52,14 +52,23 @@
             }
         @endphp
         <p class="meta__description">{{ $spoilerContent }}</p>
+        @php
+            $musicUrl = $torrent?->music_url;
+            $lrcUrl = null;
+        @endphp
 
-        @if ($torrent?->music_url)
-            <div id="aplayer-container"
-                 data-cover="{{ url('img/kimoji-music.webp') }}"
-                 data-name="单曲试听"
-                 data-artist="Kimoji"
-                 data-url= "{{ $torrent?->music_url }}">
-                <div id="aplayer" class="aplayer"></div>
-            </div>
+        @if ($musicUrl)
+            @php
+                $lrcUrl = preg_replace('/\.[^.]+$/', '.lrc', $musicUrl);
+            @endphp
         @endif
+
+        <div id="aplayer-container"
+             data-cover="{{ url('img/kimoji-music.webp') }}"
+             data-name="单曲试听"
+             data-artist="Kimoji"
+             data-url="{{ $musicUrl }}"
+             data-lrc="{{ $lrcUrl }}">
+            <div id="aplayer" class="aplayer"></div>
+        </div>
 </section>

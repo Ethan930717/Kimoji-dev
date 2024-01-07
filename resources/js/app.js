@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const songName = aplayerContainer.dataset.name;
         const artistName = aplayerContainer.dataset.artist;
         const songUrl = aplayerContainer.dataset.url;
+        const lrcUrl = aplayerContainer.dataset.lrc;  // 获取歌词URL
 
         new APlayer({
             container: aplayerContainer,
@@ -63,12 +64,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 name: songName,
                 artist: artistName,
                 url: songUrl,
-                cover: coverUrl
+                cover: coverUrl,
+                lrc: lrcUrl   // 添加歌词URL
             }]
         });
     }
 });
-
 
 //上传音乐
 document.addEventListener('DOMContentLoaded', function() {
