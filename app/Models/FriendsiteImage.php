@@ -10,8 +10,7 @@ class FriendsiteImage extends Model
     protected $table = 'friendsite_images';
 
     // 指定可以被批量赋值的字段
-    protected $fillable = ['name', 'url'];
+    protected $fillable = ['name', 'url', 'created_at', 'updated_at'];
     // 如果你不想让 Eloquent 自动维护 created_at 和 updated_at 字段，
     // 可以设置 $timestamps 为 false
-    // protected $timestamps = false;
 }
