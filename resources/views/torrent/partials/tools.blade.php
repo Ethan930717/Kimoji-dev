@@ -303,7 +303,8 @@
                                         <button type="button" class="form__button--mod" @click="appendMessage('原盘请提供BDinfo，详见[url=https://kimoji.club/pages/4]原盘发布规则[/url]\\n')">BDinfo</button>
                                         <button type="button" class="form__button--mod" @click="appendMessage('请检查基本信息填写：类别/媒介等\\n')">基本信息</button>
                                         <button type="button" class="form__button--mod" @click="appendMessage('请补充TMDb/IMDb信息\\n')">T/IMDb</button>
-                                        <button type="button" class="form__button--mod" @click="appendMessage('提供至少三张 BBCODE 格式的截图（非缩略图），原盘则需提供PNG原图\\n')">截图</button>
+                                        <button type="button" class="form__button--mod" @click="appendMessage('提供至少三张 BBCODE 格式的截图（非缩略图），原盘则需提供PNG原图\\n')">提供截图</button>
+                                        <button type="button" class="form__button--mod" @click="appendMessage('视频截图无法正常显示，请更换图床\\n')">更换图床</button>
                                         <button type="button" class="form__button--mod" @click="appendMessage('请按固定的格式编辑描述信息，详见[url=https://kimoji.club/pages/3]发布规则[/url]或参考已发布的资源\\n')">描述格式</button>
                                     </div>
                                     <p class="form__group">
@@ -362,7 +363,8 @@
                                         <button type="button" class="form__button--mod" @click="appendMessage('原盘请提供BDinfo，详见[url=https://kimoji.club/pages/4]原盘发布规则[/url]\\n')">BDinfo</button>
                                         <button type="button" class="form__button--mod" @click="appendMessage('请检查基本信息填写：类别/媒介等\\n')">基本信息</button>
                                         <button type="button" class="form__button--mod" @click="appendMessage('请补充TMDb/IMDb信息\\n')">T/IMDb</button>
-                                        <button type="button" class="form__button--mod" @click="appendMessage('提供至少三张 BBCODE 格式的截图（非缩略图），原盘则需提供PNG原图\\n')">截图</button>
+                                        <button type="button" class="form__button--mod" @click="appendMessage('提供至少三张 BBCODE 格式的截图（非缩略图），原盘则需提供PNG原图\\n')">提供截图</button>
+                                        <button type="button" class="form__button--mod" @click="appendMessage('视频截图无法正常显示，请更换图床\\n')">更换图床</button>
                                         <button type="button" class="form__button--mod" @click="appendMessage('请按固定的格式编辑描述信息，详见[url=https://kimoji.club/pages/3]发布规则[/url]或参考已发布的资源\\n')">描述格式</button>
                                     </div>
                                     <p class="form__group">
