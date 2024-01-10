@@ -58,17 +58,17 @@
             <h2 class="panel__heading">{{ __('torrent.torrents') }}</h2>
             <dl class="key-value">
                 @foreach ($categories as $category)
-                    <dt>{{ $category->name }}</dt>
-                    <dd>{{ $category->torrents_count }}</dd>
+                    <dt>{{ $category->name }} / 官种</dt>
+                    <dd>{{ $category->torrents_count }} / {{ $category->official_torrents_count }}</dd>
                 @endforeach
-                <dt>高清资源</dt>
-                <dd>{{ $num_hd }}</dd>
-                <dt>PG-12儿童资源</dt>
-                <dd>{{ $num_sd }}</dd>
-                <dt>{{ __('stat.total-torrents') }}</dt>
-                <dd>{{ $num_torrent }}</dd>
-                <dt>资源总体积</dt>
-                <dd>{{ App\Helpers\StringHelper::formatBytes($torrent_size, 2) }}</dd>
+                <dt>高清资源 / 官种</dt>
+                <dd>{{ $num_hd }} / {{ $num_hd_official }}</dd>
+                <dt>PG-12儿童资源 / 官种</dt>
+                <dd>{{ $num_sd }} / {{ $num_sd_official }}</dd>
+                <dt>{{ __('stat.total-torrents') }} / 官种</dt>
+                <dd>{{ $num_torrent }} / {{ $num_torrent_official }}</dd>
+                <dt>资源总体积 / 官种总体积</dt>
+                <dd>{{ App\Helpers\StringHelper::formatBytes($torrent_size, 2) }} / {{ App\Helpers\StringHelper::formatBytes($official_torrent_size, 2) }}</dd>
             </dl>
         </section>
         <section class="panelV2 panel--grid-item">

@@ -47,11 +47,47 @@ class StatsController extends Controller
      */
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
+        //官种统计
+        $officialStats = cache()->remember('official_stats', $this->carbon, function () {
+            return Torrent::selectRaw('category_id, count(*) as official_count')
+                ->where('name', 'like', '%KIMOJI%')
+                ->groupBy('category_id')
+                ->get()
+                ->keyBy('category_id');
+        });
+
+        // 为每个分类添加官种统计
+        $categories = Category::withCount('torrents')->orderBy('position')->get();
+        foreach ($categories as $category) {
+            $category->official_torrents_count = $officialStats[$category->id]->official_count ?? 0;
+        }
+
         // Total Torrents Count
         $numTorrent = cache()->remember('num_torrent', $this->carbon, fn () => Torrent::count());
 
         // Total SD Count
         $numSd = cache()->remember('num_sd', $this->carbon, fn () => Torrent::where('sd', '=', 1)->count());
+        // 计算其他官种资源统计数据
+        $numHdOfficial = cache()->remember('num_hd_official', $this->carbon, fn () =>
+        Torrent::where('sd', '=', 0) // 假设高清资源被标记为 'sd' = 0
+        ->where('name', 'like', '%KIMOJI%')
+            ->count()
+        );
+
+        $numSdOfficial = cache()->remember('num_sd_official', $this->carbon, fn () =>
+        Torrent::where('sd', '=', 1)
+            ->where('name', 'like', '%KIMOJI%')
+            ->count()
+        );
+
+        $numTorrentOfficial = cache()->remember('num_torrent_official', $this->carbon, fn () =>
+        Torrent::where('name', 'like', '%KIMOJI%')->count()
+        );
+
+        $officialTorrentSize = cache()->remember('official_torrent_size', $this->carbon, fn () =>
+        Torrent::where('name', 'like', '%KIMOJI%')->sum('size')
+        );
+
 
         // Generally sites have more seeders than leechers, so it ends up being faster (by approximately 50%) to compute these stats instead of computing them individually
         $leecherCount = cache()->remember('peer_seeder_count', $this->carbon, fn () => Peer::where('seeder', '=', false)->where('active', '=', true)->count());
@@ -97,9 +133,13 @@ class StatsController extends Controller
                 fn () => User::whereIn('group_id', Group::select('id')->where('slug', '=', 'banned'))->count()
             ),
             'num_torrent'       => $numTorrent,
-            'categories'        => Category::withCount('torrents')->orderBy('position')->get(),
+            'num_torrent_official'    => $numTorrentOfficial,
+            'categories'        => $categories,
+            'num_hd_official'   => $numHdOfficial,
             'num_hd'            => $numTorrent - $numSd,
+            'num_sd_official'   => $numSdOfficial,
             'num_sd'            => $numSd,
+            'official_torrent_size'   => $officialTorrentSize,
             'torrent_size'      => cache()->remember('torrent_size', $this->carbon, fn () => Torrent::sum('size')),
             'num_seeders'       => $peerCount - $leecherCount,
             'num_leechers'      => $leecherCount,
