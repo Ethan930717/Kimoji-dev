@@ -98,7 +98,7 @@ class TorrentController extends Controller
                 'networks',
                 'recommendedTv:id,name,poster,first_air_date'
             ])->find($torrent->tmdb);
-            $trailer = ( new \App\Services\Tmdb\Client\TV($torrent->tmdb))->get_trailer();
+            $trailer = (new \App\Services\Tmdb\Client\TV($torrent->tmdb))->get_trailer();
         }
 
         if ($torrent->category->movie_meta && $torrent->tmdb) {
@@ -110,7 +110,7 @@ class TorrentController extends Controller
                 'recommendedMovies:id,title,poster,release_date'
             ])
                 ->find($torrent->tmdb);
-            $trailer = ( new \App\Services\Tmdb\Client\Movie($torrent->tmdb))->get_trailer();
+            $trailer = (new \App\Services\Tmdb\Client\Movie($torrent->tmdb))->get_trailer();
         }
 
         if ($torrent->category->game_meta && $torrent->igdb) {
