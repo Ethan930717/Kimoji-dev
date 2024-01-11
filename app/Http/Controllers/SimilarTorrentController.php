@@ -44,7 +44,7 @@ class SimilarTorrentController extends Controller
                     'companies'
                 ])
                     ->find($tmdbId);
-                $trailer = ( new \App\Services\Tmdb\Client\Movie($tmdbId))->get_trailer();
+                $trailer = (new \App\Services\Tmdb\Client\Movie($tmdbId))->get_trailer();
                 $tmdb = $tmdbId;
 
                 break;
@@ -60,7 +60,7 @@ class SimilarTorrentController extends Controller
                     'networks'
                 ])
                     ->find($tmdbId);
-                $trailer = ( new \App\Services\Tmdb\Client\TV($tmdbId))->get_trailer();
+                $trailer = (new \App\Services\Tmdb\Client\TV($tmdbId))->get_trailer();
                 $tmdb = $tmdbId;
 
                 break;
