@@ -73,16 +73,16 @@ class StatsController extends Controller
             'num_hd_official',
             $this->carbon,
             fn () => Torrent::where('sd', '=', 0) // 假设高清资源被标记为 'sd' = 0
-            ->where('name', 'like', '%KIMOJI%')
-            ->count()
+                ->where('name', 'like', '%KIMOJI%')
+                ->count()
         );
 
         $numSdOfficial = cache()->remember(
             'num_sd_official',
             $this->carbon,
             fn () => Torrent::where('sd', '=', 1)
-            ->where('name', 'like', '%KIMOJI%')
-            ->count()
+                ->where('name', 'like', '%KIMOJI%')
+                ->count()
         );
 
         $numTorrentOfficial = cache()->remember(
