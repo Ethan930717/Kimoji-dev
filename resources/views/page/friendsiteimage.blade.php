@@ -56,7 +56,7 @@
             @foreach ($images as $index => $image)
                 <div class="image-container">
                     <section class="panelV2 panel--grid-item">
-                        <img class="thumbnail" src="{{ asset($image->url) }}" alt="缩略图" @click="openModal({{ $index }})">
+                        <img class="thumbnail lazy" data-src="{{ asset($image->url) }}" alt="缩略图" @click="openModal({{ $index }})">
                     </section>
                     <div class="image-title">{{ pathinfo($image->name, PATHINFO_FILENAME) }}</div>
                 </div>
