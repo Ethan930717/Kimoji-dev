@@ -114,17 +114,6 @@
                 <div class="form__group--short-horizontal">
                     <div class="form__group">
                         @php
-                            $regions = cache()->remember(
-                                'regions',
-                                3_600,
-                                fn () => App\Models\Region::orderBy('position')->get()
-                            )
-                        @endphp
-
-                        <div id="regions" wire:ignore></div>
-                    </div>
-                    <div class="form__group">
-                        @php
                             $distributors = cache()->remember(
                                 'distributors',
                                 3_600,
@@ -133,6 +122,17 @@
                         @endphp
 
                         <div id="distributors" wire:ignore></div>
+                    </div>
+                    <div class="form__group">
+                        @php
+                            $regions = cache()->remember(
+                                'regions',
+                                3_600,
+                                fn () => App\Models\Region::orderBy('position')->get()
+                            )
+                        @endphp
+
+                        <div id="regions" wire:ignore></div>
                     </div>
                 </div>
                 <div class="form__group--short-horizontal">
