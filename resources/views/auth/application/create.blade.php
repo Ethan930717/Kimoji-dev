@@ -59,12 +59,12 @@
                                 {{ __('auth.are-you') }}
                             </label>
                             <select id="type" class="auth-form__select" name="type" required>
-                                <option class="auth-form__option" value="New To The Game" selected>
+                                <option class="auth-form__option" value="小萌新" selected>
                                     {{ __('auth.newbie') }}
                                 </option>
                                 <option
                                     class="auth-form__option"
-                                    value="Experienced With Private Trackers"
+                                    value="老司机"
                                 >
                                     {{ __('auth.veteran') }}
                                 </option>

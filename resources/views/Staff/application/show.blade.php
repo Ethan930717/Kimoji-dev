@@ -146,7 +146,7 @@
                                     name="approve"
                                     placeholder=" "
                                 >
-Application Approved!</textarea
+恭喜您！您的申请已通过，欢迎您加入KIMOJI的大家庭！</textarea
                                 >
                                 <label class="form__label form__label--floating" for="approve">
                                     Invitation Message
@@ -198,7 +198,7 @@ Application Approved!</textarea
                             />
                             <p class="form__group">
                                 <textarea id="message" class="form__textarea" name="deny" required>
-Insufficient Proofs.</textarea
+您好，我们很抱歉地通知您，您提交的申请资料未能通过审核</textarea
                                 >
                                 <label class="form__label form__label--floating" for="message">
                                     Rejection Message
