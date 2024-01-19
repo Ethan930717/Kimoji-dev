@@ -14,6 +14,7 @@ class UserGroupChanged extends Notification implements ShouldQueue
     private $user;
     private $oldGroupId;
     private $newGroupId;
+
     /**
      * Create a new notification instance.
      *
@@ -143,6 +144,7 @@ class UserGroupChanged extends Notification implements ShouldQueue
             }
         }
     }
+
     /**
      * Get the array representation of the notification.
      *
