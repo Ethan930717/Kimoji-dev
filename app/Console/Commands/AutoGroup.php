@@ -13,7 +13,7 @@
 
 namespace App\Console\Commands;
 
-use App\Enums\UserGroups;
+use App\Enums\Usergroup;
 use App\Helpers\ByteUnits;
 use App\Models\Group;
 use App\Models\History;
@@ -56,14 +56,42 @@ class AutoGroup extends Command
             $hiscount = History::where('user_id', '=', $user->id)->count();
             $oldGroupId = $user->group_id;
 
+            $blurayTorrentsSize = Peer::query()
+                ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
+                ->where('peers.user_id', '=', $user->id)
+                ->where('peers.seeder', '=', 1)
+                ->where('peers.active', '=', 1)
+                ->whereIn('torrents.type_id', [1, 2])
+                ->sum('torrents.size');
+
+            $internalTorrentsSize = Peer::query()
+                ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
+                ->where('peers.user_id', '=', $user->id)
+                ->where('peers.seeder', '=', 1)
+                ->where('peers.active', '=', 1)
+                ->where('torrents.internal', '=', 1)
+                ->sum('torrents.size');
+
+            $TotalTorrentsSize = Peer::query()
+                ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
+                ->where('peers.user_id', '=', $user->id)
+                ->where('peers.seeder', '=', 1)
+                ->where('peers.active', '=', 1)
+                ->sum('torrents.size');
+
+            // 将字节转换为TB
+            $blurayTorrentsSizeTB = $blurayTorrentsSize / (1024 * 1024 * 1024 * 1024);
+            $internalTorrentsSizeTB = $internalTorrentsSize / (1024 * 1024 * 1024 * 1024);
+            $totalTorrentsSizeTB = $TotalTorrentsSize / (1024 * 1024 * 1024 * 1024);
+
             // Temp Hard Coding of Group Requirements (Config Files To Come) (Upload in Bytes!) (Seedtime in Seconds!)
-            $excludedGroups = [UserGroups::INTERNAL->value, UserGroups::KEEPER->value];
+            $excludedGroups = [Usergroup::INTERNAL->value, Usergroup::KEEPER->value];
 
             // Leech ratio dropped below sites minimum
             if ($user->ratio < config('other.ratio') &&
-                $user->group_id != UserGroups::LEECH->value &&
+                $user->group_id != Usergroup::LEECH->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
-                $user->group_id = UserGroups::LEECH->value;
+                $user->group_id = Usergroup::LEECH->value;
                 $user->can_request = false;
                 $user->can_invite = false;
                 $user->save();
@@ -72,177 +100,131 @@ class AutoGroup extends Command
             // User >= 0 and ratio above sites minimum
             if ($user->uploaded >= 0 &&
                 $user->ratio >= config('other.ratio') &&
-                $user->group_id != UserGroups::USER->value &&
+                $user->group_id != Usergroup::USER->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
-                $user->group_id = UserGroups::USER->value;
+                $user->group_id = Usergroup::USER->value;
                 $user->can_request = true;
                 $user->can_invite = false;
                 $user->can_download = true;
                 $user->save();
             }
 
-            // PowerUser >= 500GiB and account 1.5 month old
-            if ($user->uploaded >= $byteUnits->bytesFromUnit('500GiB') &&
-                $user->ratio >= config('other.ratio') &&
-                $user->created_at < $current->copy()->subDays(45)->toDateTimeString() &&
-                $user->group_id != UserGroups::POWERUSER->value &&
+            // PowerUser >= 500GB
+            if ($user->ratio >= config('other.ratio') &&
+                $internalTorrentsSizeTB >= 0.5 &&
+                $user->group_id != Usergroup::POWERUSER->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
-                $user->group_id = UserGroups::POWERUSER->value;
+                $user->group_id = Usergroup::POWERUSER->value;
                 $user->save();
             }
 
-            // SuperUser >= 2TiB and account 3 month old
-            if ($user->uploaded >= $byteUnits->bytesFromUnit('2TiB') &&
-                $user->ratio >= config('other.ratio') &&
-                $user->created_at < $current->copy()->subDays(90)->toDateTimeString() &&
-                $user->group_id != UserGroups::SUPERUSER->value &&
+            // SuperUser >= 1200GB
+            if ($user->ratio >= config('other.ratio') &&
+                $internalTorrentsSizeTB >= 1.2 &&
+                $user->group_id != Usergroup::SUPERUSER->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
-                $user->group_id = UserGroups::SUPERUSER->value;
+                $user->group_id = Usergroup::SUPERUSER->value;
                 $user->save();
             }
 
-            // ExtremeUser >= 5TiB and account 5 month old
-            if ($user->uploaded >= $byteUnits->bytesFromUnit('5TiB') &&
-                $user->ratio >= config('other.ratio') &&
-                $user->created_at < $current->copy()->subDays(150)->toDateTimeString() &&
-                $user->group_id != UserGroups::EXTREMEUSER->value &&
+            // ExtremeUser >= 2000GB
+            if ($user->ratio >= config('other.ratio') &&
+                $internalTorrentsSizeTB >= 2 &&
+                $user->group_id != Usergroup::EXTREMEUSER->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
-                $user->group_id = UserGroups::EXTREMEUSER->value;
+                $user->group_id = Usergroup::EXTREMEUSER->value;
                 $user->save();
             }
 
-            // InsaneUser >= 10TiB and account 8 month old
-            if ($user->uploaded >= $byteUnits->bytesFromUnit('10TiB') &&
-                $user->ratio >= config('other.ratio') &&
-                $user->created_at < $current->copy()->subDays(240)->toDateTimeString() &&
-                $user->group_id != UserGroups::INSANEUSER->value &&
+            // InsaneUser >= 3000GB and account 8 month old
+            if ($user->ratio >= config('other.ratio') &&
+                $internalTorrentsSizeTB >= 3 &&
+                $user->group_id != Usergroup::INSANEUSER->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
-                $user->group_id = UserGroups::INSANEUSER->value;
+                $user->group_id = Usergroup::INSANEUSER->value;
                 $user->save();
             }
 
             // Seeder Seedsize >= 20TiB and account 12 month old and seedtime average 30 days or better
-            if ($user->seedingTorrents()->sum('size') >= $byteUnits->bytesFromUnit('20TiB') &&
-                $user->ratio >= config('other.ratio') &&
-                round($user->history()->sum('seedtime') / max(1, $hiscount)) > 2_592_000 &&
-                $user->created_at < $current->copy()->subDays(365)->toDateTimeString() &&
-                $user->group_id != UserGroups::SEEDER->value &&
+            if ($user->ratio >= config('other.ratio') &&
+                $internalTorrentsSizeTB >= 4.2 &&
+                $user->group_id != Usergroup::SEEDER->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
-                $user->group_id = UserGroups::SEEDER->value;
+                $user->group_id = Usergroup::SEEDER->value;
                 $user->save();
             }
 
             // Archivist Seedsize >= 50TiB and account 545 days and seedtime average 60 days or better
-            if ($user->seedingTorrents()->sum('size') >= $byteUnits->bytesFromUnit('50TiB') &&
-                $user->ratio >= config('other.ratio') &&
-                round($user->history()->sum('seedtime') / max(1, $hiscount)) > 2_592_000 * 2 &&
-                $user->created_at < $current->copy()->subDays(545)->toDateTimeString() &&
-                $user->group_id != UserGroups::ARCHIVIST->value &&
+            if ($user->ratio >= config('other.ratio') &&
+                $internalTorrentsSizeTB >= 6 &&
+                $user->group_id != Usergroup::ARCHIVIST->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
-                $user->group_id = UserGroups::ARCHIVIST->value;
+                $user->group_id = Usergroup::ARCHIVIST->value;
                 $user->save();
             }
 
             // Veteran >= 100TiB and account 2 year old
-            if ($user->uploaded >= $byteUnits->bytesFromUnit('100TiB') &&
-                $user->ratio >= config('other.ratio') &&
-                $user->created_at < $current->copy()->subDays(730)->toDateTimeString() &&
-                $user->group_id != UserGroups::VETERAN->value &&
+            if ($user->ratio >= config('other.ratio') &&
+                $internalTorrentsSizeTB >= 8 &&
+                $user->group_id != Usergroup::VETERAN->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
-                $user->group_id = UserGroups::VETERAN->value;
+                $user->group_id = Usergroup::VETERAN->value;
                 $user->save();
             }
 
             // 检查是否应该升级到KEEPER
             // 确保用户当前不是INTERNAL等级
-            if ($user->group_id != UserGroups::INTERNAL->value) {
-                $blurayTorrentsSize = Peer::query()
-                    ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
-                    ->where('peers.user_id', '=', $user->id)
-                    ->where('peers.seeder', '=', 1)
-                    ->where('peers.active', '=', 1)
-                    ->whereIn('torrents.type_id', [1, 2])
-                    ->sum('torrents.size');
-
-                $internalTorrentsSize = Peer::query()
-                    ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
-                    ->where('peers.user_id', '=', $user->id)
-                    ->where('peers.seeder', '=', 1)
-                    ->where('peers.active', '=', 1)
-                    ->where('torrents.internal', '=', 1)
-                    ->sum('torrents.size');
-
-                $TotalTorrentsSize = Peer::query()
-                    ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
-                    ->where('peers.user_id', '=', $user->id)
-                    ->where('peers.seeder', '=', 1)
-                    ->where('peers.active', '=', 1)
-                    ->sum('torrents.size');
-
-                // 将字节转换为TB
-                $blurayTorrentsSizeTB = $blurayTorrentsSize / (1024 * 1024 * 1024 * 1024);
-                $internalTorrentsSizeTB = $internalTorrentsSize / (1024 * 1024 * 1024 * 1024);
-                $totalTorrentsSizeTB = $TotalTorrentsSize / (1024 * 1024 * 1024 * 1024);
-
+            if ($user->group_id != Usergroup::INTERNAL->value) {
                 // 升级到KEEPER的条件
                 if (($blurayTorrentsSizeTB >= 15 || $internalTorrentsSizeTB >= 10 || $totalTorrentsSizeTB >= 20) &&
-                    $user->group_id != UserGroups::KEEPER->value) {
-                    $user->group_id = UserGroups::KEEPER->value;
+                    $user->group_id != Usergroup::KEEPER->value) {
+                    $user->group_id = Usergroup::KEEPER->value;
                     $user->save();
                 }
             }
 
             // 如果是KEEPER但不再满足条件，则根据其他规则自动降级
-            if ($user->group_id == UserGroups::KEEPER->value &&
+            if ($user->group_id == Usergroup::KEEPER->value &&
                 $blurayTorrentsSizeTB < 15 && $internalTorrentsSizeTB < 10 && $totalTorrentsSizeTB < 20) {
                 // 检查是否满足Veteran等级的条件
-                if ($user->uploaded >= $byteUnits->bytesFromUnit('100TiB') &&
-                    $user->ratio >= config('other.ratio') &&
-                    $user->created_at < $current->copy()->subDays(730)->toDateTimeString()) {
-                    $user->group_id = UserGroups::VETERAN->value;
+                if ($user->ratio >= config('other.ratio') &&
+                    $internalTorrentsSizeTB >= 8) {
+                    $user->group_id = Usergroup::VETERAN->value;
                 }
                 // 降级到Archivist的条件
-                elseif ($user->seedingTorrents()->sum('size') >= $byteUnits->bytesFromUnit('50TiB') &&
-                    $user->ratio >= config('other.ratio') &&
-                    round($user->history()->sum('seedtime') / max(1, $hiscount)) > 2_592_000 * 2 &&
-                    $user->created_at < $current->copy()->subDays(545)->toDateTimeString()) {
-                    $user->group_id = UserGroups::ARCHIVIST->value;
+                elseif ($user->ratio >= config('other.ratio') &&
+                    $internalTorrentsSizeTB >= 6) {
+                    $user->group_id = Usergroup::ARCHIVIST->value;
                 }
                 // 降级到Seeder的条件
-                elseif ($user->seedingTorrents()->sum('size') >= $byteUnits->bytesFromUnit('20TiB') &&
-                    $user->ratio >= config('other.ratio') &&
-                    round($user->history()->sum('seedtime') / max(1, $hiscount)) > 2_592_000 &&
-                    $user->created_at < $current->copy()->subDays(365)->toDateTimeString()) {
-                    $user->group_id = UserGroups::SEEDER->value;
+                elseif ($user->ratio >= config('other.ratio') &&
+                    $internalTorrentsSizeTB >= 4.2) {
+                    $user->group_id = Usergroup::SEEDER->value;
                 }
 
                 // 检查是否满足InsaneUser等级的条件
-                elseif ($user->uploaded >= $byteUnits->bytesFromUnit('10TiB') &&
-                    $user->ratio >= config('other.ratio') &&
-                    $user->created_at < $current->copy()->subDays(240)->toDateTimeString()) {
-                    $user->group_id = UserGroups::INSANEUSER->value;
+                elseif ($user->ratio >= config('other.ratio') &&
+                    $internalTorrentsSizeTB >= 3) {
+                    $user->group_id = Usergroup::INSANEUSER->value;
                 }
                 // 检查是否满足ExtremeUser等级的条件
-                elseif ($user->uploaded >= $byteUnits->bytesFromUnit('5TiB') &&
-                    $user->ratio >= config('other.ratio') &&
-                    $user->created_at < $current->copy()->subDays(150)->toDateTimeString()) {
-                    $user->group_id = UserGroups::EXTREMEUSER->value;
+                elseif ($user->ratio >= config('other.ratio') &&
+                    $internalTorrentsSizeTB >= 2) {
+                    $user->group_id = Usergroup::EXTREMEUSER->value;
                 }
                 // 检查是否满足SuperUser等级的条件
-                elseif ($user->uploaded >= $byteUnits->bytesFromUnit('2TiB') &&
-                    $user->ratio >= config('other.ratio') &&
-                    $user->created_at < $current->copy()->subDays(90)->toDateTimeString()) {
-                    $user->group_id = UserGroups::SUPERUSER->value;
+                elseif ($user->ratio >= config('other.ratio') &&
+                    $internalTorrentsSizeTB >= 1.2) {
+                    $user->group_id = Usergroup::SUPERUSER->value;
                 }
                 // 检查是否满足PowerUser等级的条件
-                elseif ($user->uploaded >= $byteUnits->bytesFromUnit('500GiB') &&
-                    $user->ratio >= config('other.ratio') &&
-                    $user->created_at < $current->copy()->subDays(45)->toDateTimeString()) {
-                    $user->group_id = UserGroups::POWERUSER->value;
+                elseif ($user->ratio >= config('other.ratio') &&
+                    $internalTorrentsSizeTB >= 0.5) {
+                    $user->group_id = Usergroup::POWERUSER->value;
                 }
                 // 默认降级到User等级
                 else {
-                    $user->group_id = UserGroups::USER->value;
+                    $user->group_id = Usergroup::USER->value;
                 }
 
                 $user->save();
@@ -250,7 +232,7 @@ class AutoGroup extends Command
 
             // 检查是否应该升级到INTERNAL
             // 确保用户当前不是KEEPER等级
-            if ($user->group_id != UserGroups::KEEPER->value) {
+            if ($user->group_id != Usergroup::KEEPER->value) {
                 $nonInternalTorrentCount = $user->torrents()
                     ->where('internal', 0)
                     ->where('status', 1)
@@ -261,66 +243,57 @@ class AutoGroup extends Command
                     ->where('created_at', '>=', Carbon::now()->subMonth())
                     ->count();
 
-                if ($user->group_id != UserGroups::INTERNAL->value) {
+                if ($user->group_id != Usergroup::INTERNAL->value) {
                     if ($nonInternalTorrentCount >= 200 ||
                         ($user->hasBeenDemotedFromInternal && $recentNonInternalTorrentCount >= 60)) {
-                        $user->group_id = UserGroups::INTERNAL->value;
+                        $user->group_id = Usergroup::INTERNAL->value;
                         $user->save();
                     }
                 }
             }
 
             // 如果是INTERNAL但不再满足条件，则根据其他规则自动降级
-            if ($user->group_id == UserGroups::INTERNAL->value &&
+            if ($user->group_id == Usergroup::INTERNAL->value &&
                 $recentNonInternalTorrentCount < 30) {
                 // 检查是否满足Veteran等级的条件
-                if ($user->uploaded >= $byteUnits->bytesFromUnit('100TiB') &&
-                    $user->ratio >= config('other.ratio') &&
-                    $user->created_at < $current->copy()->subDays(730)->toDateTimeString()) {
-                    $user->group_id = UserGroups::VETERAN->value;
+                if ($user->ratio >= config('other.ratio') &&
+                    $internalTorrentsSizeTB >= 8) {
+                    $user->group_id = Usergroup::VETERAN->value;
                 }
                 // 降级到Archivist的条件
-                elseif ($user->seedingTorrents()->sum('size') >= $byteUnits->bytesFromUnit('50TiB') &&
-                    $user->ratio >= config('other.ratio') &&
-                    round($user->history()->sum('seedtime') / max(1, $hiscount)) > 2_592_000 * 2 &&
-                    $user->created_at < $current->copy()->subDays(545)->toDateTimeString()) {
-                    $user->group_id = UserGroups::ARCHIVIST->value;
+                elseif ($user->ratio >= config('other.ratio') &&
+                    $internalTorrentsSizeTB >= 6) {
+                    $user->group_id = Usergroup::ARCHIVIST->value;
                 }
                 // 降级到Seeder的条件
-                elseif ($user->seedingTorrents()->sum('size') >= $byteUnits->bytesFromUnit('20TiB') &&
-                    $user->ratio >= config('other.ratio') &&
-                    round($user->history()->sum('seedtime') / max(1, $hiscount)) > 2_592_000 &&
-                    $user->created_at < $current->copy()->subDays(365)->toDateTimeString()) {
-                    $user->group_id = UserGroups::SEEDER->value;
+                elseif ($user->ratio >= config('other.ratio') &&
+                    $internalTorrentsSizeTB >= 4.2) {
+                    $user->group_id = Usergroup::SEEDER->value;
                 }
 
                 // 检查是否满足InsaneUser等级的条件
-                elseif ($user->uploaded >= $byteUnits->bytesFromUnit('10TiB') &&
-                    $user->ratio >= config('other.ratio') &&
-                    $user->created_at < $current->copy()->subDays(240)->toDateTimeString()) {
-                    $user->group_id = UserGroups::INSANEUSER->value;
+                elseif ($user->ratio >= config('other.ratio') &&
+                    $internalTorrentsSizeTB >= 3) {
+                    $user->group_id = Usergroup::INSANEUSER->value;
                 }
                 // 检查是否满足ExtremeUser等级的条件
-                elseif ($user->uploaded >= $byteUnits->bytesFromUnit('5TiB') &&
-                    $user->ratio >= config('other.ratio') &&
-                    $user->created_at < $current->copy()->subDays(150)->toDateTimeString()) {
-                    $user->group_id = UserGroups::EXTREMEUSER->value;
+                elseif ($user->ratio >= config('other.ratio') &&
+                    $internalTorrentsSizeTB >= 2) {
+                    $user->group_id = Usergroup::EXTREMEUSER->value;
                 }
                 // 检查是否满足SuperUser等级的条件
-                elseif ($user->uploaded >= $byteUnits->bytesFromUnit('2TiB') &&
-                    $user->ratio >= config('other.ratio') &&
-                    $user->created_at < $current->copy()->subDays(90)->toDateTimeString()) {
-                    $user->group_id = UserGroups::SUPERUSER->value;
+                elseif ($user->ratio >= config('other.ratio') &&
+                    $internalTorrentsSizeTB >= 1.2) {
+                    $user->group_id = Usergroup::SUPERUSER->value;
                 }
                 // 检查是否满足PowerUser等级的条件
-                elseif ($user->uploaded >= $byteUnits->bytesFromUnit('500GiB') &&
-                    $user->ratio >= config('other.ratio') &&
-                    $user->created_at < $current->copy()->subDays(45)->toDateTimeString()) {
-                    $user->group_id = UserGroups::POWERUSER->value;
+                elseif ($user->ratio >= config('other.ratio') &&
+                    $internalTorrentsSizeTB >= 0.5) {
+                    $user->group_id = Usergroup::POWERUSER->value;
                 }
                 // 默认降级到User等级
                 else {
-                    $user->group_id = UserGroups::USER->value;
+                    $user->group_id = Usergroup::USER->value;
                 }
                 $user->hasBeenDemotedFromInternal = 1;
                 $user->save();
