@@ -14,6 +14,8 @@
 namespace App\Http\Requests\Staff;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UpdateBlacklistClientRequest extends FormRequest
 {
@@ -30,13 +32,17 @@ class UpdateBlacklistClientRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array<\Illuminate\Contracts\Validation\Rule|string>|string>
      */
-    public function rules(): array
+    public function rules(Request $request): array
     {
         return [
             'name' => [
                 'required',
                 'string',
                 'max:255',
+                Rule::unique('blacklist_clients')->ignore($request->route('blacklistClient')),
+            ],
+            'peer_id_prefix' => [
+                'unique:blacklist_clients',
             ],
             'reason' => [
                 'required',

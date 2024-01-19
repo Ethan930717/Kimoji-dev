@@ -1,3 +1,8 @@
+@props([
+    'media',
+    'personalFreeleech',
+])
+
 <article class="torrent-search--grouped__result">
     <header class="torrent-search--grouped__header">
         @if (auth()->user()->show_poster == 1)
@@ -18,7 +23,9 @@
                 href="{{ route('torrents.similar', ['category_id' => $media->category_id, 'tmdb' => $media->id]) }}"
             >
                 {{ $media->name ?? '' }} (
-                <time>{{ substr($media->first_air_date ?? '', 0, 4) ?? '' }}</time>
+                <time class="torrent-search--grouped__title-year">
+                    {{ substr($media->first_air_date ?? '', 0, 4) ?? '' }}
+                </time>
                 )
             </a>
         </h2>
@@ -27,7 +34,7 @@
                 <span class="torrent-search-grouped__directors-by">by</span>
                 @foreach ($media->creators as $creator)
                     <a
-                        href="{{ route('mediahub.persons.show', ['id' => $creator->id, 'occupationId' => App\Enums\Occupations::CREATOR->value]) }}"
+                        href="{{ route('mediahub.persons.show', ['id' => $creator->id, 'occupationId' => App\Enums\Occupation::CREATOR->value]) }}"
                         class="torrent-search--grouped__director"
                     >
                         {{ $creator->name }}

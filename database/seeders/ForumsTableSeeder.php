@@ -18,26 +18,9 @@ use Illuminate\Database\Seeder;
 
 class ForumsTableSeeder extends Seeder
 {
-    private $forums;
-
-    public function __construct()
-    {
-        $this->forums = $this->getForums();
-    }
-
-    /**
-     * Auto generated seed file.
-     */
     public function run(): void
     {
-        foreach ($this->forums as $forum) {
-            Forum::updateOrCreate($forum);
-        }
-    }
-
-    private function getForums(): array
-    {
-        return [
+        Forum::upsert([
             [
                 'id'                      => 1,
                 'position'                => 1,
@@ -70,6 +53,6 @@ class ForumsTableSeeder extends Seeder
                 'created_at'              => '2023-11-11 18:29:22',
                 'updated_at'              => '2023-11-11 18:29:22',
             ],
-        ];
+        ], ['id']);
     }
 }

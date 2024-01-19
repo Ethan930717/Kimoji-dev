@@ -137,7 +137,7 @@ class TorrentController extends BaseController
         $torrent->name = $request->input('name');
         $torrent->music_url = $request->input('music_url');
         $torrent->description = $request->input('description');
-        $torrent->mediainfo = TorrentTools::anonymizeMediainfo($request->input('mediainfo'));
+        $torrent->mediainfo = TorrentTools::anonymizeMediainfo($request->string('mediainfo'));
         $torrent->bdinfo = $request->input('bdinfo');
         $torrent->info_hash = $infohash;
         $torrent->file_name = $fileName;
@@ -484,7 +484,7 @@ class TorrentController extends BaseController
                 ->when($request->filled('episodeNumber'), fn ($query) => $query->ofEpisode((int) $request->episodeNumber))
                 ->latest('sticky')
                 ->orderBy($request->input('sortField') ?? $this->sortField, $request->input('sortDirection') ?? $this->sortDirection)
-                ->cursorPaginate($request->input('perPage') ?? $this->perPage);
+                ->cursorPaginate(min($request->input('perPage') ?? $this->perPage, 100));
 
             $movieIds = $torrents->getCollection()->where('meta', '=', 'movie')->pluck('tmdb');
             $tvIds = $torrents->getCollection()->where('meta', '=', 'tv')->pluck('tmdb');

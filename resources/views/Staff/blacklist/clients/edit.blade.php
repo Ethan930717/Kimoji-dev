@@ -47,6 +47,19 @@
                 </p>
                 <p class="form__group">
                     <input
+                        id="peer_id_prefix"
+                        class="form__text"
+                        name="peer_id_prefix"
+                        placeholder=" "
+                        type="text"
+                        value="{{ $client->peer_id_prefix }}"
+                    />
+                    <label class="form__label form__label--floating" for="peer_id_prefix">
+                        Peer ID Prefix
+                    </label>
+                </p>
+                <p class="form__group">
+                    <input
                         id="reason"
                         class="form__text"
 

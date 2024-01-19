@@ -18,26 +18,9 @@ use Illuminate\Database\Seeder;
 
 class ResolutionsTableSeeder extends Seeder
 {
-    private $resolutions;
-
-    public function __construct()
-    {
-        $this->resolutions = $this->getResolutions();
-    }
-
-    /**
-     * Auto generated seed file.
-     */
     public function run(): void
     {
-        foreach ($this->resolutions as $resolution) {
-            Resolution::updateOrCreate($resolution);
-        }
-    }
-
-    private function getResolutions(): array
-    {
-        return [
+        Resolution::upsert([
             [
                 'id'       => 1,
                 'name'     => '8K｜4320p',
@@ -68,6 +51,6 @@ class ResolutionsTableSeeder extends Seeder
                 'name'     => 'Other',
                 'position' => 6,
             ],
-        ];
+        ], ['id']);
     }
 }

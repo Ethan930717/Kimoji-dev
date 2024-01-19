@@ -46,6 +46,9 @@
             主题
         </a>
     </li>
+    <li class="nav-tabV2">
+        <a class="nav-tab__link" href="{{ route('yearly_overviews.index') }}">Overview</a>
+    </li>
 @endsection
 
 @section('main')

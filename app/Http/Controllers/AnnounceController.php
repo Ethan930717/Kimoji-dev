@@ -47,21 +47,9 @@ final class AnnounceController extends Controller
 
     // Port Blacklist
     private const BLACK_PORTS = [
-        // SSH Port
-        22,
-        // DNS queries
-        53,
         // Hyper Text Transfer Protocol (HTTP) - port used for web traffic
-        80,
-        81,
         8080,
         8081,
-        // 	Direct Connect Hub (unofficial)
-        411,
-        412,
-        413,
-        // HTTPS / SSL - encrypted web traffic, also used for VPN tunnels over HTTPS.
-        443,
         // Kazaa - peer-to-peer file sharing, some known vulnerabilities, and at least one worm (Benjamin) targeting it.
         1214,
         // IANA registered for Microsoft WBT Server, used for Windows Remote Desktop and Remote Assistance connections
@@ -184,10 +172,14 @@ final class AnnounceController extends Controller
         }
 
         // Block Blacklisted Clients
-        $clientBlacklist = cache()->rememberForever('client_blacklist', fn () => BlacklistClient::pluck('name')->toArray());
+        $blacklistedPeerIdPrefixes = cache()->rememberForever('client_blacklist', fn () => BlacklistClient::pluck('peer_id_prefix')->toArray());
 
-        if (\in_array($userAgent, $clientBlacklist)) {
-            throw new TrackerException(128, [':ua' => $request->header('User-Agent')]);
+        $peerId = $request->query->get('peer_id');
+
+        foreach ($blacklistedPeerIdPrefixes as $blacklistedPeerIdPrefix) {
+            if (str_starts_with($peerId, $blacklistedPeerIdPrefix)) {
+                throw new TrackerException(128, [':ua' => $request->header('User-Agent')]);
+            }
         }
     }
 
@@ -242,12 +234,14 @@ final class AnnounceController extends Controller
             }
         }
 
-        foreach (['uploaded', 'downloaded', 'left'] as $item) {
+        foreach (['port', 'uploaded', 'downloaded', 'left'] as $item) {
             $itemData = $queries[$item];
 
             if (!is_numeric($itemData) || $itemData < 0) {
                 throw new TrackerException(134, [':attribute' => $item]);
             }
+
+            $queries[$item] = (int) $itemData;
         }
 
         // Part.2 Extract optional announce fields
@@ -264,6 +258,8 @@ final class AnnounceController extends Controller
             if (!is_numeric($queries[$item]) || $queries[$item] < 0) {
                 throw new TrackerException(134, [':attribute' => $item]);
             }
+
+            $queries[$item] = (int) $queries[$item];
         }
 
         $queries['event'] = strtolower($queries['event']);
@@ -283,7 +279,7 @@ final class AnnounceController extends Controller
 
         if (
             !is_numeric($queries['port'])
-            || $queries['port'] < 0
+            || $queries['port'] < 1024 // Block system-reserved ports since 99.9% of the time they're fake and thus not connectable
             || $queries['port'] > 0xFFFF
             || \in_array($queries['port'], self::BLACK_PORTS, true)
         ) {
@@ -319,7 +315,7 @@ final class AnnounceController extends Controller
         }
 
         // If User Download Rights Are Disabled Return Error to Client
-        if ($user->can_download === false && $queries['left'] !== '0') {
+        if ($user->can_download === false && $queries['left'] !== 0) {
             throw new TrackerException(142);
         }
 
@@ -518,7 +514,7 @@ final class AnnounceController extends Controller
 
         $isNewPeer = $peer === null;
         $isDeadPeer = $queries['event'] === 'stopped';
-        $isSeeder = $queries['left'] == 0;
+        $isSeeder = $queries['left'] === 0;
 
         $newLeech = $isNewPeer && !$isDeadPeer && !$isSeeder;
         $stoppedLeech = !$isNewPeer && $isDeadPeer && !$isSeeder;
@@ -565,11 +561,11 @@ final class AnnounceController extends Controller
          * For non `stopped` event only where either the torrent has at least one leech, or the user is a leech.
          * We query peers from database and send peerlist, otherwise just quick return.
          */
-        if ($queries['event'] !== 'stopped' && ($queries['left'] != 0 || $torrent->leechers !== 0)) {
+        if ($queries['event'] !== 'stopped' && ($queries['left'] !== 0 || $torrent->leechers !== 0)) {
             $limit = (min($queries['numwant'], 25));
 
             // Get Torrents Peers (Only include leechers in a seeder's peerlist)
-            if ($queries['left'] == 0) {
+            if ($queries['left'] === 0) {
                 foreach ($torrent->peers as $peer) {
                     // Don't include other seeders, inactive peers, nor other peers belonging to the same user
                     if ($peer->seeder || !$peer->active || $peer->user_id === $user->id) {
@@ -718,20 +714,51 @@ final class AnnounceController extends Controller
             ]);
         }
 
-        // Peer update
-        ProcessAnnounce::dispatch(
-            bin2hex($queries['peer_id']),
-            bin2hex($queries['ip-address']),
-            $queries['port'],
-            bin2hex($queries['user-agent']),
-            $queries['uploaded'],
-            $queries['downloaded'],
-            $queries['left'],
-            $queries['left'] == 0,
-            $torrent->id,
-            $user->id,
-            $event !== 'stopped',
-        );
+        // Peer Updates
+        // Don't Dispatch ProcessAnnounce Job To Queue If Connectable Check Is Disabled For Performance Reasons
+        if (config('announce.connectable_check')) {
+            /**
+             * Process Peers Job.
+             *
+             * @see ProcessAnnounce
+             */
+            ProcessAnnounce::dispatch(
+                bin2hex($queries['peer_id']),
+                bin2hex($queries['ip-address']),
+                $queries['port'],
+                bin2hex($queries['user-agent']),
+                $queries['uploaded'],
+                $queries['downloaded'],
+                $queries['left'],
+                $queries['left'] === 0,
+                $torrent->id,
+                $user->id,
+                $event !== 'stopped',
+            );
+        } else {
+            /**
+             * Peer batch upsert.
+             *
+             * @see \App\Console\Commands\AutoUpsertPeers
+             */
+            Redis::connection('announce')->command('RPUSH', [
+                config('cache.prefix').':peers:batch',
+                serialize([
+                    'peer_id'     => $queries['peer_id'],
+                    'ip'          => $queries['ip-address'],
+                    'port'        => $queries['port'],
+                    'agent'       => $queries['user-agent'],
+                    'uploaded'    => $queries['uploaded'],
+                    'downloaded'  => $queries['downloaded'],
+                    'left'        => $queries['left'],
+                    'seeder'      => $queries['left'] === 0,
+                    'torrent_id'  => $torrent->id,
+                    'user_id'     => $user->id,
+                    'active'      => $event !== 'stopped',
+                    'connectable' => false,
+                ])
+            ]);
+        }
 
         /**
          * History batch upsert.
@@ -750,7 +777,7 @@ final class AnnounceController extends Controller
                 'downloaded'        => $event === 'started' ? 0 : $creditedDownloadedDelta,
                 'actual_downloaded' => $event === 'started' ? 0 : $downloadedDelta,
                 'client_downloaded' => $queries['downloaded'],
-                'seeder'            => $queries['left'] == 0,
+                'seeder'            => $queries['left'] === 0,
                 'active'            => $event !== 'stopped',
                 'seedtime'          => 0,
                 'immune'            => $group->is_immune,
@@ -786,7 +813,7 @@ final class AnnounceController extends Controller
 
         $isNewPeer = $isNewPeer || !$peer->active;
         $isDeadPeer = $event === 'stopped';
-        $isSeeder = $queries['left'] == 0;
+        $isSeeder = $queries['left'] === 0;
 
         $newSeed = $isNewPeer && !$isDeadPeer && $isSeeder;
         $newLeech = $isNewPeer && !$isDeadPeer && !$isSeeder;
