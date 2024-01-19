@@ -154,9 +154,9 @@ class UserGroupChanged extends Notification implements ShouldQueue
         $groupMessage = $this->getGroupMessage($groupName);
 
         return [
-            'title' => '升级通知',
+            'title' => '等级变化通知',
             'body'  => $groupMessage,
-            'url'   => '/pages/8',
+            'url'   => '/wikis/1',
         ];
     }
 }
