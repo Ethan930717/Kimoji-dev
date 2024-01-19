@@ -120,7 +120,7 @@
     <div class="meta__chips">
         <section class="meta__chip-container">
             <h2 class="meta__heading">演员</h2>
-            @foreach ($meta?->credits?->where('occupation_id', '=', App\Enums\Occupations::ACTOR->value)?->sortBy('order') ?? [] as $credit)
+            @foreach ($meta?->credits?->where('occupation_id', '=', App\Enums\Occupation::ACTOR->value)?->sortBy('order') ?? [] as $credit)
                 <article class="meta-chip-wrapper">
                     <a href="{{ route('mediahub.persons.show', ['id' => $credit->person->id, 'occupationId' => $credit->occupation_id]) }}" class="meta-chip">
                         @if ($credit->person->still)
@@ -140,7 +140,7 @@
         </section>
         <section class="meta__chip-container" title="Crew">
             <h2 class="meta__heading">工作人员</h2>
-            @foreach($meta?->credits?->where('occupation_id', '!=', App\Enums\Occupations::ACTOR->value)?->sortBy('occupation.position') ?? [] as $credit)
+            @foreach($meta?->credits?->where('occupation_id', '!=', App\Enums\Occupation::ACTOR->value)?->sortBy('occupation.position') ?? [] as $credit)
                 <article class="meta-chip-wrapper">
                     <a href="{{ route('mediahub.persons.show', ['id' => $credit->person->id, 'occupationId' => $credit->occupation_id]) }}" class="meta-chip">
                         @if ($credit->person->still)
