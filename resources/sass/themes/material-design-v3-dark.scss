@@ -7,11 +7,6 @@
   --achievement-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4);
   --achievement-progress-bg: #444;
 
-  --alert-bg: #221E24;
-  --alert-fg: #999;
-  --alert-gap-color: #333;
-  --alert-gap-width: 1px;
-
   --article-card-bg: #343338;
   --article-card-fg: #aaa;
   --article-card-head-fg: #d8d7dc;
@@ -38,9 +33,6 @@
   --bbcode-rendered-danger-fg: #ff141ccc;
   --bbcode-rendered-quote-bg: #6662;
   --bbcode-rendered-quote-border: #3981F6;
-
-  --body-bg: #1A1820;
-  --body-fg: #d8d7dc;
 
   --breadcrumb-fg: #3981F6;
   --breadcrumb-active-fg: #4991F6;
@@ -122,13 +114,6 @@
   --legend-border: none;
   --legend-border-radius: 0;
 
-  --mediahub-card-bg: #3b3942;
-  --mediahub-card-fg: #ddd;
-  --mediahub-card-hover-fg: #fff;
-  --mediahub-card-border: none;
-  --mediahub-card-border-radius: 22px;
-  --mediahub-card-box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
-
   --meta-backdrop-filter:  brightness(30%);
   --meta-dropdown-backdrop-filter:  brightness(2) blur(10px);
   --meta-dropdown-bg: #4449;
@@ -156,9 +141,6 @@
 
   --notification-read: transparent;
   --notification-unread: #2bb666;
-
-  --option-bg: #343338;
-  --option-fg: #212121;
 
   --paginate-bg: #2A292E;
   --paginate-bg-hover: #3A393E;
@@ -317,12 +299,11 @@
   --torrent-tag-bg: transparent;
   --torrent-tag-hover-fg: #fff;
   --torrent-tag-hover-bg: rgba(255,255,255,0.1);
+}
 
-  --user-stat-card-bg: #3b3942;
-  --user-stat-card-fg: #ddd;
-  --user-stat-card-border: none;
-  --user-stat-card-border-radius: 22px;
-  --user-stat-card-box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+body {
+  background-color: #1A1820;
+  color: #d8d7dc;
 }
 
 .panel__body {

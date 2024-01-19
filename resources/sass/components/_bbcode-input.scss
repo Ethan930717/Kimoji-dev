@@ -27,7 +27,7 @@
 
 .bbcode-input__tab-input {
     opacity: 0;
-    position: absolute;
+    position: absolute !important; /* !important is necessary until site-wide radio button styling is removed */
 }
 
 .bbcode-input__tab-label {
@@ -59,7 +59,6 @@
     border-top-left-radius: var(--bbcode-input-border-radius);
     display: flex;
     align-items: center;
-    margin: 0;
 }
 
 .bbcode-input__icon-bar {
@@ -73,7 +72,12 @@
     list-style-type: none;
 }
 
+.bbcode-input__icon-bar abbr {
+    all: revert !important; /* can be removed once site-wide <abbr> styling is removed */
+}
+
 .bbcode-input__icon-separator {
+    all: revert; /* can be removed once site-wide <hr> styles are removed */
     margin: 11px 4px;
     align-self: stretch;
 }
@@ -81,7 +85,6 @@
 .bbcode-input__icon-bar-toggle {
     grid-area: toggle;
     border-top-right-radius: var(--bbcode-input-border-radius);
-    margin: 0;
 }
 
 .bbcode-input__input {
