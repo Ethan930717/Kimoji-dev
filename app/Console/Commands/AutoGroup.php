@@ -302,8 +302,8 @@ class AutoGroup extends Command
             if ($user->group_id != $oldGroupId) {
                 cache()->forget('user:'.$user->passkey);
 
+                $user->notify(new UserGroupChanged($user, $oldGroupId, $user->group_id));
                 Unit3dAnnounce::addUser($user);
-                $user->notify(new UserGroupChanged($user));
             }
         }
 
