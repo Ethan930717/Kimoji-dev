@@ -11,7 +11,7 @@
  * @license    https://www.gnu.org/licenses/agpl-3.0.en.html/ GNU Affero General Public License v3.0
  */
 
-use App\Enums\UserGroups;
+use App\Enums\UserGroup;
 
 return [
     /*
@@ -28,5 +28,5 @@ return [
     'account_age'  => 60,
     'last_login'   => 60,
     'soft_delete'  => 30,
-    'group_ids'    => [UserGroups::USER->value, UserGroups::POWERUSER->value, UserGroups::SUPERUSER->value, UserGroups::LEECH->value],
+    'group_ids'    => [UserGroup::USER->value, UserGroup::POWERUSER->value, UserGroup::SUPERUSER->value, UserGroup::LEECH->value],
 ];
