@@ -50,7 +50,13 @@ class ProcessTvJob implements ShouldQueue
 
         $tvScraper = new Client\TV($this->id);
 
-        $tv = Tv::updateOrCreate(['id' => $this->id], $tvScraper->getTv());
+        // 确保 $tvScraper->getTv() 返回的是一个数组
+        $tvData = $tvScraper->getTv();
+        if (!is_array($tvData)) {
+            $tvData = []; // 如果不是数组，使用空数组
+        }
+
+        $tv = Tv::updateOrCreate(['id' => $this->id], $tvData);
 
         // Companies
 
