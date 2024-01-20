@@ -52,7 +52,8 @@ class ProcessTvJob implements ShouldQueue
 
         // 确保 $tvScraper->getTv() 返回的是一个数组
         $tvData = $tvScraper->getTv();
-        if (!is_array($tvData)) {
+
+        if (!\is_array($tvData)) {
             $tvData = []; // 如果不是数组，使用空数组
         }
 
