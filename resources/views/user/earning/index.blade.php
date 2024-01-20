@@ -161,8 +161,8 @@
                     </tr>
                     <tr>
                         <td class="internal-seed">镇国大将</td>
-                        <td>正在保种的KIMOJI官种总体积（超过10T可晋升保种员，拥有邀请权限）</td>
-                        <td>{{ $internalTorrentsSize }}</td>
+                        <td>正在保种的音乐（有声）类官种体积 / 官种总体积</td>
+                        <td>{{$soundOfficialTorrentsSize}} / {{$internalTorrentsSize}}</td>
                         <td>{{ number_format($internalBonusPerHour, 2) }}</td>
                         <td x-cloak x-show="extendStats">{{ number_format($internalBonusPerHour * 24, 2) }}</td>
                         <td x-cloak x-show="extendStats">{{ number_format($internalBonusPerHour * 24 * 7, 2) }}</td>

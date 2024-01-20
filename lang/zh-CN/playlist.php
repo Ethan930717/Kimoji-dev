@@ -13,6 +13,7 @@
 
 return [
     'about'           => '在这里，您可以查看用户自定义喜欢的播单！',
+    'attached-success'  => '添加成功',
     'add-to-playlist' => '把资源加入播单',
     'add-torrent'     => '添加种子',
     'added-by'        => '来自:',
@@ -26,6 +27,9 @@ return [
     'list-about'      => '关于列表:',
     'is-private'      => '私人播单',
     'playlists'       => '播单',
+    'private-error'     => '这是一个私人播单，你无权访问',
+    'published-success' => '创建成功！',
     'title'           => '标题',
     'titles'          => '标题',
+    'update-success'    => '更新成功',
 ];

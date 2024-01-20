@@ -72,6 +72,15 @@ class AutoGroup extends Command
                 ->where('torrents.internal', '=', 1)
                 ->sum('torrents.size');
 
+            $soundOfficialTorrentsSize = Peer::query()
+                ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
+                ->where('peers.user_id', '=', $user->id)
+                ->where('peers.seeder', '=', 1)
+                ->where('peers.active', '=', 1)
+                ->whereIn('torrents.category_id', [3, 4]) // 筛选 category_id 为 3 或 4 的种子
+                ->where('torrents.internal', '=', 1)      // 确保种子是内部种子
+                ->sum('torrents.size');
+
             $TotalTorrentsSize = Peer::query()
                 ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
                 ->where('peers.user_id', '=', $user->id)
@@ -82,6 +91,7 @@ class AutoGroup extends Command
             // 将字节转换为TB
             $blurayTorrentsSizeTB = $blurayTorrentsSize / (1024 * 1024 * 1024 * 1024);
             $internalTorrentsSizeTB = $internalTorrentsSize / (1024 * 1024 * 1024 * 1024);
+            $soundOfficialTorrentsSizeTB = $soundOfficialTorrentsSize / (1024 * 1024 * 1024 * 1024);
             $totalTorrentsSizeTB = $TotalTorrentsSize / (1024 * 1024 * 1024 * 1024);
 
             // Temp Hard Coding of Group Requirements (Config Files To Come) (Upload in Bytes!) (Seedtime in Seconds!)
@@ -112,7 +122,7 @@ class AutoGroup extends Command
 
             // PowerUser >= 500GB
             if ($user->ratio >= config('other.ratio') &&
-                $internalTorrentsSizeTB >= 0.5 &&
+                $soundOfficialTorrentsSizeTB >= 0.5 &&
                 $user->group_id != Usergroup::POWERUSER->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
                 $user->group_id = Usergroup::POWERUSER->value;
@@ -121,6 +131,7 @@ class AutoGroup extends Command
 
             // SuperUser >= 1200GB
             if ($user->ratio >= config('other.ratio') &&
+                $soundOfficialTorrentsSizeTB >= 0.6 &&
                 $internalTorrentsSizeTB >= 1.2 &&
                 $user->group_id != Usergroup::SUPERUSER->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
@@ -130,6 +141,7 @@ class AutoGroup extends Command
 
             // ExtremeUser >= 2000GB
             if ($user->ratio >= config('other.ratio') &&
+                $soundOfficialTorrentsSizeTB >= 1 &&
                 $internalTorrentsSizeTB >= 2 &&
                 $user->group_id != Usergroup::EXTREMEUSER->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
@@ -139,6 +151,7 @@ class AutoGroup extends Command
 
             // InsaneUser >= 3000GB and account 8 month old
             if ($user->ratio >= config('other.ratio') &&
+                $soundOfficialTorrentsSizeTB >= 1.5 &&
                 $internalTorrentsSizeTB >= 3 &&
                 $user->group_id != Usergroup::INSANEUSER->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
@@ -148,6 +161,7 @@ class AutoGroup extends Command
 
             // Seeder Seedsize >= 20TiB and account 12 month old and seedtime average 30 days or better
             if ($user->ratio >= config('other.ratio') &&
+                $soundOfficialTorrentsSizeTB >= 2.1 &&
                 $internalTorrentsSizeTB >= 4.2 &&
                 $user->group_id != Usergroup::SEEDER->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
@@ -157,6 +171,7 @@ class AutoGroup extends Command
 
             // Archivist Seedsize >= 50TiB and account 545 days and seedtime average 60 days or better
             if ($user->ratio >= config('other.ratio') &&
+                $soundOfficialTorrentsSizeTB >= 3 &&
                 $internalTorrentsSizeTB >= 6 &&
                 $user->group_id != Usergroup::ARCHIVIST->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
@@ -166,6 +181,7 @@ class AutoGroup extends Command
 
             // Veteran >= 100TiB and account 2 year old
             if ($user->ratio >= config('other.ratio') &&
+                $soundOfficialTorrentsSizeTB >= 4 &&
                 $internalTorrentsSizeTB >= 8 &&
                 $user->group_id != Usergroup::VETERAN->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
@@ -177,7 +193,7 @@ class AutoGroup extends Command
             // 确保用户当前不是INTERNAL等级
             if ($user->group_id != Usergroup::INTERNAL->value) {
                 // 升级到KEEPER的条件
-                if (($blurayTorrentsSizeTB >= 15 || $internalTorrentsSizeTB >= 10 || $totalTorrentsSizeTB >= 20) &&
+                if (($blurayTorrentsSizeTB >= 15 || $internalTorrentsSizeTB >= 12 || $totalTorrentsSizeTB >= 20) &&
                     $user->group_id != Usergroup::KEEPER->value) {
                     $user->group_id = Usergroup::KEEPER->value;
                     $user->save();
@@ -186,41 +202,47 @@ class AutoGroup extends Command
 
             // 如果是KEEPER但不再满足条件，则根据其他规则自动降级
             if ($user->group_id == Usergroup::KEEPER->value &&
-                $blurayTorrentsSizeTB < 15 && $internalTorrentsSizeTB < 10 && $totalTorrentsSizeTB < 20) {
+                $blurayTorrentsSizeTB < 15 && $internalTorrentsSizeTB < 12 && $totalTorrentsSizeTB < 20) {
                 // 检查是否满足Veteran等级的条件
                 if ($user->ratio >= config('other.ratio') &&
+                    $soundOfficialTorrentsSizeTB >= 4 &&
                     $internalTorrentsSizeTB >= 8) {
                     $user->group_id = Usergroup::VETERAN->value;
                 }
                 // 降级到Archivist的条件
                 elseif ($user->ratio >= config('other.ratio') &&
+                    $soundOfficialTorrentsSizeTB >= 3 &&
                     $internalTorrentsSizeTB >= 6) {
                     $user->group_id = Usergroup::ARCHIVIST->value;
                 }
                 // 降级到Seeder的条件
                 elseif ($user->ratio >= config('other.ratio') &&
+                    $soundOfficialTorrentsSizeTB >= 2.1 &&
                     $internalTorrentsSizeTB >= 4.2) {
                     $user->group_id = Usergroup::SEEDER->value;
                 }
 
                 // 检查是否满足InsaneUser等级的条件
                 elseif ($user->ratio >= config('other.ratio') &&
+                    $soundOfficialTorrentsSizeTB >= 1.5 &&
                     $internalTorrentsSizeTB >= 3) {
                     $user->group_id = Usergroup::INSANEUSER->value;
                 }
                 // 检查是否满足ExtremeUser等级的条件
                 elseif ($user->ratio >= config('other.ratio') &&
+                    $soundOfficialTorrentsSizeTB >= 1 &&
                     $internalTorrentsSizeTB >= 2) {
                     $user->group_id = Usergroup::EXTREMEUSER->value;
                 }
                 // 检查是否满足SuperUser等级的条件
                 elseif ($user->ratio >= config('other.ratio') &&
+                    $soundOfficialTorrentsSizeTB >= 0.6 &&
                     $internalTorrentsSizeTB >= 1.2) {
                     $user->group_id = Usergroup::SUPERUSER->value;
                 }
                 // 检查是否满足PowerUser等级的条件
                 elseif ($user->ratio >= config('other.ratio') &&
-                    $internalTorrentsSizeTB >= 0.5) {
+                    $soundOfficialTorrentsSizeTB >= 0.5) {
                     $user->group_id = Usergroup::POWERUSER->value;
                 }
                 // 默认降级到User等级
@@ -258,38 +280,44 @@ class AutoGroup extends Command
                 $recentNonInternalTorrentCount < 30) {
                 // 检查是否满足Veteran等级的条件
                 if ($user->ratio >= config('other.ratio') &&
+                    $soundOfficialTorrentsSizeTB >= 4 &&
                     $internalTorrentsSizeTB >= 8) {
                     $user->group_id = Usergroup::VETERAN->value;
                 }
                 // 降级到Archivist的条件
                 elseif ($user->ratio >= config('other.ratio') &&
+                    $soundOfficialTorrentsSizeTB >= 3 &&
                     $internalTorrentsSizeTB >= 6) {
                     $user->group_id = Usergroup::ARCHIVIST->value;
                 }
                 // 降级到Seeder的条件
                 elseif ($user->ratio >= config('other.ratio') &&
+                    $soundOfficialTorrentsSizeTB >= 2.1 &&
                     $internalTorrentsSizeTB >= 4.2) {
                     $user->group_id = Usergroup::SEEDER->value;
                 }
 
                 // 检查是否满足InsaneUser等级的条件
                 elseif ($user->ratio >= config('other.ratio') &&
+                    $soundOfficialTorrentsSizeTB >= 1.5 &&
                     $internalTorrentsSizeTB >= 3) {
                     $user->group_id = Usergroup::INSANEUSER->value;
                 }
                 // 检查是否满足ExtremeUser等级的条件
                 elseif ($user->ratio >= config('other.ratio') &&
+                    $soundOfficialTorrentsSizeTB >= 1 &&
                     $internalTorrentsSizeTB >= 2) {
                     $user->group_id = Usergroup::EXTREMEUSER->value;
                 }
                 // 检查是否满足SuperUser等级的条件
                 elseif ($user->ratio >= config('other.ratio') &&
+                    $soundOfficialTorrentsSizeTB >= 0.6 &&
                     $internalTorrentsSizeTB >= 1.2) {
                     $user->group_id = Usergroup::SUPERUSER->value;
                 }
                 // 检查是否满足PowerUser等级的条件
                 elseif ($user->ratio >= config('other.ratio') &&
-                    $internalTorrentsSizeTB >= 0.5) {
+                    $soundOfficialTorrentsSizeTB >= 0.5) {
                     $user->group_id = Usergroup::POWERUSER->value;
                 }
                 // 默认降级到User等级
