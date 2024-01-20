@@ -103,6 +103,14 @@
                     <span class="torrent-search--list__resolution">
                         {{ $torrent->resolution->name ?? '' }}
                     </span>
+                @elseif ($torrent->category->music_meta)
+                    <span class="torrent-search--list__resolution">
+                        {{ $torrent->distributor->name ?? '' }}
+                    </span>
+                @elseif ($torrent->category->no_meta)
+                    <span class="torrent-search--list__resolution">
+                        {{ $torrent->region->name ?? '' }}
+                    </span>
                 @endif
                 <span class="torrent-search--list__type">
                     {{ $torrent->type->name ?? '' }}

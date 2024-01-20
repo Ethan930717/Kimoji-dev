@@ -152,7 +152,7 @@
                     </tr>
                     <tr>
                         <td class="bluray-seed">原盘大师</td>
-                        <td>正在保种的原盘资源总体积（超过15T可晋升保种员，拥有邀请权限）</td>
+                        <td>正在保种的原盘资源总体积</td>
                         <td>{{ $blurayTorrentsSize }}</td>
                         <td>{{ number_format($blurayBonusPerHour, 2) }}</td>
                         <td x-cloak x-show="extendStats">{{ number_format($blurayBonusPerHour * 24, 2) }}</td>
