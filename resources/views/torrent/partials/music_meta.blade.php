@@ -4,10 +4,13 @@
     @else
         <img class="meta__backdrop" src="{{ url('/files/img/torrent-cover_'.$torrent->id.'.jpg') }}" alt="Backdrop">
     @endif
+        @php
+            $parts = explode('-', $torrent->name);
+            $title = count($parts) > 2 ? implode('-', array_slice($parts, 1)) : $torrent->name;
+            $singerName = count($parts) > 1 ? trim($parts[0]) : '';
+        @endphp
         <a class="meta__title-link">
-            <h1 class="meta__title">
-                {{ count($parts = explode('-', $torrent->name)) > 2 ? implode('-', array_slice($parts, 0, 2)) : $torrent->name }}
-            </h1>
+            <h1 class="meta__title">{{ $title }}</h1>
         </a>
         <a class="meta__poster-link">
             <img
@@ -31,16 +34,17 @@
         </div>
         <ul class="meta__ids">
             <li class="meta__imdb">
-                <a
-                        class="meta-id-tag"
-                        title="Internet Movie Database"
-                        target="_blank"
-                >
+                <a class="meta-id-tag" title="Internet Movie Database" target="_blank"
+                   href="{{ route('torrents.index', ['distributors' => [$torrent->distributor->id]]) }}">
                     {{ $torrent?->distributor->name ?? '未知风格' }}
                 </a>
+                @if ($singerName)
+                    <a class="meta-id-tag" href="/torrents?perPage=25&name={{ urlencode($singerName) }}" target="_blank">
+                        {{ $singerName }}
+                    </a>
+                @endif
             </li>
-        </ul>
-        @php
+        </ul>        @php
             $description = $torrent->description;
             $pattern = '/专辑介绍\]\[size=16\]\[color=white\]\[center\](.*?)\[\/center\]/s';
             $matches = [];
@@ -51,7 +55,9 @@
                 $spoilerContent = '';
             }
         @endphp
-        <p class="meta__description">{{ $spoilerContent }}</p>
+        <p class="meta__description">
+            {{ mb_strlen($spoilerContent) > 200 ? mb_substr($spoilerContent, 0, 200) . '...' : $spoilerContent }}
+        </p>
         @php
             $musicUrl = $torrent?->music_url;
             $lrcUrl = null;

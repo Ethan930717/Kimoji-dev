@@ -1,7 +1,7 @@
 <nav class="top-nav" x-data="{ expanded: false }" x-bind:class="expanded && 'mobile'">
     <div class="top-nav__left">
         <a class="top-nav__branding" href="{{ route('home.index') }}" style="display: flex; align-items: center; justify-content: center;">
-            <img src="/img/indexlogo.png" alt="Site Logo" style="max-height: 30px;"> 
+            <img src="/img/indexlogo.png" alt="Site Logo" style="max-height: 30px;">
         </a>
         <livewire:quick-search-dropdown />
     </div>
@@ -207,10 +207,16 @@
                         {{ __('common.rules') }}
                     </a>
                 </li>
-                <li>
+<!--                <li>
                     <a href="{{ config('other.faq_url') }}">
                         <i class="{{ config('other.font-awesome') }} fa-question"></i>
                         {{ __('common.faq') }}
+                    </a>
+                </li>-->
+                <li>
+                    <a href="/wikis">
+                        <i class="{{ config('other.font-awesome') }} fa-wikipedia-w"></i>
+                        KIMOJI Wiki
                     </a>
                 </li>
                 <li>
@@ -299,7 +305,7 @@
                 <i class="{{ config('other.font-awesome') }} fa-sync-alt text-blue"></i>
                 {{ auth()->user()->formatted_ratio }}
             </li>
-        </ul> 
+        </ul>
         <ul class="top-nav__ratio-bar" x-bind:class="expanded && 'mobile'">
             <li class="ratio-bar__uploaded" title="{{ __('common.upload') }}">
                 <a href="{{ route('users.torrents.index', ['user' => auth()->user()]) }}">
@@ -362,7 +368,7 @@
                     {{ auth()->user()->fl_tokens }}
                 </a>
             </li>
-        </ul> 
+        </ul>
         <a class="top-nav__username--highresolution" href="{{ route('users.show', ['user' => auth()->user()]) }}">
             <span class="text-bold" style="color:{{ auth()->user()->group->color }}; background-image:{{ auth()->user()->group->effect }};">
                 <i class="{{ auth()->user()->group->icon }}"></i>

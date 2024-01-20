@@ -25,8 +25,8 @@
                     <thead>
                         <tr>
                             <th>{{ __('common.name') }}</th>
-                            <th>Created</th>
-                            <th>Updated</th>
+                            <th>创建</th>
+                            <th>更新</th>
                         </tr>
                     </thead>
                     <tbody>
