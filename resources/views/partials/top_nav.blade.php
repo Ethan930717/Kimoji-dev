@@ -215,8 +215,8 @@
                 </li>-->
                 <li>
                     <a href="/wikis">
-                        <i class="{{ config('other.font-awesome') }} fa-wikipedia-w"></i>
-                        KIMOJI Wiki
+                        <i class="fab fa-wikipedia-w"></i>
+                        KIMOJI WIKI
                     </a>
                 </li>
                 <li>
