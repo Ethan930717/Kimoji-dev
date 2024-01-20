@@ -35,21 +35,19 @@
 
 @section('main')
     <section class="panelV2">
-        <h2 class="panel__heading">Yearly Overview</h2>
+        <h2 class="panel__heading">年度报告</h2>
         <div class="panel__body">
             <div class="overview__opening">
-                <h1 class="overview__opening-heading">That's A Wrap!</h1>
+                <h1 class="overview__opening-heading">年终总结</h1>
                 <h2 class="overview__opening-subheading">{{ $year }}</h2>
                 <p class="overview__opening-text">
-                    Another strong year here at {{ config('app.name') }}. To every user who made a
-                    contribution big or small please accept our sincere thanks. Now, without further
-                    ado, here's the best and worst of the year!
+                    在过去的一年中，我们由衷的感谢每一位为KIMOJI做出贡献的好朋友们，下面，让我们来一起回顾过去一年中的点点滴滴吧
                 </p>
             </div>
         </div>
     </section>
     <section class="panelV2">
-        <h2 class="panel__heading">Top 10 Movies (Based on downloads count)</h2>
+        <h2 class="panel__heading">十大热门电影</h2>
         <div class="panel__body overview__poster-grid">
             @foreach ($topMovies as $work)
                 <figure class="top10-poster overview__poster">
@@ -69,7 +67,7 @@
         </div>
     </section>
     <section class="panelV2">
-        <h2 class="panel__heading">5 Worst Movies (Based on downloads count)</h2>
+        <h2 class="panel__heading">五部最不受欢迎电影</h2>
         <div class="panel__body overview__poster-grid">
             @foreach ($bottomMovies as $work)
                 <figure class="top10-poster overview__poster">
@@ -89,7 +87,7 @@
         </div>
     </section>
     <section class="panelV2">
-        <h2 class="panel__heading">Top 10 TV Shows (Based on downloads count)</h2>
+        <h2 class="panel__heading">十大热门剧集</h2>
         <div class="panel__body overview__poster-grid">
             @foreach ($topTv as $work)
                 <figure class="top10-poster overview__poster">
@@ -109,7 +107,7 @@
         </div>
     </section>
     <section class="panelV2">
-        <h2 class="panel__heading">5 Worst TV Shows (Based on downloads count)</h2>
+        <h2 class="panel__heading">五部最不受欢迎剧集</h2>
         <div class="panel__body overview__poster-grid">
             @foreach ($bottomTv as $work)
                 <figure class="top10-poster overview__poster">
@@ -129,7 +127,7 @@
         </div>
     </section>
     <section class="panelV2">
-        <h2 class="panel__heading">Top 10 Users (Based on number of torrent uploads made)</h2>
+        <h2 class="panel__heading">发种之星</h2>
         <div class="panel__body user-stat-card-container">
             @foreach ($uploaders as $uploader)
                 <article class="user-stat-card">
@@ -149,7 +147,7 @@
         </div>
     </section>
     <section class="panelV2">
-        <h2 class="panel__heading">Top 10 Users (Based on number of torrent requests made)</h2>
+        <h2 class="panel__heading">求种大王</h2>
         <div class="panel__body user-stat-card-container">
             @foreach ($requesters as $requester)
                 <article class="user-stat-card">
@@ -169,7 +167,7 @@
         </div>
     </section>
     <section class="panelV2">
-        <h2 class="panel__heading">Top 10 Users (Based on number of torrent requests filled)</h2>
+        <h2 class="panel__heading">悬赏达人</h2>
         <div class="panel__body user-stat-card-container">
             @foreach ($fillers as $filler)
                 <article class="user-stat-card">
@@ -189,7 +187,7 @@
         </div>
     </section>
     <section class="panelV2">
-        <h2 class="panel__heading">Top 10 Users (Based on number of comments made)</h2>
+        <h2 class="panel__heading">评论之星</h2>
         <div class="panel__body user-stat-card-container">
             @foreach ($commenters as $commenter)
                 <article class="user-stat-card">
@@ -209,7 +207,7 @@
         </div>
     </section>
     <section class="panelV2">
-        <h2 class="panel__heading">Top 10 Users (Based on number of posts made)</h2>
+        <h2 class="panel__heading">灌水大王</h2>
         <div class="panel__body user-stat-card-container">
             @foreach ($posters as $poster)
                 <article class="user-stat-card">
@@ -229,7 +227,7 @@
         </div>
     </section>
     <section class="panelV2">
-        <h2 class="panel__heading">Top 10 Users (Based on number of thanks given)</h2>
+        <h2 class="panel__heading">最有礼貌的人</h2>
         <div class="panel__body user-stat-card-container">
             @foreach ($thankers as $thanker)
                 <article class="user-stat-card">
@@ -249,28 +247,28 @@
         </div>
     </section>
     <section class="panelV2">
-        <h2 class="panel__heading">Overall</h2>
+        <h2 class="panel__heading">年度数据总览</h2>
         <dl class="key-value">
-            <dt>New users this year</dt>
+            <dt>今年新加入用户数</dt>
             <dd>{{ $newUsers }}</dd>
-            <dt>Movies uploaded this year</dt>
+            <dt>今年上传的电影总数</dt>
             <dd>{{ $movieUploads }}</dd>
-            <dt>TV Shows uploaded this year</dt>
+            <dt>今年上传的剧集总数</dt>
             <dd>{{ $tvUploads }}</dd>
-            <dt>Total torrents uploaded this year</dt>
+            <dt>今年上传的种子总数</dt>
             <dd>{{ $totalUploads }}</dd>
-            <dt>Total torrents downloaded this year</dt>
+            <dt>今年下载的种子总数</dt>
             <dd>{{ $totalDownloads }}</dd>
         </dl>
     </section>
     <section class="panelV2">
-        <h2 class="panel__heading">Closing Remarks</h2>
+        <h2 class="panel__heading">结语</h2>
         <div class="panel__body overview__closing">
-            <h3 class="overview__closing-heading">Thank You!</h3>
+            <h3 class="overview__closing-heading">KIMOJI！</h3>
             <h4 class="overview__closing-subheading">
-                For a wonderful {{ $year }} at {{ config('app.name') }}
+                感谢大家的参与，共同创造了精彩的 {{ $year }} 年
             </h4>
-            <span class="overview__closing-thanks">Special thanks from,</span>
+            <span class="overview__closing-thanks">来自KIMOJI全体组员的特别感谢：</span>
             @foreach ($staffers as $group)
                 <ul class="overview__staff-list">
                     @foreach ($group->users as $user)

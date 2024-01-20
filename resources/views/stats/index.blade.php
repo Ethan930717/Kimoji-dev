@@ -47,7 +47,7 @@
         </a>
     </li>
     <li class="nav-tabV2">
-        <a class="nav-tab__link" href="{{ route('yearly_overviews.index') }}">Overview</a>
+        <a class="nav-tab__link" href="{{ route('yearly_overviews.index') }}">年度报告</a>
     </li>
 @endsection
 
