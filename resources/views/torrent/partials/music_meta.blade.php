@@ -6,7 +6,13 @@
     @endif
         @php
             $parts = explode('-', $torrent->name);
-            $title = count($parts) > 2 ? implode('-', array_slice($parts, 1)) : $torrent->name;
+            if (count($parts) > 2) {
+                array_pop($parts); // 移除最后一部分
+                array_pop($parts); // 再次移除，这次是倒数第二部分
+                $title = implode('-', $parts);
+            } else {
+                $title = $torrent->name;
+            }
             $singerName = count($parts) > 1 ? trim($parts[0]) : '';
         @endphp
         <a class="meta__title-link">
@@ -34,15 +40,15 @@
         </div>
         <ul class="meta__ids">
             <li class="meta__imdb">
-                <a class="meta-id-tag" title="Internet Movie Database" target="_blank"
-                   href="{{ route('torrents.index', ['distributors' => [$torrent->distributor->id]]) }}">
-                    {{ $torrent?->distributor->name ?? '未知风格' }}
-                </a>
                 @if ($singerName)
                     <a class="meta-id-tag" href="/torrents?perPage=25&name={{ urlencode($singerName) }}" target="_blank">
                         {{ $singerName }}
                     </a>
                 @endif
+                <a class="meta-id-tag" title="Internet Movie Database" target="_blank"
+                   href="{{ route('torrents.index', ['distributors' => [$torrent->distributor->id]]) }}">
+                    {{ $torrent?->distributor->name ?? '未知风格' }}
+                </a>
             </li>
         </ul>        @php
             $description = $torrent->description;
