@@ -3,12 +3,10 @@
         <h2 class="panel__heading">{{ __('common.search') }}</h2>
         <div class="panel__body">
             <form class="form">
-                <div class="form__group">
-                    <p class="form__group">
-                        <input id="name" wire:model="name" class="form__text" placeholder=" " autofocus="">
-                        <label class="form__label form__label--floating" for="name">{{ __('torrent.name') }}</label>
-                    </p>
-                </div>
+                <p class="form__group">
+                    <input id="name" wire:model="name" class="form__text" placeholder=" " autofocus="">
+                    <label class="form__label form__label--floating" for="name">{{ __('torrent.name') }}</label>
+                </p>
                 <p class="form__group">
                     <label style="user-select: none" class="form__label" x-data="{ state: @entangle('rewarded'), ...ternaryCheckbox() }">
                         <input
