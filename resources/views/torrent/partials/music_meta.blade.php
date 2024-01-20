@@ -6,14 +6,10 @@
     @endif
         @php
             $parts = explode('-', $torrent->name);
-            if (count($parts) > 2) {
-                array_pop($parts); // 移除最后一部分
-                array_pop($parts); // 再次移除，这次是倒数第二部分
-                $title = implode('-', $parts);
-            } else {
-                $title = $torrent->name;
-            }
-            $singerName = count($parts) > 1 ? trim($parts[0]) : '';
+            $singerName = array_shift($parts); // 移除并获取第一个部分（歌手名称）
+            array_pop($parts); // 移除最后一部分
+            array_pop($parts); // 再次移除，这次是倒数第二部分
+            $title = implode('-', $parts); // 重新组合中间部分
         @endphp
         <a class="meta__title-link">
             <h1 class="meta__title">{{ $title }}</h1>
