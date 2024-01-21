@@ -40,9 +40,9 @@
                             <td>
                                 <x-user_tag :user="$user" :anon="$user->private_profile" />
                             </td>
-                            <td>
-                                {{ \App\Helpers\StringHelper::formatBytes($user->seedsize ?? 0) }}
-                            </td>
+                            <td>{{ \App\Helpers\StringHelper::formatBytes($user->seedsize ?? 0) }}</td>
+                            <td>{{ \App\Helpers\StringHelper::formatBytes($user->officialSeedsize ?? 0) }}</td> <!-- 官种体积 -->
+                            <td>{{ \App\Helpers\StringHelper::formatBytes($user->audioOfficialSeedsize ?? 0) }}</td> <!-- 音频类官种体积 -->
                         </tr>
                     @endforeach
                 </tbody>

@@ -196,16 +196,31 @@ class StatsController extends Controller
      */
     public function seeders(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
-        return view('stats.users.seeders', [
-            'seeders' => Peer::with('user')
-                ->select(DB::raw('user_id, count(distinct torrent_id) as value'))
-                ->where('seeder', '=', 1)
-                ->where('active', '=', 1)
-                ->groupBy('user_id')
-                ->orderByDesc('value')
-                ->take(100)
-                ->get(),
-        ]);
+        // 获取种子用户的基本统计数据
+        $seeders = Peer::with('user')
+            ->select(DB::raw('user_id, count(distinct torrent_id) as value'))
+            ->where('seeder', '=', 1)
+            ->where('active', '=', 1)
+            ->groupBy('user_id')
+            ->orderByDesc('value')
+            ->take(100)
+            ->get();
+
+        // 获取每个用户的官种总数和音频资源官种总数
+        foreach ($seeders as $seeder) {
+            $userId = $seeder->user_id;
+
+            $seeder->officialCount = Torrent::where('user_id', $userId)
+                ->where('internal', 1)
+                ->count();
+
+            $seeder->audioOfficialCount = Torrent::where('user_id', $userId)
+                ->where('internal', 1)
+                ->whereIn('category_id', [3, 4])
+                ->count();
+        }
+
+        return view('stats.users.seeders', compact('seeders'));
     }
 
     /**
@@ -274,12 +289,19 @@ class StatsController extends Controller
      */
     public function seedsize(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
-        return view('stats.users.seedsize', [
-            'users' => User::withSum('seedingTorrents as seedsize', 'size')
-                ->orderByDesc('seedsize')
-                ->take(100)
-                ->get(),
-        ]);
+        $users = User::withSum('seedingTorrents as seedsize', 'size')
+            ->withSum(['seedingTorrents as officialSeedsize' => function ($query) {
+                $query->where('internal', 1); // 官种
+            }], 'size')
+            ->withSum(['seedingTorrents as audioOfficialSeedsize' => function ($query) {
+                $query->where('internal', 1)
+                    ->whereIn('category_id', [3, 4]); // 音频类官种
+            }], 'size')
+            ->orderByDesc('seedsize')
+            ->take(100)
+            ->get();
+
+        return view('stats.users.seedsize', ['users' => $users]);
     }
 
     /**
