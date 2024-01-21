@@ -166,7 +166,7 @@ body.vscomp-popup-active {
 
 .vscomp-dropbox-container {
   width: 100%;
-  z-index: 9999 !important;
+  top: 100% !important; /* 或者其他适当的值 */
 }
 
 .vscomp-dropbox {
