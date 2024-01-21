@@ -196,12 +196,12 @@ class StatsController extends Controller
      */
     public function seeders(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
-        $seeders = Peer::with('user')
-            ->select(DB::raw('user_id, count(distinct torrent_id) as value'))
-            ->where('seeder', '=', 1)
-            ->where('active', '=', 1)
-            ->groupBy('user_id')
-            ->orderByDesc('value')
+        // 获取前100个种子用户
+        $users = User::withCount(['peers as seedingCount' => function ($query) {
+            $query->where('seeder', '=', 1)
+                ->where('active', '=', 1)
+                ->select(DB::raw('count(distinct torrent_id)'));
+        }])
             ->withCount(['torrents as officialCount' => function ($query) {
                 $query->where('internal', 1); // 官种
             }])
@@ -209,10 +209,11 @@ class StatsController extends Controller
                 $query->where('internal', 1)
                     ->whereIn('category_id', [3, 4]); // 音频类官种
             }])
+            ->orderByDesc('seedingCount')
             ->take(100)
             ->get();
 
-        return view('stats.users.seeders', compact('seeders'));
+        return view('stats.users.seeders', compact('users'));
     }
 
     /**
