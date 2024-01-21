@@ -554,7 +554,7 @@
                 <br>
                 <br>
 
-                <a href="/pages/7" style="font-size:18px; text-align:center; cursor:pointer;" id="repostRulesLink">
+                <a href="/wikis/3" style="font-size:18px; text-align:center; cursor:pointer;" id="repostRulesLink">
                     <i class="fas fa-music"></i> 音乐媒介说明
                 </a>
                 <br>
