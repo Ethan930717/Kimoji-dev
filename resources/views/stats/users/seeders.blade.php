@@ -27,26 +27,26 @@
         <div class="data-table-wrapper">
             <table class="data-table">
                 <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>{{ __('common.user') }}</th>
-                        <th>总保种数</th>
-                        <th>官种</th>
-                        <th>音频类官种</th>
-                    </tr>
+                <tr>
+                    <th>#</th>
+                    <th>{{ __('common.user') }}</th>
+                    <th>总保种数</th>
+                    <th>官种</th>
+                    <th>音频类官种</th>
+                </tr>
                 </thead>
                 <tbody>
-                    @foreach ($seeders as $user)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>
-                                <x-user_tag :user="$user->user" :anon="$user->user->private_profile" />
-                            </td>
-                            <td>{{ $user->value }}</td>
-                            <td>{{ $user->officialCount }}</td> <!-- 官种总数 -->
-                            <td>{{ $user->audioOfficialCount }}</td> <!-- 音频资源官种总数 -->
-                        </tr>
-                    @endforeach
+                @foreach ($users as $user)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>
+                            <x-user_tag :user="$user" :anon="$user->private_profile" />
+                        </td>
+                        <td>{{ $user->seedingCount }}</td>
+                        <td>{{ $user->officialCount }}</td> <!-- 官种总数 -->
+                        <td>{{ $user->audioOfficialCount }}</td> <!-- 音频资源官种总数 -->
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
