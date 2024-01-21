@@ -116,7 +116,7 @@
                                 class="form__select"
                                 placeholder=" "
                             >
-                                <option value="1" selected>体积</option>
+                                <option value="1" selected> </option>
                                 <option value="1000">KB</option>
                                 <option value="1024">KiB</option>
                                 <option value="1000000">MB</option>
@@ -150,7 +150,7 @@
                                 class="form__select"
                                 placeholder=" "
                             >
-                                <option value="1" selected>体积</option>
+                                <option value="1" selected> </option>
                                 <option value="1000">KB</option>
                                 <option value="1024">KiB</option>
                                 <option value="1000000">MB</option>
