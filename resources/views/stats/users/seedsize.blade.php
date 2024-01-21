@@ -30,7 +30,9 @@
                     <tr>
                         <th>#</th>
                         <th>{{ __('common.user') }}</th>
-                        <th>{{ __('torrent.seedsize') }}</th>
+                        <th>保种总体积</th>
+                        <th>官种体积</th>
+                        <th>音频类官种体积</th>
                     </tr>
                 </thead>
                 <tbody>

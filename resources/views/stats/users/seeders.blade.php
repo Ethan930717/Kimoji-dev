@@ -30,7 +30,9 @@
                     <tr>
                         <th>#</th>
                         <th>{{ __('common.user') }}</th>
-                        <th>{{ __('torrent.seeding') }}</th>
+                        <th>总保种数</th>
+                        <th>官种</th>
+                        <th>音频类官种</th>
                     </tr>
                 </thead>
                 <tbody>
