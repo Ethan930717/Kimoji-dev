@@ -166,7 +166,7 @@ body.vscomp-popup-active {
 
 .vscomp-dropbox-container {
   width: 100%;
-  z-index: 2
+  z-index: 9999 !important;
 }
 
 .vscomp-dropbox {
