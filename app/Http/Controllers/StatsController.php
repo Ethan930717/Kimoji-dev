@@ -202,10 +202,10 @@ class StatsController extends Controller
             ->where('active', '=', 1)
             ->groupBy('user_id')
             ->orderByDesc('value')
-            ->withCount(['torrents as officialCount' => function ($query) {
+            ->withCount(['torrents as officialCount' => function ($query): void {
                 $query->where('internal', 1); // 官种
             }])
-            ->withCount(['torrents as audioOfficialCount' => function ($query) {
+            ->withCount(['torrents as audioOfficialCount' => function ($query): void {
                 $query->where('internal', 1)
                     ->whereIn('category_id', [3, 4]); // 音频类官种
             }])
