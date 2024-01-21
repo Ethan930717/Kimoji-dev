@@ -45,9 +45,9 @@
                                     :anon="$user->user->private_profile"
                                 />
                             </td>
-                            <td>{{ $seeder->value }}</td>
-                            <td>{{ $seeder->officialCount }}</td> <!-- 官种总数 -->
-                            <td>{{ $seeder->audioOfficialCount }}</td> <!-- 音频资源官种总数 -->
+                            <td>{{ $user->value }}</td>
+                            <td>{{ $user->officialCount }}</td> <!-- 官种总数 -->
+                            <td>{{ $user->audioOfficialCount }}</td> <!-- 音频资源官种总数 -->
                         </tr>
                     @endforeach
                 </tbody>
