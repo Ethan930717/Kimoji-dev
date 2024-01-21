@@ -7,120 +7,256 @@
                     <button
                         class="form__button form__button--outlined form__button--centered"
                         x-on:click="open = ! open"
-                        x-text="open ? '{{ __('common.search-hide') }}' : '{{ __('common.search-advanced') }}'">
-                    </button>
+                        x-text="open ? '{{ __('common.search-hide') }}' : '{{ __('common.search-advanced') }}'"
+                    ></button>
                 </div>
             </div>
         </header>
-        <div class="panel__body" style="padding: 5px;">
+        <div class="panel__body" style="padding: 5px">
             <div class="form__group--horizontal">
                 <p class="form__group">
-                    <input id="name" wire:model="name" class="form__text" placeholder=" " autofocus>
-                    <label class="form__label form__label--floating" for="name">{{ __('torrent.name') }}</label>
+                    <input
+                        id="name"
+                        wire:model="name"
+                        class="form__text"
+                        placeholder=" "
+                        autofocus
+                    />
+                    <label class="form__label form__label--floating" for="name">
+                        {{ __('torrent.name') }}
+                    </label>
                 </p>
             </div>
             <form class="form" x-cloak x-show="open">
                 <div class="form__group--short-horizontal">
                     <p class="form__group">
-                        <input id="description" wire:model="description" class="form__text" placeholder=" ">
-                        <label class="form__label form__label--floating" for="description">{{ __('torrent.description') }}</label>
+                        <input
+                            id="description"
+                            wire:model="description"
+                            class="form__text"
+                            placeholder=" "
+                        />
+                        <label class="form__label form__label--floating" for="description">
+                            {{ __('torrent.description') }}
+                        </label>
                     </p>
                     <p class="form__group">
-                        <input id="mediainfo" wire:model="mediainfo" class="form__text" placeholder=" ">
-                        <label class="form__label form__label--floating" for="mediainfo">{{ __('torrent.media-info') }}</label>
+                        <input
+                            id="mediainfo"
+                            wire:model="mediainfo"
+                            class="form__text"
+                            placeholder=" "
+                        />
+                        <label class="form__label form__label--floating" for="mediainfo">
+                            {{ __('torrent.media-info') }}
+                        </label>
                     </p>
                     <p class="form__group">
-                        <input id="keywords" wire:model="keywords" class="form__text" placeholder=" ">
-                        <label class="form__label form__label--floating" for="keywords">{{ __('torrent.keywords') }}</label>
+                        <input
+                            id="keywords"
+                            wire:model="keywords"
+                            class="form__text"
+                            placeholder=" "
+                        />
+                        <label class="form__label form__label--floating" for="keywords">
+                            {{ __('torrent.keywords') }}
+                        </label>
                     </p>
                     <p class="form__group">
-                        <input id="uploader" wire:model="uploader" class="form__text" placeholder=" ">
-                        <label class="form__label form__label--floating" for="uploader">{{ __('torrent.uploader') }}</label>
+                        <input
+                            id="uploader"
+                            wire:model="uploader"
+                            class="form__text"
+                            placeholder=" "
+                        />
+                        <label class="form__label form__label--floating" for="uploader">
+                            {{ __('torrent.uploader') }}
+                        </label>
                     </p>
                 </div>
                 <div class="form__group--short-horizontal">
                     <p class="form__group">
-                        <input id="startYear" wire:model="startYear" class="form__text" placeholder=" ">
-                        <label class="form__label form__label--floating" for="startYear">{{ __('torrent.start-year') }}</label>
+                        <input
+                            id="startYear"
+                            wire:model="startYear"
+                            class="form__text"
+                            placeholder=" "
+                        />
+                        <label class="form__label form__label--floating" for="startYear">
+                            {{ __('torrent.start-year') }}
+                        </label>
                     </p>
                     <p class="form__group">
-                        <input id="endYear" wire:model="endYear" class="form__text" placeholder=" ">
-                        <label class="form__label form__label--floating" for="endYear">{{ __('torrent.end-year') }}</label>
+                        <input
+                            id="endYear"
+                            wire:model="endYear"
+                            class="form__text"
+                            placeholder=" "
+                        />
+                        <label class="form__label form__label--floating" for="endYear">
+                            {{ __('torrent.end-year') }}
+                        </label>
                     </p>
                     <div class="form__group--short-horizontal">
                         <p class="form__group">
-                            <input id="minSize" wire:model="minSize" class="form__text" placeholder=" ">
-                            <label class="form__label form__label--floating" for="minSize">最小体积</label>
+                            <input
+                                id="minSize"
+                                wire:model="minSize"
+                                class="form__text"
+                                placeholder=" "
+                            />
+                            <label class="form__label form__label--floating" for="minSize">
+                                最小体积
+                            </label>
                         </p>
                         <p class="form__group">
-                            <select id="minSizeMultiplier" wire:model="minSizeMultiplier" class="form__select" placeholder=" ">
+                            <select
+                                id="minSizeMultiplier"
+                                wire:model="minSizeMultiplier"
+                                class="form__select"
+                                placeholder=" "
+                            >
                                 <option value="1" selected>体积</option>
+                                <option value="1000">KB</option>
+                                <option value="1024">KiB</option>
                                 <option value="1000000">MB</option>
                                 <option value="1000000000">GB</option>
                                 <option value="1000000000000">TB</option>
                             </select>
-                            <label class="form__label form__label--floating" for="minSizeMultiplier">单位</label>
+                            <label
+                                class="form__label form__label--floating"
+                                for="minSizeMultiplier"
+                            >
+                                单位
+                            </label>
                         </p>
                     </div>
                     <div class="form__group--short-horizontal">
                         <p class="form__group">
-                            <input id="maxSize" wire:model="maxSize" class="form__text" placeholder=" ">
-                            <label class="form__label form__label--floating" for="maxSize">最大体积</label>
+                            <input
+                                id="maxSize"
+                                wire:model="maxSize"
+                                class="form__text"
+                                placeholder=" "
+                            />
+                            <label class="form__label form__label--floating" for="maxSize">
+                                最大体积
+                            </label>
                         </p>
                         <p class="form__group">
-                            <select id="maxSizeMultiplier" wire:model="maxSizeMultiplier" class="form__select" placeholder=" ">
+                            <select
+                                id="maxSizeMultiplier"
+                                wire:model="maxSizeMultiplier"
+                                class="form__select"
+                                placeholder=" "
+                            >
                                 <option value="1" selected>体积</option>
+                                <option value="1000">KB</option>
+                                <option value="1024">KiB</option>
                                 <option value="1000000">MB</option>
                                 <option value="1000000000">GB</option>
                                 <option value="1000000000000">TB</option>
                             </select>
-                            <label class="form__label form__label--floating" for="maxSizeMultiplier">单位</label>
+                            <label
+                                class="form__label form__label--floating"
+                                for="maxSizeMultiplier"
+                            >
+                                单位
+                            </label>
                         </p>
                     </div>
                 </div>
                 <div class="form__group--short-horizontal">
                     <div class="form__group">
-                        @php $regions = cache()->remember('regions', 3_600, fn () => App\Models\Region::orderBy('position')->get()) @endphp
+                        @php
+                            $regions = cache()->remember(
+                                'regions',
+                                3_600,
+                                fn () => App\Models\Region::orderBy('position')->get()
+                            )
+                        @endphp
+
                         <div id="regions" wire:ignore></div>
                     </div>
                     <div class="form__group">
-                        @php $distributors = cache()->remember('distributors', 3_600, fn () => App\Models\Distributor::orderBy('name')->get()) @endphp
+                        @php
+                            $distributors = cache()->remember(
+                                'distributors',
+                                3_600,
+                                fn () => App\Models\Distributor::orderBy('name')->get()
+                            )
+                        @endphp
+
                         <div id="distributors" wire:ignore></div>
                     </div>
                 </div>
                 <div class="form__group--short-horizontal">
                     <p class="form__group">
-                        <input id="playlistId" wire:model="playlistId" class="form__text" placeholder=" ">
-                        <label class="form__label form__label--floating" for="playlistId">播单</label>
+                        <input
+                            id="playlistId"
+                            wire:model="playlistId"
+                            class="form__text"
+                            placeholder=" "
+                        />
+                        <label class="form__label form__label--floating" for="playlistId">
+                            播单
+                        </label>
                     </p>
                     <p class="form__group">
-                        <input id="collectionId" wire:model="collectionId" class="form__text" placeholder=" ">
-                        <label class="form__label form__label--floating" for="collectionId">系列</label>
+                        <input
+                            id="collectionId"
+                            wire:model="collectionId"
+                            class="form__text"
+                            placeholder=" "
+                        />
+                        <label class="form__label form__label--floating" for="collectionId">
+                            系列
+                        </label>
                     </p>
                     <p class="form__group">
-                        <input id="companyId" wire:model="companyId" class="form__text" placeholder=" ">
-                        <label class="form__label form__label--floating" for="companyId">音乐风格</label>
+                        <input
+                            id="companyId"
+                            wire:model="companyId"
+                            class="form__text"
+                            placeholder=" "
+                        />
+                        <label class="form__label form__label--floating" for="companyId">
+                            发行
+                        </label>
                     </p>
                     <p class="form__group">
-                        <input id="networkId" wire:model="networkId" class="form__text" placeholder=" ">
-                        <label class="form__label form__label--floating" for="networkId">流媒体</label>
+                        <input
+                            id="networkId"
+                            wire:model="networkId"
+                            class="form__text"
+                            placeholder=" "
+                        />
+                        <label class="form__label form__label--floating" for="networkId">
+                            流媒体
+                        </label>
                     </p>
                 </div>
                 <div class="form__group--short-horizontal">
                     <p class="form__group">
-                        <input id="tmdbId" wire:model="tmdbId" class="form__text" placeholder=" ">
-                        <label class="form__label form__label--floating" for="tmdbId">TMDb ID</label>
+                        <input id="tmdbId" wire:model="tmdbId" class="form__text" placeholder=" " />
+                        <label class="form__label form__label--floating" for="tmdbId">
+                            TMDb ID
+                        </label>
                     </p>
                     <p class="form__group">
-                        <input id="imdbId" wire:model="imdbId" class="form__text" placeholder=" ">
-                        <label class="form__label form__label--floating" for="imdbId">IMDb ID</label>
+                        <input id="imdbId" wire:model="imdbId" class="form__text" placeholder=" " />
+                        <label class="form__label form__label--floating" for="imdbId">
+                            IMDb ID
+                        </label>
                     </p>
                     <p class="form__group">
-                        <input id="tvdbId" wire:model="tvdbId" class="form__text" placeholder=" ">
-                        <label class="form__label form__label--floating" for="tvdbId">TVDb ID</label>
+                        <input id="tvdbId" wire:model="tvdbId" class="form__text" placeholder=" " />
+                        <label class="form__label form__label--floating" for="tvdbId">
+                            TVDb ID
+                        </label>
                     </p>
                     <p class="form__group">
-                        <input id="malId" wire:model="malId" class="form__text" placeholder=" ">
+                        <input id="malId" wire:model="malId" class="form__text" placeholder=" " />
                         <label class="form__label form__label--floating" for="malId">MAL ID</label>
                     </p>
                 </div>
@@ -129,7 +265,14 @@
                         <fieldset class="form__fieldset">
                             <legend class="form__legend">{{ __('torrent.category') }}</legend>
                             <div class="form__fieldset-checkbox-container">
-                                @php $categories = cache()->remember('categories', 3_600, fn () => App\Models\Category::orderBy('position')->get()) @endphp
+                                @php
+                                    $categories = cache()->remember(
+                                        'categories',
+                                        3_600,
+                                        fn () => App\Models\Category::orderBy('position')->get()
+                                    )
+                                @endphp
+
                                 @foreach ($categories as $category)
                                     <p class="form__group">
                                         <label class="form__label">
@@ -138,7 +281,7 @@
                                                 type="checkbox"
                                                 value="{{ $category->id }}"
                                                 wire:model="categories"
-                                            >
+                                            />
                                             {{ $category->name }}
                                         </label>
                                     </p>
@@ -150,7 +293,14 @@
                         <fieldset class="form__fieldset">
                             <legend class="form__legend">{{ __('torrent.type') }}</legend>
                             <div class="form__fieldset-checkbox-container">
-                                @php $types = cache()->remember('types', 3_600, fn () => App\Models\Type::orderBy('position')->get()) @endphp
+                                @php
+                                    $types = cache()->remember(
+                                        'types',
+                                        3_600,
+                                        fn () => App\Models\Type::orderBy('position')->get()
+                                    )
+                                @endphp
+
                                 @foreach ($types as $type)
                                     <p class="form__group">
                                         <label class="form__label">
@@ -159,7 +309,7 @@
                                                 type="checkbox"
                                                 value="{{ $type->id }}"
                                                 wire:model="types"
-                                            >
+                                            />
                                             {{ $type->name }}
                                         </label>
                                     </p>
@@ -171,7 +321,14 @@
                         <fieldset class="form__fieldset">
                             <legend class="form__legend">{{ __('torrent.resolution') }}</legend>
                             <div class="form__fieldset-checkbox-container">
-                                @php $resolutions = cache()->remember('resolutions', 3_600, fn () => App\Models\Resolution::orderBy('position')->get()) @endphp
+                                @php
+                                    $resolutions = cache()->remember(
+                                        'resolutions',
+                                        3_600,
+                                        fn () => App\Models\Resolution::orderBy('position')->get()
+                                    )
+                                @endphp
+
                                 @foreach ($resolutions as $resolution)
                                     <p class="form__group">
                                         <label class="form__label">
@@ -180,7 +337,7 @@
                                                 type="checkbox"
                                                 value="{{ $resolution->id }}"
                                                 wire:model="resolutions"
-                                            >
+                                            />
                                             {{ $resolution->name }}
                                         </label>
                                     </p>
@@ -192,7 +349,14 @@
                         <fieldset class="form__fieldset">
                             <legend class="form__legend">{{ __('torrent.genre') }}</legend>
                             <div class="form__fieldset-checkbox-container">
-                                @php $genres = cache()->remember('genres', 3_600, fn () => App\Models\Genre::orderBy('name')->get()) @endphp
+                                @php
+                                    $genres = cache()->remember(
+                                        'genres',
+                                        3_600,
+                                        fn () => App\Models\Genre::orderBy('name')->get()
+                                    )
+                                @endphp
+
                                 @foreach ($genres as $genre)
                                     <p class="form__group">
                                         <label class="form__label">
@@ -201,7 +365,7 @@
                                                 type="checkbox"
                                                 value="{{ $genre->id }}"
                                                 wire:model="genres"
-                                            >
+                                            />
                                             {{ $genre->name }}
                                         </label>
                                     </p>
@@ -220,7 +384,7 @@
                                             type="checkbox"
                                             value="0"
                                             wire:model="free"
-                                        >
+                                        />
                                         无免费
                                     </label>
                                 </p>
@@ -298,7 +462,7 @@
                                             value="1"
                                             wire:model="refundable"
                                         >
-                                        Refundable
+                                        退款
                                     </label>
                                 </p>
                             </div>
@@ -315,7 +479,7 @@
                                             type="checkbox"
                                             value="1"
                                             wire:model="internal"
-                                        >
+                                        />
                                         {{ __('torrent.internal') }}
                                     </label>
                                 </p>
@@ -326,7 +490,7 @@
                                             type="checkbox"
                                             value="1"
                                             wire:model="personalRelease"
-                                        >
+                                        />
                                         {{ __('torrent.personal-release') }}
                                     </label>
                                 </p>
@@ -337,7 +501,7 @@
                                             type="checkbox"
                                             value="1"
                                             wire:model="stream"
-                                        >
+                                        />
                                         {{ __('torrent.stream-optimized') }}
                                     </label>
                                 </p>
@@ -348,7 +512,7 @@
                                             type="checkbox"
                                             value="1"
                                             wire:model="sd"
-                                        >
+                                        />
                                         {{ __('torrent.sd-content') }}
                                     </label>
                                 </p>
@@ -359,7 +523,7 @@
                                             type="checkbox"
                                             value="1"
                                             wire:model="highspeed"
-                                        >
+                                        />
                                         {{ __('common.high-speeds') }}
                                     </label>
                                 </p>
@@ -370,7 +534,7 @@
                                             type="checkbox"
                                             value="1"
                                             wire:model="bookmarked"
-                                        >
+                                        />
                                         {{ __('common.bookmarked') }}
                                     </label>
                                 </p>
@@ -381,7 +545,7 @@
                                             type="checkbox"
                                             value="1"
                                             wire:model="wished"
-                                        >
+                                        />
                                         {{ __('common.wished') }}
                                     </label>
                                 </p>
@@ -399,7 +563,7 @@
                                             type="checkbox"
                                             value="1"
                                             wire:model="alive"
-                                        >
+                                        />
                                         {{ __('torrent.alive') }}
                                     </label>
                                 </p>
@@ -432,7 +596,7 @@
                                             type="checkbox"
                                             value="1"
                                             wire:model="graveyard"
-                                        >
+                                        />
                                         {{ __('graveyard.graveyard') }}
                                     </label>
                                 </p>
@@ -501,6 +665,37 @@
                             </div>
                         </fieldset>
                     </div>
+                    <div class="form__group">
+                        <fieldset class="form__fieldset">
+                            <legend class="form__legend">Primary Language</legend>
+                            <div class="form__fieldset-checkbox-container">
+                                @php
+                                    $primaryLanguages = cache()->remember(
+                                        'torrent-search:languages',
+                                        3600,
+                                        fn () => \App\Models\Movie::select('original_language')
+                                            ->distinct()
+                                            ->orderBy('original_language')
+                                            ->pluck('original_language')
+                                    )
+                                @endphp
+
+                                @foreach ($primaryLanguages as $primaryLanguage)
+                                    <p class="form__group">
+                                        <label class="form__label">
+                                            <input
+                                                class="form__checkbox"
+                                                type="checkbox"
+                                                value="{{ $primaryLanguage }}"
+                                                wire:model="primaryLanguages"
+                                            />
+                                            {{ $primaryLanguage }}
+                                        </label>
+                                    </p>
+                                @endforeach
+                            </div>
+                        </fieldset>
+                    </div>
                 </div>
             </form>
         </div>
@@ -511,30 +706,18 @@
             <div class="panel__actions">
                 <div class="panel__action">
                     <div class="form__group">
-                        <select
-                            id="view"
-                            class="form__select"
-                            wire:model="view"
-                            required
-                        >
+                        <select id="view" class="form__select" wire:model="view" required>
                             <option value="list">{{ __('torrent.list') }}</option>
                             <option value="card">{{ __('torrent.cards') }}</option>
                             <option value="group">{{ __('torrent.groupings') }}</option>
                             <option value="poster">{{ __('torrent.poster') }}</option>
                         </select>
-                        <label class="form__label form__label--floating" for="view">
-                            布局
-                        </label>
+                        <label class="form__label form__label--floating" for="view">布局</label>
                     </div>
                 </div>
                 <div class="panel__action">
                     <div class="form__group">
-                        <select
-                            id="perPage"
-                            class="form__select"
-                            wire:model="perPage"
-                            required
-                        >
+                        <select id="perPage" class="form__select" wire:model="perPage" required>
                             @if (\in_array($view, ['card', 'poster']))
                                 <option>24</option>
                                 <option>48</option>
@@ -555,42 +738,75 @@
             </div>
         </header>
         {{ $torrents->links('partials.pagination') }}
-        @switch (true)
+
+        @switch(true)
             @case($view === 'list')
                 <div class="data-table-wrapper torrent-search--list__results">
                     <table class="data-table">
                         <thead>
-                            <tr @class([
-                                'torrent-search--list__headers' => auth()->user()->show_poster,
-                                'torrent-search--list__no-poster-headers' => ! auth()->user()->show_poster,
-                            ])>
+                            <tr
+                                @class([
+                                    'torrent-search--list__headers' => auth()->user()->show_poster,
+                                    'torrent-search--list__no-poster-headers' => ! auth()->user()->show_poster,
+                                ])
+                            >
                                 @if (auth()->user()->show_poster)
                                     <th class="torrent-search--list__poster-header">海报</th>
                                 @endif
+
                                 <th class="torrent-search--list__format-header">类型</th>
-                                <th class="torrent-search--list__name-header" wire:click="sortBy('name')" role="columnheader button">
+                                <th
+                                    class="torrent-search--list__name-header"
+                                    wire:click="sortBy('name')"
+                                    role="columnheader button"
+                                >
                                     {{ __('torrent.name') }}
                                     @include('livewire.includes._sort-icon', ['field' => 'name'])
                                 </th>
-                                <th class="torrent-search--list__actions-header">{{ __('common.actions') }}</th>
+                                <th class="torrent-search--list__actions-header">
+                                    {{ __('common.actions') }}
+                                </th>
                                 <th class="torrent-search--list__ratings-header">评分</th>
-                                <th class="torrent-search--list__size-header" wire:click="sortBy('size')" role="columnheader button">
+                                <th
+                                    class="torrent-search--list__size-header"
+                                    wire:click="sortBy('size')"
+                                    role="columnheader button"
+                                >
                                     {{ __('torrent.size') }}
                                     @include('livewire.includes._sort-icon', ['field' => 'size'])
                                 </th>
-                                <th class="torrent-search--list__seeders-header" wire:click="sortBy('seeders')" role="columnheader button" title="{{ __('torrent.seeders') }}">
+                                <th
+                                    class="torrent-search--list__seeders-header"
+                                    wire:click="sortBy('seeders')"
+                                    role="columnheader button"
+                                    title="{{ __('torrent.seeders') }}"
+                                >
                                     <i class="fas fa-arrow-alt-circle-up"></i>
                                     @include('livewire.includes._sort-icon', ['field' => 'seeders'])
                                 </th>
-                                <th class="torrent-search--list__leechers-header" wire:click="sortBy('leechers')" role="columnheader button" title="{{ __('torrent.leechers') }}">
+                                <th
+                                    class="torrent-search--list__leechers-header"
+                                    wire:click="sortBy('leechers')"
+                                    role="columnheader button"
+                                    title="{{ __('torrent.leechers') }}"
+                                >
                                     <i class="fas fa-arrow-alt-circle-down"></i>
                                     @include('livewire.includes._sort-icon', ['field' => 'leechers'])
                                 </th>
-                                <th class="torrent-search--list__completed-header" wire:click="sortBy('times_completed')" role="columnheader button" title="{{ __('torrent.completed') }}">
+                                <th
+                                    class="torrent-search--list__completed-header"
+                                    wire:click="sortBy('times_completed')"
+                                    role="columnheader button"
+                                    title="{{ __('torrent.completed') }}"
+                                >
                                     <i class="fas fa-check-circle"></i>
                                     @include('livewire.includes._sort-icon', ['field' => 'times_completed'])
                                 </th>
-                                <th class="torrent-search--list__age-header" wire:click="sortBy('created_at')" role="columnheader button">
+                                <th
+                                    class="torrent-search--list__age-header"
+                                    wire:click="sortBy('created_at')"
+                                    role="columnheader button"
+                                >
                                     {{ __('torrent.age') }}
                                     @include('livewire.includes._sort-icon', ['field' => 'created_at'])
                                 </th>
@@ -598,7 +814,11 @@
                         </thead>
                         <tbody>
                             @forelse ($torrents as $torrent)
-                                <x-torrent.row :meta="$torrent->meta" :torrent="$torrent" :personalFreeleech="$personalFreeleech" />
+                                <x-torrent.row
+                                    :meta="$torrent->meta"
+                                    :torrent="$torrent"
+                                    :personalFreeleech="$personalFreeleech"
+                                />
                             @empty
                                 <tr>
                                     <td colspan="10">{{ __('common.no-result') }}</td>
@@ -607,33 +827,60 @@
                         </tbody>
                     </table>
                 </div>
-                @break
 
+                @break
             @case($view === 'card')
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th class="torrent-search--list__name-header" wire:click="sortBy('name')" role="columnheader button">
+                            <th
+                                class="torrent-search--list__name-header"
+                                wire:click="sortBy('name')"
+                                role="columnheader button"
+                            >
                                 {{ __('torrent.name') }}
                                 @include('livewire.includes._sort-icon', ['field' => 'name'])
                             </th>
-                            <th class="torrent-search--list__size-header" wire:click="sortBy('size')" role="columnheader button">
+                            <th
+                                class="torrent-search--list__size-header"
+                                wire:click="sortBy('size')"
+                                role="columnheader button"
+                            >
                                 {{ __('torrent.size') }}
                                 @include('livewire.includes._sort-icon', ['field' => 'size'])
                             </th>
-                            <th class="torrent-search--list__seeders-header" wire:click="sortBy('seeders')" role="columnheader button" title="{{ __('torrent.seeders') }}">
+                            <th
+                                class="torrent-search--list__seeders-header"
+                                wire:click="sortBy('seeders')"
+                                role="columnheader button"
+                                title="{{ __('torrent.seeders') }}"
+                            >
                                 <i class="fas fa-arrow-alt-circle-up"></i>
                                 @include('livewire.includes._sort-icon', ['field' => 'seeders'])
                             </th>
-                            <th class="torrent-search--list__leechers-header" wire:click="sortBy('leechers')" role="columnheader button" title="{{ __('torrent.leechers') }}">
+                            <th
+                                class="torrent-search--list__leechers-header"
+                                wire:click="sortBy('leechers')"
+                                role="columnheader button"
+                                title="{{ __('torrent.leechers') }}"
+                            >
                                 <i class="fas fa-arrow-alt-circle-down"></i>
                                 @include('livewire.includes._sort-icon', ['field' => 'leechers'])
                             </th>
-                            <th class="torrent-search--list__completed-header" wire:click="sortBy('times_completed')" role="columnheader button" title="{{ __('torrent.completed') }}">
+                            <th
+                                class="torrent-search--list__completed-header"
+                                wire:click="sortBy('times_completed')"
+                                role="columnheader button"
+                                title="{{ __('torrent.completed') }}"
+                            >
                                 <i class="fas fa-check-circle"></i>
                                 @include('livewire.includes._sort-icon', ['field' => 'times_completed'])
                             </th>
-                            <th class="torrent-search--list__age-header" wire:click="sortBy('created_at')" role="columnheader button">
+                            <th
+                                class="torrent-search--list__age-header"
+                                wire:click="sortBy('created_at')"
+                                role="columnheader button"
+                            >
                                 {{ __('common.created_at') }}
                                 @include('livewire.includes._sort-icon', ['field' => 'created_at'])
                             </th>
@@ -647,17 +894,26 @@
                         {{ __('common.no-result') }}
                     @endforelse
                 </div>
-                @break
 
+                @break
             @case($view === 'group')
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th class="torrent-search--list__completed-header" wire:click="sortBy('times_completed')" role="columnheader button" title="{{ __('torrent.completed') }}">
+                            <th
+                                class="torrent-search--list__completed-header"
+                                wire:click="sortBy('times_completed')"
+                                role="columnheader button"
+                                title="{{ __('torrent.completed') }}"
+                            >
                                 <i class="fas fa-check-circle"></i>
                                 @include('livewire.includes._sort-icon', ['field' => 'times_completed'])
                             </th>
-                            <th class="torrent-search--list__age-header" wire:click="sortBy('created_at')" role="columnheader button">
+                            <th
+                                class="torrent-search--list__age-header"
+                                wire:click="sortBy('created_at')"
+                                role="columnheader button"
+                            >
                                 {{ __('common.created_at') }}
                                 @include('livewire.includes._sort-icon', ['field' => 'created_at'])
                             </th>
@@ -666,29 +922,46 @@
                 </table>
                 <div class="panel__body torrent-search--grouped__results">
                     @forelse ($torrents as $group)
-                        @switch ($group->meta)
+                        @switch($group->meta)
                             @case('movie')
-                                <x-movie.card :media="$group" :personalFreeleech="$personalFreeleech" />
+                                <x-movie.card
+                                    :media="$group"
+                                    :personalFreeleech="$personalFreeleech"
+                                />
+
                                 @break
                             @case('tv')
-                                <x-tv.card :media="$group" :personalFreeleech="$personalFreeleech" />
+                                <x-tv.card
+                                    :media="$group"
+                                    :personalFreeleech="$personalFreeleech"
+                                />
+
                                 @break
                         @endswitch
                     @empty
                         {{ __('common.no-result') }}
                     @endforelse
                 </div>
-                @break
 
+                @break
             @case($view === 'poster')
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th class="torrent-search--list__completed-header" wire:click="sortBy('times_completed')" role="columnheader button" title="{{ __('torrent.completed') }}">
+                            <th
+                                class="torrent-search--list__completed-header"
+                                wire:click="sortBy('times_completed')"
+                                role="columnheader button"
+                                title="{{ __('torrent.completed') }}"
+                            >
                                 <i class="fas fa-check-circle"></i>
                                 @include('livewire.includes._sort-icon', ['field' => 'times_completed'])
                             </th>
-                            <th class="torrent-search--list__age-header" wire:click="sortBy('created_at')" role="columnheader button">
+                            <th
+                                class="torrent-search--list__age-header"
+                                wire:click="sortBy('created_at')"
+                                role="columnheader button"
+                            >
                                 {{ __('common.created_at') }}
                                 @include('livewire.includes._sort-icon', ['field' => 'created_at'])
                             </th>
@@ -697,18 +970,29 @@
                 </table>
                 <div class="panel__body torrent-search--poster__results">
                     @forelse ($torrents as $group)
-                        @switch ($group->meta)
+                        @switch($group->meta)
                             @case('movie')
-                                <x-movie.poster :categoryId="$group->category_id" :movie="$group->movie" :tmdb="$group->tmdb" />
+                                <x-movie.poster
+                                    :categoryId="$group->category_id"
+                                    :movie="$group->movie"
+                                    :tmdb="$group->tmdb"
+                                />
+
                                 @break
                             @case('tv')
-                                <x-tv.poster :categoryId="$group->category_id" :tv="$group->tv" :tmdb="$group->tmdb" />
+                                <x-tv.poster
+                                    :categoryId="$group->category_id"
+                                    :tv="$group->tv"
+                                    :tmdb="$group->tmdb"
+                                />
+
                                 @break
                         @endswitch
                     @empty
                         {{ __('common.no-result') }}
                     @endforelse
                 </div>
+
                 @break
         @endswitch
         {{ $torrents->links('partials.pagination') }}
