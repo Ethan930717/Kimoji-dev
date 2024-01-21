@@ -37,7 +37,7 @@
                         href="{{ route('mediahub.persons.show', ['id' => $creator->id, 'occupationId' => App\Enums\Occupation::CREATOR->value]) }}"
                         class="torrent-search--grouped__director"
                     >
-                        {{ $creator->name }}
+                        {{ $creator->name ?? '' }}
                     </a>
                     @if (! $loop->last)
                         ,
@@ -51,7 +51,7 @@
                     href="{{ route('torrents.index', ['view' => 'group', 'genres' => $genre->id]) }}"
                     class="torrent-search--grouped__genre"
                 >
-                    {{ $genre->name }}
+                    {{ $genre->name ?? '' }}
                 </a>
             @endforeach
         </div>
@@ -72,7 +72,7 @@
                                             scope="rowgroup"
                                             rowspan="{{ $loop->count }}"
                                         >
-                                            {{ $type }}
+                                            {{ $type ?? '' }}
                                         </th>
                                     @endif
 
@@ -100,7 +100,7 @@
                             open
                         @endif
                     >
-                        <summary>{{ $specialName }}</summary>
+                        <summary>{{ $specialName ?? '' }}</summary>
                         <table class="torrent-search--grouped__torrents">
                             @foreach ($special as $type => $torrents)
                                 <tbody>
@@ -112,7 +112,7 @@
                                                     scope="rowgroup"
                                                     rowspan="{{ $loop->count }}"
                                                 >
-                                                    {{ $type }}
+                                                    {{ $type ?? '' }}
                                                 </th>
                                             @endif
 
@@ -134,7 +134,7 @@
                     open
                 @endif
             >
-                <summary>{{ $seasonName }}</summary>
+                <summary>{{ $seasonName ?? '' }}</summary>
                 @if ($season->has('Season Pack'))
                     <details open class="torrent-search--grouped__dropdown">
                         <summary>完结</summary>
@@ -149,7 +149,7 @@
                                                     scope="rowgroup"
                                                     rowspan="{{ $loop->count }}"
                                                 >
-                                                    {{ $type }}
+                                                    {{ $type ?? '' }}
                                                 </th>
                                             @endif
 
@@ -169,7 +169,7 @@
                             open
                         @endif
                     >
-                        <summary>{{ $episodeName }}</summary>
+                        <summary>{{ $episodeName ?? '' }}</summary>
                         <table class="torrent-search--grouped__torrents">
                             @foreach ($episode as $type => $torrents)
                                 <tbody>
@@ -181,7 +181,7 @@
                                                     scope="rowgroup"
                                                     rowspan="{{ $loop->count }}"
                                                 >
-                                                    {{ $type }}
+                                                    {{ $type ?? '' }}
                                                 </th>
                                             @endif
 
