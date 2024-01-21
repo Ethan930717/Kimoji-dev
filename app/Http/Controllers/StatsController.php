@@ -290,10 +290,10 @@ class StatsController extends Controller
     public function seedsize(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
         $users = User::withSum('seedingTorrents as seedsize', 'size')
-            ->withSum(['seedingTorrents as officialSeedsize' => function ($query) {
+            ->withSum(['seedingTorrents as officialSeedsize' => function ($query): void {
                 $query->where('internal', 1); // 官种
             }], 'size')
-            ->withSum(['seedingTorrents as audioOfficialSeedsize' => function ($query) {
+            ->withSum(['seedingTorrents as audioOfficialSeedsize' => function ($query): void {
                 $query->where('internal', 1)
                     ->whereIn('category_id', [3, 4]); // 音频类官种
             }], 'size')
