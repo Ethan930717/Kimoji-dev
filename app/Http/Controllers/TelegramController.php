@@ -14,20 +14,12 @@ class TelegramController extends Controller
     {
         $update = Telegram::commandsHandler(true);
 
-        // 记录整个更新的详细信息
-        Log::info("Received update from Telegram", ['update' => $update]);
 
         if (isset($update['message'])) {
             $chatId = $update['message']['chat']['id'];
             $senderId = $update['message']['from']['id']; // 发送者的 ID
             $chatType = $update['message']['chat']['type']; // 聊天类型，如群组或私聊
 
-            // 记录更多的消息详细信息
-            Log::info("Message details", [
-                'chat_id'   => $chatId,
-                'sender_id' => $senderId,
-                'chat_type' => $chatType
-            ]);
 
             // 先检查 'text' 字段是否存在
             if (isset($update['message']['text'])) {
@@ -72,12 +64,6 @@ class TelegramController extends Controller
             $photo = $poster; // 海报图片 URL
             $chatId = "-1002109790916"; // Telegram 聊天 ID 或群组 ID
 
-            // 记录发送前的日志
-            Log::info("Sending torrent notification to Telegram", [
-                'chat_id' => $chatId,
-                'message' => $message,
-                'photo'   => $photo
-            ]);
 
             // 发送带图片的消息
             $response = Telegram::sendPhoto([
@@ -86,8 +72,6 @@ class TelegramController extends Controller
                 'caption' => $message
             ]);
 
-            // 记录发送后的日志
-            Log::info("Torrent notification sent", ['response' => $response]);
         } catch (Exception $e) {
             // 记录异常
             Log::error("Error sending torrent notification to Telegram", ['error' => $e->getMessage()]);
@@ -108,12 +92,6 @@ class TelegramController extends Controller
             $photo = 'https://kimoji.club/files/img/torrent-cover_'.$id.'.jpg'; // 海报图片 URL
             $chatId = "-1002109790916"; // Telegram 聊天 ID 或群组 ID
 
-            // 记录发送前的日志
-            Log::info("Sending torrent notification to Telegram", [
-                'chat_id' => $chatId,
-                'message' => $message,
-                'photo'   => $photo
-            ]);
 
             // 发送带图片的消息
             $response = Telegram::sendPhoto([
@@ -122,8 +100,6 @@ class TelegramController extends Controller
                 'caption' => $message
             ]);
 
-            // 记录发送后的日志
-            Log::info("新种推送", ['response' => $response]);
         } catch (Exception $e) {
             // 记录异常
             Log::error("音乐新种TG推送错误", ['error' => $e->getMessage()]);
@@ -157,11 +133,6 @@ class TelegramController extends Controller
 
             $chatId = "-1002007902628"; // Telegram 聊天 ID 或群组 ID
 
-            // 记录发送前的日志
-            Log::info("Sending ticket notification to Telegram", [
-                'chat_id' => $chatId,
-                'message' => $message,
-            ]);
 
             // 发送文本消息
             $response = Telegram::sendMessage([
@@ -169,8 +140,6 @@ class TelegramController extends Controller
                 'text'    => $message,
             ]);
 
-            // 记录发送后的日志
-            Log::info("Ticket notification sent", ['response' => $response]);
         } catch (Exception $e) {
             // 记录异常
             Log::error("Error sending ticket notification to Telegram", ['error' => $e->getMessage()]);
@@ -190,7 +159,6 @@ class TelegramController extends Controller
                 'text'    => $fullMessage
             ]);
 
-            Log::info("发送待审通知", ['chat_id' => $chatId, 'message' => $fullMessage]);
         } catch (Exception $e) {
             Log::error("发送待审通知异常", ['error' => $e->getMessage()]);
         }
@@ -218,7 +186,6 @@ class TelegramController extends Controller
                 }
             }
 
-            Log::info("Sent new application notification to Telegram", ['chat_id' => $chatId, 'message' => $message]);
         } catch (Exception $e) {
             Log::error("Error sending new application notification to Telegram", ['error' => $e->getMessage()]);
         }
