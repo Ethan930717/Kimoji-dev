@@ -167,7 +167,7 @@ class TorrentController extends Controller
                         },
                     ]
                 ]),
-            'types'        => Type::orderBy('position')->get()->mapWithKeys(fn ($type) => [$type['id']        => ['name'        => $type['name']]]),
+            'types'        => Type::orderBy('position')->get()->mapWithKeys(fn ($type) => [$type['id'] => ['name' => $type['name']]]),
             'resolutions'  => Resolution::orderBy('position')->get(),
             'regions'      => Region::orderBy('position')->get(),
             'distributors' => Distributor::orderBy('name')->get(),
@@ -184,7 +184,6 @@ class TorrentController extends Controller
     public function update(UpdateTorrentRequest $request, int $id): \Illuminate\Http\RedirectResponse
     {
         $user = $request->user();
-
         $torrent = Torrent::withoutGlobalScope(ApprovedScope::class)->findOrFail($id);
 
         abort_unless($user->group->is_modo || $user->id === $torrent->user_id, 403);
@@ -218,7 +217,7 @@ class TorrentController extends Controller
 
         $keywords = [];
 
-        foreach (TorrentTools::parseKeywords($request->input('keywords')) as $keyword) {
+        foreach (TorrentTools::parseKeywords($request->string('keywords')) as $keyword) {
             $keywords[] = ['torrent_id' => $torrent->id, 'name' => $keyword];
         }
 
@@ -251,7 +250,7 @@ class TorrentController extends Controller
      *
      * @throws Exception
      */
-    public function destroy(Request $request, int $id)
+    public function destroy(Request $request, int $id): \Illuminate\Http\RedirectResponse
     {
         $request->validate([
             'message' => [
@@ -368,7 +367,7 @@ class TorrentController extends Controller
         $piecesHash = TorrentTools::extractPiecesHash($request->file('torrent')->getRealPath());
 
         $torrent = Torrent::create([
-            'mediainfo'    => TorrentTools::anonymizeMediainfo($request->input('mediainfo')),
+            'mediainfo'    => TorrentTools::anonymizeMediainfo($request->string('mediainfo')),
             'info_hash'    => Bencode::get_infohash($decodedTorrent),
             'file_name'    => $fileName,
             'num_file'     => $meta['count'],
