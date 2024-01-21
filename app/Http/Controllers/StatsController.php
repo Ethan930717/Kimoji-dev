@@ -211,11 +211,11 @@ class StatsController extends Controller
             $userId = $seeder->user_id;
 
             $seeder->officialCount = Torrent::where('user_id', $userId)
-                ->where('internal', 1)
+                ->where('name', 'like', '%KIMOJI%')
                 ->count();
 
             $seeder->audioOfficialCount = Torrent::where('user_id', $userId)
-                ->where('internal', 1)
+                ->where('name', 'like', '%KIMOJI%')
                 ->whereIn('category_id', [3, 4])
                 ->count();
         }
