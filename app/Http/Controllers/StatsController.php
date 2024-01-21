@@ -207,6 +207,7 @@ class StatsController extends Controller
                 ->get(),
         ]);
     }
+
     /**
      * Show Extra-Stats Users.
      */
