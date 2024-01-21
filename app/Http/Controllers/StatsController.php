@@ -202,15 +202,23 @@ class StatsController extends Controller
             ->where('active', '=', 1)
             ->groupBy('user_id')
             ->orderByDesc('value')
-            ->withSum(['torrents as officialCount' => function ($query): void {
-                $query->where('internal', 1); // 官种
-            }])
-            ->withSum(['torrents as audioOfficialCount' => function ($query): void {
-                $query->where('internal', 1)
-                    ->whereIn('category_id', [3, 4]); // 音频类官种
-            }])
             ->take(100)
             ->get();
+
+        foreach ($seeders as $seeder) {
+            $userId = $seeder->user_id;
+
+            // 计算官种总数
+            $seeder->officialCount = Torrent::where('user_id', $userId)
+                ->where('internal', 1)
+                ->count();
+
+            // 计算音频资源官种总数
+            $seeder->audioOfficialCount = Torrent::where('user_id', $userId)
+                ->where('internal', 1)
+                ->whereIn('category_id', [3, 4])
+                ->count();
+        }
 
         return view('stats.users.seeders', compact('seeders'));
     }
