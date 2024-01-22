@@ -44,6 +44,7 @@
                                             <button type="button" class="form__button--mod" @click="appendMessage('不接受任何除官组外的分集资源！请仔细阅读[url=https://kimoji.club/pages/3]发布规则[/url]\\n')">分集</button>
                                             <button type="button" class="form__button--mod" @click="appendMessage('不接受带台标的资源！请仔细阅读[url=https://kimoji.club/pages/3]发布规则[/url]\\n')">台标</button>
                                             <button type="button" class="form__button--mod" @click="appendMessage('除特许发布的极优资源外，不接受任何形式的打包资源！请仔细阅读[url=https://kimoji.club/pages/3]发布规则[/url]\\n')">打包</button>
+                                            <button type="button" class="form__button--mod" @click="appendMessage('当前资源已丢种或有更优质的同类资源，需要重发或补档\\n')">补档重发</button>
                                         </div>
                                         <p class="form__group">
                                             <textarea

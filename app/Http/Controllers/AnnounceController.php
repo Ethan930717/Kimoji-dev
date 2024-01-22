@@ -452,9 +452,9 @@ final class AnnounceController extends Controller
 
         $lastAnnouncedAt = Redis::connection('announce')->command('SET', [$duplicateAnnounceKey, $now, ['NX', 'GET', 'EX' => 30]]);
 
-        if ($lastAnnouncedAt !== false) {
+/*        if ($lastAnnouncedAt !== false) {
             throw new TrackerException(162, [':elapsed' => $now - $lastAnnouncedAt]);
-        }
+        }*/
 
         // Block clients disrespecting the min interval
 
@@ -468,9 +468,10 @@ final class AnnounceController extends Controller
         // least 5 minutes since they last announced.
         if ($event === 'stopped' && $lastAnnouncedAt < $now - 5 * 60) {
             Redis::connection('announce')->command('DEL', [$lastAnnouncedKey]);
-        } elseif ($lastAnnouncedAt !== false && !\in_array($event, ['completed', 'stopped'])) {
-            throw new TrackerException(162, [':elapsed' => $now - $lastAnnouncedAt]);
         }
+/*        elseif ($lastAnnouncedAt !== false && !\in_array($event, ['completed', 'stopped'])) {
+            throw new TrackerException(162, [':elapsed' => $now - $lastAnnouncedAt]);
+        }*/
     }
 
     /**
