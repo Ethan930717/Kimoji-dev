@@ -46,7 +46,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('torrents?perPage=25&view=group&categories[0]=2') }}">
+                            <a href="{{ url('torrents?perPage=25&view=card&categories[0]=2') }}">
                                 <i class="{{ config('other.font-awesome') }} fa-party-horn"></i>
                                 追剧乐园
                             </a>
