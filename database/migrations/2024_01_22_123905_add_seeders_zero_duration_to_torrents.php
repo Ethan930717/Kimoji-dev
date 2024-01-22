@@ -10,18 +10,17 @@ return new class () extends Migration {
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::table('torrents', function (Blueprint $table) {
+        Schema::table('torrents', function (Blueprint $table): void {
             $table->timestamp('seeders_zero_at')->nullable()->after('seeders');
         });
     }
 
-    public function down()
+    public function down(): void
     {
-        Schema::table('torrents', function (Blueprint $table) {
+        Schema::table('torrents', function (Blueprint $table): void {
             $table->dropColumn('seeders_zero_at');
         });
     }
-
 };
