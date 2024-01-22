@@ -56,7 +56,6 @@ class Kernel extends ConsoleKernel
         $schedule->command('auto:torrent_balance')->hourly();
         $schedule->command('torrents:delete-old')->daily();
 
-
         //$schedule->command('auto:ban_disposable_users')->weekends();
         //$schedule->command('backup:clean')->daily();
         //$schedule->command('backup:run --only-db')->daily();
