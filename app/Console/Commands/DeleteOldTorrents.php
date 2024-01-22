@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Torrent;
-use App\Models\PrivateMessage;
 use Carbon\Carbon;
 
 class DeleteOldTorrents extends Command
@@ -25,7 +24,6 @@ class DeleteOldTorrents extends Command
         }
 
         foreach ($oldTorrents as $torrent) {
-
             // Delete the torrent
             $torrent->delete();
         }
