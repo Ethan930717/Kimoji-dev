@@ -78,10 +78,10 @@
             @if (in_array($torrent->category_id, [1, 2]))
                 <span
                         class="torrent-card__rating"
-                        title="{{ $meta->vote_average ?? 0 }}/10 ({{ $meta?->vote_count ?? 0 }} {{ __('torrent.votes') }})"
+                        title="{{ $meta?->vote_average ?? 0 }}/10 ({{ $meta?->vote_count ?? 0 }} {{ __('torrent.votes') }})"
                 >
             <i class="{{ config('other.font-awesome') }} fa-star"></i>
-            {{ $meta->vote_average ?? 0 }}
+            {{ $meta?->vote_average ?? 0 }}
         </span>
                 <span class="torrent-card__meta-seperator"> &bull; </span>
                 <ul class="torrent-card__genres">
