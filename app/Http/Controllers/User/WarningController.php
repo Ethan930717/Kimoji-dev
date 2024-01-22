@@ -68,7 +68,7 @@ class WarningController extends Controller
         PrivateMessage::create([
             'sender_id'   => $staff->id,
             'receiver_id' => $user->id,
-            'subject'     => 'H&R记录删除告知',
+            'subject'     => 'H&R记录删除通知',
             'message'     => $staff->username.' 删除了您的H&R记录 '.$warning->torrent.'  [color=red][b]这是一条系统消息，请勿回复![/b][/color]',
         ]);
 
