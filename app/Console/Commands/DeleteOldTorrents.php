@@ -24,7 +24,6 @@ class DeleteOldTorrents extends Command
         }
 
         foreach ($oldTorrents as $torrent) {
-
             // Delete the torrent
             $torrent->delete();
         }
