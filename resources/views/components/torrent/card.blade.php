@@ -85,7 +85,7 @@
         </span>
                 <span class="torrent-card__meta-seperator"> &bull; </span>
                 <ul class="torrent-card__genres">
-                    @foreach($meta->genres ?? [] as $genre)
+                    @foreach($meta?->genres ?? [] as $genre)
                         <li class="torrent-card__genre-item">
                             <a
                                 class="torrent-card__genre"
