@@ -825,6 +825,7 @@ final class AnnounceController extends Controller
         $seederCountDelta = ($newSeed || $leechBecomesSeed) <=> ($stoppedSeed || $seedBecomesLeech);
         $leecherCountDelta = ($newLeech || $seedBecomesLeech) <=> ($stoppedLeech || $leechBecomesSeed);
         $completedCountDelta = (int) ($event === 'completed');
+        $currentSeeders = $torrent->seeders + $seederCountDelta;
 
         if ($seederCountDelta !== 0 || $leecherCountDelta !== 0 || $completedCountDelta !== 0) {
             $torrent->update([
@@ -833,8 +834,13 @@ final class AnnounceController extends Controller
                 'times_completed' => DB::raw('times_completed + '.$completedCountDelta),
             ]);
 
+
             cache()->forget('announce-torrents:by-infohash:'.$queries['info_hash']);
         }
+
+        $torrent->update([
+            'seeders_zero_at' => $currentSeeders === 0 ? DB::raw('CURRENT_TIMESTAMP') : DB::raw('NULL'),
+        ]);
     }
 
     private function generateFailedAnnounceResponse(TrackerException $trackerException): string

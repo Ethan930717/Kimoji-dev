@@ -4,17 +4,16 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Torrent;
-use App\Models\PrivateMessage;
 use Carbon\Carbon;
 
 class DeleteOldTorrents extends Command
 {
     protected $signature = 'torrents:delete-old';
-    protected $description = 'Deletes torrents older than 14 days with zero seeders';
+    protected $description = 'Deletes torrents older than 21 days with zero seeders';
 
     public function handle(): void
     {
-        $oldTorrents = Torrent::where('updated_at', '<', Carbon::now()->subDays(21))
+        $oldTorrents = Torrent::where('seeders_zero_at', '<', Carbon::now()->subDays(21))
             ->where('seeders', 0)
             ->get();
 
