@@ -11,7 +11,10 @@
 @endif
 
 {{-- Intro Lines --}}
-欢迎您加入KIMOJI，请点击下面的按钮来验证您的电子邮件地址。
+@foreach ($introLines as $line)
+{{ $line }}
+
+@endforeach
 
 {{-- Action Button --}}
 @isset($actionText)
@@ -26,18 +29,21 @@ $color = 'primary';
 }
 ?>
 @component('mail::button', ['url' => $actionUrl, 'color' => $color])
-验证邮箱
+{{ $actionText }}
 @endcomponent
 @endisset
 
 {{-- Outro Lines --}}
-如果您不知晓本条邮件所述内容，请您无需理会
+@foreach ($outroLines as $line)
+{{ $line }}
+
+@endforeach
 
 {{-- Salutation --}}
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-KIMOJI 敬上
+KIMOJI
 @endif
 
 {{-- Subcopy --}}
