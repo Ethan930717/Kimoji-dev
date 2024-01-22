@@ -825,7 +825,6 @@ final class AnnounceController extends Controller
         $seederCountDelta = ($newSeed || $leechBecomesSeed) <=> ($stoppedSeed || $seedBecomesLeech);
         $leecherCountDelta = ($newLeech || $seedBecomesLeech) <=> ($stoppedLeech || $leechBecomesSeed);
         $completedCountDelta = (int) ($event === 'completed');
-        $currentSeeders = $torrent->seeders + $seederCountDelta;
 
         if ($seederCountDelta !== 0 || $leecherCountDelta !== 0 || $completedCountDelta !== 0) {
             $torrent->update([
@@ -838,9 +837,18 @@ final class AnnounceController extends Controller
             cache()->forget('announce-torrents:by-infohash:'.$queries['info_hash']);
         }
 
-        $torrent->update([
-            'seeders_zero_at' => $currentSeeders === 0 ? DB::raw('CURRENT_TIMESTAMP') : DB::raw('NULL'),
-        ]);
+        $currentSeeders = $torrent->seeders + $seederCountDelta;
+
+        if ($currentSeeders === 0 && $torrent->seeders_zero_at === null) {
+            $torrent->update([
+                'seeders_zero_at' => DB::raw('CURRENT_TIMESTAMP'),
+            ]);
+        } elseif ($currentSeeders > 0) {
+            // 当 currentSeeders 不为 0 时，将字段重置为 NULL
+            $torrent->update([
+                'seeders_zero_at' => null,
+            ]);
+        }
     }
 
     private function generateFailedAnnounceResponse(TrackerException $trackerException): string
