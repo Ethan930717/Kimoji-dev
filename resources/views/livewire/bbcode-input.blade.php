@@ -365,9 +365,6 @@ ConfirmCatEDU() {
         <label class="bbcode-input__tab-label" for="{{ $name }}-bbcode-preview-enabled">{{ __('common.preview') }}</label>
     </p>
 
-    <p class="bbcode-input__icon-bar-toggle">
-        <button type="button" class="form__button form__button--text" x-on:click="! showButtons = showButtons">BBCode</button>
-    </p>
     <menu class="bbcode-input__icon-bar" x-cloak x-show="showButtons">
         <li>
             <button type="button" class="form__standard-icon-button" x-on:click="insert('[b]', '[/b]')">
