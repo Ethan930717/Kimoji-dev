@@ -129,7 +129,7 @@
         </div>
         <p class="torrent-card__plot">
             @if (in_array($torrent->category_id, [1, 2]))
-                {{ Str::limit(strip_tags($meta->overview ?: $meta->summary), 350, '...') }}
+                {{ Str::limit(strip_tags($meta?->overview ?: $meta?->summary), 350, '...') }}
             @elseif (in_array($torrent->category_id, [3, 4]))
                 @php
                     $description = $torrent->description;
