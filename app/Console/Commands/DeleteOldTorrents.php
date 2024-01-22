@@ -24,13 +24,6 @@ class DeleteOldTorrents extends Command
         }
 
         foreach ($oldTorrents as $torrent) {
-            // Send private message to user (if needed)
-            $pm = new PrivateMessage;
-            $pm->sender_id = 1; // or admin ID
-            $pm->receiver_id = $torrent->user_id; // owner of the torrent
-            $pm->subject = 'Torrent Deleted';
-            $pm->message = 'Your torrent ' . $torrent->name . ' has been deleted.';
-            $pm->save();
 
             // Delete the torrent
             $torrent->delete();
