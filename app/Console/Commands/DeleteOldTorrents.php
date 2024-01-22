@@ -12,7 +12,7 @@ class DeleteOldTorrents extends Command
     protected $signature = 'torrents:delete-old';
     protected $description = 'Deletes torrents older than 14 days with zero seeders';
 
-    public function handle()
+    public function handle(): void
     {
         $oldTorrents = Torrent::where('updated_at', '<', Carbon::now()->subDays(21))
             ->where('seeders', 0)
@@ -20,6 +20,7 @@ class DeleteOldTorrents extends Command
 
         if ($oldTorrents->isEmpty()) {
             $this->info('No old torrents to delete.');
+
             return;
         }
 
