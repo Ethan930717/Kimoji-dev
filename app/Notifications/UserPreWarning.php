@@ -37,10 +37,11 @@ class UserPreWarning extends Notification
         $profileUrl = href_profile($this->user);
 
         return (new MailMessage())
-            ->greeting('⚠️警告：触发H&R规则')
-            ->line('你的一个或多个种子触发了H&R警告')
-            ->action('请尽快处理你的H&R种子', $profileUrl)
-            ->line('感谢你使用'.config('other.title'));
+            ->subject('H&R 预警告')  // 设置邮件主题
+            ->greeting('⚠️警告：即将触发H&R')
+            ->line('你的一个或多个种子即将触发H&R，关于H&R的相关规则请您在网站WIKI中了解')
+            ->action('请将以下种子请您保持在做种状态，', $profileUrl)
+            ->line('来自'.config('other.title'));
     }
 
     /**
