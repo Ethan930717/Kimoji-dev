@@ -115,10 +115,19 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
+    // 为 spectrogram-image 元素添加点击事件
     const spectrogramImages = document.querySelectorAll('.spectrogram-image');
     spectrogramImages.forEach(img => {
         img.addEventListener('click', function() {
             openImageModal(img.src);
+        });
+    });
+
+    // 为 meta__poster 元素添加点击事件
+    const metaPosters = document.querySelectorAll('.meta__poster');
+    metaPosters.forEach(poster => {
+        poster.addEventListener('click', function() {
+            openImageModal(poster.src);
         });
     });
 });

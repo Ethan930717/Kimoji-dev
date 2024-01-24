@@ -18,7 +18,6 @@
             <img
                     src="{{ file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg') ? url('/files/img/torrent-cover_'.$torrent->id.'.jpg') : 'https://via.placeholder.com/500x500' }}"
                     class="meta__poster"
-                    onclick="openImageModal('{{ file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg') ? url('/files/img/torrent-cover_'.$torrent->id.'.jpg') : 'https://via.placeholder.com/500x500' }}')"
             >
 
         </a>
@@ -105,25 +104,23 @@
         <div class="meta__chips">
             <section class="meta__chip-container">
                 <h2 class="meta__heading">歌曲列表</h2>
+                <article class="meta-chip-wrapper">
                 @foreach ($songs as $song)
-                    <div class="song">
-                        {{ preg_replace('/\d+\.\s*/', '', trim($song)) }}
+                    <div class="meta-chip__name">
+                        {{ preg_replace('/\[.*?\]/', '', trim($song)) }}
                     </div>
                 @endforeach
+                </article>
             </section>
             @if ($spectrogramUrl)
                 <section class="meta__chip-container">
                     <h2 class="meta__heading">频谱分析</h2>
-                    <article class="meta-chip-wrapper">
-                        <div class="meta-chip">
                             <img
                                 src="{{ $spectrogramUrl }}"
                                 class="spectrogram-image"
                                 alt="频谱分析"
                                 style="cursor: pointer; max-width: 100%;"
                             />
-                        </div>
-                    </article>
                 </section>
             @endif
         </div>

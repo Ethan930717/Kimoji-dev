@@ -8,7 +8,7 @@
 
         </h1>
     </a>
-    <a class="meta__poster-link" href="{{ route('torrents.similar', ['category_id' => $category->id, 'tmdb' => $tmdb]) }}">
+    <a class="meta__poster-link">
         <img
             src="{{ $meta?->poster ? tmdb_image('poster_big', $meta->poster) : 'https://via.placeholder.com/400x600' }}"
             class="meta__poster"
