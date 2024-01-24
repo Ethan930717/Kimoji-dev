@@ -10,7 +10,16 @@
             array_pop($parts); // 移除最后一部分
             array_pop($parts); // 再次移除，这次是倒数第二部分
             $title = implode('-', $parts); // 重新组合中间部分
+
+            $year = ''; // 初始化年份变量
+
+            // 使用正则表达式检查$title末尾是否有四位数字
+            if (preg_match('/(\d{4})$/', $title, $matches)) {
+                $year = $matches[1]; // 提取年份
+                $title = rtrim(preg_replace('/\d{4}$/', '', $title), ' -'); // 移除年份并去除尾部多余的连字符
+            }
         @endphp
+
         <a class="meta__title-link">
             <h1 class="meta__title">{{ $title }}</h1>
         </a>
@@ -82,6 +91,7 @@
         @php
             $pattern = '/歌曲列表\]\[size=16\]\[color=white\]\[center\](.*?)\[\/center\]/s';
             $songList = '';
+            $playTime = ''; // 初始化播放时长变量
 
             if (preg_match($pattern, $description, $matches)) {
                 $songList = html_entity_decode($matches[1]);
@@ -89,7 +99,17 @@
 
             // 将歌曲列表分割成数组
             $songs = explode("\n", $songList);
+
+            // 检查是否有歌曲列表数据
+            if (!empty($songs)) {
+                // 提取播放时长（第一行）
+                $playTime = trim($songs[0]);
+
+                // 移除数组中的第一行（即跳过时长信息行）
+                $songs = array_slice($songs, 1);
+            }
         @endphp
+
         @php
             $description = $torrent->description;
             $spectrogramPattern = '/\[spoiler=截图赏析\].*?\[img\](.*?)\[\/img\]/s';
@@ -104,13 +124,13 @@
         <div class="meta__chips">
             <section class="meta__chip-container">
                 <h2 class="meta__heading">歌曲列表</h2>
-                <article class="meta-chip-wrapper">
                 @foreach ($songs as $song)
-                    <div class="meta-chip__name">
-                        {{ preg_replace('/\[.*?\]/', '', trim($song)) }}
-                    </div>
+                    <article class="meta-chip-wrapper">
+                        <a class="meta-chip">
+                            <h2 class="meta-chip__name">{{ preg_replace('/\[.*?\]/', '', trim($song)) }}</h2>
+                        </a>
+                    </article>
                 @endforeach
-                </article>
             </section>
             @if ($spectrogramUrl)
                 <section class="meta__chip-container">
@@ -123,14 +143,36 @@
                             />
                 </section>
             @endif
-        </div>
+            <section class="meta__chip-container">
+                <h2 class="meta__heading">其他信息</h2>
+            @if ($playTime)
+                <article class="meta__runtime">
+                    <a class="meta-chip" href="#">
+                        <i class="{{ config('other.font-awesome') }} fa-clock meta-chip__icon"></i>
+                        <h2 class="meta-chip__name">时长</h2>
+                        <h3 class="meta-chip__value">{{ $playTime }} </h3>
+                    </a>
+                </article>
+            @endif
+            @if ($year)
+                <article class="meta__runtime">
+                    <a class="meta-chip" href="#">
+                        <i class="{{ config('other.font-awesome') }} fa-timeline"></i>
+                        <h2 class="meta-chip__name">发行年份</h2>
+                        <h3 class="meta-chip__value">{{ $playTime }} </h3>
+                    </a>
+                </article>
+            @endif
 
-        <div id="aplayer-container"
-             data-cover="{{ url('img/kimoji-music.webp') }}"
-             data-name="{{ $musicName }}"
-             data-url="{{ $musicUrl }}"
-             data-artist="{{ $singerName }}"
-             data-lrc="{{ $lrcUrl }}">
+            </section>
+            </div>
+
+            <div id="aplayer-container"
+            data-cover="{{ url('img/kimoji-music.webp') }}"
+            data-name="{{ $musicName }}"
+            data-url="{{ $musicUrl }}"
+            data-artist="{{ $singerName }}"
+            data-lrc="{{ $lrcUrl }}">
             <div id="aplayer" class="aplayer"></div>
-        </div>
-</section>
+            </div>
+            </section>

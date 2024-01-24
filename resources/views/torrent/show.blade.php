@@ -55,17 +55,19 @@
       @endif
 
       {{-- MediaInfo Block --}}
-      @if ($torrent->mediainfo !== null)
+      @if ($torrent->mediainfo !== null && ($torrent->category->movie_meta || $torrent->category->tv_meta))
           @include('torrent.partials.mediainfo')
       @endif
 
       {{-- BDInfo Block --}}
-      @if ($torrent->bdinfo !== null)
+      @if ($torrent->bdinfo !== null && ($torrent->category->movie_meta || $torrent->category->tv_meta))
           @include('torrent.partials.bdinfo')
       @endif
 
       {{-- Description Block --}}
-      @include('torrent.partials.description')
+      @if($torrent->category->movie_meta || $torrent->category->tv_meta)
+          @include('torrent.partials.description')
+      @endif
 
       {{-- Subtitles Block --}}
       @if($torrent->category->movie_meta || $torrent->category->tv_meta)
