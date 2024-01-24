@@ -496,10 +496,11 @@
         right: 0;
         margin: 0;
         z-index: 99;
-        background: #fff;
+        background: #24b1a24d;
         padding-right: 18px;
         transition: all 0.3s ease;
-        max-width: 400px; }
+        max-width: 400px;
+        max-height: 80px;}
     .aplayer.aplayer-fixed .aplayer-lrc {
         display: block;
         position: fixed;
@@ -519,7 +520,7 @@
         transform-origin: 0 0;
         transition: all 0.3s ease;
         border-bottom: none;
-        border-top: 1px solid #e9e9e9; }
+        border-top: 1px solid #ffffff50 ; }
     .aplayer.aplayer-fixed .aplayer-info .aplayer-music {
         width: calc(100% - 105px); }
     .aplayer.aplayer-fixed .aplayer-miniswitcher {
@@ -597,8 +598,8 @@
     .aplayer .aplayer-pic {
         position: relative;
         float: left;
-        height: 6.2em;
-        width: 6.2em;
+        height: 80px;
+        width: 80px;
         background-size: cover;
         background-position: center;
         transition: all 0.3s ease;
@@ -652,7 +653,7 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        margin: 0 0 13px 5px;
+        margin: -6px 0px 10px 10px;
         -webkit-user-select: text;
         -moz-user-select: text;
         -ms-user-select: text;
@@ -660,7 +661,7 @@
         cursor: default;
         padding-bottom: 2px; }
     .aplayer .aplayer-info .aplayer-music .aplayer-title {
-        font-size: 1.5em;
+        font-size: 1em;
         text-shadow: 0 0 2px #e1bd2e;
     }
     .aplayer .aplayer-info .aplayer-music .aplayer-author {
@@ -908,9 +909,9 @@
         right: 0;
         bottom: 0;
         height: 100%;
-        background: #e6e6e6;
+        background: #ffffff00;
         width: 18px;
-        border-radius: 0 2px 2px 0; }
+        border-radius: 2px 2px 2px 2px; }
     .aplayer .aplayer-miniswitcher .aplayer-icon {
         height: 100%;
         width: 100%;

@@ -63,18 +63,22 @@
         @php
             $musicUrl = $torrent?->music_url;
             $lrcUrl = null;
-        @endphp
+            $musicName = "单曲试听"; // 默认歌曲名称
 
-        @if ($musicUrl)
-            @php
+            if ($musicUrl) {
                 $lrcUrl = preg_replace('/\.[^.]+$/', '.lrc', $musicUrl);
-            @endphp
-        @endif
+
+                // 提取文件名（不含后缀）
+                $pathInfo = pathinfo($musicUrl);
+                if (isset($pathInfo['filename'])) {
+                    $musicName = $pathInfo['filename'];
+                }
+            }
+        @endphp
 
         <div id="aplayer-container"
              data-cover="{{ url('img/kimoji-music.webp') }}"
-             data-name="单曲试听"
-             data-artist="Kimoji"
+             data-name="{{ $musicName }}"
              data-url="{{ $musicUrl }}"
              data-lrc="{{ $lrcUrl }}">
             <div id="aplayer" class="aplayer"></div>
