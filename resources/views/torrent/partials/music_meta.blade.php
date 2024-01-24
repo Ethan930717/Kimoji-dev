@@ -143,24 +143,6 @@
                             />
                 </section>
             @endif
-            <section class="meta__chip-container">
-                <h2 class="meta__heading">其他信息</h2>
-                <article class="meta__runtime">
-                    <a class="meta-chip" href="#">
-                        <i class="{{ config('other.font-awesome') }} fa-clock meta-chip__icon"></i>
-                        <h2 class="meta-chip__name">时长</h2>
-                        <h3 class="meta-chip__value">{{ $playTime }} </h3>
-                    </a>
-                </article>
-                <article class="meta__runtime">
-                    <a class="meta-chip" href="#">
-                        <i class="{{ config('other.font-awesome') }} fa-timeline"></i>
-                        <h2 class="meta-chip__name">发行年份</h2>
-                        <h3 class="meta-chip__value">{{ $year }} </h3>
-                    </a>
-                </article>
-
-            </section>
             </div>
 
             <div id="aplayer-container"
