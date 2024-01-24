@@ -114,6 +114,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const spectrogramImages = document.querySelectorAll('.spectrogram-image');
+    spectrogramImages.forEach(img => {
+        img.addEventListener('click', function() {
+            openImageModal(img.src);
+        });
+    });
+});
+
 
 
 

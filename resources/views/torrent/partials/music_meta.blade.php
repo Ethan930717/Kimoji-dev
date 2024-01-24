@@ -81,25 +81,15 @@
             }
         @endphp
         @php
-            $description = $torrent->description;
             $pattern = '/歌曲列表\]\[size=16\]\[color=white\]\[center\](.*?)\[\/center\]/s';
-            $matches = [];
+            $songList = '';
 
             if (preg_match($pattern, $description, $matches)) {
-                $songListContent = html_entity_decode($matches[1]);
-                // 分割成单独的行
-                $songs = preg_split('/\r\n|\r|\n/', $songListContent);
-                // 提取每一行中的歌曲名称
-                $songNames = array_map(function($line) {
-                    if (preg_match('/^\d+\.\s+(.*)\s+-\s+\[.+\]$/', $line, $matches)) {
-                        return $matches[1]; // 返回歌曲名称
-                    }
-                    return null;
-                }, $songs);
-                $songNames = array_filter($songNames); // 移除空值
-            } else {
-                $songNames = [];
+                $songList = html_entity_decode($matches[1]);
             }
+
+            // 将歌曲列表分割成数组
+            $songs = explode("\n", $songList);
         @endphp
         @php
             $description = $torrent->description;
@@ -115,12 +105,10 @@
         <div class="meta__chips">
             <section class="meta__chip-container">
                 <h2 class="meta__heading">歌曲列表</h2>
-                @foreach($songNames as $songName)
-                    <article class="meta-chip-wrapper">
-                        <div class="meta-chip">
-                            <h2 class="meta-chip__name">{{ $songName }}</h2>
-                        </div>
-                    </article>
+                @foreach ($songs as $song)
+                    <div class="song">
+                        {{ preg_replace('/\d+\.\s*/', '', trim($song)) }}
+                    </div>
                 @endforeach
             </section>
             @if ($spectrogramUrl)
@@ -130,10 +118,9 @@
                         <div class="meta-chip">
                             <img
                                 src="{{ $spectrogramUrl }}"
-                                class="meta-chip__image"
+                                class="spectrogram-image"
                                 alt="频谱分析"
-                                onclick="openImageModal('{{ $spectrogramUrl }}')"
-                                style="cursor: pointer;"
+                                style="cursor: pointer; max-width: 100%;"
                             />
                         </div>
                     </article>
