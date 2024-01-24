@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         new APlayer({
             container: aplayerContainer,
+            fixed: true,
             audio: [{
                 name: songName,
                 artist: artistName,
