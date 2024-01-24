@@ -1,6 +1,6 @@
 .meta {
     display: grid;
-    grid-template-areas: "poster title actions" "poster ids ids" "poster description description" "poster player player" "poster chips chips" ;
+    grid-template-areas: "poster title actions" "poster ids ids" "poster description description" "poster chips chips" ;
     grid-template-columns: auto 1fr auto;
     grid-template-rows: auto auto auto minmax(0, 1fr);
     gap: 16px 32px;
@@ -50,7 +50,7 @@
 
     @media only screen and (max-width: 1200px) {
         .meta {
-            grid-template-areas: "poster title actions" "poster ids ids" "poster description description" "poster player player" "chips chips chips";
+            grid-template-areas: "poster title actions" "poster ids ids" "poster description description" "chips chips chips";
             grid-template-columns: 140px minmax(0, 1fr) auto;
         }
 
@@ -62,7 +62,7 @@
     @media screen and (max-width: 767px) {
         .meta {
             max-height: unset;
-            grid-template-areas: "poster title actions" "poster ids ids" "poster description description" "poster player player" "chips chips chips";
+            grid-template-areas: "poster title actions" "poster ids ids" "poster description description" "chips chips chips";
             grid-template-columns: 96px minmax(0, 1fr) auto;
         }
 
@@ -82,7 +82,7 @@
 
     @media screen and (max-width: 480px) {
         .meta {
-            grid-template-areas: "poster title actions" "ids ids ids" "description description description" "poster player player" "chips chips chips";
+            grid-template-areas: "poster title actions" "ids ids ids" "description description description" "chips chips chips";
             grid-template-columns: 64px minmax(0, 1fr) auto;
             column-gap: 12px;
             align-items: center;
@@ -407,20 +407,6 @@
 
     /*APlayer*/
 
-    #aplayer-container {
-        grid-area: player;
-        margin-top: auto;
-        overflow-y: auto;
-    }
-
-.aplayer-title {
-    font-size: 1.2em;
-    color: #ffffff;
-    text-shadow:0 0 2px #0dffff;
-    margin-bottom: 10px;
-    margin-left: 20px;
-    text-align: left;
-}
 
     .aplayer {
         font-family: Arial,Helvetica,sans-serif;
@@ -479,16 +465,16 @@
     .aplayer.aplayer-withlrc .aplayer-lrc {
         display: block; }
     .aplayer.aplayer-narrow {
-        width: 220px;
-        height: 220px}
+        width: 80px;
+        height: 80px}
     .aplayer.aplayer-narrow .aplayer-info {
         display: none; }
     .aplayer.aplayer-narrow .aplayer-list {
         display: none; }
     .aplayer.aplayer-narrow .aplayer-pic,
     .aplayer.aplayer-narrow .aplayer-body {
-        height: 220px;
-        width: 220px; }
+        height: 80px;
+        width: 80px; }
     .aplayer.aplayer-fixed {
         position: fixed;
         bottom: 0;
