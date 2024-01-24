@@ -103,7 +103,7 @@
             // 检查是否有歌曲列表数据
             if (!empty($songs)) {
                 // 提取播放时长（第一行）
-                $playTime = trim($songs[0]);
+                $playTime = $songs[0];
 
                 // 移除数组中的第一行（即跳过时长信息行）
                 $songs = array_slice($songs, 1);
@@ -145,7 +145,6 @@
             @endif
             <section class="meta__chip-container">
                 <h2 class="meta__heading">其他信息</h2>
-            @if ($playTime)
                 <article class="meta__runtime">
                     <a class="meta-chip" href="#">
                         <i class="{{ config('other.font-awesome') }} fa-clock meta-chip__icon"></i>
@@ -153,16 +152,13 @@
                         <h3 class="meta-chip__value">{{ $playTime }} </h3>
                     </a>
                 </article>
-            @endif
-            @if ($year)
                 <article class="meta__runtime">
                     <a class="meta-chip" href="#">
                         <i class="{{ config('other.font-awesome') }} fa-timeline"></i>
                         <h2 class="meta-chip__name">发行年份</h2>
-                        <h3 class="meta-chip__value">{{ $playTime }} </h3>
+                        <h3 class="meta-chip__value">{{ $year }} </h3>
                     </a>
                 </article>
-            @endif
 
             </section>
             </div>
