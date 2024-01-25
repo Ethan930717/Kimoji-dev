@@ -150,12 +150,15 @@
             @endif
             </div>
 
+        @if($musicUrl)
             <div id="aplayer-container"
-            data-cover="{{ url('img/kimoji-music.webp') }}"
-            data-name="{{ $musicName }}"
-            data-url="{{ $musicUrl }}"
-            data-artist="{{ $singerNameWithoutBrackets }}"
-            data-lrc="{{ $lrcUrl }}">
-            <div id="aplayer" class="aplayer"></div>
+                 data-cover="{{ url('img/kimoji-music.webp') }}"
+                 data-name="{{ $musicName }}"
+                 data-url="{{ $musicUrl }}"
+                 data-artist="{{ $singerNameWithoutBrackets }}"
+                 data-lrc="{{ $lrcUrl }}">
+                <div id="aplayer" class="aplayer"></div>
             </div>
-            </section>
+        @endif
+
+</section>
