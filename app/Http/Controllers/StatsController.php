@@ -279,7 +279,8 @@ class StatsController extends Controller
         $sortDirection = $request->input('direction', 'desc');
 
         $allowedSortFields = ['seedsize', 'officialSeedsize', 'audioOfficialSeedsize'];
-        if (!in_array($sortField, $allowedSortFields)) {
+
+        if (!\in_array($sortField, $allowedSortFields)) {
             $sortField = 'seedsize';
         }
         $users = User::withSum('seedingTorrents as seedsize', 'size')
@@ -296,8 +297,6 @@ class StatsController extends Controller
 
         return view('stats.users.seedsize', ['users' => $users, 'sortField' => $sortField, 'sortDirection' => $sortDirection]);
     }
-
-
 
     /**
      * Show Extra-Stats Torrents.
