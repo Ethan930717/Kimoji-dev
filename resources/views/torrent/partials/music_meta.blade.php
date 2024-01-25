@@ -71,7 +71,7 @@
         @endphp
 
         <p class="meta__description">
-            {{ $spoilerContent }}
+            {!! $spoilerContent !!}
         </p>
         @php
             $musicUrl = $torrent?->music_url;
