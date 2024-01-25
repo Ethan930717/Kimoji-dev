@@ -65,7 +65,7 @@ class BDInfo
 
         foreach ($matches as $match) {
             $audioData[] = [
-                'format' => $match[1],
+                'format'   => $match[1],
                 'language' => $match[2],
                 'bit_rate' => $match[3],
             ];
