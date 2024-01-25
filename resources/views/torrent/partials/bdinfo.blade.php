@@ -19,7 +19,7 @@
             <pre><code x-ref="bdinfo">{{ $torrent->bdinfo }}</code></pre>
         </div>
         <section class="bdinfo">
-            <!-- BDInfo 参数概览 -->
+            {{ dd($bdInfo) }}
             <section class="bdinfo__general">
                 <h3>常规信息</h3>
                 <dl>
