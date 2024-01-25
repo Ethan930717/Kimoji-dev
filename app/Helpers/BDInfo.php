@@ -52,11 +52,11 @@ class BDInfo
 
     private function parseDiscSize($string)
     {
-        // 正则表达式调整为匹配可能包含逗号的数字
         preg_match('/Disc Size:\s*([\d,]+)/', $string, $matches);
+        $bytesString = str_replace(',', '', $matches[1] ?? '0'); // 移除逗号
+        $bytes = (int)$bytesString; // 将字符串转换为整数
 
-        // 调用修改后的convertBytesToGigabytes函数
-        return $this->convertBytesToGigabytes($matches[1] ?? '0');
+        return $this->convertBytesToGigabytes($bytes);
     }
 
 

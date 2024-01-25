@@ -27,19 +27,22 @@
         <div class="data-table-wrapper">
             <table class="data-table">
                 <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>{{ __('common.user') }}</th>
-                        <th wire:click="sortBy('seedsize')" role="columnheader button">
-                            保种总体积
-                        </th>
-                        <th wire:click="sortBy('officialSeedsize')" role="columnheader button">
-                            官种体积
-                        </th>
-                        <th wire:click="sortBy('audioOfficialSeedsize')" role="columnheader button">
-                            音乐区官种体积
-                        </th>
-                    </tr>
+                <tr>
+                    <th>#</th>
+                    <th>{{ __('common.user') }}</th>
+                    <th wire:click="sortBy('seedsize')" role="columnheader button">
+                        保种总体积
+                        @include('livewire.includes._sort-icon', ['field' => 'seedsize'])
+                    </th>
+                    <th wire:click="sortBy('officialSeedsize')" role="columnheader button">
+                        官种体积
+                        @include('livewire.includes._sort-icon', ['field' => 'officialSeedsize'])
+                    </th>
+                    <th wire:click="sortBy('audioOfficialSeedsize')" role="columnheader button">
+                        音乐区官种体积
+                        @include('livewire.includes._sort-icon', ['field' => 'audioOfficialSeedsize'])
+                    </th>
+                </tr>
                 </thead>
                 <tbody>
                     @foreach ($users as $user)
