@@ -34,26 +34,27 @@
                 </dl>
             </section>
 
-            @if(isset($bdInfo['video']))
+            @if(isset($bdInfo['video']) && is_string($bdInfo['video']))
                 <section class="bdinfo__video">
                     <h3>视频信息</h3>
                     <p>{!! nl2br(e($bdInfo['video'])) !!}</p>
                 </section>
             @endif
 
-            @if(isset($bdInfo['audio']))
+            @if(isset($bdInfo['audio']) && is_string($bdInfo['audio']))
                 <section class="bdinfo__audio">
                     <h3>音频信息</h3>
                     <p>{!! nl2br(e($bdInfo['audio'])) !!}</p>
                 </section>
             @endif
 
-            @if(isset($bdInfo['subtitles']))
+            @if(isset($bdInfo['subtitles']) && is_string($bdInfo['subtitles']))
                 <section class="bdinfo__subtitles">
                     <h3>字幕信息</h3>
                     <p>{!! nl2br(e($bdInfo['subtitles'])) !!}</p>
                 </section>
             @endif
+
         </section>
     </div>
 </div>
