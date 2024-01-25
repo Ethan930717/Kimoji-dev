@@ -20,6 +20,7 @@ class BDInfo
     private function parseSingleLine($string, $fieldName)
     {
         preg_match('/'.$fieldName.'\s*(.+)/', $string, $matches);
+
         return trim($matches[1] ?? '');
     }
 
@@ -28,7 +29,8 @@ class BDInfo
         preg_match('/Disc Size:\s*(\d+)/', $string, $matches);
         $bytes = $matches[1] ?? 0;
         $gigabytes = $bytes / (1024 ** 3); // Convert bytes to gigabytes
-        return round($gigabytes, 2) . ' GB';
+
+        return round($gigabytes, 2).' GB';
     }
 
     private function parseSections($string, $sectionName)
