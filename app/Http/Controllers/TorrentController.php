@@ -94,6 +94,7 @@ class TorrentController extends Controller
         $bdInfo = $torrent->bdinfo !== null ? (new BDInfo())->parse($torrent->bdinfo) : null;
         $musicUrl = $torrent->music_url ?? null; // 获取 music_url
         $lrcUrlStatus = 403;
+
         if ($musicUrl) {
             // 使用正则表达式替换 URL 的最后一部分为 .lrc
             $lrcUrl = preg_replace('/\.\w+$/', '.lrc', $musicUrl);
