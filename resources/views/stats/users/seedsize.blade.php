@@ -30,20 +30,14 @@
                     <tr>
                         <th>#</th>
                         <th>{{ __('common.user') }}</th>
-                        <th>
-                            <a href="{{ route('seedsize', ['sort' => 'seedsize', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
-                                保种总体积
-                            </a>
+                        <th wire:click="sortBy('seedsize')" role="columnheader button">
+                            保种总体积
                         </th>
-                        <th>
-                            <a href="{{ route('seedsize', ['sort' => 'officialSeedsize', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
-                                官种体积
-                            </a>
+                        <th wire:click="sortBy('officialSeedsize')" role="columnheader button">
+                            官种体积
                         </th>
-                        <th>
-                            <a href="{{ route('seedsize', ['sort' => 'audioOfficialSeedsize', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
-                                音乐区官种体积
-                            </a>
+                        <th wire:click="sortBy('audioOfficialSeedsize')" role="columnheader button">
+                            音乐区官种体积
                         </th>
                     </tr>
                 </thead>

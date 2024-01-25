@@ -45,17 +45,20 @@ class BDInfo
 
     private function parseSingleLine($string, $fieldName)
     {
-        preg_match('/'.$fieldName.'\s*(.+)/', $string, $matches);
+        preg_match('/'.$fieldName.'\s*:\s*(.+)/', $string, $matches);
 
         return trim($matches[1] ?? '');
     }
 
     private function parseDiscSize($string)
     {
-        preg_match('/Disc Size:\s*(\d+)/', $string, $matches);
+        // 正则表达式调整为匹配可能包含逗号的数字
+        preg_match('/Disc Size:\s*([\d,]+)/', $string, $matches);
 
-        return $this->convertBytesToGigabytes($matches[1] ?? 0);
+        // 调用修改后的convertBytesToGigabytes函数
+        return $this->convertBytesToGigabytes($matches[1] ?? '0');
     }
+
 
     private function parseTotalBitrate($string)
     {
@@ -73,8 +76,8 @@ class BDInfo
 
     private function cleanSection($section)
     {
-        // 删除所有单独的分隔符行
-        return preg_replace('/^\s*[-]+\s*$/m', '', $section);
+        $section = preg_replace('/Codec\s+Bitrate\s+Description\s*\n[-\s]+/s', '', $section);
+        return preg_replace('/^\s*-{5}\s+-{7}\s+-{11}\s*$/m', '', $section);
     }
 
     private function convertBytesToGigabytes($bytes)
@@ -121,7 +124,9 @@ class BDInfo
     {
         // 解析多行数据（适用于 Quick Summary 模板）
         $data = [];
-        preg_match_all('/'.$sectionName.'\s*(.+)/', $string, $matches, PREG_SET_ORDER);
+        $pattern = '/'.$sectionName.'\s*([^:]+(?:\s*\(.*?\))?)/';
+        preg_match_all($pattern, $string, $matches, PREG_SET_ORDER);
+
         foreach ($matches as $match) {
             $data[] = trim($match[1]);
         }
