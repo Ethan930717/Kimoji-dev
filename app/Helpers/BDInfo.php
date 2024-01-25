@@ -7,7 +7,7 @@ class BDInfo
     public function parse($string)
     {
         // 检查是否为 Quick Summary 模板
-        if (strpos($string, 'PLAYLIST REPORT:') === false) {
+        if (!str_contains($string, 'PLAYLIST REPORT:')) {
             return $this->parseQuickSummary($string);
         }
 
@@ -89,8 +89,10 @@ class BDInfo
     {
         // 解析音频信息并返回数组
         $audioData = [];
+
         if (preg_match('/AUDIO:\s*(.*?)\s*(?=SUBTITLES:|$)/s', $string, $matches)) {
             preg_match_all('/(\w+\s*Audio)\s*(\w+)\s*(\d+\s*kbps)/', $matches[1], $audioMatches, PREG_SET_ORDER);
+
             foreach ($audioMatches as $match) {
                 $audioData[] = [
                     'format'   => $match[1],
@@ -107,8 +109,10 @@ class BDInfo
     {
         // 解析字幕信息并返回数组
         $subtitleData = [];
+
         if (preg_match('/SUBTITLES:\s*(.*)/s', $string, $matches)) {
             preg_match_all('/Presentation Graphics\s*(\w+)\s*(\d+\s*kbps)/', $matches[1], $subtitleMatches, PREG_SET_ORDER);
+
             foreach ($subtitleMatches as $match) {
                 $subtitleData[] = [
                     'language' => $match[1],
@@ -126,6 +130,7 @@ class BDInfo
         $data = [];
         $pattern = '/'.$sectionName.'\s*([^:]+(?:\s*\(.*?\))?)/';
         preg_match_all($pattern, $string, $matches, PREG_SET_ORDER);
+
 
         foreach ($matches as $match) {
             $data[] = trim($match[1]);
