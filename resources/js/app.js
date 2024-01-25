@@ -131,14 +131,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    const metaPosters = document.querySelectorAll('.torrent-card__image');
-    metaPosters.forEach(poster => {
+    // 为 torrent-search--list__music_poster-img 元素添加点击事件
+    const musicPosters = document.querySelectorAll('.torrent-search--list__music_poster-img');
+    musicPosters.forEach(poster => {
         poster.addEventListener('click', function() {
             openImageModal(poster.src);
         });
     });
-});
 
+    // 为 torrent-card__image 元素添加点击事件
+    const torrentCardImages = document.querySelectorAll('.torrent-card__image');
+    torrentCardImages.forEach(image => {
+        image.addEventListener('click', function() {
+            openImageModal(image.src);
+        });
+    });
+});
 
 
 

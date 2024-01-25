@@ -32,6 +32,9 @@ return [
     'active-torrents'       => '活跃中的资源',
     'active-warning'        => '有效',
     'active-warnings'       => '有效',
+    'actual-download'       => '实际下载',
+    'actual-upload'         => '实际上传',
+
     'add-seedbox'           => '登记盒子',
     'all-torrents'          => '所有资源',
     'article-comments'      => '公告评论',

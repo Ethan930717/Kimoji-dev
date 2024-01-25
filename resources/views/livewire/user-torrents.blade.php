@@ -308,7 +308,7 @@
                                 @elseif ($ratio <= INF)
                                     class="ratio-50"
                                 @endif
-                                title="Actual ratio: {{ $history->actual_ratio }}"
+                                title="实际分享率: {{ $history->actual_ratio }}"
                             >
                                 {{ $ratio }}
                             </span>

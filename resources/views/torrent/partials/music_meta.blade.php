@@ -7,6 +7,7 @@
         @php
             $parts = explode('-', $torrent->name);
             $singerName = array_shift($parts); // 移除并获取第一个部分（歌手名称）
+            $singerNameWithoutBrackets = preg_replace('/[\(\（].*?[\)\）]/u', '', $singerName);
             array_pop($parts); // 移除最后一部分
             array_pop($parts); // 再次移除，这次是倒数第二部分
             $title = implode('-', $parts); // 重新组合中间部分
@@ -150,7 +151,7 @@
             data-cover="{{ url('img/kimoji-music.webp') }}"
             data-name="{{ $musicName }}"
             data-url="{{ $musicUrl }}"
-            data-artist="{{ $singerName }}"
+            data-artist="{{ $singerNameWithoutBrackets }}"
             data-lrc="{{ $lrcUrl }}">
             <div id="aplayer" class="aplayer"></div>
             </div>
