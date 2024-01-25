@@ -34,21 +34,44 @@
                 </dl>
             </section>
 
-            @if(isset($bdInfo['video']) && is_string($bdInfo['video']))
+            @if(is_array($bdInfo['video']))
+                <section class="bdinfo__video">
+                    <h3>视频信息</h3>
+                    @foreach($bdInfo['video'] as $video)
+                        <p>{!! nl2br(e($video)) !!}</p>
+                    @endforeach
+                </section>
+            @elseif(isset($bdInfo['video']))
                 <section class="bdinfo__video">
                     <h3>视频信息</h3>
                     <p>{!! nl2br(e($bdInfo['video'])) !!}</p>
                 </section>
             @endif
 
-            @if(isset($bdInfo['audio']) && is_string($bdInfo['audio']))
+            <!-- Audio Information -->
+            @if(is_array($bdInfo['audio']))
+                <section class="bdinfo__audio">
+                    <h3>音频信息</h3>
+                    @foreach($bdInfo['audio'] as $audio)
+                        <p>{!! nl2br(e($audio)) !!}</p>
+                    @endforeach
+                </section>
+            @elseif(isset($bdInfo['audio']))
                 <section class="bdinfo__audio">
                     <h3>音频信息</h3>
                     <p>{!! nl2br(e($bdInfo['audio'])) !!}</p>
                 </section>
             @endif
 
-            @if(isset($bdInfo['subtitles']) && is_string($bdInfo['subtitles']))
+            <!-- Subtitle Information -->
+            @if(is_array($bdInfo['subtitles']))
+                <section class="bdinfo__subtitles">
+                    <h3>字幕信息</h3>
+                    @foreach($bdInfo['subtitles'] as $subtitle)
+                        <p>{!! nl2br(e($subtitle)) !!}</p>
+                    @endforeach
+                </section>
+            @elseif(isset($bdInfo['subtitles']))
                 <section class="bdinfo__subtitles">
                     <h3>字幕信息</h3>
                     <p>{!! nl2br(e($bdInfo['subtitles'])) !!}</p>

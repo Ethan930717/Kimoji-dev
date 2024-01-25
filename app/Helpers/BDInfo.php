@@ -6,15 +6,49 @@ class BDInfo
 {
     public function parse($string)
     {
+        if (strpos($string, 'PLAYLIST REPORT:') !== false) {
+            return $this->parseFullTemplate($string);
+        } else {
+            return $this->parseQuickSummary($string);
+        }
+    }
+
+    protected function parseQuickSummary($string)
+    {
         return [
             'disc_title'    => $this->parseSingleLine($string, 'Disc Title:'),
             'disc_label'    => $this->parseSingleLine($string, 'Disc Label:'),
             'disc_size'     => $this->parseDiscSize($string),
             'total_bitrate' => $this->parseSingleLine($string, 'Total Bitrate:'),
-            'video'         => $this->parseSections($string, 'Video:'),
-            'audio'         => $this->parseSections($string, 'Audio:'),
-            'subtitles'     => $this->parseSections($string, 'Subtitle:'),
+            'video'         => $this->parseSingleLine($string, 'Video:'),
+            'audio'         => $this->parseMultiline($string, 'Audio:'),
+            'subtitles'     => $this->parseMultiline($string, 'Subtitle:'),
         ];
+    }
+
+    protected function parseFullTemplate($string)
+    {
+        return [
+            'disc_info'       => $this->parseDiscInfo($string),
+            'playlist_report' => $this->parsePlaylistReport($string),
+            'video'           => $this->parseSections($string, 'VIDEO:'),
+            'audio'           => $this->parseSections($string, 'AUDIO:'),
+            'subtitles'       => $this->parseSections($string, 'SUBTITLES:'),
+        ];
+    }
+
+    private function parseDiscInfo($string)
+    {
+        // 提取 Disc Info 部分，可能需要调整正则表达式以适应您的数据
+        preg_match('/Disc Title:\s*(.*?)\s*Disc Size:/s', $string, $matches);
+        return $matches[1] ?? '';
+    }
+
+    private function parsePlaylistReport($string)
+    {
+        // 提取 Playlist Report 部分，可能需要调整正则表达式以适应您的数据
+        preg_match('/PLAYLIST REPORT:\s*(.*?)\s*(VIDEO:|AUDIO:|SUBTITLES:|$)/s', $string, $matches);
+        return $matches[1] ?? '';
     }
 
     private function parseSingleLine($string, $fieldName)
@@ -44,5 +78,13 @@ class BDInfo
         }
 
         return $sections;
+    }
+
+    private function parseMultiline($string, $sectionName)
+    {
+        $pattern = '/'.preg_quote($sectionName, '/').'(.*?)(?=Audio:|Subtitle:|Disc Title:|Disc Label:|$)/si';
+        preg_match_all($pattern, $string, $matches);
+
+        return array_map('trim', $matches[1]);
     }
 }
