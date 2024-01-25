@@ -29,27 +29,16 @@ class BDInfo
     protected function parseFullTemplate($string)
     {
         return [
-            'disc_info'       => $this->parseDiscInfo($string),
-            'playlist_report' => $this->parsePlaylistReport($string),
-            'video'           => $this->parseSections($string, 'VIDEO:'),
-            'audio'           => $this->parseSections($string, 'AUDIO:'),
-            'subtitles'       => $this->parseSections($string, 'SUBTITLES:'),
+            'disc_title'    => $this->parseSingleLine($string, 'Disc Title:'),
+            'disc_label'    => $this->parseSingleLine($string, 'Disc Label:'),
+            'disc_size'     => $this->parseDiscSize($string),
+            'total_bitrate' => $this->parseTotalBitrate($string),
+            'video'         => $this->parseSection($string, 'VIDEO:', 'AUDIO:'),
+            'audio'         => $this->parseSection($string, 'AUDIO:', 'SUBTITLES:'),
+            'subtitles'     => $this->parseSection($string, 'SUBTITLES:', 'FILES:'),
         ];
     }
 
-    private function parseDiscInfo($string)
-    {
-        // 提取 Disc Info 部分，可能需要调整正则表达式以适应您的数据
-        preg_match('/Disc Title:\s*(.*?)\s*Disc Size:/s', $string, $matches);
-        return $matches[1] ?? '';
-    }
-
-    private function parsePlaylistReport($string)
-    {
-        // 提取 Playlist Report 部分，可能需要调整正则表达式以适应您的数据
-        preg_match('/PLAYLIST REPORT:\s*(.*?)\s*(VIDEO:|AUDIO:|SUBTITLES:|$)/s', $string, $matches);
-        return $matches[1] ?? '';
-    }
 
     private function parseSingleLine($string, $fieldName)
     {
@@ -67,17 +56,28 @@ class BDInfo
         return round($gigabytes, 2).' GB';
     }
 
-    private function parseSections($string, $sectionName)
+    private function parseTotalBitrate($string)
     {
-        $sections = [];
-        $pattern = '/'.preg_quote($sectionName, '/').'(.*?)\s*(?=(Video:|Audio:|Subtitle:|Disc Title:|Disc Label:|$))/si';
-        preg_match_all($pattern, $string, $matches, PREG_SET_ORDER);
+        preg_match('/Total Bitrate:\s*(.+?)\s*$/m', $string, $matches);
+        return trim($matches[1] ?? '');
+    }
 
-        foreach ($matches as $match) {
-            $sections[] = trim($match[1]);
-        }
 
-        return $sections;
+    private function parseSection($string, $sectionName, $nextSectionName)
+    {
+        preg_match('/'.$sectionName.'\s*(.*?)\s*(?='.$nextSectionName.'|$)/s', $string, $matches);
+        return $this->cleanSection($matches[1] ?? '');
+    }
+
+    private function cleanSection($section)
+    {
+        // Remove lines that only contain separators like '-----'
+        return preg_replace('/^\s*[-]+\s*$/m', '', $section);
+    }
+
+    private function convertBytesToGigabytes($bytes)
+    {
+        return round($bytes / (1024 ** 3), 2); // Convert bytes to gigabytes
     }
 
     private function parseMultiline($string, $sectionName)
