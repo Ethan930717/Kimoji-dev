@@ -150,16 +150,23 @@
             @endif
             </div>
 
-        @if($musicUrl)
+        @if($musicUrl && $lrcUrlStatus === 200)
             <div id="aplayer"
                  data-cover="{{ url('img/kimoji-music.webp') }}"
                  data-name="{{ $musicName }}"
                  data-url="{{ $musicUrl }}"
                  data-artist="{{ $singerNameWithoutBrackets }}"
-                 @if($lrcUrl)
-                     data-lrc="{{ $lrcUrl }}"
-                @endif>
+                 data-lrc="{{ $lrcUrl }}">
+            </div>
+        @else
+            <!-- 只显示播放器，不显示歌词 -->
+            <div id="aplayer"
+                 data-cover="{{ url('img/kimoji-music.webp') }}"
+                 data-name="{{ $musicName }}"
+                 data-url="{{ $musicUrl }}"
+                 data-artist="{{ $singerNameWithoutBrackets }}">
             </div>
         @endif
+
 
 </section>
