@@ -6,11 +6,11 @@ class BDInfo
 {
     public function parse($string)
     {
-        if (strpos($string, 'PLAYLIST REPORT:') !== false) {
+        if (str_contains($string, 'PLAYLIST REPORT:')) {
             return $this->parseFullTemplate($string);
-        } else {
-            return $this->parseQuickSummary($string);
         }
+
+        return $this->parseQuickSummary($string);
     }
 
     protected function parseQuickSummary($string)
@@ -38,7 +38,7 @@ class BDInfo
             'subtitles'     => $this->parseSection($string, 'SUBTITLES:', 'FILES:'),
         ];
     }
-
+    
 
     private function parseSingleLine($string, $fieldName)
     {
