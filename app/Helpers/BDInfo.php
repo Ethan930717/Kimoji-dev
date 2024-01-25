@@ -54,11 +54,10 @@ class BDInfo
     {
         preg_match('/Disc Size:\s*([\d,]+)/', $string, $matches);
         $bytesString = str_replace(',', '', $matches[1] ?? '0'); // 移除逗号
-        $bytes = (int)$bytesString; // 将字符串转换为整数
+        $bytes = (int) $bytesString; // 将字符串转换为整数
 
         return $this->convertBytesToGigabytes($bytes);
     }
-
 
     private function parseTotalBitrate($string)
     {
@@ -77,6 +76,7 @@ class BDInfo
     private function cleanSection($section)
     {
         $section = preg_replace('/Codec\s+Bitrate\s+Description\s*\n[-\s]+/s', '', $section);
+
         return preg_replace('/^\s*-{5}\s+-{7}\s+-{11}\s*$/m', '', $section);
     }
 
@@ -130,7 +130,6 @@ class BDInfo
         $data = [];
         $pattern = '/'.$sectionName.'\s*([^:]+(?:\s*\(.*?\))?)/';
         preg_match_all($pattern, $string, $matches, PREG_SET_ORDER);
-
 
         foreach ($matches as $match) {
             $data[] = trim($match[1]);
