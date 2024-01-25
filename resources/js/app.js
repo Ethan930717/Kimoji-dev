@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
         new APlayer({
             container: aplayerContainer,
             fixed: true,
+            lrcType: 3,
             audio: [{
                 name: songName,
                 artist: artistName,
