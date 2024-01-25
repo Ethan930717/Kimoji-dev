@@ -19,7 +19,7 @@
         "bjeavons/zxcvbn-php": "^1.3.1",
         "doctrine/dbal": "^3.7.2",
         "gabrielelana/byte-units": "^0.5.0",
-        "guzzlehttp/guzzle": "*",
+        "guzzlehttp/guzzle": "^7.8",
         "hdvinnie/laravel-html-purifier": "^2.0.0",
         "hdvinnie/laravel-joypixel-emojis": "^2.0.0",
         "hdvinnie/laravel-security-headers": "^2.0.0",
