@@ -15,6 +15,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Bencode;
 use App\Helpers\MediaInfo;
+use App\Helpers\BDInfo;
 use App\Helpers\TorrentHelper;
 use App\Helpers\TorrentTools;
 use App\Http\Requests\StoreTorrentRequest;
@@ -88,6 +89,8 @@ class TorrentController extends Controller
 
         $meta = null;
         $platforms = null;
+        $bdInfo = $torrent->bdinfo !== null ? (new BDInfo())->parse($torrent->bdinfo) : null;
+
 
         if ($torrent->category->tv_meta && $torrent->tmdb) {
             $meta = Tv::with([
@@ -134,6 +137,7 @@ class TorrentController extends Controller
             'user_tips'          => BonTransactions::where('torrent_id', '=', $id)->where('sender_id', '=', $user->id)->sum('cost'),
             'featured'           => $torrent->featured == 1 ? FeaturedTorrent::where('torrent_id', '=', $id)->first() : null,
             'mediaInfo'          => $torrent->mediainfo !== null ? (new MediaInfo())->parse($torrent->mediainfo) : null,
+            'bdInfo'             => $bdInfo,
             'last_seed_activity' => History::where('torrent_id', '=', $torrent->id)->where('seeder', '=', 1)->latest('updated_at')->first(),
             'playlists'          => $user->playlists,
             'audits'             => Audit::with('user')->where('model_entry_id', '=', $torrent->id)->where('model_name', '=', 'Torrent')->latest()->get(),

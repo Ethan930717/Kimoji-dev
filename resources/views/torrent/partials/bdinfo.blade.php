@@ -1,28 +1,14 @@
 <div class="panelV2" x-data="{ show: false }">
     <header class="panel__header" style="cursor: pointer;" @click="show = !show">
         <h2 class="panel__heading">
-            <i class="{{ config("other.font-awesome") }} fa-compact-disc"></i>
+            <i class="{{ config('other.font-awesome') }} fa-compact-disc"></i>
             BDInfo
-            <i class="{{ config("other.font-awesome") }} fa-plus-circle fa-pull-right" x-show="!show"></i>
-            <i class="{{ config("other.font-awesome") }} fa-minus-circle fa-pull-right" x-show="show" x-cloak></i>
+            <i class="{{ config('other.font-awesome') }} fa-plus-circle fa-pull-right" x-show="!show"></i>
+            <i class="{{ config('other.font-awesome') }} fa-minus-circle fa-pull-right" x-show="show" x-cloak></i>
         </h2>
         <div class="panel__actions">
             <div class="panel__action">
-                <button
-                    class="form__button form__button--text"
-                    x-data
-                    x-on:click.stop="
-                        navigator.clipboard.writeText($refs.bdinfo.textContent);
-                        Swal.fire({
-                              toast: true,
-                              position: 'top-end',
-                              showConfirmButton: false,
-                              timer: 3000,
-                              icon: 'success',
-                              title: '复制成功'
-                        })
-                    "
-                >
+                <button class="form__button form__button--text" x-data x-on:click.stop="navigator.clipboard.writeText($refs.bdinfo.textContent); Swal.fire({toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, icon: 'success', title: '复制成功'})">
                     Copy
                 </button>
             </div>
@@ -33,7 +19,7 @@
             <pre><code x-ref="bdinfo">{{ $torrent->bdinfo }}</code></pre>
         </div>
         <section class="bdinfo">
-            <!-- BDInfo参数概览 -->
+            <!-- BDInfo 参数概览 -->
             <section class="bdinfo__general">
                 <h3>常规信息</h3>
                 <dl>
@@ -43,13 +29,12 @@
                     <dd>{{ App\Helpers\StringHelper::formatBytes($bdInfo['general']['file_size'] ?? 0, 2) }}</dd>
                     <dt>总时长</dt>
                     <dd>{{ $bdInfo['general']['duration'] ?? __('common.unknown') }}</dd>
-                    <!-- 其他常规信息 -->
                 </dl>
             </section>
             @isset($bdInfo['video'])
+                <!-- 视频信息 -->
                 <section class="bdinfo__video">
                     <h3>视频信息</h3>
-                    <!-- 循环处理视频轨道 -->
                     @foreach ($bdInfo['video'] as $video)
                         <article>
                             <h4>视频轨道 #{{ $loop->iteration }}</h4>
@@ -62,16 +47,15 @@
                                 <dd>{{ $video['frame_rate'] ?? __('common.unknown') }}</dd>
                                 <dt>视频编码</dt>
                                 <dd>{{ $video['codec'] ?? __('common.unknown') }}</dd>
-                                <!-- 其他视频信息 -->
                             </dl>
                         </article>
                     @endforeach
                 </section>
             @endisset
             @isset($bdInfo['audio'])
+                <!-- 音频信息 -->
                 <section class="bdinfo__audio">
                     <h3>音频信息</h3>
-                    <!-- 循环处理音频轨道 -->
                     @foreach ($bdInfo['audio'] as $audio)
                         <article>
                             <h4>音频轨道 #{{ $loop->iteration }}</h4>
@@ -82,13 +66,25 @@
                                 <dd>{{ $audio['channels'] ?? __('common.unknown') }}</dd>
                                 <dt>语言</dt>
                                 <dd>{{ $audio['language'] ?? __('common.unknown') }}</dd>
-                                <!-- 其他音频信息 -->
                             </dl>
                         </article>
                     @endforeach
                 </section>
             @endisset
-            <!-- 根据需要添加其他部分，如字幕信息等 -->
+            @isset($bdInfo['subtitle'])
+                <!-- 字幕信息 -->
+                <section class="bdinfo__subtitles">
+                    <h3>字幕信息</h3>
+                    <ul>
+                        @foreach ($bdInfo['subtitle'] as $subtitle)
+                            <li>
+                                <strong>语言:</strong> {{ $subtitle['language'] ?? __('common.unknown') }}
+                                <strong>格式:</strong> {{ $subtitle['format'] ?? __('common.unknown') }}
+                            </li>
+                        @endforeach
+                    </ul>
+                </section>
+            @endisset
         </section>
     </div>
 </div>
