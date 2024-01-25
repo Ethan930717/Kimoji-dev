@@ -29,7 +29,7 @@
                     <dd>{!! nl2br(e($bdInfo['disc_size'] ?? __('common.unknown'))) !!}</dd>
                     <dt>标签</dt>
                     <dd>{!! nl2br(e($bdInfo['disc_label'] ?? __('common.unknown'))) !!}</dd>
-                    <dt>总码率</dt>
+                    <dt>码率</dt>
                     <dd>{!! nl2br(e($bdInfo['total_bitrate'] ?? __('common.unknown'))) !!}</dd>
                 </dl>
             </section>
@@ -48,33 +48,45 @@
                 </section>
             @endif
 
-            <!-- Audio Information -->
-            @if(is_array($bdInfo['audio']))
-                <section class="mediainfo">
+            @if(isset($bdInfo['audio']))
+                <section class="bdinfo__audio">
                     <h3>音频信息</h3>
-                    @foreach($bdInfo['audio'] as $audio)
-                        <p>{!! nl2br(e($audio)) !!}</p>
-                    @endforeach
-                </section>
-            @elseif(isset($bdInfo['audio']))
-                <section class="mediainfo__audio">
-                    <h3>音频信息</h3>
-                    <p>{!! nl2br(e($bdInfo['audio'])) !!}</p>
+                    <dl>
+                        @foreach($bdInfo['audio'] as $audio)
+                            <dt>{{ $loop->iteration }}.</dt>
+                            <dd>
+                                <img
+                                    src="{{ language_flag($audio['language'] ?? __('common.unknown')) }}"
+                                    alt="{{ $audio['language'] ?? __('common.unknown') }}"
+                                    width="20"
+                                    height="13"
+                                    title="{{ $audio['language'] ?? __('common.unknown') }}"
+                                />
+                                {{ $audio['format'] ?? __('common.unknown') }}
+                                / {{ $audio['bit_rate'] ?? __('common.unknown') }}
+                            </dd>
+                        @endforeach
+                    </dl>
                 </section>
             @endif
 
-            <!-- Subtitle Information -->
-            @if(is_array($bdInfo['subtitles']))
-                <section class="mediainfo__subtitles">
+            @if(isset($bdInfo['subtitles']))
+                <section class="bdinfo__subtitles">
                     <h3>字幕信息</h3>
-                    @foreach($bdInfo['subtitles'] as $subtitle)
-                        <p>{!! nl2br(e($subtitle)) !!}</p>
-                    @endforeach
-                </section>
-            @elseif(isset($bdInfo['subtitles']))
-                <section class="mediainfo__subtitles">
-                    <h3>字幕信息</h3>
-                    <p>{!! nl2br(e($bdInfo['subtitles'])) !!}</p>
+                    <ul>
+                        @foreach($bdInfo['subtitles'] as $subtitle)
+                            <li>
+                                <img
+                                    src="{{ language_flag($subtitle['language'] ?? __('common.unknown')) }}"
+                                    alt="{{ $subtitle['language'] ?? __('common.unknown') }}"
+                                    width="20"
+                                    height="13"
+                                    title="{{ $subtitle['language'] ?? __('common.unknown') }}"
+                                />
+                                {{ $subtitle['bit_rate'] ?? __('common.unknown') }}
+                            </li>
+                        @endforeach
+                    </ul>
                 </section>
             @endif
 
