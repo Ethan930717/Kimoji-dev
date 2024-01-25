@@ -30,9 +30,21 @@
                     <tr>
                         <th>#</th>
                         <th>{{ __('common.user') }}</th>
-                        <th>保种总体积</th>
-                        <th>官种体积</th>
-                        <th>音频类官种体积</th>
+                        <th>
+                            <a href="{{ route('seedsize', ['sort' => 'seedsize', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                保种总体积
+                            </a>
+                        </th>
+                        <th>
+                            <a href="{{ route('seedsize', ['sort' => 'officialSeedsize', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                官种体积
+                            </a>
+                        </th>
+                        <th>
+                            <a href="{{ route('seedsize', ['sort' => 'audioOfficialSeedsize', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                音乐区官种体积
+                            </a>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>

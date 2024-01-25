@@ -21,6 +21,7 @@ use App\Models\Peer;
 use App\Models\Torrent;
 use App\Models\TorrentRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Exception;
@@ -272,8 +273,15 @@ class StatsController extends Controller
     /**
      * Show Extra-Stats Users.
      */
-    public function seedsize(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+    public function seedsize(Request $request): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
+        $sortField = $request->input('sort', 'seedsize');
+        $sortDirection = $request->input('direction', 'desc');
+
+        $allowedSortFields = ['seedsize', 'officialSeedsize', 'audioOfficialSeedsize'];
+        if (!in_array($sortField, $allowedSortFields)) {
+            $sortField = 'seedsize';
+        }
         $users = User::withSum('seedingTorrents as seedsize', 'size')
             ->withSum(['seedingTorrents as officialSeedsize' => function ($query): void {
                 $query->where('internal', 1); // 官种
@@ -286,8 +294,10 @@ class StatsController extends Controller
             ->take(100)
             ->get();
 
-        return view('stats.users.seedsize', ['users' => $users]);
+        return view('stats.users.seedsize', ['users' => $users, 'sortField' => $sortField, 'sortDirection' => $sortDirection]);
     }
+
+
 
     /**
      * Show Extra-Stats Torrents.

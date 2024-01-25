@@ -6,6 +6,32 @@ class BDInfo
 {
     public function parse($string)
     {
+        // 检查是否为 Quick Summary 模板
+        if (strpos($string, 'PLAYLIST REPORT:') === false) {
+            return $this->parseQuickSummary($string);
+        }
+
+        // 完整模板的解析逻辑
+        return $this->parseFullTemplate($string);
+    }
+
+    protected function parseQuickSummary($string)
+    {
+        // Quick Summary 模板的解析逻辑
+        return [
+            'disc_title'    => $this->parseSingleLine($string, 'Disc Title:'),
+            'disc_label'    => $this->parseSingleLine($string, 'Disc Label:'),
+            'disc_size'     => $this->parseDiscSize($string),
+            'total_bitrate' => $this->parseSingleLine($string, 'Total Bitrate:'),
+            'video'         => $this->parseSingleLine($string, 'Video:'),
+            'audio'         => $this->parseMultipleLines($string, 'Audio:'),
+            'subtitles'     => $this->parseMultipleLines($string, 'Subtitle:'),
+        ];
+    }
+
+    protected function parseFullTemplate($string)
+    {
+        // 完整模板的解析逻辑
         return [
             'disc_title'    => $this->parseSingleLine($string, 'Disc Title:'),
             'disc_label'    => $this->parseSingleLine($string, 'Disc Label:'),
@@ -58,17 +84,17 @@ class BDInfo
 
     private function parseAudio($string)
     {
-        // 修改后的 parseAudio 方法
         // 解析音频信息并返回数组
         $audioData = [];
-        preg_match_all('/(\w+ Audio)\s*(\w+)\s*(\d+ kbps)/', $string, $matches, PREG_SET_ORDER);
-
-        foreach ($matches as $match) {
-            $audioData[] = [
-                'format'   => $match[1],
-                'language' => $match[2],
-                'bit_rate' => $match[3],
-            ];
+        if (preg_match('/AUDIO:\s*(.*?)\s*(?=SUBTITLES:|$)/s', $string, $matches)) {
+            preg_match_all('/(\w+\s*Audio)\s*(\w+)\s*(\d+\s*kbps)/', $matches[1], $audioMatches, PREG_SET_ORDER);
+            foreach ($audioMatches as $match) {
+                $audioData[] = [
+                    'format'   => $match[1],
+                    'language' => $match[2],
+                    'bit_rate' => $match[3],
+                ];
+            }
         }
 
         return $audioData;
@@ -76,18 +102,30 @@ class BDInfo
 
     private function parseSubtitles($string)
     {
-        // 修改后的 parseSubtitles 方法
         // 解析字幕信息并返回数组
         $subtitleData = [];
-        preg_match_all('/Presentation Graphics\s*(\w+)\s*(\d+ kbps)/', $string, $matches, PREG_SET_ORDER);
-
-        foreach ($matches as $match) {
-            $subtitleData[] = [
-                'language' => $match[1],
-                'bit_rate' => $match[2],
-            ];
+        if (preg_match('/SUBTITLES:\s*(.*)/s', $string, $matches)) {
+            preg_match_all('/Presentation Graphics\s*(\w+)\s*(\d+\s*kbps)/', $matches[1], $subtitleMatches, PREG_SET_ORDER);
+            foreach ($subtitleMatches as $match) {
+                $subtitleData[] = [
+                    'language' => $match[1],
+                    'bit_rate' => $match[2],
+                ];
+            }
         }
 
         return $subtitleData;
+    }
+
+    private function parseMultipleLines($string, $sectionName)
+    {
+        // 解析多行数据（适用于 Quick Summary 模板）
+        $data = [];
+        preg_match_all('/'.$sectionName.'\s*(.+)/', $string, $matches, PREG_SET_ORDER);
+        foreach ($matches as $match) {
+            $data[] = trim($match[1]);
+        }
+
+        return $data;
     }
 }
