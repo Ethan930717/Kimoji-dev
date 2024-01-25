@@ -38,7 +38,6 @@ class BDInfo
             'subtitles'     => $this->parseSection($string, 'SUBTITLES:', 'FILES:'),
         ];
     }
-    
 
     private function parseSingleLine($string, $fieldName)
     {
@@ -59,13 +58,14 @@ class BDInfo
     private function parseTotalBitrate($string)
     {
         preg_match('/Total Bitrate:\s*(.+?)\s*$/m', $string, $matches);
+
         return trim($matches[1] ?? '');
     }
-
 
     private function parseSection($string, $sectionName, $nextSectionName)
     {
         preg_match('/'.$sectionName.'\s*(.*?)\s*(?='.$nextSectionName.'|$)/s', $string, $matches);
+
         return $this->cleanSection($matches[1] ?? '');
     }
 
