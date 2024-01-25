@@ -27,19 +27,21 @@ class BDInfo
     private function parseDiscSize($string)
     {
         preg_match('/Disc Size:\s*(\d+)/', $string, $matches);
-        return $this->convertBytesToGigabytes($matches[1] ?? 0);
 
+        return $this->convertBytesToGigabytes($matches[1] ?? 0);
     }
 
     private function parseTotalBitrate($string)
     {
         preg_match('/Total Bitrate:\s*(.+?)\s*$/m', $string, $matches);
+
         return trim($matches[1] ?? '');
     }
 
     private function parseSection($string, $sectionName, $nextSectionName)
     {
         preg_match('/'.$sectionName.'\s*(.*?)\s*(?='.$nextSectionName.'|$)/s', $string, $matches);
+
         return $this->cleanSection($matches[1] ?? '');
     }
 
@@ -51,7 +53,7 @@ class BDInfo
 
     private function convertBytesToGigabytes($bytes)
     {
-        return round($bytes / (1024 ** 3), 2) . ' GB'; // 将字节转换为千兆字节
+        return round($bytes / (1024 ** 3), 2).' GB'; // 将字节转换为千兆字节
     }
 
     private function parseAudio($string)
@@ -64,9 +66,9 @@ class BDInfo
         foreach ($audioLines as $line) {
             if (preg_match('/(\w+)\s*Audio\s*(\w+)\s*(\d+)\s*kbps/', $line, $matches)) {
                 $audioData[] = [
-                    'format' => $matches[1],
+                    'format'   => $matches[1],
                     'language' => $matches[2],
-                    'bit_rate' => $matches[3] . ' kbps',
+                    'bit_rate' => $matches[3].' kbps',
                 ];
             }
         }
@@ -85,7 +87,7 @@ class BDInfo
             if (preg_match('/(\w+)\s*(\d+)\s*kbps/', $line, $matches)) {
                 $subtitleData[] = [
                     'language' => $matches[1],
-                    'bit_rate' => $matches[2] . ' kbps',
+                    'bit_rate' => $matches[2].' kbps',
                 ];
             }
         }
