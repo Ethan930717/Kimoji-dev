@@ -6,11 +6,11 @@ class BDInfo
 {
     public function parse($string)
     {
-        if (strpos($string, 'PLAYLIST REPORT:') !== false) {
+        if (str_contains($string, 'PLAYLIST REPORT:')) {
             return $this->parseFullTemplate($string);
-        } else {
-            return $this->parseQuickSummary($string);
         }
+
+        return $this->parseQuickSummary($string);
     }
 
     protected function parseQuickSummary($string)
@@ -41,6 +41,7 @@ class BDInfo
     {
         // 提取 Disc Info 部分，可能需要调整正则表达式以适应您的数据
         preg_match('/Disc Title:\s*(.*?)\s*Disc Size:/s', $string, $matches);
+
         return $matches[1] ?? '';
     }
 
@@ -48,6 +49,7 @@ class BDInfo
     {
         // 提取 Playlist Report 部分，可能需要调整正则表达式以适应您的数据
         preg_match('/PLAYLIST REPORT:\s*(.*?)\s*(VIDEO:|AUDIO:|SUBTITLES:|$)/s', $string, $matches);
+
         return $matches[1] ?? '';
     }
 
