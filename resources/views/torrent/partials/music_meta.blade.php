@@ -63,12 +63,15 @@
 
             if (preg_match($pattern, $description, $matches)) {
                 $spoilerContent = html_entity_decode($matches[1]);
+                // 将换行符转换为<br>标签
+                $spoilerContent = nl2br($spoilerContent);
             } else {
                 $spoilerContent = '';
             }
         @endphp
+
         <p class="meta__description">
-            {{ mb_strlen($spoilerContent) > 200 ? mb_substr($spoilerContent, 0, 200) . '...' : $spoilerContent }}
+            {{ $spoilerContent }}
         </p>
         @php
             $musicUrl = $torrent?->music_url;

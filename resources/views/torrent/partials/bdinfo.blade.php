@@ -1,8 +1,7 @@
 <div class="panelV2" x-data="{ show: false }">
     <header class="panel__header" style="cursor: pointer;" @click="show = !show">
         <h2 class="panel__heading">
-            <i class="{{ config('other.font-awesome') }} fa-compact-disc"></i>
-            BDInfo
+            <i class="{{ config('other.font-awesome') }} fa-compact-disc"></i> BDInfo
             <i class="{{ config('other.font-awesome') }} fa-plus-circle fa-pull-right" x-show="!show"></i>
             <i class="{{ config('other.font-awesome') }} fa-minus-circle fa-pull-right" x-show="show" x-cloak></i>
         </h2>
@@ -29,7 +28,7 @@
                     <dt>体积</dt>
                     <dd>{!! nl2br(e($bdInfo['disc_size'] ?? __('common.unknown'))) !!}</dd>
                     <dt>标签</dt>
-                    <dd>{!! nl2br(e($bdInfo['disc_lable'] ?? __('common.unknown'))) !!}</dd>
+                    <dd>{!! nl2br(e($bdInfo['disc_label'] ?? __('common.unknown'))) !!}</dd>
                     <dt>总码率</dt>
                     <dd>{!! nl2br(e($bdInfo['total_bitrate'] ?? __('common.unknown'))) !!}</dd>
                 </dl>
