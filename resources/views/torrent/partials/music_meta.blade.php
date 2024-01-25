@@ -156,7 +156,7 @@
                  data-name="{{ $musicName }}"
                  data-url="{{ $musicUrl }}"
                  data-artist="{{ $singerNameWithoutBrackets }}"
-                 data-lrc="{{ $lrcUrl }}">
+                 data-lrc="[00:00.00]APlayer\n[00:04.01]is\n[00:08.02]amazing">
                 <div id="aplayer" class="aplayer"></div>
             </div>
         @endif
