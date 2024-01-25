@@ -151,13 +151,12 @@
             </div>
 
         @if($musicUrl)
-            <div id="aplayer-container"
+            <div id="aplayer"
                  data-cover="{{ url('img/kimoji-music.webp') }}"
                  data-name="{{ $musicName }}"
                  data-url="{{ $musicUrl }}"
                  data-artist="{{ $singerNameWithoutBrackets }}"
-                 data-lrc="{{ $lrcUrl }}"> 
-                <div id="aplayer" class="aplayer"></div>
+                 data-lrc="{{ $lrcUrl }}">
             </div>
         @endif
 

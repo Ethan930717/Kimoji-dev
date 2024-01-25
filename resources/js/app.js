@@ -49,17 +49,16 @@ window.Swal = require('sweetalert2');
 import APlayer from 'aplayer';
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 常规模式播放器
-    const aplayerContainer = document.getElementById('aplayer-container');
-    if (aplayerContainer) {
-        const coverUrl = aplayerContainer.dataset.cover;
-        const songName = aplayerContainer.dataset.name;
-        const artistName = aplayerContainer.dataset.artist;
-        const songUrl = aplayerContainer.dataset.url;
-        const lrcUrl = aplayerContainer.dataset.lrc;  // 获取歌词URL
+    const aplayerElement = document.getElementById('aplayer');
+    if (aplayerElement) {
+        const coverUrl = aplayerElement.dataset.cover;
+        const songName = aplayerElement.dataset.name;
+        const artistName = aplayerElement.dataset.artist;
+        const songUrl = aplayerElement.dataset.url;
+        const lrcUrl = aplayerElement.dataset.lrc;
 
         new APlayer({
-            container: aplayerContainer,
+            container: aplayerElement,
             fixed: true,
             lrcType: 3,
             audio: [{
@@ -67,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 artist: artistName,
                 url: songUrl,
                 cover: coverUrl,
-                lrc: lrcUrl   // 添加歌词URL
+                lrc: lrcUrl
             }]
         });
     }

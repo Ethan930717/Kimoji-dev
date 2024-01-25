@@ -12,8 +12,8 @@ class BDInfo
             'disc_size'     => $this->parseDiscSize($string),
             'total_bitrate' => $this->parseTotalBitrate($string),
             'video'         => $this->parseSection($string, 'VIDEO:', 'AUDIO:'),
-            'audio'         => $this->parseSection($string, 'AUDIO:', 'SUBTITLES:'),
-            'subtitles'     => $this->parseSection($string, 'SUBTITLES:', 'FILES:'),
+            'audio'         => $this->parseAudio($string),
+            'subtitles'     => $this->parseSubtitles($string),
         ];
     }
 
@@ -58,19 +58,17 @@ class BDInfo
 
     private function parseAudio($string)
     {
+        // 修改后的 parseAudio 方法
+        // 解析音频信息并返回数组
         $audioData = [];
-        $pattern = '/Audio:\s*(.*?)\s*(?=Subtitle:|FILES:|$)/si';
-        preg_match($pattern, $string, $matches);
-        $audioLines = explode("\n", $matches[1] ?? '');
+        preg_match_all('/(\w+ Audio)\s*(\w+)\s*(\d+ kbps)/', $string, $matches, PREG_SET_ORDER);
 
-        foreach ($audioLines as $line) {
-            if (preg_match('/(\w+)\s*Audio\s*(\w+)\s*(\d+)\s*kbps/', $line, $matches)) {
-                $audioData[] = [
-                    'format'   => $matches[1],
-                    'language' => $matches[2],
-                    'bit_rate' => $matches[3].' kbps',
-                ];
-            }
+        foreach ($matches as $match) {
+            $audioData[] = [
+                'format' => $match[1],
+                'language' => $match[2],
+                'bit_rate' => $match[3],
+            ];
         }
 
         return $audioData;
@@ -78,18 +76,16 @@ class BDInfo
 
     private function parseSubtitles($string)
     {
+        // 修改后的 parseSubtitles 方法
+        // 解析字幕信息并返回数组
         $subtitleData = [];
-        $pattern = '/Subtitle:\s*(.*?)\s*(?=FILES:|$)/si';
-        preg_match($pattern, $string, $matches);
-        $subtitleLines = explode("\n", $matches[1] ?? '');
+        preg_match_all('/Presentation Graphics\s*(\w+)\s*(\d+ kbps)/', $string, $matches, PREG_SET_ORDER);
 
-        foreach ($subtitleLines as $line) {
-            if (preg_match('/(\w+)\s*(\d+)\s*kbps/', $line, $matches)) {
-                $subtitleData[] = [
-                    'language' => $matches[1],
-                    'bit_rate' => $matches[2].' kbps',
-                ];
-            }
+        foreach ($matches as $match) {
+            $subtitleData[] = [
+                'language' => $match[1],
+                'bit_rate' => $match[2],
+            ];
         }
 
         return $subtitleData;
