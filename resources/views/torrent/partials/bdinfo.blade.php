@@ -48,7 +48,7 @@
                 </section>
             @endif
 
-            @if(isset($bdInfo['audio']))
+            @if(isset($bdInfo['audio']) && is_array($bdInfo['audio']))
                 <section class="bdinfo__audio">
                     <h3>音频信息</h3>
                     <dl>
@@ -70,7 +70,7 @@
                 </section>
             @endif
 
-            @if(isset($bdInfo['subtitles']))
+            @if(isset($bdInfo['subtitles']) && is_array($bdInfo['subtitles']))
                 <section class="bdinfo__subtitles">
                     <h3>字幕信息</h3>
                     <ul>
