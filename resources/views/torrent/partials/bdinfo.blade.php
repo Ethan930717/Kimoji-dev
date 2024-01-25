@@ -19,72 +19,36 @@
             <pre><code x-ref="bdinfo">{{ $torrent->bdinfo }}</code></pre>
         </div>
         <section class="bdinfo">
-            {{ dd($bdInfo) }}
             <section class="bdinfo__general">
                 <h3>常规信息</h3>
                 <dl>
                     <dt>文件名</dt>
-                    <dd>{{ $bdInfo['general']['file_name'] ?? __('common.unknown') }}</dd>
-                    <dt>总体积</dt>
-                    <dd>{{ App\Helpers\StringHelper::formatBytes($bdInfo['general']['file_size'] ?? 0, 2) }}</dd>
-                    <dt>总时长</dt>
-                    <dd>{{ $bdInfo['general']['duration'] ?? __('common.unknown') }}</dd>
+                    <dd>{{ $bdInfo['disc_info'] ?? __('common.unknown') }}</dd>
+                    <dt>播放报告</dt>
+                    <dd>{!! nl2br(e($bdInfo['playlist_report'] ?? __('common.unknown'))) !!}</dd>
                 </dl>
             </section>
-            @isset($bdInfo['video'])
-                <!-- 视频信息 -->
+
+            @if(isset($bdInfo['video']))
                 <section class="bdinfo__video">
                     <h3>视频信息</h3>
-                    @foreach ($bdInfo['video'] as $video)
-                        <article>
-                            <h4>视频轨道 #{{ $loop->iteration }}</h4>
-                            <dl>
-                                <dt>格式</dt>
-                                <dd>{{ $video['format'] ?? __('common.unknown') }}</dd>
-                                <dt>分辨率</dt>
-                                <dd>{{ $video['resolution'] ?? __('common.unknown') }}</dd>
-                                <dt>帧率</dt>
-                                <dd>{{ $video['frame_rate'] ?? __('common.unknown') }}</dd>
-                                <dt>视频编码</dt>
-                                <dd>{{ $video['codec'] ?? __('common.unknown') }}</dd>
-                            </dl>
-                        </article>
-                    @endforeach
+                    <p>{!! nl2br(e($bdInfo['video'])) !!}</p>
                 </section>
-            @endisset
-            @isset($bdInfo['audio'])
-                <!-- 音频信息 -->
+            @endif
+
+            @if(isset($bdInfo['audio']))
                 <section class="bdinfo__audio">
                     <h3>音频信息</h3>
-                    @foreach ($bdInfo['audio'] as $audio)
-                        <article>
-                            <h4>音频轨道 #{{ $loop->iteration }}</h4>
-                            <dl>
-                                <dt>格式</dt>
-                                <dd>{{ $audio['format'] ?? __('common.unknown') }}</dd>
-                                <dt>频道</dt>
-                                <dd>{{ $audio['channels'] ?? __('common.unknown') }}</dd>
-                                <dt>语言</dt>
-                                <dd>{{ $audio['language'] ?? __('common.unknown') }}</dd>
-                            </dl>
-                        </article>
-                    @endforeach
+                    <p>{!! nl2br(e($bdInfo['audio'])) !!}</p>
                 </section>
-            @endisset
-            @isset($bdInfo['subtitle'])
-                <!-- 字幕信息 -->
+            @endif
+
+            @if(isset($bdInfo['subtitles']))
                 <section class="bdinfo__subtitles">
                     <h3>字幕信息</h3>
-                    <ul>
-                        @foreach ($bdInfo['subtitle'] as $subtitle)
-                            <li>
-                                <strong>语言:</strong> {{ $subtitle['language'] ?? __('common.unknown') }}
-                                <strong>格式:</strong> {{ $subtitle['format'] ?? __('common.unknown') }}
-                            </li>
-                        @endforeach
-                    </ul>
+                    <p>{!! nl2br(e($bdInfo['subtitles'])) !!}</p>
                 </section>
-            @endisset
+            @endif
         </section>
     </div>
 </div>
