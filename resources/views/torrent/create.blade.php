@@ -130,7 +130,7 @@
                         >
                             <option hidden selected disabled value=""></option>
                             @foreach ($categories as $id => $category)
-                                <option class="form__option" value="{{ $id }}">
+                                <option class="form__option" value="{{ $id }}" @if ($id > 1) style="display: none;" @endif>
                                     {{ $category['name'] }}
                                 </option>
                             @endforeach
