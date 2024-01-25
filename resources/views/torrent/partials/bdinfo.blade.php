@@ -17,12 +17,12 @@
         <div class="torrent-bdinfo-dump bbcode-rendered" x-cloak x-show="show">
             <pre><code x-ref="bdinfo">{{ $torrent->bdinfo }}</code></pre>
         </div>
-        <section class="bdinfo">
-            <section class="bdinfo__filename">
+        <section class="mediainfo">
+            <section class="mediainfo__filename">
                 <h3>文件名</h3>
                 <dd>{{ $bdInfo['disc_info'] ?? __('common.unknown') }}</dd>
             </section>
-            <section class="bdinfo__general">
+            <section class="mediainfo__general">
                 <h3>常规</h3>
                 <dl>
                     <dt>体积</dt>
@@ -35,14 +35,14 @@
             </section>
 
             @if(is_array($bdInfo['video']))
-                <section class="bdinfo__video">
+                <section class="mediainfo__video">
                     <h3>视频信息</h3>
                     @foreach($bdInfo['video'] as $video)
                         <p>{!! nl2br(e($video)) !!}</p>
                     @endforeach
                 </section>
             @elseif(isset($bdInfo['video']))
-                <section class="bdinfo__video">
+                <section class="mediainfo__video">
                     <h3>视频信息</h3>
                     <p>{!! nl2br(e($bdInfo['video'])) !!}</p>
                 </section>
@@ -50,14 +50,14 @@
 
             <!-- Audio Information -->
             @if(is_array($bdInfo['audio']))
-                <section class="bdinfo__audio">
+                <section class="mediainfo">
                     <h3>音频信息</h3>
                     @foreach($bdInfo['audio'] as $audio)
                         <p>{!! nl2br(e($audio)) !!}</p>
                     @endforeach
                 </section>
             @elseif(isset($bdInfo['audio']))
-                <section class="bdinfo__audio">
+                <section class="mediainfo__audio">
                     <h3>音频信息</h3>
                     <p>{!! nl2br(e($bdInfo['audio'])) !!}</p>
                 </section>
@@ -65,14 +65,14 @@
 
             <!-- Subtitle Information -->
             @if(is_array($bdInfo['subtitles']))
-                <section class="bdinfo__subtitles">
+                <section class="mediainfo__subtitles">
                     <h3>字幕信息</h3>
                     @foreach($bdInfo['subtitles'] as $subtitle)
                         <p>{!! nl2br(e($subtitle)) !!}</p>
                     @endforeach
                 </section>
             @elseif(isset($bdInfo['subtitles']))
-                <section class="bdinfo__subtitles">
+                <section class="mediainfo__subtitles">
                     <h3>字幕信息</h3>
                     <p>{!! nl2br(e($bdInfo['subtitles'])) !!}</p>
                 </section>
