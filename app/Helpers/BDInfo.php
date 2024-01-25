@@ -6,39 +6,41 @@ class BDInfo
 {
     public function parse($string)
     {
-        $parsedData = [
-            'disc_info'       => $this->parseDiscInfo($string),
-            'playlist_report' => $this->parsePlaylistReport($string),
-            'video'           => $this->parseSection($string, 'VIDEO:'),
-            'audio'           => $this->parseSection($string, 'AUDIO:'),
-            'subtitles'       => $this->parseSection($string, 'SUBTITLES:'),
+        return [
+            'disc_title'    => $this->parseSingleLine($string, 'Disc Title:'),
+            'disc_label'    => $this->parseSingleLine($string, 'Disc Label:'),
+            'disc_size'     => $this->parseDiscSize($string),
+            'total_bitrate' => $this->parseSingleLine($string, 'Total Bitrate:'),
+            'video'         => $this->parseSections($string, 'Video:'),
+            'audio'         => $this->parseSections($string, 'Audio:'),
+            'subtitles'     => $this->parseSections($string, 'Subtitle:'),
         ];
-
-        return $parsedData;
     }
 
-    private function parseDiscInfo($string)
+    private function parseSingleLine($string, $fieldName)
     {
-        // 解析 Disc Info 部分
-        // 适当调整正则表达式以匹配您的数据
-        preg_match('/Disc Title:\s*(.*?)\s*Disc Size:/s', $string, $matches);
-
-        return $matches[1] ?? '';
+        preg_match('/'.$fieldName.'\s*(.+)/', $string, $matches);
+        return trim($matches[1] ?? '');
     }
 
-    private function parsePlaylistReport($string)
+    private function parseDiscSize($string)
     {
-        // 解析 Playlist Report 部分
-        // 适当调整正则表达式以匹配您的数据
-        preg_match('/PLAYLIST REPORT:\s*(.*?)\s*VIDEO:/s', $string, $matches);
-
-        return $matches[1] ?? '';
+        preg_match('/Disc Size:\s*(\d+)/', $string, $matches);
+        $bytes = $matches[1] ?? 0;
+        $gigabytes = $bytes / (1024 ** 3); // Convert bytes to gigabytes
+        return round($gigabytes, 2) . ' GB';
     }
 
-    private function parseSection($string, $sectionName)
+    private function parseSections($string, $sectionName)
     {
-        preg_match('/'.$sectionName.'\s*(.*?)\s*(?:AUDIO:|SUBTITLES:|$)/s', $string, $matches);
+        $sections = [];
+        $pattern = '/'.preg_quote($sectionName, '/').'(.*?)\s*(?=(Video:|Audio:|Subtitle:|Disc Title:|Disc Label:|$))/si';
+        preg_match_all($pattern, $string, $matches, PREG_SET_ORDER);
 
-        return $matches[1] ?? '';
+        foreach ($matches as $match) {
+            $sections[] = trim($match[1]);
+        }
+
+        return $sections;
     }
 }

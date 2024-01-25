@@ -9,7 +9,7 @@
         <div class="panel__actions">
             <div class="panel__action">
                 <button class="form__button form__button--text" x-data x-on:click.stop="navigator.clipboard.writeText($refs.bdinfo.textContent); Swal.fire({toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, icon: 'success', title: '复制成功'})">
-                    Copy
+                    复制
                 </button>
             </div>
         </div>
@@ -19,13 +19,19 @@
             <pre><code x-ref="bdinfo">{{ $torrent->bdinfo }}</code></pre>
         </div>
         <section class="bdinfo">
+            <section class="bdinfo__filename">
+                <h3>文件名</h3>
+                <dd>{{ $bdInfo['disc_info'] ?? __('common.unknown') }}</dd>
+            </section>
             <section class="bdinfo__general">
-                <h3>常规信息</h3>
+                <h3>常规</h3>
                 <dl>
-                    <dt>文件名</dt>
-                    <dd>{{ $bdInfo['disc_info'] ?? __('common.unknown') }}</dd>
-                    <dt>播放报告</dt>
-                    <dd>{!! nl2br(e($bdInfo['playlist_report'] ?? __('common.unknown'))) !!}</dd>
+                    <dt>体积</dt>
+                    <dd>{!! nl2br(e($bdInfo['disc_size'] ?? __('common.unknown'))) !!}</dd>
+                    <dt>标签</dt>
+                    <dd>{!! nl2br(e($bdInfo['disc_lable'] ?? __('common.unknown'))) !!}</dd>
+                    <dt>总码率</dt>
+                    <dd>{!! nl2br(e($bdInfo['total_bitrate'] ?? __('common.unknown'))) !!}</dd>
                 </dl>
             </section>
 
