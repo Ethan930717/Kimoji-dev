@@ -37,10 +37,6 @@
         </div>
     </header>
     <aside class="torrent-card__aside">
-        <a
-            class="torrent-card__similar-link"
-            href="{{ route('torrents.similar', ['category_id' => $torrent->category_id, 'tmdb' => $torrent->tmdb]) }}"
-        >
             <figure class="torrent-card__figure">
                 <img
                     class="torrent-card__image"

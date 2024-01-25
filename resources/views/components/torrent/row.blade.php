@@ -17,15 +17,15 @@
 >
     @if (auth()->user()->show_poster == 1)
         <td class="torrent-search--list__poster">
-            <a href="{{ route('torrents.similar', ['category_id' => $torrent->category_id, 'tmdb' => $torrent->tmdb]) }}">
-                @if ($torrent->category->movie_meta || $torrent->category->tv_meta)
-                    <img
+            @if ($torrent->category->movie_meta || $torrent->category->tv_meta)
+                <a href="{{ route('torrents.similar', ['category_id' => $torrent->category_id, 'tmdb' => $torrent->tmdb]) }}">
+                <img
                         src="{{ isset($meta->poster) ? tmdb_image('poster_small', $meta->poster) : 'https://via.placeholder.com/90x135' }}"
                         class="torrent-search--list__poster-img"
                         loading="lazy"
                         alt="{{ __('torrent.poster') }}"
                     >
-                @endif
+            @endif
                 @if ($torrent->category->game_meta)
                     <img
                         style="height: 80px;"
@@ -39,14 +39,14 @@
                         @if(file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg'))
                             <img
                                     src="{{ url('files/img/torrent-cover_'.$torrent->id.'.jpg') }}"
-                                    class="torrent-search--list__poster-img"
+                                    class="torrent-search--list__music_poster-img"
                                     loading="lazy"
                                     alt="{{ __('torrent.poster') }}"
                             >
                         @else
                             <img
                                     src="https://via.placeholder.com/500x500"
-                                    class="torrent-search--list__poster-img"
+                                    class="torrent-search--list__music_poster-img"
                                     loading="lazy"
                                     alt="{{ __('torrent.poster') }}"
                             >
@@ -56,14 +56,14 @@
                     @if(file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg'))
                         <img
                             src="{{ url('files/img/torrent-cover_'.$torrent->id.'.jpg') }}"
-                            class="torrent-search--list__poster-img"
+                            class="torrent-search--list__music_poster-img"
                             loading="lazy"
                             alt="{{ __('torrent.poster') }}"
                         >
                     @else
                         <img
                             src="https://via.placeholder.com/400x600"
-                            class="torrent-search--list__poster-img"
+                            class="torrent-search--list__music_poster-img"
                             loading="lazy"
                             alt="{{ __('torrent.poster') }}"
                         >

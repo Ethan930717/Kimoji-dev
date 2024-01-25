@@ -127,7 +127,8 @@
                 @foreach ($songs as $song)
                     <article class="meta-chip-wrapper">
                         <a class="meta-chip">
-                            <h2 class="meta-chip__name">{{ preg_replace('/\[.*?\]/', '', trim($song)) }}</h2>
+                            <h2 class="meta-chip__name">{{ trim($song) }}
+                            </h2>
                         </a>
                     </article>
                 @endforeach

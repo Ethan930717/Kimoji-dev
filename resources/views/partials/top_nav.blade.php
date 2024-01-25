@@ -70,18 +70,6 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('torrents?perPage=24&view=card&categories[0]=3') }}">
-                                <i class="{{ config('other.font-awesome') }} fa-music"></i>
-                                旋律海洋
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('torrents?perPage=48&view=card&categories[0]=4') }}">
-                                <i class="{{ config('other.font-awesome') }} fa-radio-alt"></i>
-                                有声王国
-                            </a>
-                        </li>
-                        <li>
                             <a href="{{ url('torrents?perPage=48&categories[0]=1&types[0]=2&types[1]=1&view=card') }}">
                                 <i class="{{ config('other.font-awesome') }} fa-compact-disc"></i>
                                 蓝光宝盒
@@ -90,9 +78,9 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="{{ url('torrents?perPage=48&view=poster&genres[0]=10762') }}">
+                    <a href="{{ url('torrents?perPage=24&view=card&categories[0]=3') }}">
                         <i class="{{ config('other.font-awesome') }} fa-flower"></i>
-                        KIMOJI PARK
+                        KIMOJI MUSIC
                     </a>
                 </li>
                 <li>

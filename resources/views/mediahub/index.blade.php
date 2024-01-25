@@ -16,8 +16,8 @@
 
 @section('main')
     <section class="panelV2">
-        <h2 class="panel__heading">{{ __('mediahub.title') }}</h2>
         <div class="panel__body">
+            <img class="" src="{{ url('/img/tmdb_long.svg') }}" style="width: 200px;">
             <ul class="mediahub-card__list">
                 <li class="mediahub-card__list-item">
                     <a
@@ -84,15 +84,6 @@
                     </a>
                 </li>
             </ul>
-        </div>
-    </section>
-@endsection
-@section('sidebar')
-    <section class="panelV2">
-        <h2 class="panel__heading">声明</h2>
-        <div class="panel__body" style="text-align: center">
-            {{ __('mediahub.disclaimer') }}
-            <img class="" src="{{ url('/img/tmdb_long.svg') }}" style="width: 200px;">
         </div>
     </section>
 @endsection

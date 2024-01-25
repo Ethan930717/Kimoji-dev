@@ -130,6 +130,13 @@ document.addEventListener('DOMContentLoaded', function() {
             openImageModal(poster.src);
         });
     });
+
+    const metaPosters = document.querySelectorAll('.torrent-card__image');
+    metaPosters.forEach(poster => {
+        poster.addEventListener('click', function() {
+            openImageModal(poster.src);
+        });
+    });
 });
 
 
