@@ -34,15 +34,17 @@
                     <ul class="sub-menu">
                         <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=1') }}"><i class="{{ config('other.font-awesome') }} fa-music"></i> 流行（Pop）</a></li>
                         <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=5') }}"><i class="{{ config('other.font-awesome') }} fa-drum"></i> 摇滚（Rock）</a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=23') }}"><i class="{{ config('other.font-awesome') }} fa-heart"></i> 节奏布鲁斯（R&B）</a></li>
                         <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=6') }}"><i class="{{ config('other.font-awesome') }} fa-saxophone"></i> 爵士（Jazz）</a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=11') }}"><i class="{{ config('other.font-awesome') }} fa-guitar-acoustic"></i> 民谣（Folk）</a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=15') }}"><i class="{{ config('other.font-awesome') }} fa-cowboy-hat"></i> 乡村（Country）</a></li>
+                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=11') }}"><i class="{{ config('other.font-awesome') }} fa-guitars"></i> 民谣（Folk）</a></li>
+                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=15') }}"><i class="{{ config('other.font-awesome') }} fa-hat-cowboy"></i> 乡村（Country）</a></li>
                         <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=2') }}"><i class="{{ config('other.font-awesome') }} fa-violin"></i> 古典（Classic）</a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=3') }}"><i class="{{ config('other.font-awesome') }} fa-guitar"></i> 器乐（Instrument）</a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=7') }}"><i class="{{ config('other.font-awesome') }} fa-guitar-electric"></i> 布鲁斯（Blues）</a></li>
+                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=3') }}"><i class="{{ config('other.font-awesome') }} fa-piano"></i> 器乐（Instrument）</a></li>
                         <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=10') }}"><i class="{{ config('other.font-awesome') }} fa-headphones"></i> 电子（Electronic）</a></li>
                         <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=4') }}"><i class="{{ config('other.font-awesome') }} fa-film"></i> 原声（OST）</a></li>
+                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=7') }}"><i class="{{ config('other.font-awesome') }} fa-guitar-electric"></i> 布鲁斯（Blues）</a></li>
+                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=23') }}"><i class="{{ config('other.font-awesome') }} fa-heart"></i> 节奏布鲁斯（R&B）</a></li>
+                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=8&distributors[1]=9&distributors[2]=10&distributors[3]=12&distributors[4]=13&distributors[5]=14&distributors[6]=16&distributors[7]=22&distributors[8]=18&distributors[9]=19&distributors[9]=20') }}"><i class="{{ config('other.font-awesome') }} fa-cowbell-more"></i> More</a></li>
+
                     </ul>
                 </li>
                 <li>
