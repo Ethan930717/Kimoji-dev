@@ -66,7 +66,8 @@ class BDInfo
         return trim($matches[1] ?? '');
     }
 
-    private function parseSection($string, $sectionName, $nextSectionName) {
+    private function parseSection($string, $sectionName, $nextSectionName)
+    {
         preg_match('/'.$sectionName.'\s*(.*?)\s*(?='.$nextSectionName.'|$)/s', $string, $matches);
         $section = $this->cleanSection($matches[1] ?? '');
 
@@ -74,16 +75,18 @@ class BDInfo
         if ($sectionName == 'VIDEO:' && !str_contains($section, "\n")) {
             // Quick Summary 模板，单行视频信息
             return $this->parseVideoParameters($section);
-        } elseif ($sectionName == 'VIDEO:') {
+        }
+
+        if ($sectionName == 'VIDEO:') {
             // 完整模板，视频信息可能有多行
             $videos = explode("\n", $section);
+
             return array_map([$this, 'parseVideoParameters'], $videos);
         }
 
         // 如果不是 VIDEO 部分，保持原样返回
         return $section;
     }
-
 
     private function cleanSection($section)
     {
@@ -92,21 +95,23 @@ class BDInfo
         return preg_replace('/^\s*-{5}\s+-{7}\s+-{11}\s*$/m', '', $section);
     }
 
-    private function parseVideoParameters($videoString) {
+    private function parseVideoParameters($videoString)
+    {
         $pattern = '/(\w+(?:-\w+)*\s*Video)\s*(\d+\s*kbps)\s*(\d+p)\s*\/\s*(\d+\s*fps)\s*\/\s*(\d+:\d+)\s*\/\s*(.+)$/';
+
         if (preg_match($pattern, $videoString, $matches)) {
             return [
-                'format' => $matches[1],
-                'bitrate' => $matches[2],
-                'resolution' => $matches[3],
-                'frame_rate' => $matches[4],
-                'aspect_ratio' => $matches[5],
+                'format'        => $matches[1],
+                'bitrate'       => $matches[2],
+                'resolution'    => $matches[3],
+                'frame_rate'    => $matches[4],
+                'aspect_ratio'  => $matches[5],
                 'profile_level' => $matches[6]
             ];
         }
+
         return [];
     }
-
 
     private function convertBytesToGigabytes($bytes)
     {
