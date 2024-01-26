@@ -29,7 +29,8 @@
 }
 
 .mediainfo dt {
-    text-align: right;
+    text-align: left;
+    word-break: keep-all;
     padding-right: 12px;
 }
 
