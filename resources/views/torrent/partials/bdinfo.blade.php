@@ -33,9 +33,6 @@
                     <dd>{!! nl2br(e($bdInfo['total_bitrate'] ?? __('common.unknown'))) !!}</dd>
                 </dl>
             </section>
-            @php
-                dd($bdInfo['video'],$bdInfo['audio'], $bdInfo['subtitles']);
-            @endphp
 
             @if(!empty($bdInfo['video']))
                 <section class="bdinfo__video">
