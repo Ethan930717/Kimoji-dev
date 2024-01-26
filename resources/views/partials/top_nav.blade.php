@@ -55,16 +55,14 @@
                         <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=8') }}"><i class="{{ config('other.font-awesome') }} fa-cloud-sun"></i> 新世纪</a></li>
                     </ul>
                 </li>
-                    </ul>
-                </li>
                 <li>
                     <a
                         href="{{ route('torrents.index', ['view' => match(auth()->user()->torrent_layout) {
-                                    1       => 'card',
-                                    2       => 'group',
-                                    3       => 'poster',
-                                    default => 'list'
-                                }]) }}"
+                            1       => 'card',
+                            2       => 'group',
+                            3       => 'poster',
+                            default => 'list'
+                        }]) }}"
                     >
                         <i class="{{ config('other.font-awesome') }} fa-seedling"></i>
                         万事屋
