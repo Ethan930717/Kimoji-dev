@@ -40,8 +40,8 @@
             </section>
 
             @if(!empty($bdInfo['video']))
-                <section class="bdinfo__video">
-                    <h3>视频信息</h3>
+                <section class="mediainfo__video">
+                    <h3>视频</h3>
                     <article>
                         <dl>
                             @isset($bdInfo['video']['format'])
@@ -101,8 +101,8 @@
 
 
             @if(!empty($bdInfo['audio']) && is_array($bdInfo['audio']))
-                <section class="bdinfo__audio">
-                    <h3>音频信息</h3>
+                <section class="mediainfo__audio">
+                    <h3>音频</h3>
                     <ul>
                         @foreach($bdInfo['audio'] as $audioData)
                             <li>
@@ -122,8 +122,8 @@
             @endif
 
             @if(!empty($bdInfo['subtitles']) && is_array($bdInfo['subtitles']))
-                <section class="bdinfo__subtitles">
-                    <h3>字幕信息</h3>
+                <section class="mediainfo__subtitles">
+                    <h3>字幕</h3>
                     <dl>
                         @foreach($bdInfo['subtitles'] as $subtitleData)
                             <dd>
