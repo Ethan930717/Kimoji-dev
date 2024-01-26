@@ -29,31 +29,46 @@
                     <dd>{!! nl2br(e($bdInfo['disc_size'] ?? __('common.unknown'))) !!}</dd>
                     <dt>标签</dt>
                     <dd>{!! nl2br(e($bdInfo['disc_label'] ?? __('common.unknown'))) !!}</dd>
-                    <dt>码率</dt>
+                    <dt>整体码率</dt>
                     <dd>{!! nl2br(e($bdInfo['total_bitrate'] ?? __('common.unknown'))) !!}</dd>
                 </dl>
             </section>
 
-            @if(is_array($bdInfo['video']))
-                <section class="mediainfo__video">
+            @if(isset($bdInfo['video']))
+                <section class="bdinfo__video">
                     <h3>视频信息</h3>
-                    @foreach($bdInfo['video'] as $video)
-                        <p>{!! nl2br(e($video)) !!}</p>
-                    @endforeach
-                </section>
-            @elseif(isset($bdInfo['video']))
-                <section class="mediainfo__video">
-                    <h3>视频信息</h3>
-                    <p>{!! nl2br(e($bdInfo['video'])) !!}</p>
+                    @if(is_array($bdInfo['video']))
+                        @foreach($bdInfo['video'] as $videoData)
+                            <article>
+                                <dl>
+                                    <dt>格式</dt>
+                                    <dd>{{ $videoData['format'] ?? __('common.unknown') }}</dd>
+                                    <dt>码率</dt>
+                                    <dd>{{ $videoData['bitrate'] ?? __('common.unknown') }}</dd>
+                                    <dt>分辨率</dt>
+                                    <dd>{{ $videoData['resolution'] ?? __('common.unknown') }}</dd>
+                                    <dt>帧率</dt>
+                                    <dd>{{ $videoData['frame_rate'] ?? __('common.unknown') }}</dd>
+                                    <dt>宽高比</dt>
+                                    <dd>{{ $videoData['aspect_ratio'] ?? __('common.unknown') }}</dd>
+                                    <dt>Profile Level</dt>
+                                    <dd>{{ $videoData['profile_level'] ?? __('common.unknown') }}</dd>
+                                </dl>
+                            </article>
+                        @endforeach
+                    @else
+                        <p>{!! nl2br(e($bdInfo['video'])) !!}</p>
+                    @endif
                 </section>
             @endif
+
 
             @if(!empty($bdInfo['audio']) && is_array($bdInfo['audio']))
                 <section class="bdinfo__audio">
                     <h3>音频信息</h3>
-                    <dl>
+                    <ul>
                         @foreach($bdInfo['audio'] as $audioData)
-                            <dd>
+                            <li>
                                 @if(isset($audioData['country_code']) && $audioData['country_code'])
                                     <img src="/img/flags/{{ $audioData['country_code'] }}.png"
                                          alt="{{ $audioData['country_code'] }}"
@@ -63,18 +78,18 @@
                                     />
                                 @endif
                                 {{ $audioData['info'] }}
-                            </dd>
+                            </li>
                         @endforeach
-                    </dl>
+                    </ul>
                 </section>
             @endif
 
             @if(!empty($bdInfo['subtitles']) && is_array($bdInfo['subtitles']))
                 <section class="bdinfo__subtitles">
                     <h3>字幕信息</h3>
-                    <ul>
+                    <dl>
                         @foreach($bdInfo['subtitles'] as $subtitleData)
-                            <li>
+                            <dd>
                                 @if(isset($subtitleData['country_code']) && $subtitleData['country_code'])
                                     <img src="/img/flags/{{ $subtitleData['country_code'] }}.png"
                                          alt="{{ $subtitleData['country_code'] }}"
@@ -83,9 +98,9 @@
                                          title="{{ $subtitleData['country_code'] }}"
                                     />
                                 @endif
-                            </li>
+                            </dd>
                         @endforeach
-                    </ul>
+                    </dl>
                 </section>
             @endif
 
