@@ -402,7 +402,7 @@
                             placeholder=" "
                         >{{ old('bdinfo') }}</textarea>
                         <label class="form__label form__label--floating" for="upload-form-bdinfo">
-                            BDInfo (Quick Summary)
+                            BDInfo
                         </label>
                     </p>
                     <p class="form__group">

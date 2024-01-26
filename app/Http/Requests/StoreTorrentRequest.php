@@ -131,6 +131,13 @@ class StoreTorrentRequest extends FormRequest
                 'nullable',
                 'sometimes',
                 'max:4294967296',
+                function ($attribute, $value, $fail) use ($category): void {
+                    if ($category->movie_meta || $category->tv_meta) {
+                        if (!str_contains($value, 'PLAYLIST')) {
+                            $fail('请提供完整版本的BDInfo信息（非Quick Summary格式）');
+                        }
+                    }
+                },
             ],
             'category_id' => [
                 'required',

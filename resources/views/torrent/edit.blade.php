@@ -356,7 +356,7 @@
                         placeholder=" "
                     >{{ old('bdinfo') ?? $torrent->bdinfo }}</textarea>
                     <label class="form__label form__label--floating" for="bdinfo">
-                        BDInfo (Quick Summary)
+                        BDInfo
                     </label>
                 </p>
 
