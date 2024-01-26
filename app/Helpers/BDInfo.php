@@ -93,8 +93,7 @@ class BDInfo
             // 分割匹配到的字符串，以每行为一个音频参数
             $audioLines = explode("\n", trim($matches[1]));
 
-
-            if (strpos(strtolower($audioLines[0]), 'codec') !== false) {
+            if (str_contains(strtolower($audioLines[0]), 'codec')) {
                 array_shift($audioLines);
             }
 
@@ -108,7 +107,6 @@ class BDInfo
         }
 
         return preg_replace('/^\s*-{5}\s+-{8}\s+-{7}\\s+-{11}\s*$/m', '', $audioData);
-
     }
 
     private function parseSubtitles($string)
@@ -149,6 +147,4 @@ class BDInfo
 
         return $data;
     }
-
-
 }
