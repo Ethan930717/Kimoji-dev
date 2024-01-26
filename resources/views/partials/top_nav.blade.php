@@ -40,21 +40,9 @@
                         <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=15') }}"><i class="{{ config('other.font-awesome') }} fa-cowboy-hat"></i> 乡村（Country）</a></li>
                         <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=2') }}"><i class="{{ config('other.font-awesome') }} fa-violin"></i> 古典（Classic）</a></li>
                         <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=3') }}"><i class="{{ config('other.font-awesome') }} fa-guitar"></i> 器乐（Instrument）</a></li>
+                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=7') }}"><i class="{{ config('other.font-awesome') }} fa-guitar-electric"></i> 布鲁斯（Blues）</a></li>
                         <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=10') }}"><i class="{{ config('other.font-awesome') }} fa-headphones"></i> 电子（Electronic）</a></li>
                         <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=4') }}"><i class="{{ config('other.font-awesome') }} fa-film"></i> 原声（OST）</a></li>
-                    </ul>
-                    <ul class="sub-menu-right">
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=9') }}"><i class="{{ config('other.font-awesome') }} fa-disc"></i> 舞曲（Dance）</a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=22') }}"><i class="{{ config('other.font-awesome') }} fa-palm-tree"></i> 雷鬼（Reggae）</a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=13') }}"><i class="{{ config('other.font-awesome') }} fa-hat-cowboy"></i> 嘻哈（Hip Hop）</a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=12') }}"><i class="{{ config('other.font-awesome') }} fa-indie-alt"></i> 独立（Indie）</a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=18') }}"><i class="{{ config('other.font-awesome') }} fa-church"></i> 福音（Christian）</a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=19') }}"><i class="{{ config('other.font-awesome') }} fa-child"></i> 儿童（Child）</a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=20') }}"><i class="{{ config('other.font-awesome') }} fa-drum-steelpan"></i> 拉丁（Latino）</a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=16') }}"><i class="{{ config('other.font-awesome') }} fa-alien-monster"></i> 另类（Alternative）</a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=7') }}"><i class="{{ config('other.font-awesome') }} fa-guitar-electric"></i> 布鲁斯（Blues）</a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=14') }}"><i class="{{ config('other.font-awesome') }} fa-theater-masks"></i> 音乐剧（Musical</a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=8') }}"><i class="{{ config('other.font-awesome') }} fa-cloud-sun"></i> 新世纪（New Age）</a></li>
                     </ul>
                 </li>
                 <li>
