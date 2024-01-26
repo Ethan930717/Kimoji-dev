@@ -124,9 +124,9 @@
             @if(!empty($bdInfo['subtitles']) && is_array($bdInfo['subtitles']))
                 <section class="mediainfo__subtitles">
                     <h3>字幕</h3>
-                    <dl>
+                    <ul>
                         @foreach($bdInfo['subtitles'] as $subtitleData)
-                            <dd>
+                            <li>
                                 @if(isset($subtitleData['country_code']) && $subtitleData['country_code'])
                                     <img src="/img/flags/{{ $subtitleData['country_code'] }}.png"
                                          alt="{{ $subtitleData['country_code'] }}"
@@ -135,9 +135,9 @@
                                          title="{{ $subtitleData['country_code'] }}"
                                     />
                                 @endif
-                            </dd>
+                            </li>
                         @endforeach
-                    </dl>
+                    </ul>
                 </section>
             @endif
 
