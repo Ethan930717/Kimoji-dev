@@ -88,11 +88,14 @@ class BDInfo
     private function parseAudio($string)
     {
         $audioData = [];
+
         if (preg_match('/AUDIO:\s*(.*?)\s*(?=SUBTITLES:|$)/s', $string, $matches)) {
             $audioLines = explode("\n", trim($matches[1]));
-            if (strpos(strtolower($audioLines[0]), 'codec') !== false) {
+
+            if (str_contains(strtolower($audioLines[0]), 'codec')) {
                 array_shift($audioLines);
             }
+
             foreach ($audioLines as $line) {
                 if (!empty(trim($line))) {
                     $language = $this->getLanguageFromAudioSubtitleLine($line);
@@ -104,17 +107,21 @@ class BDInfo
                 }
             }
         }
+
         return $audioData;
     }
 
     private function parseSubtitles($string)
     {
         $subtitleData = [];
+
         if (preg_match('/SUBTITLES:\s*(.*)/s', $string, $matches)) {
             $subtitleLines = explode("\n", trim($matches[1]));
-            if (strpos(strtolower($subtitleLines[0]), 'presentation') !== false) {
+
+            if (str_contains(strtolower($subtitleLines[0]), 'presentation')) {
                 array_shift($subtitleLines);
             }
+
             foreach ($subtitleLines as $line) {
                 if (!empty(trim($line))) {
                     $language = $this->getLanguageFromAudioSubtitleLine($line);
@@ -126,6 +133,7 @@ class BDInfo
                 }
             }
         }
+
         return $subtitleData;
     }
 
@@ -149,10 +157,11 @@ class BDInfo
     private function getLanguageFromAudioSubtitleLine($line)
     {
         $language = null;
+
         if (preg_match('/\b(\w+)\s*(Audio|Subtitle)\b/', $line, $matches)) {
             $language = $matches[1];
         }
+
         return $language;
     }
-
 }
