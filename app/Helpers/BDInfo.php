@@ -22,9 +22,9 @@ class BDInfo
             'disc_label'    => $this->parseSingleLine($string, 'Disc Label:'),
             'disc_size'     => $this->parseDiscSize($string),
             'total_bitrate' => $this->parseSingleLine($string, 'Total Bitrate:'),
-            'video'         => $this->parseSingleLine($string, 'Video:'),
-            'audio'         => $this->parseMultipleLines($string, 'Audio:'),
-            'subtitles'     => $this->parseMultipleLines($string, 'Subtitle:'),
+            'video' => $this->parseSingleLine($string, 'Video:'),
+            'audio' => $this->parseMultipleLines($string, 'Audio:'),
+            'subtitles' => $this->parseMultipleLines($string, 'Subtitle:'),
         ];
     }
     protected function parseFullTemplate($string)
@@ -51,6 +51,7 @@ class BDInfo
 
         return trim($matches[1] ?? '');
     }
+
     private function parseDiscSize($string)
     {
         preg_match('/Disc Size:\s*([\d,]+)/', $string, $matches);
@@ -100,7 +101,7 @@ class BDInfo
     {
         $videoData = [];
 
-        if (preg_match('/(\w+(?:\s+\w+)*)\s+Video\s+(\d+)\s+kbps\s+(\d+p)\s+\/\s+(\d+\s+fps)\s+\/\s+(\d+:\d+)\s+\/\s+(.+)/', $videoString, $matches)) {
+        if (preg_match('/(.+?)\s+Video\s+(\d+)\s+kbps\s+(\d+p)\s+\/\s+(\d+\s+fps)\s+\/\s+(\d+:\d+)\s+\/\s+(.+)/', $videoString, $matches)) {
             $videoData['format'] = $matches[1]; // 如 MPEG-4 AVC Video
             $videoData['bitrate'] = $matches[2] . ' kbps';
             $videoData['resolution'] = $matches[3]; // 如 1080p
@@ -172,15 +173,18 @@ class BDInfo
 
         $pattern = '/'.$sectionName.':\s*(.+)/';
 
-        preg_match($pattern, $string, $matches);
-        if ($matches) {
-            $line = trim($matches[1]);
-            $countryCode = $this->mapLanguageToCountryCode($line);
+        preg_match_all($pattern, $string, $matches, PREG_SET_ORDER);
 
-            $data[] = [
-                'info'         => $line,
-                'country_code' => $countryCode
-            ];
+        foreach ($matches as $match) {
+            $line = trim($match[1]);
+            if (!empty($line)) {
+                $countryCode = $this->mapLanguageToCountryCode($line); // 获取国家代码
+
+                $data[] = [
+                    'info'         => $line,
+                    'country_code' => $countryCode
+                ];
+            }
         }
 
         return $data;
