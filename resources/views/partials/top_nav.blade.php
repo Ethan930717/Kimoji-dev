@@ -78,7 +78,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="{{ url('torrents?perPage=96&view=card&categories[0]=3') }}">
+                    <a href="{{ url('torrents?perPage=100&view=list&categories[0]=3') }}">
                         <i class="{{ config('other.font-awesome') }} fa-flower"></i>
                         KIMOJI MUSIC
                     </a>

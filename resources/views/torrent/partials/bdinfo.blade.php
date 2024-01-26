@@ -48,39 +48,28 @@
                 </section>
             @endif
 
-            @if(isset($bdInfo['audio']) && is_array($bdInfo['audio']))
+            @if(!empty($bdInfo['audio']) && is_array($bdInfo['audio']))
                 <section class="bdinfo__audio">
                     <h3>音频信息</h3>
                     <ul>
-                        @foreach($bdInfo['audio'] as $audio)
-                            <li>
-                                @if($audio['flag'])
-                                    <img src="{{ $audio['flag'] }}" alt="{{ $audio['line'] }}" width="20" height="13" />
-                                @endif
-                                {{ $audio['line'] }}
-                            </li>
+                        @foreach($bdInfo['audio'] as $audioLine)
+                            <li>{{ $audioLine }}</li>
                         @endforeach
                     </ul>
                 </section>
             @endif
 
-            @if(isset($bdInfo['subtitles']) && is_array($bdInfo['subtitles']))
+            @if(!empty($bdInfo['subtitles']) && is_array($bdInfo['subtitles']))
                 <section class="bdinfo__subtitles">
                     <h3>字幕信息</h3>
                     <ul>
-                        @foreach($bdInfo['subtitles'] as $subtitle)
-                            <li>
-                                @if($subtitle['flag'])
-                                    <img src="{{ $subtitle['flag'] }}" alt="{{ $subtitle['line'] }}" width="20" height="13" />
-                                @endif
-                                {{ $subtitle['line'] }}
-                            </li>
+                        @foreach($bdInfo['subtitles'] as $subtitleLine)
+                            <li>{{ $subtitleLine }}</li>
                         @endforeach
                     </ul>
                 </section>
             @endif
-
-
+            
         </section>
     </div>
 </div>
