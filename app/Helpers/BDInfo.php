@@ -98,53 +98,148 @@ class BDInfo
             }
 
             // 添加剩余的每行到结果数组
-
             foreach ($audioLines as $line) {
                 if (!empty(trim($line))) {
-                    $audioData[] = trim($line);
+                    $line = trim($line);
+                    $countryCode = $this->mapLanguageToCountryCode($line); // 获取国家代码
+                    $audioData[] = [
+                        'info' => $line,
+                        'country_code' => $countryCode
+                    ];
                 }
             }
         }
 
-        return preg_replace('/^\s*-{5}\s+-{8}\s+-{7}\\s+-{11}\s*$/m', '', $audioData);
+        return $audioData;
     }
 
-    private function parseSubtitles($string)
-    {
+
+    private function parseSubtitles($string) {
         $subtitleData = [];
 
         if (preg_match('/SUBTITLES:\s*(.*)/s', $string, $matches)) {
-            // 分割匹配到的字符串，以每行为一个字幕参数
             $subtitleLines = explode("\n", trim($matches[1]));
 
-            // 检查并跳过标题行和分割行
-
             foreach ($subtitleLines as $line) {
-                if (empty(trim($line)) || preg_match('/^-+$/', trim($line)) || preg_match('/Codec\s+Language\s+Bitrate\s+Description/', trim($line))) {
-                    continue; // 跳过空行、分割行和标题行
+                $countryCode = $this->mapLanguageToCountryCode($line);
+                if ($countryCode) {
+                    $subtitleData[] = [
+                        'line' => $line,
+                        'country_code' => $countryCode
+                    ];
                 }
-
-                $subtitleData[] = trim($line);
             }
         }
 
         return $subtitleData;
     }
 
+
     private function parseMultipleLines($string, $sectionName)
     {
-        // 解析多行数据（适用于 Quick Summary 模板）
         $data = [];
-        // 正则表达式匹配节名称后的所有内容，直到遇到下一个节名称或字符串结束
-        $pattern = '/'.$sectionName.':\s*(.*?)(?=\n\S+:|\Z)/s';
+
+        // 正则表达式匹配节名称后的下一行内容
+        $pattern = '/'.$sectionName.':\s*(.+)/';
 
         preg_match_all($pattern, $string, $matches, PREG_SET_ORDER);
 
         foreach ($matches as $match) {
-            // 匹配到的每一段包含整个 Audio 或 Subtitle 节的内容
-            $data[] = trim($match[1]);
+            $line = trim($match[1]);
+            $countryCode = $this->mapLanguageToCountryCode($line); // 获取国家代码
+
+            $data[] = [
+                'info' => $line,
+                'country_code' => $countryCode
+            ];
         }
 
         return $data;
+    }
+
+    private function mapLanguageToCountryCode($line) {
+        $mapping = [
+            'English' => 'us', '英语' => 'us',
+            'English (GB)' => 'gb',
+            'English (CA)' => 'can',
+            'English (AU)' => 'au',
+            'Albanian' => 'al', 'Albanian (AL)' => 'al',
+            'Arabic' => 'ae', 'Arabic (001)' => 'ae', 'Arabic (AE)' => 'ae',
+            'Arabic (SA)' => 'sa',
+            'Arabic (MA)' => 'ma',
+            'Armenian' => 'am',
+            'Azerbaijani' => 'az',
+            'Belarusian' => 'by',
+            'Bengali' => 'bd',
+            'Bosnian' => 'ba', 'Bosnian (BA)' => 'ba',
+            'Bulgarian' => 'bg', 'Bulgarian (BG)' => 'bg',
+            'Burmese' => 'mm',
+            'Sichuan' => 'sichuan',
+            'Chinese' => 'cn', 'Mandarin' => 'cn', 'Cantonese' => 'cn',
+            'Chinese (HK)' => 'hk', 'Cantonese (HK)' => 'hk', 'yue' => 'hk', '粤语' => 'hk',
+            'Chinese (Taiwan)' => 'tw',
+            'Croatian' => 'hr', 'Croatian (HR)' => 'hr',
+            'Czech' => 'cz', 'Czech (CZ)' => 'cz',
+            'Danish' => 'dk', 'Danish (DK)' => 'dk',
+            'Dutch' => 'nl', 'Dutch (NL)' => 'nl',
+            'Dutch (BE)' => 'be',
+            'Estonian' => 'ee', 'Estonian (EE)' => 'ee',
+            'Finnish' => 'fi', 'Finnish (FI)' => 'fi',
+            'French' => 'fr', 'French (FR)' => 'fr',
+            'French (CA)' => 'can-qc',
+            'Georgian' => 'ge',
+            'German' => 'de', 'German (DE)' => 'de',
+            'German (CH)' => 'ch',
+            'Greek' => 'gr', 'Greek (GR)' => 'gr',
+            'Hebrew' => 'il', 'Hebrew (IL)' => 'il',
+            'Hindi' => 'in', 'Tamil' => 'in', 'Telugu' => 'in',
+            'Hungarian' => 'hu', 'Hungarian (HU)' => 'hu',
+            'Icelandic' => 'is', 'Icelandic (IS)' => 'is',
+            'Indonesian' => 'id', 'Indonesian (ID)' => 'id',
+            'Irish' => 'ie', 'Irish (IE)' => 'ie',
+            'Italian' => 'it', 'Italian (IT)' => 'it',
+            'Japanese' => 'jp', '日' => 'jp',
+            'Kazakh' => 'kz', 'Kazakh (KZ)' => 'kz',
+            'Korean' => 'kr', '韩' => 'kr',
+            'Latvian' => 'lv', 'Latvian (LV)' => 'lv',
+            'Lithuanian' => 'lt', 'Lithuanian (LT)' => 'lt',
+            'Malay' => 'my', 'Malay (MY)' => 'my',
+            'Malay (SG)' => 'sg',
+            'Macedonian' => 'mk', 'Macedonian (MK)' => 'mk',
+            'Mongolian' => 'mn',
+            'Norwegian' => 'no', 'Norwegian Bokmal' => 'no',
+            'Persian' => 'ir',
+            'Polish' => 'pl', 'Polish (PL)' => 'pl',
+            'Portuguese' => 'pt', 'Portuguese (PT)' => 'pt',
+            'Portuguese (BR)' => 'br',
+            'Romanian' => 'ro', 'Romanian (RO)' => 'ro',
+            'Russian' => 'ru', 'Russian (RU)' => 'ru',
+            'Serbian' => 'rs', 'Serbian (RS)' => 'rs',
+            'Sinhala' => 'lk',
+            'Slovak' => 'sk', 'Slovak (SK)' => 'sk',
+            'Slovenian' => 'si', 'Slovenian (SI)' => 'si',
+            'Spanish' => 'es', 'Spanish (ES)' => 'es',
+            'Spanish (AR)' => 'ar',
+            'Spanish (Latin America)' => 'mx', 'Spanish (MX)' => 'mx',
+            'Basque' => 'es-pv',
+            'Catalan' => 'es-ct',
+            'Galician' => 'es-ga',
+            'Swedish' => 'se', 'Swedish (SE)' => 'se',
+            'Tagalog' => 'ph', 'Filipino' => 'ph',
+            'Thai' => 'th', 'Thai (TH)' => 'th',
+            'Turkish' => 'tr', 'Turkish (TR)' => 'tr',
+            'Ukrainian' => 'ua', 'Ukrainian (UA)' => 'ua',
+            'Vietnamese' => 'vn', 'Vietnamese (VN)' => 'vn',
+            'Welsh' => 'gb-wls',
+            // ... 其他映射
+        ];
+
+        foreach ($mapping as $language => $code) {
+            if (strpos($line, $language) !== false) {
+                return $code;
+            }
+        }
+
+        return null; // 如果没有找到匹配项，返回 null
     }
 }

@@ -51,11 +51,21 @@
             @if(!empty($bdInfo['audio']) && is_array($bdInfo['audio']))
                 <section class="bdinfo__audio">
                     <h3>音频信息</h3>
-                    <ul>
-                        @foreach($bdInfo['audio'] as $audioLine)
-                            <li>{{ $audioLine }}</li>
+                    <dl>
+                        @foreach($bdInfo['audio'] as $audioData)
+                            <dd>
+                                @if(isset($audioData['country_code']) && $audioData['country_code'])
+                                    <img src="/img/flags/{{ $audioData['country_code'] }}.png"
+                                         alt="{{ $audioData['country_code'] }}"
+                                         width="20"
+                                         height="13"
+                                         title="{{ $audioData['country_code'] }}"
+                                    />
+                                @endif
+                                {{ $audioData['info'] }}
+                            </dd>
                         @endforeach
-                    </ul>
+                    </dl>
                 </section>
             @endif
 
@@ -63,13 +73,23 @@
                 <section class="bdinfo__subtitles">
                     <h3>字幕信息</h3>
                     <ul>
-                        @foreach($bdInfo['subtitles'] as $subtitleLine)
-                            <li>{{ $subtitleLine }}</li>
+                        @foreach($bdInfo['subtitles'] as $subtitleData)
+                            <li>
+                                @if(isset($subtitleData['country_code']) && $subtitleData['country_code'])
+                                    <img src="/img/flags/{{ $subtitleData['country_code'] }}.png"
+                                         alt="{{ $subtitleData['country_code'] }}"
+                                         width="20"
+                                         height="13"
+                                         title="{{ $subtitleData['country_code'] }}"
+                                    />
+                                @endif
+                            </li>
                         @endforeach
                     </ul>
                 </section>
             @endif
-            
+
+
         </section>
     </div>
 </div>
