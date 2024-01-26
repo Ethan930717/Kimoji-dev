@@ -53,6 +53,10 @@ class UpdateTorrentRequest extends FormRequest
                 'string',
                 'max:255',
             ],
+            'is_lrc' => [
+                'nullable',
+                'boolean',
+            ],
             'description' => [
                 'required',
                 'max:2097152'

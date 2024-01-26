@@ -59,7 +59,6 @@
                     alt="{{ __('torrent.poster') }}"
                 />
             </figure>
-        </a>
     </aside>
     <div class="torrent-card__body">
         <h2 class="torrent-card__title">
@@ -100,13 +99,22 @@
                     </li>
                 </ul>
                 @if (!empty($torrent->music_url))
+                    @if ($torrent->is_lrc)
+                    <li class="torrent-card__genre-item">
+                        <a class="torrent-card__genre">
+                            <i class="{{ config('other.font-awesome') }} fa-comment-music" title="{{ __('歌词试听') }}"></i>
+                        </a>
+                    </li>
+                    @else
                     <li class="torrent-card__genre-item">
                         <a class="torrent-card__genre">
                             <i class="{{ config('other.font-awesome') }} fa-headphones-alt" title="{{ __('提供试听') }}"></i>
                         </a>
                     </li>
                     @endif
-        </span>
+                @endif
+
+     </span>
             @elseif ($torrent->category_id == 4)
                 <ul class="torrent-card__genres">
                     <li class="torrent-card__genre-item">
@@ -115,11 +123,19 @@
                     </li>
                 </ul>
                 @if (!empty($torrent->music_url))
-                    <li class="torrent-card__genre-item">
-                        <a class="torrent-card__genre">
-                            <i class="{{ config('other.font-awesome') }} fa-headphones-alt" title="{{ __('单章试听') }}"></i>
-                        </a>
-                    </li>
+                    @if ($torrent->is_lrc)
+                        <li class="torrent-card__genre-item">
+                            <a class="torrent-card__genre">
+                                <i class="{{ config('other.font-awesome') }} fa-comment-music" title="{{ __('歌词试听') }}"></i>
+                            </a>
+                        </li>
+                    @else
+                        <li class="torrent-card__genre-item">
+                            <a class="torrent-card__genre">
+                                <i class="{{ config('other.font-awesome') }} fa-headphones-alt" title="{{ __('提供试听') }}"></i>
+                            </a>
+                        </li>
+                    @endif
                 @endif
             @endif
         </div>

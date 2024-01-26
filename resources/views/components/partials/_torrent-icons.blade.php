@@ -129,7 +129,12 @@
         <i class="{{ config('other.font-awesome') }} fa-thumbs-down text-warning torrent-icons" title="{{ __('torrent.completed-not-seeding') }}"></i>
     @endif
     @if (!empty($torrent->music_url))
-        <i class="{{ config('other.font-awesome') }} fa-headphones-alt" title="{{ __('提供试听') }}"></i>
+        @if ($torrent->is_lrc)
+            <i class="{{ config('other.font-awesome') }} fa-comment-music" title="{{ __('歌词试听') }}"></i>
+        @else
+            <i class="{{ config('other.font-awesome') }} fa-headphones-alt" title="{{ __('提供试听') }}"></i>
+        @endif
     @endif
+
 
 </span>

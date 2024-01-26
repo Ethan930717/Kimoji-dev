@@ -75,6 +75,7 @@
         </p>
         @php
             $musicUrl = $torrent?->music_url;
+            $is_lrc =  $torrent?->is_lrc;
             $lrcUrl = null;
             $musicName = "单曲试听"; // 默认歌曲名称
 
@@ -151,13 +152,21 @@
             </div>
 
         @if($musicUrl)
-            <div id="aplayer"
-                 data-cover="{{ url('img/kimoji-music.webp') }}"
-                 data-name="{{ $musicName }}"
-                 data-url="{{ $musicUrl }}"
-                 data-artist="{{ $singerNameWithoutBrackets }}"
-                 data-lrc="{{ $lrcUrl }}">
-            </div>
+            @if ($torrent->is_lrc)
+                <div id="aplayer"
+                     data-cover="{{ url('img/kimoji-music.webp') }}"
+                     data-name="{{ $musicName }}"
+                     data-url="{{ $musicUrl }}"
+                     data-artist="{{ $singerNameWithoutBrackets }}"
+                     data-lrc="{{ $lrcUrl }}">
+                </div>
+            @endif
+                <div id="aplayer"
+                     data-cover="{{ url('img/kimoji-music.webp') }}"
+                     data-name="{{ $musicName }}"
+                     data-url="{{ $musicUrl }}"
+                     data-artist="{{ $singerNameWithoutBrackets }}">
+                </div>
         @endif
 
 

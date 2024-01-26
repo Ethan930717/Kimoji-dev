@@ -407,4 +407,22 @@ class Torrent extends Model
             // throw new \InvalidArgumentException("上传的试听文件URL格式有误");
         }
     }
+
+    /**
+     * Set the torrent's is_lrc attribute.
+     *
+     * @param  mixed $value
+     * @return void
+     */
+    public function setIsLrcAttribute($value): void
+    {
+        if ($value === null) {
+            // 允许设置为 NULL
+            $this->attributes['is_lrc'] = null;
+        } else {
+            // 确保传入值为布尔类型
+            $this->attributes['is_lrc'] = filter_var($value, FILTER_VALIDATE_BOOLEAN);
+        }
+    }
+
 }

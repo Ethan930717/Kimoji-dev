@@ -178,6 +178,7 @@ class TorrentController extends Controller
             'distributors' => Distributor::orderBy('name')->get(),
             'keywords'     => Keyword::where('torrent_id', '=', $torrent->id)->pluck('name'),
             'music_url'    => $torrent->music_url,
+            'is_lrc'       => $torrent->is_lrc,
             'torrent'      => $torrent,
             'user'         => $user,
         ]);
@@ -384,7 +385,9 @@ class TorrentController extends Controller
             'moderated_by' => User::SYSTEM_USER_ID,
             'pieces_hash'  => $piecesHash,
             'music_url'    => $request->input('music_url'),
-        ] + $request->safe()->except(['torrent']));
+            'is_lrc'       => $request->input('is_lrc'),
+
+            ] + $request->safe()->except(['torrent']));
 
         // Count and save the torrent number in this category
         $category = Category::findOrFail($request->integer('category_id'));
