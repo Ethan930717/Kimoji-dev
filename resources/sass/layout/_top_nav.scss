@@ -92,8 +92,9 @@
         flex-direction: column;
 
         .top-nav__dropdown > ul,
-        .top-nav__dropdown > ul > li > ul.sub-menu{
-            position: static;
+        .top-nav__dropdown > ul > li > ul.sub-menu
+        .top-nav__dropdown > ul > li > ul.sub-menu-right{
+                position: static;
             box-shadow: none;
             margin-left: 24px;
         }
@@ -165,7 +166,8 @@
 
 .top-nav__dropdown:hover > ul,
 .top-nav__dropdown:focus-within > ul,
-.top-nav__dropdown > ul > li:hover > ul.sub-menu {
+.top-nav__dropdown > ul > li:hover > ul.sub-menu
+.top-nav__dropdown > ul > li:hover > ul.sub-menu-right {
     display: flex;
 }
 
@@ -208,6 +210,25 @@
     z-index: 1000;
 }
 
+.top-nav__dropdown > ul > li > ul.sub-menu-right {
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    left: 84%; /* 改为右侧展开 */
+    top: 0;
+    padding: 6px;
+    row-gap: 6px;
+    backdrop-filter: blur(20px);
+    background: var(--top-nav-dropdown-menu-bg);
+    border-radius: var(--top-nav-dropdown-menu-border-radius);
+    box-shadow: var(--top-nav-dropdown-menu-box-shadow);
+    border: var(--top-nav-dropdown-menu-border);
+    background-size: 500% 500%;
+    animation: bg-animation 5s infinite;
+    list-style-type: none;
+    z-index: 1000;
+}
+
 .top-nav__dropdown > ul::before{
     content: '';
     display: block;
@@ -236,6 +257,7 @@
 
 .top-nav__dropdown > ul > li > a,
 .top-nav__dropdown > ul > li > ul.sub-menu > li > a,
+.top-nav__dropdown > ul > li > ul.sub-menu-right > li > a,
 .top-nav__dropdown > ul > li > form > button {
     color: var(--top-nav-dropdown-menu-item-fg);
     font-size: 15px;
@@ -252,7 +274,7 @@
     outline: none;
     width: 100%;
     border: none;
-    text-align: left;
+    text-align: center;
     border-radius: 5px;
     position: relative;
     cursor: pointer;
@@ -261,7 +283,9 @@
 .top-nav__dropdown > ul > li > a:hover,
 .top-nav__dropdown > ul > li > a:focus,
 .top-nav__dropdown > ul > li > ul.sub-menu > li > a:hover,
+.top-nav__dropdown > ul > li > ul.sub-menu-right > li > a:hover,
 .top-nav__dropdown > ul > li > ul.sub-menu > li > a:focus,
+.top-nav__dropdown > ul > li > ul.sub-menu-right > li > a:focus,
 .top-nav__dropdown > ul > li > form > button:hover,
 .top-nav__dropdown > ul > li > form > button:focus {
     background-color: var(--top-nav-dropdown-menu-item-hover-bg);
@@ -272,7 +296,8 @@
 
 .top-nav__dropdown > ul > li > a > i,
 .top-nav__dropdown > ul > li > form > button > i,
-.top-nav__dropdown > ul > li > ul.sub-menu > li > a > i{
+.top-nav__dropdown > ul > li > ul.sub-menu > li > a > i
+.top-nav__dropdown > ul > li > ul.sub-menu-right > li > a > i{
     font-size: 15px;
     line-height: 30px;
     color: var(--top-nav-dropdown-menu-item-icon-fg);
@@ -283,7 +308,8 @@
 }
 
 .top-nav__dropdown > ul > li > a > svg,
-.top-nav__dropdown > ul > li > ul.sub-menu > li > a >svg{
+.top-nav__dropdown > ul > li > ul.sub-menu > li > a >svg
+.top-nav__dropdown > ul > li > ul.sub-menu-right > li > a >svg{
     position: absolute;
     top: 3px;
     right: 3px;
