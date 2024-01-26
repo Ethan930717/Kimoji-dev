@@ -113,18 +113,23 @@ class BDInfo
             ];
             // 编码级别中的附加参数
             $additionalParams = $matches[6];
+
             if (preg_match('/(\d+:\d+:\d+)/', $additionalParams, $chromaMatches)) {
                 $videoData['chroma_subsampling'] = $chromaMatches[1];
             }
+
             if (preg_match('/(\d+\s+bits)/', $additionalParams, $depthMatches)) {
                 $videoData['color_depth'] = $depthMatches[1];
             }
+
             if (preg_match('/(\d+\s+nits)/', $additionalParams, $brightnessMatches)) {
                 $videoData['peak_brightness'] = $brightnessMatches[1];
             }
+
             if (preg_match('/(HDR\d+)/', $additionalParams, $hdrMatches)) {
                 $videoData['hdr_format'] = $hdrMatches[1];
             }
+
             if (preg_match('/(BT\.\d+)/', $additionalParams, $colorSpaceMatches)) {
                 $videoData['color_space'] = $colorSpaceMatches[1];
             }
