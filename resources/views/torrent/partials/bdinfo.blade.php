@@ -20,7 +20,7 @@
         <section class="mediainfo">
             <section class="mediainfo__filename">
                 <h3>文件名</h3>
-                <dd>{{ $bdInfo['disc_info'] ?? __('common.unknown') }}</dd>
+                <dd>{{ $bdInfo['disc_title'] ?? __('common.unknown') }}</dd>
             </section>
             <section class="mediainfo__general">
                 <h3>常规</h3>
@@ -51,22 +51,16 @@
             @if(isset($bdInfo['audio']) && is_array($bdInfo['audio']))
                 <section class="bdinfo__audio">
                     <h3>音频信息</h3>
-                    <dl>
+                    <ul>
                         @foreach($bdInfo['audio'] as $audio)
-                            <dt>{{ $loop->iteration }}.</dt>
-                            <dd>
-                                <img
-                                    src="{{ language_flag($audio['language'] ?? __('common.unknown')) }}"
-                                    alt="{{ $audio['language'] ?? __('common.unknown') }}"
-                                    width="20"
-                                    height="13"
-                                    title="{{ $audio['language'] ?? __('common.unknown') }}"
-                                />
-                                {{ $audio['format'] ?? __('common.unknown') }}
-                                / {{ $audio['bit_rate'] ?? __('common.unknown') }}
-                            </dd>
+                            <li>
+                                @if($audio['flag'])
+                                    <img src="{{ $audio['flag'] }}" alt="{{ $audio['line'] }}" width="20" height="13" />
+                                @endif
+                                {{ $audio['line'] }}
+                            </li>
                         @endforeach
-                    </dl>
+                    </ul>
                 </section>
             @endif
 
@@ -76,19 +70,16 @@
                     <ul>
                         @foreach($bdInfo['subtitles'] as $subtitle)
                             <li>
-                                <img
-                                    src="{{ language_flag($subtitle['language'] ?? __('common.unknown')) }}"
-                                    alt="{{ $subtitle['language'] ?? __('common.unknown') }}"
-                                    width="20"
-                                    height="13"
-                                    title="{{ $subtitle['language'] ?? __('common.unknown') }}"
-                                />
-                                {{ $subtitle['bit_rate'] ?? __('common.unknown') }}
+                                @if($subtitle['flag'])
+                                    <img src="{{ $subtitle['flag'] }}" alt="{{ $subtitle['line'] }}" width="20" height="13" />
+                                @endif
+                                {{ $subtitle['line'] }}
                             </li>
                         @endforeach
                     </ul>
                 </section>
             @endif
+
 
         </section>
     </div>

@@ -88,48 +88,44 @@ class BDInfo
     private function parseAudio($string)
     {
         $audioData = [];
-
         if (preg_match('/AUDIO:\s*(.*?)\s*(?=SUBTITLES:|$)/s', $string, $matches)) {
-            // 分割匹配到的字符串，以每行为一个音频参数
             $audioLines = explode("\n", trim($matches[1]));
-
-            // 去除可能存在的表头行
             if (strpos(strtolower($audioLines[0]), 'codec') !== false) {
                 array_shift($audioLines);
             }
-
-            // 添加剩余的每行到结果数组
             foreach ($audioLines as $line) {
                 if (!empty(trim($line))) {
-                    $audioData[] = trim($line);
+                    $language = $this->getLanguageFromAudioSubtitleLine($line);
+                    $flagUrl = language_flag($language); // 使用 language_flag 函数
+                    $audioData[] = [
+                        'line' => trim($line),
+                        'flag' => $flagUrl
+                    ];
                 }
             }
         }
-
         return $audioData;
     }
 
     private function parseSubtitles($string)
     {
         $subtitleData = [];
-
         if (preg_match('/SUBTITLES:\s*(.*)/s', $string, $matches)) {
-            // 分割匹配到的字符串，以每行为一个字幕参数
             $subtitleLines = explode("\n", trim($matches[1]));
-
-            // 去除可能存在的表头行
             if (strpos(strtolower($subtitleLines[0]), 'presentation') !== false) {
                 array_shift($subtitleLines);
             }
-
-            // 添加剩余的每行到结果数组
             foreach ($subtitleLines as $line) {
                 if (!empty(trim($line))) {
-                    $subtitleData[] = trim($line);
+                    $language = $this->getLanguageFromAudioSubtitleLine($line);
+                    $flagUrl = language_flag($language); // 使用 language_flag 函数
+                    $subtitleData[] = [
+                        'line' => trim($line),
+                        'flag' => $flagUrl
+                    ];
                 }
             }
         }
-
         return $subtitleData;
     }
 
@@ -149,4 +145,14 @@ class BDInfo
 
         return $data;
     }
+
+    private function getLanguageFromAudioSubtitleLine($line)
+    {
+        $language = null;
+        if (preg_match('/\b(\w+)\s*(Audio|Subtitle)\b/', $line, $matches)) {
+            $language = $matches[1];
+        }
+        return $language;
+    }
+
 }
