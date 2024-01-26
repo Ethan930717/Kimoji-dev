@@ -104,14 +104,13 @@ class BDInfo
 
         if (preg_match('/(.+?)\s+Video\s+(\d+)\s+kbps\s+(\d+p)\s+\/\s+(\d+\.\d+\s+fps)\s+\/\s+(\d+:\d+)\s+\/\s+(.+)/', $videoString, $matches)) {
             $videoData = [
-                'format'         => $matches[1],
-                'bitrate'        => $matches[2].' kbps',
-                'resolution'     => $matches[3],
-                'frame_rate'     => $matches[4],
-                'aspect_ratio'   => $matches[5],
-                'profile_level'  => $matches[6]
+                'format'        => $matches[1],
+                'bitrate'       => $matches[2].' kbps',
+                'resolution'    => $matches[3],
+                'frame_rate'    => $matches[4],
+                'aspect_ratio'  => $matches[5],
+                'profile_level' => $matches[6]
             ];
-
             // 编码级别中的附加参数
             $additionalParams = $matches[6];
             if (preg_match('/(\d+:\d+:\d+)/', $additionalParams, $chromaMatches)) {
@@ -152,6 +151,7 @@ class BDInfo
 
             foreach ($audioLines as $line) {
                 $line = trim($line);
+
                 if (!empty($line)) {
                     $countryCode = $this->mapLanguageToCountryCode($line);
                     $audioData[] = [
