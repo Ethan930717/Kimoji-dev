@@ -69,11 +69,6 @@
                                 <dd>{{ $bdInfo['video']['aspect_ratio'] }}</dd>
                             @endisset
 
-                            @isset($bdInfo['video']['profile_level'])
-                                <dt>编码级别</dt>
-                                <dd>{{ $bdInfo['video']['profile_level'] }}</dd>
-                            @endisset
-
                             @isset($bdInfo['video']['chroma_subsampling'])
                                 <dt>色度抽样</dt>
                                 <dd>{{ $bdInfo['video']['chroma_subsampling'] }}</dd>

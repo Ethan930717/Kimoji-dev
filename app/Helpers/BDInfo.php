@@ -112,24 +112,22 @@ class BDInfo
                 'profile_level'  => $matches[6]
             ];
 
-            // 检测并提取附加参数
-            if (isset($matches[7])) {
-                $additionalParams = $matches[7];
-                if (preg_match('/(\d+:\d+:\d+)/', $additionalParams, $chromaMatches)) {
-                    $videoData['chroma_subsampling'] = $chromaMatches[1];
-                }
-                if (preg_match('/(\d+\s+bits)/', $additionalParams, $depthMatches)) {
-                    $videoData['color_depth'] = $depthMatches[1];
-                }
-                if (preg_match('/(\d+\s+nits)/', $additionalParams, $brightnessMatches)) {
-                    $videoData['peak_brightness'] = $brightnessMatches[1];
-                }
-                if (preg_match('/(HDR\d+)/', $additionalParams, $hdrMatches)) {
-                    $videoData['hdr_format'] = $hdrMatches[1];
-                }
-                if (preg_match('/(BT\.\d+)/', $additionalParams, $colorSpaceMatches)) {
-                    $videoData['color_space'] = $colorSpaceMatches[1];
-                }
+            // 编码级别中的附加参数
+            $additionalParams = $matches[6];
+            if (preg_match('/(\d+:\d+:\d+)/', $additionalParams, $chromaMatches)) {
+                $videoData['chroma_subsampling'] = $chromaMatches[1];
+            }
+            if (preg_match('/(\d+\s+bits)/', $additionalParams, $depthMatches)) {
+                $videoData['color_depth'] = $depthMatches[1];
+            }
+            if (preg_match('/(\d+\s+nits)/', $additionalParams, $brightnessMatches)) {
+                $videoData['peak_brightness'] = $brightnessMatches[1];
+            }
+            if (preg_match('/(HDR\d+)/', $additionalParams, $hdrMatches)) {
+                $videoData['hdr_format'] = $hdrMatches[1];
+            }
+            if (preg_match('/(BT\.\d+)/', $additionalParams, $colorSpaceMatches)) {
+                $videoData['color_space'] = $colorSpaceMatches[1];
             }
         }
 
@@ -147,7 +145,10 @@ class BDInfo
 
         if (preg_match('/AUDIO:\s*(.*?)\s*(?=SUBTITLES:|$)/s', $string, $matches)) {
             $audioLines = explode("\n", trim($matches[1]));
-            array_shift($audioLines); // 跳过第一行（分割符）
+
+            // 跳过前两行
+            array_shift($audioLines); // 跳过第一行（可能是标题或分隔符）
+            array_shift($audioLines); // 再次跳过，移除第二行
 
             foreach ($audioLines as $line) {
                 $line = trim($line);
