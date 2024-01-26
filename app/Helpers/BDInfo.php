@@ -22,7 +22,7 @@ class BDInfo
             'disc_label'    => $this->parseSingleLine($string, 'Disc Label:'),
             'disc_size'     => $this->parseDiscSize($string),
             'total_bitrate' => $this->parseSingleLine($string, 'Total Bitrate:'),
-            'video'         => $this->parseVideoQuickSummary($string),
+            'video'         => $this->parseSingleLine($string, 'Video:'),
             'audio'         => $this->parseMultipleLines($string, 'Audio:'),
             'subtitles'     => $this->parseMultipleLines($string, 'Subtitle:'),
         ];
@@ -41,23 +41,16 @@ class BDInfo
         ];
     }
 
-    private function parseVideoQuickSummary($string) {
-        $pattern = '/Video:\s*(.+)/';
-        preg_match($pattern, $string, $matches);
-        if ($matches) {
-            return $this->parseVideoParameters(trim($matches[1]));
-        }
 
-        return null;
-    }
-
-    private function parseSingleLine($string, $fieldName)
-    {
+    private function parseSingleLine($string, $fieldName) {
         preg_match('/'.$fieldName.'\s*(.+)/', $string, $matches);
+
+        if ($fieldName === 'Video:') {
+            return $this->parseVideoParameters(trim($matches[1] ?? ''));
+        }
 
         return trim($matches[1] ?? '');
     }
-
     private function parseDiscSize($string)
     {
         preg_match('/Disc Size:\s*([\d,]+)/', $string, $matches);
