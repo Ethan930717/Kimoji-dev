@@ -4,7 +4,7 @@
             <i class="{{ config('other.font-awesome') }} fa-compact-disc"></i> BDInfo
             <i class="{{ config('other.font-awesome') }} fa-plus-circle fa-pull-right" x-show="!show"></i>
             <i class="{{ config('other.font-awesome') }} fa-minus-circle fa-pull-right" x-show="show" x-cloak></i>
-        </h2> 
+        </h2>
         <div class="panel__actions">
             <div class="panel__action">
                 <button class="form__button form__button--text" x-data x-on:click.stop="navigator.clipboard.writeText($refs.bdinfo.textContent); Swal.fire({toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, icon: 'success', title: '复制成功'})">
