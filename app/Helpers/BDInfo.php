@@ -104,29 +104,34 @@ class BDInfo
 
         if (preg_match('/(.+?)\s+Video\s+(\d+)\s+kbps\s+(\d+p)\s+\/\s+(\d+\.\d+\s+fps)\s+\/\s+(\d+:\d+)\s+\/\s+(.+)/', $videoString, $matches)) {
             $videoData = [
-                'format'         => $matches[1],
-                'bitrate'        => $matches[2].' kbps',
-                'resolution'     => $matches[3],
-                'frame_rate'     => $matches[4],
-                'aspect_ratio'   => $matches[5],
-                'profile_level'  => $matches[6]
+                'format'        => $matches[1],
+                'bitrate'       => $matches[2].' kbps',
+                'resolution'    => $matches[3],
+                'frame_rate'    => $matches[4],
+                'aspect_ratio'  => $matches[5],
+                'profile_level' => $matches[6]
             ];
 
             // 检测并提取附加参数
             if (isset($matches[7])) {
                 $additionalParams = $matches[7];
+
                 if (preg_match('/(\d+:\d+:\d+)/', $additionalParams, $chromaMatches)) {
                     $videoData['chroma_subsampling'] = $chromaMatches[1];
                 }
+
                 if (preg_match('/(\d+\s+bits)/', $additionalParams, $depthMatches)) {
                     $videoData['color_depth'] = $depthMatches[1];
                 }
+
                 if (preg_match('/(\d+\s+nits)/', $additionalParams, $brightnessMatches)) {
                     $videoData['peak_brightness'] = $brightnessMatches[1];
                 }
+
                 if (preg_match('/(HDR\d+)/', $additionalParams, $hdrMatches)) {
                     $videoData['hdr_format'] = $hdrMatches[1];
                 }
+
                 if (preg_match('/(BT\.\d+)/', $additionalParams, $colorSpaceMatches)) {
                     $videoData['color_space'] = $colorSpaceMatches[1];
                 }
@@ -151,6 +156,7 @@ class BDInfo
 
             foreach ($audioLines as $line) {
                 $line = trim($line);
+
                 if (!empty($line)) {
                     $countryCode = $this->mapLanguageToCountryCode($line);
                     $audioData[] = [
