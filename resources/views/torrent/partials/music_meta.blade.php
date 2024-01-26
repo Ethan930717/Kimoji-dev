@@ -152,7 +152,7 @@
             </div>
 
         @if($musicUrl)
-            @if ($torrent->is_lrc)
+            @if ($is_lrc == 1)
                 <div id="aplayer"
                      data-cover="{{ url('img/kimoji-music.webp') }}"
                      data-name="{{ $musicName }}"

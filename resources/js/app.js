@@ -55,23 +55,27 @@ document.addEventListener('DOMContentLoaded', function() {
         const songName = aplayerElement.dataset.name;
         const artistName = aplayerElement.dataset.artist;
         const songUrl = aplayerElement.dataset.url;
-        const lrcUrl = aplayerElement.dataset.lrc;
+        const lrcUrl = aplayerElement.dataset.lrc; // 可能是 undefined 或空字符串
 
-        new APlayer({
+        const aplayerConfig = {
             container: aplayerElement,
             fixed: true,
-            lrcType: 3,
             audio: [{
                 name: songName,
                 artist: artistName,
                 url: songUrl,
-                cover: coverUrl,
-                lrc: lrcUrl
+                cover: coverUrl
             }]
-        });
+        };
+        // 如果存在 lrcUrl，则添加歌词配置
+        if (lrcUrl) {
+            aplayerConfig.lrcType = 3;
+            aplayerConfig.audio[0].lrc = lrcUrl;
+        }
+
+        new APlayer(aplayerConfig);
     }
 });
-
 //上传音乐
 document.addEventListener('DOMContentLoaded', function() {
     var uploadButton = document.getElementById('uploadMusic');
