@@ -45,7 +45,7 @@ class BDInfo
 
     private function parseSingleLine($string, $fieldName)
     {
-        preg_match('/'.$fieldName.'\s*:\s*(.+)/', $string, $matches);
+        preg_match('/'.$fieldName.'\s*(.+)/', $string, $matches);
 
         return trim($matches[1] ?? '');
     }
@@ -87,18 +87,22 @@ class BDInfo
 
     private function parseAudio($string)
     {
-        // 解析音频信息并返回数组
         $audioData = [];
 
         if (preg_match('/AUDIO:\s*(.*?)\s*(?=SUBTITLES:|$)/s', $string, $matches)) {
-            preg_match_all('/(\w+\s*Audio)\s*(\w+)\s*(\d+\s*kbps)/', $matches[1], $audioMatches, PREG_SET_ORDER);
+            // 分割匹配到的字符串，以每行为一个音频参数
+            $audioLines = explode("\n", trim($matches[1]));
 
-            foreach ($audioMatches as $match) {
-                $audioData[] = [
-                    'format'   => $match[1],
-                    'language' => $match[2],
-                    'bit_rate' => $match[3],
-                ];
+            // 去除可能存在的表头行
+            if (strpos(strtolower($audioLines[0]), 'codec') !== false) {
+                array_shift($audioLines);
+            }
+
+            // 添加剩余的每行到结果数组
+            foreach ($audioLines as $line) {
+                if (!empty(trim($line))) {
+                    $audioData[] = trim($line);
+                }
             }
         }
 
@@ -107,17 +111,22 @@ class BDInfo
 
     private function parseSubtitles($string)
     {
-        // 解析字幕信息并返回数组
         $subtitleData = [];
 
         if (preg_match('/SUBTITLES:\s*(.*)/s', $string, $matches)) {
-            preg_match_all('/Presentation Graphics\s*(\w+)\s*(\d+\s*kbps)/', $matches[1], $subtitleMatches, PREG_SET_ORDER);
+            // 分割匹配到的字符串，以每行为一个字幕参数
+            $subtitleLines = explode("\n", trim($matches[1]));
 
-            foreach ($subtitleMatches as $match) {
-                $subtitleData[] = [
-                    'language' => $match[1],
-                    'bit_rate' => $match[2],
-                ];
+            // 去除可能存在的表头行
+            if (strpos(strtolower($subtitleLines[0]), 'presentation') !== false) {
+                array_shift($subtitleLines);
+            }
+
+            // 添加剩余的每行到结果数组
+            foreach ($subtitleLines as $line) {
+                if (!empty(trim($line))) {
+                    $subtitleData[] = trim($line);
+                }
             }
         }
 
@@ -128,10 +137,13 @@ class BDInfo
     {
         // 解析多行数据（适用于 Quick Summary 模板）
         $data = [];
-        $pattern = '/'.$sectionName.'\s*([^:]+(?:\s*\(.*?\))?)/';
+        // 正则表达式匹配节名称后的所有内容，直到遇到下一个节名称或字符串结束
+        $pattern = '/'.$sectionName.':\s*(.*?)(?=\n\S+:|\Z)/s';
+
         preg_match_all($pattern, $string, $matches, PREG_SET_ORDER);
 
         foreach ($matches as $match) {
+            // 匹配到的每一段包含整个 Audio 或 Subtitle 节的内容
             $data[] = trim($match[1]);
         }
 
