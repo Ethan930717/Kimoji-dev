@@ -59,7 +59,7 @@
             @php
                 dd($bdInfo['audio'], $bdInfo['subtitles']);
             @endphp
-            
+
             @if(!empty($bdInfo['audio']) && is_array($bdInfo['audio']))
                 <section class="bdinfo__audio">
                     <h3>音频信息</h3>
