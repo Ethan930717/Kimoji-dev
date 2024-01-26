@@ -15,20 +15,18 @@ class BDInfo
         return $this->parseFullTemplate($string);
     }
 
-    protected function parseQuickSummary($string)
-    {
+    protected function parseQuickSummary($string) {
         // Quick Summary 模板的解析逻辑
         return [
             'disc_title'    => $this->parseSingleLine($string, 'Disc Title:'),
             'disc_label'    => $this->parseSingleLine($string, 'Disc Label:'),
             'disc_size'     => $this->parseDiscSize($string),
             'total_bitrate' => $this->parseSingleLine($string, 'Total Bitrate:'),
-            'video'         => $this->parseSingleLine($string, 'Video:'),
+            'video'         => $this->parseVideoQuickSummary($string),
             'audio'         => $this->parseMultipleLines($string, 'Audio:'),
             'subtitles'     => $this->parseMultipleLines($string, 'Subtitle:'),
         ];
     }
-
     protected function parseFullTemplate($string)
     {
         // 完整模板的解析逻辑
@@ -41,6 +39,16 @@ class BDInfo
             'audio'         => $this->parseAudio($string),
             'subtitles'     => $this->parseSubtitles($string),
         ];
+    }
+
+    private function parseVideoQuickSummary($string) {
+        $pattern = '/Video:\s*(.+)/';
+        preg_match($pattern, $string, $matches);
+        if ($matches) {
+            return $this->parseVideoParameters(trim($matches[1]));
+        }
+
+        return null;
     }
 
     private function parseSingleLine($string, $fieldName)
@@ -99,7 +107,7 @@ class BDInfo
     {
         $videoData = [];
 
-        if (preg_match('/(\w+\s\w+\sVideo)\s+(\d+)\s+kbps\s+(\d+p)\s+\/\s+(\d+\s+fps)\s+\/\s+(\d+:\d+)\s+\/\s+(.+)/', $videoString, $matches)) {
+        if (preg_match('/(\w+(?:\s+\w+)*)\s+Video\s+(\d+)\s+kbps\s+(\d+p)\s+\/\s+(\d+\s+fps)\s+\/\s+(\d+:\d+)\s+\/\s+(.+)/', $videoString, $matches)) {
             $videoData['format'] = $matches[1]; // 如 MPEG-4 AVC Video
             $videoData['bitrate'] = $matches[2] . ' kbps';
             $videoData['resolution'] = $matches[3]; // 如 1080p
@@ -166,18 +174,15 @@ class BDInfo
         return $subtitleData;
     }
 
-    private function parseMultipleLines($string, $sectionName)
-    {
+    private function parseMultipleLines($string, $sectionName) {
         $data = [];
 
-        // 正则表达式匹配节名称后的下一行内容
         $pattern = '/'.$sectionName.':\s*(.+)/';
 
-        preg_match_all($pattern, $string, $matches, PREG_SET_ORDER);
-
-        foreach ($matches as $match) {
-            $line = trim($match[1]);
-            $countryCode = $this->mapLanguageToCountryCode($line); // 获取国家代码
+        preg_match($pattern, $string, $matches);
+        if ($matches) {
+            $line = trim($matches[1]);
+            $countryCode = $this->mapLanguageToCountryCode($line);
 
             $data[] = [
                 'info'         => $line,
