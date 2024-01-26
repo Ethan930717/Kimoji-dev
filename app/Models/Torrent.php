@@ -424,5 +424,4 @@ class Torrent extends Model
             $this->attributes['is_lrc'] = filter_var($value, FILTER_VALIDATE_BOOLEAN);
         }
     }
-
 }

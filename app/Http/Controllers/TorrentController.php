@@ -49,7 +49,6 @@ use Exception;
 use ReflectionException;
 use JsonException;
 
-
 /**
  * @see \Tests\Todo\Feature\Http\Controllers\TorrentControllerTest
  */
@@ -91,7 +90,6 @@ class TorrentController extends Controller
         $meta = null;
         $platforms = null;
         $bdInfo = $torrent->bdinfo !== null ? (new BDInfo())->parse($torrent->bdinfo) : null;
-
 
         if ($torrent->category->tv_meta && $torrent->tmdb) {
             $meta = Tv::with([
@@ -386,8 +384,7 @@ class TorrentController extends Controller
             'pieces_hash'  => $piecesHash,
             'music_url'    => $request->input('music_url'),
             'is_lrc'       => $request->input('is_lrc'),
-
-            ] + $request->safe()->except(['torrent']));
+        ] + $request->safe()->except(['torrent']));
 
         // Count and save the torrent number in this category
         $category = Category::findOrFail($request->integer('category_id'));
