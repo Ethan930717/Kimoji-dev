@@ -103,12 +103,34 @@ class BDInfo
         $videoData = [];
 
         if (preg_match('/(.+?)\s+Video\s+(\d+)\s+kbps\s+(\d+p)\s+\/\s+(\d+\.\d+\s+fps)\s+\/\s+(\d+:\d+)\s+\/\s+(.+)/', $videoString, $matches)) {
-            $videoData['format'] = $matches[1]; // 如 MPEG-4 AVC Video
-            $videoData['bitrate'] = $matches[2].' kbps';
-            $videoData['resolution'] = $matches[3]; // 如 1080p
-            $videoData['frame_rate'] = $matches[4]; // 如 24 fps
-            $videoData['aspect_ratio'] = $matches[5]; // 如 16:9
-            $videoData['profile_level'] = $matches[6]; // 如 High Profile 4.1
+            $videoData = [
+                'format'         => $matches[1],
+                'bitrate'        => $matches[2].' kbps',
+                'resolution'     => $matches[3],
+                'frame_rate'     => $matches[4],
+                'aspect_ratio'   => $matches[5],
+                'profile_level'  => $matches[6]
+            ];
+
+            // 检测并提取附加参数
+            if (isset($matches[7])) {
+                $additionalParams = $matches[7];
+                if (preg_match('/(\d+:\d+:\d+)/', $additionalParams, $chromaMatches)) {
+                    $videoData['chroma_subsampling'] = $chromaMatches[1];
+                }
+                if (preg_match('/(\d+\s+bits)/', $additionalParams, $depthMatches)) {
+                    $videoData['color_depth'] = $depthMatches[1];
+                }
+                if (preg_match('/(\d+\s+nits)/', $additionalParams, $brightnessMatches)) {
+                    $videoData['peak_brightness'] = $brightnessMatches[1];
+                }
+                if (preg_match('/(HDR\d+)/', $additionalParams, $hdrMatches)) {
+                    $videoData['hdr_format'] = $hdrMatches[1];
+                }
+                if (preg_match('/(BT\.\d+)/', $additionalParams, $colorSpaceMatches)) {
+                    $videoData['color_space'] = $colorSpaceMatches[1];
+                }
+            }
         }
 
         return $videoData;
@@ -124,19 +146,13 @@ class BDInfo
         $audioData = [];
 
         if (preg_match('/AUDIO:\s*(.*?)\s*(?=SUBTITLES:|$)/s', $string, $matches)) {
-            // 分割匹配到的字符串，以每行为一个音频参数
             $audioLines = explode("\n", trim($matches[1]));
+            array_shift($audioLines); // 跳过第一行（分割符）
 
-            if (str_contains(strtolower($audioLines[0]), 'codec')) {
-                array_shift($audioLines);
-            }
-
-            // 添加剩余的每行到结果数组
             foreach ($audioLines as $line) {
-                if (!empty(trim($line)) && !preg_match('/^-{5}\s+-{8}\s+-{7}\s+-{11}$/', $line)) {
-                    // 排除分隔符行
-                    $line = trim($line);
-                    $countryCode = $this->mapLanguageToCountryCode($line); // 获取国家代码
+                $line = trim($line);
+                if (!empty($line)) {
+                    $countryCode = $this->mapLanguageToCountryCode($line);
                     $audioData[] = [
                         'info'         => $line,
                         'country_code' => $countryCode

@@ -44,19 +44,62 @@
                     <h3>视频信息</h3>
                     <article>
                         <dl>
-                            <dt>格式</dt>
-                            <dd>{{ $bdInfo['video']['format'] ?? __('common.unknown') }}</dd>
-                            <dt>码率</dt>
-                            <dd>{{ $bdInfo['video']['bitrate'] ?? __('common.unknown') }}</dd>
-                            <dt>分辨率</dt>
-                            <dd>{{ $bdInfo['video']['resolution'] ?? __('common.unknown') }}</dd>
-                            <dt>帧率</dt>
-                            <dd>{{ $bdInfo['video']['frame_rate'] ?? __('common.unknown') }}</dd>
-                            <dt>宽高比</dt>
-                            <dd>{{ $bdInfo['video']['aspect_ratio'] ?? __('common.unknown') }}</dd>
-                            <dt>编码级别</dt>
-                            <dd>{{ $bdInfo['video']['profile_level'] ?? __('common.unknown') }}</dd>
+                            @isset($bdInfo['video']['format'])
+                                <dt>格式</dt>
+                                <dd>{{ $bdInfo['video']['format'] }}</dd>
+                            @endisset
+
+                            @isset($bdInfo['video']['bitrate'])
+                                <dt>码率</dt>
+                                <dd>{{ $bdInfo['video']['bitrate'] }}</dd>
+                            @endisset
+
+                            @isset($bdInfo['video']['resolution'])
+                                <dt>分辨率</dt>
+                                <dd>{{ $bdInfo['video']['resolution'] }}</dd>
+                            @endisset
+
+                            @isset($bdInfo['video']['frame_rate'])
+                                <dt>帧率</dt>
+                                <dd>{{ $bdInfo['video']['frame_rate'] }}</dd>
+                            @endisset
+
+                            @isset($bdInfo['video']['aspect_ratio'])
+                                <dt>宽高比</dt>
+                                <dd>{{ $bdInfo['video']['aspect_ratio'] }}</dd>
+                            @endisset
+
+                            @isset($bdInfo['video']['profile_level'])
+                                <dt>编码级别</dt>
+                                <dd>{{ $bdInfo['video']['profile_level'] }}</dd>
+                            @endisset
+
+                            @isset($bdInfo['video']['chroma_subsampling'])
+                                <dt>色度抽样</dt>
+                                <dd>{{ $bdInfo['video']['chroma_subsampling'] }}</dd>
+                            @endisset
+
+                            @isset($bdInfo['video']['color_depth'])
+                                <dt>色深</dt>
+                                <dd>{{ $bdInfo['video']['color_depth'] }}</dd>
+                            @endisset
+
+                            @isset($bdInfo['video']['peak_brightness'])
+                                <dt>亮度峰值</dt>
+                                <dd>{{ $bdInfo['video']['peak_brightness'] }}</dd>
+                            @endisset
+
+                            @isset($bdInfo['video']['hdr_format'])
+                                <dt>HDR格式</dt>
+                                <dd>{{ $bdInfo['video']['hdr_format'] }}</dd>
+                            @endisset
+
+                            @isset($bdInfo['video']['color_space'])
+                                <dt>色域</dt>
+                                <dd>{{ $bdInfo['video']['color_space'] }}</dd>
+                            @endisset
                         </dl>
+
                     </article>
                 </section>
             @endif
