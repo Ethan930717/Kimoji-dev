@@ -102,7 +102,7 @@ class BDInfo
     {
         $videoData = [];
 
-        if (preg_match('/(.+?)\s+Video\s+(\d+)\s+kbps\s+(\d+p)\s+\/\s+(\d+\s+fps)\s+\/\s+(\d+:\d+)\s+\/\s+(.+)/', $videoString, $matches)) {
+        if (preg_match('/(.+?)\s+Video\s+(\d+)\s+kbps\s+(\d+p)\s+\/\s+(\d+\.\d+\s+fps)\s+\/\s+(\d+:\d+)\s+\/\s+(.+)/', $videoString, $matches)) {
             $videoData['format'] = $matches[1]; // 如 MPEG-4 AVC Video
             $videoData['bitrate'] = $matches[2].' kbps';
             $videoData['resolution'] = $matches[3]; // 如 1080p
@@ -133,7 +133,8 @@ class BDInfo
 
             // 添加剩余的每行到结果数组
             foreach ($audioLines as $line) {
-                if (!empty(trim($line))) {
+                if (!empty(trim($line)) && !preg_match('/^-{5}\s+-{8}\s+-{7}\s+-{11}$/', $line)) {
+                    // 排除分隔符行
                     $line = trim($line);
                     $countryCode = $this->mapLanguageToCountryCode($line); // 获取国家代码
                     $audioData[] = [

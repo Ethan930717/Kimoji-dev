@@ -27,11 +27,16 @@
                 <dl>
                     <dt>体积</dt>
                     <dd>{!! nl2br(e($bdInfo['disc_size'] ?? __('common.unknown'))) !!}</dd>
-                    <dt>标签</dt>
-                    <dd>{!! nl2br(e($bdInfo['disc_label'] ?? __('common.unknown'))) !!}</dd>
+
+                    @if (!empty($bdInfo['disc_label']))
+                        <dt>标签</dt>
+                        <dd>{!! nl2br(e($bdInfo['disc_label'])) !!}</dd>
+                    @endif
+
                     <dt>整体码率</dt>
                     <dd>{!! nl2br(e($bdInfo['total_bitrate'] ?? __('common.unknown'))) !!}</dd>
                 </dl>
+
             </section>
 
             @if(!empty($bdInfo['video']))
