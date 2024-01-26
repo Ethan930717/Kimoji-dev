@@ -103,7 +103,7 @@ class BDInfo
                     $line = trim($line);
                     $countryCode = $this->mapLanguageToCountryCode($line); // 获取国家代码
                     $audioData[] = [
-                        'info' => $line,
+                        'info'         => $line,
                         'country_code' => $countryCode
                     ];
                 }
@@ -113,8 +113,8 @@ class BDInfo
         return $audioData;
     }
 
-
-    private function parseSubtitles($string) {
+    private function parseSubtitles($string)
+    {
         $subtitleData = [];
 
         if (preg_match('/SUBTITLES:\s*(.*)/s', $string, $matches)) {
@@ -122,9 +122,10 @@ class BDInfo
 
             foreach ($subtitleLines as $line) {
                 $countryCode = $this->mapLanguageToCountryCode($line);
+
                 if ($countryCode) {
                     $subtitleData[] = [
-                        'line' => $line,
+                        'line'         => $line,
                         'country_code' => $countryCode
                     ];
                 }
@@ -133,7 +134,6 @@ class BDInfo
 
         return $subtitleData;
     }
-
 
     private function parseMultipleLines($string, $sectionName)
     {
@@ -149,7 +149,7 @@ class BDInfo
             $countryCode = $this->mapLanguageToCountryCode($line); // 获取国家代码
 
             $data[] = [
-                'info' => $line,
+                'info'         => $line,
                 'country_code' => $countryCode
             ];
         }
@@ -157,89 +157,90 @@ class BDInfo
         return $data;
     }
 
-    private function mapLanguageToCountryCode($line) {
+    private function mapLanguageToCountryCode($line)
+    {
         $mapping = [
-            'English' => 'us', '英语' => 'us',
-            'English (GB)' => 'gb',
-            'English (CA)' => 'can',
-            'English (AU)' => 'au',
-            'Albanian' => 'al', 'Albanian (AL)' => 'al',
-            'Arabic' => 'ae', 'Arabic (001)' => 'ae', 'Arabic (AE)' => 'ae',
-            'Arabic (SA)' => 'sa',
-            'Arabic (MA)' => 'ma',
-            'Armenian' => 'am',
-            'Azerbaijani' => 'az',
-            'Belarusian' => 'by',
-            'Bengali' => 'bd',
-            'Bosnian' => 'ba', 'Bosnian (BA)' => 'ba',
-            'Bulgarian' => 'bg', 'Bulgarian (BG)' => 'bg',
-            'Burmese' => 'mm',
-            'Sichuan' => 'sichuan',
-            'Chinese' => 'cn', 'Mandarin' => 'cn', 'Cantonese' => 'cn',
-            'Chinese (HK)' => 'hk', 'Cantonese (HK)' => 'hk', 'yue' => 'hk', '粤语' => 'hk',
-            'Chinese (Taiwan)' => 'tw',
-            'Croatian' => 'hr', 'Croatian (HR)' => 'hr',
-            'Czech' => 'cz', 'Czech (CZ)' => 'cz',
-            'Danish' => 'dk', 'Danish (DK)' => 'dk',
-            'Dutch' => 'nl', 'Dutch (NL)' => 'nl',
-            'Dutch (BE)' => 'be',
-            'Estonian' => 'ee', 'Estonian (EE)' => 'ee',
-            'Finnish' => 'fi', 'Finnish (FI)' => 'fi',
-            'French' => 'fr', 'French (FR)' => 'fr',
-            'French (CA)' => 'can-qc',
-            'Georgian' => 'ge',
-            'German' => 'de', 'German (DE)' => 'de',
-            'German (CH)' => 'ch',
-            'Greek' => 'gr', 'Greek (GR)' => 'gr',
-            'Hebrew' => 'il', 'Hebrew (IL)' => 'il',
-            'Hindi' => 'in', 'Tamil' => 'in', 'Telugu' => 'in',
-            'Hungarian' => 'hu', 'Hungarian (HU)' => 'hu',
-            'Icelandic' => 'is', 'Icelandic (IS)' => 'is',
-            'Indonesian' => 'id', 'Indonesian (ID)' => 'id',
-            'Irish' => 'ie', 'Irish (IE)' => 'ie',
-            'Italian' => 'it', 'Italian (IT)' => 'it',
-            'Japanese' => 'jp', '日' => 'jp',
-            'Kazakh' => 'kz', 'Kazakh (KZ)' => 'kz',
-            'Korean' => 'kr', '韩' => 'kr',
-            'Latvian' => 'lv', 'Latvian (LV)' => 'lv',
-            'Lithuanian' => 'lt', 'Lithuanian (LT)' => 'lt',
-            'Malay' => 'my', 'Malay (MY)' => 'my',
-            'Malay (SG)' => 'sg',
-            'Macedonian' => 'mk', 'Macedonian (MK)' => 'mk',
-            'Mongolian' => 'mn',
-            'Norwegian' => 'no', 'Norwegian Bokmal' => 'no',
-            'Persian' => 'ir',
-            'Polish' => 'pl', 'Polish (PL)' => 'pl',
-            'Portuguese' => 'pt', 'Portuguese (PT)' => 'pt',
-            'Portuguese (BR)' => 'br',
-            'Romanian' => 'ro', 'Romanian (RO)' => 'ro',
-            'Russian' => 'ru', 'Russian (RU)' => 'ru',
-            'Serbian' => 'rs', 'Serbian (RS)' => 'rs',
-            'Sinhala' => 'lk',
-            'Slovak' => 'sk', 'Slovak (SK)' => 'sk',
-            'Slovenian' => 'si', 'Slovenian (SI)' => 'si',
-            'Spanish' => 'es', 'Spanish (ES)' => 'es',
-            'Spanish (AR)' => 'ar',
+            'English'                 => 'us', '英语' => 'us',
+            'English (GB)'            => 'gb',
+            'English (CA)'            => 'can',
+            'English (AU)'            => 'au',
+            'Albanian'                => 'al', 'Albanian (AL)' => 'al',
+            'Arabic'                  => 'ae', 'Arabic (001)' => 'ae', 'Arabic (AE)' => 'ae',
+            'Arabic (SA)'             => 'sa',
+            'Arabic (MA)'             => 'ma',
+            'Armenian'                => 'am',
+            'Azerbaijani'             => 'az',
+            'Belarusian'              => 'by',
+            'Bengali'                 => 'bd',
+            'Bosnian'                 => 'ba', 'Bosnian (BA)' => 'ba',
+            'Bulgarian'               => 'bg', 'Bulgarian (BG)' => 'bg',
+            'Burmese'                 => 'mm',
+            'Sichuan'                 => 'sichuan',
+            'Chinese'                 => 'cn', 'Mandarin' => 'cn', 'Cantonese' => 'cn',
+            'Chinese (HK)'            => 'hk', 'Cantonese (HK)' => 'hk', 'yue' => 'hk', '粤语' => 'hk',
+            'Chinese (Taiwan)'        => 'tw',
+            'Croatian'                => 'hr', 'Croatian (HR)' => 'hr',
+            'Czech'                   => 'cz', 'Czech (CZ)' => 'cz',
+            'Danish'                  => 'dk', 'Danish (DK)' => 'dk',
+            'Dutch'                   => 'nl', 'Dutch (NL)' => 'nl',
+            'Dutch (BE)'              => 'be',
+            'Estonian'                => 'ee', 'Estonian (EE)' => 'ee',
+            'Finnish'                 => 'fi', 'Finnish (FI)' => 'fi',
+            'French'                  => 'fr', 'French (FR)' => 'fr',
+            'French (CA)'             => 'can-qc',
+            'Georgian'                => 'ge',
+            'German'                  => 'de', 'German (DE)' => 'de',
+            'German (CH)'             => 'ch',
+            'Greek'                   => 'gr', 'Greek (GR)' => 'gr',
+            'Hebrew'                  => 'il', 'Hebrew (IL)' => 'il',
+            'Hindi'                   => 'in', 'Tamil' => 'in', 'Telugu' => 'in',
+            'Hungarian'               => 'hu', 'Hungarian (HU)' => 'hu',
+            'Icelandic'               => 'is', 'Icelandic (IS)' => 'is',
+            'Indonesian'              => 'id', 'Indonesian (ID)' => 'id',
+            'Irish'                   => 'ie', 'Irish (IE)' => 'ie',
+            'Italian'                 => 'it', 'Italian (IT)' => 'it',
+            'Japanese'                => 'jp', '日' => 'jp',
+            'Kazakh'                  => 'kz', 'Kazakh (KZ)' => 'kz',
+            'Korean'                  => 'kr', '韩' => 'kr',
+            'Latvian'                 => 'lv', 'Latvian (LV)' => 'lv',
+            'Lithuanian'              => 'lt', 'Lithuanian (LT)' => 'lt',
+            'Malay'                   => 'my', 'Malay (MY)' => 'my',
+            'Malay (SG)'              => 'sg',
+            'Macedonian'              => 'mk', 'Macedonian (MK)' => 'mk',
+            'Mongolian'               => 'mn',
+            'Norwegian'               => 'no', 'Norwegian Bokmal' => 'no',
+            'Persian'                 => 'ir',
+            'Polish'                  => 'pl', 'Polish (PL)' => 'pl',
+            'Portuguese'              => 'pt', 'Portuguese (PT)' => 'pt',
+            'Portuguese (BR)'         => 'br',
+            'Romanian'                => 'ro', 'Romanian (RO)' => 'ro',
+            'Russian'                 => 'ru', 'Russian (RU)' => 'ru',
+            'Serbian'                 => 'rs', 'Serbian (RS)' => 'rs',
+            'Sinhala'                 => 'lk',
+            'Slovak'                  => 'sk', 'Slovak (SK)' => 'sk',
+            'Slovenian'               => 'si', 'Slovenian (SI)' => 'si',
+            'Spanish'                 => 'es', 'Spanish (ES)' => 'es',
+            'Spanish (AR)'            => 'ar',
             'Spanish (Latin America)' => 'mx', 'Spanish (MX)' => 'mx',
-            'Basque' => 'es-pv',
-            'Catalan' => 'es-ct',
-            'Galician' => 'es-ga',
-            'Swedish' => 'se', 'Swedish (SE)' => 'se',
-            'Tagalog' => 'ph', 'Filipino' => 'ph',
-            'Thai' => 'th', 'Thai (TH)' => 'th',
-            'Turkish' => 'tr', 'Turkish (TR)' => 'tr',
-            'Ukrainian' => 'ua', 'Ukrainian (UA)' => 'ua',
-            'Vietnamese' => 'vn', 'Vietnamese (VN)' => 'vn',
-            'Welsh' => 'gb-wls',
+            'Basque'                  => 'es-pv',
+            'Catalan'                 => 'es-ct',
+            'Galician'                => 'es-ga',
+            'Swedish'                 => 'se', 'Swedish (SE)' => 'se',
+            'Tagalog'                 => 'ph', 'Filipino' => 'ph',
+            'Thai'                    => 'th', 'Thai (TH)' => 'th',
+            'Turkish'                 => 'tr', 'Turkish (TR)' => 'tr',
+            'Ukrainian'               => 'ua', 'Ukrainian (UA)' => 'ua',
+            'Vietnamese'              => 'vn', 'Vietnamese (VN)' => 'vn',
+            'Welsh'                   => 'gb-wls',
             // ... 其他映射
         ];
 
         foreach ($mapping as $language => $code) {
-            if (strpos($line, $language) !== false) {
+            if (str_contains($line, $language)) {
                 return $code;
             }
         }
 
-        return null; // 如果没有找到匹配项，返回 null
+        return; // 如果没有找到匹配项，返回 null
     }
 }
