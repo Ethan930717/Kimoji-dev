@@ -93,12 +93,13 @@ class BDInfo
             // 分割匹配到的字符串，以每行为一个音频参数
             $audioLines = explode("\n", trim($matches[1]));
 
-            // 去除可能存在的表头行
+
             if (strpos(strtolower($audioLines[0]), 'codec') !== false) {
                 array_shift($audioLines);
             }
 
             // 添加剩余的每行到结果数组
+
             foreach ($audioLines as $line) {
                 if (!empty(trim($line))) {
                     $audioData[] = trim($line);
@@ -107,6 +108,7 @@ class BDInfo
         }
 
         return preg_replace('/^\s*-{5}\s+-{8}\s+-{7}\\s+-{11}\s*$/m', '', $audioData);
+
     }
 
     private function parseSubtitles($string)
@@ -118,6 +120,7 @@ class BDInfo
             $subtitleLines = explode("\n", trim($matches[1]));
 
             // 检查并跳过标题行和分割行
+
             foreach ($subtitleLines as $line) {
                 if (empty(trim($line)) || preg_match('/^-+$/', trim($line)) || preg_match('/Codec\s+Language\s+Bitrate\s+Description/', trim($line))) {
                     continue; // 跳过空行、分割行和标题行
@@ -146,6 +149,6 @@ class BDInfo
 
         return $data;
     }
-
+    
 
 }
