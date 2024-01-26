@@ -92,19 +92,20 @@ class BDInfo
         return preg_replace('/^\s*-{5}\s+-{7}\s+-{11}\s*$/m', '', $section);
     }
 
-    private function parseVideoParameters($videoString) {
-        $pattern = '/(\w+(?:-\w+)*\s*Video)\s*(\d+\s*kbps)\s*(\d+p)\s*\/\s*(\d+\s*fps)\s*\/\s*(\d+:\d+)\s*\/\s*(.+)$/';
-        if (preg_match($pattern, $videoString, $matches)) {
-            return [
-                'format' => $matches[1],
-                'bitrate' => $matches[2],
-                'resolution' => $matches[3],
-                'frame_rate' => $matches[4],
-                'aspect_ratio' => $matches[5],
-                'profile_level' => $matches[6]
-            ];
+    private function parseVideoParameters($videoString)
+    {
+        $videoData = [];
+
+        if (preg_match('/(\w+\s\w+\sVideo)\s+(\d+)\s+kbps\s+(\d+p)\s+\/\s+(\d+\s+fps)\s+\/\s+(\d+:\d+)\s+\/\s+(.+)/', $videoString, $matches)) {
+            $videoData['format'] = $matches[1]; // 如 MPEG-4 AVC Video
+            $videoData['bitrate'] = $matches[2] . ' kbps';
+            $videoData['resolution'] = $matches[3]; // 如 1080p
+            $videoData['frame_rate'] = $matches[4]; // 如 24 fps
+            $videoData['aspect_ratio'] = $matches[5]; // 如 16:9
+            $videoData['profile_level'] = $matches[6]; // 如 High Profile 4.1
         }
-        return [];
+
+        return $videoData;
     }
 
 

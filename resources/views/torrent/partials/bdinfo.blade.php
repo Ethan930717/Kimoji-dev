@@ -34,35 +34,32 @@
                 </dl>
             </section>
 
-            @if(isset($bdInfo['video']))
+            @if(!empty($bdInfo['video']))
                 <section class="bdinfo__video">
                     <h3>视频信息</h3>
-                    @if(is_array($bdInfo['video']))
-                        @foreach($bdInfo['video'] as $videoData)
-                            <article>
-                                <dl>
-                                    <dt>格式</dt>
-                                    <dd>{{ $videoData['format'] ?? __('common.unknown') }}</dd>
-                                    <dt>码率</dt>
-                                    <dd>{{ $videoData['bitrate'] ?? __('common.unknown') }}</dd>
-                                    <dt>分辨率</dt>
-                                    <dd>{{ $videoData['resolution'] ?? __('common.unknown') }}</dd>
-                                    <dt>帧率</dt>
-                                    <dd>{{ $videoData['frame_rate'] ?? __('common.unknown') }}</dd>
-                                    <dt>宽高比</dt>
-                                    <dd>{{ $videoData['aspect_ratio'] ?? __('common.unknown') }}</dd>
-                                    <dt>Profile Level</dt>
-                                    <dd>{{ $videoData['profile_level'] ?? __('common.unknown') }}</dd>
-                                </dl>
-                            </article>
-                        @endforeach
-                    @else
-                        <p>{!! nl2br(e($bdInfo['video'])) !!}</p>
-                    @endif
+                    <article>
+                        <dl>
+                            <dt>格式</dt>
+                            <dd>{{ $bdInfo['video']['format'] ?? __('common.unknown') }}</dd>
+                            <dt>码率</dt>
+                            <dd>{{ $bdInfo['video']['bitrate'] ?? __('common.unknown') }}</dd>
+                            <dt>分辨率</dt>
+                            <dd>{{ $bdInfo['video']['resolution'] ?? __('common.unknown') }}</dd>
+                            <dt>帧率</dt>
+                            <dd>{{ $bdInfo['video']['frame_rate'] ?? __('common.unknown') }}</dd>
+                            <dt>宽高比</dt>
+                            <dd>{{ $bdInfo['video']['aspect_ratio'] ?? __('common.unknown') }}</dd>
+                            <dt>编码级别</dt>
+                            <dd>{{ $bdInfo['video']['profile_level'] ?? __('common.unknown') }}</dd>
+                        </dl>
+                    </article>
                 </section>
             @endif
 
-
+            @php
+                dd($bdInfo['audio'], $bdInfo['subtitles']);
+            @endphp
+            
             @if(!empty($bdInfo['audio']) && is_array($bdInfo['audio']))
                 <section class="bdinfo__audio">
                     <h3>音频信息</h3>
