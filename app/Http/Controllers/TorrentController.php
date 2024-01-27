@@ -383,7 +383,7 @@ class TorrentController extends Controller
             'moderated_by' => User::SYSTEM_USER_ID,
             'pieces_hash'  => $piecesHash,
             'music_url'    => $request->input('music_url'),
-            'is_lrc'    => $request->input('is_lrc', 0),
+            'is_lrc'       => $request->input('is_lrc', 0),
         ] + $request->safe()->except(['torrent']));
 
         // Count and save the torrent number in this category
