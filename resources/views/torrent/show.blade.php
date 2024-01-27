@@ -1,11 +1,16 @@
 @extends('layout.default')
 
 @section('title')
-    <title>{{ $torrent->name }} - {{ __('torrent.torrents') }} - {{ config('other.title') }}</title>
+    <title>
+        {{ $torrent->name }} - {{ __('torrent.torrents') }} - {{ config('other.title') }}
+    </title>
 @endsection
 
 @section('meta')
-    <meta name="description" content="{{ __('torrent.meta-desc', ['name' => $torrent->name]) }}!">
+    <meta
+        name="description"
+        content="{{ __('torrent.meta-desc', ['name' => $torrent->name]) }}!"
+    />
 @endsection
 
 @section('breadcrumbs')
@@ -43,10 +48,10 @@
       @include('torrent.partials.general')
       @include('torrent.partials.buttons')
 
-      {{-- Tools Block --}}
-      @if (auth()->user()->group->is_modo || auth()->id() === $torrent->user_id || auth()->user()->group->is_internal)
-          @include('torrent.partials.tools')
-      @endif
+    {{-- Tools Block --}}
+    @if (auth()->user()->group->is_internal || auth()->user()->group->is_editor || auth()->user()->group->is_modo || auth()->id() === $torrent->user_id)
+        @include('torrent.partials.tools')
+    @endif
 
       {{-- Audits Block --}}
       @if (auth()->user()->group->is_modo)
@@ -79,23 +84,4 @@
 
       {{-- Commments Block --}}
       @include('torrent.partials.comments')
-@endsection
-
-@section('javascripts')
-    @if (isset($trailer))
-        <script nonce="{{ HDVinnie\SecureHeaders\SecureHeaders::nonce() }}">
-          document.getElementsByClassName('show-trailer')[0].addEventListener('click', (e) => {
-              e.preventDefault()
-              Swal.fire({
-                showConfirmButton: false,
-                showCloseButton: true,
-                background: 'rgb(35,35,35)',
-                width: 970,
-                html: '<iframe width="930" height="523" src="{{ $trailer }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
-                title: '<i style="color: #a5a5a5;">Trailer</i>',
-                text: ''
-              })
-          })
-        </script>
-    @endif
 @endsection

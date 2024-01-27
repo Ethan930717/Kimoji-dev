@@ -31,16 +31,8 @@
                 >
                     @csrf
                     <div class="form__group">
-                        <input
-                            id="tmdb"
-                            class="form__text"
-                            name="tmdb"
-                            required
-                            type="text"
-                        />
-                        <label class="form__label form__label--floating" for="tmdb">
-                            TMDB ID
-                        </label>
+                        <input id="tmdb" class="form__text" name="tmdb" required type="text" />
+                        <label class="form__label form__label--floating" for="tmdb">TMDB ID</label>
                     </div>
                     <button class="form__button form__button--text">
                         {{ __('common.add') }}
@@ -69,15 +61,22 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ route('torrents.index', ['tmdbId' => $wish->tmdb]) }}" target="_blank">
+                                <a
+                                    href="{{ route('torrents.index', ['tmdbId' => $wish->tmdb]) }}"
+                                    target="_blank"
+                                >
                                     Torrents
                                 </a>
                             </td>
                             <td>
                                 @if ($wish->source === null)
-                                    <i class="{{ config('other.font-awesome') }} fa-times text-red"></i>
+                                    <i
+                                        class="{{ config('other.font-awesome') }} fa-times text-red"
+                                    ></i>
                                 @else
-                                    <i class="{{ config('other.font-awesome') }} fa-check text-green"></i>
+                                    <i
+                                        class="{{ config('other.font-awesome') }} fa-check text-green"
+                                    ></i>
                                 @endif
                             </td>
                             <td>
@@ -86,22 +85,13 @@
                                         <form
                                             action="{{ route('users.wishes.destroy', ['user' => $user, 'wish' => $wish]) }}"
                                             method="POST"
-                                            x-data
+                                            x-data="confirmation"
                                         >
                                             @csrf
                                             @method('DELETE')
                                             <button
-                                                x-on:click.prevent="Swal.fire({
-                                                    title: '请确认',
-                                                    text: `是否确认删除心愿: ${decodeURIComponent(atob('{{ base64_encode(rawurlencode($wish->title)) }}'))}`,
-                                                    icon: 'warning',
-                                                    showConfirmButton: true,
-                                                    showCancelButton: true,
-                                                }).then((result) => {
-                                                    if (result.isConfirmed) {
-                                                        $root.submit();
-                                                    }
-                                                })"
+                                                x-on:click.prevent="confirmAction"
+                                                data-b64-deletion-message="{{ base64_encode('Are you sure you want to delete this wish: ' . $wish->title . '?') }}"
                                                 class="form__button form__button--text"
                                             >
                                                 {{ __('common.delete') }}
@@ -113,7 +103,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4">暂无心愿</td>
+                            <td colspan="4">No wishes</td>
                         </tr>
                     @endforelse
                 </tbody>

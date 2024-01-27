@@ -68,12 +68,45 @@ if (config('unit3d.root_url_override')) {
     URL::forceRootUrl(config('unit3d.root_url_override'));
 }
 Route::middleware('language')->group(function (): void {
+
+    /*
+    |---------------------------------------------------------------------------------
+    | Laravel Fortify Route Overrides
+    | Don't update Fortify without first making sure this override works.
+    |---------------------------------------------------------------------------------
+    */
+    Route::get(RoutePath::for('login', '/login'), [AuthenticatedSessionController::class, 'create'])
+        ->middleware(['throttle:' .config('fortify.limiters.fortify-login-get'), 'guest:'.config('fortify.guard')])
+        ->name('login');
+
+    Route::get(RoutePath::for('register', '/register'), [RegisteredUserController::class, 'create'])
+        ->middleware(['throttle:' .config('fortify.limiters.fortify-register-get'), 'guest:'.config('fortify.guard')])
+        ->name('register');
+
+    Route::post(RoutePath::for('register', '/register'), [RegisteredUserController::class, 'store'])
+        ->middleware(['throttle:' .config('fortify.limiters.fortify-register-post'), 'guest:'.config('fortify.guard')]);
+
+    Route::get(RoutePath::for('password.request', '/forgot-password'), [PasswordResetLinkController::class, 'create'])
+        ->middleware(['throttle:' .config('fortify.limiters.fortify-forgot-password-get'), 'guest:'.config('fortify.guard')])
+        ->name('password.request');
+
+    Route::get(RoutePath::for('password.reset', '/reset-password/{token}'), [NewPasswordController::class, 'create'])
+        ->middleware(['throttle:' .config('fortify.limiters.fortify-reset-password-get'), 'guest:'.config('fortify.guard')])
+        ->name('password.reset');
+
+    Route::post(RoutePath::for('password.email', '/forgot-password'), [PasswordResetLinkController::class, 'store'])
+        ->middleware(['throttle:' .config('fortify.limiters.fortify-forgot-password-post'), 'guest:'.config('fortify.guard')])
+        ->name('password.email');
+
+    Route::post(RoutePath::for('password.update', '/reset-password'), [NewPasswordController::class, 'store'])
+        ->middleware(['throttle:' .config('fortify.limiters.fortify-reset-password-post'), 'guest:'.config('fortify.guard')])
+        ->name('password.update');
+
     /*
     |---------------------------------------------------------------------------------
     | Website (Not Authorized) (Alpha Ordered)
     |---------------------------------------------------------------------------------
     */
-
     Route::middleware('guest')->group(function (): void {
         // Application Signup
         Route::get('/application', [App\Http\Controllers\Auth\ApplicationController::class, 'create'])->name('application.create');
@@ -89,7 +122,6 @@ Route::middleware('language')->group(function (): void {
     | Website (When Authorized) (Alpha Ordered)
     |---------------------------------------------------------------------------------
     */
-
     Route::middleware(['auth', 'banned', 'verified'])->group(function (): void {
         // General
         Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
@@ -997,6 +1029,9 @@ Route::middleware('language')->group(function (): void {
                 Route::get('/', [App\Http\Controllers\Staff\RsskeyController::class, 'index'])->name('index');
             });
         });
+
+        // Torrent Downloads
+        Route::get('/torrent-downloads', App\Http\Livewire\TorrentDownloadSearch::class)->name('torrent_downloads.index');
 
         // Types
         Route::prefix('types')->group(function (): void {
