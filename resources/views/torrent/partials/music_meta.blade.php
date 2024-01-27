@@ -54,11 +54,12 @@
                    href="{{ route('torrents.index', ['distributors' => [$torrent->distributor->id]]) }}">
                     {{ $torrent?->distributor->name ?? '未知风格' }}
                 </a>
+                @if(in_array($user->group_id, [App\Enums\UserGroup::USER->value, App\Enums\UserGroup::LEECH->value]))
+                <a class="meta-id-tag" title="Internet Movie Database" target="_blank">
+                   壮士及以上等级可开启试听权限，官人请多多努力
+                </a>
             </li>
-            @if(!in_array($user->group_id, [App\Enums\UserGroup::USER->value, App\Enums\UserGroup::LEECH->value]))
-                <li>
-                    壮士及以上等级可开启试听权限，官人请多多努力
-                </li>
+
             @endif
         </ul>
         @php
