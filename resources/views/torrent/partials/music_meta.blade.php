@@ -55,8 +55,8 @@
                     {{ $torrent?->distributor->name ?? '未知风格' }}
                 </a>
                 @if(in_array($user->group_id, [App\Enums\UserGroup::USER->value, App\Enums\UserGroup::LEECH->value]))
-                <a class="meta-id-tag" title="Internet Movie Database" target="_blank">
-                   壮士及以上等级可开启试听权限，官人请多多努力
+                <a class="meta-id-tag" title="Internet Movie Database" target="_blank" style="text-shadow: 0 0 2px red">
+                   壮士及以上等级可享受试听功能，官人请多多努力
                 </a>
             </li>
 
