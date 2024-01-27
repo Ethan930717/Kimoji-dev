@@ -14,7 +14,7 @@ class AddIsLrcToTorrentsTable extends Migration
     public function up(): void
     {
         Schema::table('torrents', function (Blueprint $table): void {
-            $table->boolean('is_lrc')->default(0); // 添加 is_lrc 字段，默认值为 0
+            $table->boolean('is_lrc')->default(0)->nullable();
         });
     }
 
