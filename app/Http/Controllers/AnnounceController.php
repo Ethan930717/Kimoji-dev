@@ -836,6 +836,7 @@ final class AnnounceController extends Controller
 
             cache()->forget('announce-torrents:by-infohash:'.$queries['info_hash']);
         }
+
     }
 
     private function generateFailedAnnounceResponse(TrackerException $trackerException): string
