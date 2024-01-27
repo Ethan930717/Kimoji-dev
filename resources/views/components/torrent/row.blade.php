@@ -103,7 +103,7 @@
                                 <i class="fas fa-violin torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
                             @case('另类（Alternative）')
-                                <i class="fas fa-optin-monster torrent-icon" @style(['padding-top: 12px'])> </i>
+                                <i class="fas fa-alien-8bit torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
                             @case('嘻哈（Hip Hop）')
                                 <i class="fas fa-hat-cowboy-side torrent-icon" @style(['padding-top: 12px'])> </i>
@@ -127,7 +127,7 @@
                                 <i class="fas fa-guitars torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
                             @case('流行（Pop）')
-                                <i class="fas fa-music torrent-icon" @style(['padding-top: 12px'])> </i>
+                                <i class="fas fa-microphone-stand torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
                             @case('爵士（Jazz）')
                                 <i class="fas fa-saxophone torrent-icon" @style(['padding-top: 12px'])> </i>
@@ -145,10 +145,10 @@
                                 <i class="fas fa-theater-masks torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
                             @case('节奏布鲁斯 (R&B)')
-                                <i class="fas fa-heart torrent-icon" @style(['padding-top: 12px'])> </i>
+                                <i class="fas fa-heart-crack torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
                             @case('雷鬼（Reggae）')
-                                <i class="fas fa-leaf torrent-icon" @style(['padding-top: 12px'])> </i>
+                                <i class="fas fa-leaf-heart torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
                             @case('音乐剧（Musical）')
                                 <i class="fas fa-masks-theater torrent-icon" @style(['padding-top: 12px'])> </i>
