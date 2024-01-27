@@ -55,6 +55,11 @@
                     {{ $torrent?->distributor->name ?? '未知风格' }}
                 </a>
             </li>
+            @if(!in_array($user->group_id, [App\Enums\UserGroup::USER->value, App\Enums\UserGroup::LEECH->value]))
+                <li>
+                    壮士及以上等级可开启试听权限，官人请多多努力
+                </li>
+            @endif
         </ul>
         @php
             $description = $torrent->description;
@@ -150,24 +155,26 @@
                 </section>
             @endif
             </div>
-
-        @if($musicUrl)
-            @if ($is_lrc == 1)
-                <div id="aplayer"
-                     data-cover="{{ url('img/kimoji-music.webp') }}"
-                     data-name="{{ $musicName }}"
-                     data-url="{{ $musicUrl }}"
-                     data-artist="{{ $singerNameWithoutBrackets }}"
-                     data-lrc="{{ $lrcUrl }}">
-                </div>
+        @if(!in_array($user->group_id, [App\Enums\UserGroup::USER->value, App\Enums\UserGroup::LEECH->value]))
+            @if($musicUrl)
+                @if ($is_lrc == 1)
+                    <div id="aplayer"
+                         data-cover="{{ url('img/kimoji-music.webp') }}"
+                         data-name="{{ $musicName }}"
+                         data-url="{{ $musicUrl }}"
+                         data-artist="{{ $singerNameWithoutBrackets }}"
+                         data-lrc="{{ $lrcUrl }}">
+                    </div>
+                @endif
+                    <div id="aplayer"
+                         data-cover="{{ url('img/kimoji-music.webp') }}"
+                         data-name="{{ $musicName }}"
+                         data-url="{{ $musicUrl }}"
+                         data-artist="{{ $singerNameWithoutBrackets }}">
+                    </div>
             @endif
-                <div id="aplayer"
-                     data-cover="{{ url('img/kimoji-music.webp') }}"
-                     data-name="{{ $musicName }}"
-                     data-url="{{ $musicUrl }}"
-                     data-artist="{{ $singerNameWithoutBrackets }}">
-                </div>
         @endif
+
 
 
 </section>
