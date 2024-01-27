@@ -1,0 +1,34 @@
+/* Used alongside floating labels */
+
+.form__group {
+    border-radius: 10px;
+    /*
+    backdrop-filter: blur(3px);
+    */
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+    border: 2px rgba(255, 255, 255, 0.4) solid;
+    border-bottom: 2px rgba(40, 40, 40, 0.35) solid;
+    border-right: 2px rgba(40, 40, 40, 0.35) solid;
+    margin-top: 2px !important;
+    position: relative;
+    width: 100%;
+    color: #ffffff;
+}
+
+.form__group--horizontal {
+    background-color: inherit;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.form__group--short-horizontal {
+    background-color: inherit;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    align-items: center;
+    border-radius: 16px;
+    border-style: none;
+}
