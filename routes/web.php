@@ -80,30 +80,30 @@ Route::middleware('language')->group(function (): void {
     |---------------------------------------------------------------------------------
     */
     Route::get(RoutePath::for('login', '/login'), [AuthenticatedSessionController::class, 'create'])
-        ->middleware(['throttle:'.config('fortify.limiters.fortify-login-get'), 'guest:'.config('fortify.guard')])
+        ->middleware(['throttle:' .config('fortify.limiters.fortify-login-get'), 'guest:'.config('fortify.guard')])
         ->name('login');
 
     Route::get(RoutePath::for('register', '/register'), [RegisteredUserController::class, 'create'])
-        ->middleware(['throttle:'.config('fortify.limiters.fortify-register-get'), 'guest:'.config('fortify.guard')])
+        ->middleware(['throttle:' .config('fortify.limiters.fortify-register-get'), 'guest:'.config('fortify.guard')])
         ->name('register');
 
     Route::post(RoutePath::for('register', '/register'), [RegisteredUserController::class, 'store'])
-        ->middleware(['throttle:'.config('fortify.limiters.fortify-register-post'), 'guest:'.config('fortify.guard')]);
+        ->middleware(['throttle:' .config('fortify.limiters.fortify-register-post'), 'guest:'.config('fortify.guard')]);
 
     Route::get(RoutePath::for('password.request', '/forgot-password'), [PasswordResetLinkController::class, 'create'])
-        ->middleware(['throttle:'.config('fortify.limiters.fortify-forgot-password-get'), 'guest:'.config('fortify.guard')])
+        ->middleware(['throttle:' .config('fortify.limiters.fortify-forgot-password-get'), 'guest:'.config('fortify.guard')])
         ->name('password.request');
 
     Route::get(RoutePath::for('password.reset', '/reset-password/{token}'), [NewPasswordController::class, 'create'])
-        ->middleware(['throttle:'.config('fortify.limiters.fortify-reset-password-get'), 'guest:'.config('fortify.guard')])
+        ->middleware(['throttle:' .config('fortify.limiters.fortify-reset-password-get'), 'guest:'.config('fortify.guard')])
         ->name('password.reset');
 
     Route::post(RoutePath::for('password.email', '/forgot-password'), [PasswordResetLinkController::class, 'store'])
-        ->middleware(['throttle:'.config('fortify.limiters.fortify-forgot-password-post'), 'guest:'.config('fortify.guard')])
+        ->middleware(['throttle:' .config('fortify.limiters.fortify-forgot-password-post'), 'guest:'.config('fortify.guard')])
         ->name('password.email');
 
     Route::post(RoutePath::for('password.update', '/reset-password'), [NewPasswordController::class, 'store'])
-        ->middleware(['throttle:'.config('fortify.limiters.fortify-reset-password-post'), 'guest:'.config('fortify.guard')])
+        ->middleware(['throttle:' .config('fortify.limiters.fortify-reset-password-post'), 'guest:'.config('fortify.guard')])
         ->name('password.update');
 
     /*
@@ -850,6 +850,13 @@ Route::middleware('language')->group(function (): void {
                 Route::patch('/{distributor}', [App\Http\Controllers\Staff\DistributorController::class, 'update'])->name('update');
                 Route::get('/{distributor}/delete', [App\Http\Controllers\Staff\DistributorController::class, 'delete'])->name('delete');
                 Route::delete('/{distributor}', [App\Http\Controllers\Staff\DistributorController::class, 'destroy'])->name('destroy');
+            });
+        });
+
+        // Email Updates
+        Route::prefix('email-updates')->group(function (): void {
+            Route::name('email_updates.')->group(function (): void {
+                Route::get('/', [App\Http\Controllers\Staff\EmailUpdateController::class, 'index'])->name('index');
             });
         });
 
