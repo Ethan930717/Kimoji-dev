@@ -156,26 +156,23 @@
                 </section>
             @endif
             </div>
-        @if(!in_array($user->group_id, [App\Enums\UserGroup::USER->value, App\Enums\UserGroup::LEECH->value]))
-            @if($musicUrl)
-                @if ($is_lrc == 1)
-                    <div id="aplayer"
-                         data-cover="{{ url('img/kimoji-music.webp') }}"
-                         data-name="{{ $musicName }}"
-                         data-url="{{ $musicUrl }}"
-                         data-artist="{{ $singerNameWithoutBrackets }}"
-                         data-lrc="{{ $lrcUrl }}">
-                    </div>
-                @endif
-                    <div id="aplayer"
-                         data-cover="{{ url('img/kimoji-music.webp') }}"
-                         data-name="{{ $musicName }}"
-                         data-url="{{ $musicUrl }}"
-                         data-artist="{{ $singerNameWithoutBrackets }}">
-                    </div>
-            @endif
-        @endif
-
-
-
 </section>
+@if(!in_array($user->group_id, [App\Enums\UserGroup::USER->value, App\Enums\UserGroup::LEECH->value]))
+    @if($musicUrl)
+        @if ($is_lrc == 1)
+            <div id="aplayer"
+                 data-cover="{{ url('img/kimoji-music.webp') }}"
+                 data-name="{{ $musicName }}"
+                 data-url="{{ $musicUrl }}"
+                 data-artist="{{ $singerNameWithoutBrackets }}"
+                 data-lrc="{{ $lrcUrl }}">
+            </div>
+        @endif
+        <div id="aplayer"
+             data-cover="{{ url('img/kimoji-music.webp') }}"
+             data-name="{{ $musicName }}"
+             data-url="{{ $musicUrl }}"
+             data-artist="{{ $singerNameWithoutBrackets }}">
+        </div>
+    @endif
+@endif
