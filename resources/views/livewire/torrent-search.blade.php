@@ -675,7 +675,7 @@
                     </div>
                     <div class="form__group">
                         <fieldset class="form__fieldset">
-                            <legend class="form__legend">Primary Language</legend>
+                            <legend class="form__legend">语种</legend>
                             <div class="form__fieldset-checkbox-container">
                                 @php
                                     $primaryLanguages = cache()->remember(

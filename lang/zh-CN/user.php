@@ -95,6 +95,7 @@ return [
     'downloads'                 => '下载',
     'edit'                      => '编辑用户',
     'edit-profile'              => '编辑个人资料',
+    'email-updates'             => '邮箱更改记录',
     'enable-notifications'      => '启用通知',
     'expired'                   => '过期',
     'expires-on'                => '过期于',
