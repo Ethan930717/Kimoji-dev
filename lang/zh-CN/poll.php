@@ -13,6 +13,8 @@
 
 return [
     'add-option'      => '添加选项',
+    'already-voted-error'  => '您已经投票过了，无法重复投票',
+    'already-voted-result' => '您已经投票过了，以下为投票结果',
     'create-poll'     => '创建投票',
     'current'         => '目前投票',
     'delete-option'   => '删除最后一个选项',
@@ -25,6 +27,7 @@ return [
     'title'           => '标题',
     'total'           => '目前总投票数',
     'vote'            => '投票',
+    'vote-counted'    => '投票成功',
     'vote-now'        => '马上投票吧！',
     'votes'           => '投票',
 ];
