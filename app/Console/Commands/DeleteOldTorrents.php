@@ -13,7 +13,7 @@ class DeleteOldTorrents extends Command
 
     public function handle(): void
     {
-        $oldTorrents = Torrent::where('seeders_zero_at', '<', Carbon::now()->subDays(21))
+        $oldTorrents = Torrent::where('moderated_at', '<', Carbon::now()->subDays(21))
             ->where('seeders', 0)
             ->get();
 
