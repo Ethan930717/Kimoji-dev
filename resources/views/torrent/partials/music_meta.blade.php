@@ -5,36 +5,31 @@
         <img class="meta__backdrop" src="{{ url('/files/img/torrent-cover_'.$torrent->id.'.jpg') }}" alt="Backdrop">
     @endif
         @php
-            // 首先以 " - " 为分隔符进行分割，保证不会分割错误
+            // 首先以 " - " 为分隔符进行分割，这样避免了错误地分割专辑名中可能包含的 "-"
             $parts = explode(' - ', $torrent->name);
 
-            // 获取并清理歌手名称
+            // 移除并获取歌手名称，同时清理歌手名称中的括号
             $singerName = array_shift($parts);
             $singerNameWithoutBrackets = preg_replace('/[\(\）].*?[\)\（]/u', '', $singerName);
 
-            // 用 "-" 分割最后一个元素以去除 "-kimoji"
-            $lastPart = array_pop($parts);
-            $lastPartParts = explode('-', $lastPart);
-            array_pop($lastPartParts); // 移除 "-kimoji"
-            $lastPartWithoutKimoji = implode('-', $lastPartParts); // 重新组合剩下的部分
+            // 移除最后一个元素（包含元数据和"kimoji"）
+            array_pop($parts);
 
-            // 如果有年份，剩下的部分会是年份和标题
+            // 重新组合剩余部分作为专辑名称，并检查是否包含年份
+            $albumName = implode(' - ', $parts);
             $year = '';
-            if (preg_match('/(\d{4})$/', $lastPartWithoutKimoji, $matches)) {
-                $year = $matches[1]; // 提取年份
-                $lastPartWithoutKimoji = rtrim(preg_replace('/\d{4}$/', '', $lastPartWithoutKimoji), ' -'); // 移除年份
+            if (preg_match('/(\d{4})/', $albumName, $matches)) {
+                $year = $matches[1];
+                $albumName = preg_replace('/\d{4}/', '', $albumName); // 移除年份
+                $albumName = trim($albumName, ' -'); // 移除尾部多余的 " - "
+                $albumName .= " ($year)"; // 在专辑名称后加上年份
             }
-
-            // 将处理后的最后部分加回到 parts 数组中，这样就不会改变其他部分的内容
-            array_push($parts, $lastPartWithoutKimoji);
-
-            // 重新组合 parts 数组作为最终的标题
-            $title = implode(' - ', $parts);
         @endphp
 
         <a class="meta__title-link">
-            <h1 class="meta__title">{{ $title }}</h1>
+            <h1 class="meta__title">{{ $albumName }}</h1>
         </a>
+
         <a class="meta__poster-link">
             <img
                     src="{{ file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg') ? url('/files/img/torrent-cover_'.$torrent->id.'.jpg') : 'https://via.placeholder.com/500x500' }}"
@@ -142,7 +137,6 @@
             }
         @endphp
 
-
         <div class="meta__chips">
             @if (!empty($songs))
                 <section class="meta__chip-container">
@@ -186,7 +180,4 @@
                     </div>
             @endif
         @endif
-
-
-
 </section>
