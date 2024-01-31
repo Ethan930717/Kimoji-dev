@@ -5,16 +5,27 @@
         <img class="meta__backdrop" src="{{ url('/files/img/torrent-cover_'.$torrent->id.'.jpg') }}" alt="Backdrop">
     @endif
         @php
-            $parts = explode('-', $torrent->name);
-            $singerName = array_shift($parts); // 移除并获取第一个部分（歌手名称）
+            // 首先以 " - " 为分隔符进行分割，保证不会分割错误
+            $parts = explode(' - ', $torrent->name);
+
+            // 获取并清理歌手名称
+            $singerName = array_shift($parts);
             $singerNameWithoutBrackets = preg_replace('/[\(\（].*?[\)\）]/u', '', $singerName);
-            array_pop($parts); // 移除最后一部分
-            array_pop($parts); // 再次移除，这次是倒数第二部分
-            $title = implode('-', $parts); // 重新组合中间部分
 
-            $year = ''; // 初始化年份变量
+            // 用 "-" 分割最后一个元素以去除 "-kimoji"
+            $lastPart = array_pop($parts);
+            $lastPartParts = explode('-', $lastPart);
+            $kimojiPart = array_pop($lastPartParts); // 这里应该是 "kimoji" 部分
+            $titleWithYear = implode('-', $lastPartParts); // 剩下的部分可能包含年份
 
-            // 使用正则表达式检查$title末尾是否有四位数字
+            // 现在重新组合除了"kimoji"和年份以外的部分作为标题
+            array_push($parts, $titleWithYear); // 把处理后的最后部分加回去
+            $title = implode(' - ', $parts);
+
+            // 初始化年份变量
+            $year = '';
+
+            // 使用正则表达式检查 $title 末尾是否有四位数字
             if (preg_match('/(\d{4})$/', $title, $matches)) {
                 $year = $matches[1]; // 提取年份
                 $title = rtrim(preg_replace('/\d{4}$/', '', $title), ' -'); // 移除年份并去除尾部多余的连字符
@@ -133,18 +144,18 @@
 
 
         <div class="meta__chips">
-            <section class="meta__chip-container">
-                <h2 class="meta__heading">歌曲列表</h2>
-                @foreach ($songs as $song)
-                    <article class="meta-chip-wrapper">
-                        <a class="meta-chip">
-                            <h2 class="meta-chip__name">{{ trim($song) }}
-                            </h2>
-                        </a>
-                    </article>
-                @endforeach
-            </section>
-            @if ($spectrogramUrl)
+            @if (!empty($songs))
+                <section class="meta__chip-container">
+                    <h2 class="meta__heading">歌曲列表</h2>
+                    @foreach ($songs as $song)
+                        <article class="meta-chip-wrapper">
+                            <a class="meta-chip">
+                                <h2 class="meta-chip__name">{{ trim($song) }}</h2>
+                            </a>
+                        </article>
+                    @endforeach
+                </section>
+            @endif            @if ($spectrogramUrl)
                 <section class="meta__chip-container">
                     <h2 class="meta__heading">频谱分析</h2>
                             <img
