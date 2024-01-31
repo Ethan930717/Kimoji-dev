@@ -10,26 +10,26 @@
 
             // 获取并清理歌手名称
             $singerName = array_shift($parts);
-            $singerNameWithoutBrackets = preg_replace('/[\(\（].*?[\)\）]/u', '', $singerName);
+            $singerNameWithoutBrackets = preg_replace('/[\(\）].*?[\)\（]/u', '', $singerName);
 
             // 用 "-" 分割最后一个元素以去除 "-kimoji"
             $lastPart = array_pop($parts);
             $lastPartParts = explode('-', $lastPart);
-            $kimojiPart = array_pop($lastPartParts); // 这里应该是 "kimoji" 部分
-            $titleWithYear = implode('-', $lastPartParts); // 剩下的部分可能包含年份
+            array_pop($lastPartParts); // 移除 "-kimoji"
+            $lastPartWithoutKimoji = implode('-', $lastPartParts); // 重新组合剩下的部分
 
-            // 现在重新组合除了"kimoji"和年份以外的部分作为标题
-            array_push($parts, $titleWithYear); // 把处理后的最后部分加回去
-            $title = implode(' - ', $parts);
-
-            // 初始化年份变量
+            // 如果有年份，剩下的部分会是年份和标题
             $year = '';
-
-            // 使用正则表达式检查 $title 末尾是否有四位数字
-            if (preg_match('/(\d{4})$/', $title, $matches)) {
+            if (preg_match('/(\d{4})$/', $lastPartWithoutKimoji, $matches)) {
                 $year = $matches[1]; // 提取年份
-                $title = rtrim(preg_replace('/\d{4}$/', '', $title), ' -'); // 移除年份并去除尾部多余的连字符
+                $lastPartWithoutKimoji = rtrim(preg_replace('/\d{4}$/', '', $lastPartWithoutKimoji), ' -'); // 移除年份
             }
+
+            // 将处理后的最后部分加回到 parts 数组中，这样就不会改变其他部分的内容
+            array_push($parts, $lastPartWithoutKimoji);
+
+            // 重新组合 parts 数组作为最终的标题
+            $title = implode(' - ', $parts);
         @endphp
 
         <a class="meta__title-link">
