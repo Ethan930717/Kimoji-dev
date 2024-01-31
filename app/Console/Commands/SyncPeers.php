@@ -54,8 +54,8 @@ class SyncPeers extends Command
                 fn ($join) => $join->on('torrents.id', '=', 'seeders_leechers.torrent_id')
             )
             ->update([
-                'seeders'  => DB::raw('COALESCE(seeders_leechers.updated_seeders, 0)'),
-                'leechers' => DB::raw('COALESCE(seeders_leechers.updated_leechers, 0)'),
+                'seeders'  => DB::raw('GREATEST(COALESCE(seeders_leechers.updated_seeders, 0), 0)'),
+                'leechers' => DB::raw('GREATEST(COALESCE(seeders_leechers.updated_leechers, 0), 0)'),
             ]);
 
         $this->comment('Torrent Peer Syncing Command Complete');
