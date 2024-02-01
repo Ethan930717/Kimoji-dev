@@ -21,6 +21,8 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Exception;
+use Illuminate\Support\Facades\Log;
+
 
 /**
  * @see \Tests\Unit\Console\Commands\AutoRemoveFeaturedTorrentTest
@@ -81,8 +83,14 @@ class AutoRemoveFeaturedTorrent extends Command
             ->get();
 
         foreach ($eligibleTorrents as $torrent) {
+            \Log::info('Processing torrent ID: ' . $torrent->id);
             $torrent->featured = 1; // 把featured字段从0改为1
-            $torrent->save();
+            try {
+                $torrent->save();
+            } catch (\Exception $e) {
+                \Log::error('Error saving torrent ID: ' . $torrent->id . ' with error: ' . $e->getMessage());
+            }
+            \Log::info('Featured updated for torrent ID: ' . $torrent->id);
         }
     }
 
