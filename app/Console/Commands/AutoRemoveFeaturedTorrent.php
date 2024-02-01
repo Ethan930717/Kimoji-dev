@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
-
 /**
  * @see \Tests\Unit\Console\Commands\AutoRemoveFeaturedTorrentTest
  */
@@ -56,9 +55,7 @@ class AutoRemoveFeaturedTorrent extends Command
      */
     public function handle(): void
     {
-
         DB::beginTransaction();
-
 
         try {
             $this->addNewFeaturedTorrents();
@@ -67,7 +64,7 @@ class AutoRemoveFeaturedTorrent extends Command
             $this->comment('Automated Removal and Addition of Featured Torrents Command Complete');
         } catch (Exception $e) {
             DB::rollBack();
-            $this->error('An error occurred: ' . $e->getMessage());
+            $this->error('An error occurred: '.$e->getMessage());
         }
     }
 
@@ -85,7 +82,7 @@ class AutoRemoveFeaturedTorrent extends Command
             ->get();
 
         foreach ($eligibleTorrents as $torrent) {
-            Log::info('Processing torrent ID: ' . $torrent->id);
+            Log::info('Processing torrent ID: '.$torrent->id);
             $torrent->featured = 1;
 
             try {
@@ -96,13 +93,12 @@ class AutoRemoveFeaturedTorrent extends Command
                 $featuredTorrent->user_id = 4; // 将 user_id 固定设置为 4
                 $featuredTorrent->save();
 
-                Log::info('Featured and FeaturedTorrent created for torrent ID: ' . $torrent->id);
-            } catch (\Exception $e) {
-                Log::error('Error processing torrent ID: ' . $torrent->id . ' with error: ' . $e->getMessage());
+                Log::info('Featured and FeaturedTorrent created for torrent ID: '.$torrent->id);
+            } catch (Exception $e) {
+                Log::error('Error processing torrent ID: '.$torrent->id.' with error: '.$e->getMessage());
             }
         }
     }
-
 
     /**
      * Removes expired featured torrents.

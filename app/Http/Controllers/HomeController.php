@@ -490,9 +490,9 @@ class HomeController extends Controller
                 ->get()),
             'freeleech_tokens' => FreeleechToken::where('user_id', $user->id)->get(),
             'bookmarks'        => Bookmark::where('user_id', $user->id)->get(),
-            'artistsCount' => $artistsCount,
-            'albumsCount' => $albumsCount,
-            'songsCount' => $songsCount,
+            'artistsCount'     => $artistsCount,
+            'albumsCount'      => $albumsCount,
+            'songsCount'       => $songsCount,
         ]);
     }
 }
