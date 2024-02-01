@@ -19,7 +19,7 @@ return [
 
     // Featured Torrents
     'featured-by'             => '精选',
-    'featured-torrents'       => '精选资源',
+    'featured-torrents'       => '今日精选',
     'featured-torrents-intro' => '欢迎下载！',
     'featured-until'          => '精选资源有效至',
 

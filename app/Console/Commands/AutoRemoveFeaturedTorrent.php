@@ -75,14 +75,14 @@ class AutoRemoveFeaturedTorrent extends Command
         $eligibleTorrents = Torrent::where('category_id', 3)
             ->where('seeders', '>', 2)
             ->where('seeders', '<', 10)
+            ->where('featured', 0) // 确保选中的种子目前不是精选
             ->inRandomOrder()
             ->limit(20)
             ->get();
 
         foreach ($eligibleTorrents as $torrent) {
-            $featuredTorrent = new FeaturedTorrent();
-            $featuredTorrent->torrent_id = $torrent->id;
-            $featuredTorrent->save();
+            $torrent->featured = 1; // 把featured字段从0改为1
+            $torrent->save();
         }
     }
 
