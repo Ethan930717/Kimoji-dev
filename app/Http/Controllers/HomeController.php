@@ -43,6 +43,7 @@ class HomeController extends Controller
 
         return compact('artistsCount', 'albumsCount', 'songsCount');
     }
+
     /**
      * Display Home Page.
      *
