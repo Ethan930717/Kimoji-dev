@@ -39,7 +39,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('auto:flush_peers')->hourly();
         $schedule->command('auto:bon_allocation')->hourly();
         $schedule->command('auto:remove_personal_freeleech')->hourly();
-        $schedule->command('auto:remove_featured_torrent')->hourly();
+        $schedule->command('auto:remove_featured_torrent')->daily();
         $schedule->command('auto:recycle_invites')->daily();
         $schedule->command('auto:recycle_activity_log')->daily();
         $schedule->command('auto:recycle_failed_logins')->daily();

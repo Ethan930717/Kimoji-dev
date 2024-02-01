@@ -19,6 +19,8 @@ use App\Repositories\ChatRepository;
 use App\Services\Unit3dAnnounce;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+use Exception;
 
 /**
  * @see \Tests\Unit\Console\Commands\AutoRemoveFeaturedTorrentTest
