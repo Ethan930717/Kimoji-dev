@@ -1,12 +1,6 @@
 @if ($featured)
     <section class="panelV2">
-        <h2 class="panel__count">
-            <i class="{{ config('other.font-awesome') }} fa-star"></i>
-            KIMOJI当前收录：歌手 {{ $artistsCount }} ， 专辑 {{ $albumsCount }} ， 歌曲 {{ $songsCount }}
-            <i class="{{ config('other.font-awesome') }} fa-star"></i>
-        </h2>
         <h2 class="panel__heading">
-            <i class="{{ config('other.font-awesome') }} fa-star"></i>
             {{ __('blocks.featured-torrents') }}
         </h2>
         <div x-data>
