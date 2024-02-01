@@ -407,7 +407,7 @@ class Torrent extends Model
             // throw new \InvalidArgumentException("上传的试听文件URL格式有误");
         }
     }
-    
+
 
     /**
      * Set the torrent's is_lrc attribute.

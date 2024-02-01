@@ -35,14 +35,6 @@ use Exception;
  */
 class HomeController extends Controller
 {
-    public function calculateCounts()
-    {
-        $artistsCount = DB::table('artists')->count();
-        $albumsCount = DB::table('torrents')->where('category_id', 3)->count();
-        $songsCount = DB::table('music')->count();
-
-        return compact('artistsCount', 'albumsCount', 'songsCount');
-    }
     /**
      * Display Home Page.
      *
@@ -62,6 +54,11 @@ class HomeController extends Controller
         foreach ($articles as $article) {
             $article->newNews = ($user->last_login->subDays(3)->getTimestamp() < $article->created_at->getTimestamp()) ? 1 : 0;
         }
+
+        // Count of Artists, Albums, and Songs
+        $artistsCount = DB::table('artists')->count();
+        $albumsCount = DB::table('torrents')->where('category_id', 3)->count();
+        $songsCount = DB::table('music')->count();
 
         return view('home.index', [
             'user'               => $user,
@@ -493,6 +490,9 @@ class HomeController extends Controller
                 ->get()),
             'freeleech_tokens' => FreeleechToken::where('user_id', $user->id)->get(),
             'bookmarks'        => Bookmark::where('user_id', $user->id)->get(),
+            'artistsCount' => $artistsCount,
+            'albumsCount' => $albumsCount,
+            'songsCount' => $songsCount,
         ]);
     }
 }
