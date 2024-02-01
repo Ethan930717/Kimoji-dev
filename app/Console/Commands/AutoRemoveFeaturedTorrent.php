@@ -52,6 +52,44 @@ class AutoRemoveFeaturedTorrent extends Command
      */
     public function handle(): void
     {
+        DB::beginTransaction();
+
+        try {
+            $this->addNewFeaturedTorrents();
+            $this->removeExpiredFeaturedTorrents();
+            DB::commit();
+            $this->comment('Automated Removal and Addition of Featured Torrents Command Complete');
+        } catch (Exception $e) {
+            DB::rollBack();
+            $this->error('An error occurred: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Adds new featured torrents.
+     */
+    private function addNewFeaturedTorrents(): void
+    {
+        $eligibleTorrents = Torrent::where('category_id', 3)
+            ->where('seeders', '>', 2)
+            ->where('seeders', '<', 10)
+            ->inRandomOrder()
+            ->limit(20)
+            ->get();
+
+        foreach ($eligibleTorrents as $torrent) {
+            $featuredTorrent = new FeaturedTorrent();
+            $featuredTorrent->torrent_id = $torrent->id;
+            $featuredTorrent->save();
+        }
+    }
+
+
+    /**
+     * Removes expired featured torrents.
+     */
+    public function removeExpiredFeaturedTorrents(): void
+    {
         $current = Carbon::now();
         $featuredTorrents = FeaturedTorrent::where('created_at', '<', $current->copy()->subDays(1)->toDateTimeString())->get();
 
