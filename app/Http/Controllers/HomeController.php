@@ -35,6 +35,14 @@ use Exception;
  */
 class HomeController extends Controller
 {
+    public function calculateCounts()
+    {
+        $artistsCount = DB::table('artists')->count();
+        $albumsCount = DB::table('torrents')->where('category_id', 3)->count();
+        $songsCount = DB::table('music')->count();
+
+        return compact('artistsCount', 'albumsCount', 'songsCount');
+    }
     /**
      * Display Home Page.
      *
