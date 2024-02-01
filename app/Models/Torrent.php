@@ -408,6 +408,16 @@ class Torrent extends Model
         }
     }
 
+    public function calculateCounts()
+    {
+        $artistsCount = DB::table('artists')->count();
+        $albumsCount = DB::table('torrents')->where('category_id', 3)->count();
+        $songsCount = DB::table('music')->count();
+
+        // 执行其他相关逻辑或返回结果
+    }
+
+
     /**
      * Set the torrent's is_lrc attribute.
      *
