@@ -56,7 +56,6 @@ class AutoRemoveFeaturedTorrent extends Command
      */
     public function handle(): void
     {
-        Log::info('Starting auto:remove_featured_torrent command');
 
         DB::beginTransaction();
 
@@ -77,25 +76,30 @@ class AutoRemoveFeaturedTorrent extends Command
      */
     private function addNewFeaturedTorrents(): void
     {
-        Log::info('Starting addNewFeaturedTorrents method');
         $eligibleTorrents = Torrent::where('category_id', 3)
             ->where('seeders', '>', 2)
             ->where('seeders', '<', 10)
-            ->where('featured', 0) // 确保选中的种子目前不是精选
+            ->where('featured', 0)
             ->inRandomOrder()
             ->limit(20)
             ->get();
-        Log::info('Eligible torrents count: ' . $eligibleTorrents->count());
 
         foreach ($eligibleTorrents as $torrent) {
             Log::info('Processing torrent ID: ' . $torrent->id);
-            $torrent->featured = 1; // 把featured字段从0改为1
+            $torrent->featured = 1;
+
             try {
                 $torrent->save();
+
+                $featuredTorrent = new FeaturedTorrent();
+                $featuredTorrent->torrent_id = $torrent->id;
+                $featuredTorrent->user_id = 4; // 将 user_id 固定设置为 4
+                $featuredTorrent->save();
+
+                Log::info('Featured and FeaturedTorrent created for torrent ID: ' . $torrent->id);
             } catch (\Exception $e) {
-                Log::error('Error saving torrent ID: ' . $torrent->id . ' with error: ' . $e->getMessage());
+                Log::error('Error processing torrent ID: ' . $torrent->id . ' with error: ' . $e->getMessage());
             }
-            \Log::info('Featured updated for torrent ID: ' . $torrent->id);
         }
     }
 
