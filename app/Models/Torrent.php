@@ -408,7 +408,6 @@ class Torrent extends Model
         }
     }
 
-
     /**
      * Set the torrent's is_lrc attribute.
      *
