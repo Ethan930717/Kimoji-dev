@@ -319,39 +319,6 @@ class TorrentController extends BaseController
             Keyword::upsert($keywords->toArray(), ['torrent_id', 'name'], []);
         }
 
-        // Logic for artists
-        $artistName = explode(' - ', $request->input('name'), 2)[0] ?? null;
-        $artistName = trim($artistName);
-        $imageUrl = "/files/img/torrent-banner_{$torrent->id}.jpg";
-
-        // Check if artist already exists
-        $artist = Artist::where('name', $artistName)->first();
-        if (!$artist) {
-            // Artist does not exist, create new artist
-            $artist = new Artist();
-            $artist->name = $artistName;
-            $artist->image_url = $imageUrl;
-            $artist->save();
-        }
-
-        // Logic for music
-        $description = $request->input('description');
-        preg_match('/\[spoiler=歌曲列表\](.*?)\[\/spoiler\]/s', $description, $matches);
-        $songList = $matches[1] ?? '';
-
-        preg_match_all('/\d+\.\s(.*?)\s\[(\d+:\d+)\]/', $songList, $songMatches, PREG_SET_ORDER);
-        foreach ($songMatches as $songMatch) {
-            $songName = $songMatch[1] ?? '';
-            $duration = $songMatch[2] ?? '';
-
-            // Insert into music table
-            $music = new Music();
-            $music->song_name = $songName;
-            $music->torrent_id = $torrent->id;
-            $music->duration = $duration;
-            $music->artist_name = $artistName;
-            $music->save();
-        }
 
         // check for trusted user and update torrent
         if ($user->group->is_trusted) {

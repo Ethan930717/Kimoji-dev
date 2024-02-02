@@ -14,9 +14,13 @@
 namespace App\Observers;
 
 use App\Models\Torrent;
+use App\Models\Artist;
+use App\Models\Music;
 use App\Http\Controllers\TelegramController;
 use App\Services\Tmdb\Client\Movie;
 use App\Services\Tmdb\Client\TV;
+use Illuminate\Support\Facades\Log;
+
 
 class TorrentObserver
 {
@@ -67,6 +71,44 @@ class TorrentObserver
                         $torrent->name,
                         $fileSizeText
                     );
+                    // Logic for artists
+                    $artistName = explode(' - ', $torrent->name, 2)[0] ?? null;
+                    $artistName = trim($artistName);
+                    $imageUrl = "/files/img/torrent-banner_{$torrent->id}.jpg";
+
+                    // Check if artist already exists
+                    $artist = Artist::where('name', $artistName)->first();
+                    Log::info("Attempting to create artist with name: $artistName");
+                    if (!$artist) {
+                        // Artist does not exist, create new artist
+                        $artist = new Artist();
+                        $artist->name = $artistName;
+                        $artist->image_url = $imageUrl;
+                        $artist->save();
+                        Log::info("Artist created with ID: {$artist->id}");
+                    }
+
+                    // Logic for music
+                    $description = $torrent->description;
+                    preg_match('/\[spoiler=歌曲列表\](.*?)\[\/spoiler\]/s', $description, $matches);
+                    $songList = $matches[1] ?? '';
+
+                    preg_match_all('/\d+\.\s(.*?)\s\[(\d+:\d+)\]/', $songList, $songMatches, PREG_SET_ORDER);
+
+                    foreach ($songMatches as $songMatch) {
+                        $songName = $songMatch[1] ?? '';
+                        $duration = $songMatch[2] ?? '';
+
+                        // Insert into music table
+                        $music = new Music();
+                        $music->song_name = $songName;
+                        $music->torrent_id = $torrent->id;
+                        $music->duration = $duration;
+                        $music->artist_name = $artistName;
+                        $music->save();
+                        Log::info("Music record created for song: $songName with ID: {$music->id}");
+
+                    }
 
                     break;
                 default:
