@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
-
 /**
  * @see \Tests\Unit\Console\Commands\AutoRemoveFeaturedTorrentTest
  */
@@ -56,9 +55,7 @@ class AutoRemoveFeaturedTorrent extends Command
      */
     public function handle(): void
     {
-
         DB::beginTransaction();
-
 
         try {
             $this->addNewFeaturedTorrents();
@@ -67,7 +64,7 @@ class AutoRemoveFeaturedTorrent extends Command
             $this->comment('Automated Removal and Addition of Featured Torrents Command Complete');
         } catch (Exception $e) {
             DB::rollBack();
-            $this->error('An error occurred: ' . $e->getMessage());
+            $this->error('An error occurred: '.$e->getMessage());
         }
     }
 
@@ -85,6 +82,7 @@ class AutoRemoveFeaturedTorrent extends Command
             ->get();
 
         foreach ($eligibleTorrents as $torrent) {
+
             $torrent->featured = 1;
 
             $torrent->save();
@@ -98,7 +96,6 @@ class AutoRemoveFeaturedTorrent extends Command
 
         }
     }
-
 
     /**
      * Removes expired featured torrents.
