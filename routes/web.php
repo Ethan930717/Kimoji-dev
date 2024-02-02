@@ -2,11 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
-use Telegram\Bot\Laravel\Facades\Telegram;
-use Telegram\Bot\FileUpload\InputFile;
 use App\Http\Controllers\ImageGalleryController;
 use App\Http\Controllers\MusicUploadController;
-
 
 #图片展示
 Route::get('/gallery', [ImageGalleryController::class, 'showGallery']);
