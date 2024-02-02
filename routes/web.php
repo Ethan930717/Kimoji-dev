@@ -7,28 +7,6 @@ use Telegram\Bot\FileUpload\InputFile;
 use App\Http\Controllers\ImageGalleryController;
 use App\Http\Controllers\MusicUploadController;
 
-#测试TG机器人
-Route::get('/test-telegram', function () {
-    $poster = 'https://image.tmdb.org/t/p/w500/kciiX68V94RM8oAuNZUuUFQP2TZ.jpg'; // 有效的图片 URL
-    $overview = '这是一个测试资源的概述';
-    $uploader = '测试上传者';
-    $chatId = '-4047467856'; // 替换为您的 Telegram 聊天 ID 或群组 ID
-
-    try {
-        $message = "{$uploader} 上传了新资源：\n\n".$overview; // 使用上传者的用户名
-        $photo = $poster; // 海报图片 URL
-
-        $response = Telegram::sendPhoto([
-            'chat_id' => $chatId,
-            'photo'   => InputFile::create($photo, basename($photo)),
-            'caption' => $message
-        ]);
-
-        return 'Message sent! Message ID: '.$response->getMessageId();
-    } catch (Exception $e) {
-        return 'Error: '.$e->getMessage();
-    }
-});
 
 #图片展示
 Route::get('/gallery', [ImageGalleryController::class, 'showGallery']);
@@ -1075,6 +1053,13 @@ Route::middleware('language')->group(function (): void {
                 Route::get('/{wiki}/edit', [App\Http\Controllers\Staff\WikiController::class, 'edit'])->name('edit');
                 Route::patch('/{wiki}/update', [App\Http\Controllers\Staff\WikiController::class, 'update'])->name('update');
                 Route::delete('/{wiki}/destroy', [App\Http\Controllers\Staff\WikiController::class, 'destroy'])->name('destroy');
+            });
+        });
+        Route::prefix('artists')->group(function (): void {
+            Route::name('wikis.')->group(function (): void {
+                Route::get('/', 'ArtistController@index')->name('artists.index');
+                Route::get('/{id}/edit', 'ArtistController@edit')->name('artists.edit')->middleware('can:edit-artist');
+                Route::post('/{id}', 'ArtistController@update')->name('artists.update')->middleware('can:edit-artist');
             });
         });
     });

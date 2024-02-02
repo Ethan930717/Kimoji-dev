@@ -85,21 +85,17 @@ class AutoRemoveFeaturedTorrent extends Command
             ->get();
 
         foreach ($eligibleTorrents as $torrent) {
-            Log::info('Processing torrent ID: ' . $torrent->id);
             $torrent->featured = 1;
 
-            try {
-                $torrent->save();
+            $torrent->save();
 
-                $featuredTorrent = new FeaturedTorrent();
-                $featuredTorrent->torrent_id = $torrent->id;
-                $featuredTorrent->user_id = 4; // 将 user_id 固定设置为 4
-                $featuredTorrent->save();
+            $featuredTorrent = new FeaturedTorrent();
+            $featuredTorrent->torrent_id = $torrent->id;
+            $featuredTorrent->user_id = 4; // 将 user_id 固定设置为 4
+            $featuredTorrent->save();
 
-                Log::info('Featured and FeaturedTorrent created for torrent ID: ' . $torrent->id);
-            } catch (\Exception $e) {
-                Log::error('Error processing torrent ID: ' . $torrent->id . ' with error: ' . $e->getMessage());
-            }
+            Log::info('Featured and FeaturedTorrent created for torrent ID: ' . $torrent->id);
+
         }
     }
 
@@ -110,7 +106,7 @@ class AutoRemoveFeaturedTorrent extends Command
     public function removeExpiredFeaturedTorrents(): void
     {
         $current = Carbon::now();
-        $featuredTorrents = FeaturedTorrent::where('created_at', '<', $current->copy()->subDays(2)->toDateTimeString())->get();
+        $featuredTorrents = FeaturedTorrent::where('created_at', '<', $current->copy()->subDays(1)->toDateTimeString())->get();
 
         foreach ($featuredTorrents as $featuredTorrent) {
             // Find The Torrent

@@ -44,11 +44,11 @@
                                 {{ __('blocks.featured-until') }}:
                                 <br />
                                 <time
-                                    datetime="{{ $feature->created_at->addDay(7) }}"
-                                    title="{{ $feature->created_at->addDay(7) }}"
+                                    datetime="{{ $feature->created_at->addDay(1) }}"
+                                    title="{{ $feature->created_at->addDay(1) }}"
                                 >
-                                    {{ $feature->created_at->addDay(7)->toFormattedDateString() }}
-                                    ({{ $feature->created_at->addDay(7)->diffForHumans() }})
+                                    {{ $feature->created_at->addDay(1)->toFormattedDateString() }}
+                                    ({{ $feature->created_at->addDay(1)->diffForHumans() }})
                                 </time>
                             </p>
                             <p class="featured-carousel__featured-by">
