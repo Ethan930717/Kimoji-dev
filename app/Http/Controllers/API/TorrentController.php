@@ -24,8 +24,6 @@ use App\Models\FeaturedTorrent;
 use App\Models\Keyword;
 use App\Models\Movie;
 use App\Models\Torrent;
-use App\Models\Artist;
-use App\Models\Music;
 use App\Models\TorrentFile;
 use App\Models\Tv;
 use App\Models\User;
@@ -318,7 +316,6 @@ class TorrentController extends BaseController
         foreach (collect($keywords)->chunk(intdiv(65_000, 2)) as $keywords) {
             Keyword::upsert($keywords->toArray(), ['torrent_id', 'name'], []);
         }
-
 
         // check for trusted user and update torrent
         if ($user->group->is_trusted) {
