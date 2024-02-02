@@ -24,6 +24,8 @@ use App\Models\FeaturedTorrent;
 use App\Models\Keyword;
 use App\Models\Movie;
 use App\Models\Torrent;
+use App\Models\Artist;
+use App\Models\Music;
 use App\Models\TorrentFile;
 use App\Models\Tv;
 use App\Models\User;
