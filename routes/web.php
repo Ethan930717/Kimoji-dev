@@ -1054,10 +1054,10 @@ Route::middleware('language')->group(function (): void {
         });
         Route::prefix('artists')->group(function (): void {
             Route::name('artists.')->group(function (): void {
-                Route::get('/', 'ArtistController@index')->name('index');
-                Route::get('/{id}', 'ArtistController@show')->name('show');
-                Route::get('/{id}/edit', 'ArtistController@edit')->name('edit')->middleware('can:edit-artist');
-                Route::post('/{id}', 'ArtistController@update')->name('update')->middleware('can:edit-artist');
+                Route::get('/', [App\Http\Controllers\ArtistController::class, 'index'])->name('index');
+                Route::get('/{id}', [App\Http\Controllers\ArtistController::class, 'show'])->name('show');
+                Route::get('/{id}/edit', [App\Http\Controllers\ArtistController::class, 'edit'])->name('edit');
+                Route::post('/{id}', [App\Http\Controllers\ArtistController::class, 'update'])->name('update');
             });
         });
     });

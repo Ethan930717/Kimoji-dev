@@ -16,7 +16,7 @@ class ArtistController extends Controller
 
     public function show($id)
     {
-        $artist = Artist::findOrFail($id); // 假设你有一个Artist模型
+        $artist = Artist::findOrFail($id);
         return view('artists.show', compact('artist'));
     }
 
