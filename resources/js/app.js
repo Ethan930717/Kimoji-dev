@@ -48,7 +48,7 @@ window.Swal = require('sweetalert2');
 
 import APlayer from 'aplayer';
 
-document.addEventListener('DOMContentLoaded', function() {
+function initializeAPlayer() {
     const aplayerElement = document.getElementById('aplayer');
     if (aplayerElement) {
         const coverUrl = aplayerElement.dataset.cover;
@@ -67,15 +67,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 cover: coverUrl
             }]
         };
-        // 如果存在 lrcUrl，则添加歌词配置
-        if (lrcUrl) {
+
+        if (lrcUrl && lrcUrl.trim() !== '') {
             aplayerConfig.lrcType = 3;
             aplayerConfig.audio[0].lrc = lrcUrl;
         }
 
         new APlayer(aplayerConfig);
     }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const loadPlayerBtn = document.getElementById('loadPlayerBtn');
+    if (loadPlayerBtn) {
+        loadPlayerBtn.addEventListener('click', function() {
+            initializeAPlayer();
+            // 点击后，可选择隐藏按钮
+            loadPlayerBtn.style.display = 'none';
+        });
+    }
 });
+
 //上传音乐
 document.addEventListener('DOMContentLoaded', function() {
     var uploadButton = document.getElementById('uploadMusic');

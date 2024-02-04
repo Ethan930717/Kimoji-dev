@@ -64,6 +64,8 @@
                 <a class="meta-id-tag" title="Internet Movie Database" target="_blank" style="text-shadow: 0 0 2px red">
                    壮士及以上等级可享受试听功能，官人请多多努力
                 </a>
+                @else
+                <button id="loadPlayerBtn" class="meta-id-tag">点击加载试听</button>
             </li>
 
             @endif
