@@ -10,8 +10,8 @@
 
 @section('breadcrumbs')
     <li class="breadcrumbV2">
-        <a href="{{ route('home.index') }}" class="breadcrumb__link">
-            {{ __('home.title') }}
+        <a href="{{ route('musichub.index') }}" class="breadcrumb__link">
+            {{ __('musichub.title') }}
         </a>
     </li>
     <li class="breadcrumb--active">

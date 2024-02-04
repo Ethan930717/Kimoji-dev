@@ -1,39 +1,33 @@
 @extends('layout.default')
 
+@section('title')
+    <title>{{ $artist->name }} - {{ config('other.title') }}</title>
+@endsection
+
+@section('meta')
+    <meta name="description" content="Artist biography" />
+@endsection
+
 @section('breadcrumbs')
-    <li class="breadcrumbV2">
-        <a href="{{ route('mediahub.index') }}" class="breadcrumb__link">
-            {{ __('mediahub.title') }}
-        </a>
-    </li>
-    <li class="breadcrumbV2">
-        <a href="{{ route('artists.index') }}" class="breadcrumb__link">
-            {{ __('mediahub.persons') }}
-        </a>
-    </li>
-    <li class="breadcrumb--active">
-        {{ $artist->name }}
-    </li>
+    <li class="breadcrumb-item"><a href="{{ route('home.index') }}">{{ __('home.title') }}</a></li>
+    <li class="breadcrumb-item active">{{ __('artists.title') }}</li>
 @endsection
 
-@section('main')
-    @livewire('person-credit', ['person' => $artist])
-@endsection
+@section('content')
+    <section class="artist-detail">
+        <div class="artist-header">
+            <h1 class="artist-name">{{ $artist->name }}</h1>
+            <img src="{{ $artist->image_url ? asset('storage/' . $artist->image_url) : 'https://via.placeholder.com/300x450' }}" alt="{{ $artist->name }}" class="artist-image" />
+        </div>
 
-@section('sidebar')
-    <section class="panelV2">
-        <h2 class="panel__heading">{{ $artist->name }}</h2>
-        <img
-            src="{{ isset($artist->image) ? $artist->image : 'https://via.placeholder.com/300x450' }}"
-            alt="{{ $artist->name }}"
-            style="max-width: 100%"
-        />
-        <dl class="key-value">
-            <dt>{{ __('mediahub.born') }}</dt>
-            <dd>{{ $artist->birthday ?? __('common.unknown') }}</dd>
-            <dt>国家/地区</dt>
-            <dd>{{ $artist->country ?? __('common.unknown') }}</dd>
-        </dl>
-        <div class="panel__body">{{ $artist->biography ?? '暂无介绍' }}</div>
+        <div class="artist-info">
+            <h2>{{ __('artists.info') }}</h2>
+            <p><strong>{{ __('artists.born') }}:</strong> {{ $artist->birthday ?? __('artists.unknown') }}</p>
+            <p><strong>{{ __('artists.died') }}:</strong> {{ $artist->deathday ?? __('artists.unknown') }}</p>
+            <p><strong>{{ __('artists.country') }}:</strong> {{ $artist->country ?? __('artists.unknown') }}</p>
+            <p><strong>{{ __('artists.label') }}:</strong> {{ $artist->label ?? __('artists.unknown') }}</p>
+            <p><strong>{{ __('artists.genre') }}:</strong> {{ $artist->genre ?? __('artists.unknown') }}</p>
+            <p><strong>{{ __('artists.biography') }}:</strong> {{ $artist->biography ?? __('artists.nobiography') }}</p>
+        </div>
     </section>
 @endsection
