@@ -22,9 +22,7 @@ class ArtistSearch extends Component
     public function getArtistsProperty(): \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {
         return Artist::select(['id', 'image_url', 'name']) // 更新为 image_url
-        ->when($this->search !== '', function ($query) {
-            return $query->where('name', 'LIKE', '%'.$this->search.'%');
-        })
+            ->when($this->search !== '', fn ($query) => $query->where('name', 'LIKE', '%'.$this->search.'%'))
             ->orderBy('name', 'asc') // 根据需要调整排序
             ->paginate(36); // 根据需要调整分页大小
     }
