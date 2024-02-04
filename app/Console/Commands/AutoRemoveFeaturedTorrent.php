@@ -82,7 +82,6 @@ class AutoRemoveFeaturedTorrent extends Command
             ->get();
 
         foreach ($eligibleTorrents as $torrent) {
-
             $torrent->featured = 1;
 
             $torrent->save();
@@ -92,8 +91,7 @@ class AutoRemoveFeaturedTorrent extends Command
             $featuredTorrent->user_id = 4; // 将 user_id 固定设置为 4
             $featuredTorrent->save();
 
-            Log::info('Featured and FeaturedTorrent created for torrent ID: ' . $torrent->id);
-
+            Log::info('Featured and FeaturedTorrent created for torrent ID: '.$torrent->id);
         }
     }
 

@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Artist;
 
-
 class ArtistController extends Controller
 {
     public function index()
     {
         $artists = Artist::all();
+
         return view('artists.index', compact('artists'));
     }
 
     public function edit($id)
     {
         $artist = Artist::findOrFail($id);
+
         return view('artists.edit', compact('artist'));
     }
 
@@ -24,13 +25,16 @@ class ArtistController extends Controller
     {
         $artist = Artist::findOrFail($id);
         $data = $request->validate([
-            'birthday' => 'nullable|date', // 生日可以为 null，如果提供则必须是日期格式
-            'deathday' => 'nullable|date', // 忌日可以为 null，如果提供则必须是日期格式
-            'member' => 'nullable|max:512', // 组成员可以为 null，最大长度为512个字符
-            'country' => 'nullable|max:255', // 国家可以为 null，最大长度为255个字符
-            'label' => 'nullable|max:255', // 唱片公司可以为 null，最大长度为255个字符
-            'genre' => 'nullable|max:255', // 风格可以为 null，最大长度为255个字符
+            'birthday'  => 'nullable|date', // 生日可以为 null，如果提供则必须是日期格式
+            'deathday'  => 'nullable|date', // 忌日可以为 null，如果提供则必须是日期格式
+            'member'    => 'nullable|max:512', // 组成员可以为 null，最大长度为512个字符
+            'country'   => 'nullable|max:255', // 国家可以为 null，最大长度为255个字符
+            'label'     => 'nullable|max:255', // 唱片公司可以为 null，最大长度为255个字符
+            'genre'     => 'nullable|max:255', // 风格可以为 null，最大长度为255个字符
             'biography' => 'nullable', // 传记可以为 null
-        ]);        $artist->update($data);
+        ]);
+        $artist->update($data);
+
         return redirect()->route('artists.index');
-    }}
+    }
+}

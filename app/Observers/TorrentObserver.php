@@ -21,7 +21,6 @@ use App\Services\Tmdb\Client\Movie;
 use App\Services\Tmdb\Client\TV;
 use Illuminate\Support\Facades\Log;
 
-
 class TorrentObserver
 {
     /**
@@ -78,7 +77,8 @@ class TorrentObserver
 
                     // Check if artist already exists
                     $artist = Artist::where('name', $artistName)->first();
-                    Log::info("Attempting to create artist with name: $artistName");
+                    Log::info("Attempting to create artist with name: {$artistName}");
+
                     if (!$artist) {
                         // Artist does not exist, create new artist
                         $artist = new Artist();
@@ -106,8 +106,7 @@ class TorrentObserver
                         $music->duration = $duration;
                         $music->artist_name = $artistName;
                         $music->save();
-                        Log::info("Music record created for song: $songName with ID: {$music->id}");
-
+                        Log::info("Music record created for song: {$songName} with ID: {$music->id}");
                     }
 
                     break;

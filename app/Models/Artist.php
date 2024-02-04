@@ -9,7 +9,6 @@ class Artist extends Model
 {
     use HasFactory;
 
-
     // 设置模型的 fillable 或 guarded 属性，以便在使用模型的 create 或 update 方法时允许批量赋值
     protected $fillable = ['name', 'birthday', 'deathday', 'member', 'country', 'label', 'genre', 'biography', 'image_url'];
 
@@ -26,5 +25,3 @@ class Artist extends Model
         return $this->hasMany(Torrent::class);
     }
 }
-
-
