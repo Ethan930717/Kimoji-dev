@@ -13,6 +13,16 @@ Route::get('/loginsponsor', [App\Http\Controllers\Auth\LoginSponsorController::c
 Route::get('/music-upload', [MusicUploadController::class, 'index']);
 Route::post('/get-presigned-url', [MusicUploadController::class, 'getPresignedUrl']);
 
+Route::prefix('artists')->group(function (): void {
+    Route::name('artists.')->group(function (): void {
+        Route::get('/', [App\Http\Controllers\ArtistController::class, 'index'])->name('index');
+        Route::get('/{id}', [App\Http\Controllers\ArtistController::class, 'show'])->name('show');
+        Route::get('/{id}/edit', [App\Http\Controllers\ArtistController::class, 'edit'])->name('edit');
+        Route::post('/{id}', [App\Http\Controllers\ArtistController::class, 'update'])->name('update');
+    });
+});
+
+
 /**
  * NOTICE OF LICENSE.
  *
@@ -1050,14 +1060,6 @@ Route::middleware('language')->group(function (): void {
                 Route::get('/{wiki}/edit', [App\Http\Controllers\Staff\WikiController::class, 'edit'])->name('edit');
                 Route::patch('/{wiki}/update', [App\Http\Controllers\Staff\WikiController::class, 'update'])->name('update');
                 Route::delete('/{wiki}/destroy', [App\Http\Controllers\Staff\WikiController::class, 'destroy'])->name('destroy');
-            });
-        });
-        Route::prefix('artists')->group(function (): void {
-            Route::name('artists.')->group(function (): void {
-                Route::get('/', [App\Http\Controllers\ArtistController::class, 'index'])->name('index');
-                Route::get('/{id}', [App\Http\Controllers\ArtistController::class, 'show'])->name('show');
-                Route::get('/{id}/edit', [App\Http\Controllers\ArtistController::class, 'edit'])->name('edit');
-                Route::post('/{id}', [App\Http\Controllers\ArtistController::class, 'update'])->name('update');
             });
         });
     });
