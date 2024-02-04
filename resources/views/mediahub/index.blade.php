@@ -17,7 +17,7 @@
 @section('main')
     <section class="panelV2">
         <div class="panel__body">
-            <img class="" src="{{ url('/img/tmdb_long.svg') }}" style="width: 200px;">
+            <img class="" src="{{ url('/img/tmdb_long.svg') }}" style="width: 500px; display: block; margin: 5px auto 20px auto; ">
             <ul class="mediahub-card__list">
                 <li class="mediahub-card__list-item">
                     <a
