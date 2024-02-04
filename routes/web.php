@@ -1053,7 +1053,7 @@ Route::middleware('language')->group(function (): void {
             });
         });
         Route::prefix('artists')->group(function (): void {
-            Route::name('wikis.')->group(function (): void {
+            Route::name('artists.')->group(function (): void {
                 Route::get('/', 'ArtistController@index')->name('artists.index');
                 Route::get('/{id}/edit', 'ArtistController@edit')->name('artists.edit')->middleware('can:edit-artist');
                 Route::post('/{id}', 'ArtistController@update')->name('artists.update')->middleware('can:edit-artist');
