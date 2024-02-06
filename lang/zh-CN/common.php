@@ -223,6 +223,7 @@ return [
     'your'                 => '你的',
     'your-comment'         => '你的评论',
     'support'              => '帮助',
+    'something-went-wrong' => '遇到了一些问题，请提交工单提交BUG',
     'top-10'               => 'TOP 10',
     'missing'              => '补档',
     'search-advanced'      => '搜索箱',

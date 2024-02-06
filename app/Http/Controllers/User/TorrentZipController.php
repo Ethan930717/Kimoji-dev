@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use ZipArchive;
+use Illuminate\Support\Facades\Log;
+
 
 class TorrentZipController extends Controller
 {
@@ -37,7 +39,7 @@ class TorrentZipController extends Controller
         abort_unless($request->user()->is($user), 403);
 
         // Define Dir For Zip
-        $zipPath = getcwd().'/files/tmp_zip/';
+        $zipPath = getcwd() . '/files/tmp_zip/';
 
         // Check Directory exists
         if (!File::isDirectory($zipPath)) {
@@ -45,7 +47,7 @@ class TorrentZipController extends Controller
         }
 
         // Zip File Name
-        $zipFileName = $user->username.'.zip';
+        $zipFileName = $user->username . '.zip';
 
         // Create ZipArchive Obj
         $zipArchive = new ZipArchive();
@@ -53,19 +55,19 @@ class TorrentZipController extends Controller
         // Get Users History
         $historyTorrents = Torrent::whereRelation('history', 'user_id', '=', $user->id)->get();
 
-        if ($zipArchive->open($zipPath.$zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
+        if ($zipArchive->open($zipPath . $zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
             $announceUrl = route('announce', ['passkey' => $user->passkey]);
 
             foreach ($historyTorrents as $torrent) {
-                if (file_exists(getcwd().'/files/torrents/'.$torrent->file_name)) {
-                    $dict = Bencode::bdecode(file_get_contents(getcwd().'/files/torrents/'.$torrent->file_name));
+                if (file_exists(getcwd() . '/files/torrents/' . $torrent->file_name)) {
+                    $dict = Bencode::bdecode(file_get_contents(getcwd() . '/files/torrents/' . $torrent->file_name));
 
                     // Set the announce key and add the user passkey
                     $dict['announce'] = $announceUrl;
 
                     // Set link to torrent as the comment
                     if (config('torrent.comment')) {
-                        $dict['comment'] = config('torrent.comment').'. '.route('torrents.show', ['id' => $torrent->id]);
+                        $dict['comment'] = config('torrent.comment') . '. ' . route('torrents.show', ['id' => $torrent->id]);
                     } else {
                         $dict['comment'] = route('torrents.show', ['id' => $torrent->id]);
                     }
@@ -75,7 +77,7 @@ class TorrentZipController extends Controller
                     $filename = str_replace(
                         [' ', '/', '\\'],
                         ['.', '-', '-'],
-                        '['.config('torrent.source').']'.$torrent->name.'.torrent'
+                        '[' . config('torrent.source') . ']' . $torrent->name . '.torrent'
                     );
 
                     $zipArchive->addFromString($filename, $fileToDownload);
@@ -85,8 +87,8 @@ class TorrentZipController extends Controller
             $zipArchive->close();
         }
 
-        if (file_exists($zipPath.$zipFileName)) {
-            return response()->download($zipPath.$zipFileName)->deleteFileAfterSend(true);
+        if (file_exists($zipPath . $zipFileName)) {
+            return response()->download($zipPath . $zipFileName)->deleteFileAfterSend(true);
         }
 
         return redirect()->back()->withErrors(trans('common.something-went-wrong'));
@@ -94,60 +96,78 @@ class TorrentZipController extends Controller
 
     public function downloadUrgentSeedersZip(Request $request, User $user)
     {
+        Log::info('downloadUrgentSeedersZip started', ['user_id' => $user->id]);
+
         set_time_limit(1200); // Extend execution time
 
         abort_unless($request->user()->is($user), 403); // Authorized user only
+        Log::info('User authorization check passed');
 
-        $zipPath = getcwd().'/files/tmp_zip/';
+        $zipPath = getcwd() . '/files/tmp_zip/';
         if (!File::isDirectory($zipPath)) {
+            Log::info('Creating directory', ['path' => $zipPath]);
             File::makeDirectory($zipPath, 0755, true, true);
+        } else {
+            Log::info('Directory already exists', ['path' => $zipPath]);
         }
 
-        $zipFileName = $user->username.'_urgent_seeders.zip';
+        $zipFileName = $user->username . '_urgent_seeders.zip';
         $zipArchive = new ZipArchive();
-        $selectedVolumeBytes = (int) $request->input('volume', 0); // 用户选择的下载体积，以字节为单位
+        $selectedVolumeBytes = (int)$request->input('volume', 0);
 
-        $historyTorrentIds = $user->history()->pluck('torrent_id')->toArray(); // User's seeding history
+        $historyTorrentIds = $user->history()->pluck('torrent_id')->toArray();
+        Log::info('User history torrents fetched', ['count' => count($historyTorrentIds)]);
 
-        // Exclude torrents user is seeding and order by least seeders
         $urgentTorrents = Torrent::whereNotIn('id', $historyTorrentIds)
             ->orderBy('seeders', 'asc')
             ->get();
+        Log::info('Urgent torrents fetched', ['count' => count($urgentTorrents)]);
 
         $totalSize = 0;
-        if ($zipArchive->open($zipPath.$zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
+        if ($zipArchive->open($zipPath . $zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
             $announceUrl = route('announce', ['passkey' => $user->passkey]);
 
             foreach ($urgentTorrents as $torrent) {
                 if ($totalSize + $torrent->size <= $selectedVolumeBytes && !in_array($torrent->id, $historyTorrentIds)) {
                     $totalSize += $torrent->size;
-                    $filePath = getcwd().'/files/torrents/'.$torrent->file_name;
+                    $filePath = getcwd() . '/files/torrents/' . $torrent->file_name;
 
                     if (file_exists($filePath)) {
+                        // Log details about the torrent being processed
+                        Log::info('Processing torrent', ['torrent_id' => $torrent->id, 'file_path' => $filePath]);
+
                         $dict = Bencode::bdecode(file_get_contents($filePath));
                         $dict['announce'] = $announceUrl;
 
                         if (config('torrent.comment')) {
-                            $dict['comment'] = config('torrent.comment').'. '.route('torrents.show', ['id' => $torrent->id]);
+                            $dict['comment'] = config('torrent.comment') . '. ' . route('torrents.show', ['id' => $torrent->id]);
                         } else {
                             $dict['comment'] = route('torrents.show', ['id' => $torrent->id]);
                         }
 
                         $fileToDownload = Bencode::bencode($dict);
-                        $filename = '['.config('torrent.source').']'.$torrent->name.'.torrent';
+                        $filename = '[' . config('torrent.source') . ']' . $torrent->name . '.torrent';
                         $filename = str_replace([' ', '/', '\\'], ['.', '-', '-'], $filename);
 
                         $zipArchive->addFromString($filename, $fileToDownload);
+                    } else {
+                        Log::warning('Torrent file does not exist', ['file_path' => $filePath]);
                     }
                 }
             }
 
             $zipArchive->close();
+            Log::info('ZIP archive created', ['path' => $zipPath . $zipFileName]);
+        } else {
+            Log::error('Failed to open ZIP archive for writing', ['path' => $zipPath . $zipFileName]);
         }
 
-        if (file_exists($zipPath.$zipFileName)) {
-            return response()->download($zipPath.$zipFileName)->deleteFileAfterSend(true);
+        if (file_exists($zipPath . $zipFileName)) {
+            Log::info('Returning ZIP file for download', ['path' => $zipPath . $zipFileName]);
+            return response()->download($zipPath . $zipFileName)->deleteFileAfterSend(true);
         }
 
+        Log::error('ZIP file does not exist for download', ['path' => $zipPath . $zipFileName]);
         return redirect()->back()->withErrors(trans('common.something-went-wrong'));
-    }}
+    }
+}
