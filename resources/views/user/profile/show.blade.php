@@ -37,11 +37,11 @@
                                 <div x-on:click.outside="$refs.dialog.close()">
                                     <form
                                         class="dialog__form"
-                                        action="{{ route('users.torrent_zip.downloadUrgentSeedersZip'}}"
+                                        action="{{ route('users.torrent_zip.downloadUrgentSeedersZip') }}"
                                         method="POST"
                                     >
                                         @csrf
-                                        <p class="form__group">
+                                        <p class="form__group">想·
                                             <select id="volume" name="volume" class="form__select">
                                                 <option value="107374182400">100GB</option> <!-- 100GB in bytes -->
                                                 <option value="536870912000">500GB</option> <!-- 500GB in bytes -->
