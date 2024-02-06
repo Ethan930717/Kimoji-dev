@@ -41,7 +41,7 @@
                                         method="POST"
                                     >
                                         @csrf
-                                        <p class="form__group">想·
+                                        <p class="form__group">
                                             <select id="volume" name="volume" class="form__select">
                                                 <option value="107374182400">100GB</option> <!-- 100GB in bytes -->
                                                 <option value="536870912000">500GB</option> <!-- 500GB in bytes -->
@@ -52,7 +52,8 @@
                                                 <option value="6597069766656">6TB</option> <!-- 6TB in bytes -->
                                                 <option value="8796093022208">8TB</option> <!-- 8TB in bytes -->
                                                 <option value="13194139533312">12TB</option> <!-- 12TB in bytes -->
-                                            </select>                                    <label class="form__label form__label--floating" for="volume">
+                                            </select>
+                                            <label class="form__label form__label--floating" for="volume">
                                                 选择体积（默认从急需保种的资源开始筛选）
                                             </label>
                                         </p>
