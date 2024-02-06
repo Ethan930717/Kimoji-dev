@@ -19,6 +19,8 @@ use App\Models\Torrent;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use ZipArchive;
 
 class TorrentZipController extends Controller
@@ -80,6 +82,50 @@ class TorrentZipController extends Controller
                 }
             }
 
+            $zipArchive->close();
+        }
+
+        if (file_exists($zipPath.$zipFileName)) {
+            return response()->download($zipPath.$zipFileName)->deleteFileAfterSend(true);
+        }
+
+        return redirect()->back()->withErrors(trans('common.something-went-wrong'));
+    }
+
+    public function downloadUrgentSeedersZip(Request $request, User $user): \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\BinaryFileResponse
+    {
+        set_time_limit(1200); // Extend execution time
+
+        abort_unless(Auth::id() === $user->id, 403); // Authorized user only
+
+        $zipPath = getcwd().'/files/tmp_zip/';
+        if (!File::isDirectory($zipPath)) {
+            File::makeDirectory($zipPath, 0755, true, true);
+        }
+
+        $zipFileName = $user->username.'_urgent_seeders.zip';
+        $zipArchive = new ZipArchive();
+        $selectedVolumeBytes = (int) $request->input('volume', 0); // 用户选择的下载体积，以字节为单位
+
+        $historyTorrentIds = $user->history()->pluck('torrent_id')->toArray(); // User's seeding history
+
+        $urgentTorrents = Torrent::whereNotIn('id', $historyTorrentIds) // Exclude torrents user is seeding
+        ->orderBy('seeders', 'asc') // Order by least seeders
+        ->get();
+
+        $totalSize = 0;
+        if ($zipArchive->open($zipPath.$zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
+            foreach ($urgentTorrents as $torrent) {
+                if ($totalSize + $torrent->size <= $selectedVolumeBytes) {
+                    $totalSize += $torrent->size;
+                    $filePath = getcwd().'/files/torrents/'.$torrent->file_name;
+                    if (file_exists($filePath)) {
+                        $zipArchive->addFile($filePath, $torrent->file_name);
+                    }
+                } else {
+                    break;
+                }
+            }
             $zipArchive->close();
         }
 

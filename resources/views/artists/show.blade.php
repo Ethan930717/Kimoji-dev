@@ -17,7 +17,11 @@
     <section class="artist-detail">
         <div class="artist-header">
             <h1 class="artist-name">{{ $artist->name }}</h1>
-            <img src="{{ $artist->image_url ? asset('storage/' . $artist->image_url) : 'https://via.placeholder.com/300x450' }}" alt="{{ $artist->name }}" class="artist-image" />
+            <img
+                alt="{{ $artist->name }}"
+                src="{{ $artist->image_url ? $artist->image_url : 'https://via.placeholder.com/160x240' }}"
+                class="artist-image"
+            />
         </div>
 
         <div class="artist-info">

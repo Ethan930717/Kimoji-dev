@@ -21,7 +21,7 @@ return [
     'country'            => '国家/地区',
     'label'              => '厂牌：',
     'genre'             => '流派',
-    'includes:'          => '包含：',
+    'search-by-name:'    => '按姓名搜索',
     'latest-project'     => '最后项目：',
     'networks'           => '流媒体',
     'no-data'            => '没有找到数据！',

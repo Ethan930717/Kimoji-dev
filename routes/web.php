@@ -558,9 +558,10 @@ Route::middleware('language')->group(function (): void {
             Route::get('/', [App\Http\Controllers\User\TopicController::class, 'index'])->name('index');
         });
 
-        // Torrent Zip
+        // Torrent Zip for Urgent Seeders
         Route::prefix('torrent-zip')->name('torrent_zip.')->group(function (): void {
             Route::get('/', [App\Http\Controllers\User\TorrentZipController::class, 'show'])->name('show');
+            Route::post('/download-urgent-seeders', [App\Http\Controllers\User\TorrentZipController::class, 'downloadUrgentSeedersZip'])->name('downloadUrgentSeeders');
         });
 
         // Torrents
