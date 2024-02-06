@@ -26,10 +26,10 @@
                 <h2 class="panel__heading">{{ __('user.user') }} {{ __('user.information') }}</h2>
                 <div class="panel__actions">
                     @if (auth()->user()->is($user))
-                        <div class="panel__action" x-data="{ showDialog: false }">
-                            <a class="nav-tab__link" x-on:click.prevent="showDialog = true">
-                                快速保种
-                            </a>
+                        <div x-data>
+                            <button class="form__button form__button--outlined" x-on:click.stop="$refs.dialog.showModal()">
+                                <i class="{{ config('other.font-awesome') }} fa-star"></i> 快速保种
+                            </button>
                             <dialog class="dialog" x-ref="dialog">
                                 <h4 class="dialog__heading">
                                     请选择下载体积
