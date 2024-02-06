@@ -22,7 +22,6 @@ Route::prefix('artists')->group(function (): void {
     });
 });
 
-
 /**
  * NOTICE OF LICENSE.
  *

@@ -16,7 +16,7 @@ return [
     'died'               => '忌日',
     'title'              => '歌手',
     'unknown'            => '未知',
-    'biography'           => '简介',
+    'biography'          => '简介',
     'nobiography'        => '暂无简介',
     'country'            => '国家/地区',
     'label'              => '厂牌：',
