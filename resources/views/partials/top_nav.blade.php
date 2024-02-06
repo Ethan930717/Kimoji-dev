@@ -127,7 +127,7 @@
                         <div x-on:click.outside="$refs.dialog.close()">
                             <form
                                 class="dialog__form"
-                                action="{{ route('torrent_zip.downloadUrgentSeeders') }}"
+                                action="{{ route('users.torrent_zip.downloadUrgentSeedersZip', ['user' => $user]) }}"
                                 method="POST"
                             >
                                 @csrf

@@ -92,11 +92,11 @@ class TorrentZipController extends Controller
         return redirect()->back()->withErrors(trans('common.something-went-wrong'));
     }
 
-    public function downloadUrgentSeedersZip(Request $request, User $user): \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\BinaryFileResponse
+    public function downloadUrgentSeedersZip(Request $request, User $user)
     {
         set_time_limit(1200); // Extend execution time
 
-        abort_unless(Auth::id() === $user->id, 403); // Authorized user only
+        abort_unless($request->user()->is($user), 403); // Authorized user only
 
         $zipPath = getcwd().'/files/tmp_zip/';
         if (!File::isDirectory($zipPath)) {
@@ -109,23 +109,39 @@ class TorrentZipController extends Controller
 
         $historyTorrentIds = $user->history()->pluck('torrent_id')->toArray(); // User's seeding history
 
-        $urgentTorrents = Torrent::whereNotIn('id', $historyTorrentIds) // Exclude torrents user is seeding
-        ->orderBy('seeders', 'asc') // Order by least seeders
-        ->get();
+        // Exclude torrents user is seeding and order by least seeders
+        $urgentTorrents = Torrent::whereNotIn('id', $historyTorrentIds)
+            ->orderBy('seeders', 'asc')
+            ->get();
 
         $totalSize = 0;
         if ($zipArchive->open($zipPath.$zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
+            $announceUrl = route('announce', ['passkey' => $user->passkey]);
+
             foreach ($urgentTorrents as $torrent) {
-                if ($totalSize + $torrent->size <= $selectedVolumeBytes) {
+                if ($totalSize + $torrent->size <= $selectedVolumeBytes && !in_array($torrent->id, $historyTorrentIds)) {
                     $totalSize += $torrent->size;
                     $filePath = getcwd().'/files/torrents/'.$torrent->file_name;
+
                     if (file_exists($filePath)) {
-                        $zipArchive->addFile($filePath, $torrent->file_name);
+                        $dict = Bencode::bdecode(file_get_contents($filePath));
+                        $dict['announce'] = $announceUrl;
+
+                        if (config('torrent.comment')) {
+                            $dict['comment'] = config('torrent.comment').'. '.route('torrents.show', ['id' => $torrent->id]);
+                        } else {
+                            $dict['comment'] = route('torrents.show', ['id' => $torrent->id]);
+                        }
+
+                        $fileToDownload = Bencode::bencode($dict);
+                        $filename = '['.config('torrent.source').']'.$torrent->name.'.torrent';
+                        $filename = str_replace([' ', '/', '\\'], ['.', '-', '-'], $filename);
+
+                        $zipArchive->addFromString($filename, $fileToDownload);
                     }
-                } else {
-                    break;
                 }
             }
+
             $zipArchive->close();
         }
 
@@ -134,5 +150,4 @@ class TorrentZipController extends Controller
         }
 
         return redirect()->back()->withErrors(trans('common.something-went-wrong'));
-    }
-}
+    }}
