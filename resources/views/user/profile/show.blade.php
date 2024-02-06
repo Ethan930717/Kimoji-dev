@@ -41,6 +41,10 @@
                                         method="POST"
                                     >
                                         @csrf
+                                        <p class="form__text" style="margin-bottom: 40px">
+                                            本功能会批量筛选并下载当前您尚未做种的资源种子（仅筛选音乐区官种且排除死种），默认从做种人数最少的种子开始筛选，直至资源总体积达到您指定的体积。
+                                            该功能非常占用服务器资源，请勿频繁使用，任何恶意行为都有可能导致您的账号遭到封禁
+                                        </p>
                                         <p class="form__group">
                                             <select id="volume" name="volume" class="form__select">
                                                 <option value="107374182400">100GB</option> <!-- 100GB in bytes -->
@@ -49,16 +53,13 @@
                                                 <option value="2199023255552">2TB</option> <!-- 2TB in bytes -->
                                                 <option value="3298534883328">3TB</option> <!-- 3TB in bytes -->
                                                 <option value="4617948836659.2">4.2TB</option> <!-- 4.2TB in bytes -->
-                                                <option value="6597069766656">6TB</option> <!-- 6TB in bytes -->
-                                                <option value="8796093022208">8TB</option> <!-- 8TB in bytes -->
-                                                <option value="13194139533312">12TB</option> <!-- 12TB in bytes -->
                                             </select>
                                             <label class="form__label form__label--floating" for="volume">
-                                                选择体积（默认从急需保种的资源开始筛选）
+                                                选择体积
                                             </label>
                                         </p>
                                         <p class="form__group">
-                                            <button type="submit" class="form__button form__button--filled">
+                                            <button type="submit" class="form__button form__button--filled" x-on:click="$refs.dialog.close().then(() => Swal.fire({toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, icon: 'success', title: '正在筛选资源， 请耐心等待'}))">
                                                 下载
                                             </button>
                                             <button type="button" x-on:click="$refs.dialog.close()" class="form__button form__button--outlined">

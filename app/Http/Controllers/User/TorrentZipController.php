@@ -96,16 +96,13 @@ class TorrentZipController extends Controller
 
     public function downloadUrgentSeedersZip(Request $request, User $user)
     {
-        Log::info('downloadUrgentSeedersZip started', ['user_id' => $user->id]);
 
         set_time_limit(1200); // Extend execution time
 
         abort_unless($request->user()->is($user), 403); // Authorized user only
-        Log::info('User authorization check passed');
 
         $zipPath = getcwd() . '/files/tmp_zip/';
         if (!File::isDirectory($zipPath)) {
-            Log::info('Creating directory', ['path' => $zipPath]);
             File::makeDirectory($zipPath, 0755, true, true);
         } else {
             Log::info('Directory already exists', ['path' => $zipPath]);
@@ -116,12 +113,14 @@ class TorrentZipController extends Controller
         $selectedVolumeBytes = (int)$request->input('volume', 0);
 
         $historyTorrentIds = $user->history()->pluck('torrent_id')->toArray();
-        Log::info('User history torrents fetched', ['count' => count($historyTorrentIds)]);
 
         $urgentTorrents = Torrent::whereNotIn('id', $historyTorrentIds)
+            ->where('internal', 1) // 只选取 internal 字段为 1 的种子
+            ->where('category_id', 3) // 只选取 category_id 字段为 3 的种子
+            ->where('seeders', '>', 0) // 排除 seeders 字段为 0 的种子
             ->orderBy('seeders', 'asc')
             ->get();
-        Log::info('Urgent torrents fetched', ['count' => count($urgentTorrents)]);
+
 
         $totalSize = 0;
         if ($zipArchive->open($zipPath . $zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
@@ -134,7 +133,6 @@ class TorrentZipController extends Controller
 
                     if (file_exists($filePath)) {
                         // Log details about the torrent being processed
-                        Log::info('Processing torrent', ['torrent_id' => $torrent->id, 'file_path' => $filePath]);
 
                         $dict = Bencode::bdecode(file_get_contents($filePath));
                         $dict['announce'] = $announceUrl;
@@ -157,17 +155,14 @@ class TorrentZipController extends Controller
             }
 
             $zipArchive->close();
-            Log::info('ZIP archive created', ['path' => $zipPath . $zipFileName]);
         } else {
             Log::error('Failed to open ZIP archive for writing', ['path' => $zipPath . $zipFileName]);
         }
 
         if (file_exists($zipPath . $zipFileName)) {
-            Log::info('Returning ZIP file for download', ['path' => $zipPath . $zipFileName]);
             return response()->download($zipPath . $zipFileName)->deleteFileAfterSend(true);
         }
 
-        Log::error('ZIP file does not exist for download', ['path' => $zipPath . $zipFileName]);
         return redirect()->back()->withErrors(trans('common.something-went-wrong'));
     }
 }
