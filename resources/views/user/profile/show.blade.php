@@ -28,38 +28,20 @@
                     @if (auth()->user()->is($user))
                         <div x-data>
                             <button class="form__button form__button--outlined" x-on:click.stop="$refs.dialog.showModal()">
-                                <i class="{{ config('other.font-awesome') }} fa-star"></i> 快速保种
+                                <i class="fa fa-star"></i> 快速保种
                             </button>
                             <dialog class="dialog" x-ref="dialog">
-                                <h4 class="dialog__heading">
-                                    请选择下载体积
-                                </h4>
+                                <h4 class="dialog__heading">请选择下载体积</h4>
                                 <div x-on:click.outside="$refs.dialog.close()">
                                     <form
                                         class="dialog__form"
                                         action="{{ route('users.torrent_zip.downloadUrgentSeedersZip', ['user' => $user]) }}"
                                         method="POST"
-                                    >
+                                        x-on:submit.prevent="handleSubmit">
                                         @csrf
-                                        <p class="form__text" style="margin-bottom: 40px">
-                                            本功能会批量筛选并下载当前您尚未做种的资源种子（仅筛选音乐区官种且排除死种），默认从做种人数最少的种子开始筛选，直至资源总体积达到您指定的体积。
-                                            该功能非常占用服务器资源，请勿频繁使用，任何恶意行为都有可能导致您的账号遭到封禁
-                                        </p>
+                                        <!-- 表单内容 -->
                                         <p class="form__group">
-                                            <select id="volume" name="volume" class="form__select">
-                                                <option value="107374182400">100GB</option> <!-- 100GB in bytes -->
-                                                <option value="536870912000">500GB</option> <!-- 500GB in bytes -->
-                                                <option value="1319413953331.2">1.2TB</option> <!-- 1.2TB in bytes -->
-                                                <option value="2199023255552">2TB</option> <!-- 2TB in bytes -->
-                                                <option value="3298534883328">3TB</option> <!-- 3TB in bytes -->
-                                                <option value="4617948836659.2">4.2TB</option> <!-- 4.2TB in bytes -->
-                                            </select>
-                                            <label class="form__label form__label--floating" for="volume">
-                                                选择体积
-                                            </label>
-                                        </p>
-                                        <p class="form__group">
-                                            <button type="submit" class="form__button form__button--filled" x-on:click="$refs.dialog.close().then(() => Swal.fire({toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, icon: 'success', title: '正在筛选资源， 请耐心等待'}))">
+                                            <button type="submit" class="form__button form__button--filled">
                                                 下载
                                             </button>
                                             <button type="button" x-on:click="$refs.dialog.close()" class="form__button form__button--outlined">
@@ -977,3 +959,36 @@
         </section>
     @endsection
 @endif
+
+<script>
+    function handleSubmit() {
+        // 关闭对话框
+        this.$refs.dialog.close();
+
+        // 异步操作，例如提交表单数据
+        // 假设使用fetch进行异步提交，您可以根据实际情况调整
+        fetch(this.$el.action, {
+            method: 'POST',
+            body: new FormData(this.$el),
+            // 其他需要的设置...
+        })
+            .then(response => {
+                if (response.ok) {
+                    // 提交成功后显示SweetAlert2提示
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        icon: 'success',
+                        title: '正在筛选资源，请耐心等待'
+                    });
+                } else {
+                    // 处理错误情况
+                }
+            })
+            .catch(error => {
+                // 处理网络错误等情况
+            });
+    }
+</script>
