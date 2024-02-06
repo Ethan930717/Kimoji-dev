@@ -27,7 +27,7 @@
                 <div class="panel__actions">
                     @if (auth()->user()->is($user))
                         <div class="panel__action" x-data="{ showDialog: false }">
-                            <a href="#" class="nav-tab__link" x-on:click.prevent="showDialog = true">
+                            <a class="nav-tab__link" x-on:click.prevent="showDialog = true">
                                 快速保种
                             </a>
                             <dialog class="dialog" x-ref="dialog">
