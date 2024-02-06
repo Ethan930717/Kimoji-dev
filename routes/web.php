@@ -560,7 +560,7 @@ Route::middleware('language')->group(function (): void {
         // Torrent Zip for Urgent Seeders
         Route::prefix('torrent-zip')->name('torrent_zip.')->group(function (): void {
             Route::get('/', [App\Http\Controllers\User\TorrentZipController::class, 'show'])->name('show');
-            Route::post('/download-urgent-seeders', [App\Http\Controllers\User\TorrentZipController::class, 'downloadUrgentSeedersZip'])->name('downloadUrgentSeeders');
+            Route::post('/download-urgent-seeders', [App\Http\Controllers\User\TorrentZipController::class, 'downloadUrgentSeedersZip'])->name('torrent_zip.downloadUrgentSeeders');
         });
 
         // Torrents
