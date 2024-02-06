@@ -28,16 +28,18 @@
                     @if (auth()->user()->is($user))
                         <div x-data>
                             <button class="form__button form__button--outlined" x-on:click.stop="$refs.dialog.showModal()">
-                                <i class="fa fa-star"></i> 快速保种
+                                <i class="{{ config('other.font-awesome') }} fa-star"></i> 快速保种
                             </button>
                             <dialog class="dialog" x-ref="dialog">
-                                <h4 class="dialog__heading">请选择下载体积</h4>
+                                <h4 class="dialog__heading">
+                                    请选择下载体积
+                                </h4>
                                 <div x-on:click.outside="$refs.dialog.close()">
                                     <form
                                         class="dialog__form"
                                         action="{{ route('users.torrent_zip.downloadUrgentSeedersZip', ['user' => $user]) }}"
                                         method="POST"
-                                        x-on:submit.prevent="handleSubmit">
+                                    >
                                         @csrf
                                         <p class="form__text" style="margin-bottom: 40px">
                                             本功能会批量筛选并下载当前您尚未做种的资源种子（仅筛选音乐区官种且排除死种），默认从做种人数最少的种子开始筛选，直至资源总体积达到您指定的体积。
@@ -57,7 +59,7 @@
                                             </label>
                                         </p>
                                         <p class="form__group">
-                                            <button type="submit" class="form__button form__button--filled">
+                                            <button type="submit" class="form__button form__button--filled" x-on:click="$refs.dialog.close()">
                                                 下载
                                             </button>
                                             <button type="button" x-on:click="$refs.dialog.close()" class="form__button form__button--outlined">
@@ -975,36 +977,3 @@
         </section>
     @endsection
 @endif
-
-<script>
-    function handleSubmit() {
-        // 关闭对话框
-        this.$refs.dialog.close();
-
-        // 异步操作，例如提交表单数据
-        // 假设使用fetch进行异步提交，您可以根据实际情况调整
-        fetch(this.$el.action, {
-            method: 'POST',
-            body: new FormData(this.$el),
-            // 其他需要的设置...
-        })
-            .then(response => {
-                if (response.ok) {
-                    // 提交成功后显示SweetAlert2提示
-                    Swal.fire({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        icon: 'success',
-                        title: '正在筛选资源，请耐心等待'
-                    });
-                } else {
-                    // 处理错误情况
-                }
-            })
-            .catch(error => {
-                // 处理网络错误等情况
-            });
-    }
-</script>
