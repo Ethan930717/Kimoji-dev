@@ -26,6 +26,49 @@
                 <h2 class="panel__heading">{{ __('user.user') }} {{ __('user.information') }}</h2>
                 <div class="panel__actions">
                     @if (auth()->user()->is($user))
+                        <div class="panel__action" x-data="{ showDialog: false }">
+                            <a href="#" class="nav-tab__link" x-on:click.prevent="showDialog = true">
+                                快速保种
+                            </a>
+                            <dialog class="dialog" x-ref="dialog">
+                                <h4 class="dialog__heading">
+                                    请选择下载体积
+                                </h4>
+                                <div x-on:click.outside="$refs.dialog.close()">
+                                    <form
+                                        class="dialog__form"
+                                        action="{{ route('users.torrent_zip.downloadUrgentSeedersZip'}}"
+                                        method="POST"
+                                    >
+                                        @csrf
+                                        <p class="form__group">
+                                            <select id="volume" name="volume" class="form__select">
+                                                <option value="107374182400">100GB</option> <!-- 100GB in bytes -->
+                                                <option value="536870912000">500GB</option> <!-- 500GB in bytes -->
+                                                <option value="1319413953331.2">1.2TB</option> <!-- 1.2TB in bytes -->
+                                                <option value="2199023255552">2TB</option> <!-- 2TB in bytes -->
+                                                <option value="3298534883328">3TB</option> <!-- 3TB in bytes -->
+                                                <option value="4617948836659.2">4.2TB</option> <!-- 4.2TB in bytes -->
+                                                <option value="6597069766656">6TB</option> <!-- 6TB in bytes -->
+                                                <option value="8796093022208">8TB</option> <!-- 8TB in bytes -->
+                                                <option value="13194139533312">12TB</option> <!-- 12TB in bytes -->
+                                            </select>                                    <label class="form__label form__label--floating" for="volume">
+                                                选择体积（默认从急需保种的资源开始筛选）
+                                            </label>
+                                        </p>
+                                        <p class="form__group">
+                                            <button type="submit" class="form__button form__button--filled">
+                                                下载
+                                            </button>
+                                            <button type="button" x-on:click="$refs.dialog.close()" class="form__button form__button--outlined">
+                                                取消
+                                            </button>
+                                        </p>
+                                    </form>
+                                </div>
+                            </dialog>
+                        </div>
+
                         <div class="panel__action">
                             <a
                                 href="{{ route('users.edit', ['user' => $user]) }}"

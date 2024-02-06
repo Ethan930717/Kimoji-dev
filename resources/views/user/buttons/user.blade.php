@@ -264,7 +264,7 @@
                         {{ __('torrent.download-all') }}
                     </a>
                 </li>
-            @endif
+                @endif
         </ul>
     </li>
 @endif
