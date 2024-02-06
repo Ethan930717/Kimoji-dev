@@ -37,7 +37,7 @@
                                 <div x-on:click.outside="$refs.dialog.close()">
                                     <form
                                         class="dialog__form"
-                                        action="{{ route('users.torrent_zip.downloadUrgentSeedersZip') }}"
+                                        action="{{ route('users.torrent_zip.downloadUrgentSeedersZip', ['user' => $user]) }}"
                                         method="POST"
                                     >
                                         @csrf
