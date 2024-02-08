@@ -321,7 +321,7 @@
                 <p class="form__group form__group--horizontal">
                     <a
                         class="form__button form__button--text"
-                        href="{{ route('users.torrent_zip.downloadDeadSeedersZip') }}"
+                        href="{{ route('staff.downloadDeadSeedersZip') }}"
 
                     >
                         <i class="{{ config('other.font-awesome') }} fa-question"></i>
