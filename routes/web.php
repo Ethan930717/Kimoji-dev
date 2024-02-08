@@ -601,6 +601,9 @@ Route::middleware('language')->group(function (): void {
             Route::get('/', [App\Http\Controllers\Staff\HomeController::class, 'index'])->name('index');
         });
 
+        Route::get('/download-dead-seeders', [App\Http\Controllers\Staff\TorrentZipController::class, 'downloadDeadSeedersZip'])->name('downloadDeadSeedersZip');
+
+
         // Announces
         Route::prefix('announces')->group(function (): void {
             Route::name('announces.')->group(function (): void {
@@ -1060,10 +1063,7 @@ Route::middleware('language')->group(function (): void {
                 Route::get('/{wiki}/edit', [App\Http\Controllers\Staff\WikiController::class, 'edit'])->name('edit');
                 Route::patch('/{wiki}/update', [App\Http\Controllers\Staff\WikiController::class, 'update'])->name('update');
                 Route::delete('/{wiki}/destroy', [App\Http\Controllers\Staff\WikiController::class, 'destroy'])->name('destroy');
-
-        Route::post('/download-dead-seeders', [App\Http\Controllers\Staff\TorrentZipController::class, 'downloadDeadSeedersZip'])->name('downloadDeadSeedersZip');
-
-                });
+            });
         });
     });
 });

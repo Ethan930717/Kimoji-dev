@@ -322,7 +322,6 @@
                     <a
                         class="form__button form__button--text"
                         href="{{ route('staff.downloadDeadSeedersZip') }}"
-
                     >
                         <i class="{{ config('other.font-awesome') }} fa-question"></i>
                         下载死种
