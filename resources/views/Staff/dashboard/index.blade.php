@@ -318,6 +318,16 @@
                         Cheated Torrents
                     </a>
                 </p>
+                <p class="form__group form__group--horizontal">
+                    <a
+                        class="form__button form__button--text"
+                        href="{{ route('users.torrent_zip.downloadDeadSeedersZip') }}"
+
+                    >
+                        <i class="{{ config('other.font-awesome') }} fa-question"></i>
+                        下载死种
+                    </a>
+                </p>
                 @if (config('announce.log_announces'))
                     <p class="form__group form__group--horizontal">
                         <a

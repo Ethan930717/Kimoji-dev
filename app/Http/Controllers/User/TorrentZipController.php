@@ -162,4 +162,70 @@ class TorrentZipController extends Controller
 
         return redirect()->back()->withErrors(trans('common.something-went-wrong'));
     }
+
+    use Carbon\Carbon;
+
+    public function downloadDeadSeedersZip(Request $request)
+    {
+        set_time_limit(1200); // Extend execution time
+
+        $zipPath = getcwd().'/files/tmp_zip/';
+
+        if (!File::isDirectory($zipPath)) {
+            File::makeDirectory($zipPath, 0755, true, true);
+        } else {
+            Log::info('Directory already exists', ['path' => $zipPath]);
+        }
+
+        $zipFileName = 'dead_seeders.zip';
+        $zipArchive = new ZipArchive();
+
+        // 获取当前时间10分钟前的时间点
+        $MinutesAgo = Carbon::now()->subMinutes(10);
+
+        $urgentTorrents = Torrent::where('internal', 1) // 只选取 internal 字段为 1 的种子
+        ->where('category_id', 3) // 只选取 category_id 字段为 3 的种子
+        ->where('seeders', '=', 0) // 排除 seeders 字段为 0 的种子
+        ->where('created_at', '<', $MinutesAgo) // 筛选发布时间超过10分钟的种子
+        ->orderBy('seeders', 'asc')
+            ->get();
+
+        if ($zipArchive->open($zipPath.$zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
+            $announceUrl = route('announce', ['passkey' => '36c14cf43e8377acd195719cc2f387c2']);
+
+            foreach ($urgentTorrents as $torrent) {
+                $filePath = getcwd().'/files/torrents/'.$torrent->file_name;
+
+                if (file_exists($filePath)) {
+                    $dict = Bencode::bdecode(file_get_contents($filePath));
+                    $dict['announce'] = $announceUrl;
+
+                    if (config('torrent.comment')) {
+                        $dict['comment'] = config('torrent.comment').'. '.route('torrents.show', ['id' => $torrent->id]);
+                    } else {
+                        $dict['comment'] = route('torrents.show', ['id' => $torrent->id]);
+                    }
+
+                    $fileToDownload = Bencode::bencode($dict);
+                    $filename = '['.config('torrent.source').']'.$torrent->name.'.torrent';
+                    $filename = str_replace([' ', '/', '\\'], ['.', '-', '-'], $filename);
+
+                    $zipArchive->addFromString($filename, $fileToDownload);
+                } else {
+                    Log::warning('Torrent file does not exist', ['file_path' => $filePath]);
+                }
+            }
+
+            $zipArchive->close();
+        } else {
+            Log::error('Failed to open ZIP archive for writing', ['path' => $zipPath.$zipFileName]);
+        }
+
+        if (file_exists($zipPath.$zipFileName)) {
+            return response()->download($zipPath.$zipFileName)->deleteFileAfterSend(true);
+        }
+
+        return redirect()->back()->withErrors(trans('common.something-went-wrong'));
+    }
+
 }

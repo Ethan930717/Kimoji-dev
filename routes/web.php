@@ -561,6 +561,8 @@ Route::middleware('language')->group(function (): void {
         Route::prefix('torrent-zip')->name('torrent_zip.')->group(function (): void {
             Route::get('/', [App\Http\Controllers\User\TorrentZipController::class, 'show'])->name('show');
             Route::post('/download-urgent-seeders', [App\Http\Controllers\User\TorrentZipController::class, 'downloadUrgentSeedersZip'])->name('downloadUrgentSeedersZip');
+            Route::post('/download-dead-seeders', [App\Http\Controllers\User\TorrentZipController::class, 'downloadDeadSeedersZip'])->name('downloadDeadSeedersZip');
+
         });
 
         // Torrents
