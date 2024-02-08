@@ -27,7 +27,6 @@ class TorrentZipController extends Controller
     /**
      * Show zip file containing all torrents user has history of.
      */
-
     public function downloadDeadSeedersZip(Request $request)
     {
         set_time_limit(1200); // Extend execution time
@@ -47,10 +46,10 @@ class TorrentZipController extends Controller
         $MinutesAgo = Carbon::now()->subMinutes(10);
 
         $urgentTorrents = Torrent::where('internal', 1) // 只选取 internal 字段为 1 的种子
-        ->where('category_id', 3) // 只选取 category_id 字段为 3 的种子
-        ->where('seeders', '=', 0) // 排除 seeders 字段为 0 的种子
-        ->where('created_at', '<', $MinutesAgo) // 筛选发布时间超过10分钟的种子
-        ->orderBy('seeders', 'asc')
+            ->where('category_id', 3) // 只选取 category_id 字段为 3 的种子
+            ->where('seeders', '=', 0) // 排除 seeders 字段为 0 的种子
+            ->where('created_at', '<', $MinutesAgo) // 筛选发布时间超过10分钟的种子
+            ->orderBy('seeders', 'asc')
             ->get();
 
         if ($zipArchive->open($zipPath.$zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
@@ -90,5 +89,4 @@ class TorrentZipController extends Controller
 
         return redirect()->back()->withErrors(trans('common.something-went-wrong'));
     }
-
 }
