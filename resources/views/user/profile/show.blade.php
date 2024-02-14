@@ -45,26 +45,20 @@
                                             本功能会批量筛选并下载当前您尚未做种的资源种子（仅筛选音乐区官种且排除死种），默认从做种人数最少的种子开始筛选，直至资源总体积达到您指定的体积。
                                             该功能非常占用服务器资源，请勿频繁使用，任何恶意行为都有可能导致您的账号遭到封禁
                                         </p>
-                                        <div class="form__group">
-                                            <div x-data="{ customVolume: false }">
-                                                <select id="volume" name="volume" class="form__select" x-on:change="customVolume = ($event.target.value === 'custom')">
-                                                    <option value="107374182400">100GB</option>
-                                                    <option value="536870912000">500GB</option>
-                                                    <option value="1319413953331.2">1.2TB</option>
-                                                    <option value="2199023255552">2TB</option>
-                                                    <option value="3298534883328">3TB</option>
-                                                    <option value="4617948836659.2">4.2TB</option>
-                                                    <option value="custom">自定义</option>
-                                                </select>
-                                                <label class="form__label form__label--floating" for="volume">
-                                                    选择体积
-                                                </label>
-                                                <!-- 自定义体积输入框 -->
-                                                <div x-show="customVolume" style="display: none;">
-                                                    <input type="number" id="customVolume" name="customVolume" class="form__input" placeholder="请输入体积（GB）" min="1">
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <p class="form__group">
+                                            <select id="volume" name="volume" class="form__select">
+                                                <option value="107374182400">100GB</option> <!-- 100GB in bytes -->
+                                                <option value="214748364800">200GB</option> <!-- 200GB in bytes -->
+                                                <option value="536870912000">500GB</option> <!-- 500GB in bytes -->
+                                                <option value="1319413953331.2">1.2TB</option> <!-- 1.2TB in bytes -->
+                                                <option value="2199023255552">2TB</option> <!-- 2TB in bytes -->
+                                                <option value="3298534883328">3TB</option> <!-- 3TB in bytes -->
+                                                <option value="4617948836659.2">4.2TB</option> <!-- 4.2TB in bytes -->
+                                            </select>
+                                            <label class="form__label form__label--floating" for="volume">
+                                                选择体积
+                                            </label>
+                                        </p>
                                         <p class="form__group">
                                             <button type="submit" class="form__button form__button--filled" x-on:click="$refs.dialog.close()">
                                                 下载
