@@ -603,7 +603,6 @@ Route::middleware('language')->group(function (): void {
 
         Route::get('/download-dead-seeders', [App\Http\Controllers\Staff\TorrentZipController::class, 'downloadDeadSeedersZip'])->name('downloadDeadSeedersZip');
 
-
         // Announces
         Route::prefix('announces')->group(function (): void {
             Route::name('announces.')->group(function (): void {

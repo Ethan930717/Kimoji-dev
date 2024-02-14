@@ -20,7 +20,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use ZipArchive;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
 class TorrentZipController extends Controller
@@ -163,6 +162,4 @@ class TorrentZipController extends Controller
 
         return redirect()->back()->withErrors(trans('common.something-went-wrong'));
     }
-
-
 }
