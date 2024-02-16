@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Artist;
 use App\Models\Torrent;
 
-
 class ArtistController extends Controller
 {
     public function index()
@@ -19,7 +18,7 @@ class ArtistController extends Controller
     public function show($id)
     {
         $artist = Artist::findOrFail($id);
-        $torrents = Torrent::where('name', 'like', '%' . $artist->name . '%')->get();
+        $torrents = Torrent::where('name', 'like', '%'.$artist->name.'%')->get();
 
         return view('artists.show', compact('artist', 'torrents'));
     }
