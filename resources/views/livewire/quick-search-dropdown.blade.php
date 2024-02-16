@@ -15,7 +15,6 @@
                         value="{{ $value }}"
                         wire:model.debounce.0="quicksearchRadio"
                         x-on:click="$nextTick(() => $refs.quickSearch.focus());"
-                        {{ $loop->first ? 'checked' : '' }}
                     />
                     <i
                         class="quick-search__radio-icon {{ \config('other.font-awesome') }} {{ $info['icon'] }}"
