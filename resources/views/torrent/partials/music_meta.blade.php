@@ -70,15 +70,21 @@
                    href="{{ route('torrents.index', ['distributors' => [$torrent->distributor->id]]) }}">
                     {{ $torrent?->distributor->name ?? '未知风格' }}
                 </a>
-                @if(!in_array(auth()->user()->group, ['LEECH', 'DISABLED']))
-                    @if(auth()->user()->daily_listen_count < $listenLimits[auth()->user()->group])
-                        <button id="loadPlayerBtn" class="meta-id-tag">加载试听曲目</button>
+                    @if(!in_array(auth()->user()->group->name, ['LEECH', 'DISABLED']))
+                        @php
+                            $group = auth()->user()->group->name;
+                            $limit = $listenLimits[$group] ?? 0;
+                        @endphp
+
+                        @if(auth()->user()->daily_listen_count < $limit)
+                            <button id="loadPlayerBtn" class="meta-id-tag">加载试听曲目</button>
+                        @else
+                            <span>今日试听次数 {{ auth()->user()->daily_listen_count }}/{{ $limit }}</span>
+                        @endif
                     @else
-                        <span>今日试听次数 {{ auth()->user()->daily_listen_count }}/{{ $listenLimits[auth()->user()->group] }}</span>
+                        <span>权限不足，无法试听</span>
                     @endif
-                @else
-                    <span>权限不足，无法试听</span>
-                @endif
+
             </li>
 
         </ul>
