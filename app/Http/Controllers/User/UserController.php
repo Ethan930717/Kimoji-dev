@@ -53,8 +53,19 @@ class UserController extends Controller
                 'userwarning as soft_deleted_warnings_count' => fn ($query) => $query->onlyTrashed(),
             ]);
 
+        $soundOfficialTorrentsSize = Peer::query()
+                ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
+                ->where('peers.user_id', '=', $user->id)
+                ->where('peers.seeder', '=', 1)
+                ->where('peers.active', '=', 1)
+                ->whereIn('torrents.category_id', [3, 4]) // 筛选 category_id 为 3 或 4 的种子
+                ->where('torrents.internal', '=', 1)      // 确保种子是内部种子
+                ->sum('torrents.size') / (1024 * 1024 * 1024); // 转换为GB
+
+
         return view('user.profile.show', [
             'user'      => $user,
+            'soundOfficialTorrentsSize' => $soundOfficialTorrentsSize,
             'followers' => $user->followers()->latest()->limit(25)->get(),
             'history'   => DB::table('history')
                 ->where('user_id', '=', $user->id)

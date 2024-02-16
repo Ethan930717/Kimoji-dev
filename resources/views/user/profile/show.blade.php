@@ -26,6 +26,12 @@
                 <h2 class="panel__heading">{{ __('user.user') }} {{ __('user.information') }}</h2>
                 <div class="panel__actions">
                     @if (auth()->user()->is($user))
+                        @if($soundOfficialTorrentsSize < 100)
+                            <div class="alert alert-warning" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
+                                请尽快达到最低保种要求，否则您的账号将会被禁用，当前进度 {{ number_format($soundOfficialTorrentsSize, 2, '.', '') }} / 100 GB
+                            </div>
+                        @endif
+
                         <div x-data>
                             <button class="form__button form__button--outlined" x-on:click.stop="$refs.dialog.showModal()">
                                 <i class="{{ config('other.font-awesome') }} fa-star"></i> 快速保种
