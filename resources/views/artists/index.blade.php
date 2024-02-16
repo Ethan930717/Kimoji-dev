@@ -10,8 +10,18 @@
 
 @section('breadcrumbs')
     <li class="breadcrumbV2">
-        <a href="{{ route('home.index') }}" class="breadcrumb__link">
-            {{ __('home.title') }}
+        <a href="{{ route('staff.dashboard.index') }}" class="breadcrumb__link">
+            {{ __('staff.staff-dashboard') }}
+        </a>
+    </li>
+    <li class="breadcrumb--active">
+        {{ __('staff.bans-log') }}
+    </li>
+@endsection
+@section('breadcrumbs')
+    <li class="breadcrumbV2">
+        <a class="breadcrumb__link" href="{{ route('home.index') }}">
+            <i class="{{ config('other.font-awesome') }} fa-home"></i>
         </a>
     </li>
     <li class="breadcrumb--active">

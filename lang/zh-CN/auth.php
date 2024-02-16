@@ -78,7 +78,7 @@ return [
     'verificationEmailGreeting' => 'Hi :username',
     'veteran'                   => '老司机',
     'welcome'                   => '欢迎回来！',
-    'welcome-restore'           => '欢迎回来！你的帐户已获解封！',
+    'welcome-restore'           => '欢迎回来！你的帐户已解封！',
     'new-password'              => '密码',
     'confirm-new-password'      => '确认密码',
 ];
