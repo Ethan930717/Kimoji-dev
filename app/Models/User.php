@@ -70,7 +70,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'can_chat'                   => 'boolean',
         'hasBeenDemotedFromInternal' => 'boolean',
         'daily_listen_count'         => 'integer',
-
     ];
 
     /**
@@ -1025,7 +1024,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return void
      */
-    public function incrementDailyListenCount()
+    public function incrementDailyListenCount(): void
     {
         $this->increment('daily_listen_count');
     }
@@ -1035,7 +1034,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return void
      */
-    public function resetDailyListenCount()
+    public function resetDailyListenCount(): void
     {
         $this->daily_listen_count = 0;
         $this->save();
