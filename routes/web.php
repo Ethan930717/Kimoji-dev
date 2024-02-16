@@ -197,6 +197,7 @@ Route::middleware('language')->group(function (): void {
         // Torrents System
         Route::prefix('torrents')->name('torrents.')->group(function (): void {
             Route::get('/', [App\Http\Controllers\TorrentController::class, 'index'])->name('index');
+            Route::post('/listen', [App\Http\Controllers\TorrentController::class, 'listen'])->name('listen');
             Route::get('/create', [App\Http\Controllers\TorrentController::class, 'create'])->name('create');
             Route::post('/', [App\Http\Controllers\TorrentController::class, 'store'])->name('store');
             Route::get('/{id}{hash?}', [App\Http\Controllers\TorrentController::class, 'show'])->name('show');

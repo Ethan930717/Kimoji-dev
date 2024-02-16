@@ -70,15 +70,17 @@
                    href="{{ route('torrents.index', ['distributors' => [$torrent->distributor->id]]) }}">
                     {{ $torrent?->distributor->name ?? '未知风格' }}
                 </a>
-                @if(in_array($user->group_id, [App\Enums\UserGroup::USER->value, App\Enums\UserGroup::LEECH->value]))
-                <a class="meta-id-tag" title="Internet Movie Database" target="_blank" style="text-shadow: 0 0 2px red">
-                   壮士及以上等级可享受试听功能，官人请多多努力
-                </a>
+                @if(!in_array(auth()->user()->group, ['LEECH', 'DISABLED']))
+                    @if(auth()->user()->daily_listen_count < $listenLimits[auth()->user()->group])
+                        <button id="loadPlayerBtn" class="meta-id-tag">加载试听曲目</button>
+                    @else
+                        <span>今日试听次数 {{ auth()->user()->daily_listen_count }}/{{ $listenLimits[auth()->user()->group] }}</span>
+                    @endif
                 @else
-                <button id="loadPlayerBtn" class="meta-id-tag">加载试听曲目</button>
+                    <span>权限不足，无法试听</span>
+                @endif
             </li>
 
-            @endif
         </ul>
         @php
             $description = $torrent->description;

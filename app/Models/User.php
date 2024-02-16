@@ -69,6 +69,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'can_upload'                 => 'boolean',
         'can_chat'                   => 'boolean',
         'hasBeenDemotedFromInternal' => 'boolean',
+        'daily_listen_count'         => 'integer',
+
     ];
 
     /**
@@ -1016,5 +1018,26 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token): void
     {
         dispatch(fn () => $this->notify(new ResetPassword($token)))->afterResponse();
+    }
+
+    /**
+     * 增加用户的每日试听次数。
+     *
+     * @return void
+     */
+    public function incrementDailyListenCount()
+    {
+        $this->increment('daily_listen_count');
+    }
+
+    /**
+     * 重置用户的每日试听次数。
+     *
+     * @return void
+     */
+    public function resetDailyListenCount()
+    {
+        $this->daily_listen_count = 0;
+        $this->save();
     }
 }
