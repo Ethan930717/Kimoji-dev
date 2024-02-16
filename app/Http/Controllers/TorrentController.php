@@ -122,7 +122,7 @@ class TorrentController extends Controller
         $platforms = null;
         $bdInfo = $torrent->bdinfo !== null ? (new BDInfo())->parse($torrent->bdinfo) : null;
         $listenLimits = [
-            '布衣'        => 1, '壮士' => 6, '力士' => 12,
+            '布衣'          => 1, '壮士' => 6, '力士' => 12,
             'EXTREMEUSER' => 20, 'INSANEUSER' => 30, 'VETERAN' => 42,
             'SEEDER'      => 55, 'ARCHIVIST' => 70,
         ];
