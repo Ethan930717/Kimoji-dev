@@ -40,11 +40,9 @@
                          x-on:keydown.up.prevent="quickSearchArrowUp($el)">
                     @switch($quicksearchRadio)
                         @case('albums')
-                            <a class="quick-search__result-link" href="{{ route('torrents.show', ['id' => $result->torrent_id]) }}">
-                                <img class="quick-search__image" src="{{ '/files/img/torrent-cover_'.$result->torrent_id.'.jpg' }}" alt="封面">
-                                <span class="quick-search__result-text">
-                                    {{ $result->name }}
-                                </span>
+                            <a class="quick-search__result-link" href="{{ route('torrents.show', ['id' => $result->id]) }}">
+                                <img src="{{ url('/files/img/torrent-cover_'.$result->id.'.jpg') }}" class="quick-search__image" alt="">
+                                <span class="quick-search__result-text">{{ $result->name }}</span>
                             </a>
                             @break
                         @case('songs')
