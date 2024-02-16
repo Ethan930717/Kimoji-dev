@@ -18,8 +18,8 @@
 @endsection
 
 @section('content')
-    <section class="artist-detail" style="display: flex; align-items: flex-start; gap: 20px;">
-        <div class="artist-header">
+    <div class="artist-detail-container" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
+        <div class="artist-header" style="flex: 1; min-width: 500px;">
             <img
                 alt="{{ $artist->name }}"
                 src="{{ $artist->image_url ? $artist->image_url : 'https://via.placeholder.com/160x240' }}"
@@ -28,7 +28,7 @@
             />
         </div>
 
-        <div class="artist-info" style="flex-grow: 1;">
+        <div class="artist-info" style="flex: 2; min-width: 300px;">
             <h2 class="artist-name">{{ $artist->name }}</h2>
             @if($artist->birthday)
                 <p><strong>{{ $artist->member ? __('artists.established') : __('artists.born') }}:</strong> {{ $artist->birthday }}</p>
@@ -54,8 +54,9 @@
                 <p><strong>{{ __('artists.biography') }}:</strong> {{ __('artists.nobiography') }}</p>
             @endif
         </div>
+    </div>
 
-        {{-- 艺术家资源展示 --}}
+    {{-- 艺术家资源展示 --}}
         @if ($torrents->isNotEmpty())
             <section class="panelV2">
                 <h2 class="panel__heading">
