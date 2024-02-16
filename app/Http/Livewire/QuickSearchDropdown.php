@@ -24,9 +24,9 @@ class QuickSearchDropdown extends Component
                 ->where('name', 'LIKE', $search)
                     ->take(10)
                     ->get(),
-                'songs' => Music::query() // 假设您的歌曲信息存储在 Music 表中
-                ->select(['id', 'name', 'torrent_id'])
-                    ->where('name', 'LIKE', $search)
+                'songs' => Music::query()
+                    ->select(['id', 'artist_name', 'song_name', 'duration', 'torrent_id']) // 修改了选择的列名以匹配您的表结构
+                    ->where('song_name', 'LIKE', $search) // 修改搜索列为 song_name
                     ->take(10)
                     ->get(),
                 'artists' => Artist::query()
