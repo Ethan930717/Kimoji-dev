@@ -9,13 +9,8 @@
 @endsection
 
 @section('breadcrumbs')
-    <li class="breadcrumbV2">
-        <a href="{{ route('staff.dashboard.index') }}" class="breadcrumb__link">
-            {{ __('staff.staff-dashboard') }}
-        </a>
-    </li>
     <li class="breadcrumb--active">
-        {{ __('staff.bans-log') }}
+        {{ __('artists.title') }}
     </li>
 @endsection
 @section('breadcrumbs')

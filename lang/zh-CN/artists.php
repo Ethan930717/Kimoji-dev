@@ -55,4 +55,6 @@ return [
     'ProductionDesigner' => '制作设计',
     'Artdirector'        => '艺术指导',
     'nomedia'            => '暂无影片',
+    'artist-torrents'    => '资源',
+
 ];

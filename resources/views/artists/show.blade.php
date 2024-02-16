@@ -9,11 +9,6 @@
 @endsection
 
 @section('breadcrumbs')
-    <li class="breadcrumbV2">
-        <a class="breadcrumb__link" href="{{ route('home.index') }}">
-            <i class="{{ config('other.font-awesome') }} fa-home"></i>
-        </a>
-    </li>
     <li class="breadcrumb--active">
         {{ __('artists.title') }}
     </li>
@@ -23,18 +18,18 @@
 @endsection
 
 @section('content')
-    <section class="artist-detail">
+    <section class="artist-detail" style="display: flex; align-items: flex-start; gap: 20px;">
         <div class="artist-header">
-            <h1 class="artist-name">{{ $artist->name }}</h1>
             <img
                 alt="{{ $artist->name }}"
                 src="{{ $artist->image_url ? $artist->image_url : 'https://via.placeholder.com/160x240' }}"
                 class="artist-image"
+                style="width: 500px; height: 500px; object-fit: cover;"
             />
         </div>
 
-        <div class="artist-info">
-            <h2>{{ __('artists.info') }}</h2>
+        <div class="artist-info" style="flex-grow: 1;">
+            <h2 class="artist-name">{{ $artist->name }}</h2>
             @if($artist->birthday)
                 <p><strong>{{ $artist->member ? __('artists.established') : __('artists.born') }}:</strong> {{ $artist->birthday }}</p>
             @endif
