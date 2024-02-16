@@ -70,6 +70,17 @@
                    href="{{ route('torrents.index', ['distributors' => [$torrent->distributor->id]]) }}">
                     {{ $torrent?->distributor->name ?? '未知风格' }}
                 </a>
+
+                    @php
+                        $userGroup = auth()->user()->group->name;
+                        $listenLimits = [
+                             '布衣'        => 1, '壮士' => 6, '力士' => 12,
+                            'EXTREMEUSER' => 20, 'INSANEUSER' => 30, 'VETERAN' => 42,
+                            'SEEDER' => 55, 'ARCHIVIST' => 70,
+                        ];
+                        $unlimitedGroups = ['SOME_SPECIAL_GROUP']; // 指定无限试听的用户组名称
+                    @endphp
+
                     @if(in_array($userGroup, ['徭役', '入寐']))
                         <span class="meta-id-tag">权限不足，无法试听</span>
                     @elseif(in_array($userGroup, $unlimitedGroups))
