@@ -12,6 +12,8 @@
  */
 
 return [
+    'albums'             => '专辑',
+    'songs'              => '歌曲',
     'born'               => '生日',
     'died'               => '忌日',
     'established'        => '成立',
