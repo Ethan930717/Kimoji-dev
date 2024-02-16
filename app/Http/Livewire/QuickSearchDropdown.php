@@ -35,7 +35,7 @@ class QuickSearchDropdown extends Component
                     ->take(10)
                     ->get(),
                 'artists' => Artist::query()
-                    ->select(['id', 'name'])
+                    ->select(['id', 'name', 'image_url'])
                     ->where('name', 'LIKE', $search)
                     ->take(10)
                     ->get(),
