@@ -122,6 +122,11 @@ class TorrentController extends Controller
         $meta = null;
         $platforms = null;
         $bdInfo = $torrent->bdinfo !== null ? (new BDInfo())->parse($torrent->bdinfo) : null;
+        $listenLimits = [
+            'USER' => 1, 'POWERUSER' => 6, 'SUPERUSER' => 12,
+            'EXTREMEUSER' => 20, 'INSANEUSER' => 30, 'VETERAN' => 42,
+            'SEEDER' => 55, 'ARCHIVIST' => 70,
+        ];
 
         if ($torrent->category->tv_meta && $torrent->tmdb) {
             $meta = Tv::with([
@@ -172,6 +177,7 @@ class TorrentController extends Controller
             'last_seed_activity' => History::where('torrent_id', '=', $torrent->id)->where('seeder', '=', 1)->latest('updated_at')->first(),
             'playlists'          => $user->playlists,
             'audits'             => Audit::with('user')->where('model_entry_id', '=', $torrent->id)->where('model_name', '=', 'Torrent')->latest()->get(),
+            'listenLimits'       => $listenLimits,
         ]);
     }
 
