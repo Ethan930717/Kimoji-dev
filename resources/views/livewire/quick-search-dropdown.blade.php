@@ -15,7 +15,6 @@
                         value="{{ $value }}"
                         wire:model.debounce.0="quicksearchRadio"
                         x-on:click="$nextTick(() => $refs.quickSearch.focus());"
-                        {{ $loop->first ? 'checked' : '' }}
                     />
                     <i
                         class="quick-search__radio-icon {{ \config('other.font-awesome') }} {{ $info['icon'] }}"
@@ -41,6 +40,13 @@
                          x-on:keydown.up.prevent="quickSearchArrowUp($el)">
                     @switch($quicksearchRadio)
                         @case('albums')
+                            <a class="quick-search__result-link" href="{{ route('torrents.show', ['id' => $result->torrent_id]) }}">
+                                <img class="quick-search__image" src="{{ '/files/img/torrent-cover_'.$result->torrent_id.'.jpg' }}" alt="封面">
+                                <span class="quick-search__result-text">
+                                    {{ $result->name }}
+                                </span>
+                            </a>
+                            @break
                         @case('songs')
                             <a class="quick-search__result-link" href="{{ route('torrents.show', ['id' => $result->torrent_id]) }}">
                                 <img class="quick-search__image" src="{{ '/files/img/torrent-cover_'.$result->torrent_id.'.jpg' }}" alt="封面">
