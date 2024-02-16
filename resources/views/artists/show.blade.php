@@ -49,7 +49,9 @@
                 <p><strong>{{ __('artists.genre') }}:</strong> {{ $artist->genre }}</p>
             @endif
             @if($artist->biography)
-                <p><strong>{{ __('artists.biography') }}:</strong> {!! nl2br(e($artist->biography)) !!}</p>
+                <div style="max-height: 200px; overflow-y: auto;">
+                    <p><strong>{{ __('artists.biography') }}:</strong> {!! nl2br(e($artist->biography)) !!}</p>
+                </div>
             @else
                 <p><strong>{{ __('artists.biography') }}:</strong> {{ __('artists.nobiography') }}</p>
             @endif
@@ -60,7 +62,7 @@
         @if ($torrents->isNotEmpty())
             <section class="panelV2" style="margin-top: 20px">
                 <h2 class="panel__heading">
-                    {{ __('artists.artist-torrents') }}
+                    {{ __('artists.artist-torrents') }} ({{ $torrents->count() }})
                 </h2>
                 <div x-data>
                     <ul class="featured-carousel" x-ref="featured">
