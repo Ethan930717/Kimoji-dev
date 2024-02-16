@@ -1,27 +1,38 @@
 <div class="quick-search" x-data="{ ...quickSearchKeyboardNavigation() }"
      x-on:keydown.escape.window="$refs.movieSearch.blur(); $refs.seriesSearch.blur(); $refs.personSearch.blur()">
-    <div class="quick-search__radios">
-        @foreach([
-            'albums' => ['label' => '专辑', 'icon' => 'fa-album-collection', 'title' => __('artists.albums'), 'placeholder' => '搜索专辑...'],
-            'songs' => ['label' => '歌曲', 'icon' => 'fa-music', 'title' => __('artists.songs'), 'placeholder' => '搜索歌曲...'],
-            'artists' => ['label' => '歌手', 'icon' => 'fa-user', 'title' => __('artists.title'), 'placeholder' => '搜索歌手/组合...']
-        ] as $value => $info)
-            <label class="quick-search__radio-label">
-                <input
-                    type="radio"
-                    class="quick-search__radio"
-                    name="quicksearchRadio"
-                    value="{{ $value }}"
-                    wire:model.debounce.0="quicksearchRadio"
-                    x-on:click="$nextTick(() => $refs.quickSearch.focus());"
-                    {{ $quicksearchRadio === $value ? 'checked' : '' }}
-                />
-                <i
-                    class="quick-search__radio-icon {{ \config('other.font-awesome') }} {{ $info['icon'] }}"
-                    title="{{ $info['title'] }}"
-                ></i>
-            </label>
-        @endforeach
+    <div class="quick-search__inputs">
+        <div class="quick-search__radios">
+            @foreach([
+                'albums' => ['label' => '专辑', 'icon' => 'fa-album-collection', 'title' => __('artists.albums'), 'placeholder' => '搜索专辑...'],
+                'songs' => ['label' => '歌曲', 'icon' => 'fa-music', 'title' => __('artists.songs'), 'placeholder' => '搜索歌曲...'],
+                'artists' => ['label' => '歌手', 'icon' => 'fa-user', 'title' => __('artists.title'), 'placeholder' => '搜索歌手/组合...']
+            ] as $value => $info)
+                <label class="quick-search__radio-label">
+                    <input
+                        type="radio"
+                        class="quick-search__radio"
+                        name="quicksearchRadio"
+                        value="{{ $value }}"
+                        wire:model.debounce.0="quicksearchRadio"
+                        x-on:click="$nextTick(() => $refs.quickSearch.focus());"
+                        {{ $loop->first ? 'checked' : '' }}
+                    />
+                    <i
+                        class="quick-search__radio-icon {{ \config('other.font-awesome') }} {{ $info['icon'] }}"
+                        title="{{ $info['title'] }}"
+                    ></i>
+                </label>
+            @endforeach
+        </div>
+        <input
+            class="quick-search__input"
+            wire:model.debounce.250ms="quicksearchText"
+            type="text"
+            placeholder="{{ $quicksearchRadio === 'albums' ? '搜索专辑...' : ($quicksearchRadio === 'songs' ? '搜索歌曲...' : '搜索歌手/组合...') }}"
+            x-ref="quickSearch"
+            x-on:keydown.down.prevent="$refs.searchResults.firstElementChild?.firstElementChild?.focus()"
+            x-on:keydown.up.prevent="$refs.searchResults.lastElementChild?.firstElementChild?.focus()"
+        />
     </div>
     @if (strlen($quicksearchText) > 0)
         <div class="quick-search__results" x-ref="searchResults">

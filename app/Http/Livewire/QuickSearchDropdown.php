@@ -13,11 +13,6 @@ class QuickSearchDropdown extends Component
 
     public string $quicksearchText = '';
 
-    public function mount(): void
-    {
-        $this->quicksearchRadio = 'albums';
-    }
-
     public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         $search = '%'.str_replace(' ', '%', $this->quicksearchText).'%';
