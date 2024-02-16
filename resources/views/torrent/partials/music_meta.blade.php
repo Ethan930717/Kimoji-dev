@@ -52,9 +52,19 @@
         <ul class="meta__ids">
             <li class="meta__imdb">
                 @if ($singerName)
-                    <a class="meta-id-tag" href="/torrents?perPage=25&name={{ urlencode($singerName) }}" target="_blank">
-                        {{ $singerName }}
-                    </a>
+                    @php
+                        $artist = \App\Models\Artist::where('name', 'like', "%{$singerName}%")->first();
+                    @endphp
+
+                    @if ($artist)
+                        <a class="meta-id-tag" href="{{ route('artists.show', $artist->id) }}">
+                            {{ $singerName }}
+                        </a>
+                    @else
+                        <a class="meta-id-tag" href="/torrents?perPage=25&name={{ urlencode($singerName) }}" target="_blank">
+                            {{ $singerName }}
+                        </a>
+                    @endif
                 @endif
                 <a class="meta-id-tag" title="Internet Movie Database" target="_blank"
                    href="{{ route('torrents.index', ['distributors' => [$torrent->distributor->id]]) }}">

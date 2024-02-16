@@ -28,7 +28,7 @@
             />
         </div>
 
-        <div class="artist-info" style="flex: 2; min-width: 300px;">
+        <div class="artist-info" style="flex: 2;min-width: 300px;margin-left: 40px;">
             <h2 class="artist-name">{{ $artist->name }}</h2>
             @if($artist->birthday)
                 <p><strong>{{ $artist->member ? __('artists.established') : __('artists.born') }}:</strong> {{ $artist->birthday }}</p>
@@ -58,7 +58,7 @@
 
     {{-- 艺术家资源展示 --}}
         @if ($torrents->isNotEmpty())
-            <section class="panelV2">
+            <section class="panelV2" style="margin-top: 20px">
                 <h2 class="panel__heading">
                     {{ __('artists.artist-torrents') }}
                 </h2>
