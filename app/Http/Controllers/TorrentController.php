@@ -122,9 +122,9 @@ class TorrentController extends Controller
         $platforms = null;
         $bdInfo = $torrent->bdinfo !== null ? (new BDInfo())->parse($torrent->bdinfo) : null;
         $listenLimits = [
-            'USER' => 1, 'POWERUSER' => 6, 'SUPERUSER' => 12,
+            'USER'        => 1, 'POWERUSER' => 6, 'SUPERUSER' => 12,
             'EXTREMEUSER' => 20, 'INSANEUSER' => 30, 'VETERAN' => 42,
-            'SEEDER' => 55, 'ARCHIVIST' => 70,
+            'SEEDER'      => 55, 'ARCHIVIST' => 70,
         ];
 
         if ($torrent->category->tv_meta && $torrent->tmdb) {
