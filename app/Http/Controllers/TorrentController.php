@@ -74,18 +74,18 @@ class TorrentController extends Controller
         $user = auth()->user();
         $unlimitedGroups = ['SOME_SPECIAL_GROUP']; // 指定无限试听的用户组
         $listenLimits = [
-            'USER' => 1, 'POWERUSER' => 6, 'SUPERUSER' => 12,
+            'USER'        => 1, 'POWERUSER' => 6, 'SUPERUSER' => 12,
             'EXTREMEUSER' => 20, 'INSANEUSER' => 30, 'VETERAN' => 42,
-            'SEEDER' => 55, 'ARCHIVIST' => 70,
+            'SEEDER'      => 55, 'ARCHIVIST' => 70,
         ];
 
         // 检查用户是否属于受限制的用户组
-        if (in_array($user->group->name, ['LEECH', 'DISABLED'])) {
+        if (\in_array($user->group->name, ['LEECH', 'DISABLED'])) {
             return response()->json(['message' => '权限不足，无法试听'], 403);
         }
 
         // 对于特定用户组，检查是否超出了试听次数限制
-        if (!in_array($user->group->name, $unlimitedGroups)) {
+        if (!\in_array($user->group->name, $unlimitedGroups)) {
             $limit = $listenLimits[$user->group->name] ?? 0;
 
             if ($user->daily_listen_count >= $limit) {
@@ -97,9 +97,8 @@ class TorrentController extends Controller
         }
 
         // 处理试听请求...
-        return response()->json(['message' => '试听成功', 'unlimited' => in_array($user->group->name, $unlimitedGroups)]);
+        return response()->json(['message' => '试听成功', 'unlimited' => \in_array($user->group->name, $unlimitedGroups)]);
     }
-
 
     /**
      * Display The Torrent reasource.
