@@ -13,7 +13,7 @@ class QuickSearchDropdown extends Component
 
     public string $quicksearchText = '';
 
-    public function mount()
+    public function mount(): void
     {
         $this->quicksearchRadio = 'albums';
     }
@@ -25,8 +25,8 @@ class QuickSearchDropdown extends Component
         return view('livewire.quick-search-dropdown', [
             'search_results' => $this->quicksearchText === '' ? [] : match ($this->quicksearchRadio) {
                 'albums' => Torrent::query()
-                ->where('category_id', '=', 3)
-                ->where('name', 'LIKE', $search)
+                    ->where('category_id', '=', 3)
+                    ->where('name', 'LIKE', $search)
                     ->take(10)
                     ->get(),
                 'songs' => Music::query()

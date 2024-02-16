@@ -58,5 +58,4 @@ return [
     'Artdirector'        => '艺术指导',
     'nomedia'            => '暂无影片',
     'artist-torrents'    => '资源',
-
 ];
