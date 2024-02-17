@@ -1029,14 +1029,4 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->increment('daily_listen_count');
     }
 
-    /**
-     * 重置用户的每日试听次数。
-     *
-     * @return void
-     */
-    public function resetDailyListenCount(): void
-    {
-        $this->daily_listen_count = 0;
-        $this->save();
-    }
 }
