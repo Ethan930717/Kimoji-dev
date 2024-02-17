@@ -97,7 +97,7 @@ class AutoGroup extends Command
             // Temp Hard Coding of Group Requirements (Config Files To Come) (Upload in Bytes!) (Seedtime in Seconds!)
             $excludedGroups = [Usergroup::INTERNAL->value, Usergroup::KEEPER->value];
 
-            if ($user->created_at < $current->copy()->subDays(30)->toDateTimeString()) {
+            if ($user->group_id = Usergroup::DISABLED->value) {
                 if ($user->ratio < config('other.ratio') &&
                     $soundOfficialTorrentsSizeTB >= 0.1 &&
                     $user->group_id != Usergroup::LEECH->value &&
@@ -109,7 +109,6 @@ class AutoGroup extends Command
                     $user->save();
                 }
             } else {
-                // 对于注册时间小于30天的用户
                 if ($user->ratio < config('other.ratio') &&
                     $user->group_id != Usergroup::LEECH->value &&
                     !\in_array($user->group_id, $excludedGroups)) {
@@ -122,7 +121,7 @@ class AutoGroup extends Command
             }
 
             // User >= 0 and ratio above sites minimum
-            if ($user->created_at < $current->copy()->subDays(30)->toDateTimeString()) {
+            if ($user->group_id = Usergroup::DISABLED->value) {
                 if ($user->ratio >= config('other.ratio') &&
                 $soundOfficialTorrentsSizeTB >= 0.1 &&
                 $user->group_id != Usergroup::USER->value &&
@@ -134,7 +133,6 @@ class AutoGroup extends Command
                 $user->save();
                 }
             } else {
-                // 对于注册时间小于30天的用户
                 if ($user->ratio >= config('other.ratio') &&
                     $user->group_id != Usergroup::USER->value &&
                     !\in_array($user->group_id, $excludedGroups)) {
@@ -145,7 +143,6 @@ class AutoGroup extends Command
                     $user->save();
                 }
             }
-
 
             // PowerUser >= 500GB
             if ($user->ratio >= config('other.ratio') &&
