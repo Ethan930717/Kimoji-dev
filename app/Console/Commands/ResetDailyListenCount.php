@@ -15,7 +15,7 @@ class ResetDailyListenCount extends Command
         parent::__construct();
     }
 
-    public function handle()
+    public function handle(): void
     {
         User::query()->update(['daily_listen_count' => 0]);
         $this->info('Daily listen counts have been reset.');
