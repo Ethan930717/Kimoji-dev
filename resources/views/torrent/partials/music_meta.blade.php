@@ -96,11 +96,10 @@
                         @php
                             $limit = $listenLimits[$userGroup] ?? PHP_INT_MAX; // 默认无限制
                         @endphp
-
                         @if(auth()->user()->daily_listen_count < $limit)
-                            <button id="loadPlayerBtn" class="meta-id-tag" data-username="{{ auth()->user()->username }}">加载试听曲目</button>
+                            <button id="loadPlayerBtn" class="meta-id-tag"  data-username="{{ auth()->user()->username }}" onclick="this.style.display='none';">加载试听曲目</button>
                         @else
-                            <span class="meta-id-tag">今日试听次数 {{ auth()->user()->daily_listen_count }}/{{ $limit }}</span>
+                            <span class="meta-id-tag">今日试听次数已用尽 {{ auth()->user()->daily_listen_count }}/{{ $limit }}</span>
                         @endif
                     @endif
             </li>
