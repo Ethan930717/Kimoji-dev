@@ -13,6 +13,7 @@
 
 namespace App\Console\Commands;
 
+use App\Enums\UserGroup;
 use App\Jobs\SendDisableUserMail;
 use App\Models\Group;
 use App\Models\User;
@@ -49,9 +50,7 @@ class AutoDisableInactiveUsers extends Command
     public function handle(): void
     {
         if (config('pruning.user_pruning')) {
-            $disabledGroup = cache()->rememberForever('disabled_group', function () {
-                return Group::where('slug', '=', 'disabled')->first()->id; // 直接获取id
-            });
+
             $thresholdSizeTB = 0.1; // 官种保种量阈值，100GB = 0.1TB
 
             $current = Carbon::now();
@@ -75,7 +74,7 @@ class AutoDisableInactiveUsers extends Command
 
                 if ($soundOfficialTorrentsSizeTB < $thresholdSizeTB) {
                     // 更改用户状态为冻结
-                    $user->group_id = $disabledGroup;
+                    $user->group_id = UserGroup::DISABLED->value;
                     $user->can_upload = false;
                     $user->can_comment = false;
                     $user->can_invite = false;
