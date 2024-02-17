@@ -197,7 +197,6 @@ Route::middleware('language')->group(function (): void {
         // Torrents System
         Route::prefix('torrents')->name('torrents.')->group(function (): void {
             Route::get('/', [App\Http\Controllers\TorrentController::class, 'index'])->name('index');
-            Route::post('/listen', [App\Http\Controllers\TorrentController::class, 'listen'])->name('listen');
             Route::get('/create', [App\Http\Controllers\TorrentController::class, 'create'])->name('create');
             Route::post('/', [App\Http\Controllers\TorrentController::class, 'store'])->name('store');
             Route::get('/{id}{hash?}', [App\Http\Controllers\TorrentController::class, 'show'])->name('show');
@@ -396,6 +395,7 @@ Route::middleware('language')->group(function (): void {
         Route::get('/edit', [App\Http\Controllers\User\UserController::class, 'edit'])->name('edit');
         Route::patch('/', [App\Http\Controllers\User\UserController::class, 'update'])->name('update');
         Route::post('/accept-rules', [App\Http\Controllers\User\UserController::class, 'acceptRules'])->name('accept.rules');
+        Route::post('/increment-listen-count', [App\Http\Controllers\User\UserController::class, 'incrementListenCount'])->name('increment_listen_count');
 
         // Achievements
         Route::prefix('achievements')->name('achievements.')->group(function (): void {

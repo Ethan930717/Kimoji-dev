@@ -211,4 +211,14 @@ class UserController extends Controller
             'read_rules' => true,
         ]);
     }
+
+    public function incrementListenCount(Request $request)
+    {
+        $user = auth()->user(); // 获取当前登录的用户
+
+        $user->incrementDailyListenCount(); // 增加试听次数
+
+        return response()->json(['message' => '试听次数已更新', 'newCount' => $user->daily_listen_count]);
+    }
+
 }

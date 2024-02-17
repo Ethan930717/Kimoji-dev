@@ -81,12 +81,41 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadPlayerBtn = document.getElementById('loadPlayerBtn');
     if (loadPlayerBtn) {
         loadPlayerBtn.addEventListener('click', function() {
+            const username = loadPlayerBtn.getAttribute('data-username');
+            const url = `/users/${username}/increment-listen-count`;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'Content-Type': 'application/json',
+                },
+                // 这里不需要发送 username，因为已经在 URL 中指定
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => {
+                    // 假设后端返回的数据中包含 updatedCount（更新后的试听次数）和 limit（试听次数限制）
+                    if (data.updatedCount <= data.limit) {
+                        // 更新按钮文本或替换为“今日试听次数”信息
+                        loadPlayerBtn.outerHTML = `<span class="meta-id-tag">今日试听次数 ${data.updatedCount}/${data.limit}</span>`;
+                    } else {
+                        // 用户试听次数已用尽
+                        loadPlayerBtn.outerHTML = `<span class="meta-id-tag">今日试听次数已用尽</span>`;
+                    }
+                })
+                .catch(error => console.error('Error:', error));
             initializeAPlayer();
-            // 点击后，可选择隐藏按钮
-            loadPlayerBtn.style.display = 'none';
+            // 根据需要决定是否在这里隐藏按钮
+            // loadPlayerBtn.style.display = 'none';
         });
     }
 });
+
 
 //上传音乐
 document.addEventListener('DOMContentLoaded', function() {

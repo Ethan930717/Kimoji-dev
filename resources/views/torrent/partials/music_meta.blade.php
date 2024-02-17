@@ -72,31 +72,37 @@
                 </a>
 
                     @php
-                        $userGroup = auth()->user()->group->name;
+                        use App\Enums\UserGroup;
+                        $userGroup = auth()->user()->group_id;
                         $listenLimits = [
-                             '布衣'        => 1, '壮士' => 6, '力士' => 12,
-                            'EXTREMEUSER' => 20, 'INSANEUSER' => 30, 'VETERAN' => 42,
-                            'SEEDER' => 55, 'ARCHIVIST' => 70,
+                            UserGroup::USER->value => 1,
+                            UserGroup::POWERUSER->value => 6,
+                            UserGroup::SUPERUSER->value => 12,
+                            UserGroup::EXTREMEUSER->value => 20,
+                            UserGroup::INSANEUSER->value => 30,
+                            UserGroup::VETERAN->value => 42,
+                            UserGroup::SEEDER->value => 55,
+                            UserGroup::ARCHIVIST->value => 70,
+                            // 任何未列出的等级都没有限制，可以无限试听
                         ];
-                        $unlimitedGroups = ['SOME_SPECIAL_GROUP']; // 指定无限试听的用户组名称
+                        $unlimitedGroups = [UserGroup::VIP->value, UserGroup::KEEPER->value, UserGroup::OWNER->value, UserGroup::INTERNAL->value];
                     @endphp
 
-                    @if(in_array($userGroup, ['徭役', '入寐']))
+                    @if($userGroup === UserGroup::LEECH->value || $userGroup === UserGroup::DISABLED->value)
                         <span class="meta-id-tag">权限不足，无法试听</span>
                     @elseif(in_array($userGroup, $unlimitedGroups))
-                        <button id="loadPlayerBtn" class="meta-id-tag" onclick="this.style.display='none';">加载试听曲目</button>
+                        <button id="loadPlayerBtn" class="meta-id-tag"  data-username="{{ auth()->user()->username }}" onclick="this.style.display='none';">加载试听曲目</button>
                     @else
                         @php
-                            $limit = $listenLimits[$userGroup] ?? 0;
+                            $limit = $listenLimits[$userGroup] ?? PHP_INT_MAX; // 默认无限制
                         @endphp
 
                         @if(auth()->user()->daily_listen_count < $limit)
-                            <button id="loadPlayerBtn" class="meta-id-tag">加载试听曲目</button>
+                            <button id="loadPlayerBtn" class="meta-id-tag" data-username="{{ auth()->user()->username }}">加载试听曲目</button>
                         @else
                             <span class="meta-id-tag">今日试听次数 {{ auth()->user()->daily_listen_count }}/{{ $limit }}</span>
                         @endif
                     @endif
-
             </li>
 
         </ul>
