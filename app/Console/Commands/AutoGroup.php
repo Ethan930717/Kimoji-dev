@@ -126,11 +126,11 @@ class AutoGroup extends Command
                 $soundOfficialTorrentsSizeTB >= 0.1 &&
                 $user->group_id != Usergroup::USER->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
-                $user->group_id = Usergroup::USER->value;
-                $user->can_request = true;
-                $user->can_invite = false;
-                $user->can_download = true;
-                $user->save();
+                    $user->group_id = Usergroup::USER->value;
+                    $user->can_request = true;
+                    $user->can_invite = false;
+                    $user->can_download = true;
+                    $user->save();
                 }
             } else {
                 if ($user->ratio >= config('other.ratio') &&
