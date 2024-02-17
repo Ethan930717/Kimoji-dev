@@ -31,6 +31,7 @@ use App\Models\Thank;
 use App\Models\Topic;
 use App\Models\Torrent;
 use App\Models\User;
+use App\Notifications\UserBan;
 use App\Services\Unit3dAnnounce;
 use Illuminate\Console\Command;
 use Exception;
@@ -73,6 +74,12 @@ class AutoSoftDeleteDisabledUsers extends Command
             foreach ($users as $user) {
                 $user->update([
                     'group_id'     => UserGroup::BANNED->value,
+                    'can_upload'   => 0,
+                    'can_download' => 0,
+                    'can_comment'  => 0,
+                    'can_invite'   => 0,
+                    'can_request'  => 0,
+                    'can_chat'     => 0,
                 ]);
 
                 Ban::create([
@@ -82,7 +89,8 @@ class AutoSoftDeleteDisabledUsers extends Command
                 ]);
             }
         }
-
+                cache()->forget('user:'.$user->passkey);
+                dispatch(new SendDeleteUserMail($user));
         $this->comment('Automated Soft Delete Disabled Users Command Complete');
     }
 }
