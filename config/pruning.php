@@ -24,9 +24,9 @@ return [
     | Groups That Can Be Auto Disabled [DEFAULT] (User, PowerUser, SuperUser, Leech)
     */
 
-    'user_pruning' => false,
+    'user_pruning' => true,
     'account_age'  => 30,
     'last_login'   => 60,
     'soft_delete'  => 7,
-    'group_ids'    => [UserGroup::USER->value, UserGroup::POWERUSER->value, UserGroup::SUPERUSER->value, UserGroup::LEECH->value],
+    'group_ids'    => [UserGroup::USER->value, UserGroup::LEECH->value],
 ];
