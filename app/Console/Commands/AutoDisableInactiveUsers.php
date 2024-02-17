@@ -58,7 +58,7 @@ class AutoDisableInactiveUsers extends Command
             $matches = User::whereIntegerInRaw('group_id', config('pruning.group_ids'))->get();
 
             $users = $matches->where('created_at', '<', $current->copy()->subDays(config('pruning.account_age'))->toDateTimeString())
-                ->get();
+                ->all();
 
             foreach ($users as $user) {
                 $soundOfficialTorrentsSize = Peer::query()
