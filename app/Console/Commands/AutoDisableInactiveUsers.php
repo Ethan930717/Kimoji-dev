@@ -16,6 +16,7 @@ namespace App\Console\Commands;
 use App\Jobs\SendDisableUserMail;
 use App\Models\Group;
 use App\Models\User;
+use App\Models\Peer;
 use App\Services\Unit3dAnnounce;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
@@ -50,23 +51,33 @@ class AutoDisableInactiveUsers extends Command
         if (config('pruning.user_pruning')) {
             $disabledGroup = cache()->rememberForever('disabled_group', fn () => Group::where('slug', '=', 'disabled')->pluck('id'));
 
+            $thresholdSizeTB = 0.1; // 官种保种量阈值，100GB = 0.1TB
+
             $current = Carbon::now();
 
             $matches = User::whereIntegerInRaw('group_id', config('pruning.group_ids'))->get();
 
             $users = $matches->where('created_at', '<', $current->copy()->subDays(config('pruning.account_age'))->toDateTimeString())
-                ->where('last_login', '<', $current->copy()->subDays(config('pruning.last_login'))->toDateTimeString())
-                ->all();
+                ->get();
 
             foreach ($users as $user) {
-                if ($user->seedingTorrents()->doesntExist()) {
-                    $user->group_id = $disabledGroup[0];
+                $soundOfficialTorrentsSize = Peer::query()
+                    ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
+                    ->where('peers.user_id', '=', $user->id)
+                    ->where('peers.seeder', '=', 1)
+                    ->where('peers.active', '=', 1)
+                    ->where('torrents.internal', '=', 1) // 官种
+                    ->sum('torrents.size');
+
+                $soundOfficialTorrentsSizeTB = $soundOfficialTorrentsSize / (1024 * 1024 * 1024 * 1024);
+
+                if ($soundOfficialTorrentsSizeTB < $thresholdSizeTB) {
+                    // 更改用户状态为冻结
+                    $user->group_id = $disabledGroup;
                     $user->can_upload = false;
-                    $user->can_download = false;
                     $user->can_comment = false;
                     $user->can_invite = false;
                     $user->can_request = false;
-                    $user->can_chat = false;
                     $user->disabled_at = Carbon::now();
                     $user->save();
 

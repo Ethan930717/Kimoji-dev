@@ -25,8 +25,8 @@ return [
     */
 
     'user_pruning' => false,
-    'account_age'  => 60,
+    'account_age'  => 30,
     'last_login'   => 60,
-    'soft_delete'  => 30,
+    'soft_delete'  => 7,
     'group_ids'    => [UserGroup::USER->value, UserGroup::POWERUSER->value, UserGroup::SUPERUSER->value, UserGroup::LEECH->value],
 ];

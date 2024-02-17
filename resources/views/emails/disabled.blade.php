@@ -1,8 +1,6 @@
 @component('mail::message')
 # {{ __('email.disabled-header') }}!
-您的账户因长时间不活跃已被标记为禁用，并已被置于禁用组。
-为了保留您的账户，您必须在收到此电子邮件后的 {{ config('pruning.soft_delete') }} 天内登录。
-如果未能这样做，您的账户将被永久从 {{ config('other.title') }} 中删除！
-为了避免这种情况，请至少每隔 {{ config('pruning.last_login') }} 天登录一次。
-
+您的账户因长时间未达到最低保种要求，已被列入流放名单。
+为了保留您的账户，请您在收到此电子邮件后的 {{ config('pruning.soft_delete') }} 天内达到100GB的最低保种要求（仅限音乐区官方资源）。
+如逾期仍未达到要求，我们只能遗憾地请您离开 {{ config('other.title') }}。
 @endcomponent
