@@ -34,6 +34,6 @@ class UserBanExpire extends Notification
     {
         return (new MailMessage())
             ->greeting('您的流放之路已结束')
-            ->line('欢迎回来')
+            ->line('欢迎回来');
     }
 }
