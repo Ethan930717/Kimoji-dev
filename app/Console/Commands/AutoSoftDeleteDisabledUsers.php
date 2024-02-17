@@ -61,9 +61,10 @@ class AutoSoftDeleteDisabledUsers extends Command
     public function handle(): void
     {
         if (config('pruning.user_pruning')) {
-            $disabledGroup = cache()->rememberForever('disabled_group', fn () => Group::where('slug', '=', 'disabled')->pluck('id')->first());
-
-            $users = User::where('group_id', '=', $disabledGroup[0])
+            $disabledGroup = cache()->rememberForever('disabled_group', function () {
+                return Group::where('slug', '=', 'disabled')->pluck('id')->first();
+            });
+            $users = User::where('group_id', '=', $disabledGroup)
                 ->where('disabled_at', '<', now()->copy()->subDays(config('pruning.soft_delete'))->toDateTimeString())
                 ->get();
 
