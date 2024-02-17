@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loadPlayerBtn.addEventListener('click', function() {
             const username = loadPlayerBtn.getAttribute('data-username');
             const url = `/users/${username}/increment-listen-count`;
+            this.style.display = 'none';
             fetch(url, {
                 method: 'POST',
                 headers: {
@@ -90,13 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     'Content-Type': 'application/json',
                 },
             })
-                .then(response => {
-                    if (!response.ok) throw new Error('Network response was not ok.');
-                    return response.json();
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
              initializeAPlayer();
         });
     }
