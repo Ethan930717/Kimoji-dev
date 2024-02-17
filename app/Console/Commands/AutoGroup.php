@@ -127,11 +127,11 @@ class AutoGroup extends Command
                 $soundOfficialTorrentsSizeTB >= 0.1 &&
                 $user->group_id != Usergroup::USER->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
-                $user->group_id = Usergroup::USER->value;
-                $user->can_request = true;
-                $user->can_invite = false;
-                $user->can_download = true;
-                $user->save();
+                    $user->group_id = Usergroup::USER->value;
+                    $user->can_request = true;
+                    $user->can_invite = false;
+                    $user->can_download = true;
+                    $user->save();
                 }
             } else {
                 // 对于注册时间小于30天的用户
@@ -145,7 +145,6 @@ class AutoGroup extends Command
                     $user->save();
                 }
             }
-
 
             // PowerUser >= 500GB
             if ($user->ratio >= config('other.ratio') &&
