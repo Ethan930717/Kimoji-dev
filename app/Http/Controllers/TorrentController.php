@@ -90,6 +90,7 @@ class TorrentController extends Controller
         $meta = null;
         $platforms = null;
         $bdInfo = $torrent->bdinfo !== null ? (new BDInfo())->parse($torrent->bdinfo) : null;
+
         if ($torrent->category->tv_meta && $torrent->tmdb) {
             $meta = Tv::with([
                 'genres',
