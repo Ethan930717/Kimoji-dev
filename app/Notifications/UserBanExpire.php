@@ -33,8 +33,7 @@ class UserBanExpire extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage())
-            ->greeting('你被赦免了')
-            ->line('你的流放之路已结束')
-            ->line('欢迎你重新回到'.config('other.title'));
+            ->greeting('您的流放之路已结束')
+            ->line('欢迎回来')
     }
 }

@@ -35,6 +35,6 @@ class DeleteUser extends Mailable
     public function build(): static
     {
         return $this->markdown('emails.pruned')
-            ->subject('您的账号已经被冻结 - '.config('other.title'));
+            ->subject('账号冻结通知 - '.config('other.title'));
     }
 }

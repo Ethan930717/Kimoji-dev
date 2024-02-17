@@ -19,6 +19,7 @@ use App\Models\Comment;
 use App\Models\FailedLoginAttempt;
 use App\Models\FreeleechToken;
 use App\Models\Group;
+use App\Models\Ban;
 use App\Models\History;
 use App\Models\Like;
 use App\Models\Message;
@@ -71,68 +72,14 @@ class AutoSoftDeleteDisabledUsers extends Command
 
             foreach ($users as $user) {
                 $user->update([
-                    'can_upload'   => false,
-                    'can_download' => false,
-                    'can_comment'  => false,
-                    'can_invite'   => false,
-                    'can_request'  => false,
-                    'can_chat'     => false,
-                    'group_id'     => UserGroup::PRUNED->value,
-                    'deleted_by'   => User::SYSTEM_USER_ID,
+                    'group_id'     => UserGroup::BANNED->value,
                 ]);
 
-                Torrent::withoutGlobalScope(ApprovedScope::class)->where('user_id', '=', $user->id)->update([
-                    'user_id' => User::SYSTEM_USER_ID,
+                Ban::create([
+                    'owned_by' => $user->id,
+                    'created_by' => 1,
+                    'ban_reason' => "注册之日起30天内未达到100GB官方音乐资源保种要求",
                 ]);
-
-                Comment::where('user_id', '=', $user->id)->update([
-                    'user_id' => User::SYSTEM_USER_ID,
-                ]);
-
-                Post::where('user_id', '=', $user->id)->update([
-                    'user_id' => User::SYSTEM_USER_ID,
-                ]);
-
-                Topic::where('first_post_user_id', '=', $user->id)->update([
-                    'first_post_user_id' => User::SYSTEM_USER_ID,
-                ]);
-
-                Topic::where('last_post_user_id', '=', $user->id)->update([
-                    'last_post_user_id' => User::SYSTEM_USER_ID,
-                ]);
-
-                PrivateMessage::where('sender_id', '=', $user->id)->update([
-                    'sender_id' => User::SYSTEM_USER_ID,
-                ]);
-
-                PrivateMessage::where('receiver_id', '=', $user->id)->update([
-                    'receiver_id' => User::SYSTEM_USER_ID,
-                ]);
-
-                Message::where('user_id', '=', $user->id)->delete();
-                Like::where('user_id', '=', $user->id)->delete();
-                Thank::where('user_id', '=', $user->id)->delete();
-                Peer::where('user_id', '=', $user->id)->delete();
-                History::where('user_id', '=', $user->id)->delete();
-                FailedLoginAttempt::where('user_id', '=', $user->id)->delete();
-
-                // Removes all follows for user
-                $user->followers()->detach();
-                $user->following()->detach();
-
-                // Removes all FL Tokens for user
-                foreach (FreeleechToken::where('user_id', '=', $user->id)->get() as $token) {
-                    $token->delete();
-                    cache()->forget('freeleech_token:'.$user->id.':'.$token->torrent_id);
-                }
-
-                cache()->forget('user:'.$user->passkey);
-
-                Unit3dAnnounce::removeUser($user);
-
-                dispatch(new SendDeleteUserMail($user));
-
-                $user->delete();
             }
         }
 
