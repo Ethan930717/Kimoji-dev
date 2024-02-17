@@ -100,6 +100,7 @@ class AutoGroup extends Command
             if ($user->group_id = Usergroup::DISABLED->value) {
                 if ($user->ratio < config('other.ratio') &&
                     $soundOfficialTorrentsSizeTB >= 0.1 &&
+                    $soundOfficialTorrentsSizeTB < 0.5 &&
                     $user->group_id != Usergroup::LEECH->value &&
                     !\in_array($user->group_id, $excludedGroups)) {
                     $user->group_id = Usergroup::LEECH->value;
@@ -110,6 +111,7 @@ class AutoGroup extends Command
                 }
             } else {
                 if ($user->ratio < config('other.ratio') &&
+                    $soundOfficialTorrentsSizeTB < 0.5 &&
                     $user->group_id != Usergroup::LEECH->value &&
                     !\in_array($user->group_id, $excludedGroups)) {
                     $user->group_id = Usergroup::LEECH->value;
@@ -124,6 +126,7 @@ class AutoGroup extends Command
             if ($user->group_id = Usergroup::DISABLED->value) {
                 if ($user->ratio >= config('other.ratio') &&
                 $soundOfficialTorrentsSizeTB >= 0.1 &&
+                $soundOfficialTorrentsSizeTB < 0.5 &&
                 $user->group_id != Usergroup::USER->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
                     $user->group_id = Usergroup::USER->value;
@@ -134,6 +137,7 @@ class AutoGroup extends Command
                 }
             } else {
                 if ($user->ratio >= config('other.ratio') &&
+                    $soundOfficialTorrentsSizeTB < 0.5 &&
                     $user->group_id != Usergroup::USER->value &&
                     !\in_array($user->group_id, $excludedGroups)) {
                     $user->group_id = Usergroup::USER->value;
