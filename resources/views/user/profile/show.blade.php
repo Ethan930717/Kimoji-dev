@@ -53,13 +53,10 @@
                                         </p>
                                         <p class="form__group">
                                             <select id="volume" name="volume" class="form__select">
-                                                <option value="107374182400">100GB</option> <!-- 100GB in bytes -->
-                                                <option value="214748364800">200GB</option> <!-- 200GB in bytes -->
+                                                <option value="161061273600">150GB</option> <!-- 100GB in bytes -->
                                                 <option value="536870912000">500GB</option> <!-- 500GB in bytes -->
-                                                <option value="1319413953331.2">1.2TB</option> <!-- 1.2TB in bytes -->
+                                                <option value="1073741824000">1TB</option> <!-- 1TB in bytes -->
                                                 <option value="2199023255552">2TB</option> <!-- 2TB in bytes -->
-                                                <option value="3298534883328">3TB</option> <!-- 3TB in bytes -->
-                                                <option value="4617948836659.2">4.2TB</option> <!-- 4.2TB in bytes -->
                                             </select>
                                             <label class="form__label form__label--floating" for="volume">
                                                 选择体积
