@@ -1028,5 +1028,4 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->increment('daily_listen_count');
     }
-
 }
