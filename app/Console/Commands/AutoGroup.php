@@ -97,7 +97,7 @@ class AutoGroup extends Command
             // Temp Hard Coding of Group Requirements (Config Files To Come) (Upload in Bytes!) (Seedtime in Seconds!)
             $excludedGroups = [Usergroup::INTERNAL->value, Usergroup::KEEPER->value];
 
-            if ($user->group_id = Usergroup::DISABLED->value) {
+            if ($user->group_id == Usergroup::DISABLED->value) {
                 if ($user->ratio < config('other.ratio') &&
                     $soundOfficialTorrentsSizeTB >= 0.1 &&
                     $soundOfficialTorrentsSizeTB < 0.5 &&
@@ -123,7 +123,7 @@ class AutoGroup extends Command
             }
 
             // User >= 0 and ratio above sites minimum
-            if ($user->group_id = Usergroup::DISABLED->value) {
+            if ($user->group_id == Usergroup::DISABLED->value) {
                 if ($user->ratio >= config('other.ratio') &&
                 $soundOfficialTorrentsSizeTB >= 0.1 &&
                 $soundOfficialTorrentsSizeTB < 0.5 &&
