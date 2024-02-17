@@ -97,20 +97,34 @@ class AutoGroup extends Command
             // Temp Hard Coding of Group Requirements (Config Files To Come) (Upload in Bytes!) (Seedtime in Seconds!)
             $excludedGroups = [Usergroup::INTERNAL->value, Usergroup::KEEPER->value];
 
-            // Leech ratio dropped below sites minimum
-            if ($user->ratio < config('other.ratio') &&
-                $user->group_id != Usergroup::LEECH->value &&
-                !\in_array($user->group_id, $excludedGroups)) {
-                $user->group_id = Usergroup::LEECH->value;
-                $user->can_request = false;
-                $user->can_invite = false;
-                $user->can_download = false;
-                $user->save();
+            if ($user->created_at < $current->copy()->subDays(30)->toDateTimeString()) {
+                if ($user->ratio < config('other.ratio') &&
+                    $soundOfficialTorrentsSizeTB >= 0.1 &&
+                    $user->group_id != Usergroup::LEECH->value &&
+                    !\in_array($user->group_id, $excludedGroups)) {
+                    $user->group_id = Usergroup::LEECH->value;
+                    $user->can_request = false;
+                    $user->can_invite = false;
+                    $user->can_download = false;
+                    $user->save();
+                }
+            } else {
+                // 对于注册时间小于30天的用户
+                if ($user->ratio < config('other.ratio') &&
+                    $user->group_id != Usergroup::LEECH->value &&
+                    !\in_array($user->group_id, $excludedGroups)) {
+                    $user->group_id = Usergroup::LEECH->value;
+                    $user->can_request = false;
+                    $user->can_invite = false;
+                    $user->can_download = false;
+                    $user->save();
+                }
             }
 
             // User >= 0 and ratio above sites minimum
-            if ($user->uploaded >= 0 &&
-                $user->ratio >= config('other.ratio') &&
+            if ($user->created_at < $current->copy()->subDays(30)->toDateTimeString()) {
+                if ($user->ratio >= config('other.ratio') &&
+                $soundOfficialTorrentsSizeTB >= 0.1 &&
                 $user->group_id != Usergroup::USER->value &&
                 !\in_array($user->group_id, $excludedGroups)) {
                 $user->group_id = Usergroup::USER->value;
@@ -118,7 +132,20 @@ class AutoGroup extends Command
                 $user->can_invite = false;
                 $user->can_download = true;
                 $user->save();
+                }
+            } else {
+                // 对于注册时间小于30天的用户
+                if ($user->ratio >= config('other.ratio') &&
+                    $user->group_id != Usergroup::USER->value &&
+                    !\in_array($user->group_id, $excludedGroups)) {
+                    $user->group_id = Usergroup::USER->value;
+                    $user->can_request = true;
+                    $user->can_invite = false;
+                    $user->can_download = true;
+                    $user->save();
+                }
             }
+
 
             // PowerUser >= 500GB
             if ($user->ratio >= config('other.ratio') &&

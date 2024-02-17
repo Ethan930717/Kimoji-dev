@@ -53,6 +53,6 @@ return [
     'unban-reason'        => '原因',
     'username-reminder'   => '你的用户名是',
     'username-sent'       => '用户名已寄至你的邮箱',
-    'disabled-header'     => '你的帐户已被停用',
-    'pruned-header'       => '你的帐户已被移除',
+    'disabled-header'     => '您的账户即将冻结',
+    'pruned-header'       => '您的账号已被停用',
 ];
