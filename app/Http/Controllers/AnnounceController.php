@@ -333,7 +333,6 @@ final class AnnounceController extends Controller
         $deniedGroups = cache()->remember('denied_groups', 8 * 3600, fn () => DB::table('groups')
             ->selectRaw("min(case when slug = 'banned' then id end) as banned_id")
             ->selectRaw("min(case when slug = 'validating' then id end) as validating_id")
-            ->selectRaw("min(case when slug = 'disabled' then id end) as disabled_id")
             ->first());
 
         // Get The Users Group
@@ -349,11 +348,6 @@ final class AnnounceController extends Controller
         // If User Is Banned Return Error to Client
         if ($user->group_id === $deniedGroups->banned_id) {
             throw new TrackerException(141, [':status' => '流放']);
-        }
-
-        // If User Is Disabled Return Error to Client
-        if ($user->group_id === $deniedGroups->disabled_id) {
-            throw new TrackerException(141, [':status' => '冻结']);
         }
 
         return $group;
