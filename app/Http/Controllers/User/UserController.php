@@ -220,5 +220,4 @@ class UserController extends Controller
 
         return response()->json(['message' => '试听次数已更新', 'newCount' => $user->daily_listen_count]);
     }
-
 }
