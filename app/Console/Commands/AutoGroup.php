@@ -89,10 +89,10 @@ class AutoGroup extends Command
                 ->sum('torrents.size');
 
             // 将字节转换为TB
-            $blurayTorrentsSizeTB = $blurayTorrentsSize / (1024 * 1024 * 1024 * 1024);
-            $internalTorrentsSizeTB = $internalTorrentsSize / (1024 * 1024 * 1024 * 1024);
-            $soundOfficialTorrentsSizeTB = $soundOfficialTorrentsSize / (1024 * 1024 * 1024 * 1024);
-            $totalTorrentsSizeTB = $TotalTorrentsSize / (1024 * 1024 * 1024 * 1024);
+            $blurayTorrentsSizeTB = $blurayTorrentsSize / (1000 * 1000 * 1000 * 1000);
+            $internalTorrentsSizeTB = $internalTorrentsSize / (1000 * 1000 * 1000 * 1000);
+            $soundOfficialTorrentsSizeTB = $soundOfficialTorrentsSize / (1000 * 1000 * 1000 * 1000);
+            $totalTorrentsSizeTB = $TotalTorrentsSize / (1000 * 1000 * 1000 * 1000);
 
             // Temp Hard Coding of Group Requirements (Config Files To Come) (Upload in Bytes!) (Seedtime in Seconds!)
             $excludedGroups = [Usergroup::INTERNAL->value, Usergroup::KEEPER->value];

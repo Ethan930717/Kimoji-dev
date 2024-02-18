@@ -40,12 +40,12 @@ class EarningController extends Controller
      */
     private function convertToGbOrTb($bytes)
     {
-        $gb = $bytes / (1024 * 1024 * 1024); // 将字节转换为 GB
+        $gb = $bytes / (1000 * 1000 * 1000); // 将字节转换为 GB
 
         if ($gb < 105) {
             return number_format($gb, 2).' GB'; // 如果小于100 GB，保持 GB 单位
         }
-        $tb = $gb / 1024; // 将 GB 转换为 TB
+        $tb = $gb / 1000; // 将 GB 转换为 TB
 
         return number_format($tb, 2).' TB'; // 如果大于等于100 GB，使用 TB 单位
     }
@@ -58,7 +58,7 @@ class EarningController extends Controller
      */
     private function calculateBonusPerHour($bytes)
     {
-        $gb = $bytes / (1024 * 1024 * 1024); // 将字节转换为 GB
+        $gb = $bytes / (1000 * 1000 * 1000); // 将字节转换为 GB
         $bonusPerGb = 0.02; // 每 GB 的魔力增加量
 
         return $gb * $bonusPerGb; // 总保种 GB 数乘以每 GB 的魔力增加量

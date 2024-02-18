@@ -70,7 +70,7 @@ class AutoDisableInactiveUsers extends Command
                     ->where('torrents.category_id', '=', 3)
                     ->sum('torrents.size');
 
-                $soundOfficialTorrentsSizeTB = $soundOfficialTorrentsSize / (1024 * 1024 * 1024 * 1024);
+                $soundOfficialTorrentsSizeTB = $soundOfficialTorrentsSize / (1000 * 1000 * 1000 * 1000);
 
                 if ($soundOfficialTorrentsSizeTB < $thresholdSizeTB) {
                     // 更改用户状态为冻结

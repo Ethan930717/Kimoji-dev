@@ -75,7 +75,7 @@ class Top10 extends Component
                 ->when($this->interval === 'all', fn ($query) => $query->whereNotNull('history.completed_at'))
                 ->whereIn('torrents.category_id', Category::select('id')->where($this->metaType, '=', true))
                 // Small torrents screw the stats since users download them only to farm bon.
-                ->where('torrents.size', '>', 1024 * 1024 * 1024)
+                ->where('torrents.size', '>', 1000 * 1000 * 1000)
                 ->groupBy('tmdb')
                 ->orderByRaw('COUNT(*) DESC')
                 ->limit(250)

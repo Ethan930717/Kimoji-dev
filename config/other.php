@@ -143,9 +143,9 @@ return [
     |--------------------------------------------------------------------------
     |
     | This will be the upload and download given to new members. (In Bytes!)
-    | Default: 50GiB Upload and 1GiB Download
+    | Default: 100GiB Upload and 1GiB Download
     */
-    'default_upload'   => '10737418240',
+    'default_upload'   => '107374182400',
     'default_download' => '0',
 
     /*
@@ -181,7 +181,7 @@ return [
     | True/1 = Enabled
     | False/0 = Disabled
     */
-    'application_signups' => true,
+    'application_signups' => false,
 
     /*
     |--------------------------------------------------------------------------

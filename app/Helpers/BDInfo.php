@@ -140,7 +140,7 @@ class BDInfo
 
     private function convertBytesToGigabytes($bytes)
     {
-        return round($bytes / (1024 ** 3), 2).' GB'; // 将字节转换为千兆字节
+        return round($bytes / (1000 ** 3), 2).' GB'; // 将字节转换为千兆字节
     }
 
     private function parseAudio($string)
