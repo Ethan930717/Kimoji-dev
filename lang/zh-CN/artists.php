@@ -24,7 +24,7 @@ return [
     'biography'          => '简介',
     'nobiography'        => '暂无简介',
     'country'            => '国家地区',
-    'label'              => '厂牌：',
+    'label'              => '厂牌',
     'genre'              => '流派',
     'search-by-name'     => '按姓名搜索',
     'latest-project'     => '最后项目：',
