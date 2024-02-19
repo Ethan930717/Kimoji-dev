@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Artist;
+use DB;
+
 
 class CountrySearch extends Component
 {
