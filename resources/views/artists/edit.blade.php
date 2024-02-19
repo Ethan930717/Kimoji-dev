@@ -1,11 +1,15 @@
 @extends('layout.default')
 
 @section('breadcrumbs')
-    <li class="breadcrumb--active">
-        {{ __('artists.title') }}
+    <li class="breadcrumb">
+        <a class="breadcrumb__link" href="{{ route('artists.index') }}">
+            {{ __('artists.title') }}
+        </a>
     </li>
-    <li class="breadcrumb--active">
-        {{ $artist->name }}
+    <li class="breadcrumb">
+        <a class="breadcrumb__link" href="{{ route('artists.show', $artist->id) }}">
+            {{ $artist->name }}
+        </a>
     </li>
     <li class="breadcrumb--active">
         {{ __('common.edit') }}
