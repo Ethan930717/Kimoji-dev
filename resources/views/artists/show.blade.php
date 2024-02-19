@@ -10,7 +10,9 @@
 
 @section('breadcrumbs')
     <li class="breadcrumb--active">
-        {{ __('artists.title') }}
+        <a class="breadcrumb__link" href="{{ route('artists.index') }}">
+            {{ __('artists.title') }}
+        </a>
     </li>
     <li class="breadcrumb--active">
         {{ $artist->name }}
