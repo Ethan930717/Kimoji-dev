@@ -60,6 +60,7 @@ class HomeController extends Controller
         $albumsCount = DB::table('torrents')->where('category_id', 3)->count();
         $songsCount = DB::table('music')->count();
 
+
         return view('home.index', [
             'user'               => $user,
             'personal_freeleech' => cache()->get('personal_freeleech:'.$user->id),
@@ -493,6 +494,11 @@ class HomeController extends Controller
             'artistsCount'     => $artistsCount,
             'albumsCount'      => $albumsCount,
             'songsCount'       => $songsCount,
+            'countries'        => Artist::select('country')
+                ->whereNotNull('country') // 确保国家/地区字段不为空
+                ->distinct()
+                ->orderBy('country', 'asc')
+                ->get()
         ]);
     }
 }
