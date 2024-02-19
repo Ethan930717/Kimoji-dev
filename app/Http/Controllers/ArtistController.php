@@ -51,11 +51,15 @@ class ArtistController extends Controller
 
     public function countryIndex()
     {
-        Log::info('Accessing countryIndex method');
-        $countries = Artist::select('country')->distinct()->orderBy('country', 'asc')->get();
-        Log::info('Countries retrieved', ['countries' => $countries->pluck('country')]);
+        $countries = Artist::select('country')
+            ->where('country', '!=', '') // 确保country字段不为空
+            ->distinct()
+            ->orderBy('country', 'asc')
+            ->get();
+
         return view('artists.country.index', compact('countries'));
     }
+
 
     public function countryShow($country_name)
     {

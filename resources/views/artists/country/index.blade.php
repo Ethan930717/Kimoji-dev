@@ -1,21 +1,5 @@
-@extends('layout.default')
-
-@section('title')
-    <title>{{ __('artists.country_title') }} - {{ config('other.title') }}</title>
-@endsection
-
-@section('meta')
-    <meta name="description" content="{{ __('artists.country_description') }}" />
-@endsection
-
-@section('breadcrumbs')
-    <li class="breadcrumb--active">
-        {{ __('artists.country_title') }}
-    </li>
-@endsection
-
-@section('content')
-    <div class="panelV2">
+@if ($countries->isNotEmpty())
+    <section class="panelV2" style="margin-top: 20px">
         <div class="panel__heading">
             <h2>{{ __('artists.country_title') }}</h2>
         </div>
@@ -24,11 +8,14 @@
                 @foreach ($countries as $country)
                     <li>
                         <a href="{{ route('artists.country.show', ['country_name' => urlencode($country->country)]) }}">
-                            {{ $country->country }}
+                            <div class="country-image-container">
+                                <img src="/img/country/{{ $country->country }}.webp" alt="{{ $country->country }}" />
+                            </div>
+                            <div>{{ $country->country }}</div>
                         </a>
                     </li>
                 @endforeach
             </ul>
         </div>
-    </div>
-@endsection
+    </section>
+@endif
