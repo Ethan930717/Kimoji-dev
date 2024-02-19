@@ -49,24 +49,6 @@ class ArtistController extends Controller
         return redirect()->route('artists.show', $id);
     }
 
-    public function listCountries()
-    {
-        $countries = Artist::select('country')
-            ->where('country', '!=', '')
-            ->distinct()
-            ->orderBy('country', 'asc')
-            ->get();
-
-        dd($countries);
-        return view('artists.country.list', compact('countries'));
-    }
-
-
-    public function countryIndex()
-    {
-        return view('artists.country.index');
-    }
-
     public function countryShow($country_name)
     {
         // 解码 URL 参数以匹配数据库中的国家/地区名称

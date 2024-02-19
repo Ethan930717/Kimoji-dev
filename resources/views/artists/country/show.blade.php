@@ -10,7 +10,7 @@
 
 @section('breadcrumbs')
     <li class="breadcrumbV2">
-    <a href="{{ route('artists.country.index') }}" class="breadcrumb__link">
+    <a href="{{ route('mediahub.country.index') }}" class="breadcrumb__link">
         {{ __('artists.country_title') }}
     </a>
     </li>
