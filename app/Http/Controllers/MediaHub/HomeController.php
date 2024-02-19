@@ -22,6 +22,8 @@ use App\Models\Movie;
 use App\Models\Network;
 use App\Models\Person;
 use App\Models\Tv;
+use App\Models\Artist;
+
 
 class HomeController extends Controller
 {
@@ -30,6 +32,8 @@ class HomeController extends Controller
      */
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
+        $countriesCount = Artist::whereNotNull('country')->distinct('country')->count('country');
+
         return view('mediahub.index', [
             'tv'               => Tv::count(),
             'movies'           => Movie::count(),
@@ -40,6 +44,8 @@ class HomeController extends Controller
             'genres'           => Genre::count(),
             'networks'         => Network::count(),
             'companies'        => Company::count(),
+            'countriesCount'   => $countriesCount,
+
         ]);
     }
 }

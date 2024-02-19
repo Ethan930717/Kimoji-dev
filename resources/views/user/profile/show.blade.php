@@ -30,12 +30,15 @@
                             <div class="alert alert-warning" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
                                 请尽快达到最低保种要求，否则您的账号将会被禁用，当前进度 {{ number_format($soundOfficialTorrentsSize, 2, '.', '') }} / 100 GB
                             </div>
+                        @elseif ($soundOfficialTorrentsSize >= 1000)
+                            <div class="alert alert-warning" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
+                                当前您的音乐区保种量为{{ number_format($soundOfficialTorrentsSize / 1024, 2, '.', '') }} TB
+                            </div>
                         @else
                             <div class="alert alert-warning" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
-                                当前您的音乐区保种量为{{ number_format($soundOfficialTorrentsSize / 1024, 2, '.', '') }} TB                            </div>
+                                当前您的音乐区保种量为{{ number_format($soundOfficialTorrentsSize, 2, '.', '') }} GB
+                            </div>
                         @endif
-                    @endif
-
                     <div x-data>
                             <button class="form__button form__button--outlined" x-on:click.stop="$refs.dialog.showModal()">
                                 <i class="{{ config('other.font-awesome') }} fa-star"></i> 快速保种

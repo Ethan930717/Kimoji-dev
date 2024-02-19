@@ -19,7 +19,6 @@ Route::prefix('artists')->group(function (): void {
         Route::get('/{id}', [App\Http\Controllers\ArtistController::class, 'show'])->name('show');
         Route::get('/{id}/edit', [App\Http\Controllers\ArtistController::class, 'edit'])->name('edit');
         Route::patch('/{id}', [App\Http\Controllers\ArtistController::class, 'update'])->name('update');
-        Route::get('/country', [App\Http\Controllers\ArtistController::class, 'countryIndex'])->name('country.index');
         Route::get('/country/{country_name}', [App\Http\Controllers\ArtistController::class, 'countryShow'])->name('country.show');
     });
 });
@@ -321,6 +320,7 @@ Route::middleware('language')->group(function (): void {
         Route::get('/companies', [App\Http\Controllers\MediaHub\CompanyController::class, 'index'])->name('mediahub.companies.index');
         Route::get('/persons', [App\Http\Controllers\MediaHub\PersonController::class, 'index'])->name('mediahub.persons.index');
         Route::get('/persons/{id}', [App\Http\Controllers\MediaHub\PersonController::class, 'show'])->name('mediahub.persons.show');
+        Route::get('/country', [App\Http\Controllers\MediaHub\CountryController::class, 'index'])->name('mediahub.country.index');
         Route::get('/collections', [App\Http\Controllers\MediaHub\CollectionController::class, 'index'])->name('mediahub.collections.index');
         Route::get('/collections/{id}', [App\Http\Controllers\MediaHub\CollectionController::class, 'show'])->name('mediahub.collections.show');
     });

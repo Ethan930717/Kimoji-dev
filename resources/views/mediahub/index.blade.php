@@ -83,6 +83,14 @@
                         </h3>
                     </a>
                 </li>
+                <li class="mediahub-card__list-item">
+                    <a href="{{ route('mediahub.country.index') }}" class="mediahub-card">
+                        <h2 class="mediahub-card__heading">{{ __('artists.country') }} Hub</h2>
+                        <h3 class="mediahub-card__subheading">
+                            {{ $countriesCount }} {{ __('artists.country') }}
+                        </h3>
+                    </a>
+                </li>
             </ul>
         </div>
     </section>
