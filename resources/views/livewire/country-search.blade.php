@@ -32,7 +32,7 @@
         @forelse ($countries as $country)
             <figure style="display: flex; flex-direction: column; align-items: center; margin: 0;">
                 <a href="{{ route('artists.country.show', ['country_name' => urlencode($country->country)]) }}">
-                    <div class="country-image-container" style="width: 250px; height: 250px; overflow: hidden; border-radius: 8px;">
+                    <div class="country-image-container" style="width: 210px; height: 210px; overflow: hidden; border-radius: 8px;">
                         <img src="/img/country/{{ $country->country }}.webp" alt="{{ $country->country }}" style="width: 100%; height: auto;"/>
                     </div>
                     <figcaption style="text-align: center; font-size: 20px; margin-top: 10px;">
