@@ -39,5 +39,4 @@
                 <p>{{ __('未找到国家信息') }}</p>
             @endforelse
     </div>
-    {{ $artists->links('partials.pagination') }}
 </section>

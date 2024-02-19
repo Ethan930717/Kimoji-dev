@@ -41,5 +41,4 @@
             <p>{{ __('未找到歌手信息') }}</p>
         @endforelse
     </div>
-    {{ $artists->links('partials.pagination') }}
 </section>
