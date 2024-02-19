@@ -1,7 +1,7 @@
 for file in /Users/Ethan/Documents/GitHub/kimoji-dev/public/img/country/*.png; do
     webpfile="${file%.png}.webp"
     if [ ! -f "$webpfile" ]; then
-        # 转换格式为webp并调整图片尺寸为512x512
-        convert "$file" -resize 512x512\! "$webpfile"
+        # 转换格式为webp并调整图片尺寸为256x256
+        convert "$file" -resize 256x256\! "$webpfile"
     fi
 done
