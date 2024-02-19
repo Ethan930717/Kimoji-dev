@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Artist;
 use App\Models\Torrent;
+use Illuminate\Support\Facades\Log;
+
 
 class ArtistController extends Controller
 {
@@ -49,7 +51,9 @@ class ArtistController extends Controller
 
     public function countryIndex()
     {
+        Log::info('Accessing countryIndex method');
         $countries = Artist::select('country')->distinct()->orderBy('country', 'asc')->get();
+        Log::info('Countries retrieved', ['countries' => $countries->pluck('country')]);
         return view('artists.country.index', compact('countries'));
     }
 

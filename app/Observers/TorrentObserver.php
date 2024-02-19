@@ -19,7 +19,6 @@ use App\Models\Music;
 use App\Http\Controllers\TelegramController;
 use App\Services\Tmdb\Client\Movie;
 use App\Services\Tmdb\Client\TV;
-use Illuminate\Support\Facades\Log;
 
 class TorrentObserver
 {
@@ -77,7 +76,6 @@ class TorrentObserver
 
                     // Check if artist already exists
                     $artist = Artist::where('name', $artistName)->first();
-                    Log::info("Attempting to create artist with name: {$artistName}");
 
                     if (!$artist) {
                         // Artist does not exist, create new artist
@@ -85,7 +83,6 @@ class TorrentObserver
                         $artist->name = $artistName;
                         $artist->image_url = $imageUrl;
                         $artist->save();
-                        Log::info("Artist created with ID: {$artist->id}");
                     }
 
                     // Logic for music
@@ -106,7 +103,6 @@ class TorrentObserver
                         $music->duration = $duration;
                         $music->artist_name = $artistName;
                         $music->save();
-                        Log::info("Music record created for song: {$songName} with ID: {$music->id}");
                     }
 
                     break;
