@@ -4346,8 +4346,8 @@ th[wire\:click] {
 .country-image-container {
     display: inline-block;
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 170px;
+    height: 170px;
 }
 
 .country-image-container img {
@@ -4364,15 +4364,8 @@ th[wire\:click] {
     font-size: 16px
 }
 
-.country-image-container::before {
-    content: '';
-    position: absolute;
-    top: -30px; /* 根据需要调整模糊边缘的大小 */
-    left: -30px;
-    right: -30px;
-    bottom: -30px;
-    background: url('/img/country/{{ $country->country }}.webp') no-repeat center/cover;
-    filter: blur(20px); /* 调整模糊程度 */
-    z-index: -1;
+.artist-info > * {
+    margin-bottom: 10px;
 }
+
 
