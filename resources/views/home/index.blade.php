@@ -4,7 +4,7 @@
 
 @section('main')
     @include('blocks.news')
-    @include('artists.country.index')
+    @include('artists.country.list')
     @include('blocks.featured')
     @include('blocks.poll')
     @include('blocks.top_torrents')

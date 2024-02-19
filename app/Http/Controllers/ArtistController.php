@@ -49,16 +49,18 @@ class ArtistController extends Controller
         return redirect()->route('artists.show', $id);
     }
 
-    public function countryIndex()
+    public function listCountries()
     {
         $countries = Artist::select('country')
-            ->where('country', '!=', '') // 确保country字段不为空
+            ->where('country', '!=', '')
             ->distinct()
             ->orderBy('country', 'asc')
             ->get();
 
-        return view('artists.country.index', compact('countries'));
+        // 确保视图路径与新的视图文件名匹配
+        return view('artists.country.list', compact('countries'));
     }
+
 
 
     public function countryShow($country_name)
