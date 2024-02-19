@@ -19,7 +19,6 @@ Route::prefix('artists')->group(function (): void {
         Route::get('/{id}', [App\Http\Controllers\ArtistController::class, 'show'])->name('show');
         Route::get('/{id}/edit', [App\Http\Controllers\ArtistController::class, 'edit'])->name('edit');
         Route::patch('/{id}', [App\Http\Controllers\ArtistController::class, 'update'])->name('update');
-        Route::get('/country', [App\Http\Controllers\ArtistController::class, 'countryIndex'])->name('country.index');
         Route::get('/country/{country_name}', [App\Http\Controllers\ArtistController::class, 'countryShow'])->name('country.show');
     });
 });
