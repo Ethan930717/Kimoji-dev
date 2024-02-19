@@ -13,52 +13,53 @@
 @endsection
 
 @section('main')
-    <h1>编辑艺术家</h1>
+    <section class="panelV2">
+    <h2 class="panel__heading">{{ __('common.edit') }}: {{ $artist->name }}</h2>
+    <div class="panel__body">
     <form method="POST" action="{{ route('artists.update', $artist->id) }}">
         @csrf
         @method('PUT')
+        <p class="form__group">
+            <label for="birthday" class="form__label">生日/成立时间</label>
+            <input type="date" class="form__text" name="birthday" id="birthday" value="{{ $artist->birthday }}" placeholder="请按照yyyy-mm-dd的格式填写日期">
+        </p>
 
-        <div>
-            <label for="name">名称</label>
-            <input type="text" name="name" id="name" value="{{ $artist->name }}" placeholder="请输入艺术家名称" required>
-        </div>
+        <p class="form__group">
+            <label for="deathday" class="form__label">忌日/解散时间</label>
+            <input type="date" class="form__text" name="deathday" id="deathday" value="{{ $artist->deathday }}" placeholder="请按照yyyy-mm-dd的格式填写日期">
+        </p>
 
-        <div>
-            <label for="birthday">生日/成立时间</label>
-            <input type="date" name="birthday" id="birthday" value="{{ $artist->birthday }}" placeholder="请按照yyyy-mm-dd的格式填写日期">
-        </div>
+        <p class="form__group">
+            <label for="member" class="form__label">组成员</label>
+            <input type="text" class="form__text" name="member" id="member" value="{{ $artist->member }}" placeholder="每个名称之间请用'/'符号分隔">
+        </p>
 
-        <div>
-            <label for="deathday">忌日/解散时间</label>
-            <input type="date" name="deathday" id="deathday" value="{{ $artist->deathday }}" placeholder="请按照yyyy-mm-dd的格式填写日期">
-        </div>
+        <p class="form__group">
+            <label for="country" class="form__label">国家/地区</label>
+            <input type="text" class="form__text" name="country" id="country" value="{{ $artist->country }}" placeholder="请输入国家/地区名称">
+        </p>
 
-        <div>
-            <label for="member">组成员</label>
-            <input type="text" name="member" id="member" value="{{ $artist->member }}" placeholder="每个名称之间请用'/'符号分隔">
-        </div>
+        <p class="form__group">
+            <label for="label" class="form__label">厂牌</label>
+            <input type="text" class="form__text" name="label" id="label" value="{{ $artist->label }}" placeholder="每个名称之间请用'/'符号分隔">
+        </p>
 
-        <div>
-            <label for="country">国家/地区</label>
-            <input type="text" name="country" id="country" value="{{ $artist->country }}" placeholder="请输入国家/地区名称">
-        </div>
+        <p class="form__group">
+            <label for="genre" class="form__label">风格</label>
+            <input type="text" class="form__text" name="genre" id="genre" value="{{ $artist->genre }}" placeholder="每个名称之间请用'/'符号分隔">
+        </p>
 
-        <div>
-            <label for="label">厂牌</label>
-            <input type="text" name="label" id="label" value="{{ $artist->label }}" placeholder="每个名称之间请用'/'符号分隔">
-        </div>
-
-        <div>
-            <label for="genre">风格</label>
-            <input type="text" name="genre" id="genre" value="{{ $artist->genre }}" placeholder="每个名称之间请用'/'符号分隔">
-        </div>
-
-        <div>
-            <label for="biography">传记</label>
-            <textarea name="biography" id="biography" placeholder="请输入艺术家传记">{{ $artist->biography }}</textarea>
-        </div>
-
-        <button type="submit">更新</button>
+        <p class="form__group">
+            <label for="biography" class="form__label">传记</label>
+            <textarea name="biography" class="form__text" id="biography" placeholder="请输入艺术家传记">{{ $artist->biography }}</textarea>
+        </p>
+        <p class="form__group">
+            <button class="form__button form__button--filled" type="submit">
+                {{ __('common.submit') }}
+            </button>
+        </p>
     </form>
+    </div>
+    </section>
 @endsection
 
