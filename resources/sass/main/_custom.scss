@@ -4346,8 +4346,8 @@ th[wire\:click] {
 .country-image-container {
     display: inline-block;
     position: relative;
-    width: 100px;
-    height: 100px;
+    width: 256px;
+    height: 256px;
 }
 
 .country-image-container img {
@@ -4359,12 +4359,12 @@ th[wire\:click] {
 .country-image-container::before {
     content: '';
     position: absolute;
-    top: -5px; /* 根据需要调整模糊边缘的大小 */
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
+    top: -30px; /* 根据需要调整模糊边缘的大小 */
+    left: -30px;
+    right: -30px;
+    bottom: -30px;
     background: url('/img/country/{{ $country->country }}.webp') no-repeat center/cover;
-    filter: blur(8px); /* 调整模糊程度 */
+    filter: blur(20px); /* 调整模糊程度 */
     z-index: -1;
 }
 

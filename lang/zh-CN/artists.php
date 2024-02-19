@@ -13,7 +13,7 @@
 
 return [
     'albums'             => '专辑',
-    'country_title'      => '国家/地区',
+    'country_title'      => '国家地区',
     'songs'              => '歌曲',
     'born'               => '生日',
     'died'               => '忌日',
@@ -23,7 +23,7 @@ return [
     'unknown'            => '未知',
     'biography'          => '简介',
     'nobiography'        => '暂无简介',
-    'country'            => '国家/地区',
+    'country'            => '国家地区',
     'label'              => '厂牌：',
     'genre'              => '流派',
     'search-by-name'     => '按姓名搜索',
