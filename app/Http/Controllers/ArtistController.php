@@ -46,4 +46,23 @@ class ArtistController extends Controller
 
         return redirect()->route('artists.show', $id);
     }
+
+    public function countryIndex()
+    {
+        $countries = Artist::select('country')
+            ->distinct()
+            ->orderBy('country', 'asc')
+            ->get();
+
+        return view('artists.country.index', compact('countries'));
+    }
+
+    public function countryShow($country_name)
+    {
+        $artists = Artist::where('country', '=', $country_name)
+            ->orderBy('name', 'asc')
+            ->get();
+
+        return view('artists.country.show', compact('artists', 'country_name'));
+    }
 }

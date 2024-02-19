@@ -13,6 +13,7 @@
 
 return [
     'albums'             => '专辑',
+    'country_title'      => '国家/地区',
     'songs'              => '歌曲',
     'born'               => '生日',
     'died'               => '忌日',
@@ -29,7 +30,7 @@ return [
     'latest-project'     => '最后项目：',
     'networks'           => '流媒体',
     'no-data'            => '没有找到数据！',
-    'movies'             => '电影',
+    'country_description'=> '国家地区信息',
     'movie'              => '电影',
     'movie-credits'      => '电影评分：',
     'persons'            => '人物',

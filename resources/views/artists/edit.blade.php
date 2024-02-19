@@ -15,7 +15,7 @@
 @section('main')
     <section class="panelV2">
     <h2 class="panel__heading">{{ __('common.edit') }}: {{ $artist->name }}</h2>
-    <h2 class="panel__heading" style="font-size: 12px">所有用户都可以编辑歌手信息，但是恶意的编辑行为会遭到警告或冻结账号的处罚</h2>
+    <h2 class="panel__heading" style="font-size: 15px">所有用户都可以编辑歌手信息，但是恶意的编辑行为会受到警告或冻结账号的处罚</h2>
     <div class="panel__body">
     <form method="POST" action="{{ route('artists.update', $artist->id) }}">
         @csrf
