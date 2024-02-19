@@ -27,12 +27,14 @@
         "
     >
             @forelse ($countries as $country)
-            <figure style="display: flex; flex-direction: column; align-items: center">
+            <figure style="display: flex; flex-direction: column; align-items: center;">
                 <a href="{{ route('artists.country.show', ['country_name' => urlencode($country->country)]) }}">
-                    <div class="country-image-container">
+                    <div class="country-image-container" style="width: 250px; height: 250px; margin-left: 50px; margin-right: 50px;">
                         <img src="/img/country/{{ $country->country }}.webp" alt="{{ $country->country }}" />
                     </div>
-                    <figcaption>{{ $country->country }}</figcaption>
+                    <figcaption style="text-align: center; font-size: 20px;">
+                        {{ $country->country }} ({{ $country->total_artists }})
+                    </figcaption>
                 </a>
             </figure>
             @empty

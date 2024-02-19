@@ -76,5 +76,5 @@ return [
 
     'chat-link-name' => 'Discord',
     'chat-link-icon' => 'fab fa-discord',
-    'chat-link-url'  => 'https://t.me/Kimoji_office',
+    'chat-link-url'  => '',
 ];

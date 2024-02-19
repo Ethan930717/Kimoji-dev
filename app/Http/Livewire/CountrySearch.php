@@ -11,12 +11,13 @@ class CountrySearch extends Component
 
     public function render()
     {
-        $countries = Artist::select('country')
+        // 获取国家列表及每个国家的歌手总数
+        $countries = Artist::select('country', DB::raw('count(*) as total_artists'))
             ->when($this->search, function ($query) {
                 $query->where('country', 'like', '%' . $this->search . '%');
             })
             ->whereNotNull('country')
-            ->distinct()
+            ->groupBy('country')
             ->orderBy('country', 'asc')
             ->get();
 
