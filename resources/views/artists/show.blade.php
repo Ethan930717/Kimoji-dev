@@ -30,7 +30,8 @@
 
         <div class="artist-info" style="flex: 2;min-width: 300px;margin-left: 40px;">
             <h2 class="artist-name">{{ $artist->name }}</h2>
-            @if($artist->birthday)
+            <a href="{{ route('artists.edit', $artist->id) }}" class="form__button form__button--outlined" style="margin-left: 20px; text-decoration: none;">编辑歌手词条</a>
+        @if($artist->birthday)
                 <p><strong>{{ $artist->member ? __('artists.established') : __('artists.born') }}:</strong> {{ $artist->birthday }}</p>
             @endif
             @if($artist->deathday)
@@ -64,7 +65,6 @@
                 <h2 class="panel__heading">
                     {{ __('artists.artist-torrents') }} ({{ $torrents->count() }})
                 </h2>
-                <a href="{{ route('artists.edit', $artist->id) }}" class="form__button form__button--outlined" style="margin-left: 20px; text-decoration: none;">编辑歌手词条</a>
                 <div x-data>
                     <ul class="featured-carousel" x-ref="featured">
                         @foreach ($torrents as $torrent)

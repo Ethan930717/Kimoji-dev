@@ -18,7 +18,7 @@ Route::prefix('artists')->group(function (): void {
         Route::get('/', [App\Http\Controllers\ArtistController::class, 'index'])->name('index');
         Route::get('/{id}', [App\Http\Controllers\ArtistController::class, 'show'])->name('show');
         Route::get('/{id}/edit', [App\Http\Controllers\ArtistController::class, 'edit'])->name('edit');
-        Route::post('/{id}', [App\Http\Controllers\ArtistController::class, 'update'])->name('update');
+        Route::patch('/{id}', [App\Http\Controllers\ArtistController::class, 'update'])->name('update');
     });
 });
 
