@@ -23,6 +23,7 @@ use App\Models\Network;
 use App\Models\Person;
 use App\Models\Tv;
 use App\Models\Artist;
+use Illuminate\Support\Facades\DB;
 
 
 class HomeController extends Controller
@@ -33,6 +34,9 @@ class HomeController extends Controller
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
         $countriesCount = Artist::whereNotNull('country')->distinct('country')->count('country');
+        $artistsCount = DB::table('artists')->count();
+
+
 
         return view('mediahub.index', [
             'tv'               => Tv::count(),
@@ -45,7 +49,7 @@ class HomeController extends Controller
             'networks'         => Network::count(),
             'companies'        => Company::count(),
             'countriesCount'   => $countriesCount,
-
+            'artistsCount'     => $artistsCount,
         ]);
     }
 }
