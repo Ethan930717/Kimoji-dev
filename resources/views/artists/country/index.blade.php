@@ -23,7 +23,7 @@
             <ul class="list">
                 @foreach ($countries as $country)
                     <li>
-                        <a href="{{ route('artists.country.show', ['country_name' => urlencode($country->country)]) }}">
+                        <a>
                             {{ $country->country }}
                         </a>
                     </li>
