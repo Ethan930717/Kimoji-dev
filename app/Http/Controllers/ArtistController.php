@@ -49,11 +49,7 @@ class ArtistController extends Controller
 
     public function countryIndex()
     {
-        $countries = Artist::select('country')
-            ->distinct()
-            ->orderBy('country', 'asc')
-            ->get();
-
+        $countries = Artist::select('country')->distinct()->orderBy('country', 'asc')->get();
         return view('artists.country.index', compact('countries'));
     }
 
