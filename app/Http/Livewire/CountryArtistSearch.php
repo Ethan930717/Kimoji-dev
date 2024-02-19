@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Models\Artist;
 
 class CountryArtistSearch extends Component
 {
