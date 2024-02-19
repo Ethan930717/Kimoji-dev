@@ -28,10 +28,12 @@
             />
         </div>
 
-        <div class="artist-info" style="flex: 2;min-width: 300px;margin-left: 40px;">
-            <h2 class="artist-name">{{ $artist->name }}</h2>
-            <a href="{{ route('artists.edit', $artist->id) }}" class="form__button form__button--outlined" style="margin-left: 20px; text-decoration: none;">编辑歌手词条</a>
-        @if($artist->birthday)
+        <div class="artist-info" style="flex: 2;">
+            <div class="artist-header" style="display: flex; align-items: center; min-width: 300px; margin-left: 40px;">
+                <h2 class="artist-name" style="margin: 0;">{{ $artist->name }}</h2>
+                <a href="{{ route('artists.edit', $artist->id) }}" class="form__button form__button--outlined" style="margin-left: 10px; text-decoration: none;">编辑歌手词条</a>
+            </div>
+            @if($artist->birthday)
                 <p><strong>{{ $artist->member ? __('artists.established') : __('artists.born') }}:</strong> {{ $artist->birthday }}</p>
             @endif
             @if($artist->deathday)

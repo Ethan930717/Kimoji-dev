@@ -44,6 +44,6 @@ class ArtistController extends Controller
         ]);
         $artist->update($data);
 
-        return redirect()->route('artists.index');
+        return redirect()->route('artists.show', $id);
     }
 }

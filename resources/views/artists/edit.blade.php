@@ -31,23 +31,23 @@
         </p>
 
         <p class="form__group">
-            <label for="member" class="form__label">组成员</label>
-            <input type="text" class="form__text" name="member" id="member" value="{{ $artist->member }}" placeholder="每个名称之间请用'/'符号分隔">
+            <label for="member" class="form__label">乐队成员</label>
+            <input type="text" class="form__text" name="member" id="member" value="{{ $artist->member }}" placeholder="每个名称之间请用'/'符号分隔，非乐队组合请留空">
         </p>
 
         <p class="form__group">
             <label for="country" class="form__label">国家/地区</label>
-            <input type="text" class="form__text" name="country" id="country" value="{{ $artist->country }}" placeholder="请输入国家/地区名称">
+            <input type="text" class="form__text" name="country" id="country" value="{{ $artist->country }}" placeholder="中国香港/中国台湾/中国澳门或其他具体国家名称">
         </p>
 
         <p class="form__group">
             <label for="label" class="form__label">厂牌</label>
-            <input type="text" class="form__text" name="label" id="label" value="{{ $artist->label }}" placeholder="每个名称之间请用'/'符号分隔">
+            <input type="text" class="form__text" name="label" id="label" value="{{ $artist->label }}" placeholder="每个厂牌名之间请用'/'符号分隔">
         </p>
 
         <p class="form__group">
             <label for="genre" class="form__label">风格</label>
-            <input type="text" class="form__text" name="genre" id="genre" value="{{ $artist->genre }}" placeholder="每个名称之间请用'/'符号分隔">
+            <input type="text" class="form__text" name="genre" id="genre" value="{{ $artist->genre }}" placeholder="每种风格之间请用'/'符号分隔">
         </p>
 
         <p class="form__group">
