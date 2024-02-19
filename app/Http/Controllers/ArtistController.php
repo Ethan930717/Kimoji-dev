@@ -62,6 +62,10 @@ class ArtistController extends Controller
     }
 
 
+    public function countryIndex()
+    {
+        return view('artists.country.index');
+    }
 
     public function countryShow($country_name)
     {
