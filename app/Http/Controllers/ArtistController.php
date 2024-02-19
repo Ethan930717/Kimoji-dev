@@ -57,7 +57,7 @@ class ArtistController extends Controller
             ->orderBy('country', 'asc')
             ->get();
 
-        // 确保视图路径与新的视图文件名匹配
+        dd($countries);
         return view('artists.country.list', compact('countries'));
     }
 
