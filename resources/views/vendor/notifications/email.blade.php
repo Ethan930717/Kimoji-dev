@@ -4,9 +4,9 @@
 # {{ $greeting }}
 @else
 @if ($level === 'error')
-# {{ __('哎呀') }}
+# {{ __('Woops') }}
 @else
-# {{ __('您好') }}
+# {{ __('Hi') }}
 @endif
 @endif
 
