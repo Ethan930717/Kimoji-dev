@@ -60,6 +60,13 @@ class HomeController extends Controller
         $artistsCount = DB::table('artists')->count();
         $albumsCount = DB::table('torrents')->where('category_id', 3)->count();
         $songsCount = DB::table('music')->count();
+        $countries = cache()->remember('artist_countries', 60, function () {
+            return Artist::select('country')
+                ->whereNotNull('country')
+                ->distinct()
+                ->orderBy('country', 'asc')
+                ->get();
+        });
 
 
         return view('home.index', [
@@ -495,11 +502,7 @@ class HomeController extends Controller
             'artistsCount'     => $artistsCount,
             'albumsCount'      => $albumsCount,
             'songsCount'       => $songsCount,
-            'countries'        => Artist::select('country')
-                ->whereNotNull('country') // 确保国家/地区字段不为空
-                ->distinct()
-                ->orderBy('country', 'asc')
-                ->get()
+            'countries'        => $countries,
         ]);
     }
 }

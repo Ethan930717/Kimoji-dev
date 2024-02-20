@@ -33,14 +33,8 @@ class HomeController extends Controller
      */
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
-        $countriesCount = cache()->remember('countries_count', 60, function () {
-            return Artist::whereNotNull('country')->distinct('country')->count('country');
-        });
-
-        $artistsCount = cache()->remember('artists_count', 60, function () {
-            return DB::table('artists')->count();
-        });
-
+        $countriesCount = Artist::whereNotNull('country')->distinct('country')->count('country');
+        $artistsCount = DB::table('artists')->count();
 
 
         return view('mediahub.index', [
