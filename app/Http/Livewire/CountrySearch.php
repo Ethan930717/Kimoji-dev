@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Artist;
+use Illuminate\Support\Facades\Cache;
 use DB;
 
 
@@ -13,15 +14,17 @@ class CountrySearch extends Component
 
     public function render()
     {
-        // 获取国家列表及每个国家的歌手总数
-        $countries = Artist::select('country', DB::raw('count(*) as total_artists'))
-            ->when($this->search, function ($query) {
-                $query->where('country', 'like', '%' . $this->search . '%');
-            })
-            ->whereNotNull('country')
-            ->groupBy('country')
-            ->orderBy('country', 'asc')
-            ->get();
+        $searchKey = 'search_' . $this->search;
+        $countries = Cache::remember($searchKey, 60, function () {
+            return Artist::select('country', DB::raw('count(*) as total_artists'))
+                ->when($this->search, function ($query) {
+                    $query->where('country', 'like', '%' . $this->search . '%');
+                })
+                ->whereNotNull('country')
+                ->groupBy('country')
+                ->orderBy('country', 'asc')
+                ->get();
+        });
 
         return view('livewire.country-search', [
             'countries' => $countries
