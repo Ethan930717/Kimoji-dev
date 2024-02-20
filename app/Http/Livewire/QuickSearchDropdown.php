@@ -21,17 +21,18 @@ class QuickSearchDropdown extends Component
     public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         $search = '%'.str_replace(' ', '%', $this->quicksearchText).'%';
+        $cacheKey = 'search_'.$this->quicksearchRadio.'_'.md5($this->quicksearchText);
 
-        return view('livewire.quick-search-dropdown', [
-            'search_results' => $this->quicksearchText === '' ? [] : match ($this->quicksearchRadio) {
+        $search_results = cache()->remember($cacheKey, 60, function () use ($search) {
+            return $this->quicksearchText === '' ? [] : match ($this->quicksearchRadio) {
                 'albums' => Torrent::query()
                     ->where('category_id', '=', 3)
                     ->where('name', 'LIKE', $search)
                     ->take(50)
                     ->get(),
                 'songs' => Music::query()
-                    ->select(['id', 'artist_name', 'song_name', 'duration', 'torrent_id']) // 修改了选择的列名以匹配您的表结构
-                    ->where('song_name', 'LIKE', $search) // 修改搜索列为 song_name
+                    ->select(['id', 'artist_name', 'song_name', 'duration', 'torrent_id'])
+                    ->where('song_name', 'LIKE', $search)
                     ->take(50)
                     ->get(),
                 'artists' => Artist::query()
@@ -40,7 +41,11 @@ class QuickSearchDropdown extends Component
                     ->take(50)
                     ->get(),
                 default => [],
-            },
+            };
+        });
+
+        return view('livewire.quick-search-dropdown', [
+            'search_results' => $search_results,
         ]);
     }
 }
