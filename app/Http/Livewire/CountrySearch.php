@@ -4,9 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Artist;
-use Illuminate\Support\Facades\Cache;
 use DB;
-
 
 class CountrySearch extends Component
 {
@@ -15,7 +13,7 @@ class CountrySearch extends Component
     public function render()
     {
         $searchKey = 'search_' . $this->search;
-        $countries = Cache::remember($searchKey, 60, function () {
+        $countries = cache()->remember($searchKey, 60, function () {
             return Artist::select('country', DB::raw('count(*) as total_artists'))
                 ->when($this->search, function ($query) {
                     $query->where('country', 'like', '%' . $this->search . '%');

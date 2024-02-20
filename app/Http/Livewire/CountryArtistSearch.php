@@ -4,8 +4,6 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Artist;
-use Illuminate\Support\Facades\Cache;
-
 
 class CountryArtistSearch extends Component
 {
@@ -21,7 +19,7 @@ class CountryArtistSearch extends Component
     {
         $cacheKey = 'artists_in_' . $this->countryName . '_search_' . $this->search;
 
-        $artists = Cache::remember($cacheKey, 60, function () {
+        $artists = cache()->remember($cacheKey, 60, function () {
             return Artist::where('name', 'like', '%' . $this->search . '%')
                 ->where('country', '=', $this->countryName)
                 ->get();
@@ -32,4 +30,3 @@ class CountryArtistSearch extends Component
         ]);
     }
 }
-
