@@ -61,7 +61,7 @@
                                     $nextLevel = '掌固';
                                     $nextLevelSize = 12 - $torrentsSizeTB;
                                 } elseif ($torrentsSizeTB >= 12) {
-                                    $nextLevel = '掌固';
+                                    $nextLevel = '顶级';
                                     $nextLevelSize = 0;
                                 }
                             @endphp
@@ -69,13 +69,13 @@
                                 <div class="alert alert-warning" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
                                     请尽快达到最低保种要求，否则您的账号将会被禁用，当前进度 {{ number_format($soundOfficialTorrentsSize, 2, '.', '') }} / 100 GB
                                 </div>
-                            @elseif (!empty($nextLevel) && $nextLevel !== '掌固')
+                            @elseif (!empty($nextLevel) && $nextLevel !== '顶级')
                             <div class="alert alert-success" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
                                 当前您的音乐区保种量为{{ number_format($torrentsSizeTB, 2, '.', '') }} TB，距离升级到 {{ $nextLevel }} 还需要{{ number_format($nextLevelSize, 2, '.', '') }} TB。
                             </div>
                             @else
                                 <div class="alert alert-success" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
-                                    恭喜，您已达到{{ $nextLevel }}，是KIMOJI的顶级大佬！
+                                    恭喜，您已达到掌固，是KIMOJI的顶级大佬！
                                 </div>
                             @endif
                         @endif
