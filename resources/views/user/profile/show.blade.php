@@ -33,32 +33,29 @@
                                 $nextLevel = '';
                                 $nextLevelSize = 0;
 
-                                if ($torrentsSizeTB < 0.1) {
+                                if ($torrentsSizeTB < 0.5) {
                                     $nextLevel = '布衣';
-                                    $nextLevelSize = 0.1 - $torrentsSizeTB;
-                                } elseif ($torrentsSizeTB < 0.5) {
-                                    $nextLevel = '壮士';
                                     $nextLevelSize = 0.5 - $torrentsSizeTB;
                                 } elseif ($torrentsSizeTB < 1.2) {
-                                    $nextLevel = '力士';
+                                    $nextLevel = '壮士';
                                     $nextLevelSize = 1.2 - $torrentsSizeTB;
                                 } elseif ($torrentsSizeTB < 2) {
-                                    $nextLevel = '剑客';
+                                    $nextLevel = '力士';
                                     $nextLevelSize = 2 - $torrentsSizeTB;
                                 } elseif ($torrentsSizeTB < 3) {
-                                    $nextLevel = '大侠';
+                                    $nextLevel = '剑客';
                                     $nextLevelSize = 3 - $torrentsSizeTB;
                                 } elseif ($torrentsSizeTB < 4.2) {
-                                    $nextLevel = '盟主';
+                                    $nextLevel = '大侠';
                                     $nextLevelSize = 4.2 - $torrentsSizeTB;
                                 } elseif ($torrentsSizeTB < 6) {
-                                    $nextLevel = '至尊';
+                                    $nextLevel = '盟主';
                                     $nextLevelSize = 6 - $torrentsSizeTB;
                                 } elseif ($torrentsSizeTB < 8) {
-                                    $nextLevel = '剑圣';
+                                    $nextLevel = '至尊';
                                     $nextLevelSize = 8 - $torrentsSizeTB;
-                                } elseif ($torrentsSizeTB < 12) { // 修改这里，增加对12TB的判断
-                                    $nextLevel = '掌固';
+                                } elseif ($torrentsSizeTB < 12) {
+                                    $nextLevel = '剑圣';
                                     $nextLevelSize = 12 - $torrentsSizeTB;
                                 } elseif ($torrentsSizeTB >= 12) { // 修改这里，将条件改为大于等于12TB
                                     $nextLevel = '掌固';
@@ -70,9 +67,9 @@
                                     请尽快达到最低保种要求，否则您的账号将会被禁用，当前进度 {{ number_format($soundOfficialTorrentsSize, 2, '.', '') }} / 100 GB
                                 </div>
                             @elseif (!empty($nextLevel) && $nextLevel !== '掌固')
-                                <div class="alert alert-success" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
-                                    当前您的音乐区保种量为{{ number_format($torrentsSizeTB, 2, '.', '') }} TB，距离升级到 {{ $nextLevel }} 还需要{{ number_format($nextLevelSize, 2, '.', '') }} TB。
-                                </div>
+                            <div class="alert alert-success" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
+                                当前您的音乐区保种量为{{ number_format($torrentsSizeTB, 2, '.', '') }} TB，距离升级到 {{ $nextLevel }} 还需要{{ number_format($nextLevelSize, 2, '.', '') }} TB。
+                            </div>
                             @else
                                 <div class="alert alert-success" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
                                     恭喜，您已达到{{ $nextLevel }}，是KIMOJI的顶级大佬！
