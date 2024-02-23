@@ -33,31 +33,34 @@
                                 $nextLevel = '';
                                 $nextLevelSize = 0;
 
-                                if ($torrentsSizeTB < 0.5) {
+                                if ($torrentsSizeTB < 0.1) {
                                     $nextLevel = '布衣';
+                                    $nextLevelSize = 0.1 - $torrentsSizeTB;
+                                } elseif ($torrentsSizeTB < 0.5) {
+                                    $nextLevel = '壮士';
                                     $nextLevelSize = 0.5 - $torrentsSizeTB;
                                 } elseif ($torrentsSizeTB < 1.2) {
-                                    $nextLevel = '壮士';
+                                    $nextLevel = '力士';
                                     $nextLevelSize = 1.2 - $torrentsSizeTB;
                                 } elseif ($torrentsSizeTB < 2) {
-                                    $nextLevel = '力士';
+                                    $nextLevel = '剑客';
                                     $nextLevelSize = 2 - $torrentsSizeTB;
                                 } elseif ($torrentsSizeTB < 3) {
-                                    $nextLevel = '剑客';
+                                    $nextLevel = '大侠';
                                     $nextLevelSize = 3 - $torrentsSizeTB;
                                 } elseif ($torrentsSizeTB < 4.2) {
-                                    $nextLevel = '大侠';
+                                    $nextLevel = '盟主';
                                     $nextLevelSize = 4.2 - $torrentsSizeTB;
                                 } elseif ($torrentsSizeTB < 6) {
-                                    $nextLevel = '盟主';
+                                    $nextLevel = '至尊';
                                     $nextLevelSize = 6 - $torrentsSizeTB;
                                 } elseif ($torrentsSizeTB < 8) {
-                                    $nextLevel = '至尊';
+                                    $nextLevel = '剑圣';
                                     $nextLevelSize = 8 - $torrentsSizeTB;
                                 } elseif ($torrentsSizeTB < 12) {
-                                    $nextLevel = '剑圣';
+                                    $nextLevel = '掌固';
                                     $nextLevelSize = 12 - $torrentsSizeTB;
-                                } elseif ($torrentsSizeTB >= 12) { // 修改这里，将条件改为大于等于12TB
+                                } elseif ($torrentsSizeTB >= 12) {
                                     $nextLevel = '掌固';
                                     $nextLevelSize = 0;
                                 }
