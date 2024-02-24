@@ -71,7 +71,7 @@
                                 </div>
                             @elseif (!empty($nextLevel) && $nextLevel !== '顶级')
                             <div class="alert alert-success" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
-                                当前您的音乐区保种量为{{ number_format($torrentsSizeTB, 2, '.', '') }} TB，距离升级到 {{ $nextLevel }} 还需要{{ number_format($nextLevelSize, 2, '.', '') }} TB。
+                                当前您的音乐区保种量为{{ number_format($torrentsSizeTB, 2, '.', '') }} TB，距离升级到 {{ $nextLevel }} 还需要{{ number_format($nextLevelSize, 2, '.', '') }} TB
                             </div>
                             @else
                                 <div class="alert alert-success" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
