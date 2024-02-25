@@ -19,6 +19,7 @@ Route::prefix('artists')->group(function (): void {
         Route::get('/{id}', [App\Http\Controllers\ArtistController::class, 'show'])->name('show');
         Route::get('/{id}/edit', [App\Http\Controllers\ArtistController::class, 'edit'])->name('edit');
         Route::patch('/{id}', [App\Http\Controllers\ArtistController::class, 'update'])->name('update');
+        Route::get('/download-torrents/{user}/{artistId}', 'User\TorrentZipController@downloadArtistTorrentsZip')->name('download.artist.torrents');
         Route::get('/country/{country_name}', [App\Http\Controllers\ArtistController::class, 'countryShow'])->name('country.show');
     });
 });
@@ -564,6 +565,7 @@ Route::middleware('language')->group(function (): void {
         Route::prefix('torrent-zip')->name('torrent_zip.')->group(function (): void {
             Route::get('/', [App\Http\Controllers\User\TorrentZipController::class, 'show'])->name('show');
             Route::post('/download-urgent-seeders', [App\Http\Controllers\User\TorrentZipController::class, 'downloadUrgentSeedersZip'])->name('downloadUrgentSeedersZip');
+            Route::get('/download-artist-torrents/{artistId}', [App\Http\Controllers\User\TorrentZipController::class, 'downloadArtistTorrentsZip'])->name('downloadArtistTorrents');
         });
 
         // Torrents

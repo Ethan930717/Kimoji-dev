@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Artist;
 use App\Models\Torrent;
 
+
 class ArtistController extends Controller
 {
     public function index()

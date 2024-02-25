@@ -80,7 +80,7 @@
                             @endif
                         @endif
 
-                        <div x-data>
+                    <div x-data>
                 <button class="form__button form__button--outlined" x-on:click.stop="$refs.dialog.showModal()">
                     <i class="{{ config('other.font-awesome') }} fa-star"></i> 快速保种
                 </button>

@@ -66,9 +66,14 @@
     {{-- 艺术家资源展示 --}}
         @if ($torrents->isNotEmpty())
             <section class="panelV2" style="margin-top: 20px">
-                <h2 class="panel__heading">
-                    {{ __('artists.artist-torrents') }} ({{ $torrents->count() }})
-                </h2>
+                <div class="panel__heading-container" style="display: flex; align-items: center; justify-content: space-between;" x-data>
+                    <h2 class="panel__heading">
+                        {{ __('artists.artist-torrents') }} ({{ $torrents->count() }})
+                    </h2>
+                    <a href="{{ route('torrent_zip.downloadArtistTorrents', ['user' => auth()->user()->id, 'artistId' => $artist->id]) }}" class="form__button form__button--outlined">
+                        <i class="{{ config('other.font-awesome') }} fa-star"></i> 全部下载
+                    </a>
+                </div>
                 <div x-data>
                     <ul class="featured-carousel" x-ref="featured">
                         @foreach ($torrents as $torrent)

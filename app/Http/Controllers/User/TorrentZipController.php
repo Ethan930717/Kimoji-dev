@@ -17,6 +17,7 @@ use App\Helpers\Bencode;
 use App\Http\Controllers\Controller;
 use App\Models\Torrent;
 use App\Models\User;
+use App\Models\Artist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use ZipArchive;
@@ -162,4 +163,68 @@ class TorrentZipController extends Controller
 
         return redirect()->back()->withErrors(trans('common.something-went-wrong'));
     }
+
+    public function downloadArtistTorrentsZip(Request $request, User $user, $artistId)
+    {
+        set_time_limit(1200); // Extend execution time
+
+        abort_unless($request->user()->is($user), 403); // Authorized user only
+
+        $zipPath = getcwd().'/files/tmp_zip/';
+
+        if (!File::isDirectory($zipPath)) {
+            File::makeDirectory($zipPath, 0755, true, true);
+        } else {
+            Log::info('Directory already exists', ['path' => $zipPath]);
+        }
+
+        // 这里使用艺术家ID作为ZIP文件的一部分命名，以确保唯一性
+        $zipFileName = 'artist_'.$artistId.'_torrents.zip';
+        $zipArchive = new ZipArchive();
+        $artist = Artist::findOrFail($artistId);
+        $torrents = Torrent::where('name', 'like', '%'.$artist->name.'%')->get();
+
+        if ($zipArchive->open($zipPath.$zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
+            $announceUrl = route('announce', ['passkey' => $user->passkey]);
+
+            foreach ($torrents as $torrent) {
+                if (file_exists(getcwd().'/files/torrents/'.$torrent->file_name)) {
+                    $dict = Bencode::bdecode(file_get_contents(getcwd().'/files/torrents/'.$torrent->file_name));
+
+                    // Set the announce key and add the user passkey
+                    $dict['announce'] = $announceUrl;
+
+                    // Set link to torrent as the comment
+                    if (config('torrent.comment')) {
+                        $dict['comment'] = config('torrent.comment').'. '.route('torrents.show', ['id' => $torrent->id]);
+                    } else {
+                        $dict['comment'] = route('torrents.show', ['id' => $torrent->id]);
+                    }
+
+                    $fileToDownload = Bencode::bencode($dict);
+
+                    $filename = str_replace(
+                        [' ', '/', '\\'],
+                        ['.', '-', '-'],
+                        '['.config('torrent.source').']'.$torrent->name.'.torrent'
+                    );
+
+                    $zipArchive->addFromString($filename, $fileToDownload);
+                }
+            }
+
+            $zipArchive->close();
+        } else {
+            Log::error('Failed to open ZIP archive for writing', ['path' => $zipPath.$zipFileName]);
+        }
+
+        if (file_exists($zipPath.$zipFileName)) {
+            return response()->download($zipPath.$zipFileName)->deleteFileAfterSend(true);
+        }
+
+        return redirect()->back()->withErrors(trans('common.something-went-wrong'));
+    }
+
+
+
 }
