@@ -158,7 +158,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function seedingTorrents(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Torrent::class, 'history')
-            ->wherePivot('active', '=', 1)
             ->wherePivot('seeder', '=', 1);
     }
 
