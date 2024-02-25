@@ -178,11 +178,13 @@ class TorrentZipController extends Controller
             Log::info('Directory already exists', ['path' => $zipPath]);
         }
 
-        // 这里使用艺术家ID作为ZIP文件的一部分命名，以确保唯一性
-        $zipFileName = 'artist_'.$artistId.'_torrents.zip';
-        $zipArchive = new ZipArchive();
         $artist = Artist::findOrFail($artistId);
         $torrents = Torrent::where('name', 'like', '%'.$artist->name.'%')->get();
+        // 这里使用艺术家ID作为ZIP文件的一部分命名，以确保唯一性
+        $zipFileName = 'kimoji_' . $artist->name . '_torrents.zip';
+        $zipFileName = str_replace([' ', '/', '\\', ':', '*', '?', '"', '<', '>', '|'], '_', $zipFileName);
+        $zipArchive = new ZipArchive();
+
 
         if ($zipArchive->open($zipPath.$zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
             $announceUrl = route('announce', ['passkey' => $user->passkey]);
