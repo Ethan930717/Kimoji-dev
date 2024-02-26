@@ -1,4 +1,9 @@
 <section class="meta">
+    @if ($singerName)
+        @php
+            $artist = \App\Models\Artist::where('name', 'like', "%{$singerName}%")->first();
+        @endphp
+    @endif
     @if (file_exists(public_path().'/files/img/torrent-banner_'.$torrent->id.'.jpg'))
         <img class="meta__backdrop" src="{{ url('/files/img/torrent-banner_'.$torrent->id.'.jpg') }}" alt="Backdrop">
     @else
@@ -43,29 +48,23 @@
             </a>
             <ul class="meta__dropdown">
                 <li>
-                    <a href="{{ route('torrents.create', ['category_id' => $category->id, 'title' => rawurlencode($meta->title ?? '') ?? 'Unknown', 'imdb' => $torrent?->imdb ?? '', 'tmdb' => $meta?->id ?? '']) }}">
-                        {{ __('common.upload') }}
+                    <a href="{{ route('artists.edit', $artist->id }}">
+                        {{ __('artists.edit') }}
                     </a>
                 </li>
             </ul>
         </div>
         <ul class="meta__ids">
             <li class="meta__imdb">
-                @if ($singerName)
-                    @php
-                        $artist = \App\Models\Artist::where('name', 'like', "%{$singerName}%")->first();
-                    @endphp
-
                     @if ($artist)
                         <a class="meta-id-tag" href="{{ route('artists.show', $artist->id) }}">
-                            {{ $singerName }}
+                            {{ __('artists.all') }}
                         </a>
                     @else
                         <a class="meta-id-tag" href="/torrents?perPage=25&name={{ urlencode($singerName) }}" target="_blank">
-                            {{ $singerName }}
+                            {{ __('artists.all') }}
                         </a>
                     @endif
-                @endif
                 <a class="meta-id-tag" title="Internet Movie Database" target="_blank"
                    href="{{ route('torrents.index', ['distributors' => [$torrent->distributor->id]]) }}">
                     {{ $torrent?->distributor->name ?? '未知风格' }}
@@ -186,17 +185,88 @@
                         </article>
                     @endforeach
                 </section>
-            @endif            @if ($spectrogramUrl)
-                <section class="meta__chip-container">
-                    <h2 class="meta__heading">频谱分析</h2>
-                            <img
-                                src="{{ $spectrogramUrl }}"
-                                class="spectrogram-image"
-                                alt="频谱分析"
-                                style="cursor: pointer; max-width: 100%;"
-                            />
-                </section>
             @endif
+                @if ($spectrogramUrl)
+                    <section class="meta__chip-container">
+                        <h2 class="meta__heading">频谱分析</h2>
+                                <img
+                                    src="{{ $spectrogramUrl }}"
+                                    class="spectrogram-image"
+                                    alt="频谱分析"
+                                    style="cursor: pointer; max-width: 100%;"
+                                />
+                    </section>
+                @endif
+                @if ($artist)
+                <section class="meta__chip-container">
+                    <article class="meta-chip-wrapper meta-chip">
+                        @if ($artist->image_url)
+                            <img
+                                class="meta-chip__image"
+                                src="{{ tmdb_image('cast_face', $artist->image_url) }}"
+                                alt=""
+                            />
+                        @else
+                            <i class="{{ config('other.font-awesome') }} fa-user meta-chip__icon"></i>
+                        @endif
+                        <h2 class="meta-chip__name">{{ $singerName }}</h2>
+                    </article>
+                    @if($artist->birthday)
+                    <article class="meta-chip-wrapper meta-chip">
+                        <a class="meta-chip" href="#">
+                            <i class="{{ config('other.font-awesome') }} fa-birthday-cake meta-chip__icon"></i>
+                            <h2 class="meta-chip__name">{{ __('artists.born') }}</h2>
+                            <h3 class="meta-chip__value">{{ $artist->birthday }}</h3>
+                        </a>
+                    </article>
+                    @endif
+                    @if($artist->deathday)
+                        <article class="meta-chip-wrapper meta-chip">
+                            <a class="meta-chip" href="#">
+                                <i class="{{ config('other.font-awesome') }} fa-ribbon meta-chip__icon"></i>
+                                <h2 class="meta-chip__name">{{ __('artists.died') }}</h2>
+                                <h3 class="meta-chip__value">{{ $artist->deathday }}</h3>
+                            </a>
+                        </article>
+                    @endif
+                    @if($artist->country)
+                        <article class="meta-chip-wrapper meta-chip">
+                            <a class="meta-chip" href="#">
+                                <i class="{{ config('other.font-awesome') }} fa-globe-americas meta-chip__icon"></i>
+                                <h2 class="meta-chip__name">{{ __('artists.country') }}</h2>
+                                <h3 class="meta-chip__value">{{ $artist->country }}</h3>
+                            </a>
+                        </article>
+                    @endif
+                    @if($artist->member)
+                        <article class="meta-chip-wrapper meta-chip">
+                            <a class="meta-chip" href="#">
+                                <i class="{{ config('other.font-awesome') }} fa-users meta-chip__icon"></i>
+                                <h2 class="meta-chip__name">{{ __('artists.member') }}</h2>
+                                <h3 class="meta-chip__value">{{ $artist->member }}</h3>
+                            </a>
+                        </article>
+                    @endif
+                    @if($artist->label)
+                        <article class="meta-chip-wrapper meta-chip">
+                            <a class="meta-chip" href="#">
+                                <i class="{{ config('other.font-awesome') }} fa-compact-disc meta-chip__icon"></i>
+                                <h2 class="meta-chip__name">{{ __('artists.label') }}</h2>
+                                <h3 class="meta-chip__value">{{ $artist->label }}</h3>
+                            </a>
+                        </article>
+                    @endif
+                    @if($artist->genre)
+                        <article class="meta-chip-wrapper meta-chip">
+                            <a class="meta-chip" href="#">
+                                <i class="{{ config('other.font-awesome') }} fa-music meta-chip__icon"></i>
+                                <h2 class="meta-chip__name">{{ __('artists.genre') }}</h2>
+                                <h3 class="meta-chip__value">{{ $artist->genre }}</h3>
+                            </a>
+                        </article>
+                    @endif
+                </section>
+                @endif
             </div>
         @if(!in_array($user->group_id, [App\Enums\UserGroup::USER->value, App\Enums\UserGroup::LEECH->value]))
             @if($musicUrl)

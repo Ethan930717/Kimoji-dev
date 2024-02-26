@@ -12,12 +12,14 @@
  */
 
 return [
+    'all'                => '更多作品',
     'albums'             => '专辑',
     'country_title'      => '国家地区',
     'songs'              => '歌曲',
     'born'               => '生日',
     'died'               => '忌日',
     'established'        => '成立',
+    'edit'               => '编辑歌手',
     'disbanded'          => '解散',
     'title'              => '歌手',
     'unknown'            => '未知',
