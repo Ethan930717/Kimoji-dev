@@ -185,7 +185,7 @@
                 <section class="meta__chip-container">
                     <h2 class="meta__heading">{{ __('artists.spectrogram') }}</h2>
                     @if ($spectrogramUrl)
-                        <div style="display: flex; align-items: center; justify-content: center;>
+                        <div style="display: flex; align-items: center; justify-content: center;">
                             <img
                                 src="{{ $spectrogramUrl }}"
                                 class="spectrogram-image"
@@ -195,7 +195,7 @@
                         </div>
                     @endif
                     <h2 class="meta__heading" style="top:auto; margin-top: 2px ">{{ __('artists.playlist') }}</h2>
-                    @foreach ($songs as $song)
+                 @foreach ($songs as $song)
                         <article class="meta-chip-wrapper">
                             <a class="meta-chip__name">
                                 {{ trim($song) }}
