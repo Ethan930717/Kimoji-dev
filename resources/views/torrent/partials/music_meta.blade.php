@@ -119,8 +119,15 @@
         @endphp
 
         <p class="meta__description">
-            {!! $spoilerContent !!}
+            @if(!empty($spoilerContent))
+                {!! $spoilerContent !!}
+            @elseif(!empty($artist->biography))
+                {!! $artist->biography !!}
+            @else
+                暂无歌手简介，欢迎您补充元数据
+            @endif
         </p>
+
         @php
             $musicUrl = $torrent?->music_url;
             $is_lrc =  $torrent?->is_lrc;
@@ -209,7 +216,9 @@
                         @else
                             <i class="{{ config('other.font-awesome') }} fa-user meta-chip__icon"></i>
                         @endif
-                        <h2 class="meta-chip__name">{{ $singerName }}</h2>
+                        <h2 class="meta-chip__name">{{ __('artists.artname') }}</h2>
+                        <h3 class="meta-chip__value">{{ $artist->name }}</h3>
+
                     </article>
                     @if($artist->birthday)
                     <article class="meta-chip-wrapper meta-chip">

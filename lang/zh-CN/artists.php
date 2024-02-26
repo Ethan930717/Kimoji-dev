@@ -13,6 +13,7 @@
 
 return [
     'all'                => '更多作品',
+    'artname'            => '艺名',
     'albums'             => '专辑',
     'country_title'      => '国家地区',
     'songs'              => '歌曲',
