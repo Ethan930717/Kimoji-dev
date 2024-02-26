@@ -500,7 +500,7 @@ class TorrentController extends Controller
             ->where('category_id', 3)
             ->where('id', '!=', $id)
             ->inRandomOrder()
-            ->take(10)
+            ->take(12)
             ->get();
 
         return $recommendedMusic;

@@ -1,7 +1,3 @@
-@props([
-    'torrent',
-])
-
 <article class="torrent-search--poster__result">
     @php
         // 首先以 " - " 为分隔符进行分割，这样避免了错误地分割专辑名中可能包含的 "-"
@@ -33,6 +29,7 @@
                 src="{{ url('/files/img/torrent-banner_'.$torrent->id.'.jpg') }}"
                 alt="{{ __('torrent.poster') }}"
                 loading="lazy"
+                style="width: 100%; height: auto; object-fit: cover; aspect-ratio: 1 / 1;"
             />
         </a>
         <figcaption class="torrent-search--poster__caption">

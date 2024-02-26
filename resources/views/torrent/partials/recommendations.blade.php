@@ -18,16 +18,15 @@
 
                 @break
             @case($torrent->category->music_meta)
-                @forelse ($meta->recommendedMusic ?? [] as $music)
+                @forelse ($recommendedMusic as $music)
                     <x-music.poster :torrent="$music" />
                 @empty
                     暂无相关推荐
                 @endforelse
 
                 @break
-
             @default
-                    暂无相关推荐
+                暂无相关推荐
         @endswitch
     </section>
 </div>
