@@ -218,7 +218,7 @@
                             <i class="{{ config('other.font-awesome') }} fa-mask meta-chip__icon"></i>
                         @endif
                         <h2 class="meta-chip__name" style="white-space: nowrap; display: inline-block;">{{ __('artists.artname') }}</h2>
-                        <h3 class="meta-chip__value" style="white-space: nowrap; display: inline-block;">{{ $singlename }}</h3>
+                        <h3 class="meta-chip__value" style="white-space: nowrap; display: inline-block;">{{ $singerName }}</h3>
 
                     </article>
                     @if($artist->birthday)
