@@ -186,22 +186,24 @@
                     <h2 class="meta__heading">{{ __('artists.playlist') }}</h2>
                     @foreach ($songs as $song)
                         <article class="meta-chip-wrapper">
-                            <a class="meta-chip">
-                                <h2 class="meta-chip__name">{{ trim($song) }}</h2>
+                            <a class="meta-chip__name">
+                                {{ trim($song) }}
                             </a>
                         </article>
                     @endforeach
                 </section>
             @endif
                 @if ($spectrogramUrl)
-                    <section class="meta__chip-container" style="align-items: center;">
+                    <section class="meta__chip-container">
                         <h2 class="meta__heading">{{ __('artists.spectrogram') }}</h2>
-                                <img
-                                    src="{{ $spectrogramUrl }}"
-                                    class="spectrogram-image"
-                                    alt="spectrogram"
-                                    style="cursor: pointer; max-width: 100%;"
-                                />
+                        <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                            <img
+                                src="{{ $spectrogramUrl }}"
+                                class="spectrogram-image"
+                                alt="spectrogram"
+                                style="cursor: pointer; max-width: 100%; max-height: 100%;"
+                            />
+                        </div>
                     </section>
                 @endif
                 @if ($artist)
@@ -223,7 +225,7 @@
                     </article>
                     @if($artist->birthday)
                     <article class="meta-chip-wrapper meta-chip">
-                        <a class="meta-chip" href="#">
+                        <a class="meta-chip">
                             <i class="{{ config('other.font-awesome') }} fa-birthday-cake meta-chip__icon"></i>
                             <h2 class="meta-chip__name" style="white-space: nowrap; display: inline-block;">{{ __('artists.born') }}</h2>
                             <h3 class="meta-chip__value" style="white-space: nowrap; display: inline-block;">{{ $artist->birthday }}</h3>
@@ -232,7 +234,7 @@
                     @endif
                     @if($artist->deathday)
                         <article class="meta-chip-wrapper meta-chip">
-                            <a class="meta-chip" href="#">
+                            <a class="meta-chip">
                                 <i class="{{ config('other.font-awesome') }} fa-ribbon meta-chip__icon"></i>
                                 <h2 class="meta-chip__name" style="white-space: nowrap; display: inline-block;">{{ __('artists.died') }}</h2>
                                 <h3 class="meta-chip__value" style="white-space: nowrap; display: inline-block;">{{ $artist->deathday }}</h3>
@@ -241,7 +243,7 @@
                     @endif
                     @if($artist->country)
                         <article class="meta-chip-wrapper meta-chip">
-                            <a class="meta-chip" href="#">
+                            <a class="meta-chip">
                                 <i class="{{ config('other.font-awesome') }} fa-globe-americas meta-chip__icon"></i>
                                 <h2 class="meta-chip__name" style="white-space: nowrap; display: inline-block;">{{ __('artists.country') }}</h2>
                                 <h3 class="meta-chip__value" style="white-space: nowrap; display: inline-block;">{{ $artist->country }}</h3>
@@ -250,7 +252,7 @@
                     @endif
                     @if($artist->member)
                         <article class="meta-chip-wrapper meta-chip">
-                            <a class="meta-chip" href="#">
+                            <a class="meta-chip">
                                 <i class="{{ config('other.font-awesome') }} fa-users meta-chip__icon"></i>
                                 <h2 class="meta-chip__name" style="white-space: nowrap; display: inline-block;">{{ __('artists.member') }}</h2>
                                 <h3 class="meta-chip__value" style="white-space: nowrap; display: inline-block;">{!! str_replace('/', '<br>', $artist->member) !!}</h3>
@@ -259,16 +261,16 @@
                     @endif
                     @if($artist->label)
                         <article class="meta-chip-wrapper meta-chip">
-                            <a class="meta-chip" href="#">
+                            <a class="meta-chip">
                                 <i class="{{ config('other.font-awesome') }} fa-compact-disc meta-chip__icon"></i>
                                 <h2 class="meta-chip__name" style="white-space: nowrap; display: inline-block;">{{ __('artists.label') }}</h2>
-                                <h3 class="meta-chip__value" style="white-space: nowrap; display: inline-block;">{!! str_replace('/', '<br>', $artist->lable) !!}</h3>
+                                <h3 class="meta-chip__value" style="white-space: nowrap; display: inline-block;">{!! str_replace('/', '<br>', $artist->label) !!}</h3>
                             </a>
                         </article>
                     @endif
                     @if($artist->genre)
                         <article class="meta-chip-wrapper meta-chip">
-                            <a class="meta-chip" href="#">
+                            <a class="meta-chip">
                                 <i class="{{ config('other.font-awesome') }} fa-music meta-chip__icon"></i>
                                 <h2 class="meta-chip__name" style="white-space: nowrap; display: inline-block;">{{ __('artists.genre') }}</h2>
                                 <h3 class="meta-chip__value" style="white-space: nowrap; display: inline-block;">{!! str_replace('/', '<br>', $artist->genre) !!}</h3>
