@@ -90,7 +90,9 @@
                     @if($userGroup === UserGroup::LEECH->value || $userGroup === UserGroup::DISABLED->value)
                         <span class="meta-id-tag">{{ __('artists.insufficient') }}</span>
                     @elseif(in_array($userGroup, $unlimitedGroups))
-                        <button id="loadPlayerBtn" class="meta-id-tag" data-username="{{ auth()->user()->username }}">{{ __('artists.load') }}</button>
+                        <button id="loadPlayerBtn" class="meta-id-tag" data-username="{{ auth()->user()->username }}">
+                            <i class="{{ config('other.font-awesome') }} fa-headphones"></i> {{ __('artists.load') }}
+                        </button>
                     @else
                         @php
                             $limit = $listenLimits[$userGroup] ?? PHP_INT_MAX; // 默认无限制
@@ -194,9 +196,9 @@
                             />
                         </div>
                     @endif
-                    <h2 class="meta__heading" style="top:auto; margin-top: 1px; margin-bottom: 1px ">{{ __('artists.playlist') }}</h2>
+                    <h2 class="meta__heading" style="top:auto; margin-top: 3px;">{{ __('artists.playlist') }}</h2>
                  @foreach ($songs as $song)
-                        <article class="meta-chip-wrapper">
+                        <article class="meta-chip-wrapper" style="margin-top: 18px;">
                             <a class="meta-chip__name">
                                 {{ trim($song) }}
                             </a>
