@@ -58,16 +58,16 @@
             <li class="meta__imdb">
                     @if ($artist)
                         <a class="meta-id-tag" href="{{ route('artists.show', $artist->id) }}">
-                            {{ __('artists.all') }}
+                            <i class="fas fa-microphone"></i> {{ __('artists.all') }}
                         </a>
                     @else
                         <a class="meta-id-tag" href="/torrents?perPage=25&name={{ urlencode($singerName) }}" target="_blank">
-                            {{ __('artists.all') }}
+                            <i class="fa-microphone"></i> {{ __('artists.all') }}
                         </a>
                     @endif
                 <a class="meta-id-tag" title="Internet Movie Database" target="_blank"
                    href="{{ route('torrents.index', ['distributors' => [$torrent->distributor->id]]) }}">
-                    {{ $torrent?->distributor->name ?? '未知风格' }}
+                    <i class="fa-album-circle-plus"></i> {{ $torrent?->distributor->name ?? '未知风格' }}
                 </a>
 
                     @php
@@ -88,15 +88,15 @@
                     @endphp
 
                     @if($userGroup === UserGroup::LEECH->value || $userGroup === UserGroup::DISABLED->value)
-                        <span class="meta-id-tag">权限不足，无法试听</span>
+                        <span class="meta-id-tag">{{ __('artists.insufficient') }}</span>
                     @elseif(in_array($userGroup, $unlimitedGroups))
-                        <button id="loadPlayerBtn" class="meta-id-tag" data-username="{{ auth()->user()->username }}">加载试听曲目</button>
+                        <button id="loadPlayerBtn" class="meta-id-tag" data-username="{{ auth()->user()->username }}">{{ __('artists.load') }}</button>
                     @else
                         @php
                             $limit = $listenLimits[$userGroup] ?? PHP_INT_MAX; // 默认无限制
                         @endphp
                         @if(auth()->user()->daily_listen_count < $limit)
-                            <button id="loadPlayerBtn" class="meta-id-tag" data-username="{{ auth()->user()->username }}">加载试听曲目</button>
+                            <button id="loadPlayerBtn" class="meta-id-tag" data-username="{{ auth()->user()->username }}">{{ __('artists.load') }}</button>
                         @else
                             <span class="meta-id-tag">今日试听次数已用尽 {{ auth()->user()->daily_listen_count }}/{{ $limit }}</span>
                         @endif
@@ -183,7 +183,7 @@
         <div class="meta__chips">
             @if (!empty($songs))
                 <section class="meta__chip-container">
-                    <h2 class="meta__heading">歌曲列表</h2>
+                    <h2 class="meta__heading">{{ __('artists.playlist') }}</h2>
                     @foreach ($songs as $song)
                         <article class="meta-chip-wrapper">
                             <a class="meta-chip">
@@ -195,11 +195,11 @@
             @endif
                 @if ($spectrogramUrl)
                     <section class="meta__chip-container">
-                        <h2 class="meta__heading">频谱分析</h2>
+                        <h2 class="meta__heading">{{ __('artists.spectrogram') }}</h2>
                                 <img
                                     src="{{ $spectrogramUrl }}"
                                     class="spectrogram-image"
-                                    alt="频谱分析"
+                                    alt="spectrogram"
                                     style="cursor: pointer; max-width: 100%;"
                                 />
                     </section>
@@ -214,7 +214,7 @@
                                 alt=""
                             />
                         @else
-                            <i class="{{ config('other.font-awesome') }} fa-user meta-chip__icon"></i>
+                            <i class="{{ config('other.font-awesome') }} fa-mask meta-chip__icon"></i>
                         @endif
                         <h2 class="meta-chip__name">{{ __('artists.artname') }}</h2>
                         <h3 class="meta-chip__value">{{ $artist->name }}</h3>
