@@ -67,7 +67,7 @@
                     @endif
                 <a class="meta-id-tag" title="Internet Movie Database" target="_blank"
                    href="{{ route('torrents.index', ['distributors' => [$torrent->distributor->id]]) }}">
-                    <i class="{{ config('other.font-awesome') }} fa-music-alt-slash"></i> {{ $torrent?->distributor->name ?? '未知风格' }}
+                    <i class="{{ config('other.font-awesome') }} fa-music"></i> {{ $torrent?->distributor->name ?? '未知风格' }}
                 </a>
 
                     @php
@@ -185,17 +185,17 @@
                 <section class="meta__chip-container">
                     <h2 class="meta__heading">{{ __('artists.spectrogram') }}</h2>
                     @if ($spectrogramUrl)
-                        <div>
+                        <div style="display: flex; align-items: center; justify-content: center;>
                             <img
                                 src="{{ $spectrogramUrl }}"
                                 class="spectrogram-image"
                                 alt="spectrogram"
-                                style="cursor: pointer; max-width: 100%; max-height: 100%;"
+                                style="cursor: pointer; max-width: 90%; max-height: 90%;border-radius: 18px"
                             />
                         </div>
                     @endif
-                    <h2 class="meta__heading">{{ __('artists.playlist') }}</h2>
-                 @foreach ($songs as $song)
+                    <h2 class="meta__heading" style="top:auto; margin-top: 2px ">{{ __('artists.playlist') }}</h2>
+                    @foreach ($songs as $song)
                         <article class="meta-chip-wrapper">
                             <a class="meta-chip__name">
                                 {{ trim($song) }}
