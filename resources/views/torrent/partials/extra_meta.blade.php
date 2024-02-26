@@ -6,7 +6,7 @@
     id="tab_wrapper"
 >
     <!-- The tabs navigation -->
-    <h2 class="panel__heading">相似内容</h2>
+    <h2 class="panel__heading">相关资源</h2>
     <menu class="panel__tabs">
         <li
             class="panel__tab"

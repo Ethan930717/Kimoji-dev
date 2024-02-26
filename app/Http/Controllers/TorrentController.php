@@ -126,6 +126,12 @@ class TorrentController extends Controller
             $platforms = PlatformLogo::whereIn('id', collect($meta->platforms)->pluck('platform_logo')->toArray())->get();
         }
 
+        // 根据种子类型调用推荐方法
+        $recommendedMusic = collect();
+        if ($torrent->category->music_meta) {
+            $recommendedMusic = $this->getRecommendedMusic($id);
+        }
+
         return view('torrent.show', [
             'torrent'            => $torrent,
             'user'               => $user,
@@ -139,6 +145,7 @@ class TorrentController extends Controller
             'bdInfo'             => $bdInfo,
             'last_seed_activity' => History::where('torrent_id', '=', $torrent->id)->where('seeder', '=', 1)->latest('updated_at')->first(),
             'playlists'          => $user->playlists,
+            'recommendedMusic'   => $recommendedMusic,
             'audits'             => Audit::with('user')->where('model_entry_id', '=', $torrent->id)->where('model_name', '=', 'Torrent')->latest()->get(),
         ]);
     }
@@ -482,4 +489,23 @@ class TorrentController extends Controller
         return to_route('download_check', ['id' => $torrent->id])
             ->withSuccess('您的种子文件已准备好下载和做种');
     }
+
+    public function getRecommendedMusic(int|string $id)
+    {
+        $currentTorrent = Torrent::findOrFail($id);
+        $distributorId = $currentTorrent->distributor_id;
+
+        // 假设音乐种类的category_id被正确设置
+        $recommendedMusic = Torrent::where('distributor_id', $distributorId)
+            ->where('category_id', 3)
+            ->where('id', '!=', $id)
+            ->inRandomOrder()
+            ->take(10)
+            ->get();
+
+        return $recommendedMusic;
+    }
+
+
+
 }
