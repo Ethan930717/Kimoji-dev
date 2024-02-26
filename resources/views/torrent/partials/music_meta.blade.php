@@ -58,11 +58,11 @@
             <li class="meta__imdb">
                     @if ($artist)
                         <a class="meta-id-tag" href="{{ route('artists.show', $artist->id) }}">
-                            <i class="fas fa-microphone"></i> {{ __('artists.all') }}
+                            <i class="fa-album"></i> {{ __('artists.all') }}
                         </a>
                     @else
                         <a class="meta-id-tag" href="/torrents?perPage=25&name={{ urlencode($singerName) }}" target="_blank">
-                            <i class="fa-microphone"></i> {{ __('artists.all') }}
+                            <i class="fa-music"></i> {{ __('artists.all') }}
                         </a>
                     @endif
                 <a class="meta-id-tag" title="Internet Movie Database" target="_blank"
@@ -182,8 +182,18 @@
 
         <div class="meta__chips">
             @if (!empty($songs))
+                <h2 class="meta__heading">{{ __('artists.playlist') }}</h2>
                 <section class="meta__chip-container">
-                    <h2 class="meta__heading">{{ __('artists.playlist') }}</h2>
+                    @if ($spectrogramUrl)
+                        <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                            <img
+                                src="{{ $spectrogramUrl }}"
+                                class="spectrogram-image"
+                                alt="spectrogram"
+                                style="cursor: pointer; max-width: 100%; max-height: 100%;"
+                            />
+                        </div>
+                    @endif
                     @foreach ($songs as $song)
                         <article class="meta-chip-wrapper">
                             <a class="meta-chip__name">
@@ -193,19 +203,6 @@
                     @endforeach
                 </section>
             @endif
-                @if ($spectrogramUrl)
-                    <section class="meta__chip-container">
-                        <h2 class="meta__heading">{{ __('artists.spectrogram') }}</h2>
-                        <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                            <img
-                                src="{{ $spectrogramUrl }}"
-                                class="spectrogram-image"
-                                alt="spectrogram"
-                                style="cursor: pointer; max-width: 100%; max-height: 100%;"
-                            />
-                        </div>
-                    </section>
-                @endif
                 @if ($artist)
                 <section class="meta__chip-container">
                     <h2 class="meta__heading">{{ __('artists.information') }}</h2>
@@ -279,7 +276,8 @@
                     @endif
                 </section>
                 @endif
-            </div>
+
+        </div>
         @if(!in_array($user->group_id, [App\Enums\UserGroup::USER->value, App\Enums\UserGroup::LEECH->value]))
             @if($musicUrl)
                 @if ($is_lrc == 1)
