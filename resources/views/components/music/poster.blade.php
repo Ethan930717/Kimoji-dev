@@ -26,7 +26,7 @@
             class="torrent-search--poster__poster"
         >
             <img
-                src="{{ url('/files/img/torrent-banner_'.$torrent->id.'.jpg') }}"
+                src="{{ url('/files/img/torrent-cover_'.$torrent->id.'.jpg') }}"
                 alt="{{ __('torrent.poster') }}"
                 loading="lazy"
                 style="width: 100%; height: auto; object-fit: cover; aspect-ratio: 1 / 1;"

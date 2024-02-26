@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('auto:update_user_last_actions')->everyFiveSeconds();
         $schedule->command('auto:delete_stopped_peers')->everyTwoMinutes();
         $schedule->command('auto:cache_user_leech_counts')->everyThirtyMinutes();
-        //$schedule->command('auto:group ')->daily();
+        $schedule->command('auto:group ')->daily();
         $schedule->command('auto:nerdstat ')->hourly();
         $schedule->command('auto:reward_resurrection')->daily();
         $schedule->command('auto:highspeed_tag')->hourly();
@@ -43,8 +43,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('auto:recycle_invites')->daily();
         $schedule->command('auto:recycle_activity_log')->daily();
         $schedule->command('auto:recycle_failed_logins')->daily();
-        //$schedule->command('auto:disable_inactive_users')->daily();
-        //$schedule->command('auto:softdelete_disabled_users')->daily();
+        $schedule->command('auto:disable_inactive_users')->daily();
+        $schedule->command('auto:softdelete_disabled_users')->daily();
         $schedule->command('auto:recycle_claimed_torrent_requests')->daily();
         $schedule->command('auto:correct_history')->daily();
         $schedule->command('auto:sync_peers')->hourly();
