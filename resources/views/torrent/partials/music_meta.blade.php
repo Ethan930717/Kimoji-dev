@@ -58,16 +58,16 @@
             <li class="meta__imdb">
                     @if ($artist)
                         <a class="meta-id-tag" href="{{ route('artists.show', $artist->id) }}">
-                            <i class="fa-album"></i> {{ __('artists.all') }}
+                            <i class="{{ config('other.font-awesome') }} fa-album"></i> {{ __('artists.all') }}
                         </a>
                     @else
                         <a class="meta-id-tag" href="/torrents?perPage=25&name={{ urlencode($singerName) }}" target="_blank">
-                            <i class="fa-music"></i> {{ __('artists.all') }}
+                            <i class="{{ config('other.font-awesome') }} fa-album"></i> {{ __('artists.all') }}
                         </a>
                     @endif
                 <a class="meta-id-tag" title="Internet Movie Database" target="_blank"
                    href="{{ route('torrents.index', ['distributors' => [$torrent->distributor->id]]) }}">
-                    <i class="fa-album-circle-plus"></i> {{ $torrent?->distributor->name ?? '未知风格' }}
+                    <i class="{{ config('other.font-awesome') }} fa-music-alt-slash"></i> {{ $torrent?->distributor->name ?? '未知风格' }}
                 </a>
 
                     @php
@@ -182,10 +182,10 @@
 
         <div class="meta__chips">
             @if (!empty($songs))
-                <h2 class="meta__heading">{{ __('artists.playlist') }}</h2>
                 <section class="meta__chip-container">
+                    <h2 class="meta__heading">{{ __('artists.spectrogram') }}</h2>
                     @if ($spectrogramUrl)
-                        <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                        <div>
                             <img
                                 src="{{ $spectrogramUrl }}"
                                 class="spectrogram-image"
@@ -194,7 +194,8 @@
                             />
                         </div>
                     @endif
-                    @foreach ($songs as $song)
+                    <h2 class="meta__heading">{{ __('artists.playlist') }}</h2>
+                 @foreach ($songs as $song)
                         <article class="meta-chip-wrapper">
                             <a class="meta-chip__name">
                                 {{ trim($song) }}
