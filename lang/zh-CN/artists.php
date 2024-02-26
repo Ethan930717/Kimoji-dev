@@ -31,8 +31,11 @@ return [
     'genre'              => '流派',
     'search-by-name'     => '按姓名搜索',
     'playlist'           => '歌曲列表',
+    'member'             => '乐队成员',
     'spectrogram'        => '频谱分析',
     'load'               => '加载试听曲目',
     'insufficient'       => '权限不足，无法试听',
     'artist-torrents'    => '资源',
+    'information'        => '歌手信息',
+
 ];
