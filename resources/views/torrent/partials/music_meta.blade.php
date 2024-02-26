@@ -48,7 +48,7 @@
             </a>
             <ul class="meta__dropdown">
                 <li>
-                    <a href="{{ route('artists.edit', $artist->id }}">
+                    <a href="{{ route('artists.edit', $artist->id) }}">
                         {{ __('artists.edit') }}
                     </a>
                 </li>
