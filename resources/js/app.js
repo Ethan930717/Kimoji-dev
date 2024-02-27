@@ -141,10 +141,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     // 为 spectrogram-image 元素添加点击事件
-    const spectrogramImages = document.querySelectorAll('.spectrogram-image');
-    spectrogramImages.forEach(img => {
-        img.addEventListener('click', function() {
-            openImageModal(img.src);
+    const spectrogramButtons = document.querySelectorAll('[data-spectrogram-button]');
+    spectrogramButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // 查找按钮内的图片元素并获取其 src
+            const imgSrc = this.querySelector('.spectrogram-image').src;
+            openImageModal(imgSrc);
         });
     });
 

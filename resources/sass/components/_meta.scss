@@ -335,7 +335,17 @@
         background: var(--meta-chip-icon-bg);
     }
 
-    .spectrogram-image,
+    .spectrogram-image {
+        grid-area: image;
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 16px;
+        border: 2px solid var(--meta-chip-icon-bg);
+        align-self: start;
+        background: var(--meta-chip-icon-bg);
+    }
+
     .meta-chip__image {
         grid-area: image;
         width: 40px;

@@ -113,7 +113,7 @@
                         @endif
                     @endif
                         @if ($spectrogramUrl)
-                            <button class="meta-id-tag" style="border:1px solid hsla(0,0%,100%,.161); border-radius: 16px; box-shadow:2px 4px 2px rgba(0,0,0,.2); cursor:pointer; transition:background-color .3s,color .3s; ">
+                            <button class="meta-id-tag" data-spectrogram-button  style="border:1px solid hsla(0,0%,100%,.161); border-radius: 16px; box-shadow:2px 4px 2px rgba(0,0,0,.2); cursor:pointer; transition:background-color .3s,color .3s; ">
                                 <img
                                     src="{{ $spectrogramUrl }}"
                                     class="spectrogram-image"
