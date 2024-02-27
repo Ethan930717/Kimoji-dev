@@ -21,6 +21,16 @@
         }
     @endphp
 
+    @php
+        $description = $torrent->description;
+        $spectrogramPattern = '/\[spoiler=截图赏析\].*?\[img\](.*?)\[\/img\]/s';
+        $spectrogramUrl = '';
+
+        if (preg_match($spectrogramPattern, $description, $matches)) {
+            $spectrogramUrl = $matches[1];
+        }
+    @endphp
+
     @if ($singerName)
         @php
             $artist = \App\Models\Artist::where('name', 'like', "%{$singerName}%")->first();
@@ -69,7 +79,6 @@
                    href="{{ route('torrents.index', ['distributors' => [$torrent->distributor->id]]) }}">
                     <i class="{{ config('other.font-awesome') }} fa-music"></i> {{ $torrent?->distributor->name ?? '未知风格' }}
                 </a>
-
                     @php
                         use App\Enums\UserGroup;
                         $userGroup = auth()->user()->group_id;
@@ -103,6 +112,18 @@
                             <span class="meta-id-tag">今日试听次数已用尽 {{ auth()->user()->daily_listen_count }}/{{ $limit }}</span>
                         @endif
                     @endif
+                        @if ($spectrogramUrl)
+                            <button class="meta-id-tag" style="border:1px solid hsla(0,0%,100%,.161); border-radius: 16px; box-shadow:2px 4px 2px rgba(0,0,0,.2); cursor:pointer; transition:background-color .3s,color .3s; ">
+                                <img
+                                    src="{{ $spectrogramUrl }}"
+                                    class="spectrogram-image"
+                                    alt="spectrogram"
+                                />
+                                <span style="display: inline; margin-left: 8px;">{{ __('artists.spectrogram') }}</span>
+                            </button>
+                        @endif
+
+
             </li>
 
         </ul>
@@ -172,33 +193,13 @@
             }
         @endphp
 
-        @php
-            $description = $torrent->description;
-            $spectrogramPattern = '/\[spoiler=截图赏析\].*?\[img\](.*?)\[\/img\]/s';
-            $spectrogramUrl = '';
-
-            if (preg_match($spectrogramPattern, $description, $matches)) {
-                $spectrogramUrl = $matches[1];
-            }
-        @endphp
 
         <div class="meta__chips">
             @if (!empty($songs))
                 <section class="meta__chip-container">
-                    <h2 class="meta__heading">{{ __('artists.spectrogram') }}</h2>
-                    @if ($spectrogramUrl)
-                        <div style="display: flex; align-items: center; justify-content: center;">
-                            <img
-                                src="{{ $spectrogramUrl }}"
-                                class="spectrogram-image"
-                                alt="spectrogram"
-                                style="cursor: pointer; max-width: 100%; max-height: 100%;border-radius: 18px"
-                            />
-                        </div>
-                    @endif
-                    <h2 class="meta__heading" style="top:auto; margin-top: 3px;">{{ __('artists.playlist') }}</h2>
+                    <h2 class="meta__heading">{{ __('artists.playlist') }}</h2>
                  @foreach ($songs as $song)
-                        <article class="meta-chip-wrapper" style="margin-top: 18px;">
+                        <article class="meta-chip-wrapper">
                             <a class="meta-chip__name">
                                 {{ trim($song) }}
                             </a>
