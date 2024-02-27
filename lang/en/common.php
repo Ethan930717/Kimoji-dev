@@ -233,4 +233,7 @@ return [
     'yes'                  => 'Yes',
     'your'                 => 'Your',
     'your-comment'         => 'Your comment',
+    'copydownloadlink'     => 'Download Link',
+    'layout'               => 'Layout',
+
 ];

@@ -3,9 +3,9 @@
     <div class="quick-search__inputs">
         <div class="quick-search__radios">
             @foreach([
-                'albums' => ['label' => '专辑', 'icon' => 'fa-album-collection', 'title' => __('artists.albums'), 'placeholder' => '搜索专辑...'],
-                'songs' => ['label' => '歌曲', 'icon' => 'fa-music', 'title' => __('artists.songs'), 'placeholder' => '搜索歌曲...'],
-                'artists' => ['label' => '歌手', 'icon' => 'fa-user', 'title' => __('artists.title'), 'placeholder' => '搜索歌手/组合...']
+                'albums' => ['label' => '专辑', 'icon' => 'fa-album-collection', 'title' => __('artists.albums'), 'placeholder' => __('artists.albums')],
+                'songs' => ['label' => '歌曲', 'icon' => 'fa-music', 'title' => __('artists.songs'), 'placeholder' => __('artists.songs')],
+                'artists' => ['label' => '歌手', 'icon' => 'fa-user', 'title' => __('artists.title'), 'placeholder' => __('artists.title')]
             ] as $value => $info)
                 <label class="quick-search__radio-label">
                     <input

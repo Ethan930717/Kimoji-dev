@@ -712,7 +712,7 @@
                             <option value="group">{{ __('torrent.groupings') }}</option>
                             <option value="poster">{{ __('torrent.poster') }}</option>
                         </select>
-                        <label class="form__label form__label--floating" for="view">布局</label>
+                        <label class="form__label form__label--floating" for="view">{{ __('common.layout') }}</label>
                     </div>
                 </div>
                 <div class="panel__action">
@@ -766,7 +766,6 @@
                                 <th class="torrent-search--list__actions-header">
                                     {{ __('common.actions') }}
                                 </th>
-                                <th class="torrent-search--list__ratings-header">评分</th>
                                 <th
                                     class="torrent-search--list__size-header"
                                     wire:click="sortBy('size')"

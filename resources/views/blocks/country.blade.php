@@ -1,7 +1,9 @@
 @if ($countries->isNotEmpty())
     <section class="panelV2">
         <h2 class="panel__heading">
-            {{ __('artists.country') }}
+            <a href="{{ route('mediahub.country.index') }}" style="text-shadow: 0 0 5px #fb7171;">
+                {{ __('artists.country_title') }}
+            </a>
         </h2>
         <div x-data>
             <ul class="featured-carousel" x-ref="featured">

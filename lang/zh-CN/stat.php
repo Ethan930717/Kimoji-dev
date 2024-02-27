@@ -61,4 +61,5 @@ return [
     'real'                    => '实际',
     'credited'                => '统计',
     'updated'                 => '实时更新',
+    'current_collection'      => 'KIMOJI当前收录：歌手 :artistsCount ， 专辑 :albumsCount ， 歌曲 :songsCount',
 ];

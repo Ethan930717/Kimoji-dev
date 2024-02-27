@@ -240,19 +240,6 @@
             @endif
         </div>
     </td>
-    @if ($torrent->category->game_meta)
-        <td class="torrent-search--list__rating {{ rating_color($meta->rating) ?? 'text-white' }}">
-            <span>{{ round($meta->rating ?? 0) }}%</span>
-        </td>
-    @elseif ($torrent->category->movie_meta || $torrent->category->tv_meta)
-        <td class="torrent-search--list__rating" title="{{ $meta->vote_count ?? 0 }} Votes">
-        <span class="{{ rating_color($meta->vote_average ?? 0) ?? 'text-white' }}">
-            {{ round(($meta->vote_average ?? 0) * 10) }}%
-        </span>
-        </td>
-    @else
-        <td class="torrent-search--list__rating">N/A</td>
-    @endif
     <td class="torrent-search--list__size">
         <span>{{ $torrent->getSize() }}</span>
     </td>

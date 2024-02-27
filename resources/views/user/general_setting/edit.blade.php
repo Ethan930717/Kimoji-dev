@@ -21,7 +21,7 @@
 
 @section('content')
     <section class="panelV2">
-        <h2 class="panel__heading">基础{{ __('user.settings') }}</h2>
+        <h2 class="panel__heading">{{ __('user.settings') }}</h2>
         <div class="panel__body">
             <form
                 class="form"

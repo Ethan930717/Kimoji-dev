@@ -130,9 +130,9 @@
     @endif
     @if (!empty($torrent->music_url))
         @if ($torrent->is_lrc)
-            <i class="{{ config('other.font-awesome') }} fa-comment-music" title="{{ __('歌词试听') }}"></i>
+            <i class="{{ config('other.font-awesome') }} fa-comment-music" title="{{ __('artists.listen') }}"></i>
         @else
-            <i class="{{ config('other.font-awesome') }} fa-headphones-alt" title="{{ __('提供试听') }}"></i>
+            <i class="{{ config('other.font-awesome') }} fa-headphones-alt" title="{{ __('artists.listen') }}"></i>
         @endif
     @endif
 

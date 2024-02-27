@@ -14,6 +14,7 @@
 return [
     'all'                => '更多作品',
     'artname'            => '艺名',
+    'lyrics_listen'      => '歌词试听',
     'albums'             => '专辑',
     'country_title'      => '国家地区',
     'songs'              => '歌曲',
@@ -37,5 +38,6 @@ return [
     'insufficient'       => '权限不足，无法试听',
     'artist-torrents'    => '资源',
     'information'        => '歌手信息',
+    'lost_meta'          => '暂无歌手简介，欢迎您补充元数据',
 
 ];

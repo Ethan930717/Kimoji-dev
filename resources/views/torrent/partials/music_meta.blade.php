@@ -147,7 +147,7 @@
             @elseif(!empty($artist->biography))
                 {!! $artist->biography !!}
             @else
-                暂无歌手简介，欢迎您补充元数据
+                {{ __('artists.lost_meta') }}
             @endif
         </p>
 
@@ -200,8 +200,8 @@
                     <h2 class="meta__heading">{{ __('artists.playlist') }}</h2>
                  @foreach ($songs as $song)
                         <article class="meta-chip-wrapper">
-                            <a class="meta-chip__name">
-                                {{ trim($song) }}
+                            <a class="meta-chip">
+                                <h2 class="meta-chip__name">{{ trim($song) }}</h2>
                             </a>
                         </article>
                     @endforeach

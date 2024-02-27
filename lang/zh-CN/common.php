@@ -235,4 +235,6 @@ return [
     'system-message'       => '这是一条系统消息，请勿回复!',
     'similar'              => '相似资源',
     'wished'               => '心愿卡',
+    'copydownloadlink'     => '复制下载链接',
+    'layout'               => '布局',
 ];

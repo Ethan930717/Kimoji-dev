@@ -102,13 +102,13 @@
                     @if ($torrent->is_lrc)
                     <li class="torrent-card__genre-item">
                         <a class="torrent-card__genre">
-                            <i class="{{ config('other.font-awesome') }} fa-comment-music" title="{{ __('歌词试听') }}"></i>
+                            <i class="{{ config('other.font-awesome') }} fa-comment-music" title="{{ __('artists.lyrics_listen') }}"></i>
                         </a>
                     </li>
                     @else
                     <li class="torrent-card__genre-item">
                         <a class="torrent-card__genre">
-                            <i class="{{ config('other.font-awesome') }} fa-headphones-alt" title="{{ __('提供试听') }}"></i>
+                            <i class="{{ config('other.font-awesome') }} fa-headphones-alt" title="{{ __('artists.listen') }}"></i>
                         </a>
                     </li>
                     @endif
