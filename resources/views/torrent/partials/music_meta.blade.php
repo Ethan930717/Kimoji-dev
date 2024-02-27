@@ -100,7 +100,7 @@
                         <span class="meta-id-tag">{{ __('artists.insufficient') }}</span>
                     @elseif(in_array($userGroup, $unlimitedGroups))
                         <button id="loadPlayerBtn" class="meta-id-tag" data-username="{{ auth()->user()->username }}">
-                            <i class="{{ config('other.font-awesome') }} fa-headphones"></i> {{ __('artists.load') }}
+                            <i class="{{ config('other.font-awesome') }} fa-headphones"></i> {{ __('artists.listen') }}
                         </button>
                     @else
                         @php
@@ -113,13 +113,13 @@
                         @endif
                     @endif
                         @if ($spectrogramUrl)
-                            <button class="meta-id-tag" data-spectrogram-button  style="border:1px solid hsla(0,0%,100%,.161); border-radius: 16px; box-shadow:2px 4px 2px rgba(0,0,0,.2); cursor:pointer; transition:background-color .3s,color .3s; ">
+                            <button class="meta-id-tag" data-spectrogram-button style="border:1px solid hsla(0,0%,100%,.161); border-radius: 16px; box-shadow:2px 4px 2px rgba(0,0,0,.2); cursor:pointer; transition:background-color .3s,color .3s; margin-left: 8px; padding: 0; overflow: hidden; display: inline-block; position: relative; width: 64px; height: 36px;">
                                 <img
                                     src="{{ $spectrogramUrl }}"
                                     class="spectrogram-image"
                                     alt="spectrogram"
+                                    style="width: 100%; height: 100%; object-fit: cover;"
                                 />
-                                <span style="display: inline; margin-left: 8px;">{{ __('artists.spectrogram') }}</span>
                             </button>
                         @endif
 
