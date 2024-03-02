@@ -15,7 +15,7 @@ class WebDAVController extends Controller
         ]);
 
         try {
-            $response = $client->request('GET', '1.flac'); // 指定要访问的资源路径
+            $response = $client->request('GET', '/listen'); // 指定要访问的资源路径
             $contents = $response->getBody()->getContents(); // 获取资源内容
 
             // 根据需要处理和返回内容
