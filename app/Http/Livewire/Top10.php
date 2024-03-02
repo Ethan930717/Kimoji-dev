@@ -58,8 +58,8 @@ class Top10 extends Component
             fn () => Torrent::query()
                 // 假设音乐没有特定的关联模型，所以这里去除了 with() 调用
                 ->select([
-                    'id', // 选择你需要显示的字段
-                    DB::raw('MIN(category_id) as category_id'),
+                    'torrents.id', // 明确指定选择torrents表的id字段
+                    DB::raw('MIN(torrents.category_id) as category_id'),
                     DB::raw('COUNT(history.id) as download_count'), // 计算下载次数
                 ])
                 ->join('history', 'history.torrent_id', '=', 'torrents.id')
