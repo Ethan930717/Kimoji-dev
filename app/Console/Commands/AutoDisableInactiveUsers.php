@@ -65,7 +65,6 @@ class AutoDisableInactiveUsers extends Command
                     ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
                     ->where('peers.user_id', '=', $user->id)
                     ->where('peers.seeder', '=', 1)
-                    ->where('peers.active', '=', 1)
                     ->where('torrents.internal', '=', 1)
                     ->where('torrents.category_id', '=', 3)
                     ->sum('torrents.size');

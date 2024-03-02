@@ -76,7 +76,6 @@ class AutoGroup extends Command
                 ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
                 ->where('peers.user_id', '=', $user->id)
                 ->where('peers.seeder', '=', 1)
-                ->where('peers.active', '=', 1)
                 ->whereIn('torrents.category_id', [3, 4]) // 筛选 category_id 为 3 或 4 的种子
                 ->where('torrents.internal', '=', 1)      // 确保种子是内部种子
                 ->sum('torrents.size');

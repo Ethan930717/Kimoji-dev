@@ -19,7 +19,9 @@ class ArtistController extends Controller
     public function show($id)
     {
         $artist = Artist::findOrFail($id);
-        $torrents = Torrent::where('name', 'like', '%'.$artist->name.'%')->get();
+        $torrents = Torrent::where('name', 'like', '%'.$artist->name.'%')
+            ->where('category_id', 3)
+            ->get();
 
         return view('artists.show', compact('artist', 'torrents'));
     }

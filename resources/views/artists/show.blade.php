@@ -26,7 +26,7 @@
                 alt="{{ $artist->name }}"
                 src="{{ $artist->image_url ? $artist->image_url : 'https://via.placeholder.com/160x240' }}"
                 class="artist-image"
-                style="width: 500px; height: 500px; object-fit: cover;"
+                style="width: 500px; height: 500px; border-radius:16px; object-fit: cover;"
             />
         </div>
 

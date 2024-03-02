@@ -113,9 +113,9 @@ class TorrentZipController extends Controller
         $historyTorrentIds = $user->history()->pluck('torrent_id')->toArray();
 
         $urgentTorrents = Torrent::whereNotIn('id', $historyTorrentIds)
-            ->where('internal', 1) // 只选取 internal 字段为 1 的种子
-            ->where('category_id', 3) // 只选取 category_id 字段为 3 的种子
-            ->where('seeders', '>', 0) // 排除 seeders 字段为 0 的种子
+            ->where('internal', 1)
+            ->where('category_id', 3)
+            ->where('seeders', '>', 1)
             ->orderBy('seeders', 'asc')
             ->get();
 

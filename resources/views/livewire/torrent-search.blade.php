@@ -766,6 +766,7 @@
                                 <th class="torrent-search--list__actions-header">
                                     {{ __('common.actions') }}
                                 </th>
+                                <th class="torrent-search--list__ratings-header">    </th>
                                 <th
                                     class="torrent-search--list__size-header"
                                     wire:click="sortBy('size')"
