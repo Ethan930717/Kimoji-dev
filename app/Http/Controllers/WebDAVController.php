@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class WebDAVController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, $filename)
     {
         $client = new Client([
             // WebDAV服务器基础URL
@@ -15,16 +15,14 @@ class WebDAVController extends Controller
         ]);
 
         try {
-            $response = $client->request('GET', '/listen'); // 指定要访问的资源路径
-            $contents = $response->getBody()->getContents(); // 获取资源内容
+            // 使用 filename 参数来构建请求路径
+            $response = $client->request('GET', 'listen/' . $filename); // 确保路径是正确的
+            $contents = $response->getBody()->getContents();
 
-            // 根据需要处理和返回内容
-            // 例如，直接返回资源内容，或者将内容嵌入到某个视图中
             return response($contents)
                 ->header('Content-Type', $response->getHeaderLine('Content-Type'));
-
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Unable to retrieve data'], 500);
+            return response()->json(['error' => 'Unable to retrieve data: ' . $e->getMessage()], 500);
         }
     }
 }
