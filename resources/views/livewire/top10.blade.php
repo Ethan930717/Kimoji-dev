@@ -1,6 +1,6 @@
 <section class="panelV2">
     <header class="panel__header">
-        <h2 class="panel__heading">Top 10</h2>
+        <h2 class="panel__heading">Top 10 Music</h2>
         <div class="panel__actions">
             <div class="panel__action">
                 <div class="form__group">
@@ -16,45 +16,17 @@
                     </label>
                 </div>
             </div>
-            <div class="panel__action">
-                <div class="form__group">
-                    <select id="metaType" class="form__select" type="date" name="metaType" wire:model="metaType">
-                        @foreach ($metaTypes as $name => $type)
-                            <option value="{{ $type }}">{{ $name  }}</option>
-                        @endforeach
-                    </select>
-                    <label class="form__label form__label--floating" for="metaType">
-                        类别
-                    </label>
-                </div>
-            </div>
         </div>
     </header>
     <div class="panel__body torrent-search--poster__results">
-        <div wire:loading.delay>Computing...</div>
-        @switch ($this->metaType)
-            @case ('movie_meta')
-                @foreach($works as $work)
-                    <figure class="top10-poster">
-                        <x-movie.poster :movie="$work->movie" :categoryId="$work->category_id" :tmdb="$work->tmdb" />
-                        <figcaption class="top10-poster__download-count" title="{{ __('torrent.completed-times') }}">
-                            {{ $work->download_count }}
-                        </figcaption>
-                    </figure>
-                @endforeach
-
-                @break
-            @case ('tv_meta')
-                @foreach($works as $work)
-                    <figure class="top10-poster">
-                        <x-tv.poster :tv="$work->tv" :categoryId="$work->category_id" :tmdb="$work->tmdb" />
-                        <figcaption class="top10-poster__download-count" title="{{ __('torrent.completed-times') }}">
-                            {{ $work->download_count }}
-                        </figcaption>
-                    </figure>
-                @endforeach
-
-                @break
-        @endswitch
+        <div wire:loading.delay>计算中...</div>
+        @foreach($works as $work)
+            <div class="music-item">
+                <span class="music-item__title">{{ $work->name }}</span>
+                <span class="music-item__download-count" title="{{ __('torrent.completed-times') }}">
+                    {{ $work->download_count }}次下载
+                </span>
+            </div>
+        @endforeach
     </div>
 </section>

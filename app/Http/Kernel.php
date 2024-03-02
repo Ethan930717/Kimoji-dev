@@ -54,10 +54,10 @@ class Kernel extends HttpKernel
             //'throttle:web',
         ],
         'api' => [
-            'throttle:api',
+            //'throttle:api',
         ],
         'announce' => [
-            'throttle:announce',
+            //'throttle:announce',
         ],
         'rss' => [
             'throttle:rss',

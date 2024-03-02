@@ -13,6 +13,7 @@
 
 return [
     'born'               => '发行:',
+    'music'              => '音乐',
     'collections'        => '系列',
     'companies'          => '发行',
     'disclaimer'         => '本产品使用TMDb API',

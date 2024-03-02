@@ -25,7 +25,7 @@ use Livewire\Component;
  */
 class Top10 extends Component
 {
-    public string $metaType = 'movie_meta';
+    public string $metaType = 'music_meta';
 
     public string $interval = 'day';
 
@@ -33,7 +33,7 @@ class Top10 extends Component
      * @var array<string, mixed>
      */
     protected $queryString = [
-        'metaType' => ['except' => 'movie_meta'],
+        'metaType' => ['except' => 'music_meta'],
         'interval' => ['except' => 'day'],
     ];
 
@@ -41,7 +41,7 @@ class Top10 extends Component
      * @var array<string, string>
      */
     protected $rules = [
-        'metaType' => 'in:movie_meta,tv_meta',
+        'metaType' => 'in:music_meta',
         'interval' => 'in:day,week,month,year,all',
     ];
 
@@ -53,33 +53,28 @@ class Top10 extends Component
         $this->validate();
 
         return cache()->remember(
-            'top10-'.$this->interval.'-'.$this->metaType,
+            'top10-'.$this->interval,
             3600,
             fn () => Torrent::query()
-                ->when(
-                    $this->metaType === 'tv_meta',
-                    fn ($query) => $query->with('tv'),
-                    fn ($query) => $query->with('movie'),
-                )
+                // 假设音乐没有特定的关联模型，所以这里去除了 with() 调用
                 ->select([
-                    'tmdb',
+                    'id', // 选择你需要显示的字段
                     DB::raw('MIN(category_id) as category_id'),
-                    DB::raw('COUNT(*) as download_count'),
+                    DB::raw('COUNT(history.id) as download_count'), // 计算下载次数
                 ])
                 ->join('history', 'history.torrent_id', '=', 'torrents.id')
-                ->where('tmdb', '!=', 0)
+                // 这里去除了对 tmdb 字段的条件，因为音乐资源没有 tmdb
                 ->when($this->interval === 'day', fn ($query) => $query->whereBetween('history.completed_at', [now()->subDay(), now()]))
                 ->when($this->interval === 'week', fn ($query) => $query->whereBetween('history.completed_at', [now()->subWeek(), now()]))
                 ->when($this->interval === 'month', fn ($query) => $query->whereBetween('history.completed_at', [now()->subMonth(), now()]))
                 ->when($this->interval === 'year', fn ($query) => $query->whereBetween('history.completed_at', [now()->subYear(), now()]))
                 ->when($this->interval === 'all', fn ($query) => $query->whereNotNull('history.completed_at'))
-                ->whereIn('torrents.category_id', Category::select('id')->where($this->metaType, '=', true))
-                // Small torrents screw the stats since users download them only to farm bon.
-                ->where('torrents.size', '>', 1000 * 1000 * 1000)
-                ->groupBy('tmdb')
-                ->orderByRaw('COUNT(*) DESC')
-                ->limit(250)
-                ->get('tmdb')
+                ->whereIn('torrents.category_id', Category::select('id')->where('music_meta', '=', true))
+                ->where('torrents.size', '>', 1000 * 1000 * 1000) // 继续保留大小过滤以排除过小的文件
+                ->groupBy('torrents.id') // 按照torrents.id分组
+                ->orderByRaw('COUNT(history.id) DESC') // 根据下载次数降序排序
+                ->limit(10) // 根据需求调整显示的数量
+                ->get()
         );
     }
 
@@ -88,17 +83,9 @@ class Top10 extends Component
      */
     final public function getMetaTypesProperty(): array
     {
-        $metaTypes = [];
-
-        if (Category::where('movie_meta', '=', true)->exists()) {
-            $metaTypes[__('mediahub.movie')] = 'movie_meta';
-        }
-
-        if (Category::where('tv_meta', '=', true)->exists()) {
-            $metaTypes[__('mediahub.show')] = 'tv_meta';
-        }
-
-        return $metaTypes;
+        return [
+            __('mediahub.music') => 'music_meta', // 确保`mediahub.music`在你的语言文件中有定义
+        ];
     }
 
     final public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
