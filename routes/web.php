@@ -81,7 +81,7 @@ Route::middleware('language')->group(function (): void {
         // General
         Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
         Route::get('/gallery', [ImageGalleryController::class, 'showGallery']);
-        Route::get('/listen/{filename}', [WebDAVController::class, 'listen'])->where('filename', '.*');
+        Route::get('/listen', [WebDAVController::class, 'index'])->name('listen.index');
 
         // Articles System
         Route::prefix('articles')->group(function (): void {
