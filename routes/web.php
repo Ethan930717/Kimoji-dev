@@ -4,9 +4,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\ImageGalleryController;
 use App\Http\Controllers\MusicUploadController;
+use App\Http\Controllers\WebDAVController;
+
 
 #图片展示
-Route::get('/gallery', [ImageGalleryController::class, 'showGallery']);
 // loginsponsor
 Route::get('/loginsponsor', [App\Http\Controllers\Auth\LoginSponsorController::class, 'showSponsorPage'])->name('loginsponsor');
 // 上传歌曲
@@ -79,6 +80,8 @@ Route::middleware('language')->group(function (): void {
     Route::middleware(['auth', 'banned', 'verified'])->group(function (): void {
         // General
         Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+        Route::get('/gallery', [ImageGalleryController::class, 'showGallery']);
+        Route::get('/music', [WebDAVController::class, 'index'])->name('music.index');
 
         // Articles System
         Route::prefix('articles')->group(function (): void {

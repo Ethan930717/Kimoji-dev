@@ -21,12 +21,12 @@
     <div class="panel__body torrent-search--poster__results">
         <div wire:loading.delay>计算中...</div>
         @foreach($works as $work)
-            <div class="music-item">
-                <span class="music-item__title">{{ $work->name }}</span>
-                <span class="music-item__download-count" title="{{ __('torrent.completed-times') }}">
-                    {{ $work->download_count }}次下载
-                </span>
-            </div>
+            <figure class="top10-poster">
+                <x-music.poster :torrent="$work" />
+                <figcaption class="top10-poster__download-count" title="{{ __('torrent.completed-times') }}">
+                    {{ $work->download_count }}
+                </figcaption>
+            </figure>
         @endforeach
     </div>
 </section>

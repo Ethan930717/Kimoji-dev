@@ -70,7 +70,6 @@ class Top10 extends Component
                 ->when($this->interval === 'year', fn ($query) => $query->whereBetween('history.completed_at', [now()->subYear(), now()]))
                 ->when($this->interval === 'all', fn ($query) => $query->whereNotNull('history.completed_at'))
                 ->whereIn('torrents.category_id', Category::select('id')->where('music_meta', '=', true))
-                ->where('torrents.size', '>', 1000 * 1000 * 1000) // 继续保留大小过滤以排除过小的文件
                 ->groupBy('torrents.id') // 按照torrents.id分组
                 ->orderByRaw('COUNT(history.id) DESC') // 根据下载次数降序排序
                 ->limit(10) // 根据需求调整显示的数量
