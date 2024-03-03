@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Log;
+
 
 
 class WebDAVController extends Controller
@@ -32,6 +34,9 @@ class WebDAVController extends Controller
             // 使用 subdir 和 filename 参数来构建请求路径
             $file_path = $subdir . '/' . $filename;
             $response = $client->request('GET', $file_path, $options);
+            Log::info("WebDAV request made to: " . $file_path);
+            Log::info("Response Content-Type: " . $response->getHeaderLine('Content-Type'));
+
 
             // 准备流式响应
             $stream = function () use ($response) {
@@ -57,6 +62,7 @@ class WebDAVController extends Controller
             return response()->stream($stream, 200, $headers);
 
         } catch (\Exception $e) {
+            Log::error("Failed to load WebDAV resource: " . $e->getMessage());
             return abort(404, 'File not found.');
         }
     }
