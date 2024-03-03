@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Config;
 
-
-
 class WebDAVController extends Controller
 {
     public function stream($subdir, $filename, Request $request)
@@ -23,35 +21,37 @@ class WebDAVController extends Controller
         try {
             $range = $request->header('Range');
             $options = [
-                'stream' => true,
-                'headers' => [],
+                'headers' => $range ? ['Range' => $range] : [],
             ];
-            if ($range) {
-                $options['headers']['Range'] = $range;
+
+            // 检查文件类型，设置是否以流式传输
+            if ($this->isStreamableFile($filename)) {
+                $options['stream'] = true;
             }
 
-            // 使用 subdir 和 filename 参数来构建请求路径
             $file_path = $subdir . '/' . $filename;
             $response = $client->request('GET', $file_path, $options);
 
+            if (!$this->isStreamableFile($filename)) {
+                // 对于非流式文件，直接返回响应
+                return response($response->getBody()->getContents())
+                    ->header('Content-Type', $response->getHeaderLine('Content-Type'));
+            }
 
             // 准备流式响应
             $stream = function () use ($response) {
-                if ($response->getBody()) {
-                    while (!$response->getBody()->eof()) {
-                        echo $response->getBody()->read(2048);
-                        flush();
-                    }
+                while (!$response->getBody()->eof()) {
+                    echo $response->getBody()->read(2048);
+                    flush();
                 }
             };
 
-            // 设置必要的响应头
+            // 设置响应头
             $headers = [
                 'Content-Type' => $response->getHeaderLine('Content-Type'),
-                'Accept-Ranges' => 'bytes', // 表明服务器接受范围请求
+                'Accept-Ranges' => 'bytes',
             ];
 
-            // 如果处理了范围请求，应设置正确的Content-Range
             if ($range && $response->hasHeader('Content-Range')) {
                 $headers['Content-Range'] = $response->getHeaderLine('Content-Range');
             }
@@ -59,7 +59,20 @@ class WebDAVController extends Controller
             return response()->stream($stream, 200, $headers);
 
         } catch (\Exception $e) {
-            return abort(404, 'File not found.');
+            abort(404, '未找到该文件');
         }
+    }
+
+    /**
+     * 检查文件是否应该以流式传输
+     *
+     * @param string $filename
+     * @return bool
+     */
+    protected function isStreamableFile($filename)
+    {
+        $streamableExtensions = ['mp3', 'm4a', 'ogg', 'wav', 'flac']; // 这里可以根据需要添加更多音频文件类型
+        $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+        return in_array($extension, $streamableExtensions);
     }
 }
