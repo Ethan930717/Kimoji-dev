@@ -4,14 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Config;
+
 
 class WebDAVController extends Controller
 {
     public function stream($subdir, $filename, Request $request)
     {
         $client = new Client([
-            'base_uri' => 'https://u392345.your-storagebox.de/',
-            'auth' => ['u392345', 'VazkZPhSCm45DY67'],
+            'base_uri' => Config::get('webdav.base_uri'),
+            'auth' => [
+                Config::get('webdav.username'),
+                Config::get('webdav.password')
+            ],
         ]);
 
         try {
