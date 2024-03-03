@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Log; // 引入 Log 门面
+
 
 class WebDAVController extends Controller
 {
-    public function stream($path, Request $request)
+    public function stream($subdir, $filename, Request $request)
     {
         $client = new Client([
             'base_uri' => Config::get('webdav.base_uri'),
@@ -19,17 +19,19 @@ class WebDAVController extends Controller
             ],
         ]);
 
-        // 添加日志记录请求的路径
-        Log::info("Streaming from WebDAV path: " . $path);
-
         try {
-            // 使用 path 参数来构建请求路径
-            $response = $client->request('GET', $path, [
+            $range = $request->header('Range');
+            $options = [
                 'stream' => true,
-            ]);
+                'headers' => [],
+            ];
+            if ($range) {
+                $options['headers']['Range'] = $range;
+            }
 
-            // 检查响应状态码并记录
-            Log::info("Response status: " . $response->getStatusCode());
+            // 使用 subdir 和 filename 参数来构建请求路径
+            $file_path = $subdir . '/' . $filename;
+            $response = $client->request('GET', $file_path, $options);
 
             // 准备流式响应
             $stream = function () use ($response) {
@@ -47,11 +49,14 @@ class WebDAVController extends Controller
                 'Accept-Ranges' => 'bytes', // 表明服务器接受范围请求
             ];
 
+            // 如果处理了范围请求，应设置正确的Content-Range
+            if ($range && $response->hasHeader('Content-Range')) {
+                $headers['Content-Range'] = $response->getHeaderLine('Content-Range');
+            }
+
             return response()->stream($stream, 200, $headers);
 
         } catch (\Exception $e) {
-            // 记录错误信息
-            Log::error("Failed to stream file: " . $e->getMessage());
             return abort(404, 'File not found.');
         }
     }
