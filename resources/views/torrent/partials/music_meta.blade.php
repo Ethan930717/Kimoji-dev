@@ -83,14 +83,14 @@
                         use App\Enums\UserGroup;
                         $userGroup = auth()->user()->group_id;
                         $listenLimits = [
-                            UserGroup::USER->value => 1,
-                            UserGroup::POWERUSER->value => 6,
-                            UserGroup::SUPERUSER->value => 12,
-                            UserGroup::EXTREMEUSER->value => 20,
-                            UserGroup::INSANEUSER->value => 30,
-                            UserGroup::VETERAN->value => 42,
-                            UserGroup::SEEDER->value => 55,
-                            UserGroup::ARCHIVIST->value => 70,
+                            UserGroup::USER->value => 3,
+                            UserGroup::POWERUSER->value => 8,
+                            UserGroup::SUPERUSER->value => 20,
+                            UserGroup::EXTREMEUSER->value => 40,
+                            UserGroup::INSANEUSER->value => 60,
+                            //UserGroup::VETERAN->value => 42,
+                            //UserGroup::SEEDER->value => 55,
+                            //UserGroup::ARCHIVIST->value => 70,
                             // 任何未列出的等级都没有限制，可以无限试听
                         ];
                         $unlimitedGroups = [UserGroup::VIP->value, UserGroup::KEEPER->value, UserGroup::OWNER->value, UserGroup::INTERNAL->value];

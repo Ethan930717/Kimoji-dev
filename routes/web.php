@@ -81,7 +81,9 @@ Route::middleware('language')->group(function (): void {
         // General
         Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
         Route::get('/gallery', [ImageGalleryController::class, 'showGallery']);
-        Route::get('/listen/{filename}', [WebDAVController::class, 'stream'])->where('filename', '.*')->name('webdav.stream');
+        Route::get('/audiofiles/{subdir}/{filename}', [WebDAVController::class, 'stream'])
+            ->where(['subdir' => 'listen|image', 'filename' => '.*'])
+            ->name('webdav.stream');
 
         // Articles System
         Route::prefix('articles')->group(function (): void {

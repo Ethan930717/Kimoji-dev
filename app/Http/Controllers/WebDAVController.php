@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 
 class WebDAVController extends Controller
 {
-    public function stream($filename, Request $request)
+    public function stream($subdir, $filename, Request $request)
     {
         $client = new Client([
             'base_uri' => 'https://u392345.your-storagebox.de/',
@@ -24,7 +24,9 @@ class WebDAVController extends Controller
                 $options['headers']['Range'] = $range;
             }
 
-            $response = $client->request('GET', 'listen/' . $filename, $options);
+            // 使用 subdir 和 filename 参数来构建请求路径
+            $file_path = $subdir . '/' . $filename;
+            $response = $client->request('GET', $file_path, $options);
 
             // 准备流式响应
             $stream = function () use ($response) {
