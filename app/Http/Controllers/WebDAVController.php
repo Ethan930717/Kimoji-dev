@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Config;
 
 class WebDAVController extends Controller
 {
-    public function stream($subdir, $filename, Request $request)
+    public function stream($path, Request $request)
     {
         $client = new Client([
             'base_uri' => Config::get('webdav.base_uri'),
@@ -20,18 +20,11 @@ class WebDAVController extends Controller
         ]);
 
         try {
-            $range = $request->header('Range');
-            $options = [
+            // 使用 path 参数来构建请求路径
+            $response = $client->request('GET', $path, [
                 'stream' => true,
-                'headers' => [],
-            ];
-            if ($range) {
-                $options['headers']['Range'] = $range;
-            }
-
-            // 使用 subdir 和 filename 参数来构建请求路径
-            $file_path = $subdir . '/' . $filename;
-            $response = $client->request('GET', $file_path, $options);
+                // 其他可能的 Guzzle 配置项
+            ]);
 
             // 准备流式响应
             $stream = function () use ($response) {
@@ -49,10 +42,6 @@ class WebDAVController extends Controller
                 'Accept-Ranges' => 'bytes', // 表明服务器接受范围请求
             ];
 
-            // 如果处理了范围请求，应设置正确的Content-Range
-            if ($range && $response->hasHeader('Content-Range')) {
-                $headers['Content-Range'] = $response->getHeaderLine('Content-Range');
-            }
 
             return response()->stream($stream, 200, $headers);
 
