@@ -48,6 +48,8 @@ use MarcReichel\IGDBLaravel\Models\PlatformLogo;
 use Exception;
 use ReflectionException;
 use JsonException;
+use Illuminate\Support\Facades\DB;
+
 
 /**
  * @see \Tests\Todo\Feature\Http\Controllers\TorrentControllerTest
@@ -307,6 +309,7 @@ class TorrentController extends Controller
         $torrent->subtitles()->delete();
         $torrent->resurrections()->delete();
         $torrent->featured()->delete();
+        DB::table('music')->where('torrent_id', '=', $torrent->id)->delete();
 
         $freeleechTokens = $torrent->freeleechTokens();
 

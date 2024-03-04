@@ -110,12 +110,12 @@
                         播单推荐
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{ route('torrents.create', ['category_id' => 1]) }}">
                         <i class="{{ config('other.font-awesome') }} fa-sun-plant-wilt"></i>
                         发布资源
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </li>
         <li class="top-nav--left__list-item top-nav__dropdown">
@@ -477,12 +477,12 @@
                             {{ __('user.my-achievements') }}
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="{{ route('users.torrents.index', ['user' => auth()->user()]) }}">
                             <i class="{{ config('other.font-awesome') }} fa-upload"></i>
                             {{ __('user.my-uploads') }}
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a href="{{ route('requests.index', ['requestor' => auth()->user()->username]) }}">
                             <i class="{{ config('other.font-awesome') }} fa-question"></i>

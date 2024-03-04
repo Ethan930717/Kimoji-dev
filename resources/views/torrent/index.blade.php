@@ -30,11 +30,11 @@
             {{ __('rss.rss') }}
         </a>
     </li>
-    <li class="nav-tabV2">
+    {{-- <li class="nav-tabV2">
         <a class="nav-tab__link" href="{{ route('torrents.create', ['category_id' => 1]) }}">
             {{ __('common.upload') }}
         </a>
-    </li>
+    </li> --}}
 @endsection
 
 @section('content')
