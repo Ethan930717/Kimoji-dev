@@ -29,6 +29,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 use Exception;
 
 /**
@@ -67,6 +68,23 @@ class HomeController extends Controller
                 ->orderBy('country', 'asc')
                 ->get();
         });
+        $preferredOrder = [
+            '中国大陆', '中国台湾', '中国香港', '中国澳门', '美国', '日本', '韩国', '新加坡'
+        ];
+        $sortedCountries = new Collection();
+        foreach ($preferredOrder as $countryName) {
+            $country = $countries->firstWhere('country', $countryName);
+            if ($country) {
+                $sortedCountries->push($country);
+                // 从原始集合中移除已添加到排序集合中的国家
+                $countries = $countries->reject(function ($value) use ($countryName) {
+                    return $value->country == $countryName;
+                });
+            }
+        }
+        $mergedCountries = $sortedCountries->merge($countries);
+
+
 
 
         return view('home.index', [
@@ -502,7 +520,7 @@ class HomeController extends Controller
             'artistsCount'     => $artistsCount,
             'albumsCount'      => $albumsCount,
             'songsCount'       => $songsCount,
-            'countries'        => $countries,
+            'countries'        => $mergedCountries,
         ]);
     }
 }
