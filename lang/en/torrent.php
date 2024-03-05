@@ -242,4 +242,6 @@ return [
     'year-range'               => 'Year Range',
     'music-genre'              => 'Music Genre',
     'no-result'              => 'No Result',
+    'gallery'              => 'Gallery',
+
 ];

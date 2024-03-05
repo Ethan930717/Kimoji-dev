@@ -27,7 +27,7 @@
             class="quick-search__input"
             wire:model.debounce.250ms="quicksearchText"
             type="text"
-            placeholder="{{ $quicksearchRadio === 'albums' ? '搜索专辑...' : ($quicksearchRadio === 'songs' ? '搜索歌曲...' : '搜索歌手/组合...') }}"
+            placeholder="{{ $quicksearchRadio === 'albums' ? __('artists.albums') : ($quicksearchRadio === 'songs' ? __('artists.songs') : __('artists.title')) }}"
             x-ref="quickSearch"
             x-on:keydown.down.prevent="$refs.searchResults.firstElementChild?.firstElementChild?.focus()"
             x-on:keydown.up.prevent="$refs.searchResults.lastElementChild?.firstElementChild?.focus()"
@@ -63,7 +63,7 @@
                 </article>
             @empty
                 <article class="quick-search__result--empty">
-                    <p class="quick-search__result-text">暂无内容</p>
+                    <p class="quick-search__result-text">{{ __('torrent.no-result') }}</p>
                 </article>
             @endforelse
         </div>

@@ -261,12 +261,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('subtitles.index') }}">
-                        <i class="{{ config('other.font-awesome') }} fa-closed-captioning"></i>
-                        {{ __('common.subtitles') }}
-                    </a>
-                </li>
-                <li>
                     <a href="{{ route('top10.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-trophy-alt"></i>
                         {{ __('common.top-10') }}
@@ -288,7 +282,7 @@
                 <li>
                     <a href="/gallery">
                         <i class="{{ config('other.font-awesome') }} fa-camera"></i>
-                        KIMOJI 画廊
+                        {{__('torrent.gallery')}}
                     </a>
                 </li>
             </ul>
