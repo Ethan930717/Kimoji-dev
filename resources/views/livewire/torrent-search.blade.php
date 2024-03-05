@@ -40,63 +40,8 @@
                             {{ __('torrent.description') }}
                         </label>
                     </p>
-                    <p class="form__group">
-                        <input
-                            id="mediainfo"
-                            wire:model="mediainfo"
-                            class="form__text"
-                            placeholder=" "
-                        />
-                        <label class="form__label form__label--floating" for="mediainfo">
-                            {{ __('torrent.media-info') }}
-                        </label>
-                    </p>
-                    <p class="form__group">
-                        <input
-                            id="keywords"
-                            wire:model="keywords"
-                            class="form__text"
-                            placeholder=" "
-                        />
-                        <label class="form__label form__label--floating" for="keywords">
-                            {{ __('torrent.keywords') }}
-                        </label>
-                    </p>
-                    <p class="form__group">
-                        <input
-                            id="uploader"
-                            wire:model="uploader"
-                            class="form__text"
-                            placeholder=" "
-                        />
-                        <label class="form__label form__label--floating" for="uploader">
-                            {{ __('torrent.uploader') }}
-                        </label>
-                    </p>
                 </div>
                 <div class="form__group--short-horizontal">
-                    <p class="form__group">
-                        <input
-                            id="startYear"
-                            wire:model="startYear"
-                            class="form__text"
-                            placeholder=" "
-                        />
-                        <label class="form__label form__label--floating" for="startYear">
-                            {{ __('torrent.start-year') }}
-                        </label>
-                    </p>
-                    <p class="form__group">
-                        <input
-                            id="endYear"
-                            wire:model="endYear"
-                            class="form__text"
-                            placeholder=" "
-                        />
-                        <label class="form__label form__label--floating" for="endYear">
-                            {{ __('torrent.end-year') }}
-                        </label>
-                    </p>
                     <div class="form__group--short-horizontal">
                         <p class="form__group">
                             <input
@@ -169,17 +114,6 @@
                 <div class="form__group--short-horizontal">
                     <div class="form__group">
                         @php
-                            $regions = cache()->remember(
-                                'regions',
-                                3_600,
-                                fn () => App\Models\Region::orderBy('position')->get()
-                            )
-                        @endphp
-
-                        <div id="regions" wire:ignore></div>
-                    </div>
-                    <div class="form__group">
-                        @php
                             $distributors = cache()->remember(
                                 'distributors',
                                 3_600,
@@ -189,76 +123,6 @@
 
                         <div id="distributors" wire:ignore></div>
                     </div>
-                </div>
-                <div class="form__group--short-horizontal">
-                    <p class="form__group">
-                        <input
-                            id="playlistId"
-                            wire:model="playlistId"
-                            class="form__text"
-                            placeholder=" "
-                        />
-                        <label class="form__label form__label--floating" for="playlistId">
-                            播单
-                        </label>
-                    </p>
-                    <p class="form__group">
-                        <input
-                            id="collectionId"
-                            wire:model="collectionId"
-                            class="form__text"
-                            placeholder=" "
-                        />
-                        <label class="form__label form__label--floating" for="collectionId">
-                            系列
-                        </label>
-                    </p>
-                    <p class="form__group">
-                        <input
-                            id="companyId"
-                            wire:model="companyId"
-                            class="form__text"
-                            placeholder=" "
-                        />
-                        <label class="form__label form__label--floating" for="companyId">
-                            发行
-                        </label>
-                    </p>
-                    <p class="form__group">
-                        <input
-                            id="networkId"
-                            wire:model="networkId"
-                            class="form__text"
-                            placeholder=" "
-                        />
-                        <label class="form__label form__label--floating" for="networkId">
-                            流媒体
-                        </label>
-                    </p>
-                </div>
-                <div class="form__group--short-horizontal">
-                    <p class="form__group">
-                        <input id="tmdbId" wire:model="tmdbId" class="form__text" placeholder=" " />
-                        <label class="form__label form__label--floating" for="tmdbId">
-                            TMDb ID
-                        </label>
-                    </p>
-                    <p class="form__group">
-                        <input id="imdbId" wire:model="imdbId" class="form__text" placeholder=" " />
-                        <label class="form__label form__label--floating" for="imdbId">
-                            IMDb ID
-                        </label>
-                    </p>
-                    <p class="form__group">
-                        <input id="tvdbId" wire:model="tvdbId" class="form__text" placeholder=" " />
-                        <label class="form__label form__label--floating" for="tvdbId">
-                            TVDb ID
-                        </label>
-                    </p>
-                    <p class="form__group">
-                        <input id="malId" wire:model="malId" class="form__text" placeholder=" " />
-                        <label class="form__label form__label--floating" for="malId">MAL ID</label>
-                    </p>
                 </div>
                 <div class="form__group--short-horizontal">
                     <div class="form__group">
@@ -665,37 +529,6 @@
                             </div>
                         </fieldset>
                     </div>
-                    <div class="form__group">
-                        <fieldset class="form__fieldset">
-                            <legend class="form__legend">Primary Language</legend>
-                            <div class="form__fieldset-checkbox-container">
-                                @php
-                                    $primaryLanguages = cache()->remember(
-                                        'torrent-search:languages',
-                                        3600,
-                                        fn () => \App\Models\Movie::select('original_language')
-                                            ->distinct()
-                                            ->orderBy('original_language')
-                                            ->pluck('original_language')
-                                    )
-                                @endphp
-
-                                @foreach ($primaryLanguages as $primaryLanguage)
-                                    <p class="form__group">
-                                        <label class="form__label">
-                                            <input
-                                                class="form__checkbox"
-                                                type="checkbox"
-                                                value="{{ $primaryLanguage }}"
-                                                wire:model="primaryLanguages"
-                                            />
-                                            {{ $primaryLanguage }}
-                                        </label>
-                                    </p>
-                                @endforeach
-                            </div>
-                        </fieldset>
-                    </div>
                 </div>
             </form>
         </div>
@@ -1012,7 +845,7 @@
             multiple: true,
             search: true,
             placeholder: "{{__('选择小说分类')}}",
-            noOptionsText: "{{__('无匹配信息')}}",
+              noOptionsText: "{{__('torrent.no-result')}}",
           })
 
           let regions = document.querySelector('#regions')
@@ -1033,8 +866,8 @@
             options: myDistributors,
             multiple: true,
             search: true,
-            placeholder: "{{__('选择音乐风格')}}",
-            noOptionsText: "{{__('无匹配信息')}}",
+            placeholder: "{{__('torrent.music-genre')}}",
+            noOptionsText: "{{__('torrent.no-result')}}",
           })
 
           let distributors = document.querySelector('#distributors')

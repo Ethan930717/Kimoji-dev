@@ -239,4 +239,6 @@ return [
     'search-by-name'           => '按姓名搜索',
     'recent-bumped'            => '最近更新',
     'Runtime'                  => '影片时长',
+    'music-genre'                    => '音乐风格',
+    'no-result'              => '无匹配信息',
 ];

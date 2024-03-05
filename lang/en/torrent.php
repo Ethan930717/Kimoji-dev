@@ -240,4 +240,6 @@ return [
     'view-trailer'             => 'View Trailer',
     'votes'                    => 'Votes',
     'year-range'               => 'Year Range',
+    'music-genre'              => 'Music Genre',
+    'no-result'              => 'No Result',
 ];

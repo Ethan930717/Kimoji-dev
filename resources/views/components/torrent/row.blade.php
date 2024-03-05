@@ -90,68 +90,86 @@
                 @else
                     @if ($torrent->category->music_meta)
                         @switch($torrent->distributor->name)
-                            @case('乡村（Country）')
+                            @case('Country')
                                 <i class="fas fa-hat-cowboy torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
-                            @case('儿童（Children）')
+                            @case('Children')
                                 <i class="fas fa-child torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
-                            @case('原声（OST）')
+                            @case('OST')
                                 <i class="fas fa-film torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
-                            @case('古典（Classic）')
+                            @case('Classical')
                                 <i class="fas fa-violin torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
-                            @case('另类（Alternative）')
+                            @case('Alternative')
                                 <i class="fas fa-alien-8bit torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
-                            @case('嘻哈（Hip Hop）')
+                            @case('Hip-Hop')
                                 <i class="fas fa-hat-cowboy-side torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
-                            @case('器乐（Instrumental）')
+                            @case('Instrumental')
                                 <i class="fas fa-piano torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
-                            @case('布鲁斯（Blues）')
+                            @case('Blues')
                                 <i class="fas fa-guitar-electric torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
-                            @case('拉丁（Latino）')
+                            @case('Latino')
                                 <i class="fas fa-guitar torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
-                            @case('摇滚（Rock）')
+                            @case('Rock')
                                 <i class="fas fa-drum torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
-                            @case('新世纪（New Age）')
-                                <i class="fas fa-spa torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('民谣（Folk）')
+                            @case('Folk')
                                 <i class="fas fa-guitars torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
-                            @case('流行（Pop）')
+                            @case('Pop')
                                 <i class="fas fa-microphone-stand torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
-                            @case('爵士（Jazz）')
+                            @case('Jazz')
                                 <i class="fas fa-saxophone torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
-                            @case('独立（Indie）')
+                            @case('Indie')
                                 <i class="fas fa-indian-rupee torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
-                            @case('电子（Electronic）')
+                            @case('Electronic')
                                 <i class="fas fa-headphones torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
-                            @case('福音（Christian）')
+                            @case('Christian')
                                 <i class="fas fa-cross torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
-                            @case('舞曲（Dance）')
+                            @case('Dance')
                                 <i class="fas fa-theater-masks torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
-                            @case('节奏布鲁斯 (R&B)')
+                            @case('R&B')
                                 <i class="fas fa-heart-crack torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
-                            @case('雷鬼（Reggae）')
+                            @case('Reggae')
                                 <i class="fas fa-leaf-heart torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
-                            @case('音乐剧（Musical）')
+                            @case('Musical')
                                 <i class="fas fa-masks-theater torrent-icon" @style(['padding-top: 12px'])> </i>
+                                @break
+                            @case('New Age')
+                                <i class="fas fa-spa torrent-icon" @style(['padding-top: 12px'])> </i>
+                                @break
+                            @case('Audiobook')
+                                <i class="fas fa-book-open torrent-icon" @style(['padding-top: 12px'])> </i>
+                                @break
+                            @case('Anime')
+                                <i class="fas fa-laugh-beam torrent-icon" @style(['padding-top: 12px'])> </i>
+                                @break
+                            @case('Gospel')
+                                <i class="fas fa-cross torrent-icon" @style(['padding-top: 12px'])> </i>
+                                @break
+                            @case('Holiday')
+                                <i class="fas fa-sun torrent-icon" @style(['padding-top: 12px'])> </i>
+                                @break
+                            @case('Religious')
+                                <i class="fas fa-pray torrent-icon" @style(['padding-top: 12px'])> </i>
+                                @break
+                            @case('World')
+                                <i class="fas fa-globe-americas torrent-icon" @style(['padding-top: 12px'])> </i>
                                 @break
                             @default
                                 <i class="{{ $torrent->category->icon }} torrent-icon" @style(['padding-top: 12px'])> </i>
