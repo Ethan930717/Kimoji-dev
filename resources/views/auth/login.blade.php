@@ -125,6 +125,22 @@
                 </footer>
             </section>
         </main>
+        @php
+            use App\Models\Torrent;
+            $torrents = Torrent::where('internal', 1)
+                ->where('category_id')
+            ->inRandomOrder()
+            ->take(20)
+            ->get(['id']);
+            $images = $torrents->map(function ($torrent) {
+            return url('/files/img/torrent-banner_' . $torrent->id . '.jpg');
+            });
+        @endphp
+        <div class="image-slider">
+            @foreach ($images as $image)
+                <img src="{{ $image }}" alt="Torrent Banner">
+            @endforeach
+        </div>
     </body>
 </html>
 
