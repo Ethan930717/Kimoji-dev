@@ -126,9 +126,12 @@
             </section>
         </main>
         <div class="image-slider">
-            @foreach($images as $imageUrl)
-                <img src="{{ $imageUrl }}" class="slider-image">
-            @endforeach
+            @if(isset($images))
+                @foreach($images as $image)
+                    <img src="{{ $image }}" alt="Some Image">
+                @endforeach
+            @endif
+
         </div>
     </body>
 </html>

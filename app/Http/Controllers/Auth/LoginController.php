@@ -20,6 +20,7 @@ use App\Models\Artist;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
+
 class LoginController extends Controller
 {
     use AuthenticatesUsers;
@@ -48,9 +49,11 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
+        \Log::info('Fetching artist images');
         $images = Artist::inRandomOrder()->take(20)->pluck('image_url');
+        \Log::info('Images fetched: ', ['images' => $images]);
 
-        return view('auth.login', compact('images'));
+        return view('auth.login', ['images' => $images]);
     }
     /**
      * Validate The User Login Request.

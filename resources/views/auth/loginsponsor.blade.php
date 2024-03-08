@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="auth-form__qr-codes">
-            <img src="/path/to/alipay_qr_code.png" alt="支付宝">
+            <img src="/path/to/alipay_qr_code.png" alt="Alipay">
             <img src="/path/to/paypal_qr_code.png" alt="PayPal">
         </div>
     </section>
