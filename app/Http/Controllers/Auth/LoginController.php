@@ -16,7 +16,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Group;
 use App\Services\Unit3dAnnounce;
-use App\Models\Artist;
+use App\Models\Torrent;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
@@ -49,8 +49,20 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        $images = Artist::inRandomOrder()->take(20)->pluck('image_url');
-        dd($images); // 调试输出
+        // 获取满足条件的20个Torrent的ID
+        $torrents = Torrent::where('internal', 1)
+            ->where('category_id', 3)
+            ->inRandomOrder()
+            ->take(20)
+            ->get(['id']);
+
+        // 根据ID生成image_url
+        $images = $torrents->map(function ($torrent) {
+            return url('/files/img/torrent-banner_' . $torrent->id . '.jpg');
+        });
+        
+
+        // 传递images变量到视图
         return view('auth.login', compact('images'));
     }
     /**

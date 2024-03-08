@@ -131,7 +131,6 @@
                     <img src="{{ $image }}" alt="Some Image">
                 @endforeach
             @endif
-
         </div>
     </body>
 </html>
