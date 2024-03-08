@@ -125,11 +125,6 @@
                 </footer>
             </section>
         </main>
-        <div class="image-slider">
-            @foreach ($images as $image)
-                <img src="{{ $image }}" alt="Torrent Banner">
-            @endforeach
-        </div>
     </body>
 </html>
 
