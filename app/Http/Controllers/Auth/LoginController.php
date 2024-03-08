@@ -49,11 +49,9 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        \Log::info('Fetching artist images');
         $images = Artist::inRandomOrder()->take(20)->pluck('image_url');
-        \Log::info('Images fetched: ', ['images' => $images]);
-
-        return view('auth.login', ['images' => $images]);
+        dd($images); // 调试输出
+        return view('auth.login', compact('images'));
     }
     /**
      * Validate The User Login Request.
