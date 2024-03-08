@@ -128,7 +128,7 @@
         @php
             use App\Models\Torrent;
             $torrents = Torrent::where('internal', 1)
-                ->where('category_id')
+                ->where('category_id',3)
             ->inRandomOrder()
             ->take(20)
             ->get(['id']);
