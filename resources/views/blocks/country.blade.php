@@ -13,7 +13,7 @@
                             <div class="country-image-container">
                                 <img src="/img/country/{{ $country->country }}.webp" alt="{{ $country->country }}" />
                             </div>
-                            <div>{{ $country->country }}</div>
+                            <div>{{ __('countries.' . $country->country) }}</div>
                         </a>
                     </li>
                 @endforeach

@@ -125,5 +125,34 @@
                 </footer>
             </section>
         </main>
+        <div class="image-slider">
+            @foreach($images as $imageUrl)
+                <img src="{{ $imageUrl }}" class="slider-image">
+            @endforeach
+        </div>
     </body>
 </html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const slider = document.querySelector('.image-slider');
+        const images = document.querySelectorAll('.slider-image');
+
+        function updateImageVisibility() {
+            const sliderCenter = slider.offsetWidth / 2 + slider.scrollLeft;
+            images.forEach(img => {
+                const imgCenter = img.offsetLeft + img.offsetWidth / 2;
+                const distance = Math.abs(sliderCenter - imgCenter);
+                const scale = Math.max(1 - distance / 500, 0.8); // 调整500以改变效果强度
+                img.style.transform = `scale(${scale})`;
+                const blurAmount = Math.min(distance / 200, 3); // 调整200以改变虚化效果
+                img.style.filter = `blur(${blurAmount}px)`;
+            });
+        }
+
+        slider.addEventListener('scroll', updateImageVisibility);
+
+        updateImageVisibility(); // 初始调用一次以设置初始状态
+    });
+</script>
+

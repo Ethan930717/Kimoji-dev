@@ -16,6 +16,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Group;
 use App\Services\Unit3dAnnounce;
+use App\Models\Artist;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
@@ -45,6 +46,12 @@ class LoginController extends Controller
         return 'username';
     }
 
+    public function showLoginForm()
+    {
+        $images = Artist::inRandomOrder()->take(20)->pluck('image_url');
+
+        return view('auth.login', compact('images'));
+    }
     /**
      * Validate The User Login Request.
      *
