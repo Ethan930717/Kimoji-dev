@@ -266,16 +266,23 @@ body {
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
+  border: 2px solid #000; /* 外边框 */
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.5); /* 半透明背景 */
 }
 
-.slider-image {
-  transition: transform 0.5s ease, filter 0.5s ease;
-  margin: 0 10px;
-  filter: blur(2px);
+.image-slider img {
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 15px; /* 四周圆弧效果 */
+  margin-right: 10px; /* 图片之间的间距 */
+  filter: brightness(50%); /* 默认图片亮度比较暗 */
+  transition: all 0.5s ease; /* 平滑的过渡效果 */
 }
 
-.image-slider .slider-image:hover {
-  transform: scale(1.1);
-  filter: blur(0);
+.image-slider img.active {
+max-width: 350px;
+max-height: 350px;
+filter: brightness(100%); / 显示正常色彩 */
 }
 

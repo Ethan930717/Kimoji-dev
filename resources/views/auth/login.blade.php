@@ -143,27 +143,34 @@
         </div>
     </body>
 </html>
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const slider = document.querySelector('.image-slider');
-        const images = document.querySelectorAll('.slider-image');
+        const images = slider.querySelectorAll('img');
+        let index = 0; // 当前显示的图片索引
 
-        function updateImageVisibility() {
-            const sliderCenter = slider.offsetWidth / 2 + slider.scrollLeft;
-            images.forEach(img => {
-                const imgCenter = img.offsetLeft + img.offsetWidth / 2;
-                const distance = Math.abs(sliderCenter - imgCenter);
-                const scale = Math.max(1 - distance / 500, 0.8); // 调整500以改变效果强度
-                img.style.transform = `scale(${scale})`;
-                const blurAmount = Math.min(distance / 200, 3); // 调整200以改变虚化效果
-                img.style.filter = `blur(${blurAmount}px)`;
-            });
+        function scrollImages() {
+            // 移除所有图片的active类
+            images.forEach(img => img.classList.remove('active'));
+            // 检查索引是否超出范围
+            if (index >= images.length) {
+                index = 0; // 重置索引
+                slider.scrollLeft = 0; // 重置滚动位置
+            } else {
+                // 计算下一张图片的位置并滚动
+                const nextImage = images[index];
+                nextImage.classList.add('active'); // 为当前图片添加 active 类，应用特殊样式
+                const scrollPosition = nextImage.offsetLeft - slider.offsetWidth / 2 + nextImage.offsetWidth / 2;
+                slider.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+                index++; // 更新索引，指向下一张图片
+            }
         }
 
-        slider.addEventListener('scroll', updateImageVisibility);
+// 设置定时器，每三秒滚动一次图片
+        setInterval(scrollImages, 3000);
 
-        updateImageVisibility(); // 初始调用一次以设置初始状态
+// 初始调用，确保第一张图片获得特殊样式
+        scrollImages();
     });
 </script>
 
