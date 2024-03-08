@@ -14,16 +14,6 @@ Route::get('/loginsponsor', [App\Http\Controllers\Auth\LoginSponsorController::c
 Route::get('/music-upload', [MusicUploadController::class, 'index']);
 Route::post('/get-presigned-url', [MusicUploadController::class, 'getPresignedUrl']);
 
-Route::prefix('artists')->group(function (): void {
-    Route::name('artists.')->group(function (): void {
-        Route::get('/', [App\Http\Controllers\ArtistController::class, 'index'])->name('index');
-        Route::get('/{id}', [App\Http\Controllers\ArtistController::class, 'show'])->name('show');
-        Route::get('/{id}/edit', [App\Http\Controllers\ArtistController::class, 'edit'])->name('edit');
-        Route::patch('/{id}', [App\Http\Controllers\ArtistController::class, 'update'])->name('update');
-        Route::get('/download-torrents/{user}/{artistId}', 'User\TorrentZipController@downloadArtistTorrentsZip')->name('download.artist.torrents');
-        Route::get('/country/{country_name}', [App\Http\Controllers\ArtistController::class, 'countryShow'])->name('country.show');
-    });
-});
 
 /**
  * NOTICE OF LICENSE.
@@ -90,6 +80,17 @@ Route::middleware('language')->group(function (): void {
             Route::name('articles.')->group(function (): void {
                 Route::get('/', [App\Http\Controllers\ArticleController::class, 'index'])->name('index');
                 Route::get('/{article}', [App\Http\Controllers\ArticleController::class, 'show'])->name('show');
+            });
+        });
+
+        Route::prefix('artists')->group(function (): void {
+            Route::name('artists.')->group(function (): void {
+                Route::get('/', [App\Http\Controllers\ArtistController::class, 'index'])->name('index');
+                Route::get('/{id}', [App\Http\Controllers\ArtistController::class, 'show'])->name('show');
+                Route::get('/{id}/edit', [App\Http\Controllers\ArtistController::class, 'edit'])->name('edit');
+                Route::patch('/{id}', [App\Http\Controllers\ArtistController::class, 'update'])->name('update');
+                Route::get('/download-torrents/{user}/{artistId}', 'User\TorrentZipController@downloadArtistTorrentsZip')->name('download.artist.torrents');
+                Route::get('/country/{country_name}', [App\Http\Controllers\ArtistController::class, 'countryShow'])->name('country.show');
             });
         });
 

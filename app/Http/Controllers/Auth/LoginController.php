@@ -60,7 +60,9 @@ class LoginController extends Controller
         $images = $torrents->map(function ($torrent) {
             return url('/files/img/torrent-banner_' . $torrent->id . '.jpg');
         });
-        
+
+        // 调试输出
+        dd($images);
 
         // 传递images变量到视图
         return view('auth.login', compact('images'));
