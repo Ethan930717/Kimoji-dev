@@ -169,7 +169,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function leechingTorrents(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Torrent::class, 'history')
-            ->wherePivot('active', '=', 1)
             ->wherePivot('seeder', '=', 0);
     }
 
@@ -797,6 +796,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function apikeys(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Apikey::class);
+    }
+
+    /**
+     * Has many email updates.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<EmailUpdate>
+     */
+    public function emailUpdates(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(EmailUpdate::class);
     }
 
     /**

@@ -45,5 +45,5 @@ return [
     |
     */
 
-    'nerd_bot' => true,
+    'nerd_bot' => false,
 ];

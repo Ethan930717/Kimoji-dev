@@ -113,7 +113,7 @@ return [
     */
 
     'slots_system' => [
-        'enabled' => true,
+        'enabled' => false,
     ],
 
     /*
@@ -126,5 +126,5 @@ return [
     |
     */
 
-    'log_announces' => false,
+    'log_announces' => true,
 ];

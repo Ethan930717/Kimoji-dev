@@ -137,12 +137,6 @@
                     </a>
                 </li>
                 <li>
-                    <a  href="{{ route('chatroom') }}">
-                        <i class="{{ config('other.font-awesome') }} fa-mug-tea"></i>
-                        茶室
-                    </a>
-                </li>
-                <li>
                     <a  href="{{ route('polls.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-chart-pie"></i>
                         {{ __('poll.polls') }}

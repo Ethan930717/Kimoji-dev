@@ -76,13 +76,11 @@ class EarningController extends Controller
             ->select(['user_id', 'torrent_id', 'seeder'])
             ->where('user_id', '=', $user->id)
             ->where('seeder', '=', 1)
-            ->where('active', '=', 1)
             ->distinct();
 
         $history = History::query()
-            ->select(['seedtime', 'active', 'user_id'])
-            ->where('user_id', '=', $user->id)
-            ->where('active', '=', 1);
+            ->select(['seedtime', 'user_id'])
+            ->where('user_id', '=', $user->id);
 
         $SECONDS_PER_MONTH = 60 * 60 * 24 * 30;
 
@@ -169,7 +167,6 @@ class EarningController extends Controller
             ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
             ->where('peers.user_id', '=', $user->id)
             ->where('peers.seeder', '=', 1)
-            ->where('peers.active', '=', 1)
             ->whereIn('torrents.type_id', [1, 2]) // 使用 type_id 来判断
             ->sum('torrents.size');
         $blurayBonusPerHour = $this->calculateBonusPerHour($blurayTorrentsSize, 0.015); // 使用 0.015 作为系数
@@ -178,7 +175,6 @@ class EarningController extends Controller
             ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
             ->where('peers.user_id', '=', $user->id)
             ->where('peers.seeder', '=', 1)
-            ->where('peers.active', '=', 1)
             ->where('torrents.internal', '=', 1)
             ->sum('torrents.size');
 

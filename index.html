@@ -1,0 +1,152 @@
+<!--
+ * @Author: yanghongxuan
+ * @Date: 2024-03-08 16:22:21
+ * @LastEditors: yanghongxuan
+ * @LastEditTime: 2024-03-08 16:35:04
+ * @Description:
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://cdn.bootcdn.net/ajax/libs/Swiper/10.2.0/swiper-bundle.min.css" rel="stylesheet">
+    <style>
+        .swiper {
+            width: 100vw;
+            height: 220px;
+        }
+
+        .swiper-slide {
+            width: 200px;
+            height: 200px;
+
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_32338.jpg" alt="Torrent Banner">
+            </div>
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_32716.jpg" alt="Torrent Banner">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_33058.jpg" alt="Torrent Banner">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_32093.jpg" alt="Torrent Banner">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_34707.jpg" alt="Torrent Banner" class="">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_34793.jpg" alt="Torrent Banner" class="">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_33795.jpg" alt="Torrent Banner" class="">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_32374.jpg" alt="Torrent Banner">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_31565.jpg" alt="Torrent Banner">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_35899.jpg" alt="Torrent Banner" class="">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_33603.jpg" alt="Torrent Banner" class="">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_30877.jpg" alt="Torrent Banner" class="">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_33351.jpg" alt="Torrent Banner">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_32700.jpg" alt="Torrent Banner">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_35317.jpg" alt="Torrent Banner">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_33628.jpg" alt="Torrent Banner">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_33118.jpg" alt="Torrent Banner">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_34961.jpg" alt="Torrent Banner">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_30722.jpg" alt="Torrent Banner">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://test.kimoji.club/files/img/torrent-banner_34849.jpg" alt="Torrent Banner">
+            </div>
+
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+
+        <!-- 如果需要导航按钮 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+
+    </div>
+</body>
+
+</html>
+<script src="https://cdn.bootcdn.net/ajax/libs/Swiper/10.2.0/swiper-bundle.min.js"></script>
+
+<script>
+    var mySwiper = new Swiper('.swiper', {
+        slidesPerView: 'auto', // 自动计算一行可以显示多少个滑块
+        spaceBetween: 0, // 设置滑块之间的间隔
+        loop: false, // 无限循环
+        autoplay: {
+            delay: 2500, // 自动播放的延迟时间（毫秒）
+            disableOnInteraction: false, // 用户操作swiper之后，是否禁止autoplay。默认为true：停止。
+        },
+        // 如果需要前进后退按钮
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        // 如果需要分页器
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+
+    })
+</script>
