@@ -51,7 +51,7 @@
                                 placeholder=" "
                             />
                             <label class="form__label form__label--floating" for="minSize">
-                                最小体积
+                                Minimum Size
                             </label>
                         </p>
                         <p class="form__group">
@@ -61,7 +61,7 @@
                                 class="form__select"
                                 placeholder=" "
                             >
-                                <option value="1" selected> </option>
+                                <option value="1" selected>Bytes</option>
                                 <option value="1000">KB</option>
                                 <option value="1024">KiB</option>
                                 <option value="1000000">MB</option>
@@ -72,7 +72,7 @@
                                 class="form__label form__label--floating"
                                 for="minSizeMultiplier"
                             >
-                                单位
+                                Unit
                             </label>
                         </p>
                     </div>
@@ -85,7 +85,7 @@
                                 placeholder=" "
                             />
                             <label class="form__label form__label--floating" for="maxSize">
-                                最大体积
+                                Maximum Size
                             </label>
                         </p>
                         <p class="form__group">
@@ -95,7 +95,7 @@
                                 class="form__select"
                                 placeholder=" "
                             >
-                                <option value="1" selected> </option>
+                                <option value="1" selected>Bytes</option>
                                 <option value="1000">KB</option>
                                 <option value="1024">KiB</option>
                                 <option value="1000000">MB</option>
@@ -106,12 +106,23 @@
                                 class="form__label form__label--floating"
                                 for="maxSizeMultiplier"
                             >
-                                单位
+                                Unit
                             </label>
                         </p>
                     </div>
                 </div>
                 <div class="form__group--short-horizontal">
+                    <div class="form__group">
+                        @php
+                            $regions = cache()->remember(
+                                'regions',
+                                3_600,
+                                fn () => App\Models\Region::orderBy('position')->get()
+                            )
+                        @endphp
+
+                        <div id="regions" wire:ignore></div>
+                    </div>
                     <div class="form__group">
                         @php
                             $distributors = cache()->remember(
@@ -239,7 +250,7 @@
                     </div>
                     <div class="form__group">
                         <fieldset class="form__fieldset">
-                            <legend class="form__legend">状态</legend>
+                            <legend class="form__legend">Buff</legend>
                             <div class="form__fieldset-checkbox-container">
                                 <p class="form__group">
                                     <label class="form__label">
@@ -249,7 +260,7 @@
                                             value="0"
                                             wire:model="free"
                                         />
-                                        无免费
+                                        0% Freeleech
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -259,8 +270,8 @@
                                             type="checkbox"
                                             value="25"
                                             wire:model="free"
-                                        >
-                                        25% 免费
+                                        />
+                                        25% Freeleech
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -270,8 +281,8 @@
                                             type="checkbox"
                                             value="50"
                                             wire:model="free"
-                                        >
-                                        50% 免费
+                                        />
+                                        50% Freeleech
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -281,8 +292,8 @@
                                             type="checkbox"
                                             value="75"
                                             wire:model="free"
-                                        >
-                                        75% 免费
+                                        />
+                                        75% Freeleech
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -292,8 +303,8 @@
                                             type="checkbox"
                                             value="100"
                                             wire:model="free"
-                                        >
-                                        100% 免费
+                                        />
+                                        100% Freeleech
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -303,8 +314,8 @@
                                             type="checkbox"
                                             value="1"
                                             wire:model="doubleup"
-                                        >
-                                        双倍上传
+                                        />
+                                        Double Upload
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -314,8 +325,8 @@
                                             type="checkbox"
                                             value="1"
                                             wire:model="featured"
-                                        >
-                                        精选
+                                        />
+                                        Featured
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -325,8 +336,8 @@
                                             type="checkbox"
                                             value="1"
                                             wire:model="refundable"
-                                        >
-                                        退款
+                                        />
+                                        Refundable
                                     </label>
                                 </p>
                             </div>
@@ -334,7 +345,7 @@
                     </div>
                     <div class="form__group">
                         <fieldset class="form__fieldset">
-                            <legend class="form__legend">标签</legend>
+                            <legend class="form__legend">Tags</legend>
                             <div class="form__fieldset-checkbox-container">
                                 <p class="form__group">
                                     <label class="form__label">
@@ -438,8 +449,8 @@
                                             type="checkbox"
                                             value="1"
                                             wire:model="dying"
-                                        >
-                                        孤种
+                                        />
+                                        Dying
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -449,8 +460,8 @@
                                             type="checkbox"
                                             value="1"
                                             wire:model="dead"
-                                        >
-                                        断种
+                                        />
+                                        Dead
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -478,8 +489,8 @@
                                             type="checkbox"
                                             value="1"
                                             wire:model="notDownloaded"
-                                        >
-                                        未下载
+                                        />
+                                        Not Downloaded
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -489,8 +500,8 @@
                                             type="checkbox"
                                             value="1"
                                             wire:model="downloaded"
-                                        >
-                                        已下载
+                                        />
+                                        Downloaded
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -500,8 +511,8 @@
                                             type="checkbox"
                                             value="1"
                                             wire:model="seeding"
-                                        >
-                                        做种中
+                                        />
+                                        Seeding
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -511,8 +522,8 @@
                                             type="checkbox"
                                             value="1"
                                             wire:model="leeching"
-                                        >
-                                        吸血中
+                                        />
+                                        Leeching
                                     </label>
                                 </p>
                                 <p class="form__group">
@@ -522,8 +533,8 @@
                                             type="checkbox"
                                             value="1"
                                             wire:model="incomplete"
-                                        >
-                                        未完成
+                                        />
+                                        Incomplete
                                     </label>
                                 </p>
                             </div>
@@ -584,10 +595,10 @@
                                 ])
                             >
                                 @if (auth()->user()->show_poster)
-                                    <th class="torrent-search--list__poster-header">海报</th>
+                                    <th class="torrent-search--list__poster-header">Poster</th>
                                 @endif
 
-                                <th class="torrent-search--list__format-header">类型</th>
+                                <th class="torrent-search--list__format-header">Format</th>
                                 <th
                                     class="torrent-search--list__name-header"
                                     wire:click="sortBy('name')"
@@ -599,7 +610,7 @@
                                 <th class="torrent-search--list__actions-header">
                                     {{ __('common.actions') }}
                                 </th>
-                                <th class="torrent-search--list__ratings-header">    </th>
+                                <th class="torrent-search--list__ratings-header">Rating</th>
                                 <th
                                     class="torrent-search--list__size-header"
                                     wire:click="sortBy('size')"
@@ -844,8 +855,8 @@
             options: myRegions,
             multiple: true,
             search: true,
-            placeholder: "{{__('选择小说分类')}}",
-              noOptionsText: "{{__('torrent.no-result')}}",
+            placeholder: "{{ __('Select Regions') }}",
+            noOptionsText: "{{ __('No results found') }}",
           })
 
           let regions = document.querySelector('#regions')
@@ -876,5 +887,5 @@
             @this.set('distributors', data)
           })
         })
-      </script>
+    </script>
 </div>

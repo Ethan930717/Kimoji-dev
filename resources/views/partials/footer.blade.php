@@ -61,11 +61,6 @@
                 <li>
                     <a href="{{ route('about') }}">{{ __('common.about') }}</a>
                 </li>
-                <li>
-                    <a href="https://github.com/HDInnovations/UNIT3D-Community-Edition/wiki/Torrent-API-(UNIT3D-v7.0.0)">
-                        API 文档
-                    </a>
-                </li>
             </ul>
         </section>
         <section class="footer__section">
@@ -84,6 +79,5 @@
         </section>
     </div>
     <p class="footer__stats">
-        KIMOJI提供的所有资源均是在网上搜集且由用户上传，KIMOJI对资源的具体内容毫不知情，如有侵权，请及时告知！
-    </p>
+        All resources provided by KIMOJI are collected online and uploaded by users. KIMOJI is not aware of the specific content of the resources.    </p>
 </footer>

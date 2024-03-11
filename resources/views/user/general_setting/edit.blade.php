@@ -1,7 +1,10 @@
 @extends('layout.default')
 
 @section('title')
-    <title>{{ $user->username }} - Settings - {{ __('common.members') }} - {{ config('other.title') }}</title>
+    <title>
+        {{ $user->username }} - Settings - {{ __('common.members') }} -
+        {{ config('other.title') }}
+    </title>
 @endsection
 
 @section('breadcrumbs')
@@ -21,7 +24,7 @@
 
 @section('content')
     <section class="panelV2">
-        <h2 class="panel__heading">{{ __('user.settings') }}</h2>
+        <h2 class="panel__heading">General {{ __('user.settings') }}</h2>
         <div class="panel__body">
             <form
                 class="form"
@@ -34,60 +37,58 @@
                 <p class="form__group">
                     <select id="locale" class="form__select" name="locale" required>
                         @foreach (App\Models\Language::allowed() as $code => $name)
-                            <option class="form__option" value="{{ $code }}" @selected($user->locale === $code)>
+                            <option
+                                class="form__option"
+                                value="{{ $code }}"
+                                @selected($user->locale === $code)
+                            >
                                 {{ $name }}
                             </option>
                         @endforeach
                     </select>
-                    <label class="form__label form__label--floating" for="locale">
-                        语言
-                    </label>
+                    <label class="form__label form__label--floating" for="locale">Language</label>
                 </p>
                 <fieldset class="form form__fieldset">
-                    <legend class="form__legend">风格</legend>
+                    <legend class="form__legend">Style</legend>
                     <p class="form__group">
                         <select id="style" class="form__select" name="style" required>
-                            <option class="form__option" value="0" @selected($user->style === 0)>KIMOJIの旷野</option>
+                            <option class="form__option" value="0" @selected($user->style === 0)>KIMOJIのGrassland</option>
 
                         </select>
-                        <label class="form__label form__label--floating" for="style">
-                            主题
-                        </label>
+                        <label class="form__label form__label--floating" for="style">Theme</label>
                     </p>
                     <p class="form__group">
                         <input
                             id="custom_css"
-                            class="class="form__text"
-"
+                            class="form__text"
                             name="custom_css"
                             placeholder=" "
                             type="url"
                             value="{{ $user->custom_css }}"
-                        >
+                        />
                         <label class="form__label form__label--floating" for="custom_css">
-                            外部CSS样式表（叠加在主题之上）
+                            External CSS Stylesheet (Stacks on top of above theme)
                         </label>
                     </p>
                     <p class="form__group">
                         <input
                             id="standalone_css"
-                            class="class="form__text"
-"
+                            class="form__text"
                             name="standalone_css"
                             placeholder=" "
                             type="url"
                             value="{{ $user->standalone_css }}"
-                        >
+                        />
                         <label class="form__label form__label--floating" for="standalone_css">
-                            独立CSS样式表（不使用网站主题）
+                            Standalone CSS Stylesheet (No site theme used)
                         </label>
                     </p>
                 </fieldset>
                 <fieldset class="form__fieldset">
-                    <legend class="form__legend">聊天室</legend>
+                    <legend class="form__legend">Chat</legend>
                     <p class="form__group">
                         <label class="form__label">
-                            <input type="hidden" name="censor" value="0">
+                            <input type="hidden" name="censor" value="0" />
                             <input
                                 class="form__checkbox"
                                 type="checkbox"
@@ -95,7 +96,7 @@
                                 value="1"
                                 @checked($user->censor)
                             />
-                            语言审查（带有敏感词的内容将被过滤）
+                            Language Censor Chat
                         </label>
                     </p>
                     <p class="form__group" style="visibility: hidden">
@@ -113,26 +114,58 @@
                     </p>
                 </fieldset>
                 <fieldset class="form form__fieldset">
-                    <legend class="form__legend">资源相关</legend>
+                    <legend class="form__legend">Torrent</legend>
                     <p class="form__group">
-                        <select id="torrent_layout" class="form__select" name="torrent_layout" required>
-                            <option class="form__option" value="0" @selected($user->torrent_layout === 0)>列表模式</option>
-                            <option class="form__option" value="1" @selected($user->torrent_layout === 1)>卡片模式</option>
-                            <option class="form__option" value="2" @selected($user->torrent_layout === 2)>分组模式</option>
-                            <option class="form__option" value="3" @selected($user->torrent_layout === 3)>海报墙</option>
-
+                        <select
+                            id="torrent_layout"
+                            class="form__select"
+                            name="torrent_layout"
+                            required
+                        >
+                            <option
+                                class="form__option"
+                                value="0"
+                                @selected($user->torrent_layout === 0)
+                            >
+                                Torrent list
+                            </option>
+                            <option
+                                class="form__option"
+                                value="1"
+                                @selected($user->torrent_layout === 1)
+                            >
+                                Torrent cards
+                            </option>
+                            <option
+                                class="form__option"
+                                value="2"
+                                @selected($user->torrent_layout === 2)
+                            >
+                                Torrent groupings
+                            </option>
+                            <option
+                                class="form__option"
+                                value="3"
+                                @selected($user->torrent_layout === 3)
+                            >
+                                Torrent posters
+                            </option>
                         </select>
                         <label class="form__label form__label--floating" for="torrent_layout">
-                            默认资源布局
+                            Default torrent layout
                         </label>
                     </p>
                     <p class="form__group">
                         <select id="ratings" class="form__select" name="ratings" required>
-                            <option class="form__option" value="0" @selected($user->ratings === 0)>TMDB</option>
-                            <option class="form__option" value="1" @selected($user->ratings === 1)>IMDB</option>
+                            <option class="form__option" value="0" @selected($user->ratings === 0)>
+                                TMDB
+                            </option>
+                            <option class="form__option" value="1" @selected($user->ratings === 1)>
+                                IMDB
+                            </option>
                         </select>
                         <label class="form__label form__label--floating" for="ratings">
-                            评分标准
+                            Ratings source
                         </label>
                     </p>
                     <p class="form__group">
@@ -145,7 +178,7 @@
                                 value="1"
                                 @checked($user->show_poster)
                             />
-                            在种子列表视图中显示海报
+                            Show Posters On Torrent List View
                         </label>
                     </p>
                 </fieldset>

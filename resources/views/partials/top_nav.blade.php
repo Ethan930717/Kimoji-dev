@@ -48,57 +48,6 @@
                     </ul>
                 </li>
                 <li>
-                    <a
-                        href="{{ route('torrents.index', ['view' => match(auth()->user()->torrent_layout) {
-                            1       => 'card',
-                            2       => 'group',
-                            3       => 'poster',
-                            default => 'list'
-                        }]) }}"
-                    >
-                        <i class="{{ config('other.font-awesome') }} fa-seedling"></i>
-                        万事屋
-                    </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="{{ url('torrents?perPage=48&categories[0]=1&view=poster') }}">
-                                <i class="{{ config('other.font-awesome') }} fa-camera-movie"></i>
-                                荧幕大亨
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('torrents?perPage=25&view=group&categories[0]=2') }}">
-                                <i class="{{ config('other.font-awesome') }} fa-party-horn"></i>
-                                追剧乐园
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('torrents?perPage=48&view=poster&genres[0]=16') }}">
-                                <i class="{{ config('other.font-awesome') }} fa-tree"></i>
-                                动漫森林
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('torrents?perPage=24&genres[0]=10764&genres[1]=10767&view=poster') }}">
-                                <i class="{{ config('other.font-awesome') }} fa-planet-ringed"></i>
-                                娱乐星球
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('torrents?perPage=48&view=card&genres[0]=99') }}">
-                                <i class="{{ config('other.font-awesome') }} fa-book"></i>
-                                纪录盛会
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('torrents?perPage=48&categories[0]=1&types[0]=2&types[1]=1&view=card') }}">
-                                <i class="{{ config('other.font-awesome') }} fa-compact-disc"></i>
-                                蓝光宝盒
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
                     <a href="{{ route('mediahub.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-database"></i>
                         KIMOJI HUB
@@ -107,7 +56,7 @@
                 <li>
                     <a  href="{{ route('playlists.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-list-ol"></i>
-                        播单推荐
+                        {{ __('playlist.playlists') }}
                     </a>
                 </li>
                 {{-- <li>
