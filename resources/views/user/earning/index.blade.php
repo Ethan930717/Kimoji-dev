@@ -96,29 +96,29 @@
                     </tr>
 
                     <tr>
-                        <td>{{ __('torrent.evereyday') }}</td>
+                        <td class="seed-class-6">{{ __('torrent.evereyday') }}</td>
                         <td>
                             {{ __('torrent.torrent') }} {{ __('torrent.size') }} &ge; 1&nbsp;GiB
                             {{ strtolower(__('common.but')) }} < 25GiB
                         </td>
-                        <td>{{ $regular * 0.25 }}</td>
-                        <td x-cloak x-show="extendStats">{{ $regular * 0.25 * 24 }}</td>
+                        <td>0.25 &times; {{ $regular }}</td>
+                        <td>{{ $regular * 0.25 }}</td>                        <td x-cloak x-show="extendStats">{{ $regular * 0.25 * 24 }}</td>
                         <td x-cloak x-show="extendStats">{{ $regular * 0.25 * 24 * 7 }}</td>
                         <td x-cloak x-show="extendStats">{{ $regular * 0.25 * 24 * 30 }}</td>
                     </tr>
                     <tr>
-                        <td>{{ __('torrent.large') }}</td>
+                        <td class="seed-class-7">{{ __('torrent.large') }}</td>
                         <td>
                             {{ __('torrent.torrent') }} {{ __('torrent.size') }} &ge; 25&nbsp;GiB
                             {{ strtolower(__('common.but')) }} < 100GiB
                         </td>
-                        <td>{{ $large * 0.5 }}</td>
-                        <td x-cloak x-show="extendStats">{{ $large * 0.5 * 24 }}</td>
+                        <td>0.50 &times; {{ $large }}</td>
+                        <td>{{ $large * 0.5 }}</td>                        <td x-cloak x-show="extendStats">{{ $large * 0.5 * 24 }}</td>
                         <td x-cloak x-show="extendStats">{{ $large * 0.5 * 24 * 7 }}</td>
                         <td x-cloak x-show="extendStats">{{ $large * 0.5 * 24 * 30 }}</td>
                     </tr>
                     <tr>
-                        <td>{{ __('torrent.huge') }}</td>
+                        <td class="seed-class-8">{{ __('torrent.huge') }}</td>
                         <td>
                             {{ __('torrent.torrent') }} {{ __('torrent.size') }} &gt; 100&nbsp;GiB
                         </td>
@@ -130,7 +130,7 @@
                     </tr>
 
                     <tr>
-                        <td>{{ __('torrent.old-torrent') }}</td>
+                        <td class="seed-class-9">{{ __('torrent.old-torrent') }}</td>
                         <td>
                             {{ __('common.older-than') }} 6 {{ strtolower(__('common.months')) }}
                         </td>
@@ -141,7 +141,7 @@
                         <td x-cloak x-show="extendStats">{{ $old * 1 * 24 * 30 }}</td>
                     </tr>
                     <tr>
-                        <td>{{ __('torrent.legendary-torrent') }}</td>
+                        <td class="seed-class-10">{{ __('torrent.legendary-torrent') }}</td>
                         <td>
                             {{ __('common.older-than') }} 12 {{ strtolower(__('common.months')) }}
                         </td>
@@ -152,7 +152,7 @@
                         <td x-cloak x-show="extendStats">{{ $legendary * 1.5 * 24 * 30 }}</td>
                     </tr>
                     <tr>
-                        <td>{{ __('torrent.dying-torrent') }}</td>
+                        <td class="seed-class-11">{{ __('torrent.dying-torrent') }}</td>
                         <td>{{ __('torrent.last-seeder') }}</td>
                         <td>2.00 &times; {{ $dying }}</td>
                         <td>{{ $dying * 2 }}</td>
