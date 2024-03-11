@@ -1,12 +1,16 @@
 @extends('layout.default')
 
 @section('title')
-    <title>{{ $user->username }} - {{ __('common.members') }} - {{ config('other.title') }}</title>
+    <title>
+        {{ $user->username }} - {{ __('common.members') }} - {{ config('other.title') }}
+    </title>
 @endsection
 
 @section('meta')
-    <meta name="description"
-          content="{{ __('user.profile-desc', ['user' => $user->username, 'title' => config('other.title')]) }}">
+    <meta
+        name="description"
+        content="{{ __('user.profile-desc', ['user' => $user->username, 'title' => config('other.title')]) }}"
+    />
 @endsection
 
 @section('breadcrumbs')
@@ -259,7 +263,7 @@
                 alt="{{ $achievement->details->name }}"
             >
         @empty
-            暂无成就
+            No recent achievements
         @endforelse
     </div>
 </section>
@@ -307,7 +311,7 @@
                 >
             </a>
         @empty
-            暂无关注者
+            No recent followers
         @endforelse
     </div>
 </section>
@@ -617,7 +621,7 @@
 @endif
 @if (auth()->user()->isAllowed($user,'profile','show_profile_torrent_seed'))
 <section class="panelV2">
-    <h2 class="panel__heading">做种{{ __('user.statistics') }}</h2>
+    <h2 class="panel__heading">{{ __('user.statistics') }}</h2>
     <dl class="key-value">
         <dt>
             <abbr title="{{ __('user.total-seedtime') }} ({{ __('user.all-torrents') }})">
@@ -641,7 +645,7 @@
 @endif
 @if (auth()->user()->isAllowed($user,'profile','show_profile_torrent_count'))
 <section class="panelV2">
-    <h2 class="panel__heading">种子统计</h2>
+    <h2 class="panel__heading">{{ __('torrent.torrents') }}</h2>
     <dl class="key-value">
         <dt>
             <a href="{{ route('users.torrents.index', ['user' => $user]) }}">

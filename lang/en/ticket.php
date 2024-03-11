@@ -43,4 +43,19 @@ return [
     'unassign'           => 'Unassign',
     'unassigned-success' => 'Helpdesk Ticket Was Unassigned Successfully!',
     'updated-success'    => 'Your Helpdesk Ticket Was Updated Successfully!',
+    'Accounts'          => 'Accounts',
+    'Appeals'          => 'Appeals',
+    'Forums'          => 'Forums',
+    'Requests'          => 'Requests',
+    'Subtitles'          => 'Subtitles',
+    'MediaHub'          => 'MediaHub',
+    'Torrents'          => 'Torrents',
+    'Technical'          => 'Technical',
+    'Playlists'          => 'Playlists',
+    'Bugs'          => 'Bugs',
+    'Other'          => 'Other',
+
+
+
+
 ];

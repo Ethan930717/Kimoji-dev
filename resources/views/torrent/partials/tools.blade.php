@@ -81,7 +81,7 @@
                         </button>
                         <dialog class="dialog" x-ref="dialog">
                             <h4 class="dialog__heading">
-                                编辑
+                                Edit
                             </h4>
                             <div x-on:click.outside="$refs.dialog.close()">
                                 <form
@@ -135,7 +135,7 @@
                         </button>
                         <dialog class="dialog" x-ref="dialog">
                             <h4 class="dialog__heading">
-                                编辑
+                                Edit
                             </h4>
                             <div x-on:click.outside="$refs.dialog.close()">
                                 <form

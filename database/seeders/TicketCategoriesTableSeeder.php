@@ -15,6 +15,7 @@ namespace Database\Seeders;
 
 use App\Models\TicketCategory;
 use Illuminate\Database\Seeder;
+use const _PHPStan_39fe102d2\__;
 
 class TicketCategoriesTableSeeder extends Seeder
 {
@@ -22,47 +23,47 @@ class TicketCategoriesTableSeeder extends Seeder
     {
         TicketCategory::upsert([
             [
-                'name'     => '账号',
+                'name'     => __('ticket.Accounts'),
                 'position' => 0,
             ],
             [
-                'name'     => '申诉',
+                'name'     => __('ticket.Appeals'),
                 'position' => 1,
             ],
             [
-                'name'     => '论坛',
+                'name'     => __('ticket.Forums'),
                 'position' => 2,
             ],
             [
-                'name'     => '求种',
+                'name'     => __('ticket.Requests'),
                 'position' => 3,
             ],
             [
-                'name'     => '字幕',
+                'name'     => __('ticket.Subtitles'),
                 'position' => 4,
             ],
             [
-                'name'     => '种子',
+                'name'     => __('ticket.Torrents'),
                 'position' => 5,
             ],
             [
-                'name'     => '影视库',
+                'name'     => __('ticket.MediaHub'),
                 'position' => 6,
             ],
             [
-                'name'     => '技术相关',
+                'name'     => __('ticket.Technical'),
                 'position' => 7,
             ],
             [
-                'name'     => '播单',
+                'name'     => __('ticket.Playlists'),
                 'position' => 8,
             ],
             [
-                'name'     => '上报BUG',
+                'name'     => __('ticket.Bugs'),
                 'position' => 9,
             ],
             [
-                'name'     => '其他',
+                'name'     => __('ticket.Other'),
                 'position' => 10,
             ],
         ], ['id']);

@@ -85,7 +85,7 @@
                         @error('editState.content')
                             <strong>{{ __('common.error') }}: </strong>
                         @enderror
-                        编辑评论...
+                        Edit...
                     </label>
                     @error('editState.content')
                         <span class="form__hint" id="edit-comment__textarea-hint">{{ $message }}</span>
