@@ -243,5 +243,18 @@ return [
     'music-genre'              => 'Music Genre',
     'no-result'              => 'No Result',
     'gallery'              => 'Gallery',
+    'pertorrent'               => 'Per Torrent',
+    'hourly'               => 'Hourly',
+    'daily'               => 'Daily',
+    'weekly'               => 'Weekly',
+    'monthly'               => 'Monthly',
+    'huge'               => 'Huge Torrent',
+    'large'         => 'Large Torrent',
+    'evereyday'         => 'Everyday Torrent',
+
+
+
+
+
 
 ];

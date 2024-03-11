@@ -62,7 +62,6 @@ class AutoBonAllocation extends Command
             ->where('torrents.seeders', 1)
             ->where('torrents.times_completed', '>', 2)
             ->where('peers.seeder', 1)
-            ->where('peers.active', 1)
             ->whereRaw('date_sub(peers.created_at,interval 30 minute) < now()')
             ->groupBy('peers.user_id')
             ->get()
@@ -72,7 +71,6 @@ class AutoBonAllocation extends Command
             ->select(DB::raw('count(DISTINCT(peers.torrent_id)) as value'), 'peers.user_id')
             ->join('torrents', 'torrents.id', 'peers.torrent_id')
             ->where('peers.seeder', 1)
-            ->where('peers.active', 1)
             ->whereRaw('torrents.created_at < date_sub(now(), interval 12 month)')
             ->whereRaw('date_sub(peers.created_at,interval 30 minute) < now()')
             ->groupBy('peers.user_id')
@@ -83,7 +81,6 @@ class AutoBonAllocation extends Command
             ->select(DB::raw('count(DISTINCT(peers.torrent_id)) as value'), 'peers.user_id')
             ->join('torrents', 'torrents.id', 'peers.torrent_id')
             ->where('peers.seeder', 1)
-            ->where('peers.active', 1)
             ->whereRaw('torrents.created_at < date_sub(now(), Interval 6 month)')
             ->whereRaw('torrents.created_at > date_sub(now(), interval 12 month)')
             ->whereRaw('date_sub(peers.created_at,interval 30 minute) < now()')
@@ -95,7 +92,6 @@ class AutoBonAllocation extends Command
             ->select(DB::raw('count(DISTINCT(peers.torrent_id)) as value'), 'peers.user_id')
             ->join('torrents', 'torrents.id', 'peers.torrent_id')
             ->where('peers.seeder', 1)
-            ->where('peers.active', 1)
             ->where('torrents.size', '>=', $byteUnits->bytesFromUnit('100GiB'))
             ->whereRaw('date_sub(peers.created_at,interval 30 minute) < now()')
             ->groupBy('peers.user_id')
@@ -106,7 +102,6 @@ class AutoBonAllocation extends Command
             ->select(DB::raw('count(DISTINCT(peers.torrent_id)) as value'), 'peers.user_id')
             ->join('torrents', 'torrents.id', 'peers.torrent_id')
             ->where('peers.seeder', 1)
-            ->where('peers.active', 1)
             ->where('torrents.size', '>=', $byteUnits->bytesFromUnit('25GiB'))
             ->where('torrents.size', '<', $byteUnits->bytesFromUnit('100GiB'))
             ->whereRaw('date_sub(peers.created_at,interval 30 minute) < now()')
@@ -118,7 +113,6 @@ class AutoBonAllocation extends Command
             ->select(DB::raw('count(DISTINCT(peers.torrent_id)) as value'), 'peers.user_id')
             ->join('torrents', 'torrents.id', 'peers.torrent_id')
             ->where('peers.seeder', 1)
-            ->where('peers.active', 1)
             ->where('torrents.size', '>=', $byteUnits->bytesFromUnit('1GiB'))
             ->where('torrents.size', '<', $byteUnits->bytesFromUnit('25GiB'))
             ->whereRaw('date_sub(peers.created_at,interval 30 minute) < now()')
@@ -128,7 +122,6 @@ class AutoBonAllocation extends Command
 
         $participaintSeeder = DB::table('history')
             ->select(DB::raw('count(*) as value'), 'history.user_id')
-            ->where('history.active', 1)
             ->where('history.seedtime', '>=', 2_592_000)
             ->where('history.seedtime', '<', 2_592_000 * 2)
             ->groupBy('history.user_id')
@@ -137,7 +130,6 @@ class AutoBonAllocation extends Command
 
         $teamplayerSeeder = DB::table('history')
             ->select(DB::raw('count(*) as value'), 'history.user_id')
-            ->where('history.active', 1)
             ->where('history.seedtime', '>=', 2_592_000 * 2)
             ->where('history.seedtime', '<', 2_592_000 * 3)
             ->groupBy('history.user_id')
@@ -146,7 +138,6 @@ class AutoBonAllocation extends Command
 
         $commitedSeeder = DB::table('history')
             ->select(DB::raw('count(*) as value'), 'history.user_id')
-            ->where('history.active', 1)
             ->where('history.seedtime', '>=', 2_592_000 * 3)
             ->where('history.seedtime', '<', 2_592_000 * 6)
             ->groupBy('history.user_id')
@@ -155,7 +146,6 @@ class AutoBonAllocation extends Command
 
         $mvpSeeder = DB::table('history')
             ->select(DB::raw('count(*) as value'), 'history.user_id')
-            ->where('history.active', 1)
             ->where('history.seedtime', '>=', 2_592_000 * 6)
             ->where('history.seedtime', '<', 2_592_000 * 12)
             ->groupBy('history.user_id')
@@ -164,29 +154,8 @@ class AutoBonAllocation extends Command
 
         $legendarySeeder = DB::table('history')
             ->select(DB::raw('count(*) as value'), 'history.user_id')
-            ->where('history.active', 1)
             ->where('history.seedtime', '>=', 2_592_000 * 12)
             ->groupBy('history.user_id')
-            ->get()
-            ->toArray();
-
-        $blurayTorrentSizeSum = DB::table('peers')
-            ->select(DB::raw('SUM(torrents.size) as total_size'), 'peers.user_id')
-            ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
-            ->whereIn('torrents.type_id', [1, 2]) // 判断是否为 Blu-ray 种子
-            ->where('peers.seeder', 1)
-            ->where('peers.active', 1)
-            ->groupBy('peers.user_id')
-            ->get()
-            ->toArray();
-
-        $internalTorrentSizeSum = DB::table('peers')
-            ->select(DB::raw('SUM(torrents.size) as total_size'), 'peers.user_id')
-            ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
-            ->where('torrents.internal', 1) // 确保 torrents 是 internal 的
-            ->where('peers.seeder', 1)
-            ->where('peers.active', 1)
-            ->groupBy('peers.user_id')
             ->get()
             ->toArray();
 
@@ -279,28 +248,6 @@ class AutoBonAllocation extends Command
                 $array[$value->user_id] += $value->value * 2;
             } else {
                 $array[$value->user_id] = $value->value * 2;
-            }
-        }
-
-        foreach ($blurayTorrentSizeSum as $value) {
-            $bonusCoefficient = $this->calculateBonusCoefficient($value->total_size, 0.015); // 使用 0.015 作为系数
-
-            if (\array_key_exists($value->user_id, $array)) {
-                $array[$value->user_id] += $bonusCoefficient;
-            } else {
-                $array[$value->user_id] = $bonusCoefficient;
-            }
-        }
-
-        foreach ($internalTorrentSizeSum as $value) {
-            // 计算每小时魔力的增加系数
-            $bonusCoefficient = $this->calculateBonusCoefficient($value->total_size);
-
-            // 更新 $array
-            if (\array_key_exists($value->user_id, $array)) {
-                $array[$value->user_id] += $bonusCoefficient;
-            } else {
-                $array[$value->user_id] = $bonusCoefficient;
             }
         }
 

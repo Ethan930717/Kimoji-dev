@@ -163,30 +163,6 @@ class EarningController extends Controller
             ->where('seedtime', '>=', $SECONDS_PER_MONTH * 12)
             ->count();
 
-        $blurayTorrentsSize = Peer::query()
-            ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
-            ->where('peers.user_id', '=', $user->id)
-            ->where('peers.seeder', '=', 1)
-            ->whereIn('torrents.type_id', [1, 2]) // 使用 type_id 来判断
-            ->sum('torrents.size');
-        $blurayBonusPerHour = $this->calculateBonusPerHour($blurayTorrentsSize, 0.015); // 使用 0.015 作为系数
-
-        $internalTorrentsSize = Peer::query()
-            ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
-            ->where('peers.user_id', '=', $user->id)
-            ->where('peers.seeder', '=', 1)
-            ->where('torrents.internal', '=', 1)
-            ->sum('torrents.size');
-
-        $soundOfficialTorrentsSize = Peer::query()
-            ->join('torrents', 'torrents.id', '=', 'peers.torrent_id')
-            ->where('peers.user_id', '=', $user->id)
-            ->where('peers.seeder', '=', 1)
-            ->whereIn('torrents.category_id', [3, 4]) // 筛选 category_id 为 3 或 4 的种子
-            ->where('torrents.internal', '=', 1)      // 确保种子是内部种子
-            ->sum('torrents.size');
-        $bonusPerHour = $this->calculateBonusPerHour($internalTorrentsSize);
-
         //Total points per hour
         $total = 2.00 * $dying
             + 1.50 * $legendary
@@ -198,9 +174,7 @@ class EarningController extends Controller
             + 0.50 * $teamplayer
             + 0.75 * $committed
             + 1.00 * $mvp
-            + 2.00 * $legend
-            + $bonusPerHour
-            + $blurayBonusPerHour;
+            + 2.00 * $legend;
 
         return view('user.earning.index', [
             'user'                      => $user,
@@ -216,11 +190,6 @@ class EarningController extends Controller
             'committed'                 => $committed,
             'mvp'                       => $mvp,
             'legend'                    => $legend,
-            'internalTorrentsSize'      => $this->convertToGbOrTb($internalTorrentsSize),
-            'soundOfficialTorrentsSize' => $this->convertToGbOrTb($soundOfficialTorrentsSize),
-            'internalBonusPerHour'      => $bonusPerHour,
-            'blurayTorrentsSize'        => $this->convertToGbOrTb($blurayTorrentsSize),
-            'blurayBonusPerHour'        => $blurayBonusPerHour,
             'total'                     => $total,
         ]);
     }

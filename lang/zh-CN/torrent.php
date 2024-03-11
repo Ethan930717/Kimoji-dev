@@ -107,7 +107,6 @@ return [
     'leeching'                 => '下载',
     'left'                     => '剩余',
     'legendary-seeder'         => '名垂青史',
-    'legendary-torrent'        => '传说级资源',
     'list'                     => '列表',
     'me'                       => '我',
     'media-info'               => 'MediaInfo',
@@ -242,4 +241,19 @@ return [
     'music-genre'              => '音乐风格',
     'no-result'                => '无匹配信息',
     'gallery'                  => '画廊',
+    'pertorrent'               => '系数',
+    'hourly'               => '时魔',
+    'daily'               => '每日',
+    'weekly'               => '每周',
+    'monthly'               => '每月',
+    'dying-torrent'      => '稀世珍宝',
+    'legendary-torrent'  => '老骥伏枥',
+    'old-torrent'         => '沉香余烬',
+    'huge'         => '沧海遗珠',
+    'large'         => '璞玉浑金',
+    'evereyday'         => '平平无奇',
+
+
+
+
 ];
