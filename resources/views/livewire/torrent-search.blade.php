@@ -370,7 +370,6 @@
                             </div>
                         </fieldset>
                     </div>
-                </div>
             </form>
         </div>
     </section>
