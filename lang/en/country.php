@@ -15,7 +15,7 @@ return [
     '中国大陆'      => 'China',
     '中国台湾' => 'Taiwan,CN',
     '中国香港'  => 'Hong Kong,CN',
-    '中国澳门'     => 'Macao,CN',
+    '中国澳门'     => 'Macau,CN',
     '美国'      => 'USA',
     '日本' => 'Japan',
     '韩国'  => 'South Korea',

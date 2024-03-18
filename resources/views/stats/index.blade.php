@@ -42,12 +42,10 @@
         </a>
     </li>
     <li class="nav-tabV2">
-        <a class="nav-tab__link" href="{{ route('themes') }}">
-            主题
-        </a>
+        <a class="nav-tab__link" href="{{ route('themes') }}">Themes</a>
     </li>
     <li class="nav-tabV2">
-        <a class="nav-tab__link" href="{{ route('yearly_overviews.index') }}">年度报告</a>
+        <a class="nav-tab__link" href="{{ route('yearly_overviews.index') }}">{{ __('stat.overview') }}</a>
     </li>
 @endsection
 
@@ -61,17 +59,14 @@
             <h2 class="panel__heading">{{ __('torrent.torrents') }}</h2>
             <dl class="key-value">
                 @foreach ($categories as $category)
-                    <dt>{{ $category->name }} / 官种</dt>
-                    <dd>{{ $category->torrents_count }} / {{ $category->official_torrents_count }}</dd>
+                    <dt>{{ $category->name }} {{ __('common.category') }}</dt>
+                    <dd>{{ $category->torrents_count }}</dd>
                 @endforeach
-                <dt>高清资源 / 官种</dt>
-                <dd>{{ $num_hd }} / {{ $num_hd_official }}</dd>
-                <dt>PG-12儿童资源 / 官种</dt>
-                <dd>{{ $num_sd }} / {{ $num_sd_official }}</dd>
-                <dt>{{ __('stat.total-torrents') }} / 官种</dt>
-                <dd>{{ $num_torrent }} / {{ $num_torrent_official }}</dd>
-                <dt>资源总体积 / 官种总体积</dt>
-                <dd>{{ App\Helpers\StringHelper::formatBytes($torrent_size, 2) }} / {{ App\Helpers\StringHelper::formatBytes($official_torrent_size, 2) }}</dd>
+
+                <dt>{{ __('stat.total-torrents') }}</dt>
+                <dd>{{ $num_torrent }}</dd>
+                <dt>{{ __('stat.total-torrents') }} {{ __('torrent.size') }}</dt>
+                <dd>{{ App\Helpers\StringHelper::formatBytes($torrent_size, 2) }}</dd>
             </dl>
         </section>
         <section class="panelV2 panel--grid-item">
@@ -96,7 +91,7 @@
                 <dd>{{ $num_seeders }}</dd>
                 <dt>{{ __('torrent.leechers') }}</dt>
                 <dd>{{ $num_leechers }}</dd>
-                <dt>总数</dt>
+                <dt>Total</dt>
                 <dd>{{ $num_peers }}</dd>
             </dl>
         </section>

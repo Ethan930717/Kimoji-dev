@@ -27,22 +27,11 @@
         <div class="data-table-wrapper">
             <table class="data-table">
                 <thead>
-                <tr>
-                    <th>#</th>
-                    <th>{{ __('common.user') }}</th>
-                    <th wire:click="sortBy('seedsize')" role="columnheader button">
-                        保种总体积
-                        @include('livewire.includes._sort-icon', ['field' => 'seedsize'])
-                    </th>
-                    <th wire:click="sortBy('officialSeedsize')" role="columnheader button">
-                        官种体积
-                        @include('livewire.includes._sort-icon', ['field' => 'officialSeedsize'])
-                    </th>
-                    <th wire:click="sortBy('audioOfficialSeedsize')" role="columnheader button">
-                        音乐区官种体积
-                        @include('livewire.includes._sort-icon', ['field' => 'audioOfficialSeedsize'])
-                    </th>
-                </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>{{ __('common.user') }}</th>
+                        <th>{{ __('torrent.seedsize') }}</th>
+                    </tr>
                 </thead>
                 <tbody>
                     @foreach ($users as $user)
@@ -51,9 +40,9 @@
                             <td>
                                 <x-user_tag :user="$user" :anon="$user->private_profile" />
                             </td>
-                            <td>{{ \App\Helpers\StringHelper::formatBytes($user->seedsize ?? 0) }}</td>
-                            <td>{{ \App\Helpers\StringHelper::formatBytes($user->officialSeedsize ?? 0) }}</td> <!-- 官种体积 -->
-                            <td>{{ \App\Helpers\StringHelper::formatBytes($user->audioOfficialSeedsize ?? 0) }}</td> <!-- 音频类官种体积 -->
+                            <td>
+                                {{ \App\Helpers\StringHelper::formatBytes($user->seedsize ?? 0) }}
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
