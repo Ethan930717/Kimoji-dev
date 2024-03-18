@@ -360,7 +360,7 @@ ConfirmCatEDU() {
 >
     <p class="bbcode-input__tabs">
         <input class="bbcode-input__tab-input" type="radio" id="{{ $name }}-bbcode-preview-disabled" name="isPreviewEnabled" value="0" wire:model="isPreviewEnabled" />
-        <label class="bbcode-input__tab-label" for="{{ $name }}-bbcode-preview-disabled">编辑</label>
+        <label class="bbcode-input__tab-label" for="{{ $name }}-bbcode-preview-disabled">Edit</label>
         <input class="bbcode-input__tab-input" type="radio" id="{{ $name }}-bbcode-preview-enabled" name="isPreviewEnabled" value="1" wire:model="isPreviewEnabled" />
         <label class="bbcode-input__tab-label" for="{{ $name }}-bbcode-preview-enabled">{{ __('common.preview') }}</label>
     </p>
@@ -524,7 +524,7 @@ ConfirmCatEDU() {
                 class="form__standard-icon-button"
                 x-on:click="Swal.fire({
                     title: 'Emoji选择器',
-                    html: '如果您使用的是MacOS，请按 Ctrl + Cmd + 空格键<br>如果您使用的是Windows或Linux，请按 Windows 徽标键 + . (句号键)',
+                    html: 'If using MacOS, press Ctrl + Cmd + Space bar<br>If using Windows or Linux, press Windows logo key + .',
                     icon: 'info',
                     showConfirmButton: true,
                 })"

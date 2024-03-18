@@ -32,20 +32,17 @@
                 </li>
             </ul>
         </section>
-        @if ($footer_pages)
-            <section class="footer__section">
-                <h2 class="footer__section-title">{{ __('common.pages') }}</h2>
-                <ul class="footer__section-list">
-                    @foreach ($footer_pages as $page)
-                        <li>
-                            <a href="{{ route('pages.show', ['page' => $page]) }}">
-                                {{ $page->name }}
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-            </section>
-        @endif
+        <section class="footer__section">
+            <h2 class="footer__section-title">{{ __('common.pages') }}</h2>
+            <ul class="footer__section-list">
+                <li>
+                    <a href="/pages/1">Rules</a>
+                </li>
+                <li>
+                    <a href="/wikis">WIKI</a>
+                </li>
+            </ul>
+        </section>
         <section class="footer__section">
             <h2 class="footer__section-title">{{ __('common.info') }}</h2>
             <ul class="footer__section-list">
