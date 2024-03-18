@@ -255,7 +255,7 @@ class TorrentController extends Controller
         }
 
         return to_route('torrents.show', ['id' => $id])
-            ->withSuccess('编辑成功');
+            ->withSuccess('Successfully Edited!');
     }
 
     /**
@@ -283,8 +283,8 @@ class TorrentController extends Controller
             $pms[] = [
                 'sender_id'   => User::SYSTEM_USER_ID,
                 'receiver_id' => $user_id,
-                'subject'     => '种子已删除 - '.$torrent->name,
-                'message'     => '[b]请注意:[/b]  '.$torrent->name." 已被删除，我们留意到您正在连接这个种子，请您抽空把这个种子删除吧.\n\n[b]删种原因:[/b] ".$request->message."\n\n[color=red][b]这是一条系统消息，请勿回复！[/b][/color]",
+                'subject'     => 'Torrent Deleted! - '.$torrent->name,
+                'message'     => '[b]Attention:[/b] Torrent '.$torrent->name." has been removed from our site. Our system shows that you were either the uploader, a seeder or a leecher on said torrent. We just wanted to let you know you can safely remove it from your client.\n\n[b]Removal Reason:[/b] ".$request->message."\n\n[color=red][b]THIS IS AN AUTOMATED SYSTEM MESSAGE, PLEASE DO NOT REPLY![/b][/color]",
                 'created_at'  => now(),
                 'updated_at'  => now(),
             ];
@@ -472,17 +472,17 @@ class TorrentController extends Controller
             // Announce To Shoutbox
             if ($anon == 0) {
                 $this->chatRepository->systemMessage(
-                    sprintf('帅气的 [url=%s/users/', $appurl).$username.']'.$username.sprintf('[/url] 上传了新 '.$torrent->category->name.'. [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.'[/url], 快来看看吧！ :slight_smile:'
+                    sprintf('User [url=%s/users/', $appurl).$username.']'.$username.sprintf('[/url] has uploaded a new '.$torrent->category->name.'. [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.'[/url], grab it now! :slight_smile:'
                 );
             } else {
                 $this->chatRepository->systemMessage(
-                    sprintf('匿名用户上传了新'.$torrent->category->name.'. [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.'[/url], 快来看看吧! :slight_smile:'
+                    sprintf('An anonymous user has uploaded a new '.$torrent->category->name.'. [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.'[/url], grab it now! :slight_smile:'
                 );
             }
 
             if ($torrent->free >= 1) {
                 $this->chatRepository->systemMessage(
-                    sprintf('乡亲们, [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.'[/url] 现在 '.$torrent->free.'% 免费! 快来看看! :fire:'
+                    sprintf('Ladies and Gents, [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.'[/url] has been granted '.$torrent->free.'% FreeLeech! Grab It While You Can! :fire:'
                 );
             }
 
@@ -490,7 +490,7 @@ class TorrentController extends Controller
         }
 
         return to_route('download_check', ['id' => $torrent->id])
-            ->withSuccess('您的种子文件已准备好下载和做种');
+            ->withSuccess('Your torrent file is ready to be downloaded and seeded!');
     }
 
     public function getRecommendedMusic(int|string $id)
