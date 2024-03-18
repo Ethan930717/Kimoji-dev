@@ -111,7 +111,60 @@
                         </p>
                     </div>
                 </div>
-                <div class="form__group">
+                <div class="form__group--short-horizontal">
+                    <div class="form__group">
+                        @php
+                            $regions = cache()->remember(
+                                'regions',
+                                3_600,
+                                fn () => App\Models\Region::orderBy('position')->get()
+                            )
+                        @endphp
+
+                        <div id="regions" wire:ignore></div>
+                    </div>
+                    <div class="form__group">
+                        @php
+                            $distributors = cache()->remember(
+                                'distributors',
+                                3_600,
+                                fn () => App\Models\Distributor::orderBy('name')->get()
+                            )
+                        @endphp
+
+                        <div id="distributors" wire:ignore></div>
+                    </div>
+                </div>
+                <div class="form__group--short-horizontal">
+                    <div class="form__group">
+                        <fieldset class="form__fieldset">
+                            <legend class="form__legend">{{ __('torrent.category') }}</legend>
+                            <div class="form__fieldset-checkbox-container">
+                                @php
+                                    $categories = cache()->remember(
+                                        'categories',
+                                        3_600,
+                                        fn () => App\Models\Category::orderBy('position')->get()
+                                    )
+                                @endphp
+
+                                @foreach ($categories as $category)
+                                    <p class="form__group">
+                                        <label class="form__label">
+                                            <input
+                                                class="form__checkbox"
+                                                type="checkbox"
+                                                value="{{ $category->id }}"
+                                                wire:model="categories"
+                                            />
+                                            {{ $category->name }}
+                                        </label>
+                                    </p>
+                                @endforeach
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="form__group">
                         <fieldset class="form__fieldset">
                             <legend class="form__legend">{{ __('torrent.type') }}</legend>
                             <div class="form__fieldset-checkbox-container">
@@ -139,35 +192,63 @@
                             </div>
                         </fieldset>
                     </div>
-                <div class="form__group">
-                    <fieldset class="form__fieldset">
-                        <legend class="form__legend">{{ __('distributor.label') }}</legend>
-                        <div class="form__fieldset-checkbox-container">
-                            @php
-                                $distributors = cache()->remember(
-                                    'distributors',
-                                    3_600,
-                                    fn () => App\Models\Distributor::orderBy('name')->get()
-                                );
-                            @endphp
+                    <div class="form__group">
+                        <fieldset class="form__fieldset">
+                            <legend class="form__legend">{{ __('torrent.resolution') }}</legend>
+                            <div class="form__fieldset-checkbox-container">
+                                @php
+                                    $resolutions = cache()->remember(
+                                        'resolutions',
+                                        3_600,
+                                        fn () => App\Models\Resolution::orderBy('position')->get()
+                                    )
+                                @endphp
 
-                            @foreach ($distributors as $distributor)
-                                <p class="form__group">
-                                    <label class="form__label">
-                                        <input
-                                            class="form__checkbox"
-                                            type="checkbox"
-                                            value="{{ $distributor->id }}"
-                                            wire:model="selectedDistributors"
-                                        />
-                                        {{ $distributor->name }}
-                                    </label>
-                                </p>
-                            @endforeach
-                        </div>
-                    </fieldset>
-                </div>
-                <div class="form__group">
+                                @foreach ($resolutions as $resolution)
+                                    <p class="form__group">
+                                        <label class="form__label">
+                                            <input
+                                                class="form__checkbox"
+                                                type="checkbox"
+                                                value="{{ $resolution->id }}"
+                                                wire:model="resolutions"
+                                            />
+                                            {{ $resolution->name }}
+                                        </label>
+                                    </p>
+                                @endforeach
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="form__group">
+                        <fieldset class="form__fieldset">
+                            <legend class="form__legend">{{ __('torrent.genre') }}</legend>
+                            <div class="form__fieldset-checkbox-container">
+                                @php
+                                    $genres = cache()->remember(
+                                        'genres',
+                                        3_600,
+                                        fn () => App\Models\Genre::orderBy('name')->get()
+                                    )
+                                @endphp
+
+                                @foreach ($genres as $genre)
+                                    <p class="form__group">
+                                        <label class="form__label">
+                                            <input
+                                                class="form__checkbox"
+                                                type="checkbox"
+                                                value="{{ $genre->id }}"
+                                                wire:model="genres"
+                                            />
+                                            {{ $genre->name }}
+                                        </label>
+                                    </p>
+                                @endforeach
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="form__group">
                         <fieldset class="form__fieldset">
                             <legend class="form__legend">Buff</legend>
                             <div class="form__fieldset-checkbox-container">
@@ -262,7 +343,91 @@
                             </div>
                         </fieldset>
                     </div>
-                <div class="form__group">
+                    <div class="form__group">
+                        <fieldset class="form__fieldset">
+                            <legend class="form__legend">Tags</legend>
+                            <div class="form__fieldset-checkbox-container">
+                                <p class="form__group">
+                                    <label class="form__label">
+                                        <input
+                                            class="form__checkbox"
+                                            type="checkbox"
+                                            value="1"
+                                            wire:model="internal"
+                                        />
+                                        {{ __('torrent.internal') }}
+                                    </label>
+                                </p>
+                                <p class="form__group">
+                                    <label class="form__label">
+                                        <input
+                                            class="form__checkbox"
+                                            type="checkbox"
+                                            value="1"
+                                            wire:model="personalRelease"
+                                        />
+                                        {{ __('torrent.personal-release') }}
+                                    </label>
+                                </p>
+                                <p class="form__group">
+                                    <label class="form__label">
+                                        <input
+                                            class="form__checkbox"
+                                            type="checkbox"
+                                            value="1"
+                                            wire:model="stream"
+                                        />
+                                        {{ __('torrent.stream-optimized') }}
+                                    </label>
+                                </p>
+                                <p class="form__group">
+                                    <label class="form__label">
+                                        <input
+                                            class="form__checkbox"
+                                            type="checkbox"
+                                            value="1"
+                                            wire:model="sd"
+                                        />
+                                        {{ __('torrent.sd-content') }}
+                                    </label>
+                                </p>
+                                <p class="form__group">
+                                    <label class="form__label">
+                                        <input
+                                            class="form__checkbox"
+                                            type="checkbox"
+                                            value="1"
+                                            wire:model="highspeed"
+                                        />
+                                        {{ __('common.high-speeds') }}
+                                    </label>
+                                </p>
+                                <p class="form__group">
+                                    <label class="form__label">
+                                        <input
+                                            class="form__checkbox"
+                                            type="checkbox"
+                                            value="1"
+                                            wire:model="bookmarked"
+                                        />
+                                        {{ __('common.bookmarked') }}
+                                    </label>
+                                </p>
+                                <p class="form__group">
+                                    <label class="form__label">
+                                        <input
+                                            class="form__checkbox"
+                                            type="checkbox"
+                                            value="1"
+                                            wire:model="wished"
+                                        />
+                                        {{ __('common.wished') }}
+                                    </label>
+                                </p>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="form__group">
                         <fieldset class="form__fieldset">
                             <legend class="form__legend">{{ __('torrent.health') }}</legend>
                             <div class="form__fieldset-checkbox-container">
@@ -313,7 +478,7 @@
                             </div>
                         </fieldset>
                     </div>
-                <div class="form__group">
+                    <div class="form__group">
                         <fieldset class="form__fieldset">
                             <legend class="form__legend">{{ __('torrent.history') }}</legend>
                             <div class="form__fieldset-checkbox-container">
@@ -375,6 +540,7 @@
                             </div>
                         </fieldset>
                     </div>
+                </div>
             </form>
         </div>
     </section>
@@ -675,4 +841,51 @@
         @endswitch
         {{ $torrents->links('partials.pagination') }}
     </section>
+    <script nonce="{{ HDVinnie\SecureHeaders\SecureHeaders::nonce('script') }}">
+        document.addEventListener('livewire:load', function () {
+          let myRegions = [
+              @foreach($regions as $region)
+              {
+                  label: "{{ $region->name }} ({{ __('regions.'.$region->name) }})", value: "{{ $region->id }}"
+              },
+              @endforeach
+          ]
+          VirtualSelect.init({
+            ele: '#regions',
+            options: myRegions,
+            multiple: true,
+            search: true,
+            placeholder: "{{ __('Select Regions') }}",
+            noOptionsText: "{{ __('No results found') }}",
+          })
+
+          let regions = document.querySelector('#regions')
+          regions.addEventListener('change', () => {
+            let data = regions.value
+            @this.set('regions', data)
+          })
+
+          let myDistributors = [
+              @foreach($distributors as $distributor)
+              {
+                  label: "{{ $distributor->name }}", value: "{{ $distributor->id }}"
+              },
+              @endforeach
+          ]
+          VirtualSelect.init({
+            ele: '#distributors',
+            options: myDistributors,
+            multiple: true,
+            search: true,
+            placeholder: "{{__('torrent.music-genre')}}",
+            noOptionsText: "{{__('torrent.no-result')}}",
+          })
+
+          let distributors = document.querySelector('#distributors')
+          distributors.addEventListener('change', () => {
+            let data = distributors.value
+            @this.set('distributors', data)
+          })
+        })
+    </script>
 </div>
