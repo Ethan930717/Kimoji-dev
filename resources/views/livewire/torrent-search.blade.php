@@ -112,6 +112,34 @@
                     </div>
                 </div>
                 <div class="form__group">
+                        <fieldset class="form__fieldset">
+                            <legend class="form__legend">{{ __('torrent.type') }}</legend>
+                            <div class="form__fieldset-checkbox-container">
+                                @php
+                                    $types = cache()->remember(
+                                        'types',
+                                        3_600,
+                                        fn () => App\Models\Type::orderBy('position')->get()
+                                    )
+                                @endphp
+
+                                @foreach ($types as $type)
+                                    <p class="form__group">
+                                        <label class="form__label">
+                                            <input
+                                                class="form__checkbox"
+                                                type="checkbox"
+                                                value="{{ $type->id }}"
+                                                wire:model="types"
+                                            />
+                                            {{ $type->name }}
+                                        </label>
+                                    </p>
+                                @endforeach
+                            </div>
+                        </fieldset>
+                    </div>
+                <div class="form__group">
                     <fieldset class="form__fieldset">
                         <legend class="form__legend">{{ __('distributor.label') }}</legend>
                         <div class="form__fieldset-checkbox-container">
@@ -140,34 +168,6 @@
                     </fieldset>
                 </div>
                 <div class="form__group">
-                        <fieldset class="form__fieldset">
-                            <legend class="form__legend">{{ __('torrent.type') }}</legend>
-                            <div class="form__fieldset-checkbox-container">
-                                @php
-                                    $types = cache()->remember(
-                                        'types',
-                                        3_600,
-                                        fn () => App\Models\Type::orderBy('position')->get()
-                                    )
-                                @endphp
-
-                                @foreach ($types as $type)
-                                    <p class="form__group">
-                                        <label class="form__label">
-                                            <input
-                                                class="form__checkbox"
-                                                type="checkbox"
-                                                value="{{ $type->id }}"
-                                                wire:model="types"
-                                            />
-                                            {{ $type->name }}
-                                        </label>
-                                    </p>
-                                @endforeach
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="form__group">
                         <fieldset class="form__fieldset">
                             <legend class="form__legend">Buff</legend>
                             <div class="form__fieldset-checkbox-container">
@@ -262,7 +262,7 @@
                             </div>
                         </fieldset>
                     </div>
-                    <div class="form__group">
+                <div class="form__group">
                         <fieldset class="form__fieldset">
                             <legend class="form__legend">{{ __('torrent.health') }}</legend>
                             <div class="form__fieldset-checkbox-container">
@@ -313,7 +313,7 @@
                             </div>
                         </fieldset>
                     </div>
-                    <div class="form__group">
+                <div class="form__group">
                         <fieldset class="form__fieldset">
                             <legend class="form__legend">{{ __('torrent.history') }}</legend>
                             <div class="form__fieldset-checkbox-container">
