@@ -111,30 +111,35 @@
                         </p>
                     </div>
                 </div>
-                <div class="form__group--short-horizontal">
-                    <div class="form__group">
-                        @php
-                            $regions = cache()->remember(
-                                'regions',
-                                3_600,
-                                fn () => App\Models\Region::orderBy('position')->get()
-                            )
-                        @endphp
-                        <div id="regions" wire:ignore></div>
-                    </div>
-                    <div class="form__group">
-                        @php
-                            $distributors = cache()->remember(
-                                'distributors',
-                                3_600,
-                                fn () => App\Models\Distributor::orderBy('name')->get()
-                            )
-                        @endphp
+                <div class="form__group">
+                    <fieldset class="form__fieldset">
+                        <legend class="form__legend">{{ __('distributor.label') }}</legend>
+                        <div class="form__fieldset-checkbox-container">
+                            @php
+                                $distributors = cache()->remember(
+                                    'distributors',
+                                    3_600,
+                                    fn () => App\Models\Distributor::orderBy('name')->get()
+                                );
+                            @endphp
 
-                        <div id="distributors" wire:ignore></div>
-                    </div>
+                            @foreach ($distributors as $distributor)
+                                <p class="form__group">
+                                    <label class="form__label">
+                                        <input
+                                            class="form__checkbox"
+                                            type="checkbox"
+                                            value="{{ $distributor->id }}"
+                                            wire:model="selectedDistributors"
+                                        />
+                                        {{ $distributor->name }}
+                                    </label>
+                                </p>
+                            @endforeach
+                        </div>
+                    </fieldset>
                 </div>
-                    <div class="form__group">
+                <div class="form__group">
                         <fieldset class="form__fieldset">
                             <legend class="form__legend">{{ __('torrent.type') }}</legend>
                             <div class="form__fieldset-checkbox-container">
@@ -670,51 +675,4 @@
         @endswitch
         {{ $torrents->links('partials.pagination') }}
     </section>
-    <script nonce="{{ HDVinnie\SecureHeaders\SecureHeaders::nonce('script') }}">
-        document.addEventListener('livewire:load', function () {
-          let myRegions = [
-              @foreach($regions as $region)
-              {
-                  label: "{{ $region->name }} ({{ __('regions.'.$region->name) }})", value: "{{ $region->id }}"
-              },
-              @endforeach
-          ]
-          VirtualSelect.init({
-            ele: '#regions',
-            options: myRegions,
-            multiple: true,
-            search: true,
-            placeholder: "{{ __('Select Regions') }}",
-            noOptionsText: "{{ __('No results found') }}",
-          })
-
-          let regions = document.querySelector('#regions')
-          regions.addEventListener('change', () => {
-            let data = regions.value
-            @this.set('regions', data)
-          })
-
-          let myDistributors = [
-              @foreach($distributors as $distributor)
-              {
-                  label: "{{ $distributor->name }}", value: "{{ $distributor->id }}"
-              },
-              @endforeach
-          ]
-          VirtualSelect.init({
-            ele: '#distributors',
-            options: myDistributors,
-            multiple: true,
-            search: true,
-            placeholder: "{{__('torrent.music-genre')}}",
-            noOptionsText: "{{__('torrent.no-result')}}",
-          })
-
-          let distributors = document.querySelector('#distributors')
-          distributors.addEventListener('change', () => {
-            let data = distributors.value
-            @this.set('distributors', data)
-          })
-        })
-    </script>
 </div>
