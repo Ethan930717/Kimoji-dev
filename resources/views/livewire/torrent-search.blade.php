@@ -114,17 +114,6 @@
                 <div class="form__group--short-horizontal">
                     <div class="form__group">
                         @php
-                            $regions = cache()->remember(
-                                'regions',
-                                3_600,
-                                fn () => App\Models\Region::orderBy('position')->get()
-                            )
-                        @endphp
-
-                        <div id="regions" wire:ignore></div>
-                    </div>
-                    <div class="form__group">
-                        @php
                             $distributors = cache()->remember(
                                 'distributors',
                                 3_600,
@@ -135,35 +124,6 @@
                         <div id="distributors" wire:ignore></div>
                     </div>
                 </div>
-                <div class="form__group--short-horizontal">
-                    <div class="form__group">
-                        <fieldset class="form__fieldset">
-                            <legend class="form__legend">{{ __('torrent.category') }}</legend>
-                            <div class="form__fieldset-checkbox-container">
-                                @php
-                                    $categories = cache()->remember(
-                                        'categories',
-                                        3_600,
-                                        fn () => App\Models\Category::orderBy('position')->get()
-                                    )
-                                @endphp
-
-                                @foreach ($categories as $category)
-                                    <p class="form__group">
-                                        <label class="form__label">
-                                            <input
-                                                class="form__checkbox"
-                                                type="checkbox"
-                                                value="{{ $category->id }}"
-                                                wire:model="categories"
-                                            />
-                                            {{ $category->name }}
-                                        </label>
-                                    </p>
-                                @endforeach
-                            </div>
-                        </fieldset>
-                    </div>
                     <div class="form__group">
                         <fieldset class="form__fieldset">
                             <legend class="form__legend">{{ __('torrent.type') }}</legend>
@@ -186,62 +146,6 @@
                                                 wire:model="types"
                                             />
                                             {{ $type->name }}
-                                        </label>
-                                    </p>
-                                @endforeach
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="form__group">
-                        <fieldset class="form__fieldset">
-                            <legend class="form__legend">{{ __('torrent.resolution') }}</legend>
-                            <div class="form__fieldset-checkbox-container">
-                                @php
-                                    $resolutions = cache()->remember(
-                                        'resolutions',
-                                        3_600,
-                                        fn () => App\Models\Resolution::orderBy('position')->get()
-                                    )
-                                @endphp
-
-                                @foreach ($resolutions as $resolution)
-                                    <p class="form__group">
-                                        <label class="form__label">
-                                            <input
-                                                class="form__checkbox"
-                                                type="checkbox"
-                                                value="{{ $resolution->id }}"
-                                                wire:model="resolutions"
-                                            />
-                                            {{ $resolution->name }}
-                                        </label>
-                                    </p>
-                                @endforeach
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="form__group">
-                        <fieldset class="form__fieldset">
-                            <legend class="form__legend">{{ __('torrent.genre') }}</legend>
-                            <div class="form__fieldset-checkbox-container">
-                                @php
-                                    $genres = cache()->remember(
-                                        'genres',
-                                        3_600,
-                                        fn () => App\Models\Genre::orderBy('name')->get()
-                                    )
-                                @endphp
-
-                                @foreach ($genres as $genre)
-                                    <p class="form__group">
-                                        <label class="form__label">
-                                            <input
-                                                class="form__checkbox"
-                                                type="checkbox"
-                                                value="{{ $genre->id }}"
-                                                wire:model="genres"
-                                            />
-                                            {{ $genre->name }}
                                         </label>
                                     </p>
                                 @endforeach
@@ -338,90 +242,6 @@
                                             wire:model="refundable"
                                         />
                                         Refundable
-                                    </label>
-                                </p>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="form__group">
-                        <fieldset class="form__fieldset">
-                            <legend class="form__legend">Tags</legend>
-                            <div class="form__fieldset-checkbox-container">
-                                <p class="form__group">
-                                    <label class="form__label">
-                                        <input
-                                            class="form__checkbox"
-                                            type="checkbox"
-                                            value="1"
-                                            wire:model="internal"
-                                        />
-                                        {{ __('torrent.internal') }}
-                                    </label>
-                                </p>
-                                <p class="form__group">
-                                    <label class="form__label">
-                                        <input
-                                            class="form__checkbox"
-                                            type="checkbox"
-                                            value="1"
-                                            wire:model="personalRelease"
-                                        />
-                                        {{ __('torrent.personal-release') }}
-                                    </label>
-                                </p>
-                                <p class="form__group">
-                                    <label class="form__label">
-                                        <input
-                                            class="form__checkbox"
-                                            type="checkbox"
-                                            value="1"
-                                            wire:model="stream"
-                                        />
-                                        {{ __('torrent.stream-optimized') }}
-                                    </label>
-                                </p>
-                                <p class="form__group">
-                                    <label class="form__label">
-                                        <input
-                                            class="form__checkbox"
-                                            type="checkbox"
-                                            value="1"
-                                            wire:model="sd"
-                                        />
-                                        {{ __('torrent.sd-content') }}
-                                    </label>
-                                </p>
-                                <p class="form__group">
-                                    <label class="form__label">
-                                        <input
-                                            class="form__checkbox"
-                                            type="checkbox"
-                                            value="1"
-                                            wire:model="highspeed"
-                                        />
-                                        {{ __('common.high-speeds') }}
-                                    </label>
-                                </p>
-                                <p class="form__group">
-                                    <label class="form__label">
-                                        <input
-                                            class="form__checkbox"
-                                            type="checkbox"
-                                            value="1"
-                                            wire:model="bookmarked"
-                                        />
-                                        {{ __('common.bookmarked') }}
-                                    </label>
-                                </p>
-                                <p class="form__group">
-                                    <label class="form__label">
-                                        <input
-                                            class="form__checkbox"
-                                            type="checkbox"
-                                            value="1"
-                                            wire:model="wished"
-                                        />
-                                        {{ __('common.wished') }}
                                     </label>
                                 </p>
                             </div>
