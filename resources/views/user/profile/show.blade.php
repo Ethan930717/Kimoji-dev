@@ -71,7 +71,7 @@
                             @endphp
                             @if ($soundOfficialTorrentsSize < 100)
                                 <div class="alert alert-warning" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
-                                    Account Warning : Current seeding progress: {{ number_format($soundOfficialTorrentsSize, 2, '.', '') }} / 100 GB
+                                    ⚠️Warning : Current seeding progress: {{ number_format($soundOfficialTorrentsSize, 2, '.', '') }} / 100 GB
                                 </div>
                             @elseif (!empty($nextLevel) && $nextLevel !== '顶级')
                                 <div class="alert alert-success" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
@@ -90,7 +90,7 @@
                             </button>
                             <dialog class="dialog" x-ref="dialog">
                                 <h4 class="dialog__heading">
-                                    Select...
+                                    Select the volume you wish to seed. After clicking download, please wait patiently for the backend to retrieve the data.
                                 </h4>
                                 <div x-on:click.outside="$refs.dialog.close()">
                                     <form
