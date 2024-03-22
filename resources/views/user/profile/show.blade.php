@@ -24,104 +24,104 @@
 @endsection
 
 @if (auth()->user()->isAllowed($user))
-    @if (!auth()->user()->group->is_internal)
-        @php
-            // 单位转换为 TB
-            $torrentsSizeTB = $soundOfficialTorrentsSize / 1024;
-            $nextLevel = '';
-            $nextLevelSize = 0;
-
-            if ($torrentsSizeTB < 0.1) {
-                $nextLevel = 'User';
-                $nextLevelSize = 0.1 - $torrentsSizeTB;
-            } elseif ($torrentsSizeTB < 0.5) {
-                $nextLevel = 'PowerUser';
-                $nextLevelSize = 0.5 - $torrentsSizeTB;
-            } elseif ($torrentsSizeTB < 1.2) {
-                $nextLevel = 'SuperUser';
-                $nextLevelSize = 1.2 - $torrentsSizeTB;
-            } elseif ($torrentsSizeTB < 2) {
-                $nextLevel = 'ExtremeUser';
-                $nextLevelSize = 2 - $torrentsSizeTB;
-            } elseif ($torrentsSizeTB < 3) {
-                $nextLevel = 'InsaneUser';
-                $nextLevelSize = 3 - $torrentsSizeTB;
-            } elseif ($torrentsSizeTB < 4.2) {
-                $nextLevel = 'Seeder';
-                $nextLevelSize = 4.2 - $torrentsSizeTB;
-            } elseif ($torrentsSizeTB < 6) {
-                $nextLevel = 'Archivist';
-                $nextLevelSize = 6 - $torrentsSizeTB;
-            } elseif ($torrentsSizeTB < 8) {
-                $nextLevel = 'Veteran';
-                $nextLevelSize = 8 - $torrentsSizeTB;
-            } elseif ($torrentsSizeTB < 12) {
-                $nextLevel = 'Keeper';
-                $nextLevelSize = 12 - $torrentsSizeTB;
-            } elseif ($torrentsSizeTB >= 12) {
-                $nextLevel = '顶级';
-                $nextLevelSize = 0;
-            }
-        @endphp
-        @if ($soundOfficialTorrentsSize < 100)
-            <div class="alert alert-warning" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
-                Account Warning : Current seeding progress: {{ number_format($soundOfficialTorrentsSize, 2, '.', '') }} / 100 GB
-            </div>
-        @elseif (!empty($nextLevel) && $nextLevel !== '顶级')
-            <div class="alert alert-success" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
-                Current seeding volume : {{ number_format($torrentsSizeTB, 2, '.', '') }} TB. You need {{ number_format($nextLevelSize, 2, '.', '') }} TB more to upgrade.
-            </div>
-        @else
-            <div class="alert alert-success" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
-                Congratulations, you are the King of KIMOJI!
-            </div>
-        @endif
-    @endif
-
-    <div x-data>
-        <button class="form__button form__button--outlined" x-on:click.stop="$refs.dialog.showModal()">
-            <i class="{{ config('other.font-awesome') }} fa-star"></i> Quick Seed
-        </button>
-        <dialog class="dialog" x-ref="dialog">
-            <h4 class="dialog__heading">
-                Select...
-            </h4>
-            <div x-on:click.outside="$refs.dialog.close()">
-                <form
-                    class="dialog__form"
-                    action="{{ route('users.torrent_zip.downloadUrgentSeedersZip', ['user' => $user]) }}"
-                    method="POST"
-                >
-                    @csrf
-                    <p class="form__group">
-                        <select id="volume" name="volume" class="form__select">
-                            <option value="161061273600">150GB</option> <!-- 100GB in bytes -->
-                            <option value="536870912000">500GB</option> <!-- 500GB in bytes -->
-                            <option value="1073741824000">1TB</option> <!-- 1TB in bytes -->
-                            <option value="2199023255552">2TB</option> <!-- 2TB in bytes -->
-                        </select>
-                        <label class="form__label form__label--floating" for="volume">
-                            Select
-                        </label>
-                    </p>
-                    <p class="form__group">
-                        <button type="submit" class="form__button form__button--filled" x-on:click="$refs.dialog.close()">
-                            Download
-                        </button>
-                        <button type="button" x-on:click="$refs.dialog.close()" class="form__button form__button--outlined">
-                            Cancel
-                        </button>
-                    </p>
-                </form>
-            </div>
-        </dialog>
-    </div>
     @section('main')
         <section class="panelV2">
             <header class="panel__header">
                 <h2 class="panel__heading">{{ __('user.user') }} {{ __('user.information') }}</h2>
                 <div class="panel__actions">
                     @if (auth()->user()->is($user))
+                        @if (!auth()->user()->group->is_internal)
+                            @php
+                                // 单位转换为 TB
+                                $torrentsSizeTB = $soundOfficialTorrentsSize / 1024;
+                                $nextLevel = '';
+                                $nextLevelSize = 0;
+
+                                if ($torrentsSizeTB < 0.1) {
+                                    $nextLevel = 'User';
+                                    $nextLevelSize = 0.1 - $torrentsSizeTB;
+                                } elseif ($torrentsSizeTB < 0.5) {
+                                    $nextLevel = 'PowerUser';
+                                    $nextLevelSize = 0.5 - $torrentsSizeTB;
+                                } elseif ($torrentsSizeTB < 1.2) {
+                                    $nextLevel = 'SuperUser';
+                                    $nextLevelSize = 1.2 - $torrentsSizeTB;
+                                } elseif ($torrentsSizeTB < 2) {
+                                    $nextLevel = 'ExtremeUser';
+                                    $nextLevelSize = 2 - $torrentsSizeTB;
+                                } elseif ($torrentsSizeTB < 3) {
+                                    $nextLevel = 'InsaneUser';
+                                    $nextLevelSize = 3 - $torrentsSizeTB;
+                                } elseif ($torrentsSizeTB < 4.2) {
+                                    $nextLevel = 'Seeder';
+                                    $nextLevelSize = 4.2 - $torrentsSizeTB;
+                                } elseif ($torrentsSizeTB < 6) {
+                                    $nextLevel = 'Archivist';
+                                    $nextLevelSize = 6 - $torrentsSizeTB;
+                                } elseif ($torrentsSizeTB < 8) {
+                                    $nextLevel = 'Veteran';
+                                    $nextLevelSize = 8 - $torrentsSizeTB;
+                                } elseif ($torrentsSizeTB < 12) {
+                                    $nextLevel = 'Keeper';
+                                    $nextLevelSize = 12 - $torrentsSizeTB;
+                                } elseif ($torrentsSizeTB >= 12) {
+                                    $nextLevel = '顶级';
+                                    $nextLevelSize = 0;
+                                }
+                            @endphp
+                            @if ($soundOfficialTorrentsSize < 100)
+                                <div class="alert alert-warning" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
+                                    Account Warning : Current seeding progress: {{ number_format($soundOfficialTorrentsSize, 2, '.', '') }} / 100 GB
+                                </div>
+                            @elseif (!empty($nextLevel) && $nextLevel !== '顶级')
+                                <div class="alert alert-success" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
+                                    Current seeding volume : {{ number_format($torrentsSizeTB, 2, '.', '') }} TB. You need {{ number_format($nextLevelSize, 2, '.', '') }} TB more to upgrade.
+                                </div>
+                            @else
+                                <div class="alert alert-success" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
+                                    Congratulations, you are the King of KIMOJI!
+                                </div>
+                            @endif
+                        @endif
+
+                        <div x-data>
+                            <button class="form__button form__button--outlined" x-on:click.stop="$refs.dialog.showModal()">
+                                <i class="{{ config('other.font-awesome') }} fa-star"></i> Quick Seed
+                            </button>
+                            <dialog class="dialog" x-ref="dialog">
+                                <h4 class="dialog__heading">
+                                    Select...
+                                </h4>
+                                <div x-on:click.outside="$refs.dialog.close()">
+                                    <form
+                                        class="dialog__form"
+                                        action="{{ route('users.torrent_zip.downloadUrgentSeedersZip', ['user' => $user]) }}"
+                                        method="POST"
+                                    >
+                                        @csrf
+                                        <p class="form__group">
+                                            <select id="volume" name="volume" class="form__select">
+                                                <option value="161061273600">150GB</option> <!-- 100GB in bytes -->
+                                                <option value="536870912000">500GB</option> <!-- 500GB in bytes -->
+                                                <option value="1073741824000">1TB</option> <!-- 1TB in bytes -->
+                                                <option value="2199023255552">2TB</option> <!-- 2TB in bytes -->
+                                            </select>
+                                            <label class="form__label form__label--floating" for="volume">
+                                                Select
+                                            </label>
+                                        </p>
+                                        <p class="form__group">
+                                            <button type="submit" class="form__button form__button--filled" x-on:click="$refs.dialog.close()">
+                                                Download
+                                            </button>
+                                            <button type="button" x-on:click="$refs.dialog.close()" class="form__button form__button--outlined">
+                                                Cancel
+                                            </button>
+                                        </p>
+                                    </form>
+                                </div>
+                            </dialog>
+                        </div>
                         <div class="panel__action">
                             <a
                                 href="{{ route('users.edit', ['user' => $user]) }}"
