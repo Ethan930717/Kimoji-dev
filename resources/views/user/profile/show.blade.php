@@ -75,7 +75,7 @@
                                 </div>
                             @elseif (!empty($nextLevel) && $nextLevel !== '顶级')
                                 <div class="alert alert-success" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
-                                    Current seeding volume : {{ number_format($torrentsSizeTB, 2, '.', '') }} TB. You need {{ number_format($nextLevelSize, 2, '.', '') }} TB more to upgrade.
+                                    Current seeding volume : {{ number_format($torrentsSizeTB, 2, '.', '') }} TB , You need {{ number_format($nextLevelSize, 2, '.', '') }} TB more to upgrade.
                                 </div>
                             @else
                                 <div class="alert alert-success" role="alert" style="color: white; text-shadow: 0 0 5px #fb7171; font-size:15px ">
