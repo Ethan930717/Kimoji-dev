@@ -251,6 +251,8 @@ return [
     'huge'               => 'Huge Torrent',
     'large'         => 'Large Torrent',
     'evereyday'         => 'Everyday Torrent',
+    'copylink'         => 'Copy DownloadLink',
+
 
 
 

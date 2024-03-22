@@ -252,6 +252,7 @@ return [
     'huge'         => '沧海遗珠',
     'large'         => '璞玉浑金',
     'evereyday'         => '平平无奇',
+    'copylink'         => '复制下载链接',
 
 
 
