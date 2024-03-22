@@ -39,7 +39,7 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">贵人卡</h5>
+                    <h5 class="card-title">VIP</h5>
                     <p class="card-text">¥588 / $83.99</p>
                 </div>
             </div>

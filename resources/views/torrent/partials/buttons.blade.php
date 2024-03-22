@@ -30,7 +30,7 @@
         @endif
     </li>
     <li class="form__group form__group--short-horizontal">
-        <a class="form__button form__button_copy--filled form__button--centered" x-data data-link="{{ route('torrent.download.rsskey', ['id' => $torrent->id, 'rsskey' => auth()->user()->rsskey]) }}" x-on:click.stop="navigator.clipboard.writeText($el.getAttribute('data-link')).then(() => Swal.fire({toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, icon: 'success', title: '复制成功'}))">
+        <a class="form__button form__button_copy--filled form__button--centered" x-data data-link="{{ route('torrent.download.rsskey', ['id' => $torrent->id, 'rsskey' => auth()->user()->rsskey]) }}" x-on:click.stop="navigator.clipboard.writeText($el.getAttribute('data-link')).then(() => Swal.fire({toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, icon: 'success', title: 'Copy to Clipboard'}))">
             <i class="{{ config('other.font-awesome') }} fas fa-link"></i> {{ __('torrent.copylink') }}
         </a>
     </li>

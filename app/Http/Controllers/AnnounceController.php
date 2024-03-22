@@ -42,8 +42,8 @@ final class AnnounceController extends Controller
     protected const POSTPONED = 3;
 
     // Announce Intervals
-    private const MIN = 600;
-    private const MAX = 1_800;
+    private const MIN = 1_800;
+    private const MAX = 3_600;
 
     // Port Blacklist
     private const BLACK_PORTS = [
@@ -342,12 +342,12 @@ final class AnnounceController extends Controller
 
         // If User Account Is Unactivated/Validating Return Error to Client
         if ($user->group_id === $deniedGroups->validating_id) {
-            throw new TrackerException(141, [':status' => '不活跃的']);
+            throw new TrackerException(141, [':status' => 'Unactivated/Validating']);
         }
 
         // If User Is Banned Return Error to Client
         if ($user->group_id === $deniedGroups->banned_id) {
-            throw new TrackerException(141, [':status' => '流放']);
+            throw new TrackerException(141, [':status' => 'Banned']);
         }
 
         return $group;
@@ -377,17 +377,17 @@ final class AnnounceController extends Controller
 
         // If Torrent Is Pending Moderation Return Error to Client
         if ($torrent->status === self::PENDING) {
-            throw new TrackerException(151, [':status' => '审核中']);
+            throw new TrackerException(151, [':status' => 'PENDING In Moderation']);
         }
 
         // If Torrent Is Rejected Return Error to Client
         if ($torrent->status === self::REJECTED) {
-            throw new TrackerException(151, [':status' => '被拒绝']);
+            throw new TrackerException(151, [':status' => 'REJECTED In Moderation']);
         }
 
         // If Torrent Is Postponed Return Error to Client
         if ($torrent->status === self::POSTPONED) {
-            throw new TrackerException(151, [':status' => '待修改']);
+            throw new TrackerException(151, [':status' => 'POSTPONED In Moderation']);
         }
 
         // Don't use eager loading so that we can make use of mysql prepared statement caching.

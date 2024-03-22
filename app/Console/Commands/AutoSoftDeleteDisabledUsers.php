@@ -85,7 +85,7 @@ class AutoSoftDeleteDisabledUsers extends Command
                 Ban::create([
                     'owned_by' => $user->id,
                     'created_by' => 1,
-                    'ban_reason' => "注册之日起30天内未达到100GB官方音乐资源保种要求",
+                    'ban_reason' => "Failure to meet the official music resource seeding requirement of 100GB within 30 days of registration.",
                 ]);
             }
         }

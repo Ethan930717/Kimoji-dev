@@ -1,147 +1,37 @@
-<div class="panelV2" x-data="{ show: false }">
-    <header class="panel__header" style="cursor: pointer;" @click="show = !show">
+<section class="panelV2 torrent-bdinfo" x-data="bdinfo">
+    <header class="panel__header">
         <h2 class="panel__heading">
-            <i class="{{ config('other.font-awesome') }} fa-compact-disc"></i> BDInfo
-            <i class="{{ config('other.font-awesome') }} fa-plus-circle fa-pull-right" x-show="!show"></i>
-            <i class="{{ config('other.font-awesome') }} fa-minus-circle fa-pull-right" x-show="show" x-cloak></i>
+            <i class="{{ config('other.font-awesome') }} fa-compact-disc"></i>
+            BDInfo
         </h2>
         <div class="panel__actions">
             <div class="panel__action">
-                <button class="form__button form__button--text" x-data x-on:click.stop="navigator.clipboard.writeText($refs.bdinfo.textContent); Swal.fire({toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, icon: 'success', title: '复制成功'})">
-                    复制
+                <button class="form__button form__button--text" x-data x-on:click.stop="copy">
+                    Copy
                 </button>
             </div>
         </div>
     </header>
     <div class="panel__body">
-        <div class="torrent-bdinfo-dump bbcode-rendered" x-cloak x-show="show">
+        <div class="bbcode-rendered">
             <pre><code x-ref="bdinfo">{{ $torrent->bdinfo }}</code></pre>
         </div>
-        <section class="mediainfo">
-            <section class="mediainfo__filename">
-                <h3>文件名</h3>
-                <dd>{{ $bdInfo['disc_title'] ?? __('common.unknown') }}</dd>
-            </section>
-            <section class="mediainfo__general">
-                <h3>常规</h3>
-                <dl>
-                    <dt>体积</dt>
-                    <dd>{!! nl2br(e($bdInfo['disc_size'] ?? __('common.unknown'))) !!}</dd>
-
-                    @if (!empty($bdInfo['disc_label']))
-                        <dt>标签</dt>
-                        <dd>{!! nl2br(e($bdInfo['disc_label'])) !!}</dd>
-                    @endif
-
-                    <dt>整体码率</dt>
-                    <dd>{!! nl2br(e($bdInfo['total_bitrate'] ?? __('common.unknown'))) !!}</dd>
-                </dl>
-
-            </section>
-
-            @if(!empty($bdInfo['video']))
-                <section class="mediainfo__video">
-                    <h3>视频</h3>
-                    <article>
-                        <dl>
-                            @isset($bdInfo['video']['format'])
-                                <dt>格式</dt>
-                                <dd>{{ $bdInfo['video']['format'] }}</dd>
-                            @endisset
-
-                            @isset($bdInfo['video']['bitrate'])
-                                <dt>码率</dt>
-                                <dd>{{ $bdInfo['video']['bitrate'] }}</dd>
-                            @endisset
-
-                            @isset($bdInfo['video']['resolution'])
-                                <dt>分辨率</dt>
-                                <dd>{{ $bdInfo['video']['resolution'] }}</dd>
-                            @endisset
-
-                            @isset($bdInfo['video']['frame_rate'])
-                                <dt>帧率</dt>
-                                <dd>{{ $bdInfo['video']['frame_rate'] }}</dd>
-                            @endisset
-
-                            @isset($bdInfo['video']['aspect_ratio'])
-                                <dt>宽高比</dt>
-                                <dd>{{ $bdInfo['video']['aspect_ratio'] }}</dd>
-                            @endisset
-
-                            @isset($bdInfo['video']['chroma_subsampling'])
-                                <dt>色度抽样</dt>
-                                <dd>{{ $bdInfo['video']['chroma_subsampling'] }}</dd>
-                            @endisset
-
-                            @isset($bdInfo['video']['color_depth'])
-                                <dt>色深</dt>
-                                <dd>{{ $bdInfo['video']['color_depth'] }}</dd>
-                            @endisset
-
-                            @isset($bdInfo['video']['peak_brightness'])
-                                <dt>亮度峰值</dt>
-                                <dd>{{ $bdInfo['video']['peak_brightness'] }}</dd>
-                            @endisset
-
-                            @isset($bdInfo['video']['hdr_format'])
-                                <dt>HDR格式</dt>
-                                <dd>{{ $bdInfo['video']['hdr_format'] }}</dd>
-                            @endisset
-
-                            @isset($bdInfo['video']['color_space'])
-                                <dt>色域</dt>
-                                <dd>{{ $bdInfo['video']['color_space'] }}</dd>
-                            @endisset
-                        </dl>
-
-                    </article>
-                </section>
-            @endif
-
-
-            @if(!empty($bdInfo['audio']) && is_array($bdInfo['audio']))
-                <section class="mediainfo__audio">
-                    <h3>音频</h3>
-                    <ul>
-                        @foreach($bdInfo['audio'] as $audioData)
-                            <li>
-                                @if(isset($audioData['country_code']) && $audioData['country_code'])
-                                    <img src="/img/flags/{{ $audioData['country_code'] }}.png"
-                                         alt="{{ $audioData['country_code'] }}"
-                                         width="20"
-                                         height="13"
-                                         title="{{ $audioData['country_code'] }}"
-                                    />
-                                @endif
-                                {{ $audioData['info'] }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </section>
-            @endif
-
-            @if(!empty($bdInfo['subtitles']) && is_array($bdInfo['subtitles']))
-                <section class="mediainfo__subtitles">
-                    <h3>字幕</h3>
-                    <ul>
-                        @foreach($bdInfo['subtitles'] as $subtitleData)
-                            <li>
-                                @if(isset($subtitleData['country_code']) && $subtitleData['country_code'])
-                                    <img src="/img/flags/{{ $subtitleData['country_code'] }}.png"
-                                         alt="{{ $subtitleData['country_code'] }}"
-                                         width="20"
-                                         height="13"
-                                         title="{{ $subtitleData['country_code'] }}"
-                                    />
-                                @endif
-                            </li>
-                        @endforeach
-                    </ul>
-                </section>
-            @endif
-
-
-        </section>
     </div>
-</div>
+    <script nonce="{{ HDVinnie\SecureHeaders\SecureHeaders::nonce('script') }}">
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('bdinfo', () => ({
+                copy() {
+                    navigator.clipboard.writeText(this.$refs.bdinfo.textContent);
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        icon: 'success',
+                        title: 'Copied to clipboard!',
+                    });
+                },
+            }));
+        });
+    </script>
+</section>

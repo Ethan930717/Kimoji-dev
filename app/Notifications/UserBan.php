@@ -36,7 +36,8 @@ class UserBan extends Notification
         $chatdUrl = config('unit3d.chat-link-url');
 
         return (new MailMessage())
-            ->greeting('流放通知')
-            ->line('由于'.$this->ban->ban_reason.'，我们将请您离开'.config('other.title').'山高水远，有缘再聚')
+            ->greeting('You have been banned 😭')
+            ->line('You have been banned from '.config('other.title').' for '.$this->ban->ban_reason)
+            ->line('Thank you for using 🚀'.config('other.title'));
     }
 }

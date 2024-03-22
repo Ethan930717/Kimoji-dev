@@ -54,93 +54,93 @@ class UserGroupChanged extends Notification implements ShouldQueue
     {
         if ($this->newGroupId > $this->oldGroupId) {
             switch ($groupName) {
-                case '入土':
-                    return '您的账户因违反规则已被封禁';
-                case '流放':
-                    return '您的账户因长时间未登录已被冻结';
-                case '坐寐':
-                    return '由于长时间未登录，您的账户目前处于冻结状态';
-                case '徭役':
-                    return '由于分享率低于1.0，您已降级为徭役，请尽快提升您的分享率。';
-                case '布衣':
-                    return '您现在是KIMOJI的普通用户，请您熟悉我们的规则，祝您玩得开心';
-                case '壮士':
-                    return '恭喜您升级为壮士，感谢您的贡献！';
-                case '力士':
-                    return '恭喜您升级为力士，您的贡献对KIMOJI至关重要';
-                case '剑客':
-                    return '您已成为剑客，继续您的辉煌吧';
-                case '大侠':
-                    return '大侠，欢迎您！您的贡献是我们社区的骄傲';
-                case '盟主':
-                    return '您已被提升为盟主，感谢您的持续贡献和卓越领导';
-                case '至尊':
-                    return '恭喜您成为至尊，您的成就在社区中熠熠生辉。';
-                case '剑圣':
-                    return '恭喜您达到剑圣的崇高境界，无人能及！';
-                case '耕夫':
-                    return '感谢您的辛勤转种，您的等级已提升为耕夫，您的努力让社区资源更加丰富多彩，现在您享有邀请权，接下来请您维持每月最基本的转种量，努力保级';
-                case '掌固':
-                    return '感谢您的努力保种，您的等级已提升为掌固，您为KIMOJI的种子的健康与活力，这对我们至关重要，现在您享有邀请权，请您继续保持保种量';
-                case '贵人':
-                    return '您是KIMOJI的贵人，感谢您的赞助与贡献';
-                case '颐养':
-                    return '作为养老成员，您在功成身退后依然受到我们的尊敬与感激';
-                case '统筹':
-                    return '作为统筹，您是社区管理的核心，感谢您的智慧与决策';
-                case '监护':
-                    return '作为监护，您在维护秩序，保持KIMOJI健康方面发挥着重要作用';
-                case '园丁':
-                    return '作为园丁，您的努力让社区的内容始终保持高质量';
-                case '守卫':
-                    return '您作为守卫，确保了社区资源的规范性和准确性';
+                case 'Banned':
+                    return 'Your account has been banned due to a violation of the rules.';
+                case 'Pruned':
+                    return 'Your account has been frozen due to prolonged inactivity.';
+                case 'Disabled':
+                    return 'Your account is currently disabled due to prolonged inactivity.';
+                case 'Leech':
+                    return 'Due to a share ratio below 1.0, you have been downgraded to Leech. Please improve your share ratio as soon as possible.';
+                case 'User':
+                    return 'You are now a regular user of KIMOJI. Please familiarize yourself with our rules, and have fun.';
+                case 'PowerUser':
+                    return 'Congratulations on being upgraded to PowerUser. Thank you for your contributions!';
+                case 'SuperUser':
+                    return 'Congratulations on being upgraded to SuperUser. Your contributions are crucial to KIMOJI.';
+                case 'ExtremeUser':
+                    return 'You have become an ExtremeUser. Continue your excellent work.';
+                case 'InsaneUser':
+                    return 'Welcome, InsaneUser! Your contributions are a pride of our community.';
+                case 'Seeder':
+                    return 'You have been promoted to Seeder. Thank you for your continuous contributions and outstanding leadership.';
+                case 'Archivist':
+                    return 'Congratulations on becoming an Archivist. Your achievements shine brightly in the community.';
+                case 'Veteran':
+                    return 'Congratulations on reaching the exalted status of a Veteran. Unparalleled!';
+                case 'Internal':
+                    return 'Thank you for your diligent reseeding. Your level has been upgraded to Internal. Your efforts make our community’s resources more diverse and colorful. You now have the right to invite. Please maintain the basic monthly reseeding volume and strive to keep your level.';
+                case 'Keeper':
+                    return 'Thank you for your efforts in seeding. Your level has been upgraded to Keeper. Your contributions to the health and vitality of KIMOJI’s seeds are crucial to us. You now have the right to invite. Please continue to maintain your seeding volume.';
+                case 'VIP':
+                    return 'You are a VIP of KIMOJI. Thank you for your sponsorship and contributions.';
+                case 'Retiree':
+                    return 'As a Retiree, you continue to be respected and appreciated after your successful completion and retirement.';
+                case 'Administrator':
+                    return 'As an Administrator, you are the core of community management. Thank you for your wisdom and decisions.';
+                case 'Moderator':
+                    return 'As a Moderator, you play a crucial role in maintaining order and keeping KIMOJI healthy.';
+                case 'Uploader':
+                    return 'As an Uploader, your efforts keep the content of our community high quality.';
+                case 'Trustee':
+                    return 'As a Trustee, you ensure the standardization and accuracy of community resources.';
                 default:
-                    return '您的等级已更新';
+                    return 'Your level has been updated.';
             }
         } else {
             switch ($groupName) {
-                case '入土':
-                    return '您的账户因违反规则已被封禁';
-                case '流放':
-                    return '您的账户因长时间未登录已被冻结';
-                case '坐寐':
-                    return '由于长时间未登录，您的账户目前处于冻结状态';
-                case '徭役':
-                    return '由于分享率低于1.0，您已降级为徭役，请尽快提升您的分享率。';
-                case '布衣':
-                    return '您的官种保种量小于0.5TB，已降级至布衣，请您再接再厉';
-                case '壮士':
-                    return '您的官种保种量小于1.2TB，已降级至壮士，请您再接再厉';
-                case '力士':
-                    return '您的官种保种量小于2TB，已降级至力士，请您再接再厉';
-                case '剑客':
-                    return '您的官种保种量小于3TB，已降级至剑客，请您再接再厉';
-                case '大侠':
-                    return '您的官种保种量小于4.2TB，已降级至大侠，请您再接再厉';
-                case '盟主':
-                    return '您的官种保种量小于6TB，已降级至盟主，请您再接再厉';
-                case '至尊':
-                    return '您的官种保种量小于8TB，已降级至至尊，请您再接再厉';
-                case '剑圣':
-                    return '您的官种保种量小于10TB，已降级至剑圣，请您再接再厉';
-                case '耕夫':
-                    return '感谢您的辛勤转种，您的等级已提升为耕夫，您的努力让社区资源更加丰富多彩，现在您享有邀请权，接下来请您维持每月最基本的转种量，努力保级';
-                case '掌固':
-                    return '感谢您的努力保种，您的等级已提升为掌固，您为KIMOJI的种子的健康与活力，这对我们至关重要，现在您享有邀请权，请您继续保持保种量';
-                case '贵人':
-                    return '您是KIMOJI的贵人，感谢您的赞助与贡献';
-                case '颐养':
-                    return '作为养老成员，您在功成身退后依然受到我们的尊敬与感激';
-                case '统筹':
-                    return '作为统筹，您是社区管理的核心，感谢您的智慧与决策';
-                case '监护':
-                    return '作为监护，您在维护秩序，保持KIMOJI健康方面发挥着重要作用';
-                case '园丁':
-                    return '作为园丁，您的努力让社区的内容始终保持高质量';
-                case '守卫':
-                    return '您作为守卫，确保了社区资源的规范性和准确性';
+                case 'Banned':
+                    return 'Your account has been banned due to rule violations.';
+                case 'Pruned':
+                    return 'Your account has been frozen due to prolonged inactivity.';
+                case 'Disabled':
+                    return 'Your account is currently in a disabled state due to prolonged inactivity.';
+                case 'Leech':
+                    return 'Due to a share ratio below 1.0, you have been downgraded to Leech. Please improve your share ratio promptly.';
+                case 'User':
+                    return 'Your official seeding volume is less than 0.5TB, and you have been downgraded to User. Please strive for further progress.';
+                case 'PowerUser':
+                    return 'Your official seeding volume is less than 1.2TB, and you have been downgraded to PowerUser. Please strive for further progress.';
+                case 'SuperUser':
+                    return 'Your official seeding volume is less than 2TB, and you have been downgraded to SuperUser. Please strive for further progress.';
+                case 'ExtremeUser':
+                    return 'Your official seeding volume is less than 3TB, and you have been downgraded to ExtremeUser. Please strive for further progress.';
+                case 'InsaneUser':
+                    return 'Your official seeding volume is less than 4.2TB, and you have been downgraded to InsaneUser. Please strive for further progress.';
+                case 'Seeder':
+                    return 'Your official seeding volume is less than 6TB, and you have been downgraded to Seeder. Please strive for further progress.';
+                case 'Archivist':
+                    return 'Your official seeding volume is less than 8TB, and you have been downgraded to Archivist. Please strive for further progress.';
+                case 'Veteran':
+                    return 'Your official seeding volume is less than 10TB, and you have been downgraded to Veteran. Please strive for further progress.';
+                case 'Internal':
+                    return 'Thank you for your diligent reseeding. Your rank has been upgraded to Internal. Your efforts have enriched our community’s resources significantly. You now have invitation rights. Please maintain the basic monthly reseeding volume and strive to keep your rank.';
+                case 'Keeper':
+                    return 'Thank you for your efforts in seeding. Your rank has been upgraded to Keeper. Your contributions to the health and vitality of KIMOJI’s seeds are crucial to us. You now have invitation rights. Please continue to maintain your seeding volume.';
+                case 'VIP':
+                    return 'You are a VIP of KIMOJI, and we thank you for your sponsorship and contributions.';
+                case 'Retiree':
+                    return 'As a Retiree, you continue to receive our respect and gratitude after retiring from active contributions.';
+                case 'Administrator':
+                    return 'As an Administrator, you are at the core of our community management. Thank you for your wisdom and decision-making.';
+                case 'Moderator':
+                    return 'As a Moderator, you play a crucial role in maintaining order and keeping KIMOJI healthy.';
+                case 'Uploader':
+                    return 'As an Uploader, your efforts ensure our community’s content remains high quality.';
+                case 'Trustee':
+                    return 'As a Trustee, you ensure the standardization and accuracy of our community resources.';
                 default:
-                    return '您的等级已更新';
+                    return 'Your rank has been updated.';
             }
         }
     }
@@ -156,7 +156,7 @@ class UserGroupChanged extends Notification implements ShouldQueue
         $groupMessage = $this->getGroupMessage($groupName);
 
         return [
-            'title' => '等级变化通知',
+            'title' => 'Rank Change Notification',
             'body'  => $groupMessage,
             'url'   => '/wikis/1',
         ];

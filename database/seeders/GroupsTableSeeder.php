@@ -39,7 +39,7 @@ class GroupsTableSeeder extends Seeder
     {
         return [
             [
-                'name'       => '赶考',
+                'name'       => 'Vgalidating',
                 'slug'       => 'validating',
                 'position'   => 4,
                 'color'      => '#841e1e',
@@ -48,7 +48,7 @@ class GroupsTableSeeder extends Seeder
                 'level'      => 0,
             ],
             [
-                'name'       => '过客',
+                'name'       => 'Guest',
                 'slug'       => 'guest',
                 'position'   => 3,
                 'color'      => '#575757',
@@ -57,7 +57,7 @@ class GroupsTableSeeder extends Seeder
                 'level'      => 10,
             ],
             [
-                'name'      => '布衣',
+                'name'      => 'User',
                 'slug'      => 'user',
                 'position'  => 6,
                 'color'     => '#ffffff',
@@ -66,7 +66,7 @@ class GroupsTableSeeder extends Seeder
                 'level'     => 30,
             ],
             [
-                'name'       => '统筹',
+                'name'       => 'Administrator',
                 'slug'       => 'administrator',
                 'position'   => 18,
                 'color'      => '#f92672',
@@ -78,7 +78,7 @@ class GroupsTableSeeder extends Seeder
                 'level'      => 5000,
             ],
             [
-                'name'       => '流放',
+                'name'       => 'Pruned',
                 'slug'       => 'banned',
                 'position'   => 1,
                 'color'      => '#000000',
@@ -87,7 +87,7 @@ class GroupsTableSeeder extends Seeder
                 'level'      => 0,
             ],
             [
-                'name'       => '监护',
+                'name'       => 'Moderator',
                 'slug'       => 'moderator',
                 'position'   => 17,
                 'color'      => '#4ECDC4',
@@ -98,7 +98,7 @@ class GroupsTableSeeder extends Seeder
                 'level'      => 2500,
             ],
             [
-                'name'         => '园丁',
+                'name'         => 'Uploader',
                 'slug'         => 'uploader',
                 'position'     => 15,
                 'color'        => '#2ECC71',
@@ -109,7 +109,7 @@ class GroupsTableSeeder extends Seeder
                 'level'        => 250,
             ],
             [
-                'name'         => '守卫',
+                'name'         => 'Trustee',
                 'slug'         => 'trustee',
                 'position'     => 16,
                 'color'        => '#BF55EC',
@@ -120,7 +120,7 @@ class GroupsTableSeeder extends Seeder
                 'level'        => 1000,
             ],
             [
-                'name'       => '使者',
+                'name'       => 'Bot',
                 'slug'       => 'bot',
                 'position'   => 20,
                 'color'      => '#f1c40f',
@@ -131,7 +131,7 @@ class GroupsTableSeeder extends Seeder
                 'level'      => 0,
             ],
             [
-                'name'       => '主宰',
+                'name'       => 'Owner',
                 'slug'       => 'owner',
                 'position'   => 19,
                 'color'      => '#00abff',
@@ -144,7 +144,7 @@ class GroupsTableSeeder extends Seeder
                 'level'      => 9999,
             ],
             [
-                'name'      => '壮士',
+                'name'      => 'PowerUser',
                 'slug'      => 'poweruser',
                 'position'  => 7,
                 'color'     => '#ffeaad',
@@ -153,7 +153,7 @@ class GroupsTableSeeder extends Seeder
                 'level'     => 40,
             ],
             [
-                'name'      => '力士',
+                'name'      => 'SuperUser',
                 'slug'      => 'superuser',
                 'position'  => 8,
                 'color'     => '#ffa49a',
@@ -162,7 +162,7 @@ class GroupsTableSeeder extends Seeder
                 'level'     => 50,
             ],
             [
-                'name'       => '剑客',
+                'name'       => 'ExtremeUser',
                 'slug'       => 'extremeuser',
                 'position'   => 9,
                 'color'      => '#ffb800',
@@ -172,7 +172,7 @@ class GroupsTableSeeder extends Seeder
                 'level'      => 60,
             ],
             [
-                'name'       => '大侠',
+                'name'       => 'InsaneUser',
                 'slug'       => 'insaneuser',
                 'position'   => 10,
                 'color'      => '#ff52a6',
@@ -182,7 +182,7 @@ class GroupsTableSeeder extends Seeder
                 'level'      => 70,
             ],
             [
-                'name'      => '徭役',
+                'name'      => 'Leech',
                 'slug'      => 'leech',
                 'position'  => 5,
                 'color'     => '#96281B',
@@ -204,7 +204,7 @@ class GroupsTableSeeder extends Seeder
                 'level'        => 100,
             ],
             [
-                'name'       => '盟主',
+                'name'       => 'Seeder',
                 'slug'       => 'seeder',
                 'position'   => 12,
                 'color'      => '#9d06ff',
@@ -240,7 +240,7 @@ class GroupsTableSeeder extends Seeder
                 'level'        => 500,
             ],
             [
-                'name'       => '颐养',
+                'name'       => 'Retiree',
                 'slug'       => 'disabled',
                 'position'   => 2,
                 'color'      => '#ff5757',
