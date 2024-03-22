@@ -6,7 +6,7 @@
     id="tab_wrapper"
 >
     <!-- The tabs navigation -->
-    <h2 class="panel__heading">相关资源</h2>
+    <h2 class="panel__heading">Relations</h2>
     <menu class="panel__tabs">
         <li
             class="panel__tab"
@@ -14,7 +14,7 @@
             x-bind:class="tab === 'recommendations' && 'panel__tab--active'"
             x-on:click="tab = 'recommendations'; window.location.hash = 'recommendations'"
         >
-            推荐
+            Recommendations
         </li>
         <li
             class="panel__tab"
@@ -22,7 +22,7 @@
             x-bind:class="tab === 'collection' && 'panel__tab--active'"
             x-on:click="tab = 'collection'; window.location.hash = 'collection'"
         >
-            收藏
+            Collection
         </li>
         <li
             class="panel__tab"
@@ -30,7 +30,7 @@
             x-bind:class="tab === 'playlists' && 'panel__tab--active'"
             x-on:click="tab = 'playlists'; window.location.hash = 'playlists'"
         >
-            播单
+            Playlists
         </li>
     </menu>
     <!-- The tabs content -->

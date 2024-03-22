@@ -1,7 +1,10 @@
 @extends('layout.default')
 
 @section('title')
-    <title>{{ $user->username }} - Security - {{ __('common.members') }} - {{ config('other.title') }}</title>
+    <title>
+        {{ $user->username }} - Security - {{ __('common.members') }} -
+        {{ config('other.title') }}
+    </title>
 @endsection
 
 @section('breadcrumbs')
@@ -11,7 +14,10 @@
         </a>
     </li>
     <li class="breadcrumbV2">
-        <a href="{{ route('users.general_settings.edit', ['user' => $user]) }}" class="breadcrumb__link">
+        <a
+            href="{{ route('users.general_settings.edit', ['user' => $user]) }}"
+            class="breadcrumb__link"
+        >
             {{ __('user.settings') }}
         </a>
     </li>
@@ -42,21 +48,31 @@
                         <tr>
                             <td>{{ $apikey->content }}</td>
                             <td>
-                                <time datetime="{{ $apikey->created_at }}" title="{{ $apikey->created_at }}">
+                                <time
+                                    datetime="{{ $apikey->created_at }}"
+                                    title="{{ $apikey->created_at }}"
+                                >
                                     {{ $apikey->created_at }}
                                 </time>
                             </td>
                             <td>
-                                <time datetime="{{ $apikey->deleted_at }}" title="{{ $apikey->deleted_at }}">
-                                    {{ $apikey->deleted_at ?? '正在使用' }}
+                                <time
+                                    datetime="{{ $apikey->deleted_at }}"
+                                    title="{{ $apikey->deleted_at }}"
+                                >
+                                    {{ $apikey->deleted_at ?? 'Currently in use' }}
                                 </time>
                             </td>
                             <td>
                                 @if ($loop->first)
-                                    <i class="{{ config('other.font-awesome') }} fa-check text-green"></i>
+                                    <i
+                                        class="{{ config('other.font-awesome') }} fa-check text-green"
+                                    ></i>
                                     {{ __('common.active') }}
                                 @else
-                                    <i class="{{ config('other.font-awesome') }} fa-times text-red"></i>
+                                    <i
+                                        class="{{ config('other.font-awesome') }} fa-times text-red"
+                                    ></i>
                                     {{ __('stat.disabled') }}
                                 @endif
                             </td>
@@ -85,16 +101,16 @@
                 @method('PATCH')
                 <p>{{ __('user.reset-api-help') }}.</p>
                 @if ($user->api_token === null)
-                    <p>目前暂无API Key</p>
+                    <p>You currently do not have an API key.</p>
                     <p class="form__group--horizontal">
                         <button class="form__button form__button--filled form__button--centered">
-                            生成API Key
+                            Generate API Key
                         </button>
                     </p>
                 @else
                     <p class="form__group--horizontal">
                         <button class="form__button form__button--filled form__button--centered">
-                            重置
+                            Reset
                         </button>
                     </p>
                 @endif

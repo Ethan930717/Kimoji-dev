@@ -37,10 +37,10 @@
                 @method('PATCH')
                 <p>{{ __('user.reset-api-help') }}.</p>
                 @if ($user->api_token === null)
-                    <p>目前暂无API Key</p>
+                    <p>You currently do not have an API key.</p>
                     <p class="form__group">
                         <button class="form__button form__button--filled">
-                            生成API Key
+                            Generate API Key
                         </button>
                     </p>
                 @else
@@ -57,7 +57,7 @@
                     </p>
                     <p class="form__group">
                         <button class="form__button form__button--filled">
-                            重置
+                            Reset
                         </button>
                     </p>
                 @endif

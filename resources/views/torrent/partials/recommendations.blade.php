@@ -5,7 +5,7 @@
                 @forelse ($meta->recommendedMovies ?? [] as $movie)
                     <x-movie.poster :$movie :categoryId="$torrent->category_id" />
                 @empty
-                    暂无相关推荐
+                    No Recommendations Found!
                 @endforelse
 
                 @break
@@ -13,20 +13,12 @@
                 @forelse ($meta->recommendedTv ?? [] as $tv)
                     <x-tv.poster :$tv :categoryId="$torrent->category_id" />
                 @empty
-                    暂无相关推荐
-                @endforelse
-
-                @break
-            @case($torrent->category->music_meta)
-                @forelse ($recommendedMusic as $music)
-                    <x-music.poster :torrent="$music" />
-                @empty
-                    暂无相关推荐
+                    No Recommendations Found!
                 @endforelse
 
                 @break
             @default
-                暂无相关推荐
+                No recommendations Found!
         @endswitch
     </section>
 </div>

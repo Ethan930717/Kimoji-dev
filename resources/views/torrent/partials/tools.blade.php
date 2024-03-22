@@ -77,7 +77,7 @@
                 <menu style="display: flex; list-style-type: none; margin: 0; padding: 0; flex-wrap: wrap;">
                     <li x-data>
                         <button class="form__button form__button--outlined" x-on:click.stop="$refs.dialog.showModal()">
-                            <i class="{{ config('other.font-awesome') }} fa-star"></i> 免费下载
+                            <i class="{{ config('other.font-awesome') }} fa-star"></i> Free
                         </button>
                         <dialog class="dialog" x-ref="dialog">
                             <h4 class="dialog__heading">
@@ -131,7 +131,7 @@
                     </li>
                     <li x-data>
                         <button class="form__button form__button--outlined" x-on:click.stop="$refs.dialog.showModal()">
-                            <i class="{{ config('other.font-awesome') }} fa-chevron-double-up"></i> 双倍上传
+                            <i class="{{ config('other.font-awesome') }} fa-chevron-double-up"></i> Double
                         </button>
                         <dialog class="dialog" x-ref="dialog">
                             <h4 class="dialog__heading">
