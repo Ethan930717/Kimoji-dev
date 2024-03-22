@@ -50,6 +50,22 @@ class StatsController extends Controller
         // Total Torrents Count
         $numTorrent = cache()->remember('num_torrent', $this->carbon, fn () => Torrent::count());
 
+        // Hi-Res资源数量
+        $numHiRes = cache()->remember('num_hi_res', $this->carbon, fn () => Torrent::where('type_id', '=', 11)->count());
+
+        // 无损资源数量
+        $numLossless = cache()->remember('num_lossless', $this->carbon, fn () => Torrent::where('type_id', '=', 10)->count());
+
+        // CD品质数量
+        $numCDQuality = cache()->remember('num_cd_quality', $this->carbon, fn () => Torrent::where('type_id', '=', 9)->count());
+
+        // 有损资源数量
+        $numLossy = cache()->remember('num_lossy', $this->carbon, fn () => Torrent::where('type_id', '=', 12)->count());
+
+        // DSD资源数量
+        $numDSD = cache()->remember('num_dsd', $this->carbon, fn () => Torrent::where('type_id', '=', 13)->count());
+
+
         // Total SD Count
         $numSd = cache()->remember('num_sd', $this->carbon, fn () => Torrent::where('sd', '=', 1)->count());
 
@@ -97,6 +113,11 @@ class StatsController extends Controller
                 fn () => User::whereIn('group_id', Group::select('id')->where('slug', '=', 'banned'))->count()
             ),
             'num_torrent'       => $numTorrent,
+            'num_hi_res' => $numHiRes,
+            'num_lossless' => $numLossless,
+            'num_cd_quality' => $numCDQuality,
+            'num_lossy' => $numLossy,
+            'num_dsd' => $numDSD,
             'categories'        => Category::withCount('torrents')->orderBy('position')->get(),
             'num_hd'            => $numTorrent - $numSd,
             'num_sd'            => $numSd,

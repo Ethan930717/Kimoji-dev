@@ -63,5 +63,14 @@ return [
     'updated'                 => '实时更新',
     'current_collection'      => 'KIMOJI当前收录：歌手 :artistsCount ， 专辑 :albumsCount ， 歌曲 :songsCount',
     'overview'                => '年度报告',
+    'hi-res-count'              => 'Hi-Res资源',
+    'lossless-count'              => '无损资源',
+    'cd-quality-count'              => 'CD品质',
+    'lossy-count'              => '有损资源',
+    'dsd-count'              => 'DSD资源',
+    'total-size'              => '总体积',
+
+
+
 
 ];

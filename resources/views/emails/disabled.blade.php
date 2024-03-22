@@ -1,6 +1,6 @@
 @component('mail::message')
 # {{ __('email.disabled-header') }}!
-您的账户因长时间未达到最低保种要求，已被列入流放名单。
-为了保留您的账户，请您在收到此邮件后的 7 天内达到100GB的最低保种要求（仅限音乐区官方资源）。
-如逾期仍未达到要求，我们只能遗憾地请您离开 {{ config('other.title') }}。
+Your account has been placed on the exile list due to a prolonged failure to meet the minimum seedkeeping requirement.
+To retain your account, please ensure you reach the minimum seedkeeping requirement of 100GB within 7 days of receiving this email.
+Should you fail to meet this requirement within the stipulated timeframe, we will regrettably have to ask you to leave {{ config('other.title') }}.
 @endcomponent

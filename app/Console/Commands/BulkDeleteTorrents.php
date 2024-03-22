@@ -31,7 +31,7 @@ class BulkDeleteTorrents extends Command
         });
 
         $idsToDelete = file('/home/script/kimoji/movie.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        $message = 'Delete All Video Resources'; // 这里设置一个通用的删除信息
+        $message = 'Delete All Video Resources';
         $request->merge(['message' => $message]);
 
 

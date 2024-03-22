@@ -58,14 +58,19 @@
         <section class="panelV2 panel--grid-item">
             <h2 class="panel__heading">{{ __('torrent.torrents') }}</h2>
             <dl class="key-value">
-                @foreach ($categories as $category)
-                    <dt>{{ $category->name }} {{ __('common.category') }}</dt>
-                    <dd>{{ $category->torrents_count }}</dd>
-                @endforeach
-
                 <dt>{{ __('stat.total-torrents') }}</dt>
                 <dd>{{ $num_torrent }}</dd>
-                <dt>{{ __('stat.total-torrents') }} {{ __('torrent.size') }}</dt>
+                <dt>{{ __('stat.hi-res-count') }}</dt>
+                <dd>{{ $num_hi_res }}</dd>
+                <dt>{{ __('stat.lossless-count') }}</dt>
+                <dd>{{ $num_lossless }}</dd>
+                <dt>{{ __('stat.cd-quality-count') }}</dt>
+                <dd>{{ $num_cd_quality }}</dd>
+                <dt>{{ __('stat.lossy-count') }}</dt>
+                <dd>{{ $num_lossy }}</dd>
+                <dt>{{ __('stat.dsd-count') }}</dt>
+                <dd>{{ $num_dsd }}</dd>
+                <dt>{{ __('stat.total-size') }}</dt>
                 <dd>{{ App\Helpers\StringHelper::formatBytes($torrent_size, 2) }}</dd>
             </dl>
         </section>

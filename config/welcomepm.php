@@ -21,7 +21,7 @@ return [
     |
     */
 
-    'subject' => '欢迎来到KIMOJI乐园',
+    'subject' => 'Welcome to KIMOJI!',
 
     /*
     |--------------------------------------------------------------------------
@@ -32,5 +32,5 @@ return [
     |
     */
 
-    'message' => '亲爱的旅人，欢迎你来到 [b]KIMOJI[/b]，Once KIMOJI, Always KIMOJI!'
+    'message' => 'Hi there，Welcome to [b]KIMOJI[/b]，Once KIMOJI, Always KIMOJI!'
 ];

@@ -62,4 +62,10 @@ return [
     'users-per-group'         => 'Users Per Group',
     'overview'                => 'Overview',
     'current_collection'      => 'KIMOJI Current collection: Artists :artistsCount, Albums :albumsCount, Songs :songsCount',
+    'hi-res-count'              => 'Hi-Res',
+    'lossless-count'              => 'Lossless',
+    'cd-quality-count'              => 'CD Quality',
+    'lossy-count'              => 'Lossy',
+    'dsd-count'              => 'DSD',
+    'total-size'              => 'Total Size',
 ];
