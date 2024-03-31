@@ -550,6 +550,7 @@ return [
         'media-src' => [
             'self'  => true,
             'allow' => [
+                'kimoji.club',
                 '*.kimoji.club',
                 '*.leaves.red',
                 '*.amazonaws.com',
@@ -620,6 +621,7 @@ return [
             'report-sample' => false,
 
             'allow' => [
+                'kimoji.club',
                 '*.kimoji.club',
                 '*.leaves.red',
                 '*.amazonaws.com',
