@@ -12,7 +12,7 @@
                         wire:model.debounce.250ms="search"
                     />
                     <label class="form__label form__label--floating" for="name">
-                        {{ __('搜索国家') }}
+                        {{ __('country') }}
                     </label>
                 </div>
             </div>
@@ -31,7 +31,7 @@
     >
         @forelse ($countries as $country)
             <figure style="display: flex; flex-direction: column; align-items: center; margin: 0;">
-                <a href="{{ route('artists.country.show', ['country_name' => urlencode($country->country)]) }}">
+                <a href="{{ route('artists.country.show', ['country_name' => $country->country]) }}">
                     <div class="country-image-container" style="width: 180px; height: 180px; overflow: hidden; border-radius: 8px;">
                         <img src="/img/country/{{ $country->country }}.webp" alt="{{ $country->country }}" style="width: 100%; height: auto;"/>
                     </div>
@@ -41,7 +41,7 @@
                 </a>
             </figure>
         @empty
-            <p>{{ __('未找到国家信息') }}</p>
+            <p>{{ __('No country found') }}</p>
         @endforelse
     </div>
 </section>
