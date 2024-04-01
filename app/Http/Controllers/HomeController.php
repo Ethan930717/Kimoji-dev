@@ -69,7 +69,7 @@ class HomeController extends Controller
                 ->get();
         });
         $preferredOrder = [
-            'CN', 'TW', 'HK', 'MO', 'US', 'JP', 'KR', 'SG', 'GB', 'FR', 'DE', 'RU'
+            'CN', 'TW', 'HK', 'MO', 'US', 'JP', 'KR'
         ];
         $sortedCountries = new Collection();
         foreach ($preferredOrder as $countryName) {
