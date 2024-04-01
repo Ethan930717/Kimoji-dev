@@ -87,12 +87,9 @@
         @endif
     @endif
 
-    @if (config('other.thanks-system.is-enabled'))
-        <li class="form__group form__group--short-horizontal">
-            @livewire('thank-button', ['torrent' => $torrent])
-        </li>
-    @endif
-
+    <li class="form__group form__group--short-horizontal">
+        @livewire('thank-button', ['torrent' => $torrent->id])
+    </li>
     @if ($torrent->nfo)
         <li x-data="dialog" class="form__group form__group--short-horizontal">
             <button
