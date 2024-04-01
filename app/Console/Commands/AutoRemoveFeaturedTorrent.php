@@ -77,6 +77,7 @@ class AutoRemoveFeaturedTorrent extends Command
             ->where('seeders', '>', 2)
             ->where('seeders', '<', 10)
             ->where('featured', 0)
+            ->where('type_id', 11)
             ->inRandomOrder()
             ->limit(20)
             ->get();
