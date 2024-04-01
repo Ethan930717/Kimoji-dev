@@ -32,7 +32,7 @@ return [
     |
     */
 
-    'subTitle' => 'KIMOJI乐园',
+    'subTitle' => 'KIMOJI PARK',
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'meta_description' => 'KIMOJI乐园',
+    'meta_description' => 'KIMOJI PARK',
 
     /*
     |--------------------------------------------------------------------------
@@ -125,7 +125,7 @@ return [
 
     'invites_restriced' => true,
     'invite_groups'     => [
-        '统筹',
+        'Administrator',
         'Owner',
         'VIP',
         'Moderator',
@@ -225,4 +225,21 @@ return [
     | The ID value of staff forum area. Should be the main / parent ID.
     */
     'staff-forum-id' => '',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Thanks system
+    |--------------------------------------------------------------------------
+    | Allows users to press a button to thank the uploader of a torrent.
+    */
+    'thanks-system' => [
+        /*
+        |--------------------------------------------------------------------------
+        | Enable the thanks system
+        |--------------------------------------------------------------------------
+        | True = Enabled
+        | False = Disabled
+        */
+        'is-enabled' => true,
+    ],
 ];
