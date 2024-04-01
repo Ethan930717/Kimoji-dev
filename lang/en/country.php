@@ -48,4 +48,6 @@ return [
     'NL'     => 'Netherlands',
     'ES'      => 'Spain',
     'MY' => 'Malaysia',
+    'AR' => 'Argentina',
+
 ];

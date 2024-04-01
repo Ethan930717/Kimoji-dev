@@ -52,7 +52,10 @@ class ArtistController extends Controller
 
     public function countryShow($country_name)
     {
-        $artists = Artist::where('country', '=', $country_name)
+        // 解码 URL 参数以匹配数据库中的国家/地区名称
+        $decoded_country_name = urldecode($country_name);
+
+        $artists = Artist::where('country', '=', $decoded_country_name)
             ->orderBy('name', 'asc')
             ->get();
 
