@@ -4,7 +4,7 @@
 
 @section('main')
     @include('blocks.news')
-    {{--   @include('blocks.country', ['countries' => $countries])--}}
+    @include('blocks.country', ['countries' => $countries])
     @include('blocks.featured')
     @include('blocks.poll')
     @include('blocks.top_torrents')

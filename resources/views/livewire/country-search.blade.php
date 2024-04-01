@@ -12,7 +12,7 @@
                         wire:model.debounce.250ms="search"
                     />
                     <label class="form__label form__label--floating" for="name">
-                        {{ __('country') }}
+                        {{ __('Country') }}
                     </label>
                 </div>
             </div>
@@ -36,12 +36,12 @@
                         <img src="/img/country/{{ $country->country }}.webp" alt="{{ $country->country }}" style="width: 100%; height: auto;"/>
                     </div>
                     <figcaption style="text-align: center; font-size: 20px; margin-top: 10px;">
-                        {{ $country->country }} ({{ $country->total_artists }})
+                        {{ __('country.' . $country->country) }} ({{ $country->total_artists }})
                     </figcaption>
                 </a>
             </figure>
         @empty
-            <p>{{ __('No country found') }}</p>
+            <p>{{ __('No country information found') }}</p>
         @endforelse
     </div>
 </section>

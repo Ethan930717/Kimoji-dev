@@ -49,5 +49,14 @@ return [
     'ES'      => 'Spain',
     'MY' => 'Malaysia',
     'AR' => 'Argentina',
+    'AT' => 'Austria',
+    'EG' => 'Egypt',
+    'PL' => 'Poland',
+    'SK' => 'Slovakia',
+    'SN' => 'Senegal',
+    'VN' => 'Vietnam',
+    'ZA' => 'South Africa',
+
+
 
 ];
