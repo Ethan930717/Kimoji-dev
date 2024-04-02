@@ -19,10 +19,12 @@
             <h4><i class="fas fa-comment-dots"></i></h4>
           </div>
           <div class="button-center audio-player">
-            <button @click="togglePlay" class="play-pause-btn">
-              <i :class="playing ? 'fas fa-pause' : 'fas fa-play'"></i>
-            </button>
-            <span class="radio-text">KIMOJI FM</span>
+            <div class="play-pause-and-text">
+              <button @click="togglePlay" class="play-pause-btn">
+                <i :class="playing ? 'fas fa-pause' : 'fas fa-play'"></i>
+              </button>
+              <span class="radio-text">KIMOJI FM</span>
+            </div>
             <input type="range" min="0" max="100" v-model="volume" @input="changeVolume" class="volume-slider" />
             <audio ref="audio" src="https://radio.kimoji.club/radio.mp3"></audio>
           </div>
@@ -193,17 +195,22 @@
   justify-content: center;
 }
 
+.play-pause-and-text {
+  display: flex;
+  align-items: center;
+}
+
 .play-pause-btn {
   background: none;
   border: none;
   cursor: pointer;
   font-size: 24px;
-  margin-bottom: 10px;
+  margin-right: 10px;
 }
 
 .radio-text {
-  font-family: "Font Awesome 5 Pro";
-  font-weight: 900;
+  font-family: sans-serif;
+  font-weight: bold;
   font-size: 20px;
 }
 
@@ -212,14 +219,14 @@
   width: 100px;
   height: 5px;
   border-radius: 5px;
-  background: #fff;
+  background: #ddd;
   outline: none;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 .volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  appearance: none;
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -232,6 +239,7 @@
   border-radius: 50%;
   background: #fff;
 }
+
 
 .panel-fullscreen {
   z-index: 9999;
