@@ -18,7 +18,11 @@
           <div class="button-left">
             <h4><i class="fas fa-comment-dots"></i></h4>
           </div>
-          <div class="button-center">
+          <div class="button-center audio-player">
+            <button @click="togglePlay" class="play-pause-btn">
+              <i :class="playing ? 'fas fa-pause' : 'fas fa-play'"></i>
+            </button>
+            <input type="range" min="0" max="100" v-model="volume" @input="changeVolume" class="volume-slider" />
             <audio ref="audio" src="https://radio.kimoji.club/radio.mp3"></audio>
           </div>
           <div class="button-right">
@@ -181,6 +185,46 @@
   </div>
 </template>
 <style lang="scss" scoped>
+.audio-player {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.play-pause-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+.volume-slider {
+  -webkit-appearance: none;
+  width: 100px;
+  height: 5px;
+  border-radius: 5px;
+  background: #ddd;
+  outline: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #666;
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #666;
+  cursor: pointer;
+}
 .panel-fullscreen {
   z-index: 9999;
   position: fixed;
@@ -258,6 +302,8 @@ export default {
   },
   data() {
     return {
+      playing: false,
+      volume: 50, // 默认音量设置为50%
       tab: '',
       state: {
         connecting: true,
@@ -348,6 +394,17 @@ export default {
     },
   },
   methods: {
+    togglePlay() {
+      if (this.playing) {
+        this.$refs.audio.pause();
+      } else {
+        this.$refs.audio.play();
+      }
+      this.playing = !this.playing;
+    },
+    changeVolume() {
+      this.$refs.audio.volume = this.volume / 100;
+    },
     isTyping(e) {
       if (this.tab != 'userlist') {
         if (this.target < 1 && this.channel && this.tab != '') {
