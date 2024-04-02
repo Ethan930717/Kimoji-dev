@@ -16,7 +16,12 @@
       <header class="panel__heading" id="frameHeader">
         <div class="button-holder no-space">
           <div class="button-left">
-            <h4><i class="fas fa-comment-dots"></i></h4>
+            <div class="audio-player">
+              <div class="record" @click="togglePlay">
+                <audio ref="audio" src="https://radio.kimoji.club/radio.mp3"></audio>
+              </div>
+              <input type="range" min="0" max="100" v-model="volume" @input="changeVolume" />
+            </div>
           </div>
           <div class="button-right">
             <a href="" view="bot" @click.prevent="startBot()" class="form__button form__button--text">
@@ -29,7 +34,7 @@
                 @click.prevent="changeTab('list', 'userlist')"
                 class="form__button form__button--text"
             >
-              <i class="fa fa-users"></i> {{ tab }}在线: {{ users.length }}
+              <i class="fa fa-users"></i> {{ tab }}: {{ users.length }}
             </a>
             <a
                 href="#"
@@ -178,6 +183,24 @@
   </div>
 </template>
 <style lang="scss" scoped>
+.audio-player .record {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: black; /* 或者使用一张黑胶图片 */
+  cursor: pointer;
+  animation: spin 2s infinite linear;
+}
+
+.audio-player .record.paused {
+  animation-play-state: paused;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .panel-fullscreen {
   z-index: 9999;
   position: fixed;
@@ -255,6 +278,8 @@ export default {
   },
   data() {
     return {
+      playing: false,
+      volume: 50, // 初始音量设为50%
       tab: '',
       state: {
         connecting: true,
@@ -353,6 +378,19 @@ export default {
           });
         }
       }
+    },
+    togglePlay() {
+      if (this.playing) {
+        this.$refs.audio.pause();
+        this.$el.querySelector('.record').classList.add('paused');
+      } else {
+        this.$refs.audio.play();
+        this.$el.querySelector('.record').classList.remove('paused');
+      }
+      this.playing = !this.playing;
+    },
+    changeVolume() {
+      this.$refs.audio.volume = this.volume / 100;
     },
     changeAudible(typeVal, targetVal, newVal) {
       if (typeVal == 'room') {
