@@ -63,15 +63,6 @@
                 :class="status.icon ? status.icon + ' pointee mr-5' : 'fa fa-dot-circle-o pointee mr-5'"
                 :style="`color: ${status.color}`"
             ></i>
-            <span>
-                            <chatrooms-dropdown
-                                :current="user.chatroom.id"
-                                :chatrooms="$parent.chatrooms"
-                                class="pull-right form__select"
-                                @changedRoom="$parent.changeRoom"
-                            >
-                            </chatrooms-dropdown>
-                        </span>
           </div>
         </div>
       </div>
