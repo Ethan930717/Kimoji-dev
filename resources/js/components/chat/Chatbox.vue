@@ -16,12 +16,9 @@
       <header class="panel__heading" id="frameHeader">
         <div class="button-holder no-space">
           <div class="button-left">
-            <div class="guangp">
-              <i class="guxz xuanz" @click="togglePlay"></i>
-              <div class="volume-control">
-                <input type="range" class="volume-slider" v-model="volume" @input="changeVolume" orientation="vertical">
-              </div>
-            </div>
+            <h4><i class="fas fa-comment-dots"></i></h4>
+          </div>
+          <div class="button-center">
             <audio ref="audio" src="https://radio.kimoji.club/radio.mp3"></audio>
           </div>
           <div class="button-right">
@@ -184,65 +181,6 @@
   </div>
 </template>
 <style lang="scss" scoped>
-.volume-control {
-  position: absolute;
-  right: -120px; /* 根据实际布局调整 */
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.volume-slider {
-  writing-mode: bt-lr; /* IE */
-  -webkit-appearance: slider-vertical; /* WebKit */
-}
-
-.guangp {
-  position: relative;
-  display: inline-block;
-  padding-top: 80px;
-  padding-bottom: 70px;
-  width: 355px;
-  height: 321px;
-  text-align: center;
-}
-.guangp .guxz {
-  display: inline-block;
-  width: 359px;
-  height: 359px;
-  background: url(/img/kimoji-music.webp);
-}
-
-.guangp .gp {
-  position: absolute;
-  top: 115px;
-  right: -70px;
-  width: 173px;
-  height: 272px;
-  transition: all .6s ease-in-out;
-  transform: rotate(-32deg);
-  transform-origin: right top;
-}
-
-/* 黑胶旋转 */
-.guangp .xuanz {
-  animation: circleRoate 200s;
-  animation-timing-function: linear;
-}
-
-@keyframes circleRoate{
-  from{
-    transform:rotate(0) infinite
-  }
-  to{
-    transform:rotate(7600deg)
-  }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
 .panel-fullscreen {
   z-index: 9999;
   position: fixed;
@@ -320,8 +258,6 @@ export default {
   },
   data() {
     return {
-      playing: false,
-      volume: 50, // 初始音量设为50%
       tab: '',
       state: {
         connecting: true,
@@ -420,18 +356,6 @@ export default {
           });
         }
       }
-    },
-    togglePlay() {
-      const audio = this.$refs.audio;
-      if (this.playing) {
-        audio.pause();
-      } else {
-        audio.play();
-      }
-      this.playing = !this.playing;
-    },
-    changeVolume() {
-      this.$refs.audio.volume = this.volume / 100;
     },
     changeAudible(typeVal, targetVal, newVal) {
       if (typeVal == 'room') {
