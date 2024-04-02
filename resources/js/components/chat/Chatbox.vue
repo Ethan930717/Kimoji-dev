@@ -16,12 +16,13 @@
       <header class="panel__heading" id="frameHeader">
         <div class="button-holder no-space">
           <div class="button-left">
-            <div class="audio-player">
-              <div class="record" @click="togglePlay">
-                <audio ref="audio" src="https://radio.kimoji.club/radio.mp3"></audio>
+            <div class="guangp">
+              <i class="guxz xuanz" @click="togglePlay"></i>
+              <div class="volume-control">
+                <input type="range" class="volume-slider" v-model="volume" @input="changeVolume" orientation="vertical">
               </div>
-              <input type="range" min="0" max="100" v-model="volume" @input="changeVolume" />
             </div>
+            <audio ref="audio" src="https://radio.kimoji.club/radio.mp3"></audio>
           </div>
           <div class="button-right">
             <a href="" view="bot" @click.prevent="startBot()" class="form__button form__button--text">
@@ -183,17 +184,58 @@
   </div>
 </template>
 <style lang="scss" scoped>
-.audio-player .record {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: black; /* 或者使用一张黑胶图片 */
-  cursor: pointer;
-  animation: spin 2s infinite linear;
+.volume-control {
+  position: absolute;
+  right: -120px; /* 根据实际布局调整 */
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.audio-player .record.paused {
-  animation-play-state: paused;
+.volume-slider {
+  writing-mode: bt-lr; /* IE */
+  -webkit-appearance: slider-vertical; /* WebKit */
+}
+
+.guangp {
+  position: relative;
+  display: inline-block;
+  padding-top: 80px;
+  padding-bottom: 70px;
+  width: 355px;
+  height: 321px;
+  text-align: center;
+}
+.guangp .guxz {
+  display: inline-block;
+  width: 359px;
+  height: 359px;
+  background: url(/img/kimoji-music.webp);
+}
+
+.guangp .gp {
+  position: absolute;
+  top: 115px;
+  right: -70px;
+  width: 173px;
+  height: 272px;
+  transition: all .6s ease-in-out;
+  transform: rotate(-32deg);
+  transform-origin: right top;
+}
+
+/* 黑胶旋转 */
+.guangp .xuanz {
+  animation: circleRoate 200s;
+  animation-timing-function: linear;
+}
+
+@keyframes circleRoate{
+  from{
+    transform:rotate(0) infinite
+  }
+  to{
+    transform:rotate(7600deg)
+  }
 }
 
 @keyframes spin {
@@ -380,12 +422,11 @@ export default {
       }
     },
     togglePlay() {
+      const audio = this.$refs.audio;
       if (this.playing) {
-        this.$refs.audio.pause();
-        this.$el.querySelector('.record').classList.add('paused');
+        audio.pause();
       } else {
-        this.$refs.audio.play();
-        this.$el.querySelector('.record').classList.remove('paused');
+        audio.play();
       }
       this.playing = !this.playing;
     },
