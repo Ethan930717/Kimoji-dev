@@ -19,13 +19,15 @@
             <h4><i class="fas fa-comment-dots"></i></h4>
           </div>
           <div class="button-center audio-player">
-            <div class="play-pause-and-text">
+            <div class="radio-text-container">
+              <span class="radio-text">KIMOJI FM</span>
+            </div>
+            <div class="controls">
               <button @click="togglePlay" class="play-pause-btn">
                 <i :class="playing ? 'fas fa-pause' : 'fas fa-play'"></i>
               </button>
-              <span class="radio-text">KIMOJI FM</span>
+              <input type="range" min="0" max="100" v-model="volume" @input="changeVolume" class="volume-slider" />
             </div>
-            <input type="range" min="0" max="100" v-model="volume" @input="changeVolume" class="volume-slider" />
             <audio ref="audio" src="https://radio.kimoji.club/radio.mp3"></audio>
           </div>
           <div class="button-right">
@@ -195,7 +197,18 @@
   justify-content: center;
 }
 
-.play-pause-and-text {
+.radio-text-container {
+  margin-bottom: 10px;
+}
+
+.radio-text {
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  white-space: nowrap;
+}
+
+.controls {
   display: flex;
   align-items: center;
 }
@@ -208,12 +221,6 @@
   margin-right: 10px;
 }
 
-.radio-text {
-  font-family: sans-serif;
-  font-weight: bold;
-  font-size: 20px;
-}
-
 .volume-slider {
   -webkit-appearance: none;
   width: 100px;
@@ -222,7 +229,6 @@
   background: #ddd;
   outline: none;
   cursor: pointer;
-  margin-top: 10px;
 }
 
 .volume-slider::-webkit-slider-thumb {
