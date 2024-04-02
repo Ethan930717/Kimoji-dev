@@ -61,28 +61,6 @@ class BountyController extends Controller
             'comment'         => sprintf('adding bonus to %s', $torrentRequest->name),
         ]);
 
-        if ($request->boolean('anon') == 0) {
-            $this->chatRepository->systemMessage(
-                sprintf(
-                    '[url=%s]%s[/url] 增加了 %s 魔力的悬赏 [url=%s]%s[/url]',
-                    href_profile($user),
-                    $user->username,
-                    $request->input('seedbonus'),
-                    href_request($torrentRequest),
-                    $torrentRequest->name
-                )
-            );
-        } else {
-            $this->chatRepository->systemMessage(
-                sprintf(
-                    '一位匿名用户增加了 %s 魔力的悬赏 [url=%s]%s[/url]',
-                    $request->input('seedbonus'),
-                    href_request($torrentRequest),
-                    $torrentRequest->name
-                )
-            );
-        }
-
         $sender = $request->boolean('anon') ? 'Anonymous' : $request->user()->username;
         $requester = $torrentRequest->user;
 

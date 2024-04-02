@@ -74,21 +74,10 @@ class AutoRewardResurrection extends Command
                 $user->fl_tokens += config('graveyard.reward');
                 $user->save();
 
-                // Auto Shout
-                $appurl = config('app.url');
-
-                $this->chatRepository->systemMessage(
-                    sprintf('各位, [url=%s/users/%s]%s[/url] 成功复活了死种 [url=%s/torrents/%s]%s[/url]，太强辣！ :zombie:', $appurl, $user->username, $user->username, $appurl, $torrent->id, $torrent->name)
-                );
-
                 // Bump Torrent With FL
-                $torrentUrl = href_torrent($torrent);
                 $torrent->bumped_at = Carbon::now();
                 $torrent->free = 100;
                 $torrent->fl_until = Carbon::now()->addDays(3);
-                $this->chatRepository->systemMessage(
-                    sprintf('各位, [url=%s]%s[/url] 已限免3天并置顶. :stopwatch:', $torrentUrl, $torrent->name)
-                );
                 $torrent->save();
 
                 Unit3dAnnounce::addTorrent($torrent);

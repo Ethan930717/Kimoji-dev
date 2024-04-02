@@ -110,13 +110,6 @@ class SystemBot
                 $recipient->notify(new NewBon('gift', $this->target->username, $bonTransactions));
             }
 
-            $profileUrl = href_profile($this->target);
-            $recipientUrl = href_profile($recipient);
-
-            $this->chatRepository->systemMessage(
-                sprintf('[url=%s]%s[/url] 赠送了 %s 点魔力给 [url=%s]%s[/url]', $profileUrl, $this->target->username, $value, $recipientUrl, $recipient->username)
-            );
-
             return '向 '.$recipient->username.' 赠送 '.$amount.' 魔力失败了!';
         }
 

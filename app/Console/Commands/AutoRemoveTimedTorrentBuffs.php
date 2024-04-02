@@ -60,11 +60,6 @@ class AutoRemoveTimedTorrentBuffs extends Command
             $torrent->fl_until = null;
             $torrent->save();
 
-            // Announce To Chat
-            $this->chatRepository->systemMessage(
-                sprintf('大哥大姐们, [url=%s/torrents/%s]%s[/url] 的免费时间到期啦', $appurl, $torrent->id, $torrent->name)
-            );
-
             Unit3dAnnounce::addTorrent($torrent);
         }
 
@@ -74,12 +69,7 @@ class AutoRemoveTimedTorrentBuffs extends Command
             $torrent->doubleup = false;
             $torrent->du_until = null;
             $torrent->save();
-
-            // Announce To Chat
-            $this->chatRepository->systemMessage(
-                sprintf('大哥大姐们, [url=%s/torrents/%s]%s[/url] 双倍上传下钟了.', $appurl, $torrent->id, $torrent->name)
-            );
-
+            
             Unit3dAnnounce::addTorrent($torrent);
         }
 

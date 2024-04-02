@@ -103,19 +103,9 @@ class TorrentBuffController extends Controller
         if ($request->freeleech != 0) {
             if ($request->fl_until !== null) {
                 $torrent->fl_until = Carbon::now()->addDays($request->fl_until);
-                $this->chatRepository->systemMessage(
-                    sprintf('大哥大姐们，[url=%s]%s[/url] 开始 %s%% 免费 %s 天。:stopwatch:', $torrentUrl, $torrent->name, $request->freeleech, $request->fl_until)
-                );
-            } else {
-                $this->chatRepository->systemMessage(
-                    sprintf('乡亲们，[url=%s]%s[/url]  %s%% 免费了！快冲！:fire:', $torrentUrl, $torrent->name, $request->freeleech)
-                );
             }
-        } elseif ($torrent->free != 0) {
-            $this->chatRepository->systemMessage(
-                sprintf('乡亲们，[url=%s]%s[/url] 的 %s%% 免费结束了！:poop:', $torrentUrl, $torrent->name, $torrent->free)
-            );
         }
+
 
         $torrent->free = $request->freeleech;
         $torrent->save();
@@ -153,11 +143,6 @@ class TorrentBuffController extends Controller
             $featured->torrent_id = $torrent->id;
             $featured->save();
 
-            $torrentUrl = href_torrent($torrent);
-            $profileUrl = href_profile($user);
-            $this->chatRepository->systemMessage(
-                sprintf('乡亲们，[url=%s]%s[/url] 已被 [url=%s]%s[/url] 加精！快来围观！:fire:', $torrentUrl, $torrent->name, $profileUrl, $user->username)
-            );
 
             return to_route('torrents.show', ['id' => $torrent->id])
                 ->withSuccess('已将资源设为精选');
@@ -188,12 +173,6 @@ class TorrentBuffController extends Controller
 
         Unit3dAnnounce::addTorrent($torrent);
 
-        $appurl = config('app.url');
-
-        $this->chatRepository->systemMessage(
-            sprintf('乡亲们，[url=%s/torrents/%s]%s[/url] 撤精了。:poop:', $appurl, $torrent->id, $torrent->name)
-        );
-
         $featured_torrent->delete();
 
         return to_route('torrents.show', ['id' => $torrent->id])
@@ -214,22 +193,12 @@ class TorrentBuffController extends Controller
         if (!$torrent->doubleup) {
             $torrent->doubleup = true;
             $du_until = $request->input('du_until');
-
             if ($du_until !== null) {
                 $torrent->du_until = Carbon::now()->addDays($request->input('du_until'));
-                $this->chatRepository->systemMessage(
-                    sprintf('乡亲们，[url=%s]%s[/url] 开启 %s 天双倍上传。:stopwatch:', $torrentUrl, $torrent->name, $du_until)
-                );
-            } else {
-                $this->chatRepository->systemMessage(
-                    sprintf('乡亲们，[url=%s]%s[/url] 已经开启双倍上传！:fire:', $torrentUrl, $torrent->name)
-                );
             }
-        } else {
+            }
+         else {
             $torrent->doubleup = false;
-            $this->chatRepository->systemMessage(
-                sprintf('乡亲们，[url=%s]%s[/url] 的双倍上传已取消！:poop:', $torrentUrl, $torrent->name)
-            );
         }
 
         $torrent->save();
@@ -287,15 +256,9 @@ class TorrentBuffController extends Controller
         if (!$torrent->refundable) {
             $torrent->refundable = true;
 
-            $this->chatRepository->systemMessage(
-                sprintf('乡亲们，[url=%s]%s[/url] 现在可以退款了！快来薅！:fire:', $torrent_url, $torrent->name)
-            );
         } else {
             $torrent->refundable = 0;
 
-            $this->chatRepository->systemMessage(
-                sprintf('各位用户，[url=%s]%s[/url] 退款时间结束！:poop:', $torrent_url, $torrent->name)
-            );
         }
 
         $torrent->save();

@@ -319,83 +319,12 @@ class TorrentController extends BaseController
 
         // check for trusted user and update torrent
         if ($user->group->is_trusted) {
-            $appurl = config('app.url');
             $user = $torrent->user;
             $username = $user->username;
             $anon = $torrent->anon;
             $featured = $torrent->featured;
             $free = $torrent->free;
             $doubleup = $torrent->doubleup;
-
-            // Announce To Shoutbox
-            if ($anon == 0) {
-                $this->chatRepository->systemMessage(
-                    sprintf('用户 [url=%s/users/', $appurl).$username.']'.$username.sprintf('[/url] 上传了 '.$torrent->category->name.'. [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.'[/url], 快看看吧! :slight_smile:'
-                );
-            } else {
-                $this->chatRepository->systemMessage(
-                    sprintf('匿名用户上传了 '.$torrent->category->name.'. [url=%s/torrents/', $appurl).$torrent->id.']'.$torrent->name.'[/url], 快瞅瞅! :slight_smile:'
-                );
-            }
-
-            if ($anon == 1 && $featured == 1) {
-                $this->chatRepository->systemMessage(
-                    sprintf(
-                        '大哥大姐们，[url=%s/torrents/%s]%s[/url] 刚刚被一位匿名用户加精了！快瞅瞅！:fire:',
-                        $appurl,
-                        $torrent->id,
-                        $torrent->name
-                    )
-                );
-            } elseif ($anon == 0 && $featured == 1) {
-                $this->chatRepository->systemMessage(
-                    sprintf(
-                        '大哥大姐们, [url=%s/torrents/%s]%s[/url] 刚刚有人在 [url=%s/users/%s]%s[/url] 发出了一个救种请求，能帮帮忙吗？ :fire:',
-                        $appurl,
-                        $torrent->id,
-                        $torrent->name,
-                        $appurl,
-                        $username,
-                        $username
-                    )
-                );
-            }
-
-            if ($free >= 1 && $featured == 0) {
-                if ($torrent->fl_until === null) {
-                    $this->chatRepository->systemMessage(
-                        sprintf(
-                            '大哥大姐们, [url=%s/torrents/',
-                            $appurl
-                        ).$torrent->id.']'.$torrent->name.'[/url] 免费下载 '.$free.'% 上钟了!冲鸭！ :fire:'
-                    );
-                } else {
-                    $this->chatRepository->systemMessage(
-                        sprintf(
-                            '大哥大姐们, [url=%s/torrents/',
-                            $appurl
-                        ).$torrent->id.']'.$torrent->name.'[/url] 免费下载 '.$free.'% 剩余时间 '.$request->input('fl_until').' 天. :stopwatch:'
-                    );
-                }
-            }
-
-            if ($doubleup == 1 && $featured == 0) {
-                if ($torrent->du_until === null) {
-                    $this->chatRepository->systemMessage(
-                        sprintf(
-                            '大哥大姐们, [url=%s/torrents/',
-                            $appurl
-                        ).$torrent->id.']'.$torrent->name.'[/url] 双倍上传上钟了! 冲鸭! :fire:'
-                    );
-                } else {
-                    $this->chatRepository->systemMessage(
-                        sprintf(
-                            '大哥大姐们, [url=%s/torrents/',
-                            $appurl
-                        ).$torrent->id.']'.$torrent->name.'[/url] 双倍上传时间剩余 '.$request->input('du_until').' 天. :stopwatch:'
-                    );
-                }
-            }
 
             TorrentHelper::approveHelper($torrent->id);
         }
