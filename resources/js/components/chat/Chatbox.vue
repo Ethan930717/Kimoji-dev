@@ -31,9 +31,6 @@
             <audio ref="audio" src="https://radio.kimoji.club/radio.mp3"></audio>
           </div>
           <div class="button-right">
-            <a href="" view="bot" @click.prevent="startBot()" class="form__button form__button--text">
-              <i class="fa fa-robot"></i> {{ helpName }}
-            </a>
             <a
                 href=""
                 view="list"
@@ -107,22 +104,6 @@
                                                 "
                       ></i>
                       @{{ echo.target.username }}
-                    </a>
-                  </li>
-                  <li
-                      v-for="echo in echoes"
-                      v-if="echo.bot && echo.bot.id >= 1 && echo.bot.name.length > 0"
-                      :class="bot > 0 && bot === echo.bot.id ? 'panel__tab panel__tab--active' : 'panel__tab'"
-                  >
-                    <a href="" role="tab" view="bot" @click.prevent="changeTab('bot', echo.bot.id)">
-                      <i
-                          :class="
-                                                    checkPings('bot', echo.bot.id)
-                                                        ? 'fa fa-comment fa-beat text-success'
-                                                        : 'fa fa-comment text-danger'
-                                                "
-                      ></i>
-                      @{{ echo.bot.name }}
                     </a>
                   </li>
                 </ul>
