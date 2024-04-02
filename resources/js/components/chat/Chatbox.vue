@@ -22,6 +22,7 @@
             <button @click="togglePlay" class="play-pause-btn">
               <i :class="playing ? 'fas fa-pause' : 'fas fa-play'"></i>
             </button>
+            <span class="radio-text">KIMOJI FM</span>
             <input type="range" min="0" max="100" v-model="volume" @input="changeVolume" class="volume-slider" />
             <audio ref="audio" src="https://radio.kimoji.club/radio.mp3"></audio>
           </div>
@@ -198,6 +199,12 @@
   cursor: pointer;
   font-size: 24px;
   margin-bottom: 10px;
+}
+
+.radio-text {
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 900;
+  font-size: 20px;
 }
 
 .volume-slider {
