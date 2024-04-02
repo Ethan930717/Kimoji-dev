@@ -187,6 +187,7 @@
 <style lang="scss" scoped>
 .audio-player {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -196,7 +197,7 @@
   border: none;
   cursor: pointer;
   font-size: 24px;
-  margin-right: 20px;
+  margin-bottom: 10px;
 }
 
 .volume-slider {
@@ -204,8 +205,9 @@
   width: 100px;
   height: 5px;
   border-radius: 5px;
-  background: #ddd;
+  background: #fff;
   outline: none;
+  cursor: pointer;
 }
 
 .volume-slider::-webkit-slider-thumb {
@@ -214,17 +216,16 @@
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background: #666;
-  cursor: pointer;
+  background: #fff;
 }
 
 .volume-slider::-moz-range-thumb {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background: #666;
-  cursor: pointer;
+  background: #fff;
 }
+
 .panel-fullscreen {
   z-index: 9999;
   position: fixed;
