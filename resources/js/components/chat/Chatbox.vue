@@ -28,7 +28,9 @@
               </button>
               <input type="range" min="0" max="100" v-model="volume" @input="changeVolume" class="volume-slider" />
             </div>
-            <audio ref="audio" src="https://radio.kimoji.club/radio.mp3"></audio>
+            <div class="loading-icon" v-if="isLoading">
+              <i class="fas fa-spinner fa-spin"></i>
+            </div>            <audio ref="audio" src="https://radio.kimoji.club/radio.mp3"></audio>
           </div>
           <div class="button-right">
             <a
@@ -194,6 +196,11 @@
   align-items: center;
 }
 
+.loading-icon {
+  margin-left: 10px;
+  font-size: 18px;
+}
+
 .play-pause-btn {
   background: none;
   border: none;
@@ -306,7 +313,8 @@ export default {
   data() {
     return {
       playing: false,
-      volume: 50, // 默认音量设置为50%
+      volume: 50,
+      isLoading: false,
       tab: '',
       state: {
         connecting: true,
@@ -352,6 +360,18 @@ export default {
       receiver_id: null,
       bot_id: null,
     };
+  },
+  mounted() {
+    const audio = this.$refs.audio;
+    audio.addEventListener('waiting', () => {
+      this.isLoading = true;
+    });
+    audio.addEventListener('canplay', () => {
+      this.isLoading = false;
+    });
+    audio.addEventListener('playing', () => {
+      this.isLoading = false;
+    });
   },
   watch: {
     chatrooms() {
