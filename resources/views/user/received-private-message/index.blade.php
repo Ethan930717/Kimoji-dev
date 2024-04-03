@@ -130,17 +130,22 @@
                     </button>
                 </p>
             </form>
-            <form
-                method="POST"
-                action="{{ route('users.received_messages.mass_destroy', ['user' => $user]) }}"
-                x-data="confirmation"
-            >
+            <form method="POST" action="{{ route('users.received_messages.mass_destroy', ['user' => $user]) }}" x-data>
                 @csrf
                 @method('DELETE')
                 <p class="form__group form__group--horizontal">
                     <button
-                        x-on:click.prevent="confirmAction"
-                        data-b64-deletion-message="{{ base64_encode('Are you sure you want to delete all private messages?') }}"
+                        x-on:click.prevent="Swal.fire({
+                            title: '请确认',
+                            text: '是否确认删除所有私信',
+                            icon: 'warning',
+                            showConfirmButton: true,
+                            showCancelButton: true,
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $root.submit();
+                            }
+                        })"
                         class="form__button form__button--filled form__button--centered"
                     >
                         <i class="{{ config('other.font-awesome') }} fa-trash"></i>
