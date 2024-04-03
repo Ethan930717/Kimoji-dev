@@ -689,6 +689,13 @@ final class AnnounceController extends Controller
             $creditedDownloadedDelta = $downloadedDelta;
         }
 
+        //限制下载量
+        $torrentSize = $torrent->size;
+        $totalDownloadedWithDelta = $user->downloaded + $creditedDownloadedDelta;
+        if ($totalDownloadedWithDelta > $torrentSize) {
+            $creditedDownloadedDelta = max($torrentSize - $user->downloaded, 0);
+        }
+
         // Calculate credited upload
         if (
             $torrent->doubleup
@@ -702,9 +709,10 @@ final class AnnounceController extends Controller
 
         // User Updates
         if (($creditedUploadedDelta > 0 || $creditedDownloadedDelta > 0) && $event !== 'started') {
+            $finalDownloadedDelta = min($user->downloaded + $creditedDownloadedDelta, $torrentSize) - $user->downloaded;
             $user->update([
                 'uploaded'   => DB::raw('uploaded + '.(int) $creditedUploadedDelta),
-                'downloaded' => DB::raw('downloaded + '.(int) $creditedDownloadedDelta),
+                'downloaded' => DB::raw('downloaded + '.(int) $finalDownloadedDelta),
             ]);
         }
 
