@@ -27,10 +27,11 @@
                 <i :class="playing ? 'fas fa-pause' : 'fas fa-play'"></i>
               </button>
               <input type="range" min="0" max="100" v-model="volume" @input="changeVolume" class="volume-slider" />
+              <div class="loading-icon" v-if="isLoading">
+                <i class="fas fa-spinner fa-spin"></i>
+              </div>
             </div>
-            <div class="loading-icon" v-if="isLoading">
-              <i class="fas fa-spinner fa-spin"></i>
-            </div>            <audio ref="audio" src="https://radio.kimoji.club/radio.mp3"></audio>
+            <audio ref="audio" src="https://radio.kimoji.club/radio.mp3"></audio>
           </div>
           <div class="button-right">
             <a
