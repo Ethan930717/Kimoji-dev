@@ -767,11 +767,6 @@ final class AnnounceController extends Controller
          *
          * @see \App\Console\Commands\AutoUpsertHistories
          */
-// 计算新的下载量增长值，确保不超过种子的大小
-        $newDownloadedValue = min($user->downloaded + $creditedDownloadedDelta, $torrentSize);
-        $newActualDownloadedValue = min($user->downloaded + $downloadedDelta, $torrentSize);
-
-// 推送调整后的数据到 Redis
         Redis::connection('announce')->command('RPUSH', [
             config('cache.prefix').':histories:batch',
             serialize([
@@ -781,8 +776,8 @@ final class AnnounceController extends Controller
                 'uploaded'          => $event === 'started' ? 0 : $creditedUploadedDelta,
                 'actual_uploaded'   => $event === 'started' ? 0 : $uploadedDelta,
                 'client_uploaded'   => $queries['uploaded'],
-                'downloaded'        => $event === 'started' ? 0 : $newDownloadedValue,
-                'actual_downloaded' => $event === 'started' ? 0 : $newActualDownloadedValue,
+                'downloaded'        => $event === 'started' ? 0 : $creditedDownloadedDelta,
+                'actual_downloaded' => $event === 'started' ? 0 : $downloadedDelta,
                 'client_downloaded' => $queries['downloaded'],
                 'seeder'            => $queries['left'] === 0,
                 'active'            => $event !== 'stopped',
