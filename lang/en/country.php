@@ -56,6 +56,7 @@ return [
     'SN' => 'Senegal',
     'VN' => 'Vietnam',
     'ZA' => 'South Africa',
+    'IL' => 'Israel',
 
 
 
