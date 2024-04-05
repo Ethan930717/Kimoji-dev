@@ -1,10 +1,5 @@
 @foreach ($articles as $article)
     <section class="panelV2" x-data="{ show: {{ $article->newNews }} }">
-        <h2 class="panel__count">
-            <i class="{{ config('other.font-awesome') }} fa-star"></i>
-            {{ __('stat.current_collection', ['artistsCount' => $artistsCount, 'albumsCount' => $albumsCount, 'songsCount' => $songsCount]) }}
-            <i class="{{ config('other.font-awesome') }} fa-star"></i>
-        </h2>
         <header class="panel__header" x-on:click="show = !show" style="cursor: pointer">
             <h2 class="panel__heading panel__heading--centered">
                 @if ($article->newNews)
