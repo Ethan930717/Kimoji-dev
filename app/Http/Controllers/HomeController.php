@@ -61,28 +61,7 @@ class HomeController extends Controller
         $artistsCount = DB::table('artists')->count();
         $albumsCount = DB::table('torrents')->where('category_id', 3)->count();
         $songsCount = DB::table('music')->count();
-        $countries = cache()->remember('artist_countries', 60, function () {
-            return Artist::select('country')
-                ->whereNotNull('country')
-                ->distinct()
-                ->orderBy('country', 'asc')
-                ->get();
-        });
-        $preferredOrder = [
-            'CN', 'TW', 'HK', 'MO', 'US', 'JP', 'KR'
-        ];
-        $sortedCountries = new Collection();
-        foreach ($preferredOrder as $countryName) {
-            $country = $countries->firstWhere('country', $countryName);
-            if ($country) {
-                $sortedCountries->push($country);
-                // 从原始集合中移除已添加到排序集合中的国家
-                $countries = $countries->reject(function ($value) use ($countryName) {
-                    return $value->country == $countryName;
-                });
-            }
-        }
-        $mergedCountries = $sortedCountries->merge($countries);
+
 
 
 
@@ -520,7 +499,6 @@ class HomeController extends Controller
             'artistsCount'     => $artistsCount,
             'albumsCount'      => $albumsCount,
             'songsCount'       => $songsCount,
-            'countries'        => $mergedCountries,
         ]);
     }
 }

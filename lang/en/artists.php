@@ -15,7 +15,7 @@ return [
     'zodiac'                => 'Zodiac',
     'blood_type'                => 'Blood Type',
     'measurements'                => 'Measurements',
-    'birth_place'                => 'Birth Place',
+    'birthplace'                => 'Birth Place',
     'hobbies_skills'                => 'Hobbies & Skills',
     'description'                => 'Description',
     'all'                => 'All Albums',

@@ -47,8 +47,8 @@
             @if($artist->measurements)
                 <p><strong>{{ __('artists.measurements') }}:</strong> {{ $artist->measurements }}</p>
             @endif
-            @if($artist->birth_place)
-                <p><strong>{{ __('artists.birth_place') }}:</strong> {{ $artist->birth_place }}</p>
+            @if($artist->birthplace)
+                <p><strong>{{ __('artists.birthplace') }}:</strong> {{ $artist->birth_place }}</p>
             @endif
             @if($artist->hobbies_skills)
                 <p><strong>{{ __('artists.hobbies_skills') }}:</strong> {{ $artist->hobbies_skills }}</p>

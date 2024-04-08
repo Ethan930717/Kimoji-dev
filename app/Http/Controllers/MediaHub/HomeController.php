@@ -33,7 +33,6 @@ class HomeController extends Controller
      */
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
-        $countriesCount = Artist::whereNotNull('country')->distinct('country')->count('country');
         $artistsCount = DB::table('artists')->count();
 
 
@@ -47,7 +46,6 @@ class HomeController extends Controller
             'genres'           => Genre::count(),
             'networks'         => Network::count(),
             'companies'        => Company::count(),
-            'countriesCount'   => $countriesCount,
             'artistsCount'     => $artistsCount,
         ]);
     }

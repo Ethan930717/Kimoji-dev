@@ -37,26 +37,16 @@ class ArtistController extends Controller
     {
         $artist = Artist::findOrFail($id);
         $data = $request->validate([
-            'birthday'  => 'nullable|date', // 生日可以为 null，如果提供则必须是日期格式
-            'deathday'  => 'nullable|date', // 忌日可以为 null，如果提供则必须是日期格式
-            'member'    => 'nullable|max:512', // 组成员可以为 null，最大长度为512个字符
-            'country'   => 'nullable|max:255', // 国家可以为 null，最大长度为255个字符
-            'label'     => 'nullable|max:255', // 唱片公司可以为 null，最大长度为255个字符
-            'genre'     => 'nullable|max:255', // 风格可以为 null，最大长度为255个字符
-            'biography' => 'nullable', // 传记可以为 null
+            'birth_date'  => 'nullable|date',
+            'zodiac'  => 'nullable|max:255',
+            'blood_type'    => 'nullable|max:5',
+            'measurements'   => 'nullable|max:255',
+            'birthplace'     => 'nullable|max:255',
+            'hobbies_skills'     => 'nullable|max:255',
+            'description' => 'nullable',
         ]);
         $artist->update($data);
 
         return redirect()->route('artists.show', $id);
     }
-
-    public function countryShow($country_name)
-    {
-        $artists = Artist::where('country', '=', $country_name)
-            ->orderBy('name', 'asc')
-            ->get();
-
-        return view('artists.country.show', compact('artists', 'country_name'));
-    }
-
 }
