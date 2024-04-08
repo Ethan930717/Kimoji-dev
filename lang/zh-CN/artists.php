@@ -12,6 +12,12 @@
  */
 
 return [
+    'zodiac'                => '星座',
+    'blood_type'                => '血型',
+    'measurements'                => '三围',
+    'birth_place'                => '出生地',
+    'hobbies_skills'                => '爱好 & 特长',
+    'description'                => '更多介绍',
     'all'                => '更多作品',
     'artname'            => '艺名',
     'lyrics_listen'      => '歌词试听',

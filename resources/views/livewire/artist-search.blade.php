@@ -39,7 +39,7 @@
                 <figcaption>{{ $artist->name }}</figcaption>
             </figure>
         @empty
-            {{ __('未找到歌手信息') }}
+            {{ __('No Result') }}
         @endforelse
     </div>
     {{ $artists->links('partials.pagination') }}

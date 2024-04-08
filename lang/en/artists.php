@@ -12,6 +12,12 @@
  */
 
 return [
+    'zodiac'                => 'Zodiac',
+    'blood_type'                => 'Blood Type',
+    'measurements'                => 'Measurements',
+    'birth_place'                => 'Birth Place',
+    'hobbies_skills'                => 'Hobbies & Skills',
+    'description'                => 'Description',
     'all'                => 'All Albums',
     'artname'            => 'Name',
     'lyrics_listen'      => 'Listen with lyrics',

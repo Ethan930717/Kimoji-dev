@@ -32,30 +32,30 @@
 
         <div class="artist-info" style="flex: 2;min-width: 300px;margin-left: 40px;">
             <div class="artist-header" style="display: flex; align-items: center; min-width: 300px;">
-                <h2 class="artist-name" style="margin: 0;">{{ $artist->name }}</h2>
-                <a href="{{ route('artists.edit', $artist->id) }}" class="form__button form__button--outlined" style="margin-left: 10px; text-decoration: none;">编辑歌手词条</a>
+                {{ $artist->name }} ({{ preg_replace('/\d/', '', str_replace('_', ' ', $artist->english_name)) }})
+                <a href="{{ route('artists.edit', $artist->id) }}" class="form__button form__button--outlined" style="margin-left: 10px; text-decoration: none;">Edit</a>
             </div>
-            @if($artist->birthday)
-                <p><strong>{{ $artist->member ? __('artists.established') : __('artists.born') }}:</strong> {{ $artist->birthday }}</p>
+            @if($artist->birth_date)
+                <p><strong>{{__('artists.born') }}:</strong> {{ $artist->birth_date }}</p>
             @endif
-            @if($artist->deathday)
-                <p><strong>{{ $artist->member ? __('artists.disbanded') : __('artists.died') }}:</strong> {{ $artist->deathday }}</p>
+            @if($artist->zodiac)
+                <p><strong>{{__('artists.zodiac')}}:</strong> {{ $artist->zodiac }}</p>
             @endif
-            @if($artist->country)
-                <p><strong>{{ __('artists.country') }}:</strong> {{ $artist->country }}</p>
+            @if($artist->blood_type)
+                <p><strong>{{ __('artists.blood_type') }}:</strong> {{ $artist->blood_type }}</p>
             @endif
-            @if($artist->member)
-                <p><strong>{{ __('artists.member') }}:</strong> {{ $artist->member }}</p>
+            @if($artist->measurements)
+                <p><strong>{{ __('artists.measurements') }}:</strong> {{ $artist->measurements }}</p>
             @endif
-            @if($artist->label)
-                <p><strong>{{ __('artists.label') }}:</strong> {{ $artist->label }}</p>
+            @if($artist->birth_place)
+                <p><strong>{{ __('artists.birth_place') }}:</strong> {{ $artist->birth_place }}</p>
             @endif
-            @if($artist->genre)
-                <p><strong>{{ __('artists.genre') }}:</strong> {{ $artist->genre }}</p>
+            @if($artist->hobbies_skills)
+                <p><strong>{{ __('artists.hobbies_skills') }}:</strong> {{ $artist->hobbies_skills }}</p>
             @endif
-            @if($artist->biography)
+            @if($artist->description)
                 <div style="max-height: 200px; overflow-y: auto;">
-                    <p><strong>{{ __('artists.biography') }}:</strong> {!! nl2br(e($artist->biography)) !!}</p>
+                    <p><strong>{{ __('artists.description') }}:</strong> {!! nl2br(e($artist->description)) !!}</p>
                 </div>
             @else
                 <p><strong>{{ __('artists.biography') }}:</strong> {{ __('artists.nobiography') }}</p>
@@ -71,7 +71,7 @@
                         {{ __('artists.artist-torrents') }} ({{ $torrents->count() }})
                     </h2>
                     <a href="{{ route('users.torrent_zip.downloadArtistTorrents', ['user' => auth()->user()->username, 'artistId' => $artist->id]) }}" class="form__button form__button--outlined">
-                        <i class="{{ config('other.font-awesome') }} fa-star"></i> 全部下载
+                        <i class="{{ config('other.font-awesome') }} fa-star"></i> Pack Download
                     </a>
                 </div>
                 <div x-data>
