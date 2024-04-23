@@ -57,6 +57,16 @@ return [
     'VN' => 'Vietnam',
     'ZA' => 'South Africa',
     'IL' => 'Israel',
+    'AZ' => 'Azerbaijan',
+    'ID' => 'Indonesia',
+    'LV' => 'Latvia',
+    'MD' => 'Moldova',
+    'MS' => 'Montserrat',
+    'MT' => 'Malta',
+    'MX' => 'Mexico',
+    'RO' => 'Romania',
+    'TR' => 'Turkey',
+    'UA' => 'Ukraine',
 
 
 
