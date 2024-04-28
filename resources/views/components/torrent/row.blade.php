@@ -89,90 +89,24 @@
                     >
                 @else
                     @if ($torrent->category->music_meta)
-                        @switch($torrent->distributor->name)
-                            @case('Country')
-                                <i class="fas fa-hat-cowboy torrent-icon" @style(['padding-top: 12px'])> </i>
+                        @switch($torrent->type->name)
+                            @case('Lossy')
+                                <img src="/img/lossy.png" class="torrent-icon" style="padding-top: 12px;">
                                 @break
-                            @case('Children')
-                                <i class="fas fa-child torrent-icon" @style(['padding-top: 12px'])> </i>
+                            @case('CD')
+                                <img src="/img/cd.png" class="torrent-icon" style="padding-top: 12px;">
                                 @break
-                            @case('OST')
-                                <i class="fas fa-film torrent-icon" @style(['padding-top: 12px'])> </i>
+                            @case('Lossless')
+                                <img src="/img/lossless.png" class="torrent-icon" style="padding-top: 12px;">
                                 @break
-                            @case('Classical')
-                                <i class="fas fa-violin torrent-icon" @style(['padding-top: 12px'])> </i>
+                            @case('Hi-Res')
+                                <img src="/img/hires.png" class="torrent-icon" style="padding-top: 12px;">
                                 @break
-                            @case('Alternative')
-                                <i class="fas fa-alien-8bit torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('Hip-Hop')
-                                <i class="fas fa-hat-cowboy-side torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('Instrumental')
-                                <i class="fas fa-piano torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('Blues')
-                                <i class="fas fa-guitar-electric torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('Latino')
-                                <i class="fas fa-guitar torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('Rock')
-                                <i class="fas fa-drum torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('Folk')
-                                <i class="fas fa-guitars torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('Pop')
-                                <i class="fas fa-microphone-stand torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('Jazz')
-                                <i class="fas fa-saxophone torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('Indie')
-                                <i class="fas fa-indian-rupee torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('Electronic')
-                                <i class="fas fa-headphones torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('Christian')
-                                <i class="fas fa-cross torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('Dance')
-                                <i class="fas fa-theater-masks torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('R&B')
-                                <i class="fas fa-heart-crack torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('Reggae')
-                                <i class="fas fa-leaf-heart torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('Musical')
-                                <i class="fas fa-masks-theater torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('New Age')
-                                <i class="fas fa-spa torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('Audiobook')
-                                <i class="fas fa-book-open torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('Anime')
-                                <i class="fas fa-laugh-beam torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('Gospel')
-                                <i class="fas fa-cross torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('Holiday')
-                                <i class="fas fa-sun torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('Religious')
-                                <i class="fas fa-pray torrent-icon" @style(['padding-top: 12px'])> </i>
-                                @break
-                            @case('World')
-                                <i class="fas fa-globe-americas torrent-icon" @style(['padding-top: 12px'])> </i>
+                            @case('DSD')
+                                <img src="/img/dsd.png" class="torrent-icon" style="padding-top: 12px;">
                                 @break
                             @default
-                                <i class="{{ $torrent->category->icon }} torrent-icon" @style(['padding-top: 12px'])> </i>
+                                <img src="{{ $torrent->category->icon }}" class="torrent-icon" style="padding-top: 12px;"> <!-- Assuming $torrent->category->icon holds the path to the image -->
                         @endswitch
                     @else
                         <i class="{{ $torrent->category->icon }} torrent-icon"
@@ -189,22 +123,22 @@
 
             </div>
             <div class="torrent-search--list__resolution-and-type">
+               <span class="torrent-search--list__type">
+                    {{ $torrent->type->name ?? '' }}
+                </span>
                 @if ($torrent->category->movie_meta || $torrent->category->tv_meta)
                     <span class="torrent-search--list__resolution">
                         {{ $torrent->resolution->name ?? '' }}
                     </span>
                 @elseif ($torrent->category->music_meta)
                     <span class="torrent-search--list__resolution">
-                        {{ $torrent->distributor->name ?? '' }}
+                        {{ $torrent->region->name ?? '' }}
                     </span>
                 @elseif ($torrent->category->no_meta)
                     <span class="torrent-search--list__resolution">
                         {{ $torrent->region->name ?? '' }}
                     </span>
                 @endif
-                <span class="torrent-search--list__type">
-                    {{ $torrent->type->name ?? '' }}
-                </span>
             </div>
         </div>
     </td>
