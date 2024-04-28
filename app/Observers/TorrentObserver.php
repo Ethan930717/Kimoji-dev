@@ -75,17 +75,19 @@ class TorrentObserver
                         $songList
                     );
                     // Logic for artists
-                    $pattern = '/^(.*?)\s*\((.*?)\)$/';
-                    $matches = [];
-                    if (preg_match($pattern, $torrent->name, $matches)) {
-                        $artistName = trim($matches[1]);
-                        $secondName = trim($matches[2]);
-                    } else {
-                        $artistName = trim($torrent->name);
-                        $secondName = null;
-                    }
-
+                    $artistName = explode(' - ', $torrent->name, 2)[0] ?? null;
+                    $artistName = trim($artistName);
                     $imageUrl = "/files/img/torrent-banner_{$torrent->id}.jpg";
+                    $secondName = null;
+
+                    // 检查是否包含括号并处理
+                    if (strpos($artistName, '(') !== false && strpos($artistName, ')') !== false) {
+                        preg_match('/^(.*?)\s*\((.*?)\)$/', $artistName, $matches);
+                        if ($matches) {
+                            $artistName = trim($matches[1]);
+                            $secondName = trim($matches[2]);
+                        }
+                    }
 
                     // Check if artist already exists
                     $query = Artist::query();
@@ -97,6 +99,7 @@ class TorrentObserver
                     }
 
                     $artist = $query->first();
+
                     if (!$artist) {
                         // Artist does not exist, create new artist
                         $artist = new Artist();
