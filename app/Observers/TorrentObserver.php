@@ -67,6 +67,7 @@ class TorrentObserver
                     $description = $torrent->description;
                     preg_match('/\[spoiler=歌曲列表\](.*?)\[\/spoiler\]/s', $description, $matches);
                     $songList = $matches[1] ?? '';
+                    $songList = preg_replace('/\[\/?(size|color|center)=?[^\]]*\]/', '', $songList);
                     $telegramController->sendMusicTorrentNotification(
                         $torrent->id,
                         $torrent->name,
