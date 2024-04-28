@@ -33,7 +33,7 @@
 
     @if ($singerName)
         @php
-            $artist = \App\Models\Artist::where('name', 'like', "%{$singerName}%")->first();
+            $artist = \App\Models\Artist::where('name', 'like', "%{$singerNameWithoutBrackets}%")->first();
         @endphp
     @endif
     @if (file_exists(public_path().'/files/img/torrent-banner_'.$torrent->id.'.jpg'))

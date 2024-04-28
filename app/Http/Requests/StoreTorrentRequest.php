@@ -49,7 +49,7 @@ class StoreTorrentRequest extends FormRequest
                 'file',
                 function (string $attribute, mixed $value, Closure $fail): void {
                     if ($value->getClientOriginalExtension() !== 'torrent') {
-                        $fail('上传的种子文件扩展名不正确（您上传的是 "'.$value->getClientOriginalExtension().'")， 您是否上传了正确的文件？');
+                        $fail('The torrent file uploaded does not have a ".torrent" file extension (it has "'.$value->getClientOriginalExtension().'"). Did you upload the correct file?');
                     }
 
                     $decodedTorrent = TorrentTools::normalizeTorrent($value);
@@ -57,18 +57,18 @@ class StoreTorrentRequest extends FormRequest
                     $v2 = Bencode::is_v2_or_hybrid($decodedTorrent);
 
                     if ($v2) {
-                        $fail('不支持 BitTorrent v2 (BEP 52) ！');
+                        $fail('BitTorrent v2 (BEP 52) is not supported!');
                     }
 
                     try {
                         $meta = Bencode::get_meta($decodedTorrent);
                     } catch (Exception) {
-                        $fail('你必须提供一个有效的种子文件！');
+                        $fail('You Must Provide A Valid Torrent File For Upload!');
                     }
 
                     foreach (TorrentTools::getFilenameArray($decodedTorrent) as $name) {
                         if (!TorrentTools::isValidFilename($name)) {
-                            $fail('种子名称无效');
+                            $fail('Invalid Filenames In Torrent Files!');
                         }
                     }
 
@@ -76,10 +76,10 @@ class StoreTorrentRequest extends FormRequest
 
                     if ($torrent !== null) {
                         match ($torrent->status) {
-                            Torrent::PENDING   => $fail('当前已有相同的种子正在等待审核'),
-                            Torrent::APPROVED  => $fail('当前种子已存在'),
-                            Torrent::REJECTED  => $fail('有相同的种子正在拒绝列表中，请联系管理处理'),
-                            Torrent::POSTPONED => $fail('有相同的种子正在延期列表中，请联系管理处理'),
+                            Torrent::PENDING   => $fail('A torrent with the same info_hash has already been uploaded and is pending moderation.'),
+                            Torrent::APPROVED  => $fail('A torrent with the same info_hash has already been uploaded and has been approved.'),
+                            Torrent::REJECTED  => $fail('A torrent with the same info_hash has already been uploaded and has been rejected.'),
+                            Torrent::POSTPONED => $fail('A torrent with the same info_hash has already been uploaded and is currently postponed.'),
                             default            => null,
                         };
                     }
@@ -91,7 +91,7 @@ class StoreTorrentRequest extends FormRequest
                 'file',
                 function (string $attribute, mixed $value, Closure $fail): void {
                     if ($value->getClientOriginalExtension() !== 'nfo') {
-                        $fail('上传的NFO文件扩展名不正确（您上传的是  "'.$value->getClientOriginalExtension().'")，您是否上传了正确的文件？');
+                        $fail('The NFO uploaded does not have a ".nfo" file extension (it has "'.$value->getClientOriginalExtension().'"). Did you upload the correct file?');
                     }
                 },
             ],
@@ -99,45 +99,20 @@ class StoreTorrentRequest extends FormRequest
                 'required',
                 'unique:torrents',
                 'max:255',
-                function ($attribute, $value, $fail) use ($category): void {
-                    if ($category->movie_meta || $category->tv_meta) {
-                        if (!preg_match('/[\p{Han}]/u', $value)) {
-                            $fail('请在标题头部添加资源中文名，如果当前资源没有中文名，请您填写任意中文字符并在上传成功后编辑取消');
-                        }
-                    }
-                },
-            ],            'description' => [
+            ],
+            'description' => [
                 'required',
-                'max:4294967296',
-                function (string $attribute, mixed $value, Closure $fail): void {
-                    if (!str_contains($value, '[spoiler=')) {
-                        $fail('描述内容不符合要求，请参考其他已发布的种子并根据《发种规则》要求添加专用模板');
-                    }
-                },
+                'max:2097152'
             ],
             'mediainfo' => [
                 'nullable',
                 'sometimes',
-                'max:4294967296',
-                function ($attribute, $value, $fail) use ($category): void {
-                    if ($category->movie_meta || $category->tv_meta) {
-                        if (!str_contains($value, 'Format')) {
-                            $fail('请提供完整版本的Mediainfo信息');
-                        }
-                    }
-                },
+                'max:2097152',
             ],
             'bdinfo' => [
                 'nullable',
                 'sometimes',
-                'max:4294967296',
-                function ($attribute, $value, $fail) use ($category): void {
-                    if ($category->movie_meta || $category->tv_meta) {
-                        if (!str_contains($value, 'PLAYLIST')) {
-                            $fail('请提供完整版本的BDInfo信息（非Quick Summary格式）');
-                        }
-                    }
-                },
+                'max:2097152',
             ],
             'category_id' => [
                 'required',
@@ -153,13 +128,11 @@ class StoreTorrentRequest extends FormRequest
                 'exists:resolutions,id',
             ],
             'region_id' => [
-                Rule::when($category->no_meta, 'required'),
-                Rule::when(!$category->no_meta, 'nullable'),
+                'nullable',
                 'exists:regions,id',
             ],
             'distributor_id' => [
-                Rule::when($category->music_meta, 'required'),
-                Rule::when(!$category->music_meta, 'nullable'),
+                'nullable',
                 'exists:distributors,id',
             ],
             'imdb' => [
@@ -271,13 +244,11 @@ class StoreTorrentRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'igdb.in'                 => '如果媒体不存在于IGDB上或您未上传游戏，IGDB ID必须为0。',
-            'tmdb.in'                 => '如果媒体不存在于TMDB上或您未上传电视节目或电影，TMDB ID必须为0。',
-            'imdb.in'                 => '如果媒体不存在于IMDB上或您未上传电视节目或电影，IMDB ID必须为0。',
-            'tvdb.in'                 => '如果媒体不存在于TVDB上或您未上传电视节目，TVDB ID必须为0。',
-            'mal.in'                  => '如果媒体不存在于MAL上或您未上传电视或电影，MAL ID必须为0。',
-            'region_id.required'      => '请选择小说分类',
-            'distributor_id.required' => '请选择音乐风格',
+            'igdb.in' => 'The IGBB ID must be 0 if the media doesn\'t exist on IGDB or you\'re not uploading a game.',
+            'tmdb.in' => 'The TMDB ID must be 0 if the media doesn\'t exist on TMDB or you\'re not uploading a tv show or movie.',
+            'imdb.in' => 'The IMDB ID must be 0 if the media doesn\'t exist on IMDB or you\'re not uploading a tv show or movie.',
+            'tvdb.in' => 'The TVDB ID must be 0 if the media doesn\'t exist on TVDB or you\'re not uploading a tv show.',
+            'mal.in'  => 'The MAL ID must be 0 if the media doesn\'t exist on MAL or you\'re not uploading a tv or movie.',
         ];
     }
 }

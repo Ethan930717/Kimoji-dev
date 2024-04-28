@@ -71,7 +71,7 @@
                         {{ __('artists.artist-torrents') }} ({{ $torrents->count() }})
                     </h2>
                     <a href="{{ route('users.torrent_zip.downloadArtistTorrents', ['user' => auth()->user()->username, 'artistId' => $artist->id]) }}" class="form__button form__button--outlined">
-                        <i class="{{ config('other.font-awesome') }} fa-star"></i> 全部下载
+                        <i class="{{ config('other.font-awesome') }} fa-star"></i> Download
                     </a>
                 </div>
                 <div x-data>
