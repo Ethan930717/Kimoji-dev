@@ -91,22 +91,22 @@
                     @if ($torrent->category->music_meta)
                         @switch($torrent->type->name)
                             @case('Lossy')
-                                <img src="/img/lossy.png" class="torrent-icon" style="padding-top: 12px; height:32px" loading="lazy">
+                                <img src="/img/lossy.png" class="torrent-icon" style="padding-top: 1px; height:32px" loading="lazy">
                                 @break
                             @case('CD')
-                                <img src="/img/cd.png" class="torrent-icon" style="padding-top: 12px; height:32px" loading="lazy">
+                                <img src="/img/cd.png" class="torrent-icon" style="padding-top: 1px; height:32px" loading="lazy">
                                 @break
                             @case('Lossless')
-                                <img src="/img/lossless.png" class="torrent-icon" style="padding-top: 12px; height:32px" loading="lazy">
+                                <img src="/img/lossless.png" class="torrent-icon" style="padding-top: 1px; height:32px" loading="lazy">
                                 @break
                             @case('Hi-Res')
-                                <img src="/img/hires.png" class="torrent-icon" style="padding-top: 12px; height:32px" loading="lazy">
+                                <img src="/img/hires.png" class="torrent-icon" style="padding-top: 1px; height:32px" loading="lazy">
                                 @break
                             @case('DSD')
-                                <img src="/img/dsd.png" class="torrent-icon" style="padding-top: 12px; height:32px" loading="lazy">
+                                <img src="/img/dsd.png" class="torrent-icon" style="padding-top: 1px; height:32px" loading="lazy">
                                 @break
                             @default
-                                <img src="{{ $torrent->category->icon }}" class="torrent-icon" style="padding-top: 12px; height:32px" loading="lazy">
+                                <img src="{{ $torrent->category->icon }}" class="torrent-icon" style="padding-top: 1px; height:32px" loading="lazy">
                         @endswitch
                     @else
                         <i class="{{ $torrent->category->icon }} torrent-icon"
