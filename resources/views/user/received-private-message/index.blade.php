@@ -136,8 +136,8 @@
                 <p class="form__group form__group--horizontal">
                     <button
                         x-on:click.prevent="Swal.fire({
-                            title: '请确认',
-                            text: '是否确认删除所有私信',
+                            title: 'Confirm',
+                            text: 'Are you sure you want to delete all private messages?',
                             icon: 'warning',
                             showConfirmButton: true,
                             showCancelButton: true,

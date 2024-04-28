@@ -145,9 +145,9 @@ class SimilarTorrent extends Component
         $torrents = Torrent::whereKey($this->checked)->pluck('name')->toArray();
         $names = $torrents;
         $this->dispatchBrowserEvent('swal:confirm', [
-            'type'    => '警告',
-            'message' => '你确定吗?',
-            'body'    => '一旦删除，以下文件将无法恢复！'.nl2br("\n")
+            'type'    => 'warning',
+            'message' => 'Are you sure?',
+            'body'    => 'If deleted, you will not be able to recover the following files!'.nl2br("\n")
                         .nl2br(implode("\n", $names)),
         ]);
     }
@@ -216,14 +216,14 @@ class SimilarTorrent extends Component
             $pmuser = new PrivateMessage();
             $pmuser->sender_id = 1;
             $pmuser->receiver_id = $user;
-            $pmuser->subject = '批量删除种子 - '.$title.'! ';
-            $pmuser->message = '[b]请注意: [/b] 以下种子已KIMOJI中删除
+            $pmuser->subject = 'Bulk Torrents Deleted - '.$title.'! ';
+            $pmuser->message = '[b]Attention: [/b] The following torrents have been removed from our site.
             [list]
                 [*]'.implode(' [*]', $names).'
             [/list]
-            我们的系统显示您正在连接这些种子，现在您可以安全地从您的客户端中移除这些种子了
-                                    [b]删种原因: [/b] '.$this->reason.'
-                                    [color=red][b]这是一条系统消息，请勿回复！[/b][/color]';
+            Our system shows that you were either the uploader, a seeder or a leecher on said torrent. We just wanted to let you know you can safely remove it from your client.
+                                    [b]Removal Reason: [/b] '.$this->reason.'
+                                    [color=red][b]THIS IS AN AUTOMATED SYSTEM MESSAGE, PLEASE DO NOT REPLY![/b][/color]';
             $pmuser->save();
         }
 
@@ -233,8 +233,8 @@ class SimilarTorrent extends Component
 
         $this->dispatchBrowserEvent('swal:modal', [
             'type'    => 'success',
-            'message' => '种子删除成功',
-            'text'    => '已向所有下载了这些种子的用户发送了私信',
+            'message' => 'Torrents Deleted Successfully!',
+            'text'    => 'A personal message has been sent to all users that have downloaded these torrents',
         ]);
     }
 
