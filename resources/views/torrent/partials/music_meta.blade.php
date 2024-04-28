@@ -5,7 +5,7 @@
 
         // 移除并获取歌手名称，同时清理歌手名称中的括号
         $singerName = array_shift($parts);
-        $singerNameWithoutBrackets = preg_replace('/[\(\）].*?[\)\（]/u', '', $singerName);
+        $singerNameWithoutBrackets = preg_replace('/\s*\([^)]*\)/', '', $singerName);
 
         // 移除最后一个元素（包含元数据和"kimoji"）
         array_pop($parts);
