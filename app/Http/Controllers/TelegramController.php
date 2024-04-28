@@ -74,16 +74,17 @@ class TelegramController extends Controller
         }
     }
 
-    public function sendMusicTorrentNotification($id, $name, $size): void
+    public function sendMusicTorrentNotification($id, $name, $size, $songList): void
     {
         try {
-            $prefixMessage = str_contains($name, "KIMOJI") ? "DJ阿K发官种啦：" : "DJ阿K的新音乐播送通知：";
+            $prefixMessage = str_contains($name, "KIMOJI") ? "From DJ.K：" : "New Album Attention：";
 
             // 构建消息文本
             $message = $prefixMessage.PHP_EOL.PHP_EOL.
                 $name.PHP_EOL.PHP_EOL.
-                "体积:".$size.PHP_EOL.PHP_EOL.
-                "传送门:"."https://kimoji.club/torrents/".$id;
+                $songList.PHP_EOL.PHP_EOL.
+                "Size:".$size.PHP_EOL.PHP_EOL.
+                "URL:"."https://kimoji.club/torrents/".$id;
 
             $photo = 'https://kimoji.club/files/img/torrent-cover_'.$id.'.jpg'; // 海报图片 URL
             $chatId = "-1002109790916"; // Telegram 聊天 ID 或群组 ID

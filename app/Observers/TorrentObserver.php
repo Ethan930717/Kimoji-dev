@@ -64,10 +64,14 @@ class TorrentObserver
                     $fileSizeGB = round($torrent->size / 1e9, 2); // 将字节转换为 GB，并保留两位小数
                     $fileSizeText = "{$fileSizeGB} GB";
                     $telegramController = new TelegramController();
+                    $description = $torrent->description;
+                    preg_match('/\[spoiler=歌曲列表\](.*?)\[\/spoiler\]/s', $description, $matches);
+                    $songList = $matches[1] ?? '';
                     $telegramController->sendMusicTorrentNotification(
                         $torrent->id,
                         $torrent->name,
-                        $fileSizeText
+                        $fileSizeText,
+                        $songList
                     );
                     // Logic for artists
                     $artistName = explode(' - ', $torrent->name, 2)[0] ?? null;
