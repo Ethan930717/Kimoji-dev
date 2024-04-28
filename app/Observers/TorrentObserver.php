@@ -75,17 +75,33 @@ class TorrentObserver
                         $songList
                     );
                     // Logic for artists
-                    $artistName = explode(' - ', $torrent->name, 2)[0] ?? null;
-                    $artistName = trim($artistName);
+                    $pattern = '/^(.*?)\s*\((.*?)\)$/';
+                    $matches = [];
+                    if (preg_match($pattern, $torrent->name, $matches)) {
+                        $artistName = trim($matches[1]);
+                        $secondName = trim($matches[2]);
+                    } else {
+                        $artistName = trim($torrent->name);
+                        $secondName = null;
+                    }
+
                     $imageUrl = "/files/img/torrent-banner_{$torrent->id}.jpg";
 
                     // Check if artist already exists
-                    $artist = Artist::where('name', $artistName)->first();
+                    $query = Artist::query();
+                    $query->where('name', $artistName);
+                    if ($secondName !== null) {
+                        $query->where('second_name', $secondName);
+                    } else {
+                        $query->whereNull('second_name');
+                    }
 
+                    $artist = $query->first();
                     if (!$artist) {
                         // Artist does not exist, create new artist
                         $artist = new Artist();
                         $artist->name = $artistName;
+                        $artist->second_name = $secondName;
                         $artist->image_url = $imageUrl;
                         $artist->save();
                     }
