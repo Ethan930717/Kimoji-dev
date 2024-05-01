@@ -78,7 +78,7 @@ class TelegramController extends Controller
     {
         try {
             $prefixMessage = str_contains($name, "KIMOJI") ? "From DJ.K：" : "New Album Attention：";
-
+ 
             // 构建消息文本
             $message = $prefixMessage.PHP_EOL.PHP_EOL.
                 $name.PHP_EOL.
