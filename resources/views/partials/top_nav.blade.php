@@ -35,13 +35,13 @@
                         <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=1') }}"><i class="{{ config('other.font-awesome') }} fa-drum"></i> Pop/Rock </a></li>
                         <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=2') }}"><i class="{{ config('other.font-awesome') }} fa-saxophone"></i> Jazz </a></li>
                         <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=3') }}"><i class="{{ config('other.font-awesome') }} fa-violin"></i> Classical </a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=5') }}"><i class="{{ config('other.font-awesome') }} fa-headphones"></i> Electronic </a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=6') }}"><i class="{{ config('other.font-awesome') }} fa-heart"></i> Soul/Funk/R&B </a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=9') }}"><i class="{{ config('other.font-awesome') }} fa-microphone"></i> Hip-Hop/Rap </a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=10') }}"><i class="{{ config('other.font-awesome') }} fa-guitars"></i> Blues/Country/Folk </a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=11') }}"><i class="{{ config('other.font-awesome') }} fa-film"></i> Soundtracks </a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=12') }}"><i class="{{ config('other.font-awesome') }} fa-earth"></i> World Music </a></li>
-                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=15') }}"><i class="{{ config('other.font-awesome') }} fa-children"></i> Children </a></li>
+                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=4') }}"><i class="{{ config('other.font-awesome') }} fa-headphones"></i> Electronic </a></li>
+                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=5') }}"><i class="{{ config('other.font-awesome') }} fa-heart"></i> Soul/Funk/R&B </a></li>
+                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=10') }}"><i class="{{ config('other.font-awesome') }} fa-microphone"></i> Hip-Hop/Rap </a></li>
+                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=6') }}"><i class="{{ config('other.font-awesome') }} fa-guitars"></i> Blues/Country/Folk </a></li>
+                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=7') }}"><i class="{{ config('other.font-awesome') }} fa-film"></i> Soundtracks </a></li>
+                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=11') }}"><i class="{{ config('other.font-awesome') }} fa-earth"></i> World Music </a></li>
+                        <li><a href="{{ url('torrents?perPage=100&categories[0]=3&distributors[0]=13') }}"><i class="{{ config('other.font-awesome') }} fa-children"></i> Children </a></li>
                     </ul>
                 </li>
                 <li>
