@@ -73,6 +73,7 @@ class TorrentObserver
                         $torrent->name,
                         $torrent->distributor->name,
                         $torrent->region->name,
+                        $torrent->type->name,
                         $fileSizeText,
                         $songList
                     );
