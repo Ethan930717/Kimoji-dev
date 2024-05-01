@@ -74,16 +74,17 @@ class TelegramController extends Controller
         }
     }
 
-    public function sendMusicTorrentNotification($id, $name, $size, $songList): void
+    public function sendMusicTorrentNotification($id, $name, $distributor, $region, $size, $songList): void
     {
         try {
             $prefixMessage = str_contains($name, "KIMOJI") ? "From DJ.K：" : "New Album Attention：";
 
             // 构建消息文本
             $message = $prefixMessage.PHP_EOL.PHP_EOL.
-                $name.PHP_EOL.PHP_EOL.
-                $songList.PHP_EOL.PHP_EOL.
-                "Size:".$size.PHP_EOL.PHP_EOL.
+                $name.PHP_EOL.
+                "Genre:".$distributor." => ".$region.PHP_EOL.
+                $songList.PHP_EOL.
+                "Size:".$size.PHP_EOL.
                 "URL:"."https://kimoji.club/torrents/".$id;
 
             $photo = 'https://kimoji.club/files/img/torrent-cover_'.$id.'.jpg'; // 海报图片 URL

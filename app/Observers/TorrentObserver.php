@@ -71,6 +71,8 @@ class TorrentObserver
                     $telegramController->sendMusicTorrentNotification(
                         $torrent->id,
                         $torrent->name,
+                        $torrent->distributor->name,
+                        $torrent->region->name,
                         $fileSizeText,
                         $songList
                     );
