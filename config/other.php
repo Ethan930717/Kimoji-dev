@@ -123,7 +123,7 @@ return [
     'invite-only'   => true,
     'invite_expire' => '14',
 
-    'invites_restriced' => true,
+    'invites_restriced' => false,
     'invite_groups'     => [
         'Administrator',
         'Owner',
