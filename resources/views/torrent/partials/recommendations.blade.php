@@ -23,7 +23,7 @@
                 @empty
                     No Recommendations Found!
                @endforelse
-            @break
+               @break
 
             @default
                 No recommendations Found!
