@@ -17,6 +17,14 @@
                 @endforelse
 
                 @break
+            @case($torrent->category->music_meta)
+                @forelse ($recommendedMusic as $music)
+                    <x-music.poster :torrent="$music" />
+                @empty
+                    No Recommendations Found!
+               @endforelse
+            @break
+
             @default
                 No recommendations Found!
         @endswitch

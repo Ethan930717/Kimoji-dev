@@ -128,7 +128,6 @@ class TorrentController extends Controller
             $platforms = PlatformLogo::whereIn('id', collect($meta->platforms)->pluck('platform_logo')->toArray())->get();
         }
 
-        // 根据种子类型调用推荐方法
         $recommendedMusic = collect();
         if ($torrent->category->music_meta) {
             $recommendedMusic = $this->getRecommendedMusic($id);
@@ -480,14 +479,14 @@ class TorrentController extends Controller
     public function getRecommendedMusic(int|string $id)
     {
         $currentTorrent = Torrent::findOrFail($id);
-        $distributorId = $currentTorrent->distributor_id;
+        $regionId = $currentTorrent->region_id;
 
         // 假设音乐种类的category_id被正确设置
-        $recommendedMusic = Torrent::where('distributor_id', $distributorId)
+        $recommendedMusic = Torrent::where('region_id', $regionId)
             ->where('category_id', 3)
             ->where('id', '!=', $id)
             ->inRandomOrder()
-            ->take(12)
+            ->take(20)
             ->get();
 
         return $recommendedMusic;
