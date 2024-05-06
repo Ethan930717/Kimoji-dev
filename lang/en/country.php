@@ -67,7 +67,8 @@ return [
     'RO' => 'Romania',
     'TR' => 'Turkey',
     'UA' => 'Ukraine',
-
-
-
+    'HU' => 'Hungary',
+    'EE' => 'Eesti',
+    'CU' => 'Cuba',
+    'VG' => 'British Virgin Islands',
 ];
