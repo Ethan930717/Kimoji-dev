@@ -75,7 +75,7 @@ Route::middleware('language')->group(function (): void {
             ->name('webdav.stream');
 
         // Missing System
-        Route::prefix('secretgarden')->middleware(['checkAbovePU'])->group(function (): void {
+        Route::prefix('secretgarden')->group(function (): void {
             Route::get('/', [App\Http\Controllers\SecretGarden\HomeController::class, 'index'])->name('secretgarden.index');
         });
 
