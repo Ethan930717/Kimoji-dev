@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\ImageGalleryController;
 use App\Http\Controllers\MusicUploadController;
 use App\Http\Controllers\WebDAVController;
-use App\Http\Controllers\SecretGarden\HomeController;
 
 
 
@@ -76,10 +75,11 @@ Route::middleware('language')->group(function (): void {
             ->where(['subdir' => 'listen|image', 'filename' => '.*'])
             ->name('webdav.stream');
 
-        // Secretgarden
+        // ecretgarden System
         Route::prefix('secretgarden')->group(function (): void {
             Route::name('secretgarden.')->group(function (): void {
-                Route::get('/', [HomeController::class, 'index'])->name('index');
+                Route::get('/', [App\Http\Controllers\SecretGarden\HomeController::class, 'index'])->name('index');
+                Route::get('/actor', [App\Http\Controllers\ArtistController::class, 'index'])->name('actor.index');
             });
         });
 
