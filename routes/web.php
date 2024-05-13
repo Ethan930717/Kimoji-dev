@@ -74,6 +74,11 @@ Route::middleware('language')->group(function (): void {
             ->where(['subdir' => 'listen|image', 'filename' => '.*'])
             ->name('webdav.stream');
 
+        // Missing System
+        Route::prefix('secretgarden')->middleware(['checkAbovePU'])->group(function (): void {
+            Route::get('/', [App\Http\Controllers\SecretGarden\HomeController::class, 'index'])->name('secretgarden.index');
+        });
+
         // Articles System
         Route::prefix('articles')->group(function (): void {
             Route::name('articles.')->group(function (): void {
@@ -314,14 +319,6 @@ Route::middleware('language')->group(function (): void {
         });
     });
 
-    /*
-    |------------------------------------------
-    | Secrergarden (When Authorized)
-    |------------------------------------------
-    */
-    Route::prefix('secretgarden')->group(function (): void {
-        Route::get('/', [App\Http\Controllers\SecretGarden\HomeController::class, 'index'])->name('secretgarden.index');
-    });
     /*
     |------------------------------------------
     | MediaHub (When Authorized)
