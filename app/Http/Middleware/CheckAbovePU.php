@@ -36,7 +36,9 @@ class CheckAbovePU
         ])->pluck('id')->toArray();
 
         // 检查当前用户是否属于这些组
-        abort_unless(!in_array($request->user()->group_id, $restrictedGroupIds), 403);
+        if (in_array($request->user()->group_id, $restrictedGroupIds)) {
+            abort(403, 'Access denied: You are in a restricted group.');
+        }
 
         return $next($request);
     }
