@@ -88,6 +88,7 @@ class Kernel extends HttpKernel
         'auth'             => Middleware\Authenticate::class,
         'auth.basic'       => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'banned'           => Middleware\CheckIfBanned::class,
+        'checkAbovePU'     => Middleware\CheckAbovePU::class,
         'bindings'         => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers'    => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can'              => \Illuminate\Auth\Middleware\Authorize::class,
@@ -99,6 +100,7 @@ class Kernel extends HttpKernel
         'throttle'         => \Illuminate\Routing\Middleware\ThrottleRequestsWithRedis::class,
         'signed'           => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'verified'         => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class
+        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
+
     ];
 }

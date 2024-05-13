@@ -66,6 +66,10 @@ Route::middleware('language')->group(function (): void {
     | Website (When Authorized) (Alpha Ordered)
     |---------------------------------------------------------------------------------
     */
+    Route::middleware(['auth', 'banned', 'verified', 'checkAbovePU'])->group(function (): void {
+        Route::get('/secretgarden', [App\Http\Controllers\SecretGarden\HomeController::class, 'index'])->name('secretgarden.index');
+    });
+
 
     Route::middleware(['auth', 'banned', 'verified'])->group(function (): void {
         // General
