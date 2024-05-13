@@ -66,11 +66,6 @@ Route::middleware('language')->group(function (): void {
     | Website (When Authorized) (Alpha Ordered)
     |---------------------------------------------------------------------------------
     */
-    Route::middleware(['auth', 'banned', 'verified', 'checkAbovePU'])->group(function (): void {
-        Route::get('/secretgarden', [App\Http\Controllers\SecretGarden\HomeController::class, 'index'])->name('secretgarden.index');
-    });
-
-
     Route::middleware(['auth', 'banned', 'verified'])->group(function (): void {
         // General
         Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
@@ -319,6 +314,14 @@ Route::middleware('language')->group(function (): void {
         });
     });
 
+    /*
+    |------------------------------------------
+    | Secrergarden (When Authorized)
+    |------------------------------------------
+    */
+    Route::prefix('secretgarden')->middleware(['auth', 'banned', 'checkAbovePU'])->group(function (): void {
+        Route::get('/', [App\Http\Controllers\SecretGarden\HomeController::class, 'index'])->name('secretgarden.index');
+    });
     /*
     |------------------------------------------
     | MediaHub (When Authorized)
