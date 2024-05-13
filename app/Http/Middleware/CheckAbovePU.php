@@ -24,7 +24,8 @@ class CheckAbovePU
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        $specialGroupIds = Group::whereNotIn('slug', [
+        // 获取所有不允许访问的组的 ID
+        $restrictedGroupIds = Group::whereIn('slug', [
             'validating',
             'guest',
             'user',
@@ -34,7 +35,8 @@ class CheckAbovePU
             'pruned'
         ])->pluck('id')->toArray();
 
-        abort_unless(in_array($request->user()->group_id, $specialGroupIds), 403);
+        // 检查当前用户是否属于这些组
+        abort_unless(!in_array($request->user()->group_id, $restrictedGroupIds), 403);
 
         return $next($request);
     }

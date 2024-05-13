@@ -54,4 +54,22 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e): void {
         });
     }
+
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Throwable  $exception
+     * @return \Illuminate\Http\Response
+     */
+    public function render($request, Throwable $exception)
+    {
+        // 检查异常是否是 HttpException，并且状态码为 403
+        if ($this->isHttpException($exception) && $exception->getStatusCode() == 403) {
+            return response()->view('errors.403', [], 403);
+        }
+
+        return parent::render($request, $exception);
+    }
+
 }

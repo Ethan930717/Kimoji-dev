@@ -319,7 +319,7 @@ Route::middleware('language')->group(function (): void {
     | Secrergarden (When Authorized)
     |------------------------------------------
     */
-    Route::prefix('secretgarden')->middleware(['auth', 'banned', 'checkAbovePU'])->group(function (): void {
+    Route::prefix('secretgarden')->middleware(['checkAbovePU'])->group(function (): void {
         Route::get('/', [App\Http\Controllers\SecretGarden\HomeController::class, 'index'])->name('secretgarden.index');
     });
     /*
