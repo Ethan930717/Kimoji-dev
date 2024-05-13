@@ -76,8 +76,11 @@ Route::middleware('language')->group(function (): void {
 
         // Missing System
         Route::prefix('secretgarden')->group(function (): void {
-            Route::get('/', [App\Http\Controllers\SecretGarden\HomeController::class, 'index'])->name('secretgarden.index');
+            Route::name('secretgarden.')->group(function (): void {
+                Route::get('/', [App\Http\Controllers\SecretGarden\HomeController::class, 'index'])->name('index');
+            });
         });
+
 
         // Articles System
         Route::prefix('articles')->group(function (): void {
