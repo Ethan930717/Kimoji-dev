@@ -12,8 +12,8 @@ class ActorController extends Controller
 {
     public function index()
     {
-        $actors = Actor::all();
-        return view('actors.index', compact('actors'));
+        $actor = Actor::all();
+        return view('actor.index', compact('actor'));
     }
 
     public function show($id)
@@ -23,6 +23,6 @@ class ActorController extends Controller
             ->where('category_id', 3)
             ->get();
 
-        return view('actors.show', compact('actor', 'torrents'));
+        return view('actor.show', compact('actor', 'torrents'));
     }
 }

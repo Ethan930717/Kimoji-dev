@@ -23,7 +23,7 @@ class ActorSearch extends Component
             ->paginate(10);
 
         return view('livewire.actor-search', [
-            'actors' => $actors
+            'actor' => $actors
         ]);
     }
 }
