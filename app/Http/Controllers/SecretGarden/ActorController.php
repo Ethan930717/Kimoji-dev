@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\SecretGarden;
 
+use App\Http\Controllers\Controller;
 use App\Models\Actor;
 use Illuminate\Http\Request;
 use App\Models\Torrent;
+
 
 class ActorController extends Controller
 {
@@ -16,7 +18,7 @@ class ActorController extends Controller
 
     public function show($id)
     {
-        $actor = Actor::findOrFail($id); // 修改为正确的模型名称
+        $actor = Actor::findOrFail($id);
         $torrents = Torrent::where('name', 'like', '%'.$actor->name.'%')
             ->where('category_id', 3)
             ->get();
