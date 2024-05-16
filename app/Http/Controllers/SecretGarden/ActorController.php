@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Actor;
 use Illuminate\Http\Request;
-use App\Models\Artist;
 use App\Models\Torrent;
 
 
-class ArtistController extends Controller
+class ActorController extends Controller
 {
     public function index()
     {
