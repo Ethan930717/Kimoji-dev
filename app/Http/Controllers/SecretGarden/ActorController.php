@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\SecretGarden;
 
 use App\Models\Actor;
 use Illuminate\Http\Request;
