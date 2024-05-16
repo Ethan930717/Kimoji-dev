@@ -78,8 +78,8 @@ Route::middleware('language')->group(function (): void {
         // Secretgarden System
         Route::prefix('secretgarden')->middleware(['checkAbovePU'])->name('secretgarden.')->group(function (): void {
             Route::get('/', [App\Http\Controllers\SecretGarden\HomeController::class, 'index'])->name('index');
-            Route::get('/actor', [ActorController::class, 'index'])->name('actor.index');
-            Route::get('/actor/{id}', [ActorController::class, 'show'])->name('actor.show');
+            Route::get('/actor', [App\Http\Controllers\SecretGarden\ActorController::class, 'index'])->name('actor.index');
+            Route::get('/actor/{id}', [App\Http\Controllers\SecretGarden\ActorController::class, 'show'])->name('actor.show');
         });
 
 
