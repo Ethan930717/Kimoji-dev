@@ -88,7 +88,7 @@ class Kernel extends HttpKernel
         'auth'             => Middleware\Authenticate::class,
         'auth.basic'       => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'banned'           => Middleware\CheckIfBanned::class,
-        'checkAbovePU'     => Middleware\CheckAbovePU::class,
+        'checkAbovePU'     => \App\Http\Middleware\CheckAbovePU::class,
         'bindings'         => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers'    => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can'              => \Illuminate\Auth\Middleware\Authorize::class,

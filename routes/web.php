@@ -75,8 +75,8 @@ Route::middleware('language')->group(function (): void {
             ->where(['subdir' => 'listen|image', 'filename' => '.*'])
             ->name('webdav.stream');
 
-        // ecretgarden System
-        Route::prefix('secretgarden')->middleware(['CheckAbovePU'])->name('secretgarden.')->group(function (): void {
+        // Secretgarden System
+        Route::prefix('secretgarden')->middleware(['checkAbovePU'])->name('secretgarden.')->group(function (): void {
             Route::get('/', [App\Http\Controllers\SecretGarden\HomeController::class, 'index'])->name('index');
             Route::get('/actor', [App\Http\Controllers\SecretGarden\ActorController::class, 'index'])->name('actor.index');
         });
