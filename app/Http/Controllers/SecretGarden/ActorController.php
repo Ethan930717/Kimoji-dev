@@ -12,8 +12,8 @@ class ActorController extends Controller
 {
     public function index()
     {
-        $actor = Actor::all();
-        return view('actor.index', compact('actor'));
+        $actors = Actor::all();
+        return view('secretgarden.actor.index', compact('actors'));
     }
 
     public function show($id)
@@ -23,6 +23,6 @@ class ActorController extends Controller
             ->where('category_id', 3)
             ->get();
 
-        return view('actor.show', compact('actor', 'torrents'));
+        return view('secretgarden.actor.show', compact('actor', 'torrents'));
     }
 }
