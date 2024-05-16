@@ -29,7 +29,7 @@
     >
         @forelse ($actors as $actor)
             <figure style="display: flex; flex-direction: column; align-items: center">
-                <a href="{{ route('actors.show', ['id' => $actor->id]) }}">
+                <a href="{{ route('secretgarden.actor.show', ['id' => $actor->id]) }}">
                     <img
                         alt="{{ $actor->name }}"
                         src="{{ $actor->image_url ? $actor->image_url : 'https://via.placeholder.com/160x240' }}"

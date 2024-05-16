@@ -7,7 +7,6 @@ use App\Models\Actor;
 use Illuminate\Http\Request;
 use App\Models\Torrent;
 
-
 class ActorController extends Controller
 {
     public function index()
@@ -19,7 +18,7 @@ class ActorController extends Controller
     public function show($id)
     {
         $actor = Actor::findOrFail($id);
-        $torrents = Torrent::where('name', 'like', '%'.$actor->name.'%')
+        $torrents = Torrent::where('name', 'like', '%' . $actor->name . '%')
             ->where('category_id', 3)
             ->get();
 

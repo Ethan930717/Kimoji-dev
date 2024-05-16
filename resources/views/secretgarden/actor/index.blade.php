@@ -1,18 +1,19 @@
-@extends('layout.default')
+@extends('layouts.app')
 
 @section('title')
-    <title>{{ __('artists.title') }} - {{ config('other.title') }}</title>
+    <title>{{ __('actors.title') }} - {{ config('other.title') }}</title>
 @endsection
 
 @section('meta')
-    <meta name="description" content="{{ __('artists.description') }}" />
+    <meta name="description" content="{{ __('actors.description') }}" />
 @endsection
 
 @section('breadcrumbs')
     <li class="breadcrumb--active">
-        {{ __('artists.title') }}
+        {{ __('actors.title') }}
     </li>
 @endsection
+
 @section('breadcrumbs')
     <li class="breadcrumbV2">
         <a class="breadcrumb__link" href="{{ route('home.index') }}">
@@ -20,7 +21,7 @@
         </a>
     </li>
     <li class="breadcrumb--active">
-        {{ __('artists.title') }}
+        {{ __('actors.title') }}
     </li>
 @endsection
 

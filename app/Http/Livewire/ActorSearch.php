@@ -20,10 +20,10 @@ class ActorSearch extends Component
     {
         $actors = Actor::where('name', 'like', '%' . $this->search . '%')
             ->orWhere('english_name', 'like', '%' . $this->search . '%')
-            ->paginate(10);
+            ->paginate(50);
 
         return view('livewire.actor-search', [
-            'actor' => $actors
+            'actors' => $actors
         ]);
     }
 }
