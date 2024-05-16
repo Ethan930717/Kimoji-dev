@@ -25,5 +25,5 @@
 @endsection
 
 @section('content')
-    @livewire('artist-search')
+    @livewire('actor-search')
 @endsection

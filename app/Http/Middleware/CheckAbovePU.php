@@ -24,7 +24,6 @@ class CheckAbovePU
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        // 获取所有不允许访问的组的 ID
         $restrictedGroupIds = Group::whereIn('slug', [
             'validating',
             'guest',
