@@ -42,5 +42,11 @@ return [
     'information'        => 'Information',
     'nationality'        => 'Nationality',
     'lost_meta'          => 'No artist biography available, your contribution to the metadata is welcome.',
+    'zodiac'        => 'Zodiac',
+    'hobbies_skills'        => 'Hobbies&Skills',
+    'artist-videos'        => 'Videos',
+    'birth_place'        => 'Birth Place',
+    'blood_type'        => 'Blood Type',
+
 ];
 

@@ -24,38 +24,44 @@
         <div class="artist-header" style="display: flex; align-items: center; width: 100%;">
             <img
                 alt="{{ $actor->name }}"
-                src="{{ $actor->image_url ? $actor->image_url : 'https://via.placeholder.com/160x240' }}"
+                src="{{ $actor->image_url ? $actor->image_url : 'https://via.placeholder.com/150x150' }}"
                 class="artist-image"
                 style="width: 150px; height: 150px; border-radius:16px; object-fit: cover; margin-right: 20px;"
             />
-            <h2 class="artist-name" style="margin: 0;">{{ $actor->name }}</h2>
+            <div style="flex: 1;">
+                <h2 class="artist-name" style="margin: 0;">
+                    {{ $actor->name }}
+                    ({{ str_replace('_', ' ', ucwords($actor->english_name, '_')) }})
+                    @if($actor->nationality)
+                        <img
+                            src="{{ url('/img/flags/' . strtolower($actor->nationality) . '.png') }}"
+                            alt="{{ $actor->nationality }}"
+                            style="width: 24px; height: 16px; margin-left: 10px;"
+                        />
+                    @endif
+                </h2>
+                @if($actor->birth_date)
+                    <p><strong>{{ __('actors.born') }}:</strong> {{ $actor->birth_date }}</p>
+                @endif
+                @if($actor->zodiac)
+                    <p><strong>{{ __('actors.zodiac') }}:</strong> {{ $actor->zodiac }}</p>
+                @endif
+                @if($actor->blood_type)
+                    <p><strong>{{ __('actors.blood_type') }}:</strong> {{ $actor->blood_type }}</p>
+                @endif
+                @if($actor->measurements)
+                    <p><strong>{{ __('actors.measurements') }}:</strong> {{ $actor->measurements }}</p>
+                @endif
+                @if($actor->birth_place)
+                    <p><strong>{{ __('actors.birth_place') }}:</strong> {{ $actor->birth_place }}</p>
+                @endif
+                @if($actor->hobbies_skills)
+                    <p><strong>{{ __('actors.hobbies_skills') }}:</strong> {{ $actor->hobbies_skills }}</p>
+                @endif
+            </div>
         </div>
 
         <div class="artist-info" style="width: 100%; margin-top: 20px;">
-            @if($actor->english_name)
-                <p><strong>{{ __('actors.english_name') }}:</strong> {{ str_replace('_', ' ', $actor->english_name) }}</p>
-            @endif
-            @if($actor->nationality)
-                <p><strong>{{ __('actors.nationality') }}:</strong> {{ $actor->nationality }}</p>
-            @endif
-            @if($actor->birth_date)
-                <p><strong>{{ __('actors.birth_date') }}:</strong> {{ $actor->birth_date }}</p>
-            @endif
-            @if($actor->zodiac)
-                <p><strong>{{ __('actors.zodiac') }}:</strong> {{ $actor->zodiac }}</p>
-            @endif
-            @if($actor->blood_type)
-                <p><strong>{{ __('actors.blood_type') }}:</strong> {{ $actor->blood_type }}</p>
-            @endif
-            @if($actor->measurements)
-                <p><strong>{{ __('actors.measurements') }}:</strong> {{ $actor->measurements }}</p>
-            @endif
-            @if($actor->birth_place)
-                <p><strong>{{ __('actors.birth_place') }}:</strong> {{ $actor->birth_place }}</p>
-            @endif
-            @if($actor->hobbies_skills)
-                <p><strong>{{ __('actors.hobbies_skills') }}:</strong> {{ $actor->hobbies_skills }}</p>
-            @endif
             @if($actor->description)
                 <div style="max-height: 200px; overflow-y: auto;">
                     <p><strong>{{ __('actors.description') }}:</strong> {!! nl2br(e($actor->description)) !!}</p>
