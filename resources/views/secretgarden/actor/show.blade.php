@@ -35,6 +35,9 @@
             @if($actor->english_name)
                 <p><strong>{{ __('actors.english_name') }}:</strong> {{ str_replace('_', ' ', $actor->english_name) }}</p>
             @endif
+            @if($actor->nationality)
+                <p><strong>{{ __('actors.nationality') }}:</strong> {{ $actor->nationality }}</p>
+            @endif
             @if($actor->birth_date)
                 <p><strong>{{ __('actors.birth_date') }}:</strong> {{ $actor->birth_date }}</p>
             @endif
@@ -53,9 +56,6 @@
             @if($actor->hobbies_skills)
                 <p><strong>{{ __('actors.hobbies_skills') }}:</strong> {{ $actor->hobbies_skills }}</p>
             @endif
-            @if($actor->nationality)
-                <p><strong>{{ __('actors.nationality') }}:</strong> {{ $actor->nationality }}</p>
-            @endif
             @if($actor->description)
                 <div style="max-height: 200px; overflow-y: auto;">
                     <p><strong>{{ __('actors.description') }}:</strong> {!! nl2br(e($actor->description)) !!}</p>
@@ -65,19 +65,16 @@
     </div>
 
     {{-- 艺术家资源展示 --}}
-    @php
-        $videos = \App\Models\Video::where('actor_id', $actor->id)->get();
-    @endphp
-    @if ($videos->isNotEmpty())
+    @if ($actor->videos->isNotEmpty())
         <section class="panelV2" style="margin-top: 20px">
             <div class="panel__heading-container" style="display: flex; align-items: center; justify-content: space-between;" x-data>
                 <h2 class="panel__heading">
-                    {{ __('actors.artist-videos') }} ({{ $videos->count() }})
+                    {{ __('actors.artist-videos') }} ({{ $actor->videos->count() }})
                 </h2>
             </div>
             <div x-data>
                 <ul class="featured-carousel" x-ref="featured">
-                    @foreach ($videos as $video)
+                    @foreach ($actor->videos as $video)
                         <li class="featured-carousel__slide">
                             <div class="video-card" style="text-align: center;">
                                 <img

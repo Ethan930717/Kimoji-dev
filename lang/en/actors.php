@@ -40,6 +40,7 @@ return [
     'insufficient'       => 'Insufficient Permissions to Listen',
     'artist-torrents'    => 'Torrents',
     'information'        => 'Information',
+    'nationality'        => 'Nationality',
     'lost_meta'          => 'No artist biography available, your contribution to the metadata is welcome.',
 ];
 

@@ -15,7 +15,7 @@ class Video extends Model
 
     // 设置模型的 fillable 属性，允许批量赋值
     protected $fillable = [
-        'artist_id', 'artist_name', 'artist_code', 'title', 'video_rank',
+        'actor_id', 'actor_name', 'item_code', 'title', 'video_rank',
         'item_number', 'duration', 'release_date', 'director', 'series',
         'maker', 'label', 'genres', 'tags', 'description', 'poster_url', 'video_images'
     ];
@@ -23,12 +23,9 @@ class Video extends Model
     // 指定日期字段
     protected $dates = ['release_date'];
 
-    // 如果有相关联的模型，如 Torrents，可以定义关联方法
-    // 示例：假设有一个 Torrents 模型与 Video 模型相关联
-    public function torrents()
+    // 定义与 Actor 模型的关联
+    public function actor()
     {
-        return $this->hasMany(Torrent::class);
+        return $this->belongsTo(Actor::class, 'actor_id');
     }
-
 }
-
