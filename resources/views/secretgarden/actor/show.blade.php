@@ -53,13 +53,13 @@
             @if($actor->hobbies_skills)
                 <p><strong>{{ __('actors.hobbies_skills') }}:</strong> {{ $actor->hobbies_skills }}</p>
             @endif
+            @if($actor->nationality)
+                <p><strong>{{ __('actors.nationality') }}:</strong> {{ $actor->nationality }}</p>
+            @endif
             @if($actor->description)
                 <div style="max-height: 200px; overflow-y: auto;">
                     <p><strong>{{ __('actors.description') }}:</strong> {!! nl2br(e($actor->description)) !!}</p>
                 </div>
-            @endif
-            @if($actor->nationality)
-                <p><strong>{{ __('actors.nationality') }}:</strong> {{ $actor->nationality }}</p>
             @endif
         </div>
     </div>
