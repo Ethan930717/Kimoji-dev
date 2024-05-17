@@ -24,10 +24,10 @@
             <thead>
             <tr>
                 <th></th> <!-- 用于演员头像 -->
-                <th>{{ __('common.name') }}</th>
+                <th>{{ __('actors.artname') }}</th>
                 <th>
                     <a href="#" wire:click.prevent="sortBy('english_name')">
-                        {{ __('common.english_name') }}
+                        {{ __('actors.english_name') }}
                         @if ($sortField == 'english_name')
                             @if ($sortDirection == 'asc')
                                 &uarr;
@@ -39,7 +39,7 @@
                 </th>
                 <th>
                     <a href="#" wire:click.prevent="sortBy('birth_date')">
-                        {{ __('common.birth_date') }}
+                        {{ __('actors.born') }}
                         @if ($sortField == 'birth_date')
                             @if ($sortDirection == 'asc')
                                 &uarr;
@@ -51,7 +51,7 @@
                 </th>
                 <th>
                     <a href="#" wire:click.prevent="sortBy('measurements')">
-                        {{ __('common.measurements') }}
+                        {{ __('actors.measurements') }}
                         @if ($sortField == 'measurements')
                             @if ($sortDirection == 'asc')
                                 &uarr;
@@ -76,7 +76,7 @@
                         </a>
                     </td>
                     <td>{{ $actor->name }}</td>
-                    <td>{{ $actor->english_name }}</td>
+                    <td>{{ str_replace('_', ' ', $actor->english_name) }}</td>
                     <td>{{ $actor->birth_date }}</td>
                     <td>{{ $actor->measurements }}</td>
                 </tr>

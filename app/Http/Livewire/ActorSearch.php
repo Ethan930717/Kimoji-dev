@@ -37,7 +37,7 @@ class ActorSearch extends Component
             ->where('name', 'like', '%' . $this->search . '%')
             ->orWhere('english_name', 'like', '%' . $this->search . '%')
             ->orderBy($this->sortField, $this->sortDirection)
-            ->paginate(10);
+            ->paginate(50);
 
         return view('livewire.actor-search', [
             'actors' => $actors,
