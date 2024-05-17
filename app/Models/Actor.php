@@ -15,8 +15,8 @@ class Actor extends Model
     protected $fillable = ['name', 'english_name', 'birth_date', 'zodiac', 'blood_type', 'measurements', 'birthplace', 'hobbies_skills', 'description', 'gender', 'nationality', 'image_url'];
     protected $dates = ['birth_date'];
 
-    public function torrents()
+    public function videos()
     {
-        return $this->hasMany(Torrent::class);
+        return $this->hasMany(Video::class, 'actor_id');
     }
 }
