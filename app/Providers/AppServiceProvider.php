@@ -65,6 +65,8 @@ class AppServiceProvider extends ServiceProvider
             $view->with(['footer_pages' => $footerPages]);
         });
 
+        Blade::component('video-card', \App\View\Components\VideoCard::class);
+
         // Hidden Captcha
         Blade::directive('hiddencaptcha', fn ($mustBeEmptyField = '_username') => sprintf('<?= App\Helpers\HiddenCaptcha::render(%s); ?>', $mustBeEmptyField));
 

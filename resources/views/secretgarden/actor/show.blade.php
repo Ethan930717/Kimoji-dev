@@ -65,25 +65,21 @@
     </div>
 
     {{-- 艺术家资源展示 --}}
-    @if ($actor->videos->isNotEmpty())
+    @php
+        $videos = \App\Models\Video::where('actor_id', $actor->id)->get();
+    @endphp
+    @if ($videos->isNotEmpty())
         <section class="panelV2" style="margin-top: 20px">
             <div class="panel__heading-container" style="display: flex; align-items: center; justify-content: space-between;" x-data>
                 <h2 class="panel__heading">
-                    {{ __('actors.artist-videos') }} ({{ $actor->videos->count() }})
+                    {{ __('actors.artist-videos') }} ({{ $videos->count() }})
                 </h2>
             </div>
             <div x-data>
                 <ul class="featured-carousel" x-ref="featured">
-                    @foreach ($actor->videos as $video)
+                    @foreach ($videos as $video)
                         <li class="featured-carousel__slide">
-                            <div class="video-card" style="text-align: center;">
-                                <img
-                                    alt="{{ $video->item_code }}"
-                                    src="{{ $video->poster_url ? $video->poster_url : 'https://via.placeholder.com/160x240' }}"
-                                    style="width: 140px; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 10px;"
-                                />
-                                <div>{{ $video->item_code }}</div>
-                            </div>
+                            <x-video-card :video="$video" />
                         </li>
                     @endforeach
                 </ul>
