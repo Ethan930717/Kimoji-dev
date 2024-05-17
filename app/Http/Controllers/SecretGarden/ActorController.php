@@ -17,11 +17,7 @@ class ActorController extends Controller
 
     public function show($id)
     {
-        $actor = Actor::findOrFail($id);
-        $torrents = Torrent::where('name', 'like', '%' . $actor->name . '%')
-            ->where('category_id', 3)
-            ->get();
-
-        return view('secretgarden.actor.show', compact('actor', 'torrents'));
+        $actor = Actor::with('videos')->findOrFail($id);
+        return view('actors.show', compact('actor'));
     }
 }
