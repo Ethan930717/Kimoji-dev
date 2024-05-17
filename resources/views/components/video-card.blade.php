@@ -17,7 +17,7 @@
             <span class="torrent-card__duration">
                 <i class="fas fa-clock"></i> {{ $formattedDuration }}
             </span>
-            @if {{ $video->video_rank }}
+            @if ($video->video_rank)
                 <span class="torrent-card__rating">
                     <i class="fas fa-star"></i> {{ $video->video_rank }}
                 </span>
