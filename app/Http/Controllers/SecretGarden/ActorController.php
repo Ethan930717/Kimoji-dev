@@ -18,6 +18,6 @@ class ActorController extends Controller
     public function show($id)
     {
         $actor = Actor::with('videos')->findOrFail($id);
-        return view('actors.show', compact('actor'));
+        return view('secretgarden.actor.show', compact('actor'));
     }
 }
