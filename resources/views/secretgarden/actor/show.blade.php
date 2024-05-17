@@ -20,90 +20,99 @@
 @endsection
 
 @section('content')
-    <div class="artist-detail-container" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
-        <div class="artist-header" style="flex: 1; min-width: 500px;">
+    <div class="artist-detail-container" style="display: flex; flex-direction: column; align-items: flex-start; flex-wrap: wrap;">
+        <div class="artist-header" style="display: flex; align-items: center; width: 100%;">
             <img
                 alt="{{ $actor->name }}"
                 src="{{ $actor->image_url ? $actor->image_url : 'https://via.placeholder.com/160x240' }}"
                 class="artist-image"
-                style="width: 500px; height: 500px; border-radius:16px; object-fit: cover;"
+                style="width: 150px; height: 150px; border-radius:16px; object-fit: cover; margin-right: 20px;"
             />
+            <h2 class="artist-name" style="margin: 0;">{{ $actor->name }}</h2>
         </div>
 
-        <div class="artist-info" style="flex: 2;min-width: 300px;margin-left: 40px;">
-            <div class="artist-header" style="display: flex; align-items: center; min-width: 300px;">
-                <h2 class="artist-name" style="margin: 0;">{{ $actor->name }}</h2>
-            </div>
+        <div class="artist-info" style="width: 100%; margin-top: 20px;">
+            @if($actor->english_name)
+                <p><strong>{{ __('actors.english_name') }}:</strong> {{ str_replace('_', ' ', $actor->english_name) }}</p>
+            @endif
             @if($actor->birth_date)
-                <p><strong>{{ __('actor.born') }}:</strong> {{ $actor->birth_date }}</p>
+                <p><strong>{{ __('actors.birth_date') }}:</strong> {{ $actor->birth_date }}</p>
             @endif
             @if($actor->zodiac)
-                <p><strong>{{ __('actor.zodiac') }}:</strong> {{ $actor->zodiac }}</p>
+                <p><strong>{{ __('actors.zodiac') }}:</strong> {{ $actor->zodiac }}</p>
             @endif
             @if($actor->blood_type)
-                <p><strong>{{ __('actor.blood_type') }}:</strong> {{ $actor->blood_type }}</p>
+                <p><strong>{{ __('actors.blood_type') }}:</strong> {{ $actor->blood_type }}</p>
             @endif
             @if($actor->measurements)
-                <p><strong>{{ __('actor.measurements') }}:</strong> {{ $actor->measurements }}</p>
+                <p><strong>{{ __('actors.measurements') }}:</strong> {{ $actor->measurements }}</p>
             @endif
             @if($actor->birth_place)
-                <p><strong>{{ __('artists.birth_place') }}:</strong> {{ $actor->birth_place }}</p>
+                <p><strong>{{ __('actors.birth_place') }}:</strong> {{ $actor->birth_place }}</p>
             @endif
             @if($actor->hobbies_skills)
-                <p><strong>{{ __('artists.hobbies_skills') }}:</strong> {{ $actor->hobbies_skills }}</p>
+                <p><strong>{{ __('actors.hobbies_skills') }}:</strong> {{ $actor->hobbies_skills }}</p>
             @endif
             @if($actor->description)
                 <div style="max-height: 200px; overflow-y: auto;">
-                    <p><strong>{{ __('artists.description') }}:</strong> {!! nl2br(e($actor->description)) !!}</p>
+                    <p><strong>{{ __('actors.description') }}:</strong> {!! nl2br(e($actor->description)) !!}</p>
                 </div>
+            @endif
+            @if($actor->nationality)
+                <p><strong>{{ __('actors.nationality') }}:</strong> {{ $actor->nationality }}</p>
             @endif
         </div>
     </div>
 
     {{-- 艺术家资源展示 --}}
-        @if ($torrents->isNotEmpty())
-            <section class="panelV2" style="margin-top: 20px">
-                <div class="panel__heading-container" style="display: flex; align-items: center; justify-content: space-between;" x-data>
-                    <h2 class="panel__heading">
-                        {{ __('artists.artist-torrents') }} ({{ $torrents->count() }})
-                    </h2>
-                    <a href="{{ route('users.torrent_zip.downloadArtistTorrents', ['user' => auth()->user()->username, 'artistId' => $actor->id]) }}" class="form__button form__button--outlined">
-                        <i class="{{ config('other.font-awesome') }} fa-star"></i> Download
-                    </a>
-                </div>
-                <div x-data>
-                    <ul class="featured-carousel" x-ref="featured">
-                        @foreach ($torrents as $torrent)
-                            <li class="featured-carousel__slide">
-                                <x-torrent.card :torrent="$torrent" />
-                            </li>
-                        @endforeach
-                    </ul>
-                    <nav class="featured-carousel__nav">
-                        <button
-                            class="featured-carousel__previous"
-                            x-on:click="
-                        $refs.featured.scrollLeft == 16
-                            ? ($refs.featured.scrollLeft = $refs.featured.scrollWidth)
-                            : ($refs.featured.scrollLeft -= ($refs.featured.children[0].offsetWidth + 16) / 2 + 2)
-                    "
-                        >
-                            <i class="{{ \config('other.font-awesome') }} fa-angle-left"></i>
-                        </button>
-                        <button
-                            class="featured-carousel__next"
-                            x-on:click="
-                        $refs.featured.scrollLeft == $refs.featured.scrollWidth - $refs.featured.offsetWidth - 16
-                            ? ($refs.featured.scrollLeft = 0)
-                            : ($refs.featured.scrollLeft += ($refs.featured.children[0].offsetWidth + 16) / 2 + 2)
-                    "
-                        >
-                            <i class="{{ \config('other.font-awesome') }} fa-angle-right"></i>
-                        </button>
-                    </nav>
-                </div>
-            </section>
-        @endif
-
-    </section>
+    @php
+        $videos = \App\Models\Video::where('actor_id', $actor->id)->get();
+    @endphp
+    @if ($videos->isNotEmpty())
+        <section class="panelV2" style="margin-top: 20px">
+            <div class="panel__heading-container" style="display: flex; align-items: center; justify-content: space-between;" x-data>
+                <h2 class="panel__heading">
+                    {{ __('actors.artist-videos') }} ({{ $videos->count() }})
+                </h2>
+            </div>
+            <div x-data>
+                <ul class="featured-carousel" x-ref="featured">
+                    @foreach ($videos as $video)
+                        <li class="featured-carousel__slide">
+                            <div class="video-card" style="text-align: center;">
+                                <img
+                                    alt="{{ $video->item_code }}"
+                                    src="{{ $video->poster_url ? $video->poster_url : 'https://via.placeholder.com/160x240' }}"
+                                    style="width: 140px; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 10px;"
+                                />
+                                <div>{{ $video->item_code }}</div>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+                <nav class="featured-carousel__nav">
+                    <button
+                        class="featured-carousel__previous"
+                        x-on:click="
+                            $refs.featured.scrollLeft == 16
+                                ? ($refs.featured.scrollLeft = $refs.featured.scrollWidth)
+                                : ($refs.featured.scrollLeft -= ($refs.featured.children[0].offsetWidth + 16) / 2 + 2)
+                        "
+                    >
+                        <i class="{{ \config('other.font-awesome') }} fa-angle-left"></i>
+                    </button>
+                    <button
+                        class="featured-carousel__next"
+                        x-on:click="
+                            $refs.featured.scrollLeft == $refs.featured.scrollWidth - $refs.featured.offsetWidth - 16
+                                ? ($refs.featured.scrollLeft = 0)
+                                : ($refs.featured.scrollLeft += ($refs.featured.children[0].offsetWidth + 16) / 2 + 2)
+                        "
+                    >
+                        <i class="{{ \config('other.font-awesome') }} fa-angle-right"></i>
+                    </button>
+                </nav>
+            </div>
+        </section>
+    @endif
 @endsection
