@@ -19,28 +19,74 @@
         </div>
     </header>
     {{ $actors->links('partials.pagination') }}
-    <div
-        class="panel__body"
-        style="
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 2rem;
-        "
-    >
-        @forelse ($actors as $actor)
-            <figure style="display: flex; flex-direction: column; align-items: center">
-                <a href="{{ route('secretgarden.actor.show', ['id' => $actor->id]) }}">
-                    <img
-                        alt="{{ $actor->name }}"
-                        src="{{ $actor->image_url ? $actor->image_url : 'https://via.placeholder.com/160x240' }}"
-                        style="width: 140px; height: 140px; object-fit: cover; border-radius: 50%"
-                    />
-                </a>
-                <figcaption>{{ $actor->name }}</figcaption>
-            </figure>
-        @empty
-            {{ __('No Result') }}
-        @endforelse
+    <div class="panel__body">
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th></th> <!-- 用于演员头像 -->
+                <th>{{ __('common.name') }}</th>
+                <th>
+                    <a href="#" wire:click.prevent="sortBy('english_name')">
+                        {{ __('common.english_name') }}
+                        @if ($sortField == 'english_name')
+                            @if ($sortDirection == 'asc')
+                                &uarr;
+                        @else
+                            &darr;
+                        @endif
+                        @endif
+                    </a>
+                </th>
+                <th>
+                    <a href="#" wire:click.prevent="sortBy('birth_date')">
+                        {{ __('common.birth_date') }}
+                        @if ($sortField == 'birth_date')
+                            @if ($sortDirection == 'asc')
+                                &uarr;
+                        @else
+                            &darr;
+                        @endif
+                        @endif
+                    </a>
+                </th>
+                <th>
+                    <a href="#" wire:click.prevent="sortBy('measurements')">
+                        {{ __('common.measurements') }}
+                        @if ($sortField == 'measurements')
+                            @if ($sortDirection == 'asc')
+                                &uarr;
+                        @else
+                            &darr;
+                        @endif
+                        @endif
+                    </a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @forelse ($actors as $actor)
+                <tr>
+                    <td>
+                        <a href="{{ route('secretgarden.actor.show', ['id' => $actor->id]) }}">
+                            <img
+                                alt="{{ $actor->name }}"
+                                src="{{ $actor->image_url ? $actor->image_url : 'https://via.placeholder.com/160x240' }}"
+                                style="width: 100px; height: 100px; object-fit: cover; border-radius: 10px"
+                            />
+                        </a>
+                    </td>
+                    <td>{{ $actor->name }}</td>
+                    <td>{{ $actor->english_name }}</td>
+                    <td>{{ $actor->birth_date }}</td>
+                    <td>{{ $actor->measurements }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="5">{{ __('No Result') }}</td>
+                </tr>
+            @endforelse
+            </tbody>
+        </table>
     </div>
     {{ $actors->links('partials.pagination') }}
 </section>
