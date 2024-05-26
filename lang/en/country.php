@@ -71,4 +71,19 @@ return [
     'EE' => 'Eesti',
     'CU' => 'Cuba',
     'VG' => 'British Virgin Islands',
+    'AM' => 'Armenia',
+    'BD' => 'Bangladesh',
+    'CD' => 'Congo',
+    'CL' => 'Chile',
+    'GR' => 'Greece',
+    'MA' => 'Morocco',
+    'SC' => 'Seychelles',
+    'XW' => 'Worldwide',
+
+
+
+
+
+
+
 ];
