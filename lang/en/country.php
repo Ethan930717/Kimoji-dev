@@ -79,9 +79,7 @@ return [
     'MA' => 'Morocco',
     'SC' => 'Seychelles',
     'XW' => 'Worldwide',
-
-
-
+    'SZ' => 'Eswatini',
 
 
 

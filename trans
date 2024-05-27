@@ -1,4 +1,4 @@
-for file in /Users/Ethan/Documents/GitHub/secret/public/img/country/*.png; do
+for file in public/img/country/*.png; do
     webpfile="${file%.png}.webp"
     if [ ! -f "$webpfile" ]; then
         # 转换格式为webp并调整图片尺寸为256x256
