@@ -173,6 +173,13 @@ document.addEventListener('DOMContentLoaded', function() {
             openImageModal(image.src);
         });
     });
+
+    const videoPosters = document.querySelectorAll('.video-poster');
+    videoPosters.forEach(poster => {
+        poster.addEventListener('click', function() {
+            openImageModal(poster.src);
+        });
+    });
 });
 
 

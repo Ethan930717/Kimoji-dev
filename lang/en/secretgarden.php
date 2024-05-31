@@ -16,6 +16,11 @@ return [
     'actors'             => 'Actors',
     'videos'             => 'Videos',
     'video'              => 'Video',
+    'poster'              => 'Poster',
+    'item_code'              => 'Item Code',
+    'title'              => 'Title',
+    'duration'              => 'Duration',
+    'rank'              => 'Rank',
 
 ];
 

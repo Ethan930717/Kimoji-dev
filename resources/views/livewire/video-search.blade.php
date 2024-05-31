@@ -19,56 +19,66 @@
         </div>
     </header>
     {{ $videos->links('partials.pagination') }}
-    <div
-        class="panel__body"
-        style="
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 2rem;
-        "
-    >
-        @forelse ($videos as $video)
-            <figure style="display: flex; flex-direction: column; align-items: center">
-                <a href="{{ route('secretgarden.video.show', ['id' => $video->id]) }}">
-                    <div style="width: 200px; height: 200px; border: 2px solid #000; border-radius: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                        <img
-                            alt="{{ $video->item_number }}"
-                            src="{{ url('secretgarden/poster/' . $video->poster_url) }}"
-                            style="
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        "
-                        />
-                    </div>
-<!--                    <figcaption
-                        style="
-                            position: absolute;
-                            top: 8px;
-                            right: 8px;
-                            background: #161a42;
-                            border: 2px solid #73904b;
-                            border-radius: 9999px;
-                            box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14),
-                                        0 3px 14px 2px rgba(0, 0, 0, .12),
-                                        0 5px 5px -3px rgba(0, 0, 0, .2);
-                            font-size: 11px;
-                            grid-area: 2 / 3 / 1 / 2;
-                            height: 36px;
-                            line-height: 32px;
-                            margin: 6px;
-                            text-align: center;
-                            width: 36px;
-                        "
-                    >
-                        {{ $video->video_rank }}
-                    </figcaption>-->
-                </a>
-                <figcaption>{{ $video->item_number }}</figcaption>
-            </figure>
-        @empty
-            <p>No Result</p>
-        @endforelse
+    <div class="panel__body" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2rem;">
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th>{{ __('secretgarden.poster') }}</th>
+                <th>{{ __('secretgarden.actor') }}</th>
+                <th>{{ __('secretgarden.item_code') }}</th>
+                <th>{{ __('secretgarden.title') }}</th>
+                <th>
+                    <a href="#" wire:click.prevent="sortBy('duration')">
+                        {{ __('secretgarden.duration') }}
+                        @if ($sortField == 'duration')
+                            @if ($sortDirection == 'asc')
+                                &uarr;
+                        @else
+                            &darr;
+                        @endif
+                        @endif
+                    </a>
+                </th>
+                <th>
+                    <a href="#" wire:click.prevent="sortBy('video_rank')">
+                        {{ __('secretgarden.rank') }}
+                        @if ($sortField == 'video_rank')
+                            @if ($sortDirection == 'asc')
+                                &uarr;
+                        @else
+                            &darr;
+                        @endif
+                        @endif
+                    </a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @forelse ($videos as $video)
+                <tr>
+                    <td>
+                        <a href="{{ route('secretgarden.video.show', ['id' => $video->id]) }}">
+                            <img
+                                class="video-poster"
+                                alt="{{ $video->item_number }}"
+                                src="{{ url('secretgarden/poster/' . $video->poster_url) }}"
+                                style="width: 100%; max-width: 200px; height: auto; cursor: pointer;"
+                            />
+                        </a>
+                    </td>
+                    <td>{{ $video->actor_name }}</td>
+                    <td>{{ $video->item_code }}</td>
+                    <td>{{ $video->title }}</td>
+                    <td>{{ $video->duration }}</td>
+                    <td>{{ $video->video_rank }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="6">{{ __('No Result') }}</td>
+                </tr>
+            @endforelse
+            </tbody>
+        </table>
     </div>
     {{ $videos->links('partials.pagination') }}
 </section>
