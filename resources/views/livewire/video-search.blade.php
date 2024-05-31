@@ -18,6 +18,7 @@
             </div>
         </div>
     </header>
+    {{ $videos->links('partials.pagination') }}
     <div
         class="panel__body"
         style="
@@ -29,18 +30,18 @@
         @forelse ($videos as $video)
             <figure style="display: flex; flex-direction: column; align-items: center">
                 <a href="{{ route('secretgarden.video.show', ['id' => $video->id]) }}">
-                    <img
-                        alt="{{ $video->item_number }}"
-                        src="{{ url('secretgarden/poster/' . $video->poster_url) }}"
-                        style="
-                            width: 140px;
-                            height: 200px;
-                            object-fit: cover;
-                            border-radius: 8px;
-                            position: relative;
-                        "
-                    />
-                    <figcaption
+                    <div style="width: 200px; height: 200px; border: 2px solid #000; border-radius: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                        <img
+                            alt="{{ $video->item_number }}"
+                            src="{{ url('secretgarden/poster/' . $video->poster_url) }}"
+                            style="
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        "
+                        />
+                    </div>
+<!--                    <figcaption
                         style="
                             position: absolute;
                             top: 8px;
@@ -61,7 +62,7 @@
                         "
                     >
                         {{ $video->video_rank }}
-                    </figcaption>
+                    </figcaption>-->
                 </a>
                 <figcaption>{{ $video->item_number }}</figcaption>
             </figure>
@@ -69,4 +70,5 @@
             <p>No Result</p>
         @endforelse
     </div>
+    {{ $videos->links('partials.pagination') }}
 </section>
