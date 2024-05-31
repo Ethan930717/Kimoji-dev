@@ -31,7 +31,7 @@
                 <a href="{{ route('secretgarden.video.show', ['id' => $video->id]) }}">
                     <img
                         alt="{{ $video->item_number }}"
-                        src="/secretgarden/images/{{ $video->poster_url }}"
+                        src="{{ url('secretgarden/images/' . $video->poster_url) }}"
                         style="
                             width: 140px;
                             height: 200px;
