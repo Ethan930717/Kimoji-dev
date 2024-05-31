@@ -3,27 +3,29 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Livewire\WithPagination;
 use App\Models\Video;
 use Illuminate\Support\Facades\Cache;
+use Livewire\WithPagination;
 
 class VideoSearch extends Component
 {
+    use WithPagination;
+
     public $search = '';
 
     public function render()
     {
         $searchTerm = $this->prepareSearchTerm($this->search);
 
-        $videos = Cache::remember("videos_search_{$this->search}", 3600, function () use ($searchTerm) {
-            if (empty($searchTerm)) {
-                return Video::all();
-            } else {
+        if (empty($searchTerm)) {
+            $videos = Video::paginate(100); // 使用分页，每页显示10个结果
+        } else {
+            $videos = Cache::remember("videos_search_{$this->search}", 3600, function () use ($searchTerm) {
                 return Video::where('item_number', 'REGEXP', $searchTerm)
                     ->orWhere('actor_name', 'like', '%' . $this->search . '%')
-                    ->get();
-            }
-        });
+                    ->paginate(100); // 使用分页，每页显示10个结果
+            });
+        }
 
         return view('livewire.video-search', [
             'videos' => $videos,
