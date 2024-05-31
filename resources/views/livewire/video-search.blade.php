@@ -65,13 +65,17 @@
                         />
                     </td>
                     <td style="white-space: nowrap;">{{ $video->actor_name }}</td>
-                    <td style="white-space: nowrap;">{{ $video->item_number }}</td>
+                    <td style="white-space: nowrap;">
+                        <a href="{{ route('secretgarden.video.show', ['id' => $video->id]) }}">
+                        {{ $video->item_number }}
+                        </a>
+                    </td>
                     <td>
                         <a href="{{ route('secretgarden.video.show', ['id' => $video->id]) }}">
                             {{ $video->title }}
                         </a>
                     </td>
-                    <td>{{ $video->duration }}分</td>
+                    <td>{{ $video->duration }}</td>
                     <td>{{ $video->video_rank }}</td>
                 </tr>
             @empty
