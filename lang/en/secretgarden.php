@@ -15,5 +15,7 @@ return [
     'actor'              => 'Actor',
     'actors'             => 'Actors',
     'videos'             => 'Videos',
+    'video'              => 'Video',
+
 ];
 

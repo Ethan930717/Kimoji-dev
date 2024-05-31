@@ -1,7 +1,7 @@
 @extends('layout.default')
 
 @section('title')
-    <title>{{ __('secret.actors') }} - {{ config('other.title') }}</title>
+    <title>{{ __('secretgarden.videos') }} - {{ config('other.title') }}</title>
 @endsection
 
 @section('meta')
@@ -10,7 +10,7 @@
 
 @section('breadcrumbs')
     <li class="breadcrumb--active">
-        {{ __('secret.actors') }}
+        {{ __('secretgarden.videos') }}
     </li>
 @endsection
 
@@ -21,10 +21,10 @@
         </a>
     </li>
     <li class="breadcrumb--active">
-        {{ __('secret.actors') }}
+        {{ __('secretgarden.videos') }}
     </li>
 @endsection
 
 @section('content')
-    @livewire('actor-search')
+    @livewire('video-search')
 @endsection
