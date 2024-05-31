@@ -17,7 +17,7 @@ return [
     'videos'             => 'Videos',
     'video'              => 'Video',
     'poster'              => 'Poster',
-    'item_code'              => 'Item Code',
+    'item_number'              => 'Item Number',
     'title'              => 'Title',
     'duration'              => 'Duration',
     'rank'              => 'Rank',

@@ -1,6 +1,6 @@
 <section class="panelV2">
     <header class="panel__header">
-        <h2 class="panel__heading">Search</h2>
+        <h2 class="panel__heading">Videos</h2>
         <div class="panel__actions">
             <div class="panel__action">
                 <div class="form__group">
@@ -24,8 +24,8 @@
             <thead>
             <tr>
                 <th>{{ __('secretgarden.poster') }}</th>
-                <th>{{ __('secretgarden.actor') }}</th>
-                <th>{{ __('secretgarden.item_code') }}</th>
+                <th style="white-space: nowrap;">{{ __('secretgarden.actor') }}</th>
+                <th style="white-space: nowrap;">{{ __('secretgarden.item_number') }}</th>
                 <th>{{ __('secretgarden.title') }}</th>
                 <th>
                     <a href="#" wire:click.prevent="sortBy('duration')">
@@ -57,19 +57,21 @@
             @forelse ($videos as $video)
                 <tr>
                     <td>
+                        <img
+                            class="video-poster"
+                            alt="{{ $video->item_number }}"
+                            src="{{ url('secretgarden/poster/' . $video->poster_url) }}"
+                            style="width: 100%; max-width: 200px; height: auto; cursor: pointer;"
+                        />
+                    </td>
+                    <td style="white-space: nowrap;">{{ $video->actor_name }}</td>
+                    <td style="white-space: nowrap;">{{ $video->item_number }}</td>
+                    <td>
                         <a href="{{ route('secretgarden.video.show', ['id' => $video->id]) }}">
-                            <img
-                                class="video-poster"
-                                alt="{{ $video->item_number }}"
-                                src="{{ url('secretgarden/poster/' . $video->poster_url) }}"
-                                style="width: 100%; max-width: 200px; height: auto; cursor: pointer;"
-                            />
+                            {{ $video->title }}
                         </a>
                     </td>
-                    <td>{{ $video->actor_name }}</td>
-                    <td>{{ $video->item_code }}</td>
-                    <td>{{ $video->title }}</td>
-                    <td>{{ $video->duration }}</td>
+                    <td>{{ $video->duration }}分</td>
                     <td>{{ $video->video_rank }}</td>
                 </tr>
             @empty
