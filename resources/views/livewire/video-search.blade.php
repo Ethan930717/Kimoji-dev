@@ -28,7 +28,7 @@
     >
         @forelse ($videos as $video)
             <figure style="display: flex; flex-direction: column; align-items: center">
-                <a href="{{ route('video.show', ['id' => $video->id]) }}">
+                <a href="{{ route('secretgarden.video.show', ['id' => $video->id]) }}">
                     <img
                         alt="{{ $video->item_number }}"
                         src="/secretgarden/images/{{ $video->poster_url }}"
