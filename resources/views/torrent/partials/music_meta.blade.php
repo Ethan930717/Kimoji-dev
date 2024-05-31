@@ -79,39 +79,42 @@
                    href="{{ route('torrents.index', ['distributors' => [$torrent->distributor->id]]) }}">
                     <i class="{{ config('other.font-awesome') }} fa-music"></i> {{ $torrent?->distributor->name ?? '未知风格' }}
                 </a>
-                    @php
-                        use App\Enums\UserGroup;
-                        $userGroup = auth()->user()->group_id;
-                        $listenLimits = [
-                            UserGroup::USER->value => 3,
-                            UserGroup::POWERUSER->value => 8,
-                            UserGroup::SUPERUSER->value => 20,
-                            UserGroup::EXTREMEUSER->value => 40,
-                            UserGroup::INSANEUSER->value => 60,
-                            //UserGroup::VETERAN->value => 42,
-                            //UserGroup::SEEDER->value => 55,
-                            //UserGroup::ARCHIVIST->value => 70,
-                            // 任何未列出的等级都没有限制，可以无限试听
-                        ];
-                        $unlimitedGroups = [UserGroup::VIP->value, UserGroup::KEEPER->value, UserGroup::OWNER->value, UserGroup::INTERNAL->value];
-                    @endphp
-
-                    @if($userGroup === UserGroup::LEECH->value || $userGroup === UserGroup::DISABLED->value)
-                        <span class="meta-id-tag">{{ __('artists.insufficient') }}</span>
-                    @elseif(in_array($userGroup, $unlimitedGroups))
-                        <button id="loadPlayerBtn" class="meta-id-tag" data-username="{{ auth()->user()->username }}">
-                            <i class="{{ config('other.font-awesome') }} fa-headphones"></i> {{ __('artists.listen') }}
-                        </button>
-                    @else
                         @php
-                            $limit = $listenLimits[$userGroup] ?? PHP_INT_MAX; // 默认无限制
+                            use App\Enums\UserGroup;
+                            $userGroup = auth()->user()->group_id;
+                            $listenLimits = [
+                                UserGroup::USER->value => 3,
+                                UserGroup::POWERUSER->value => 8,
+                                UserGroup::SUPERUSER->value => 20,
+                                UserGroup::EXTREMEUSER->value => 40,
+                                UserGroup::INSANEUSER->value => 60,
+                                //UserGroup::VETERAN->value => 42,
+                                //UserGroup::SEEDER->value => 55,
+                                //UserGroup::ARCHIVIST->value => 70,
+                                // 任何未列出的等级都没有限制，可以无限试听
+                            ];
+                            $unlimitedGroups = [UserGroup::VIP->value, UserGroup::KEEPER->value, UserGroup::OWNER->value, UserGroup::INTERNAL->value];
+
+                            $allowUnlimitedListening = true; // 添加一个临时变量，用于允许所有用户无限次试听
                         @endphp
-                        @if(auth()->user()->daily_listen_count < $limit)
-                            <button id="loadPlayerBtn" class="meta-id-tag" data-username="{{ auth()->user()->username }}">{{ __('artists.load') }}</button>
+
+                        @if($userGroup === UserGroup::LEECH->value || $userGroup === UserGroup::DISABLED->value)
+                            <span class="meta-id-tag">{{ __('artists.insufficient') }}</span>
+                        @elseif(in_array($userGroup, $unlimitedGroups) || $allowUnlimitedListening)
+                            <button id="loadPlayerBtn" class="meta-id-tag" data-username="{{ auth()->user()->username }}">
+                                <i class="{{ config('other.font-awesome') }} fa-headphones"></i> {{ __('artists.listen') }}
+                            </button>
                         @else
-                            <span class="meta-id-tag">今日试听次数已用尽 {{ auth()->user()->daily_listen_count }}/{{ $limit }}</span>
+                            @php
+                                $limit = $listenLimits[$userGroup] ?? PHP_INT_MAX; // 默认无限制
+                            @endphp
+                            @if(auth()->user()->daily_listen_count < $limit)
+                                <button id="loadPlayerBtn" class="meta-id-tag" data-username="{{ auth()->user()->username }}">{{ __('artists.load') }}</button>
+                            @else
+                                <span class="meta-id-tag">今日试听次数已用尽 {{ auth()->user()->daily_listen_count }}/{{ $limit }}</span>
+                            @endif
                         @endif
-                    @endif
+
                         @if ($spectrogramUrl)
                             <button class="meta-id-tag" data-spectrogram-button style="border:1px solid hsla(0,0%,100%,.161); border-radius: 16px; box-shadow:2px 4px 2px rgba(0,0,0,.2); cursor:pointer; transition:background-color .3s,color .3s; margin-left: 8px; padding: 0; overflow: hidden; display: inline-block; position: relative; width: 64px; height: 36px;">
                                 <img
