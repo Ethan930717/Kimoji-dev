@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Actor;
+use Illuminate\Support\Facades\Cache;
 
 class ActorSearch extends Component
 {
@@ -30,17 +31,25 @@ class ActorSearch extends Component
         }
     }
 
-
     public function render()
     {
-        $actors = Actor::query()
-            ->where('name', 'like', '%' . $this->search . '%')
-            ->orWhere('english_name', 'like', '%' . $this->search . '%')
-            ->orderBy($this->sortField, $this->sortDirection)
-            ->paginate(50);
+        $cacheKey = $this->generateCacheKey();
+
+        $actors = Cache::remember($cacheKey, 3600, function () {
+            return Actor::query()
+                ->where('name', 'like', '%' . $this->search . '%')
+                ->orWhere('english_name', 'like', '%' . $this->search . '%')
+                ->orderBy($this->sortField, $this->sortDirection)
+                ->paginate(50);
+        });
 
         return view('livewire.actor-search', [
             'actors' => $actors,
         ]);
+    }
+
+    protected function generateCacheKey()
+    {
+        return 'actors_search_' . md5($this->search . '_' . $this->sortField . '_' . $this->sortDirection . '_' . $this->page);
     }
 }

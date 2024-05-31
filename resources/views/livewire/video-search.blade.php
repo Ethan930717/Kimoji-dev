@@ -69,5 +69,4 @@
             <p>No Result</p>
         @endforelse
     </div>
-    {{ $videos->links() }} <!-- 分页链接 -->
 </section>
