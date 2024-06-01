@@ -15,9 +15,7 @@
                         Item Number or Actor Name
                     </label>
                     <div wire:loading wire:target="search">
-                        <span>Searching...</span> <!-- 这是文本提示 -->
-                        <!-- 可以用以下代码替换上面的文本提示来显示加载动画 -->
-                        <!-- <img src="/path/to/loading-spinner.gif" alt="Loading..."> -->
+                        <span style="font-size: 14px">Searching...</span>
                     </div>
                 </div>
             </div>
@@ -72,7 +70,7 @@
                     <td style="white-space: nowrap;">{{ $video->actor_name }}</td>
                     <td style="white-space: nowrap;">
                         <a href="{{ route('secretgarden.video.show', ['id' => $video->id]) }}">
-                        {{ $video->item_number }}
+                            {{ $video->item_number }}
                         </a>
                     </td>
                     <td>
