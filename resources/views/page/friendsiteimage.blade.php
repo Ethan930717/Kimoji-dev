@@ -4,7 +4,6 @@
     <title>{{ __('stat.stats') }} - {{ config('other.title') }}</title>
 @endsection
 
-
 @section('nav-tabs')
     <li class="nav-tabV2">
         <a class="nav-tab__link" href="{{ route('clients') }}">
@@ -38,7 +37,7 @@
     </li>
     <li class="nav-tabV2">
         <a class="nav-tab__link" href="{{ route('themes') }}">
-            主题
+            Themes
         </a>
     </li>
 @endsection
@@ -47,34 +46,21 @@
 
     <section class="panelV2">
         <h2 class="panel__heading center-text">
-            KIMOJI 画廊今日共计展出作品: {{ count($images) }} 幅
+            KIMOJI Gallery is exhibiting a total of {{ count($images) }} artworks today.
         </h2>
     </section>
 
-    <div x-data="imageGallery({{ json_encode($images) }})">
-        <div class="stats__panels" >
-            @foreach ($images as $index => $image)
-                <div class="image-container">
-                    <section class="panelV2 panel--grid-item">
-                        <img class="thumbnail lazy" data-src="{{ asset($image->url) }}" alt="缩略图" @click="openModal({{ $index }})">
-                    </section>
-                    <div class="image-title">{{ pathinfo($image->name, PATHINFO_FILENAME) }}</div>
-                </div>
-            @endforeach
-        </div>
-        <div id="myModal" class="modal"
-             x-show="showModal"
-             x-transition:enter="transition ease-out duration-300"
-             x-transition:enter-start="opacity-0"
-             x-transition:enter-end="opacity-100"
-             x-transition:leave="transition ease-in duration-300"
-             x-transition:leave-start="opacity-100"
-             x-transition:leave-end="opacity-0">
-            <img :src="images[currentSlide]" class="modal-content" id="img01">
-            <span @click="closeModal()" class="close">&times;</span>
-            <span @click="changeSlide(-1)" class="prev">&#10094;</span>
-            <span @click="changeSlide(1)" class="next">&#10095;</span>
-        </div>
+    <div class="stats__panels">
+        @foreach ($images as $index => $image)
+            <div class="image-container">
+                <section class="panelV2 panel--grid-item">
+                    <a href="{{ asset($image->url) }}" data-fancybox="gallery" data-caption="{{ pathinfo($image->name, PATHINFO_FILENAME) }}">
+                        <img class="thumbnail lazy" data-src="{{ asset($image->url) }}" alt="缩略图">
+                    </a>
+                </section>
+                <div class="image-title">{{ pathinfo($image->name, PATHINFO_FILENAME) }}</div>
+            </div>
+        @endforeach
     </div>
 
     <style>
@@ -110,13 +96,10 @@
             z-index: 10;
             position: relative;
             margin-top: 3px;
-            font-size: 16px;
         }
         .image-container{
             margin-bottom: 15px;
         }
-
     </style>
-
 
 @endsection
