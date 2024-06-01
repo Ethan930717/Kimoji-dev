@@ -42,6 +42,7 @@
                                     class="torrent-search--list__music_poster-img"
                                     loading="lazy"
                                     alt="{{ __('torrent.poster') }}"
+                                    data-fancybox="gallery"
                             >
                         @else
                             <img
@@ -49,6 +50,7 @@
                                     class="torrent-search--list__music_poster-img"
                                     loading="lazy"
                                     alt="{{ __('torrent.poster') }}"
+                                    data-fancybox="gallery"
                             >
                         @endif
                     @endif
@@ -59,6 +61,7 @@
                             class="torrent-search--list__music_poster-img"
                             loading="lazy"
                             alt="{{ __('torrent.poster') }}"
+                            data-fancybox="gallery"
                         >
                     @else
                         <img
@@ -66,6 +69,7 @@
                             class="torrent-search--list__music_poster-img"
                             loading="lazy"
                             alt="{{ __('torrent.poster') }}"
+                            data-fancybox="gallery"
                         >
                     @endif
                 @endif

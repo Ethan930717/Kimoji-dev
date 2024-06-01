@@ -65,6 +65,7 @@
                             alt="{{ $video->item_number }}"
                             src="{{ url('secretgarden/poster/' . $video->poster_url) }}"
                             style="width: 100%; max-width: 200px; height: auto; cursor: pointer;"
+                            data-fancybox="gallery"
                         />
                     </td>
                     <td style="white-space: nowrap;">{{ $video->actor_name }}</td>

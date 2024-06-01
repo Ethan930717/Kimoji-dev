@@ -29,6 +29,7 @@
                 class="torrent-card__image"
                 src="{{ url('secretgarden/poster/' . $video->poster_url) }}"
                 alt="{{ __('torrent.poster') }}"
+                data-fancybox="gallery"
             />
         </figure>
     </aside>

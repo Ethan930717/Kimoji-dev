@@ -41,6 +41,7 @@
             <img
                 src="{{ $collection?->poster ? tmdb_image('poster_big', $collection->poster) : 'https://via.placeholder.com/400x600' }}"
                 class="meta__poster"
+                data-fancybox="gallery"
             />
         </a>
         <div class="meta__actions"></div>

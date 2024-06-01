@@ -1,3 +1,8 @@
+// 引入Fancybox
+import { Fancybox } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox.css";
+
+// 其他已有的代码
 window._ = require('lodash');
 window.axios = require('axios');
 window.axios.defaults.headers.common = {
@@ -131,45 +136,51 @@ function bindClickEvents() {
     // 为 spectrogram-image 元素添加点击事件
     const spectrogramButtons = document.querySelectorAll('[data-spectrogram-button]');
     spectrogramButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const imgSrc = this.querySelector('.spectrogram-image').src;
-            openImageModal(imgSrc);
-        });
+        button.setAttribute('data-fancybox', 'gallery');
+        const spectrogramImage = button.querySelector('.spectrogram-image');
+        if (spectrogramImage) {
+            button.addEventListener('click', function() {
+                Fancybox.show([{ src: spectrogramImage.src, type: 'image' }]);
+            });
+        }
     });
 
     // 为 meta__poster 元素添加点击事件
     const metaPosters = document.querySelectorAll('.meta__poster');
     metaPosters.forEach(poster => {
+        poster.setAttribute('data-fancybox', 'gallery');
         poster.addEventListener('click', function() {
-            openImageModal(poster.src);
+            Fancybox.show([{ src: poster.src, type: 'image' }]);
         });
     });
 
     // 为 torrent-search--list__music_poster-img 元素添加点击事件
     const musicPosters = document.querySelectorAll('.torrent-search--list__music_poster-img');
     musicPosters.forEach(poster => {
+        poster.setAttribute('data-fancybox', 'gallery');
         poster.addEventListener('click', function() {
-            openImageModal(poster.src);
+            Fancybox.show([{ src: poster.src, type: 'image' }]);
         });
     });
 
     // 为 torrent-card__image 元素添加点击事件
     const torrentCardImages = document.querySelectorAll('.torrent-card__image');
     torrentCardImages.forEach(image => {
+        image.setAttribute('data-fancybox', 'gallery');
         image.addEventListener('click', function() {
-            openImageModal(image.src);
+            Fancybox.show([{ src: image.src, type: 'image' }]);
         });
     });
 
+    // 为 video-poster 元素添加点击事件
     const videoPosters = document.querySelectorAll('.video-poster');
     videoPosters.forEach(poster => {
+        poster.setAttribute('data-fancybox', 'gallery');
         poster.addEventListener('click', function() {
-            openImageModal(poster.src);
+            Fancybox.show([{ src: poster.src, type: 'image' }]);
         });
     });
-}
 
-function openImageModal(src) {
-    // Your code to open the image modal
-    console.log("Opening image modal for: " + src);
+    // 绑定Fancybox到所有带有data-fancybox属性的元素
+    Fancybox.bind('[data-fancybox="gallery"]');
 }

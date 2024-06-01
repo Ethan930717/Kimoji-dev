@@ -49,6 +49,7 @@
             <img
                     src="{{ file_exists(public_path().'/files/img/torrent-cover_'.$torrent->id.'.jpg') ? url('/files/img/torrent-cover_'.$torrent->id.'.jpg') : 'https://via.placeholder.com/500x500' }}"
                     class="meta__poster"
+                    data-fancybox="gallery"
             >
 
         </a>
@@ -122,6 +123,7 @@
                                     class="spectrogram-image"
                                     alt="spectrogram"
                                     style="width: 100%; height: 100%; object-fit: cover;"
+                                    data-fancybox="gallery"
                                 />
                             </button>
                         @endif

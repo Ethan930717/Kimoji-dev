@@ -57,6 +57,7 @@
                             @break
                     @endswitch
                     alt="{{ __('torrent.poster') }}"
+                    data-fancybox="gallery"
                 />
             </figure>
     </aside>

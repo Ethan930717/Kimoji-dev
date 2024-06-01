@@ -23,6 +23,7 @@
         <img
             src="{{ $meta?->cover ? 'https://images.igdb.com/igdb/image/upload/t_original/' . $meta->cover['image_id'] . '.jpg' : 'https://via.placeholder.com/400x600' }}"
             class="meta__poster"
+            data-fancybox="gallery"
         />
     </a>
     <div class="meta__actions">
