@@ -1,6 +1,6 @@
-// 引入Fancybox
 import { Fancybox } from "@fancyapps/ui";
-import "@fancyapps/ui/dist/fancybox.css";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
+
 
 // 其他已有的代码
 window._ = require('lodash');
