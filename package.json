@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "dev": "npm run development",
     "development": "mix",
     "watch": "mix watch",
     "watch-poll": "mix watch -- --watch-options-poll=1000",
@@ -29,7 +30,8 @@
     "vite-project": "github:782042369/upload-music",
     "vue": "^2.6.14",
     "vue-loader": "^15.9.8",
-    "vue-template-compiler": "^2.6.14"
+    "vue-template-compiler": "^2.6.14",
+    "@fancyapps/ui": "^4.0.0"
   },
   "devDependencies": {
     "prettier-plugin-blade": "^2.0.0"
