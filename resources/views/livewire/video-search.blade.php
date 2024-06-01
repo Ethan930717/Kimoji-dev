@@ -14,6 +14,11 @@
                     <label class="form__label form__label--floating" for="name">
                         Item Number or Actor Name
                     </label>
+                    <div wire:loading wire:target="search">
+                        <span>Searching...</span> <!-- 这是文本提示 -->
+                        <!-- 可以用以下代码替换上面的文本提示来显示加载动画 -->
+                        <!-- <img src="/path/to/loading-spinner.gif" alt="Loading..."> -->
+                    </div>
                 </div>
             </div>
         </div>
