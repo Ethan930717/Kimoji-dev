@@ -139,7 +139,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+
+
 document.addEventListener('DOMContentLoaded', function() {
+    bindClickEvents();
+
+    document.addEventListener('livewire:load', function() {
+        bindClickEvents();
+    });
+
+    document.addEventListener('livewire:update', function() {
+        bindClickEvents();
+    });
+});
+
+function bindClickEvents() {
     // 为 spectrogram-image 元素添加点击事件
     const spectrogramButtons = document.querySelectorAll('[data-spectrogram-button]');
     spectrogramButtons.forEach(button => {
@@ -180,8 +194,12 @@ document.addEventListener('DOMContentLoaded', function() {
             openImageModal(poster.src);
         });
     });
-});
+}
 
+function openImageModal(src) {
+    // Your code to open the image modal
+    console.log("Opening image modal for: " + src);
+}
 
 
 
