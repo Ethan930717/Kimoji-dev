@@ -78,25 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// 上传音乐
-document.addEventListener('DOMContentLoaded', function() {
-    var uploadButton = document.getElementById('uploadMusic');
-    if (uploadButton) {
-        uploadButton.addEventListener('click', openUploadWindow);
-    }
-});
-function openUploadWindow() {
-    const uploadWindowWidth = 900;
-    const uploadWindowHeight = 600;
-    const left = (screen.width / 2) - (uploadWindowWidth / 2);
-    const top = (screen.height / 2) - (uploadWindowHeight / 2);
-
-    window.open(
-        'https://file.kimoji.club',
-        'UploadWindow',
-        `width=${uploadWindowWidth},height=${uploadWindowHeight},top=${top},left=${left}`
-    );
-}
 
 // URL 创建工单
 document.addEventListener('DOMContentLoaded', function() {
@@ -188,5 +169,8 @@ function bindClickEvents() {
     });
 
     // 绑定Fancybox到所有带有data-fancybox属性的元素
+    Fancybox.defaults.Hash = false;
+    Fancybox.defaults.backFocus = false;
+    Fancybox.defaults.trapFocus = false;
     Fancybox.bind('[data-fancybox="gallery"]');
 }
