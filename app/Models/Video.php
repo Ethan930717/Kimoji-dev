@@ -15,7 +15,7 @@ class Video extends Model
 
     // 设置模型的 fillable 属性，允许批量赋值
     protected $fillable = [
-        'actor_id', 'actor_name', 'item_code', 'title', 'video_rank',
+        'actor_id', 'actor_name', 'actor_code', 'title', 'video_rank',
         'item_number', 'duration', 'release_date', 'director', 'series',
         'maker', 'label', 'genres', 'tags', 'description', 'poster_url', 'video_images'
     ];

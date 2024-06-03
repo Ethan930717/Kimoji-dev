@@ -21,6 +21,17 @@ return [
     'title'              => 'Title',
     'duration'              => 'Duration',
     'rank'              => 'Rank',
+    'release_date'=> 'Release Date',
+    'director'   => 'Director',
+    'series'   => 'Series',
+    'maker'   => 'Maker',
+    'label'   => 'Label',
+    'genres'   => 'Genres',
+    'description'   => 'Description',
+    'video-images'   => 'Video Images',
+    'tags'   => 'Tags',
+
+
 
 ];
 
