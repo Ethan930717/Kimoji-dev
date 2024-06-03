@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
-use App\Models\Torrent;
 
 class VideoController extends Controller
 {
@@ -19,9 +17,11 @@ class VideoController extends Controller
 
     public function show($id)
     {
-        $video = Video::with('videos')->findOrFail($id);
+        // 加载视频的所有相关数据
+        $video = Video::with(['actor', 'director', 'series', 'maker', 'label', 'genres', 'tags'])->findOrFail($id);
         return view('secretgarden.video.show', compact('video'));
     }
+
     public function store(Request $request)
     {
         // 验证和创建视频记录
