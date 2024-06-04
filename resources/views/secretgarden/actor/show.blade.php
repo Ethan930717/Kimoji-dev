@@ -83,9 +83,7 @@
             </div>
             <div class="panel__body torrent-search--card__results">
                     @foreach ($videos as $video)
-                        <li class="featured-carousel__slide">
-                            <x-video-card :video="$video" />
-                        </li>
+                        <x-video-card :video="$video" />
                     @endforeach
             </div>
         </section>
