@@ -47,8 +47,12 @@
                             data-fancybox="gallery"
                         />
                     </td>
-                    <td style="white-space: nowrap;">{{ $video->actor_name }}</td>
-                    <td>
+                    <td style="white-space: nowrap;">
+                        <a href="{{ route('secretgarden.actor.show', ['id' => $video->actor_id]) }}">
+                            {{ $video->actor_name }}
+                        </a>
+                    </td>
+                    <td style="white-space: nowrap;">
                         <a href="{{ route('secretgarden.video.show', ['id' => $video->id]) }}">
                             {{ $video->item_number }}
                         </a>
