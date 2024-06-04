@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
         \Log::info('Entered SecretGarden HomeController');
-        return view('secretgarden.index', [
+        return view('secretgarden.home', [
             'videosCount'      => Video::count(),
             'actorsCount'      => Actor::count(),
         ]);
