@@ -15,7 +15,7 @@
                         Item Number or Actor Name
                     </label>
                     <div wire:loading wire:target="search">
-                        <span style="font-size: 14px">Searching...</span>
+                        <span style="font-size: 12px">Searching...</span>
                     </div>
                 </div>
             </div>

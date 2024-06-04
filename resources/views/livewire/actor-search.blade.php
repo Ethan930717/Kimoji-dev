@@ -14,6 +14,9 @@
                     <label class="form__label form__label--floating" for="name">
                         {{ __('actors.search-by-name') }}
                     </label>
+                    <div wire:loading wire:target="search">
+                        <span style="font-size: 12px">Searching...</span>
+                    </div>
                 </div>
             </div>
         </div>
