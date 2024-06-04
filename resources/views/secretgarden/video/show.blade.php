@@ -10,7 +10,7 @@
 
 @section('breadcrumbs')
     <li class="breadcrumb--active">
-        <a class="breadcrumb__link" href="{{ route('video.index') }}">
+        <a class="breadcrumb__link" href="{{ route('secretgarden.video.index') }}">
             {{ __('secretgarden.videos') }}
         </a>
     </li>
