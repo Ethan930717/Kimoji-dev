@@ -92,6 +92,6 @@ class Video extends Model
     // 获取视频截图
     public function getVideoImagesAttribute($value)
     {
-        return explode(';', $value);
+        return is_string($value) ? $value : implode(';', $value);
     }
 }
