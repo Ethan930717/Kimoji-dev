@@ -26,7 +26,7 @@
                 alt="{{ $video->title }}"
                 src="/secretgarden/poster/{{ $video->poster_url }}"
                 class="video-poster"
-                style="width: 500px; height: 500px; border-radius:16px; object-fit: cover;"
+                style="width: 500px; height: auto; border-radius:16px; object-fit: contain;"
             />
         </div>
 
@@ -81,17 +81,18 @@
                 </h2>
             </div>
             <div x-data>
-                <ul class="featured-carousel" x-ref="featured">
+                <ul class="featured-carousel" x-ref="featured" style="display: flex; overflow-x: auto; gap: 16px;">
                     @foreach (explode(';', $video->video_images) as $image_url)
                         @php
                             $image_name = basename($image_url);
                         @endphp
-                        <li class="featured-carousel__slide">
-                            <figure class="video-screenshot">
+                        <li class="featured-carousel__slide" style="flex: 0 0 auto;">
+                            <figure class="video-screenshot" style="margin: 0;">
                                 <img
                                     class="video-screenshot__image"
                                     src="{{ url('/secretgarden/images/' . $image_name) }}"
                                     alt="{{ $image_name }}"
+                                    style="height: 600px; object-fit: contain;"
                                     data-fancybox="gallery"
                                 />
                             </figure>
@@ -102,20 +103,20 @@
                     <button
                         class="featured-carousel__previous"
                         x-on:click="
-                    $refs.featured.scrollLeft == 16
-                        ? ($refs.featured.scrollLeft = $refs.featured.scrollWidth)
-                        : ($refs.featured.scrollLeft -= ($refs.featured.children[0].offsetWidth + 16) / 2 + 2)
-                "
+                            $refs.featured.scrollLeft == 16
+                                ? ($refs.featured.scrollLeft = $refs.featured.scrollWidth)
+                                : ($refs.featured.scrollLeft -= ($refs.featured.children[0].offsetWidth + 16) / 2 + 2)
+                        "
                     >
                         <i class="{{ \config('other.font-awesome') }} fa-angle-left"></i>
                     </button>
                     <button
                         class="featured-carousel__next"
                         x-on:click="
-                    $refs.featured.scrollLeft == $refs.featured.scrollWidth - $refs.featured.offsetWidth - 16
-                        ? ($refs.featured.scrollLeft = 0)
-                        : ($refs.featured.scrollLeft += ($refs.featured.children[0].offsetWidth + 16) / 2 + 2)
-                "
+                            $refs.featured.scrollLeft == $refs.featured.scrollWidth - $refs.featured.offsetWidth - 16
+                                ? ($refs.featured.scrollLeft = 0)
+                                : ($refs.featured.scrollLeft += ($refs.featured.children[0].offsetWidth + 16) / 2 + 2)
+                        "
                     >
                         <i class="{{ \config('other.font-awesome') }} fa-angle-right"></i>
                     </button>

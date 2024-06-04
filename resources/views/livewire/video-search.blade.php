@@ -30,30 +30,9 @@
                 <th style="white-space: nowrap;">{{ __('secretgarden.actor') }}</th>
                 <th style="white-space: nowrap;">{{ __('secretgarden.item_number') }}</th>
                 <th>{{ __('secretgarden.title') }}</th>
-                <th>
-                    <a href="#" wire:click.prevent="sortBy('duration')">
-                        {{ __('secretgarden.duration') }}
-                        @if ($sortField == 'duration')
-                            @if ($sortDirection == 'asc')
-                                &uarr;
-                        @else
-                            &darr;
-                        @endif
-                        @endif
-                    </a>
-                </th>
-                <th>
-                    <a href="#" wire:click.prevent="sortBy('video_rank')">
-                        {{ __('secretgarden.rank') }}
-                        @if ($sortField == 'video_rank')
-                            @if ($sortDirection == 'asc')
-                                &uarr;
-                        @else
-                            &darr;
-                        @endif
-                        @endif
-                    </a>
-                </th>
+                <th>{{ __('secretgarden.release_date') }}</th>
+                <th>{{ __('secretgarden.duration') }}</th>
+                <th>{{ __('secretgarden.rank') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -73,18 +52,22 @@
                         <a href="{{ route('secretgarden.video.show', ['id' => $video->id]) }}">
                             {{ $video->item_number }}
                         </a>
+                        @if(!empty($video->video_images))
+                            <i class="fas fa-images" title="Has preview images" style="margin-left: 5px;"></i>
+                        @endif
                     </td>
                     <td>
                         <a href="{{ route('secretgarden.video.show', ['id' => $video->id]) }}">
                             {{ $video->title }}
                         </a>
                     </td>
+                    <td>{{ $video->release_date }}</td>
                     <td>{{ $video->duration }}</td>
                     <td>{{ $video->video_rank }}</td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6">{{ __('No Result') }}</td>
+                    <td colspan="7">{{ __('No Result') }}</td>
                 </tr>
             @endforelse
             </tbody>
