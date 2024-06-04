@@ -29,10 +29,10 @@
                 <th>{{ __('secretgarden.poster') }}</th>
                 <th style="white-space: nowrap;">{{ __('secretgarden.actor') }}</th>
                 <th style="white-space: nowrap;">{{ __('secretgarden.item_number') }}</th>
-                <th>{{ __('secretgarden.title') }}</th>
-                <th>{{ __('secretgarden.release_date') }}</th>
-                <th>{{ __('secretgarden.duration') }}</th>
-                <th>{{ __('secretgarden.rank') }}</th>
+                <th style="white-space: nowrap;">{{ __('secretgarden.title') }}</th>
+                <th style="white-space: nowrap;">{{ __('secretgarden.release_date') }}</th>
+                <th style="white-space: nowrap;">{{ __('secretgarden.duration') }}</th>
+                <th style="white-space: nowrap;">{{ __('secretgarden.rank') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -56,14 +56,14 @@
                             <i class="fas fa-images" title="Has preview images" style="margin-left: 5px;"></i>
                         @endif
                     </td>
-                    <td>
+                    <td style="white-space: nowrap;">
                         <a href="{{ route('secretgarden.video.show', ['id' => $video->id]) }}">
                             {{ $video->title }}
                         </a>
                     </td>
-                    <td>{{ $video->release_date }}</td>
-                    <td>{{ $video->duration }}</td>
-                    <td>{{ $video->video_rank }}</td>
+                    <td style="white-space: nowrap;">{{ $video->release_date }}</td>
+                    <td style="white-space: nowrap;">{{ $video->duration }}</td>
+                    <td style="white-space: nowrap;">{{ $video->video_rank }}</td>
                 </tr>
             @empty
                 <tr>

@@ -92,7 +92,7 @@
                                     class="video-screenshot__image"
                                     src="{{ url('/secretgarden/images/' . $image_name) }}"
                                     alt="{{ $image_name }}"
-                                    style="height: 600px; object-fit: contain;"
+                                    style="height: 300px; object-fit: contain;"
                                     data-fancybox="gallery"
                                 />
                             </figure>
