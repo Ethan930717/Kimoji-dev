@@ -10,6 +10,11 @@
 
 @section('breadcrumbs')
     <li class="breadcrumb--active">
+        <a class="breadcrumb__link" href="{{ route('secretgarden.home') }}">
+            {{ __('secretgarden.secretgarden') }}
+        </a>
+    </li>
+    <li class="breadcrumb--active">
         {{ __('actors.title') }}
     </li>
 @endsection
