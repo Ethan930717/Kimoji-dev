@@ -24,7 +24,7 @@
         <div class="video-header" style="flex: 1; min-width: 500px;">
             <img
                 alt="{{ $video->title }}"
-                src="/img/secretgarden/poster/{{ $video->poster_url }}"
+                src="/secretgarden/poster/{{ $video->poster_url }}"
                 class="video-poster"
                 style="width: 500px; height: 500px; border-radius:16px; object-fit: cover;"
             />
@@ -90,7 +90,7 @@
                             <figure class="video-screenshot">
                                 <img
                                     class="video-screenshot__image"
-                                    src="{{ url('img/secretgarden/images/' . $image_name) }}"
+                                    src="{{ url('/secretgarden/images/' . $image_name) }}"
                                     alt="{{ $image_name }}"
                                     data-fancybox="gallery"
                                 />
