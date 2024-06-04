@@ -18,7 +18,7 @@ class VideoController extends Controller
     public function show($id)
     {
         // 加载视频的所有相关数据
-        $video = Video::with(['actor', 'director', 'series', 'maker', 'label', 'genres', 'tags'])->findOrFail($id);
+        $video = Video::findOrFail($id);
         return view('secretgarden.video.show', compact('video'));
     }
 
