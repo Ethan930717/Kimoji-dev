@@ -74,15 +74,19 @@
 
     {{-- 视频截图展示 --}}
     @if (!empty($video->video_images))
+        @php
+            $image_urls = explode(';', $video->video_images);
+            $image_count = count($image_urls);
+        @endphp
         <section class="panelV2" style="margin-top: 20px">
             <div class="panel__heading-container" style="display: flex; align-items: center; justify-content: space-between;" x-data>
                 <h2 class="panel__heading">
-                    {{ __('secretgarden.video-images') }}
+                    {{ __('secretgarden.video-images') }} ({{ $image_count }})
                 </h2>
             </div>
             <div x-data>
                 <ul class="featured-carousel" x-ref="featured" style="display: flex; overflow-x: auto; gap: 16px;">
-                    @foreach (explode(';', $video->video_images) as $image_url)
+                    @foreach ($image_urls as $image_url)
                         @php
                             $image_name = basename($image_url);
                         @endphp
@@ -103,20 +107,20 @@
                     <button
                         class="featured-carousel__previous"
                         x-on:click="
-                            $refs.featured.scrollLeft == 16
-                                ? ($refs.featured.scrollLeft = $refs.featured.scrollWidth)
-                                : ($refs.featured.scrollLeft -= ($refs.featured.children[0].offsetWidth + 16) / 2 + 2)
-                        "
+                        $refs.featured.scrollLeft == 16
+                            ? ($refs.featured.scrollLeft = $refs.featured.scrollWidth)
+                            : ($refs.featured.scrollLeft -= ($refs.featured.children[0].offsetWidth + 16) / 2 + 2)
+                    "
                     >
                         <i class="{{ \config('other.font-awesome') }} fa-angle-left"></i>
                     </button>
                     <button
                         class="featured-carousel__next"
                         x-on:click="
-                            $refs.featured.scrollLeft == $refs.featured.scrollWidth - $refs.featured.offsetWidth - 16
-                                ? ($refs.featured.scrollLeft = 0)
-                                : ($refs.featured.scrollLeft += ($refs.featured.children[0].offsetWidth + 16) / 2 + 2)
-                        "
+                        $refs.featured.scrollLeft == $refs.featured.scrollWidth - $refs.featured.offsetWidth - 16
+                            ? ($refs.featured.scrollLeft = 0)
+                            : ($refs.featured.scrollLeft += ($refs.featured.children[0].offsetWidth + 16) / 2 + 2)
+                    "
                     >
                         <i class="{{ \config('other.font-awesome') }} fa-angle-right"></i>
                     </button>

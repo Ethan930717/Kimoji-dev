@@ -42,6 +42,9 @@
         <h2 class="torrent-card__title">
             <a href="{{ route('secretgarden.video.show', ['id' => $video->id]) }}">
                 <i class="fas fa-film"></i> {{ $video->item_number }}
+                @if (!empty($video->video_images))
+                    <i class="fas fa-images" title="Has preview images" style="margin-left: 5px;"></i>
+                @endif
             </a>
         </h2>
         <p class="torrent-card__plot">
