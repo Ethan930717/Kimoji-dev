@@ -225,6 +225,12 @@
                         {{__('torrent.gallery')}}
                     </a>
                 </li>
+                <li>
+                    <a href="/secretgarden/home">
+                        <i class="{{ config('other.font-awesome') }} fa-flower"></i>
+                        {{__('secretgarden.title')}}
+                    </a>
+                </li>
             </ul>
         </li>
     </ul>

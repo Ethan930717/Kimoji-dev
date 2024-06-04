@@ -30,6 +30,8 @@ return [
     'description'   => 'Description',
     'video-images'   => 'Video Images',
     'tags'   => 'Tags',
+    'secretgarden'   => 'Secretgarden',
+
 
 
 

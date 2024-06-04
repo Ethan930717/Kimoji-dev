@@ -1,7 +1,7 @@
 @extends('layout.default')
 
 @section('title')
-    <title>{{ __('mediahub.title') }} - {{ config('other.title') }}</title>
+    <title>{{ __('secretgarden.secretgarden') }} - {{ config('other.title') }}</title>
 @endsection
 
 @section('meta')
@@ -10,7 +10,7 @@
 
 @section('breadcrumbs')
     <li class="breadcrumb--active">
-        {{ __('mediahub.title') }}
+        {{ __('secretgarden.secretgarden') }}
     </li>
 @endsection
 
@@ -20,15 +20,15 @@
             <img class="" src="{{ url('/img/secretgarden.png') }}" style="width: 500px; display: block; margin: 5px auto 20px auto; ">
             <ul class="mediahub-card__list">
                 <li class="mediahub-card__list-item">
-                    <a href="{{ route('mediahub.country.index') }}" class="mediahub-card">
-                        <h2 class="mediahub-card__heading">{{ __('secretgarden.actor') }} Hub</h2>
+                    <a href="{{ route('secretgarden.actor.index') }}" class="mediahub-card">
+                        <h2 class="mediahub-card__heading">{{ __('secretgarden.actors') }} Hub</h2>
                         <h3 class="mediahub-card__subheading">
-                            {{ $actorsCount }} {{ __('ecretgarden.actors') }}
+                            {{ $actorsCount }} {{ __('secretgarden.actors') }}
                         </h3>
                     </a>
                 </li>
                 <li class="mediahub-card__list-item">
-                    <a href="{{ route('artists.index') }}" class="mediahub-card">
+                    <a href="{{ route('secretgarden.video.index') }}" class="mediahub-card">
                         <h2 class="mediahub-card__heading">{{ __('secretgarden.videos') }} Hub</h2>
                         <h3 class="mediahub-card__subheading">
                             {{ $videosCount }} {{ __('secretgarden.videos') }}
