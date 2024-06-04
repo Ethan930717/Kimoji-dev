@@ -228,7 +228,7 @@
                 <li>
                     <a href="/secretgarden/home">
                         <i class="{{ config('other.font-awesome') }} fa-flower"></i>
-                        {{__('secretgarden.title')}}
+                        {{__('secretgarden.secretgarden')}}
                     </a>
                 </li>
             </ul>
