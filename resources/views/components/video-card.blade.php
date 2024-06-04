@@ -5,6 +5,11 @@
 <article class="torrent-card">
     <header class="torrent-card__header">
         <div class="torrent-card__left-header">
+            @if ($video->release_date)
+                <span class="torrent-card__release-date">
+                    <i class="fas fa-calendar-alt"></i> {{ $video->release_date }}
+                </span>
+            @endif
             @php
                 $durationMinutes = intval(preg_replace('/\D/', '', $video->duration));
                 $hours = floor($durationMinutes / 60);
@@ -35,7 +40,9 @@
     </aside>
     <div class="torrent-card__body">
         <h2 class="torrent-card__title">
-            <i class="fas fa-film"></i> {{ $video->item_number }}
+            <a href="{{ route('secretgarden.video.show', ['id' => $video->id]) }}">
+                <i class="fas fa-film"></i> {{ $video->item_number }}
+            </a>
         </h2>
         <p class="torrent-card__plot">
             {{ $video->description }}

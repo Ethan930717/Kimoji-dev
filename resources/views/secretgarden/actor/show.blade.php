@@ -81,36 +81,12 @@
                     {{ __('actors.artist-videos') }} ({{ $videos->count() }})
                 </h2>
             </div>
-            <div x-data>
-                <ul class="featured-carousel" x-ref="featured">
+            <div class="panel__body torrent-search--card__results">
                     @foreach ($videos as $video)
                         <li class="featured-carousel__slide">
                             <x-video-card :video="$video" />
                         </li>
                     @endforeach
-                </ul>
-                <nav class="featured-carousel__nav">
-                    <button
-                        class="featured-carousel__previous"
-                        x-on:click="
-                            $refs.featured.scrollLeft == 16
-                                ? ($refs.featured.scrollLeft = $refs.featured.scrollWidth)
-                                : ($refs.featured.scrollLeft -= ($refs.featured.children[0].offsetWidth + 16) / 2 + 2)
-                        "
-                    >
-                        <i class="{{ \config('other.font-awesome') }} fa-angle-left"></i>
-                    </button>
-                    <button
-                        class="featured-carousel__next"
-                        x-on:click="
-                            $refs.featured.scrollLeft == $refs.featured.scrollWidth - $refs.featured.offsetWidth - 16
-                                ? ($refs.featured.scrollLeft = 0)
-                                : ($refs.featured.scrollLeft += ($refs.featured.children[0].offsetWidth + 16) / 2 + 2)
-                        "
-                    >
-                        <i class="{{ \config('other.font-awesome') }} fa-angle-right"></i>
-                    </button>
-                </nav>
             </div>
         </section>
     @endif
