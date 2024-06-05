@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
 class VideoController extends Controller
 {
@@ -17,14 +18,12 @@ class VideoController extends Controller
 
     public function show($id)
     {
-        // 加载视频的所有相关数据
         $video = Video::findOrFail($id);
         return view('secretgarden.video.show', compact('video'));
     }
 
     public function store(Request $request)
     {
-        // 验证和创建视频记录
         $video = Video::create($request->all());
 
         // 清除相关缓存
@@ -36,7 +35,6 @@ class VideoController extends Controller
 
     public function update(Request $request, Video $video)
     {
-        // 更新视频记录
         $video->update($request->all());
 
         // 清除相关缓存
@@ -48,7 +46,6 @@ class VideoController extends Controller
 
     public function destroy(Video $video)
     {
-        // 删除视频记录
         $video->delete();
 
         // 清除相关缓存
@@ -56,5 +53,26 @@ class VideoController extends Controller
         Cache::flush(); // 也可以根据需要选择性清除缓存
 
         return redirect()->back()->with('success', '视频删除成功');
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+        $cacheKey = "videos_search_{$query}";
+
+        // 检查缓存
+        $videos = Cache::get($cacheKey);
+
+        if (!$videos) {
+            // 如果缓存不存在，从数据库中查询
+            $videos = Video::where('item_number', 'LIKE', "%{$query}%")
+                ->orWhere('actor_name', 'LIKE', "%{$query}%")
+                ->get();
+
+            // 将结果存入缓存
+            Cache::put($cacheKey, $videos, now()->addMinutes(10)); // 缓存10分钟
+        }
+
+        return view('secretgarden.video.search_results', compact('videos'));
     }
 }

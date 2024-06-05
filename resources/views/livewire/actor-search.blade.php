@@ -78,7 +78,7 @@
                             />
                         </a>
                     </td>
-                    <td>{{ $actor->name }}</td>
+                    <td><a href="{{ route('secretgarden.actor.show', ['actor' => $actor->id]) }}">{{ $actor->name }}</a></td>
                     <td>{{ str_replace('_', ' ', $actor->english_name) }}</td>
                     <td>{{ $actor->birth_date }}</td>
                     <td>{{ $actor->measurements }}</td>

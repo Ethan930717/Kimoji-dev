@@ -40,7 +40,7 @@
                 <h2 class="video-title" style="margin: 0;">{{ $video->title }}</h2>
             </div>
             @if($video->actor_name)
-                <p><strong>{{ $video->actor_name }} - {{ $video->item_number }}</strong></p>
+                <p><strong><a href="{{ route('secretgarden.actor.show', ['actor' => $video->actor_id]) }}">{{ $video->actor_name }}</a> - {{ $video->item_number }}</strong></p>
             @endif
             @if($video->release_date)
                 <p><strong>{{ __('secretgarden.release_date') }}:</strong> {{ $video->release_date }}</p>
