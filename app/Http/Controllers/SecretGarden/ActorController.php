@@ -9,14 +9,25 @@ use Illuminate\Support\Facades\Cache;
 
 class ActorController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // 尝试从缓存中获取演员数据，如果不存在则查询数据库并缓存结果
-        $actors = Cache::remember('actors', 3600, function () {
-            return Actor::all();
+        $search = $request->input('search');
+        $sortField = $request->input('sortField', 'name');
+        $sortDirection = $request->input('sortDirection', 'asc');
+
+        // 生成缓存键
+        $cacheKey = "actors_search_{$search}_sort_{$sortField}_{$sortDirection}";
+
+        // 尝试从缓存中获取数据
+        $actors = Cache::remember($cacheKey, 3600, function () use ($search, $sortField, $sortDirection) {
+            return Actor::withCount(['videos' => function($query) use ($search) {
+                if ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                }
+            }])->orderBy($sortField, $sortDirection)->paginate(10);
         });
 
-        return view('secretgarden.actor.index', compact('actors'));
+        return view('secretgarden.actor.index', compact('actors', 'sortField', 'sortDirection'));
     }
 
     public function show($id)
@@ -29,3 +40,4 @@ class ActorController extends Controller
         return view('secretgarden.actor.show', compact('actor'));
     }
 }
+
