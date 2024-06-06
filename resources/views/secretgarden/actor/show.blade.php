@@ -76,20 +76,25 @@
     </div>
 
     {{-- 艺术家资源展示 --}}
-    @php
-        $videos = \App\Models\Video::where('actor_id', $actor->id)->get();
-    @endphp
     @if ($videos->isNotEmpty())
         <section class="panelV2" style="margin-top: 20px">
             <div class="panel__heading-container" style="display: flex; align-items: center; justify-content: space-between;" x-data>
                 <h2 class="panel__heading">
                     {{ __('actors.artist-videos') }} ({{ $videos->count() }})
                 </h2>
+                <div class="sort-icons" style="display: flex; align-items: center;">
+                    <a href="{{ route('secretgarden.actor.show', ['id' => $actor->id, 'sort' => 'release_date', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}" title="Sort by release date">
+                        <i class="fa fa-calendar{{ $sortField === 'release_date' ? ($sortDirection === 'asc' ? ' up' : ' down') : '' }}"></i>
+                    </a>
+                    <a href="{{ route('secretgarden.actor.show', ['id' => $actor->id, 'sort' => 'rank', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}" title="Sort by rank">
+                        <i class="fa fa-star{{ $sortField === 'rank' ? ($sortDirection === 'asc' ? ' up' : ' down') : '' }}"></i>
+                    </a>
+                </div>
             </div>
             <div class="panel__body torrent-search--card__results">
-                    @foreach ($videos as $video)
-                        <x-video-card :video="$video" />
-                    @endforeach
+                @foreach ($videos as $video)
+                    <x-video-card :video="$video" />
+                @endforeach
             </div>
         </section>
     @endif

@@ -31,14 +31,21 @@ class ActorController extends Controller
         return view('secretgarden.actor.index', compact('actors', 'sortField', 'sortDirection'));
     }
 
-    public function show($id)
+    public function show($id, Request $request)
     {
+        $sortField = $request->input('sort', 'release_date'); // 默认按照 release_date 排序
+        $sortDirection = $request->input('direction', 'asc'); // 默认升序
+
         // 尝试从缓存中获取特定演员数据，如果不存在则查询数据库并缓存结果
         $actor = Cache::remember("actor_{$id}", 3600, function () use ($id) {
             return Actor::with('videos')->findOrFail($id);
         });
 
-        return view('secretgarden.actor.show', compact('actor'));
+        $videos = Video::where('actor_id', $actor->id)
+            ->orderBy($sortField, $sortDirection)
+            ->get();
+
+        return view('secretgarden.actor.show', compact('actor', 'videos', 'sortField', 'sortDirection'));
     }
 }
 
