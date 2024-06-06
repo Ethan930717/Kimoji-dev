@@ -64,7 +64,6 @@
                         @endif
                     </a>
                 </th>
-                <th>{{ __('secretgarden.works_count') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -83,11 +82,10 @@
                     <td>{{ str_replace('_', ' ', $actor->english_name) }}</td>
                     <td>{{ $actor->birth_date }}</td>
                     <td>{{ $actor->measurements }}</td>
-                    <td>{{ $actor->videos_count }}</td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6">{{ __('No Result') }}</td>
+                    <td colspan="5">{{ __('No Result') }}</td>
                 </tr>
             @endforelse
             </tbody>

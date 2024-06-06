@@ -20,19 +20,13 @@ class ActorController extends Controller
 
         // 尝试从缓存中获取数据
         $actors = Cache::remember($cacheKey, 3600, function () use ($search, $sortField, $sortDirection) {
-            return Actor::withCount('videos')
-                ->when($search, function($query, $search) {
-                    return $query->where('name', 'like', "%{$search}%")
-                        ->orWhere('english_name', 'like', "%{$search}%");
-                })
+            return Actor::when($search, function($query, $search) {
+                return $query->where('name', 'like', "%{$search}%")
+                    ->orWhere('english_name', 'like', "%{$search}%");
+            })
                 ->orderBy($sortField, $sortDirection)
-                ->paginate(10);
+                ->paginate(50);
         });
-
-        // 调试输出
-        foreach ($actors as $actor) {
-            error_log("Actor: {$actor->name}, Videos Count: {$actor->videos_count}");
-        }
 
         return view('secretgarden.actor.index', compact('actors', 'sortField', 'sortDirection'));
     }
@@ -47,5 +41,6 @@ class ActorController extends Controller
         return view('secretgarden.actor.show', compact('actor'));
     }
 }
+
 
 
