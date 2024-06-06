@@ -42,3 +42,4 @@ class Actor extends Model
         });
     }
 }
+

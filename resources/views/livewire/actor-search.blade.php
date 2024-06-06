@@ -26,7 +26,7 @@
         <table class="data-table">
             <thead>
             <tr>
-                <th></th> <!-- 用于演员头像 -->
+                <th></th>
                 <th>{{ __('actors.artname') }}</th>
                 <th>
                     <a href="#" wire:click.prevent="sortBy('english_name')">
