@@ -15,8 +15,8 @@
         </a>
     </li>
     <li class="breadcrumb--active">
-        <a class="breadcrumb__link" href="{{ route('artists.index') }}">
-            {{ __('artists.title') }}
+        <a class="breadcrumb__link" href="{{ route('secretgarden.actor.index') }}">
+            {{ __('secretgarden.actors') }}
         </a>
     </li>
     <li class="breadcrumb--active">
