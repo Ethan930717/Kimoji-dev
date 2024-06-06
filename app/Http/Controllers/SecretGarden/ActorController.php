@@ -4,7 +4,7 @@ namespace App\Http\Controllers\SecretGarden;
 
 use App\Http\Controllers\Controller;
 use App\Models\Actor;
-use App\Models\Video; 
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -35,7 +35,7 @@ class ActorController extends Controller
     public function show($id, Request $request)
     {
         $sortField = $request->input('sort', 'release_date'); // 默认按照 release_date 排序
-        $sortDirection = $request->input('direction', 'asc'); // 默认升序
+        $sortDirection = $request->input('direction', 'desc'); // 默认降序
 
         // 尝试从缓存中获取特定演员数据，如果不存在则查询数据库并缓存结果
         $actor = Cache::remember("actor_{$id}", 3600, function () use ($id) {

@@ -4368,4 +4368,23 @@ th[wire\:click] {
     margin-bottom: 10px;
 }
 
+.sort-icons a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.sort-icons i.up::after {
+    content: ' ▲';
+    font-size: 0.8em;
+    margin-left: 5px;
+}
+
+.sort-icons i.down::after {
+    content: ' ▼';
+    font-size: 0.8em;
+    margin-left: 5px;
+}
+
+
 

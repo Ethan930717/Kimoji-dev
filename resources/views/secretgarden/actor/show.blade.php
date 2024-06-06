@@ -81,15 +81,15 @@
             <div class="panel__heading-container" style="display: flex; align-items: center; justify-content: space-between;" x-data>
                 <h2 class="panel__heading">
                     {{ __('actors.artist-videos') }} ({{ $videos->count() }})
+                    <div class="sort-icons" style="display: inline-flex; align-items: center; margin-left: 10px;">
+                        <a href="{{ route('secretgarden.actor.show', ['id' => $actor->id, 'sort' => 'release_date', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}" title="Sort by release date">
+                            <i class="fa fa-calendar{{ $sortField === 'release_date' ? ($sortDirection === 'asc' ? ' up' : ' down') : '' }}"></i>
+                        </a>
+                        <a href="{{ route('secretgarden.actor.show', ['id' => $actor->id, 'sort' => 'video_rank', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}" title="Sort by rank" style="margin-left: 10px;">
+                            <i class="fa fa-star{{ $sortField === 'video_rank' ? ($sortDirection === 'asc' ? ' up' : ' down') : '' }}"></i>
+                        </a>
+                    </div>
                 </h2>
-                <div class="sort-icons" style="display: flex; align-items: center;">
-                    <a href="{{ route('secretgarden.actor.show', ['id' => $actor->id, 'sort' => 'release_date', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}" title="Sort by release date">
-                        <i class="fa fa-calendar{{ $sortField === 'release_date' ? ($sortDirection === 'asc' ? ' up' : ' down') : '' }}"></i>
-                    </a>
-                    <a href="{{ route('secretgarden.actor.show', ['id' => $actor->id, 'sort' => 'rank', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}" title="Sort by rank">
-                        <i class="fa fa-star{{ $sortField === 'rank' ? ($sortDirection === 'asc' ? ' up' : ' down') : '' }}"></i>
-                    </a>
-                </div>
             </div>
             <div class="panel__body torrent-search--card__results">
                 @foreach ($videos as $video)
