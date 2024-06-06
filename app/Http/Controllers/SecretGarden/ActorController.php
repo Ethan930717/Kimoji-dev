@@ -20,11 +20,13 @@ class ActorController extends Controller
 
         // 尝试从缓存中获取数据
         $actors = Cache::remember($cacheKey, 3600, function () use ($search, $sortField, $sortDirection) {
-            return Actor::withCount(['videos' => function($query) use ($search) {
-                if ($search) {
-                    $query->where('name', 'like', "%{$search}%");
-                }
-            }])->orderBy($sortField, $sortDirection)->paginate(10);
+            return Actor::withCount('videos')
+                ->when($search, function($query, $search) {
+                    return $query->where('name', 'like', "%{$search}%")
+                        ->orWhere('english_name', 'like', "%{$search}%");
+                })
+                ->orderBy($sortField, $sortDirection)
+                ->paginate(10);
         });
 
         return view('secretgarden.actor.index', compact('actors', 'sortField', 'sortDirection'));
