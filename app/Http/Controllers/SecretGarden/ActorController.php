@@ -29,6 +29,11 @@ class ActorController extends Controller
                 ->paginate(10);
         });
 
+        // 调试输出
+        foreach ($actors as $actor) {
+            error_log("Actor: {$actor->name}, Videos Count: {$actor->videos_count}");
+        }
+
         return view('secretgarden.actor.index', compact('actors', 'sortField', 'sortDirection'));
     }
 
