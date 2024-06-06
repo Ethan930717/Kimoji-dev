@@ -64,7 +64,7 @@
                         @endif
                     </a>
                 </th>
-                <th>{{ __('actors.works_count') }}</th>
+                <th>{{ __('secretgarden.works_count') }}</th>
             </tr>
             </thead>
             <tbody>
