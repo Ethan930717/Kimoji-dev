@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SecretGarden;
 
 use App\Http\Controllers\Controller;
 use App\Models\Actor;
+use App\Models\Video; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
