@@ -49,7 +49,47 @@
                     <p><strong>{{ __('actors.born') }}:</strong> {{ $actor->birth_date }}</p>
                 @endif
                 @if($actor->zodiac)
-                    <p><strong>{{ __('actors.zodiac') }}:</strong> {{ $actor->zodiac }}</p>
+                    <p><strong>{{ __('actors.zodiac') }}:</strong>
+                        {{ $actor->zodiac }}
+                        @switch($actor->zodiac)
+                            @case('Aries')
+                                <i class="fa fa-ram"></i>
+                                @break
+                            @case('Taurus')
+                                <i class="fa fa-cow"></i>
+                                @break
+                            @case('Gemini')
+                                <i class="fa fa-twins"></i>
+                                @break
+                            @case('Cancer')
+                                <i class="fa fa-crab"></i>
+                                @break
+                            @case('Leo')
+                                <i class="fa fa-lion"></i>
+                                @break
+                            @case('Virgo')
+                                <i class="fa fa-maiden"></i>
+                                @break
+                            @case('Libra')
+                                <i class="fa fa-balance-scale"></i>
+                                @break
+                            @case('Scorpio')
+                                <i class="fa fa-scorpion"></i>
+                                @break
+                            @case('Sagittarius')
+                                <i class="fa fa-archer"></i>
+                                @break
+                            @case('Capricorn')
+                                <i class="fa fa-goat"></i>
+                                @break
+                            @case('Aquarius')
+                                <i class="fa fa-water"></i>
+                                @break
+                            @case('Pisces')
+                                <i class="fa fa-fish"></i>
+                                @break
+                        @endswitch
+                    </p>
                 @endif
                 @if($actor->blood_type)
                     <p><strong>{{ __('actors.blood_type') }}:</strong> {{ $actor->blood_type }}</p>
