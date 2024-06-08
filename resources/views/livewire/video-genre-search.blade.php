@@ -28,7 +28,6 @@
                         class="mediahub-card"
                     >
                         <h2 class="custom-card__heading">
-                            <span>{{ $genre->name }}</span> <!-- 添加文字包裹元素 -->
                             @isset($genre->poster)
                                 <img
                                     class="custom-card__image"
