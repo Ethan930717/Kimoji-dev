@@ -7,7 +7,7 @@
  *
  * @project    UNIT3D Community Edition
  *
- * @author     HDVinnie <hdinnovations@protonmail.com>
+ * @auth0r     HDVinnie <hdinnovations@protonmail.com>
  * @license    https://www.gnu.org/licenses/agpl-3.0.en.html/ GNU Affero General Public License v3.0
  */
 
@@ -16,8 +16,8 @@ namespace App\Http\Controllers\SecretGarden;
 use App\Http\Controllers\Controller;
 use App\Models\Actor;
 use App\Models\Video;
+use App\Models\VideoGenre;
 use Illuminate\Support\Facades\DB;
-
 
 class HomeController extends Controller
 {
@@ -30,6 +30,7 @@ class HomeController extends Controller
         return view('secretgarden.home', [
             'videosCount'      => Video::count(),
             'actorsCount'      => Actor::count(),
+            'genresCount'      => VideoGenre::count(),
         ]);
     }
 }
