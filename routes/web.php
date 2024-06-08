@@ -86,6 +86,11 @@ Route::middleware('language')->group(function (): void {
             Route::get('/video', [App\Http\Controllers\SecretGarden\VideoController::class, 'index'])->name('video.index');
             Route::get('/video/{id}', [App\Http\Controllers\SecretGarden\VideoController::class, 'show'])->name('video.show');
             Route::get('/search', [App\Http\Controllers\SecretGarden\VideoController::class, 'search'])->name('video.search');
+            Route::get('/video-genres', [App\Http\Controllers\SecretGarden\VideoGenreController::class, 'index'])->name('video_genres.index');
+            Route::get('/makers', [App\Http\Controllers\SecretGarden\MakerController::class, 'index'])->name('maker.index');
+            Route::get('/labels', [App\Http\Controllers\SecretGarden\LabelController::class, 'index'])->name('label.index');
+            Route::get('/series', [App\Http\Controllers\SecretGarden\SeriesController::class, 'index'])->name('series.index');
+            Route::get('/tags', [App\Http\Controllers\SecretGarden\TagsController::class, 'index'])->name('tags.index');
 
         });
 

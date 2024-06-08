@@ -55,7 +55,7 @@
                             @case('Aries')
                                 <i class="fa fa-ram"></i>
                                 @break
-                            @case('Taurus')
+                 ho'me           @case('Taurus')
                                 <i class="fa fa-cow"></i>
                                 @break
                             @case('Gemini')
