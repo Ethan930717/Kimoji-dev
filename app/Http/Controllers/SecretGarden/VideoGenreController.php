@@ -17,8 +17,17 @@ class VideoGenreController extends Controller
         // 生成缓存键
         $cacheKey = 'video_genres_' . md5($search);
 
+        // 检查缓存中是否有数据
+        $genres = Cache::get($cacheKey);
+        if ($genres) {
+            \Log::info('Cache hit for ' . $cacheKey);
+        } else {
+            \Log::info('Cache miss for ' . $cacheKey);
+        }
+
         // 从缓存中获取数据，缓存时间设置为10分钟
         $genres = Cache::remember($cacheKey, 600, function () use ($search) {
+            \Log::info('Querying database for video genres');
             return VideoGenre::when($search, function($query, $search) {
                 return $query->where('name', 'like', "%{$search}%");
             })
@@ -26,9 +35,11 @@ class VideoGenreController extends Controller
                 ->paginate(50);
         });
 
+        \Log::info('Returning view with genres data');
         return view('secretgarden.video_genres.index', compact('genres'));
     }
 }
+
 
 
 
