@@ -15,7 +15,7 @@
         </a>
     </li>
     <li class="breadcrumb--active">
-        <a class="breadcrumb__link" href="{{ route('secretgarden.video-genres.index') }}">
+        <a class="breadcrumb__link" href="{{ route('secretgarden.video_genres.index') }}">
             {{ __('secretgarden.genres') }}
         </a>
     </li>
