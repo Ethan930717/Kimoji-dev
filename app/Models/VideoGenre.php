@@ -16,6 +16,6 @@ class VideoGenre extends Model
 
     public function videos()
     {
-        return $this->hasMany(Video::class, 'genres', 'name');
+        return $this->belongsToMany(Video::class, 'video_genre_video', 'genre_id', 'video_id');
     }
 }
