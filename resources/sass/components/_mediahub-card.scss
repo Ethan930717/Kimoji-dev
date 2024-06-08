@@ -63,13 +63,15 @@
   position: relative;
   overflow: hidden;
   height: 200px; /* 可以根据需要调整高度 */
+  background-size: cover; /* 背景图片覆盖整个元素 */
+  background-position: center; /* 背景图片居中 */
 }
+
 
 .custom-card__image {
   width: 100%;
   height: 100%;
   object-fit: cover; /* 让图片填充满整个背景 */
-  filter: grayscale(100%); /* 增加灰度效果 */
   opacity: 0.7; /* 调整透明度，给人一种蒙上一层灰色幕布的效果 */
 }
 

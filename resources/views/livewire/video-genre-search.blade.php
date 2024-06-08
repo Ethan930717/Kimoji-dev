@@ -22,25 +22,15 @@
     <div class="panel__body">
         <ul class="mediahub-card__list">
             @forelse ($genres as $genre)
-                <li class="custom-card__list-item">
+                <li class="custom-card__list-item" style="background-image: url('{{ url('secretgarden/poster/' . $genre->poster) }}');">
                     <a
                         href="{{ route('torrents.index', ['view' => 'group', 'genreId' => $genre->id]) }}"
                         class="mediahub-card"
                     >
-                        @isset($genre->poster)
-                            <img
-                                class="custom-card__image"
-                                src="{{ url('secretgarden/poster/' . $genre->poster) }}"
-                                alt="{{ $genre->name }}"
-                            />
-                        @endisset
                         <h2 class="custom-card__heading">
-                            {{ $genre->name }}
-                        </h2>
-                        <h3 class="custom-card__subheading">
                             <i class="{{ config('other.font-awesome') }} fa-tag"></i>
                             {{ $genre->name }} | {{ $genre->videos_count }} Videos
-                        </h3>
+                        </h2>
                     </a>
                 </li>
             @empty
