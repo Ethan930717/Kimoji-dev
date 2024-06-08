@@ -27,7 +27,17 @@
 @section('content')
     <section class="panelV2">
         <header class="panel__header">
-            <h2 class="panel__heading">{{ $genre->name }}</h2>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <h2 class="panel__heading">{{ $genre->name }}</h2>
+                <div style="display: inline-flex; align-items: center; margin-left: 10px;">
+                    <a href="{{ route('secretgarden.video_genres.show', ['id' => $genre->id, 'sort' => 'release_date', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}" title="Sort by release date">
+                        <i class="fa fa-calendar{{ $sortField === 'release_date' ? ($sortDirection === 'asc' ? ' up' : ' down') : '' }}"></i>
+                    </a>
+                    <a href="{{ route('secretgarden.video_genres.show', ['id' => $genre->id, 'sort' => 'video_rank', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}" title="Sort by rank" style="margin-left: 10px;">
+                        <i class="fa fa-star{{ $sortField === 'video_rank' ? ($sortDirection === 'asc' ? ' up' : ' down') : '' }}"></i>
+                    </a>
+                </div>
+            </div>
         </header>
         {{ $videos->links('partials.pagination') }}
         <div class="panel__body torrent-search--card__results">
@@ -35,14 +45,6 @@
                 <div class="panel__heading-container" style="display: flex; align-items: center; justify-content: space-between;" x-data>
                     <h2 class="panel__heading">
                         {{ __('mediahub.genre-videos') }} ({{ $videos->total() }})
-                        <div class="sort-icons" style="display: inline-flex; align-items: center; margin-left: 10px;">
-                            <a href="{{ route('secretgarden.video_genres.show', ['id' => $genre->id, 'sort' => 'release_date', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}" title="Sort by release date">
-                                <i class="fa fa-calendar{{ $sortField === 'release_date' ? ($sortDirection === 'asc' ? ' up' : ' down') : '' }}"></i>
-                            </a>
-                            <a href="{{ route('secretgarden.video_genres.show', ['id' => $genre->id, 'sort' => 'video_rank', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}" title="Sort by rank" style="margin-left: 10px;">
-                                <i class="fa fa-star{{ $sortField === 'video_rank' ? ($sortDirection === 'asc' ? ' up' : ' down') : '' }}"></i>
-                            </a>
-                        </div>
                     </h2>
                 </div>
                 <div class="panel__body torrent-search--card__results">
