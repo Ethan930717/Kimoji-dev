@@ -27,10 +27,11 @@
                         href="{{ route('torrents.index', ['view' => 'group', 'genreId' => $genre->id]) }}"
                         class="mediahub-card"
                     >
-                        <h2 class="mediahub-card__heading">
+                        <h2 class="custom-card__heading">
+                            <span>{{ $genre->name }}</span> <!-- 添加文字包裹元素 -->
                             @isset($genre->poster)
                                 <img
-                                    class="mediahub-card__image"
+                                    class="custom-card__image"
                                     src="{{ url('secretgarden/poster/' . $genre->poster) }}"
                                     alt="{{ $genre->name }}"
                                 />
@@ -38,9 +39,9 @@
                                 {{ $genre->name }}
                             @endisset
                         </h2>
-                        <h3 class="mediahub-card__subheading">
+                        <h3 class="custom-card__subheading">
                             <i class="{{ config('other.font-awesome') }} fa-tag"></i>
-                            {{ $genre->videos_count }} Shows
+                            {{ $genre->name }} | {{ $genre->videos_count }} Videos
                         </h3>
                     </a>
                 </li>

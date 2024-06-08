@@ -58,3 +58,46 @@
   max-width: 300px;
   width: auto;
 }
+
+.custom-card__image {
+  max-height: 60px;
+  max-width: 300px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7; /* 调整透明度，给人一种蒙上一层灰色幕布的效果 */
+  transition: opacity 0.3s ease; /* 平滑过渡效果 */
+}
+
+.custom-card__heading {
+  letter-spacing: 3px;
+  font-weight: 300;
+  line-height: 1.1;
+  text-align: center;
+  font-size: 29px;
+  margin: 0;
+  padding: 0;
+  position: relative; /* 为了使文字能够定位在图片上 */
+}
+
+.custom-card__heading::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* 半透明黑色背景，用于突出文字 */
+  z-index: 1; /* 确保背景在文字之下 */
+}
+
+.custom-card__heading span {
+  position: relative;
+  z-index: 2; /* 确保文字在背景之上 */
+}
+
+.custom-card__subheading {
+  text-align: center;
+  margin-top: 10px;
+}
