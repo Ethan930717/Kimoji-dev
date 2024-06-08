@@ -28,7 +28,7 @@
     <section class="panelV2">
         <header class="panel__header">
             <div style="display: flex; align-items: center; justify-content: space-between;">
-                <h2 class="panel__heading">{{ $genre->name }}</h2>
+                <h2 class="panel__heading">{{ $genre->name }}({{ $videos->total() }})</h2>
                 <div style="display: inline-flex; align-items: center; margin-left: 10px;">
                     <a href="{{ route('secretgarden.video_genres.show', ['id' => $genre->id, 'sort' => 'release_date', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}" title="Sort by release date">
                         <i class="fa fa-calendar{{ $sortField === 'release_date' ? ($sortDirection === 'asc' ? ' up' : ' down') : '' }}"></i>
@@ -42,11 +42,6 @@
         {{ $videos->links('partials.pagination') }}
         <div class="panel__body torrent-search--card__results">
             @if ($videos->isNotEmpty())
-                <div class="panel__heading-container" style="display: flex; align-items: center; justify-content: space-between;" x-data>
-                    <h2 class="panel__heading">
-                        {{ __('mediahub.genre-videos') }} ({{ $videos->total() }})
-                    </h2>
-                </div>
                 <div class="panel__body torrent-search--card__results">
                     @foreach ($videos as $video)
                         <x-video-card :video="$video" />
