@@ -11,23 +11,13 @@ class VideoGenreController extends Controller
 {
     public function index(Request $request)
     {
-        \Log::info('Entered VideoGenreController@index');
         $search = $request->get('search', '');
 
         // 生成缓存键
         $cacheKey = 'video_genres_' . md5($search);
 
-        // 检查缓存中是否有数据
-        $genres = Cache::get($cacheKey);
-        if ($genres) {
-            \Log::info('Cache hit for ' . $cacheKey);
-        } else {
-            \Log::info('Cache miss for ' . $cacheKey);
-        }
-
         // 从缓存中获取数据，缓存时间设置为10分钟
         $genres = Cache::remember($cacheKey, 600, function () use ($search) {
-            \Log::info('Querying database for video genres');
             return VideoGenre::when($search, function($query, $search) {
                 return $query->where('name', 'like', "%{$search}%");
             })
@@ -35,8 +25,23 @@ class VideoGenreController extends Controller
                 ->paginate(50);
         });
 
-        \Log::info('Returning view with genres data');
         return view('secretgarden.video_genres.index', compact('genres'));
+    }
+
+    public function show($id, Request $request)
+    {
+        $genre = VideoGenre::findOrFail($id);
+        $sortField = $request->get('sort', 'release_date');
+        $sortDirection = $request->get('direction', 'desc');
+
+        $videos = Video::whereIn('id', function($query) use ($id) {
+            $query->select('video_id')
+                ->from('video_genre_video')
+                ->where('genre_id', $id);
+        })->orderBy($sortField, $sortDirection)
+            ->paginate(50);
+
+        return view('secretgarden.video_genres.show', compact('genre', 'videos', 'sortField', 'sortDirection'));
     }
 }
 

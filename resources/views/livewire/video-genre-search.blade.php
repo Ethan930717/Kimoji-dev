@@ -25,7 +25,6 @@
                 <li class="custom-card__list-item" style="background-image: url('{{ url('secretgarden/poster/' . $genre->poster) }}');">
                     <a
                         href="{{ route('torrents.index', ['view' => 'group', 'genreId' => $genre->id]) }}"
-                        class="custom-card"
                     >
                         <h2 class="custom-card__heading">
                             <i class="{{ config('other.font-awesome') }} fa-tag"></i>
