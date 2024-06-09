@@ -22,26 +22,12 @@
     <div class="panel__body">
         <ul class="mediahub-card__list">
             @forelse ($labels as $label)
-                <li class="mediahub-card__list-item">
-                    <a
-                        href="{{ route('secretgarden.video_labels.show', ['id' => $label->id]) }}"
-                        class="mediahub-card"
-                    >
-                        <h2 class="mediahub-card__heading">
-                            @isset($label->poster)
-                                <img
-                                    class="mediahub-card__image"
-                                    src="{{ url('secretgarden/poster/' . $label->poster) }}"
-                                    alt="{{ $label->name }}"
-                                />
-                            @else
-                                {{ $label->name }}
-                            @endisset
-                        </h2>
-                        <h3 class="mediahub-card__subheading">
+                <li class="custom-card__list-item" style="background-image: url('{{ url('secretgarden/poster/' . $label->poster) }}');">
+                    <a href="{{ route('secretgarden.video_labels.show', ['id' => $label->id]) }}">
+                        <h2 class="custom-card__heading">
                             <i class="{{ config('other.font-awesome') }} fa-tag"></i>
                             {{ $label->name }} | {{ $label->videos_count }} Videos
-                        </h3>
+                        </h2>
                     </a>
                 </li>
             @empty

@@ -1,47 +1,56 @@
-<?php
+@extends('layout.default')
 
-namespace App\Http\Controllers\SecretGarden;
+@section('title')
+    <title>{{ $genre->name }} - {{ config('other.title') }}</title>
+@endsection
 
-use App\Http\Controllers\Controller;
-use App\Models\VideoTag;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
+@section('meta')
+    <meta name="description" content="{{ $genre->name }}" />
+@endsection
 
-class VideoTagController extends Controller
-{
-    public function index(Request $request)
-    {
-        $search = $request->get('search', '');
-        $cacheKey = 'video_tags_' . md5($search);
+@section('breadcrumbs')
+    <li class="breadcrumb--active">
+        <a class="breadcrumb__link" href="{{ route('secretgarden.home') }}">
+            {{ __('secretgarden.secretgarden') }}
+        </a>
+    </li>
+    <li class="breadcrumb--active">
+        <a class="breadcrumb__link" href="{{ route('secretgarden.video_genres.index') }}">
+            {{ __('secretgarden.genres') }}
+        </a>
+    </li>
+    <li class="breadcrumb--active">
+        {{ $genre->name }}
+    </li>
+@endsection
 
-        $tags = Cache::remember($cacheKey, 600, function () use ($search) {
-            return VideoTag::when($search, function ($query, $search) {
-                return $query->where('name', 'like', "%{$search}%");
-            })
-                ->withCount('videos')
-                ->paginate(50);
-        });
-
-        return view('secretgarden.video_tags.index', compact('tags'));
-    }
-
-    public function show($id, Request $request)
-    {
-        $tag = VideoTag::findOrFail($id);
-        $sortField = $request->get('sort', 'release_date');
-        $sortDirection = $request->get('direction', 'desc');
-
-        $cacheKey = 'tag_videos_' . $id . '_' . $sortField . '_' . $sortDirection;
-
-        $videos = Cache::store('redis')->remember($cacheKey, 600, function () use ($id, $sortField, $sortDirection) {
-            return Video::whereIn('id', function ($query) use ($id) {
-                $query->select('video_id')
-                    ->from('video_tag_video')
-                    ->where('tag_id', $id);
-            })->orderBy($sortField, $sortDirection)
-                ->paginate(50);
-        });
-
-        return view('secretgarden.video_tags.show', compact('tag', 'videos', 'sortField', 'sortDirection'));
-    }
-}
+@section('content')
+    <section class="panelV2">
+        <header class="panel__header">
+            <div style="display: flex; align-items: center; margin-top: 10px;" >
+                <h2 class="panel__heading" style="margin: 0;">{{ $genre->name }} ({{ $videos->total() }})</h2>
+                <div style="display: inline-flex; align-items: center; margin-left: 10px;">
+                    <a href="{{ route('secretgarden.video_genres.show', ['id' => $genre->id, 'sort' => 'release_date', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}" title="Sort by release date" style="margin-right: 10px;">
+                        <i class="fa fa-calendar{{ $sortField === 'release_date' ? ($sortDirection === 'asc' ? ' up' : ' down') : '' }}"></i>
+                    </a>
+                    <a href="{{ route('secretgarden.video_genres.show', ['id' => $genre->id, 'sort' => 'video_rank', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}" title="Sort by rank">
+                        <i class="fa fa-star{{ $sortField === 'video_rank' ? ($sortDirection === 'asc' ? ' up' : ' down') : '' }}"></i>
+                    </a>
+                </div>
+            </div>
+        </header>
+        {{ $videos->links('partials.pagination') }}
+        <div class="panel__body torrent-search--card__results">
+            @if ($videos->isNotEmpty())
+                <div class="panel__body torrent-search--card__results">
+                    @foreach ($videos as $video)
+                        <x-video-card :video="$video" />
+                    @endforeach
+                </div>
+            @else
+                <p>{{ __('mediahub.no-videos-found') }}</p>
+            @endif
+        </div>
+        {{ $videos->links('partials.pagination') }}
+    </section>
+@endsection

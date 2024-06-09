@@ -46,25 +46,33 @@
                 <li class="mediahub-card__list-item">
                     <a href="{{ route('secretgarden.video_tags.index') }}" class="mediahub-card">
                         <h2 class="mediahub-card__heading">{{ __('secretgarden.tags') }} Hub</h2>
-                        <h3>{{ $tagsCount }} {{ __('secretgarden.tags') }}</h3>
+                        <h3 class="mediahub-card__subheading">
+                            {{ $tagsCount }} {{ __('secretgarden.tags') }}
+                        </h3>
                     </a>
                 </li>
                 <li class="mediahub-card__list-item">
                     <a href="{{ route('secretgarden.video_makers.index') }}" class="mediahub-card">
                         <h2 class="mediahub-card__heading">{{ __('secretgarden.makers') }} Hub</h2>
-                        <h3>{{ $makersCount }} {{ __('secretgarden.makers') }}</h3>
+                        <h3 class="mediahub-card__subheading">
+                            {{ $makersCount }} {{ __('secretgarden.makers') }}
+                        </h3>
                     </a>
                 </li>
                 <li class="mediahub-card__list-item">
                     <a href="{{ route('secretgarden.video_labels.index') }}" class="mediahub-card">
                         <h2 class="mediahub-card__heading">{{ __('secretgarden.labels') }} Hub</h2>
-                        <h3>{{ $labelsCount }} {{ __('secretgarden.labels') }}</h3>
+                        <h3 class="mediahub-card__subheading">
+                            {{ $labelsCount }} {{ __('secretgarden.labels') }}
+                        </h3>
                     </a>
                 </li>
                 <li class="mediahub-card__list-item">
                     <a href="{{ route('secretgarden.video_series.index') }}" class="mediahub-card">
                         <h2 class="mediahub-card__heading">{{ __('secretgarden.series') }} Hub</h2>
-                        <h3>{{ $seriesCount }} {{ __('secretgarden.series') }}</h3>
+                        <h3 class="mediahub-card__subheading">
+                            {{ $seriesCount }} {{ __('secretgarden.series') }}
+                        </h3>
                     </a>
                 </li>
             </ul>

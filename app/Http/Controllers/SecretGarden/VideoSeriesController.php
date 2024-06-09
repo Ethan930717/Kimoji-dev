@@ -39,7 +39,7 @@ class VideoSeriesController extends Controller
                     ->from('video_series_video')
                     ->where('series_id', $id);
             })->orderBy($sortField, $sortDirection)
-                ->paginate(50);
+                ->paginate(20);
         });
 
         return view('secretgarden.video_series.show', compact('series', 'videos', 'sortField', 'sortDirection'));
