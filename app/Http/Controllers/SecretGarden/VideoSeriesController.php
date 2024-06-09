@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SecretGarden;
 
 use App\Http\Controllers\Controller;
+use App\Models\Video;
 use App\Models\VideoSeries;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -39,7 +40,7 @@ class VideoSeriesController extends Controller
                     ->from('video_series_video')
                     ->where('series_id', $id);
             })->orderBy($sortField, $sortDirection)
-                ->paginate(20);
+                ->paginate(50);
         });
 
         return view('secretgarden.video_series.show', compact('series', 'videos', 'sortField', 'sortDirection'));

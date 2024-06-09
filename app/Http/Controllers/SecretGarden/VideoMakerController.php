@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SecretGarden;
 
 use App\Http\Controllers\Controller;
+use App\Models\Video;
 use App\Models\VideoMaker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;

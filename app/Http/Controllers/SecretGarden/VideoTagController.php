@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SecretGarden;
 
 use App\Http\Controllers\Controller;
+use App\Models\Video;
 use App\Models\VideoTag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -39,7 +40,7 @@ class VideoTagController extends Controller
                     ->from('video_tag_video')
                     ->where('tag_id', $id);
             })->orderBy($sortField, $sortDirection)
-                ->paginate(20);
+                ->paginate(50);
         });
 
         return view('secretgarden.video_tags.show', compact('tag', 'videos', 'sortField', 'sortDirection'));

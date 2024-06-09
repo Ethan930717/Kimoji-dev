@@ -31,6 +31,7 @@ return [
     'genres'   => 'Genres',
     'description'   => 'Description',
     'video-images'   => 'Video Images',
+    'tag'   => 'Tag',
     'tags'   => 'Tags',
     'secretgarden'   => 'Secretgarden',
     'works_count'   => 'Works Count',
