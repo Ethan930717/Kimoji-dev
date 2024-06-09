@@ -9,7 +9,7 @@ class VideoLabel extends Model
 {
     use HasFactory;
 
-    protected $table = 'video_lable';
+    protected $table = 'video_label';
 
     protected $fillable = ['name', 'poster'];
 
