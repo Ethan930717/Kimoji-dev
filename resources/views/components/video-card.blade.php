@@ -5,6 +5,11 @@
 <article class="torrent-card">
     <header class="torrent-card__header">
         <div class="torrent-card__left-header">
+            @if ($video->actor_name)
+                <span class="torrent-card__actor-name">
+                    <i class="fas fa-user"></i> {{ $video->actor_name }}
+                </span>
+            @endif
             @if ($video->release_date)
                 <span class="torrent-card__release-date">
                     <i class="fas fa-calendar-alt"></i> {{ $video->release_date }}

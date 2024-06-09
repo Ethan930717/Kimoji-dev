@@ -1,6 +1,6 @@
 <section class="panelV2">
     <header class="panel__header">
-        <h2 class="panel__heading">{{ __('mediahub.series') }}</h2>
+        <h2 class="panel__heading">{{ __('secretgarden.series') }}</h2>
         <div class="panel__actions">
             <div class="panel__action">
                 <div class="form__group">
@@ -31,7 +31,7 @@
                     </a>
                 </li>
             @empty
-                No {{ __('mediahub.series') }}
+                No {{ __('secretgarden.series') }}
             @endforelse
         </ul>
     </div>

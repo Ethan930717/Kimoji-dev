@@ -25,13 +25,15 @@ return [
     'director'   => 'Director',
     'series'   => 'Series',
     'maker'   => 'Maker',
+    'makers'   => 'Makers',
     'label'   => 'Label',
+    'labels'   => 'Labels',
     'genres'   => 'Genres',
     'description'   => 'Description',
     'video-images'   => 'Video Images',
+    'tag'   => 'Tag',
     'tags'   => 'Tags',
     'secretgarden'   => 'Secretgarden',
     'works_count'   => 'Works Count',
-
 ];
 

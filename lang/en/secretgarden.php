@@ -35,7 +35,5 @@ return [
     'tags'   => 'Tags',
     'secretgarden'   => 'Secretgarden',
     'works_count'   => 'Works Count',
-
-
 ];
 
