@@ -76,6 +76,11 @@
                     </a>
                 </li>
             </ul>
+            <div style="text-align: center; margin-top: 20px; text-shadow: 0 0 2px #40b78e; font-weight: bold; font-size: 18px;">
+                <i class="{{ config('other.font-awesome') }} fa-star"></i>
+                Last Update: {{ $latestUpdate }}
+                <i class="{{ config('other.font-awesome') }} fa-star"></i>
+            </div>
         </div>
     </section>
 @endsection

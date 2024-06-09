@@ -74,8 +74,8 @@
 .custom-card__image {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 让图片填充满整个背景 */
-  opacity: 0.7; /* 调整透明度，给人一种蒙上一层灰色幕布的效果 */
+  object-fit: cover;
+  opacity: 0.7;
 }
 
 .custom-card__heading {
@@ -83,19 +83,24 @@
   bottom: 0;
   width: 100%;
   text-align: center;
-  background: rgba(0, 0, 0, 0.5); /* 半透明黑色背景，用于突出文字 */
-  color: #fff; /* 文字颜色为白色 */
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
   padding: 10px;
-  box-sizing: border-box; /* 包括padding在内计算宽度 */
+  box-sizing: border-box;
   font-size: 18px;
+}
+
+.custom-card__heading:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
 }
 
 .custom-card__subheading {
   text-align: center;
-  color: #fff; /* 文字颜色为白色 */
+  color: #fff;
   font-size: 14px;
   position: absolute;
-  bottom: 10px; /* 调整文字位置 */
+  bottom: 10px;
   width: 100%;
-  box-sizing: border-box; /* 包括padding在内计算宽度 */
+  box-sizing: border-box;
 }

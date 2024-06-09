@@ -19,6 +19,9 @@ class HomeController extends Controller
      */
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
+
+        $latestUpdate = Video::max('release_date');
+
         return view('secretgarden.home', [
             'videosCount'      => Video::count(),
             'actorsCount'      => Actor::count(),
@@ -27,6 +30,7 @@ class HomeController extends Controller
             'labelsCount'      => VideoLabel::count(),
             'seriesCount'      => VideoSeries::count(),
             'tagsCount'        => VideoTag::count(),
+            'latestUpdate'     => $latestUpdate,
         ]);
     }
 }

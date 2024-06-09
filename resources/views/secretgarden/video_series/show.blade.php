@@ -27,7 +27,7 @@
 @section('content')
     <section class="panelV2">
         <header class="panel__header">
-            <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; margin-top: 10px;" >
                 <h2 class="panel__heading">{{ $series->name }} ({{ $videos->total() }})</h2>
                 <div style="display: inline-flex; align-items: center; margin-left: 10px;">
                     <a href="{{ route('secretgarden.video_series.show', ['id' => $series->id, 'sort' => 'release_date', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}" title="Sort by release date" style="margin-right: 10px;">

@@ -21,12 +21,12 @@
     {{ $series->links('partials.pagination') }}
     <div class="panel__body">
         <ul class="mediahub-card__list">
-            @forelse ($series as $series)
-                <li class="custom-card__list-item" style="background-image: url('{{ url('secretgarden/poster/' . $series->poster) }}');">
-                    <a href="{{ route('secretgarden.video_series.show', ['id' => $series->id]) }}">
+            @forelse ($series as $seriesItem)
+                <li class="custom-card__list-item" style="background-image: url('{{ url('secretgarden/poster/' . $seriesItem->poster) }}');">
+                    <a href="{{ route('secretgarden.video_series.show', ['id' => $seriesItem->id]) }}">
                         <h2 class="custom-card__heading">
                             <i class="{{ config('other.font-awesome') }} fa-tag"></i>
-                            {{ $series->name }} | {{ $series->videos_count }} Videos
+                            {{ $seriesItem->name }} | {{ $seriesItem->videos_count }} Videos
                         </h2>
                     </a>
                 </li>
