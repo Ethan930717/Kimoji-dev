@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Http\Livewire;
+
+use App\Models\VideoLabel;
+use Livewire\Component;
+use Livewire\WithPagination;
+
+class VideoLabelSearch extends Component
+{
+    use WithPagination;
+
+    public $search = '';
+
+    protected $updatesQueryString = ['search'];
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function render()
+    {
+        $labels = VideoLabel::when($this->search, function ($query) {
+            return $query->where('name', 'like', "%{$this->search}%");
+        })
+            ->withCount('videos')
+            ->paginate(50);
+
+        return view('livewire.video-label-search', ['labels' => $labels]);
+    }
+}

@@ -52,18 +52,6 @@
                         @endif
                     </a>
                 </th>
-                <th>
-                    <a href="#" wire:click.prevent="sortBy('measurements')">
-                        {{ __('actors.measurements') }}
-                        @if ($sortField == 'measurements')
-                            @if ($sortDirection == 'asc')
-                                &uarr;
-                        @else
-                            &darr;
-                        @endif
-                        @endif
-                    </a>
-                </th>
             </tr>
             </thead>
             <tbody>
@@ -81,7 +69,6 @@
                     <td><a href="{{ route('secretgarden.actor.show', ['id' => $actor->id]) }}">{{ $actor->name }}</a></td>
                     <td>{{ str_replace('_', ' ', $actor->english_name) }}</td>
                     <td>{{ $actor->birth_date }}</td>
-                    <td>{{ $actor->measurements }}</td>
                 </tr>
             @empty
                 <tr>

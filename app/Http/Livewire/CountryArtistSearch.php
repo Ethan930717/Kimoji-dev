@@ -19,7 +19,7 @@ class CountryArtistSearch extends Component
     {
         $cacheKey = 'artists_in_' . $this->countryName . '_search_' . $this->search;
 
-        $artists = cache()->remember($cacheKey, 60, function () {
+        $artists = cache()->remember($cacheKey, 3600, function () {
             return Artist::where('name', 'like', '%' . $this->search . '%')
                 ->where('country', '=', $this->countryName)
                 ->get();

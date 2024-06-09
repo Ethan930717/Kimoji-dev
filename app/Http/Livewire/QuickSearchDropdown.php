@@ -23,7 +23,7 @@ class QuickSearchDropdown extends Component
         $search = '%'.str_replace(' ', '%', $this->quicksearchText).'%';
         $cacheKey = 'search_'.$this->quicksearchRadio.'_'.md5($this->quicksearchText);
 
-        $search_results = cache()->remember($cacheKey, 60, function () use ($search) {
+        $search_results = cache()->remember($cacheKey, 3600, function () use ($search) {
             return $this->quicksearchText === '' ? [] : match ($this->quicksearchRadio) {
                 'albums' => Torrent::query()
                     ->where('category_id', '=', 3)

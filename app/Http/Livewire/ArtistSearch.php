@@ -28,7 +28,7 @@ class ArtistSearch extends Component
         // 缓存键包括搜索词和页码，确保每个搜索词和页码组合的结果被唯一缓存
         $cacheKey = 'artists_search_'. $searchTerm .'_page_'. $page;
 
-        return cache()->remember($cacheKey, 60, function () use ($searchTerm) {
+        return cache()->remember($cacheKey, 3600, function () use ($searchTerm) {
             return Artist::select(['id', 'image_url', 'name'])
                 ->when($searchTerm !== '', fn ($query) => $query->where('name', 'LIKE', '%'.$searchTerm.'%'))
                 ->orderBy('name', 'asc')

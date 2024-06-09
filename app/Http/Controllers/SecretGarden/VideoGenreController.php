@@ -18,7 +18,7 @@ class VideoGenreController extends Controller
 
         $cacheKey = 'video_genres_' . md5($search);
 
-        $genres = Cache::remember($cacheKey, 600, function () use ($search) {
+        $genres = Cache::remember($cacheKey, 3600, function () use ($search) {
             return VideoGenre::when($search, function($query, $search) {
                 return $query->where('name', 'like', "%{$search}%");
             })
@@ -37,13 +37,13 @@ class VideoGenreController extends Controller
 
         $cacheKey = 'genre_videos_' . $id . '_' . $sortField . '_' . $sortDirection;
 
-        $videos = Cache::remember($cacheKey, 600, function () use ($id, $sortField, $sortDirection) {
+        $videos = Cache::remember($cacheKey, 3600, function () use ($id, $sortField, $sortDirection) {
             return Video::whereIn('id', function($query) use ($id) {
                 $query->select('video_id')
                     ->from('video_genre_video')
                     ->where('genre_id', $id);
             })->orderBy($sortField, $sortDirection)
-                ->paginate(20);
+                ->paginate(50);
         });
 
         return view('secretgarden.video_genres.show', compact('genre', 'videos', 'sortField', 'sortDirection'));
