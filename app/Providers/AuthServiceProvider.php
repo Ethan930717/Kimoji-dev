@@ -15,6 +15,7 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,6 +26,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         Auth::provider('cache-user', fn () => resolve(CacheUserProvider::class));
 
+        // 定义checkabovepu权限
         Gate::define('checkabovepu', function ($user) {
             return $user->isCheckAbovePu();
         });
