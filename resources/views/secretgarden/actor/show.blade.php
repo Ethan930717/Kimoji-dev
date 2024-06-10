@@ -117,20 +117,20 @@
 
     {{-- 艺术家资源展示 --}}
     <div x-data="{
-            videos: @json($videos->items()),
-            page: {{ $videos->currentPage() }},
-            lastPage: {{ $videos->lastPage() }},
-            loadMore() {
-                if (this.page < this.lastPage) {
-                    this.page++;
-                    fetch(`{{ route('secretgarden.actor.show', ['id' => $actor->id]) }}?page=${this.page}&sort={{ $sortField }}&direction={{ $sortDirection }}`)
-                        .then(res => res.json())
-                        .then(data => {
-                            this.videos = [...this.videos, ...data.data];
-                        });
-                }
+        videos: @json($videos->items()),
+        page: {{ $videos->currentPage() }},
+        lastPage: {{ $videos->lastPage() }},
+        loadMore() {
+            if (this.page < this.lastPage) {
+                this.page++;
+                fetch(`{{ route('secretgarden.actor.show', ['id' => $actor->id]) }}?page=${this.page}&sort={{ $sortField }}&direction={{ $sortDirection }}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        this.videos = [...this.videos, ...data.data];
+                    });
             }
-        }"
+        }
+    }"
          @scroll.window="if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) loadMore()"
     >
         <section class="panelV2" style="margin-top: 20px">
@@ -149,7 +149,14 @@
             </div>
             <div class="panel__body torrent-search--card__results">
                 <template x-for="video in videos" :key="video.id">
-                    <x-video-card :video="video" />
+                    <div class="video-card">
+                        <img :src="video.poster_url" :alt="video.title" style="width: 150px; height: 200px; object-fit: cover; border-radius: 8px;">
+                        <div class="video-details">
+                            <h3 x-text="video.title"></h3>
+                            <p><strong>{{ __('secretgarden.release_date') }}:</strong> <span x-text="video.release_date"></span></p>
+                            <p><strong>{{ __('secretgarden.rank') }}:</strong> <span x-text="video.video_rank"></span></p>
+                        </div>
+                    </div>
                 </template>
             </div>
         </section>
