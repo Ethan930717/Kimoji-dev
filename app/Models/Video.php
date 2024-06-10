@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Video extends Model
 {
@@ -15,11 +16,16 @@ class Video extends Model
 
     protected $fillable = [
         'actor_id', 'actor_name', 'actor_code', 'title', 'video_rank',
-        'item_number', 'duration', 'release_date', 'director_id', 'series_id',
-        'maker_id', 'label_id', 'description', 'poster_url', 'video_images'
+        'item_number', 'duration', 'release_date', 'director', 'series',
+        'maker', 'label', 'genres', 'tags', 'description', 'poster_url', 'video_images'
     ];
 
     protected $dates = ['release_date'];
+
+    protected $casts = [
+        'genres' => 'array',
+        'tags' => 'array',
+    ];
 
     public function actor()
     {
@@ -31,6 +37,21 @@ class Video extends Model
         return $this->belongsTo(Director::class, 'director_id');
     }
 
+    public function series()
+    {
+        return $this->belongsTo(Series::class, 'series_id');
+    }
+
+    public function maker()
+    {
+        return $this->belongsTo(Maker::class, 'maker_id');
+    }
+
+    public function label()
+    {
+        return $this->belongsTo(Label::class, 'label_id');
+    }
+
     public function videoGenres()
     {
         return $this->belongsToMany(VideoGenre::class, 'video_genre_video', 'video_id', 'genre_id');
@@ -38,9 +59,8 @@ class Video extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(VideoTag::class, 'video_tag_video', 'video_id', 'tag_id');
+        return $this->belongsToMany(Tag::class, 'video_tag', 'video_id', 'tag_id');
     }
-
 
     public function scopePopular($query)
     {
@@ -62,3 +82,4 @@ class Video extends Model
         return is_string($value) ? $value : implode(';', $value);
     }
 }
+

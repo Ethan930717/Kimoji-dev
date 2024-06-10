@@ -63,19 +63,11 @@
             @if($video->label)
                 <p><strong>{{ __('secretgarden.label') }}:</strong> {{ $video->label }}</p>
             @endif
-            @if($video->videoGenres && $video->videoGenres->isNotEmpty())
-                <p><strong>{{ __('secretgarden.genres') }}:</strong>
-                    @foreach($video->videoGenres as $genre)
-                        <a href="{{ route('secretgarden.video_genres.show', ['id' => $genre->id]) }}">{{ $genre->name }}</a>{{ !$loop->last ? ' · ' : '' }}
-                    @endforeach
-                </p>
+            @if($video->genres)
+                <p><strong>{{ __('secretgarden.genres') }}:</strong> {{ $video->genres }}</p>
             @endif
-            @if($video->tags && $video->tags->isNotEmpty())
-                <p><strong>{{ __('secretgarden.tags') }}:</strong>
-                    @foreach($video->tags as $tag)
-                        <a href="{{ route('secretgarden.video_tags.show', ['id' => $tag->id]) }}">{{ $tag->name }}</a>{{ !$loop->last ? ' · ' : '' }}
-                    @endforeach
-                </p>
+            @if($video->tags)
+                <p><strong>{{ __('secretgarden.tags') }}:</strong> {{ $video->tags }}</p>
             @endif
             @if($video->description)
                 <div style="max-height: 200px; overflow-y: auto;">

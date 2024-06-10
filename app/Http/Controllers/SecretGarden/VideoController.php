@@ -18,7 +18,7 @@ class VideoController extends Controller
 
     public function show($id)
     {
-        $video = Video::with(['videoGenres', 'tags'])->findOrFail($id);
+        $video = Video::findOrFail($id);
         return view('secretgarden.video.show', compact('video'));
     }
 
