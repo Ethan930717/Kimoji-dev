@@ -55,19 +55,27 @@
                 <p><strong>{{ __('secretgarden.director') }}:</strong> {{ $video->director }}</p>
             @endif
             @if($video->series)
-                <p><strong>{{ __('secretgarden.series') }}:</strong> {{ $video->series }}</p>
+                <p><strong>{{ __('secretgarden.series') }}:</strong> <a href="{{ route('secretgarden.series.index', ['id' => $video->series_id]) }}">{{ $video->series }}</a></p>
             @endif
             @if($video->maker)
-                <p><strong>{{ __('secretgarden.maker') }}:</strong> {{ $video->maker }}</p>
+                <p><strong>{{ __('secretgarden.maker') }}:</strong> <a href="{{ route('secretgarden.maker.index', ['id' => $video->maker_id]) }}">{{ $video->maker }}</a></p>
             @endif
             @if($video->label)
-                <p><strong>{{ __('secretgarden.label') }}:</strong> {{ $video->label }}</p>
+                <p><strong>{{ __('secretgarden.label') }}:</strong> <a href="{{ route('secretgarden.label.index', ['id' => $video->label_id]) }}">{{ $video->label }}</a></p>
             @endif
             @if($video->genres)
-                <p><strong>{{ __('secretgarden.genres') }}:</strong> {{ $video->genres }}</p>
+                <p><strong>{{ __('secretgarden.genres') }}:</strong>
+                    @foreach($video->genres as $genre)
+                        <a href="{{ route('secretgarden.genres.index', ['id' => $genre->id]) }}">{{ $genre->name }}</a>{{ !$loop->last ? ' · ' : '' }}
+                    @endforeach
+                </p>
             @endif
             @if($video->tags)
-                <p><strong>{{ __('secretgarden.tags') }}:</strong> {{ $video->tags }}</p>
+                <p><strong>{{ __('secretgarden.tags') }}:</strong>
+                    @foreach($video->tags as $tag)
+                        <a href="{{ route('secretgarden.tags.index', ['id' => $tag->id]) }}">{{ $tag->name }}</a>{{ !$loop->last ? ' · ' : '' }}
+                    @endforeach
+                </p>
             @endif
             @if($video->description)
                 <div style="max-height: 200px; overflow-y: auto;">
