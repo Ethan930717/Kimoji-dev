@@ -117,15 +117,16 @@
 
     {{-- 艺术家资源展示 --}}
     <div x-data="{
-            videos: @json($videos),
-            page: 1,
+            videos: @json($videos->items()),
+            page: {{ $videos->currentPage() }},
+            lastPage: {{ $videos->lastPage() }},
             loadMore() {
-                if (this.page < {{ $videos->lastPage() }}) {
+                if (this.page < this.lastPage) {
                     this.page++;
                     fetch(`{{ route('secretgarden.actor.show', ['id' => $actor->id]) }}?page=${this.page}&sort={{ $sortField }}&direction={{ $sortDirection }}`)
                         .then(res => res.json())
                         .then(data => {
-                            this.videos.data = [...this.videos.data, ...data.data];
+                            this.videos = [...this.videos, ...data.data];
                         });
                 }
             }
@@ -147,7 +148,7 @@
                 </h2>
             </div>
             <div class="panel__body torrent-search--card__results">
-                <template x-for="video in videos.data" :key="video.id">
+                <template x-for="video in videos" :key="video.id">
                     <x-video-card :video="video" />
                 </template>
             </div>
