@@ -13,7 +13,6 @@ class VideoGenreController extends Controller
 {
     public function index(Request $request)
     {
-        \Log::info('Entered VideoGenreController@index');
         $search = $request->get('search', '');
 
         $cacheKey = 'video_genres_' . md5($search);
