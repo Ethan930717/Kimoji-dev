@@ -30,9 +30,18 @@
                 <th style="white-space: nowrap;">{{ __('secretgarden.actor') }}</th>
                 <th style="white-space: nowrap;">{{ __('secretgarden.item_number') }}</th>
                 <th>{{ __('secretgarden.title') }}</th>
-                <th style="white-space: nowrap;">{{ __('secretgarden.release_date') }}</th>
-                <th style="white-space: nowrap;">{{ __('secretgarden.duration') }}</th>
-                <th style="white-space: nowrap;">{{ __('secretgarden.rank') }}</th>
+                <th style="white-space: nowrap;">
+                    <a href="{{ route('secretgarden.video.index', ['sort' => 'release_date', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                        {{ __('secretgarden.release_date') }}
+                        <i class="fa fa-sort-{{ $sortField === 'release_date' && $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                    </a>
+                </th>
+                <th style="white-space: nowrap;">
+                    <a href="{{ route('secretgarden.video.index', ['sort' => 'video_rank', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                        {{ __('secretgarden.rank') }}
+                        <i class="fa fa-sort-{{ $sortField === 'video_rank' && $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                    </a>
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -66,12 +75,11 @@
                         </a>
                     </td>
                     <td style="white-space: nowrap;">{{ $video->release_date }}</td>
-                    <td style="white-space: nowrap;">{{ $video->duration }}</td>
                     <td style="white-space: nowrap;">{{ $video->video_rank }}</td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="7">{{ __('No Result') }}</td>
+                    <td colspan="6">{{ __('No Result') }}</td>
                 </tr>
             @endforelse
             </tbody>

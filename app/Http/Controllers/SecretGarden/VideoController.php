@@ -10,12 +10,21 @@ use Illuminate\Support\Facades\Redis;
 
 class VideoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $videos = Video::all();
-        return view('secretgarden.video.index', compact('videos'));
-    }
+        $sortField = $request->get('sort', 'release_date');
+        $sortDirection = $request->get('direction', 'desc');
 
+        $cacheKey = "videos_all";
+
+        $videos = Cache::remember($cacheKey, 3600, function () {
+            return Video::all();
+        });
+
+        $videos = $videos->sortBy($sortField, SORT_REGULAR, $sortDirection === 'desc')->paginate(10);
+
+        return view('secretgarden.video.index', compact('videos', 'sortField', 'sortDirection'));
+    }
     public function show($id)
     {
         $video = Video::findOrFail($id);
@@ -70,7 +79,7 @@ class VideoController extends Controller
                 ->get();
 
             // 将结果存入缓存
-            Cache::put($cacheKey, $videos, now()->addMinutes(10)); // 缓存10分钟
+            Cache::put($cacheKey, $videos, now()->addMinutes(60)); // 缓存10分钟
         }
 
         return view('secretgarden.video.search_results', compact('videos'));
