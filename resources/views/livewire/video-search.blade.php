@@ -30,8 +30,22 @@
                 <th style="white-space: nowrap;">{{ __('secretgarden.actor') }}</th>
                 <th style="white-space: nowrap;">{{ __('secretgarden.item_number') }}</th>
                 <th>{{ __('secretgarden.title') }}</th>
-                <th style="white-space: nowrap;">{{ __('secretgarden.release_date') }}</th>
-                <th style="white-space: nowrap;">{{ __('secretgarden.rank') }}</th>
+                <th style="white-space: nowrap;">
+                    <a href="{{ route('secretgarden.video.index', ['sort' => 'release_date', 'direction' => $sortField === 'release_date' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                        {{ __('secretgarden.release_date') }}
+                        @if ($sortField === 'release_date')
+                            <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                        @endif
+                    </a>
+                </th>
+                <th style="white-space: nowrap;">
+                    <a href="{{ route('secretgarden.video.index', ['sort' => 'video_rank', 'direction' => $sortField === 'video_rank' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                        {{ __('secretgarden.rank') }}
+                        @if ($sortField === 'video_rank')
+                            <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                        @endif
+                    </a>
+                </th>
             </tr>
             </thead>
             <tbody>
