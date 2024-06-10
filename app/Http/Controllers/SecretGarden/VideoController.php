@@ -12,8 +12,8 @@ class VideoController extends Controller
 {
     public function index(Request $request)
     {
-        $sortField = $request->get('sort', 'release_date'); // 默认按 release_date 排序
-        $sortDirection = $request->get('direction', 'asc'); // 默认升序排序
+        $sortField = $request->get('sort', 'release_date');
+        $sortDirection = $request->get('direction', 'desc');
 
         $videos = Video::orderBy($sortField, $sortDirection)->paginate(10);
 
