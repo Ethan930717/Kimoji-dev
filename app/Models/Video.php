@@ -41,20 +41,6 @@ class Video extends Model
         return $this->belongsToMany(VideoTag::class, 'video_tag_video', 'video_id', 'tag_id');
     }
 
-    public function series()
-    {
-        return $this->belongsToMany(VideoSeries::class, 'video_series_video', 'video_id', 'series_id');
-    }
-
-    public function maker()
-    {
-        return $this->belongsToMany(VideoMaker::class, 'video_maker_video', 'video_id', 'maker_id');
-    }
-
-    public function label()
-    {
-        return $this->belongsToMany(VideoLabel::class, 'video_label_video', 'video_id', 'label_id');
-    }
 
     public function scopePopular($query)
     {

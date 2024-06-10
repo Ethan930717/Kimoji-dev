@@ -54,26 +54,14 @@
             @if($video->director)
                 <p><strong>{{ __('secretgarden.director') }}:</strong> {{ $video->director }}</p>
             @endif
-            @if($video->series && $video->series->isNotEmpty())
-                <p><strong>{{ __('secretgarden.series') }}:</strong>
-                    @foreach($video->series as $series)
-                        <a href="{{ route('secretgarden.video_series.show', ['id' => $series->id]) }}">{{ $series->name }}</a>{{ !$loop->last ? ' · ' : '' }}
-                    @endforeach
-                </p>
+            @if($video->series)
+                <p><strong>{{ __('secretgarden.series') }}:</strong> {{ $video->series }}</p>
             @endif
-            @if($video->maker && $video->maker->isNotEmpty())
-                <p><strong>{{ __('secretgarden.maker') }}:</strong>
-                    @foreach($video->maker as $maker)
-                        <a href="{{ route('secretgarden.video_makers.show', ['id' => $maker->id]) }}">{{ $maker->name }}</a>{{ !$loop->last ? ' · ' : '' }}
-                    @endforeach
-                </p>
+            @if($video->maker)
+                <p><strong>{{ __('secretgarden.maker') }}:</strong> {{ $video->maker }}</p>
             @endif
-            @if($video->label && $video->label->isNotEmpty())
-                <p><strong>{{ __('secretgarden.label') }}:</strong>
-                    @foreach($video->label as $label)
-                        <a href="{{ route('secretgarden.video_labels.show', ['id' => $label->id]) }}">{{ $label->name }}</a>{{ !$loop->last ? ' · ' : '' }}
-                    @endforeach
-                </p>
+            @if($video->label)
+                <p><strong>{{ __('secretgarden.label') }}:</strong> {{ $video->label }}</p>
             @endif
             @if($video->videoGenres && $video->videoGenres->isNotEmpty())
                 <p><strong>{{ __('secretgarden.genres') }}:</strong>
