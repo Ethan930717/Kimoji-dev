@@ -55,7 +55,7 @@
                             @case('Aries')
                                 <i class="fa fa-ram"></i>
                                 @break
-                 ho'me           @case('Taurus')
+                            @case('Taurus')
                                 <i class="fa fa-cow"></i>
                                 @break
                             @case('Gemini')
@@ -116,11 +116,11 @@
     </div>
 
     {{-- 艺术家资源展示 --}}
-    @if ($videos->isNotEmpty())
+    <div x-data="videoData" @scroll.window="if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) loadMore()">
         <section class="panelV2" style="margin-top: 20px">
-            <div class="panel__heading-container" style="display: flex; align-items: center; justify-content: space-between;" x-data>
+            <div class="panel__heading-container" style="display: flex; align-items: center; justify-content: space-between;">
                 <h2 class="panel__heading">
-                    {{ __('actors.artist-videos') }} ({{ $videos->count() }})
+                    {{ __('actors.artist-videos') }} ({{ $videos->total() }})
                     <div class="sort-icons" style="display: inline-flex; align-items: center; margin-left: 10px;">
                         <a href="{{ route('secretgarden.actor.show', ['id' => $actor->id, 'sort' => 'release_date', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}" title="Sort by release date">
                             <i class="fa fa-calendar{{ $sortField === 'release_date' ? ($sortDirection === 'asc' ? ' up' : ' down') : '' }}"></i>
@@ -132,10 +132,37 @@
                 </h2>
             </div>
             <div class="panel__body torrent-search--card__results">
-                @foreach ($videos as $video)
-                    <x-video-card :video="$video" />
-                @endforeach
+                <template x-for="video in videos" :key="video.id">
+                    <div class="video-card">
+                        <img :src="video.poster_url" :alt="video.title" style="width: 150px; height: 200px; object-fit: cover; border-radius: 8px;">
+                        <div class="video-details">
+                            <h3 x-text="video.title"></h3>
+                            <p><strong>{{ __('secretgarden.release_date') }}:</strong> <span x-text="video.release_date"></span></p>
+                            <p><strong>{{ __('secretgarden.rank') }}:</strong> <span x-text="video.video_rank"></span></p>
+                        </div>
+                    </div>
+                </template>
             </div>
         </section>
-    @endif
+    </div>
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('videoData', () => ({
+                videos: @json($videos->items()),
+                page: {{ $videos->currentPage() }},
+                lastPage: {{ $videos->lastPage() }},
+                loadMore() {
+                    if (this.page < this.lastPage) {
+                        this.page++;
+                        fetch(`{{ route('secretgarden.actor.show', ['id' => $actor->id]) }}?page=${this.page}&sort={{ $sortField }}&direction={{ $sortDirection }}`)
+                            .then(res => res.json())
+                            .then(data => {
+                                this.videos = [...this.videos, ...data.data];
+                            });
+                    }
+                }
+            }));
+        });
+    </script>
 @endsection

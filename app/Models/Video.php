@@ -32,32 +32,28 @@ class Video extends Model
         return $this->belongsTo(Actor::class, 'actor_id');
     }
 
-    public function director()
-    {
-        return $this->belongsTo(Director::class, 'director_id');
-    }
 
     public function videoGenres()
     {
         return $this->belongsToMany(VideoGenre::class, 'video_genre_video', 'video_id', 'genre_id');
     }
 
-    public function tags()
+    public function videotags()
     {
         return $this->belongsToMany(VideoTag::class, 'video_tag_video', 'video_id', 'tag_id');
     }
 
-    public function series()
+    public function videoseries()
     {
         return $this->belongsToMany(VideoSeries::class, 'video_series_video', 'video_id', 'series_id');
     }
 
-    public function maker()
+    public function videomaker()
     {
         return $this->belongsToMany(VideoMaker::class, 'video_maker_video', 'video_id', 'maker_id');
     }
 
-    public function label()
+    public function videolabel()
     {
         return $this->belongsToMany(VideoLabel::class, 'video_label_video', 'video_id', 'label_id');
     }
