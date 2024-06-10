@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
 
 class Video extends Model
 {
@@ -34,17 +33,17 @@ class Video extends Model
 
     public function series()
     {
-        return $this->belongsTo(VideoSeries::class, 'series_id');
+        return $this->belongsToMany(VideoSeries::class, 'video_series_video', 'video_id', 'series_id');
     }
 
     public function maker()
     {
-        return $this->belongsTo(VideoMaker::class, 'maker_id');
+        return $this->belongsToMany(VideoMaker::class, 'video_maker_video', 'video_id', 'maker_id');
     }
 
     public function label()
     {
-        return $this->belongsTo(VideoLabel::class, 'label_id');
+        return $this->belongsToMany(VideoLabel::class, 'video_label_video', 'video_id', 'label_id');
     }
 
     public function videoGenres()
@@ -54,12 +53,12 @@ class Video extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(VideoTag::class, 'video_tag', 'video_id', 'tag_id');
+        return $this->belongsToMany(VideoTag::class, 'video_tag_video', 'video_id', 'tag_id');
     }
 
     public function scopePopular($query)
     {
-        return $query->where('video_rank', '>', 8);
+        return $query->where('video_rank', '>', 4);
     }
 
     public function scopeReleasedAfter($query, $date)
@@ -77,4 +76,3 @@ class Video extends Model
         return is_string($value) ? $value : implode(';', $value);
     }
 }
-
