@@ -37,21 +37,6 @@ class Video extends Model
         return $this->belongsTo(Director::class, 'director_id');
     }
 
-    public function series()
-    {
-        return $this->belongsTo(Series::class, 'series_id');
-    }
-
-    public function maker()
-    {
-        return $this->belongsTo(Maker::class, 'maker_id');
-    }
-
-    public function label()
-    {
-        return $this->belongsTo(Label::class, 'label_id');
-    }
-
     public function videoGenres()
     {
         return $this->belongsToMany(VideoGenre::class, 'video_genre_video', 'video_id', 'genre_id');
@@ -59,7 +44,22 @@ class Video extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'video_tag', 'video_id', 'tag_id');
+        return $this->belongsToMany(VideoTag::class, 'video_tag_video', 'video_id', 'tag_id');
+    }
+
+    public function series()
+    {
+        return $this->belongsToMany(VideoSeries::class, 'video_series_video', 'video_id', 'series_id');
+    }
+
+    public function maker()
+    {
+        return $this->belongsToMany(VideoMaker::class, 'video_maker_video', 'video_id', 'maker_id');
+    }
+
+    public function label()
+    {
+        return $this->belongsToMany(VideoLabel::class, 'video_label_video', 'video_id', 'label_id');
     }
 
     public function scopePopular($query)
