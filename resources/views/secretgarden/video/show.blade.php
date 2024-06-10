@@ -38,118 +38,119 @@
         <div class="video-info" style="flex: 2; min-width: 300px; margin-left: 40px;">
             <div class="video-header" style="display: flex; align-items: center; min-width: 300px;">
                 <h2 class="video-title" style="margin: 0;">{{ $video->title }}</h2>
-                @if($video->actor_name)
-                    <p><strong><a href="{{ route('secretgarden.actor.show', ['id' => $video->actor_id]) }}">{{ $video->actor_name }}</a> - {{ $video->item_number }}</strong></p>
-                @endif
-                @if($video->release_date)
-                    <p><strong>{{ __('secretgarden.release_date') }}:</strong> {{ $video->release_date }}</p>
-                @endif
-                @if($video->video_rank)
-                    <p><strong>{{ __('secretgarden.rank') }}:</strong> {{ $video->video_rank }}</p>
-                @endif
-                @if($video->duration)
-                    <p><strong>{{ __('secretgarden.duration') }}:</strong> {{ $video->duration }}</p>
-                @endif
-                @if($video->director)
-                    <p><strong>{{ __('secretgarden.director') }}:</strong> {{ $video->director }}</p>
-                @endif
-                @if($video->series->isNotEmpty())
-                    <p><strong>{{ __('secretgarden.series') }}:</strong>
-                        @foreach($video->series as $series)
-                            <a href="{{ route('secretgarden.video_series.show', ['id' => $series->id]) }}">{{ $series->name }}</a>{{ !$loop->last ? ' · ' : '' }}
-                        @endforeach
-                    </p>
-                @endif
-                @if($video->maker->isNotEmpty())
-                    <p><strong>{{ __('secretgarden.maker') }}:</strong>
-                        @foreach($video->maker as $maker)
-                            <a href="{{ route('secretgarden.video_makers.show', ['id' => $maker->id]) }}">{{ $maker->name }}</a>{{ !$loop->last ? ' · ' : '' }}
-                        @endforeach
-                    </p>
-                @endif
-                @if($video->label->isNotEmpty())
-                    <p><strong>{{ __('secretgarden.label') }}:</strong>
-                        @foreach($video->label as $label)
-                            <a href="{{ route('secretgarden.video_labels.show', ['id' => $label->id]) }}">{{ $label->name }}</a>{{ !$loop->last ? ' · ' : '' }}
-                        @endforeach
-                    </p>
-                @endif
-                @if($video->videoGenres->isNotEmpty())
-                    <p><strong>{{ __('secretgarden.genres') }}:</strong>
-                        @foreach($video->videoGenres as $genre)
-                            <a href="{{ route('secretgarden.video_genres.show', ['id' => $genre->id]) }}">{{ $genre->name }}</a>{{ !$loop->last ? ' · ' : '' }}
-                        @endforeach
-                    </p>
-                @endif
-                @if($video->tags->isNotEmpty())
-                    <p><strong>{{ __('secretgarden.tags') }}:</strong>
-                        @foreach($video->tags as $tag)
-                            <a href="{{ route('secretgarden.video_tags.show', ['id' => $tag->id]) }}">{{ $tag->name }}</a>{{ !$loop->last ? ' · ' : '' }}
-                        @endforeach
-                    </p>
-                @endif
-                @if($video->description)
-                    <div style="max-height: 200px; overflow-y: auto;">
-                        <p><strong>{{ __('secretgarden.description') }}:</strong> {!! nl2br(e($video->description)) !!}</p>
-                    </div>
-                @endif
             </div>
-        </div>
-
-        {{-- 视频截图展示 --}}
-        @if (!empty($video->video_images))
-            @php
-                $image_urls = explode(';', $video->video_images);
-                $image_count = count($image_urls);
-            @endphp
-            <section class="panelV2" style="margin-top: 20px">
-                <div class="panel__heading-container" style="display: flex; align-items: center; justify-content: space-between;" x-data>
-                    <h2 class="panel__heading">
-                        {{ __('secretgarden.video-images') }} ({{ $image_count }})
-                    </h2>
+            @if($video->actor_name)
+                <p><strong><a href="{{ route('secretgarden.actor.show', ['id' => $video->actor_id]) }}">{{ $video->actor_name }}</a> - {{ $video->item_number }}</strong></p>
+            @endif
+            @if($video->release_date)
+                <p><strong>{{ __('secretgarden.release_date') }}:</strong> {{ $video->release_date }}</p>
+            @endif
+            @if($video->video_rank)
+                <p><strong>{{ __('secretgarden.rank') }}:</strong> {{ $video->video_rank }}</p>
+            @endif
+            @if($video->duration)
+                <p><strong>{{ __('secretgarden.duration') }}:</strong> {{ $video->duration }}</p>
+            @endif
+            @if($video->director)
+                <p><strong>{{ __('secretgarden.director') }}:</strong> {{ $video->director }}</p>
+            @endif
+            @if($video->series && $video->series->isNotEmpty())
+                <p><strong>{{ __('secretgarden.series') }}:</strong>
+                    @foreach($video->series as $series)
+                        <a href="{{ route('secretgarden.video_series.show', ['id' => $series->id]) }}">{{ $series->name }}</a>{{ !$loop->last ? ' · ' : '' }}
+                    @endforeach
+                </p>
+            @endif
+            @if($video->maker && $video->maker->isNotEmpty())
+                <p><strong>{{ __('secretgarden.maker') }}:</strong>
+                    @foreach($video->maker as $maker)
+                        <a href="{{ route('secretgarden.video_makers.show', ['id' => $maker->id]) }}">{{ $maker->name }}</a>{{ !$loop->last ? ' · ' : '' }}
+                    @endforeach
+                </p>
+            @endif
+            @if($video->label && $video->label->isNotEmpty())
+                <p><strong>{{ __('secretgarden.label') }}:</strong>
+                    @foreach($video->label as $label)
+                        <a href="{{ route('secretgarden.video_labels.show', ['id' => $label->id]) }}">{{ $label->name }}</a>{{ !$loop->last ? ' · ' : '' }}
+                    @endforeach
+                </p>
+            @endif
+            @if($video->videoGenres && $video->videoGenres->isNotEmpty())
+                <p><strong>{{ __('secretgarden.genres') }}:</strong>
+                    @foreach($video->videoGenres as $genre)
+                        <a href="{{ route('secretgarden.video_genres.show', ['id' => $genre->id]) }}">{{ $genre->name }}</a>{{ !$loop->last ? ' · ' : '' }}
+                    @endforeach
+                </p>
+            @endif
+            @if($video->tags && $video->tags->isNotEmpty())
+                <p><strong>{{ __('secretgarden.tags') }}:</strong>
+                    @foreach($video->tags as $tag)
+                        <a href="{{ route('secretgarden.video_tags.show', ['id' => $tag->id]) }}">{{ $tag->name }}</a>{{ !$loop->last ? ' · ' : '' }}
+                    @endforeach
+                </p>
+            @endif
+            @if($video->description)
+                <div style="max-height: 200px; overflow-y: auto;">
+                    <p><strong>{{ __('secretgarden.description') }}:</strong> {!! nl2br(e($video->description)) !!}</p>
                 </div>
-                <div x-data>
-                    <ul class="featured-carousel" x-ref="featured" style="display: flex; overflow-x: auto; gap: 16px;">
-                        @foreach ($image_urls as $image_url)
-                            @php
-                                $image_name = basename($image_url);
-                            @endphp
-                            <li class="featured-carousel__slide" style="flex: 0 0 auto;">
-                                <figure class="video-screenshot" style="margin: 0;">
-                                    <img
-                                        class="video-screenshot__image"
-                                        src="{{ url('/secretgarden/images/' . $image_name) }}"
-                                        alt="{{ $image_name }}"
-                                        style="height: 300px; object-fit: contain;"
-                                        data-fancybox="gallery"
-                                    />
-                                </figure>
-                            </li>
-                        @endforeach
-                    </ul>
-                    <nav class="featured-carousel__nav">
-                        <button
-                            class="featured-carousel__previous"
-                            x-on:click="
+            @endif
+        </div>
+    </div>
+
+    {{-- 视频截图展示 --}}
+    @if (!empty($video->video_images))
+        @php
+            $image_urls = explode(';', $video->video_images);
+            $image_count = count($image_urls);
+        @endphp
+        <section class="panelV2" style="margin-top: 20px">
+            <div class="panel__heading-container" style="display: flex; align-items: center; justify-content: space-between;" x-data>
+                <h2 class="panel__heading">
+                    {{ __('secretgarden.video-images') }} ({{ $image_count }})
+                </h2>
+            </div>
+            <div x-data>
+                <ul class="featured-carousel" x-ref="featured" style="display: flex; overflow-x: auto; gap: 16px;">
+                    @foreach ($image_urls as $image_url)
+                        @php
+                            $image_name = basename($image_url);
+                        @endphp
+                        <li class="featured-carousel__slide" style="flex: 0 0 auto;">
+                            <figure class="video-screenshot" style="margin: 0;">
+                                <img
+                                    class="video-screenshot__image"
+                                    src="{{ url('/secretgarden/images/' . $image_name) }}"
+                                    alt="{{ $image_name }}"
+                                    style="height: 300px; object-fit: contain;"
+                                    data-fancybox="gallery"
+                                />
+                            </figure>
+                        </li>
+                    @endforeach
+                </ul>
+                <nav class="featured-carousel__nav">
+                    <button
+                        class="featured-carousel__previous"
+                        x-on:click="
                         $refs.featured.scrollLeft == 16
                             ? ($refs.featured.scrollLeft = $refs.featured.scrollWidth)
                             : ($refs.featured.scrollLeft -= ($refs.featured.children[0].offsetWidth + 16) / 2 + 2)
                     "
-                        >
-                            <i class="{{ \config('other.font-awesome') }} fa-angle-left"></i>
-                        </button>
-                        <button
-                            class="featured-carousel__next"
-                            x-on:click="
+                    >
+                        <i class="{{ \config('other.font-awesome') }} fa-angle-left"></i>
+                    </button>
+                    <button
+                        class="featured-carousel__next"
+                        x-on:click="
                         $refs.featured.scrollLeft == $refs.featured.scrollWidth - $refs.featured.offsetWidth - 16
                             ? ($refs.featured.scrollLeft = 0)
                             : ($refs.featured.scrollLeft += ($refs.featured.children[0].offsetWidth + 16) / 2 + 2)
                     "
-                        >
-                            <i class="{{ \config('other.font-awesome') }} fa-angle-right"></i>
-                        </button>
-                    </nav>
-                </div>
-            </section>
+                    >
+                        <i class="{{ \config('other.font-awesome') }} fa-angle-right"></i>
+                    </button>
+                </nav>
+            </div>
+        </section>
     @endif
 @endsection
