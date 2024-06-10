@@ -18,3 +18,4 @@ class VideoTag extends Model
         return $this->belongsToMany(Video::class, 'video_tag_video', 'tag_id', 'video_id');
     }
 }
+
