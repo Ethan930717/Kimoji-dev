@@ -55,7 +55,6 @@ class Video extends Model
     {
         return $this->belongsToMany(VideoLabel::class, 'video_label_video', 'video_id', 'label_id');
     }
-}
 
     public function scopePopular($query)
     {
