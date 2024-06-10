@@ -1036,4 +1036,21 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->increment('daily_listen_count');
     }
+
+    public function isCheckAbovePu()
+    {
+        // 获取所有不允许访问的组的 ID
+        $restrictedGroupIds = Group::whereIn('slug', [
+            'validating',
+            'guest',
+            'user',
+            'banned',
+            'leech',
+            'disabled',
+            'pruned'
+        ])->pluck('id')->toArray();
+
+        // 检查当前用户是否属于这些组
+        return !in_array($this->group_id, $restrictedGroupIds);
+    }
 }

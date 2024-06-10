@@ -24,5 +24,9 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Auth::provider('cache-user', fn () => resolve(CacheUserProvider::class));
+
+        Gate::define('checkabovepu', function ($user) {
+            return $user->isCheckAbovePu();
+        });
     }
 }

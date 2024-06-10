@@ -225,12 +225,14 @@
                         {{__('torrent.gallery')}}
                     </a>
                 </li>
-                <li>
-                    <a href="/secretgarden/home">
-                        <i class="{{ config('other.font-awesome') }} fa-flower"></i>
-                        {{__('secretgarden.secretgarden')}}
-                    </a>
-                </li>
+                @can('checkabovepu', auth()->user())
+                    <li>
+                        <a href="/secretgarden/home">
+                            <i class="{{ config('other.font-awesome') }} fa-flower"></i>
+                            {{ __('secretgarden.secretgarden') }}
+                        </a>
+                    </li>
+                @endcan
             </ul>
         </li>
     </ul>
