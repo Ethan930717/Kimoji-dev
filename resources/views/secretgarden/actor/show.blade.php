@@ -116,23 +116,7 @@
     </div>
 
     {{-- 艺术家资源展示 --}}
-    <div x-data="{
-        videos: @json($videos->items()),
-        page: {{ $videos->currentPage() }},
-        lastPage: {{ $videos->lastPage() }},
-        loadMore() {
-            if (this.page < this.lastPage) {
-                this.page++;
-                fetch(`{{ route('secretgarden.actor.show', ['id' => $actor->id]) }}?page=${this.page}&sort={{ $sortField }}&direction={{ $sortDirection }}`)
-                    .then(res => res.json())
-                    .then(data => {
-                        this.videos = [...this.videos, ...data.data];
-                    });
-            }
-        }
-    }"
-         @scroll.window="if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) loadMore()"
-    >
+    <div x-data="videoData" @scroll.window="if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) loadMore()">
         <section class="panelV2" style="margin-top: 20px">
             <div class="panel__heading-container" style="display: flex; align-items: center; justify-content: space-between;">
                 <h2 class="panel__heading">
@@ -161,4 +145,24 @@
             </div>
         </section>
     </div>
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('videoData', () => ({
+                videos: @json($videos->items()),
+                page: {{ $videos->currentPage() }},
+                lastPage: {{ $videos->lastPage() }},
+                loadMore() {
+                    if (this.page < this.lastPage) {
+                        this.page++;
+                        fetch(`{{ route('secretgarden.actor.show', ['id' => $actor->id]) }}?page=${this.page}&sort={{ $sortField }}&direction={{ $sortDirection }}`)
+                            .then(res => res.json())
+                            .then(data => {
+                                this.videos = [...this.videos, ...data.data];
+                            });
+                    }
+                }
+            }));
+        });
+    </script>
 @endsection
