@@ -16,16 +16,11 @@ class Video extends Model
 
     protected $fillable = [
         'actor_id', 'actor_name', 'actor_code', 'title', 'video_rank',
-        'item_number', 'duration', 'release_date', 'director', 'series',
-        'maker', 'label', 'genres', 'tags', 'description', 'poster_url', 'video_images'
+        'item_number', 'duration', 'release_date', 'director_id', 'series_id',
+        'maker_id', 'label_id', 'description', 'poster_url', 'video_images'
     ];
 
     protected $dates = ['release_date'];
-
-    protected $casts = [
-        'genres' => 'array',
-        'tags' => 'array',
-    ];
 
     public function actor()
     {
@@ -39,17 +34,17 @@ class Video extends Model
 
     public function series()
     {
-        return $this->belongsTo(Series::class, 'series_id');
+        return $this->belongsTo(VideoSeries::class, 'series_id');
     }
 
     public function maker()
     {
-        return $this->belongsTo(Maker::class, 'maker_id');
+        return $this->belongsTo(VideoMaker::class, 'maker_id');
     }
 
     public function label()
     {
-        return $this->belongsTo(Label::class, 'label_id');
+        return $this->belongsTo(VideoLabel::class, 'label_id');
     }
 
     public function videoGenres()
@@ -59,7 +54,7 @@ class Video extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'video_tag', 'video_id', 'tag_id');
+        return $this->belongsToMany(VideoTag::class, 'video_tag', 'video_id', 'tag_id');
     }
 
     public function scopePopular($query)

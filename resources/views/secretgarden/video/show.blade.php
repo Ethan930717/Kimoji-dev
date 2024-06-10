@@ -52,20 +52,20 @@
                 <p><strong>{{ __('secretgarden.duration') }}:</strong> {{ $video->duration }}</p>
             @endif
             @if($video->director)
-                <p><strong>{{ __('secretgarden.director') }}:</strong> {{ $video->director }}</p>
+                <p><strong>{{ __('secretgarden.director') }}:</strong> {{ $video->director->name }}</p>
             @endif
             @if($video->series)
-                <p><strong>{{ __('secretgarden.series') }}:</strong> <a href="{{ route('secretgarden.video_series.show', ['id' => $video->series_id]) }}">{{ $video->series }}</a></p>
+                <p><strong>{{ __('secretgarden.series') }}:</strong> <a href="{{ route('secretgarden.video_series.show', ['id' => $video->series->id]) }}">{{ $video->series->name }}</a></p>
             @endif
             @if($video->maker)
-                <p><strong>{{ __('secretgarden.maker') }}:</strong> <a href="{{ route('secretgarden.video_makers.show', ['id' => $video->maker_id]) }}">{{ $video->maker }}</a></p>
+                <p><strong>{{ __('secretgarden.maker') }}:</strong> <a href="{{ route('secretgarden.video_makers.show', ['id' => $video->maker->id]) }}">{{ $video->maker->name }}</a></p>
             @endif
             @if($video->label)
-                <p><strong>{{ __('secretgarden.label') }}:</strong> <a href="{{ route('secretgarden.video_labels.show', ['id' => $video->label_id]) }}">{{ $video->label }}</a></p>
+                <p><strong>{{ __('secretgarden.label') }}:</strong> <a href="{{ route('secretgarden.video_labels.show', ['id' => $video->label->id]) }}">{{ $video->label->name }}</a></p>
             @endif
-            @if($video->genres)
+            @if($video->videoGenres)
                 <p><strong>{{ __('secretgarden.genres') }}:</strong>
-                    @foreach($video->genres as $genre)
+                    @foreach($video->videoGenres as $genre)
                         <a href="{{ route('secretgarden.video_genres.show', ['id' => $genre->id]) }}">{{ $genre->name }}</a>{{ !$loop->last ? ' · ' : '' }}
                     @endforeach
                 </p>
