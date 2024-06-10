@@ -12,19 +12,15 @@ class VideoController extends Controller
 {
     public function index(Request $request)
     {
-        $sortField = $request->get('sort', 'release_date');
-        $sortDirection = $request->get('direction', 'desc');
+        $sortField = $request->get('sort', 'release_date'); // 默认按照发布日期排序
+        $sortDirection = $request->get('direction', 'desc'); // 默认降序
 
-        $cacheKey = "videos_all";
-
-        $videos = Cache::remember($cacheKey, 3600, function () {
-            return Video::all();
-        });
-
-        $videos = $videos->sortBy($sortField, SORT_REGULAR, $sortDirection === 'desc')->paginate(10);
+        // 从数据库中查询视频数据，应用排序和分页
+        $videos = Video::orderBy($sortField, $sortDirection)->paginate(50);
 
         return view('secretgarden.video.index', compact('videos', 'sortField', 'sortDirection'));
     }
+
     public function show($id)
     {
         $video = Video::findOrFail($id);
