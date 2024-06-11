@@ -74,7 +74,7 @@ class VideoController extends Controller
                 ->get();
 
             // 将结果存入缓存
-            Cache::put($cacheKey, $videos, now()->addMinutes(60)); 
+            Cache::put($cacheKey, $videos, now()->addMinutes(3600));
         }
 
         return view('secretgarden.video.search_results', compact('videos'));
