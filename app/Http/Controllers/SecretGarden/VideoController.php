@@ -62,7 +62,7 @@ class VideoController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('search');
-        $cacheKey = "videos_search_" . md5($query); // 使用md5哈希避免中文字符缓存问题
+        $cacheKey = "videos_search_" . md5($query);
 
         // 检查缓存
         $videos = Cache::get($cacheKey);
@@ -74,7 +74,7 @@ class VideoController extends Controller
                 ->get();
 
             // 将结果存入缓存
-            Cache::put($cacheKey, $videos, now()->addMinutes(10)); // 缓存10分钟
+            Cache::put($cacheKey, $videos, now()->addMinutes(60)); 
         }
 
         return view('secretgarden.video.search_results', compact('videos'));
