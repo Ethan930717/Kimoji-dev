@@ -39,12 +39,12 @@ class VideoSearch extends Component
 
         $videos = Cache::remember($cacheKey, 3600, function () use ($searchTerm) {
             if (empty($searchTerm)) {
-                return Video::paginate(100);
+                return Video::paginate(50);
             } else {
                 return Video::where('item_number', 'REGEXP', $searchTerm)
-                    ->orWhere('actor_name', 'like', '%' . $this->search . '%')
+                    ->orWhere('actor_name', 'REGEXP', $searchTerm)
                     ->orderBy($this->sortField, $this->sortDirection)
-                    ->paginate(100);
+                    ->paginate(50);
             }
         });
 
@@ -59,7 +59,6 @@ class VideoSearch extends Component
             return '';
         }
 
-        // 将输入的字符串分割为单个字符，并用 .* 连接，形成正则表达式
         return implode('.*', str_split($term));
     }
 
