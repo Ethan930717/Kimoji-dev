@@ -62,7 +62,7 @@ class VideoController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('search');
-        $cacheKey = "videos_search_{$query}";
+        $cacheKey = "videos_search_" . md5($query); // 使用md5哈希避免中文字符缓存问题
 
         // 检查缓存
         $videos = Cache::get($cacheKey);
