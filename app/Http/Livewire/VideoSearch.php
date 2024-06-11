@@ -34,16 +34,16 @@ class VideoSearch extends Component
 
     public function render()
     {
-        $searchTerm = $this->prepareSearchTerm($this->search);
+        $searchTerms = $this->prepareSearchTerms($this->search);
         $cacheKey = $this->generateCacheKey();
 
-        $videos = Cache::remember($cacheKey, 3600, function () use ($searchTerm) {
-            if (empty($searchTerm)) {
+        $videos = Cache::remember($cacheKey, 3600, function () use ($searchTerms) {
+            if (empty($searchTerms)) {
                 return Video::orderBy($this->sortField, $this->sortDirection)->paginate(50);
             } else {
-                return Video::where(function($query) use ($searchTerm) {
-                    foreach ($searchTerm as $term) {
-                        $query->orWhere('item_number', 'LIKE', $term);
+                return Video::where(function($query) use ($searchTerms) {
+                    foreach ($searchTerms as $term) {
+                        $query->where('item_number', 'LIKE', '%' . $term . '%');
                     }
                 })
                     ->orWhere('actor_name', 'LIKE', '%' . $this->search . '%')
@@ -57,20 +57,14 @@ class VideoSearch extends Component
         ]);
     }
 
-    protected function prepareSearchTerm($term)
+    protected function prepareSearchTerms($term)
     {
         if (empty($term)) {
             return [];
         }
 
-        $terms = [];
-        $chars = str_split($term);
-
-        for ($i = 0; $i < count($chars); $i++) {
-            $terms[] = '%' . implode('%', array_slice($chars, $i)) . '%';
-        }
-
-        return $terms;
+        // 将输入的字符串分割为单个字符
+        return str_split($term);
     }
 
     protected function generateCacheKey()

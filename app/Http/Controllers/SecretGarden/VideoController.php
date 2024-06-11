@@ -10,14 +10,10 @@ use Illuminate\Support\Facades\Redis;
 
 class VideoController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $sortField = $request->get('sort', 'release_date');
-        $sortDirection = $request->get('direction', 'desc');
-
-        $videos = Video::orderBy($sortField, $sortDirection)->paginate(10);
-
-        return view('secretgarden.video.index', compact('videos', 'sortField', 'sortDirection'));
+        $videos = Video::all();
+        return view('secretgarden.video.index', compact('videos'));
     }
 
     public function show($id)
