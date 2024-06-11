@@ -105,7 +105,9 @@ class Video extends Model
             $videos = $videos->merge(json_decode($data, true));
         }
 
-        return $videos;
+        return $videos->map(function ($video) {
+            return (object) $video;
+        });
     }
 
     // 在模型事件中刷新缓存
@@ -124,4 +126,5 @@ class Video extends Model
         });
     }
 }
+
 
