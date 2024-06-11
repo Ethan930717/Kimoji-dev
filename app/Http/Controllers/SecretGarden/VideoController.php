@@ -70,7 +70,6 @@ class VideoController extends Controller
         if (!$videos) {
             // 如果缓存不存在，从数据库中查询
             $videos = Video::where('item_number', 'LIKE', "%{$query}%")
-                ->orWhere('actor_name', 'LIKE', "%{$query}%")
                 ->get();
 
             // 将结果存入缓存

@@ -42,7 +42,6 @@ class VideoSearch extends Component
                 return Video::paginate(50);
             } else {
                 return Video::where('item_number', 'REGEXP', $searchTerm)
-                    ->orWhere('actor_name', 'REGEXP', $searchTerm)
                     ->orderBy($this->sortField, $this->sortDirection)
                     ->paginate(50);
             }

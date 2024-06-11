@@ -12,7 +12,7 @@
                         wire:model.debounce.250ms="search"
                     />
                     <label class="form__label form__label--floating" for="name">
-                        Item Number or Actor Name
+                        Item Number
                     </label>
                     <div wire:loading wire:target="search">
                         <span style="font-size: 12px">Searching...</span>
