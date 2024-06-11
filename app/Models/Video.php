@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Redis;
 use Carbon\Carbon;
 
 class Video extends Model
@@ -31,7 +32,6 @@ class Video extends Model
     {
         return $this->belongsTo(Actor::class, 'actor_id');
     }
-
 
     public function videoGenres()
     {
@@ -77,5 +77,37 @@ class Video extends Model
     {
         return is_string($value) ? $value : implode(';', $value);
     }
+
+    // 缓存到 Redis
+    public static function cacheToRedis()
+    {
+        $videos = self::all();
+        $data = $videos->toJson();
+        Redis::set('videos:all', $data);
+    }
+
+    // 从 Redis 获取数据
+    public static function getFromRedis()
+    {
+        $data = Redis::get('videos:all');
+        return json_decode($data, true);
+    }
+
+    // 在模型事件中刷新缓存
+    protected static function booted()
+    {
+        static::created(function ($video) {
+            self::cacheToRedis();
+        });
+
+        static::updated(function ($video) {
+            self::cacheToRedis();
+        });
+
+        static::deleted(function ($video) {
+            self::cacheToRedis();
+        });
+    }
 }
+
 

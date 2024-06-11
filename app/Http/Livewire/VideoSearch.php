@@ -5,15 +5,15 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Video;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class VideoSearch extends Component
 {
     use WithPagination;
 
     public $search = '';
-    public $sortField = 'item_number'; // 默认排序字段
-    public $sortDirection = 'asc'; // 默认排序方向
+    public $sortField = 'release_date'; // 默认排序字段
+    public $sortDirection = 'desc'; // 默认排序方向
 
     protected $updatesQueryString = [
         'search' => ['except' => ''],
@@ -34,26 +34,33 @@ class VideoSearch extends Component
 
     public function render()
     {
-        $searchTerms = $this->prepareSearchTerms($this->search);
-        $cacheKey = $this->generateCacheKey();
+        $videos = collect(Video::getFromRedis());
 
-        $videos = Cache::remember($cacheKey, 3600, function () use ($searchTerms) {
-            if (empty($searchTerms)) {
-                return Video::orderBy($this->sortField, $this->sortDirection)->paginate(50);
-            } else {
-                return Video::where(function($query) use ($searchTerms) {
-                    foreach ($searchTerms as $term) {
-                        $query->where('item_number', 'LIKE', '%' . $term . '%');
+        if (!empty($this->search)) {
+            $searchTerms = $this->prepareSearchTerms($this->search);
+
+            $videos = $videos->filter(function ($video) use ($searchTerms) {
+                foreach ($searchTerms as $term) {
+                    if (strpos($video['item_number'], $term) === false) {
+                        return false;
                     }
-                })
-                    ->orWhere('actor_name', 'LIKE', '%' . $this->search . '%')
-                    ->orderBy($this->sortField, $this->sortDirection)
-                    ->paginate(50);
-            }
-        });
+                }
+                return true;
+            });
+        }
+
+        $videos = $videos->sortBy($this->sortField, SORT_REGULAR, $this->sortDirection === 'desc');
+
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $perPage = 10;
+        $currentItems = $videos->slice(($currentPage - 1) * $perPage, $perPage)->all();
+
+        $paginatedItems = new LengthAwarePaginator($currentItems, $videos->count(), $perPage, $currentPage, [
+            'path' => LengthAwarePaginator::resolveCurrentPath(),
+        ]);
 
         return view('livewire.video-search', [
-            'videos' => $videos,
+            'videos' => $paginatedItems,
         ]);
     }
 
@@ -65,10 +72,5 @@ class VideoSearch extends Component
 
         // 将输入的字符串分割为单个字符
         return str_split($term);
-    }
-
-    protected function generateCacheKey()
-    {
-        return 'videos_search_' . md5($this->search . '_' . $this->sortField . '_' . $this->sortDirection . '_' . $this->page);
     }
 }

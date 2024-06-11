@@ -26,9 +26,7 @@ class VideoController extends Controller
     {
         $video = Video::create($request->all());
 
-        // 清除相关缓存
-        Cache::forget("videos_search_{$request->input('item_number')}");
-        Cache::flush(); // 也可以根据需要选择性清除缓存
+        Video::cacheToRedis();
 
         return redirect()->back()->with('success', '视频创建成功');
     }
@@ -37,9 +35,7 @@ class VideoController extends Controller
     {
         $video->update($request->all());
 
-        // 清除相关缓存
-        Cache::forget("videos_search_{$request->input('item_number')}");
-        Cache::flush(); // 也可以根据需要选择性清除缓存
+        Video::cacheToRedis();
 
         return redirect()->back()->with('success', '视频更新成功');
     }
@@ -48,9 +44,7 @@ class VideoController extends Controller
     {
         $video->delete();
 
-        // 清除相关缓存
-        Cache::forget("videos_search_{$video->item_number}");
-        Cache::flush(); // 也可以根据需要选择性清除缓存
+        Video::cacheToRedis();
 
         return redirect()->back()->with('success', '视频删除成功');
     }
