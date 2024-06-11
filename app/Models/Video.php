@@ -81,16 +81,31 @@ class Video extends Model
     // 缓存到 Redis
     public static function cacheToRedis()
     {
-        $videos = self::all();
-        $data = $videos->toJson();
-        Redis::set('videos:all', $data);
+        $videos = self::all()->chunk(1000);
+
+        $i = 0;
+        foreach ($videos as $chunk) {
+            $data = $chunk->toJson();
+            Redis::set("videos:all:chunk_{$i}", $data);
+            $i++;
+        }
+
+        // 设置总块数
+        Redis::set('videos:all:chunks', $i);
     }
 
     // 从 Redis 获取数据
     public static function getFromRedis()
     {
-        $data = Redis::get('videos:all');
-        return json_decode($data, true);
+        $chunks = Redis::get('videos:all:chunks');
+        $videos = collect();
+
+        for ($i = 0; $i < $chunks; $i++) {
+            $data = Redis::get("videos:all:chunk_{$i}");
+            $videos = $videos->merge(json_decode($data, true));
+        }
+
+        return $videos;
     }
 
     // 在模型事件中刷新缓存
@@ -109,5 +124,4 @@ class Video extends Model
         });
     }
 }
-
 
