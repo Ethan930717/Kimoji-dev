@@ -52,7 +52,7 @@ class VideoSearch extends Component
         $videos = $videos->sortBy($this->sortField, SORT_REGULAR, $this->sortDirection === 'desc');
 
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $perPage = 10;
+        $perPage = 50;
         $currentItems = $videos->slice(($currentPage - 1) * $perPage, $perPage)->all();
 
         $paginatedItems = new LengthAwarePaginator($currentItems, $videos->count(), $perPage, $currentPage, [

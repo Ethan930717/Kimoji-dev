@@ -30,8 +30,8 @@
                 <th style="white-space: nowrap;">{{ __('secretgarden.actor') }}</th>
                 <th style="white-space: nowrap;">{{ __('secretgarden.item_number') }}</th>
                 <th>{{ __('secretgarden.title') }}</th>
-                <th style="white-space: nowrap;"><a href="{{ route('secretgarden.video.index', ['sort' => 'release_date', 'direction' => $sortDirection == 'asc' ? 'desc' : 'asc']) }}">{{ __('secretgarden.release_date') }}</a></th>
-                <th style="white-space: nowrap;"><a href="{{ route('secretgarden.video.index', ['sort' => 'video_rank', 'direction' => $sortDirection == 'asc' ? 'desc' : 'asc']) }}">{{ __('secretgarden.rank') }}</a></th>
+                <th style="white-space: nowrap;">{{ __('secretgarden.release_date') }}</th>
+                <th style="white-space: nowrap;">{{ __('secretgarden.rank') }}</th>
             </tr>
             </thead>
             <tbody>
