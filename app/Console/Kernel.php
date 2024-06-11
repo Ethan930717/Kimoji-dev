@@ -74,5 +74,6 @@ class Kernel extends ConsoleKernel
 
     protected $commands = [
         Commands\BulkDeleteTorrents::class,
+        Commands\CacheVideos::class,
     ];
 }
