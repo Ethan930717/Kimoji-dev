@@ -39,9 +39,14 @@ class VideoSearch extends Component
 
         $videos = Cache::remember($cacheKey, 3600, function () use ($searchTerm) {
             if (empty($searchTerm)) {
-                return Video::paginate(50);
+                return Video::orderBy($this->sortField, $this->sortDirection)->paginate(50);
             } else {
-                return Video::where('item_number', 'REGEXP', $searchTerm)
+                return Video::where(function($query) use ($searchTerm) {
+                    foreach ($searchTerm as $term) {
+                        $query->orWhere('item_number', 'LIKE', $term);
+                    }
+                })
+                    ->orWhere('actor_name', 'LIKE', '%' . $this->search . '%')
                     ->orderBy($this->sortField, $this->sortDirection)
                     ->paginate(50);
             }
@@ -55,10 +60,17 @@ class VideoSearch extends Component
     protected function prepareSearchTerm($term)
     {
         if (empty($term)) {
-            return '';
+            return [];
         }
 
-        return implode('.*', str_split($term));
+        $terms = [];
+        $chars = str_split($term);
+
+        for ($i = 0; $i < count($chars); $i++) {
+            $terms[] = '%' . implode('%', array_slice($chars, $i)) . '%';
+        }
+
+        return $terms;
     }
 
     protected function generateCacheKey()
