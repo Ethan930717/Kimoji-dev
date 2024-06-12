@@ -11,6 +11,8 @@ class SecretGardenLog extends Model
 
     protected $fillable = [
         'user_id',
+        'username',
+        'email',
         'url',
         'ip_address',
         'created_at',

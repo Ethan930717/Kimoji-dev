@@ -31,7 +31,9 @@ class SecretGardenAccessLog
     {
         if (Auth::check()) {
             SecretGardenLog::create([
-                'user_id' => Auth::id(),
+                'user_id' => $user->id,
+                'username' => $user->username,
+                'email' => $user->email,
                 'url' => $request->fullUrl(),
                 'ip_address' => $request->ip(),
                 'created_at' => now(),
