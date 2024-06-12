@@ -101,6 +101,7 @@ class Kernel extends HttpKernel
         'signed'           => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'verified'         => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
+        'secret.garden.log' => Middleware\SecretGardenLog::class,
 
     ];
 }

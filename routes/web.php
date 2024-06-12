@@ -76,37 +76,39 @@ Route::middleware('language')->group(function (): void {
             ->name('webdav.stream');
 
         // Secretgarden System
-        Route::prefix('secretgarden')->middleware(['checkAbovePU'])->name('secretgarden.')->group(function (): void {
-            Route::get('/', function () {
-                return redirect()->route('home');
+        Route::prefix('secretgarden')
+            ->middleware(['checkAbovePU', 'secret.garden.log'])
+            ->name('secretgarden.')
+            ->group(function (): void {
+                Route::get('/', function () {
+                    return redirect()->route('home');
+                });
+                Route::get('/home', [App\Http\Controllers\SecretGarden\HomeController::class, 'index'])->name('home');
+                Route::get('/actor', [App\Http\Controllers\SecretGarden\ActorController::class, 'index'])->name('actor.index');
+                Route::get('/actor/{id}', [App\Http\Controllers\SecretGarden\ActorController::class, 'show'])->name('actor.show');
+                Route::get('/video', [App\Http\Controllers\SecretGarden\VideoController::class, 'index'])->name('video.index');
+                Route::get('/video/{id}', [App\Http\Controllers\SecretGarden\VideoController::class, 'show'])->name('video.show');
+                Route::get('/search', [App\Http\Controllers\SecretGarden\VideoController::class, 'search'])->name('video.search');
+                // Video Genres
+                Route::get('/video-genres', [App\Http\Controllers\SecretGarden\VideoGenreController::class, 'index'])->name('video_genres.index');
+                Route::get('/genre/{id}', [App\Http\Controllers\SecretGarden\VideoGenreController::class, 'show'])->name('video_genres.show');
+
+                // Video Makers
+                Route::get('/video-makers', [App\Http\Controllers\SecretGarden\VideoMakerController::class, 'index'])->name('video_makers.index');
+                Route::get('/maker/{id}', [App\Http\Controllers\SecretGarden\VideoMakerController::class, 'show'])->name('video_makers.show');
+
+                // Video Labels
+                Route::get('/video-labels', [App\Http\Controllers\SecretGarden\VideoLabelController::class, 'index'])->name('video_labels.index');
+                Route::get('/label/{id}', [App\Http\Controllers\SecretGarden\VideoLabelController::class, 'show'])->name('video_labels.show');
+
+                // Video Series
+                Route::get('/video-series', [App\Http\Controllers\SecretGarden\VideoSeriesController::class, 'index'])->name('video_series.index');
+                Route::get('/series/{id}', [App\Http\Controllers\SecretGarden\VideoSeriesController::class, 'show'])->name('video_series.show');
+
+                // Video Tags
+                Route::get('/video-tags', [App\Http\Controllers\SecretGarden\VideoTagController::class, 'index'])->name('video_tags.index');
+                Route::get('/tag/{id}', [App\Http\Controllers\SecretGarden\VideoTagController::class, 'show'])->name('video_tags.show');
             });
-            Route::get('/home', [App\Http\Controllers\SecretGarden\HomeController::class, 'index'])->name('home');
-            Route::get('/actor', [App\Http\Controllers\SecretGarden\ActorController::class, 'index'])->name('actor.index');
-            Route::get('/actor/{id}', [App\Http\Controllers\SecretGarden\ActorController::class, 'show'])->name('actor.show');
-            Route::get('/video', [App\Http\Controllers\SecretGarden\VideoController::class, 'index'])->name('video.index');
-            Route::get('/video/{id}', [App\Http\Controllers\SecretGarden\VideoController::class, 'show'])->name('video.show');
-            Route::get('/search', [App\Http\Controllers\SecretGarden\VideoController::class, 'search'])->name('video.search');
-            // Video Genres
-            Route::get('/video-genres', [App\Http\Controllers\SecretGarden\VideoGenreController::class, 'index'])->name('video_genres.index');
-            Route::get('/genre/{id}', [App\Http\Controllers\SecretGarden\VideoGenreController::class, 'show'])->name('video_genres.show');
-
-            // Video Makers
-            Route::get('/video-makers', [App\Http\Controllers\SecretGarden\VideoMakerController::class, 'index'])->name('video_makers.index');
-            Route::get('/maker/{id}', [App\Http\Controllers\SecretGarden\VideoMakerController::class, 'show'])->name('video_makers.show');
-
-            // Video Labels
-            Route::get('/video-labels', [App\Http\Controllers\SecretGarden\VideoLabelController::class, 'index'])->name('video_labels.index');
-            Route::get('/label/{id}', [App\Http\Controllers\SecretGarden\VideoLabelController::class, 'show'])->name('video_labels.show');
-
-            // Video Series
-            Route::get('/video-series', [App\Http\Controllers\SecretGarden\VideoSeriesController::class, 'index'])->name('video_series.index');
-            Route::get('/series/{id}', [App\Http\Controllers\SecretGarden\VideoSeriesController::class, 'show'])->name('video_series.show');
-
-            // Video Tags
-            Route::get('/video-tags', [App\Http\Controllers\SecretGarden\VideoTagController::class, 'index'])->name('video_tags.index');
-            Route::get('/tag/{id}', [App\Http\Controllers\SecretGarden\VideoTagController::class, 'show'])->name('video_tags.show');
-
-        });
 
 
         // Articles System
