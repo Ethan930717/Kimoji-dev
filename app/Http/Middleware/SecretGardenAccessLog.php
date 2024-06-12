@@ -30,6 +30,7 @@ class SecretGardenAccessLog
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
+            $user = Auth::user();
             SecretGardenLog::create([
                 'user_id' => $user->id,
                 'username' => $user->username,
