@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\SecretGardenLog;
 
-class SecretGardenLog
+class SecretGardenAccessLog
 {
     /**
      * Handle an incoming request.
@@ -41,4 +41,5 @@ class SecretGardenLog
         return $next($request);
     }
 }
+
 
