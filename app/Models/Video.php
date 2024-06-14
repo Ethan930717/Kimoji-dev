@@ -94,21 +94,39 @@ class Video extends Model
         Redis::set('videos:all:chunks', $i);
     }
 
+
     // 从 Redis 获取数据
-    public static function getFromRedis()
+    public static function getFromRedis($page = 1, $perPage = 50, $filters = [], $sortField = 'release_date', $sortDirection = 'desc')
     {
         $chunks = Redis::get('videos:all:chunks');
+        $startChunk = intdiv(($page - 1) * $perPage, 1000);
+        $endChunk = intdiv($page * $perPage, 1000);
         $videos = collect();
 
-        for ($i = 0; $i < $chunks; $i++) {
+        for ($i = $startChunk; $i <= $endChunk; $i++) {
             $data = Redis::get("videos:all:chunk_{$i}");
             $videos = $videos->merge(json_decode($data, true));
         }
 
-        return $videos->map(function ($video) {
-            return (object) $video;
-        });
+        foreach ($filters as $key => $value) {
+            $videos = $videos->filter(function ($video) use ($key, $value) {
+                return strpos($video[$key], $value) !== false;
+            });
+        }
+
+        $videos = $videos->sortBy(function ($video) use ($sortField, $sortDirection) {
+            return $sortDirection == 'asc' ? $video[$sortField] : -$video[$sortField];
+        })->values();
+
+        $total = Redis::get('videos:all:count');
+
+        $currentPageItems = $videos->slice(($page - 1) * $perPage % 1000, $perPage)->all();
+
+        return new LengthAwarePaginator($currentPageItems, $total, $perPage, $page, [
+            'path' => LengthAwarePaginator::resolveCurrentPath(),
+        ]);
     }
+
 
     // 在模型事件中刷新缓存
     protected static function booted()

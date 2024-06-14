@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Video;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class VideoSearch extends Component
 {
@@ -34,33 +33,15 @@ class VideoSearch extends Component
 
     public function render()
     {
-        $videos = collect(Video::getFromRedis());
-
-        if (!empty($this->search)) {
-            $searchTerms = $this->prepareSearchTerms($this->search);
-
-            $videos = $videos->filter(function ($video) use ($searchTerms) {
-                foreach ($searchTerms as $term) {
-                    if (strpos($video->item_number, $term) === false) {
-                        return false;
-                    }
-                }
-                return true;
-            });
-        }
-
-        $videos = $videos->sortBy($this->sortField, SORT_REGULAR, $this->sortDirection === 'desc');
-
-        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentPage = $this->page;
         $perPage = 50;
-        $currentItems = $videos->slice(($currentPage - 1) * $perPage, $perPage)->all();
 
-        $paginatedItems = new LengthAwarePaginator($currentItems, $videos->count(), $perPage, $currentPage, [
-            'path' => LengthAwarePaginator::resolveCurrentPath(),
-        ]);
+        $videos = Video::getFromRedis($currentPage, $perPage, [
+            'item_number' => $this->search,
+        ], $this->sortField, $this->sortDirection);
 
         return view('livewire.video-search', [
-            'videos' => $paginatedItems,
+            'videos' => $videos,
         ]);
     }
 
@@ -74,4 +55,5 @@ class VideoSearch extends Component
         return str_split($term);
     }
 }
+
 
