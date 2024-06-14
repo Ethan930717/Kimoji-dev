@@ -38,8 +38,7 @@ class VideoSearch extends Component
 
         $filters = [];
         if (!empty($this->search)) {
-            $searchTerms = $this->prepareSearchTerms($this->search);
-            $filters = ['item_number' => $searchTerms];
+            $filters['item_number'] = $this->search;
         }
 
         $videos = Video::getFromRedis($currentPage, $perPage, $filters, $this->sortField, $this->sortDirection);
@@ -59,6 +58,8 @@ class VideoSearch extends Component
         return str_split($term);
     }
 }
+
+
 
 
 
