@@ -95,25 +95,19 @@ class Video extends Model
     }
 
     // 从 Redis 获取数据
-    public static function getFromRedis($filters = [], $sortField = 'release_date', $sortDirection = 'desc')
+    public static function getFromRedis()
     {
         $chunks = Redis::get('videos:all:chunks');
         $videos = collect();
 
-        for ($i = 0; i < $chunks; $i++) {
+        for ($i = 0; $i < $chunks; $i++) {
             $data = Redis::get("videos:all:chunk_{$i}");
             $videos = $videos->merge(json_decode($data, true));
         }
 
-        foreach ($filters as $key => $value) {
-            $videos = $videos->filter(function ($video) use ($key, $value) {
-                return strpos($video[$key], $value) !== false;
-            });
-        }
-
-        return $videos->sortBy(function ($video) use ($sortField, $sortDirection) {
-            return $sortDirection == 'asc' ? $video[$sortField] : -$video[$sortField];
-        })->values()->all();
+        return $videos->map(function ($video) {
+            return (object) $video;
+        });
     }
 
     // 在模型事件中刷新缓存

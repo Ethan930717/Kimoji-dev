@@ -41,7 +41,7 @@ class VideoSearch extends Component
 
             $videos = $videos->filter(function ($video) use ($searchTerms) {
                 foreach ($searchTerms as $term) {
-                    if (strpos($video['item_number'], $term) === false) {
+                    if (strpos($video->item_number, $term) === false) {
                         return false;
                     }
                 }
@@ -49,7 +49,7 @@ class VideoSearch extends Component
             });
         }
 
-        $videos = $videos->sortBy($this->sortField, SORT_REGULAR, $this->sortDirection === 'desc')->values();
+        $videos = $videos->sortBy($this->sortField, SORT_REGULAR, $this->sortDirection === 'desc');
 
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $perPage = 50;
@@ -74,3 +74,4 @@ class VideoSearch extends Component
         return str_split($term);
     }
 }
+
