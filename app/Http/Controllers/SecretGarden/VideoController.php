@@ -12,13 +12,20 @@ class VideoController extends Controller
 {
     public function index()
     {
-        $videos = Video::all();
+        $videos = collect(Video::getFromRedis());
+
         return view('secretgarden.video.index', compact('videos'));
     }
 
     public function show($id)
     {
-        $video = Video::findOrFail($id);
+        $videos = collect(Video::getFromRedis());
+        $video = $videos->firstWhere('id', $id);
+
+        if (!$video) {
+            abort(404, 'Video not found');
+        }
+
         return view('secretgarden.video.show', compact('video'));
     }
 
@@ -58,13 +65,14 @@ class VideoController extends Controller
         $videos = Cache::get($cacheKey);
 
         if (!$videos) {
-            // 如果缓存不存在，从数据库中查询
-            $videos = Video::where('item_number', 'LIKE', "%{$query}%")
-                ->orWhere('actor_name', 'LIKE', "%{$query}%")
-                ->get();
+            // 如果缓存不存在，从 Redis 中查询
+            $videos = collect(Video::getFromRedis([
+                'item_number' => $query,
+                'actor_name' => $query,
+            ]));
 
             // 将结果存入缓存
-            Cache::put($cacheKey, $videos, now()->addMinutes(3600)); // 缓存10分钟
+            Cache::put($cacheKey, $videos, now()->addMinutes(10)); // 缓存10分钟
         }
 
         return view('secretgarden.video.search_results', compact('videos'));
