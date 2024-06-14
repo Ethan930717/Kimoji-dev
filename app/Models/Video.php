@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Redis;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Carbon\Carbon;
 
 class Video extends Model
@@ -95,44 +94,20 @@ class Video extends Model
         Redis::set('videos:all:chunks', $i);
     }
 
-
     // 从 Redis 获取数据
-    public static function getFromRedis($page = 1, $perPage = 50, $filters = [], $sortField = 'release_date', $sortDirection = 'desc')
+    public static function getFromRedis()
     {
         $chunks = Redis::get('videos:all:chunks');
-        $startChunk = intdiv(($page - 1) * $perPage, 1000);
-        $endChunk = intdiv($page * $perPage, 1000);
         $videos = collect();
 
-        for ($i = $startChunk; $i <= $endChunk; $i++) {
+        for ($i = 0; $i < $chunks; $i++) {
             $data = Redis::get("videos:all:chunk_{$i}");
             $videos = $videos->merge(json_decode($data, true));
         }
 
-        foreach ($filters as $key => $value) {
-            $videos = $videos->filter(function ($video) use ($key, $value) {
-                return strpos($video[$key], $value) !== false;
-            });
-        }
-
-        $videos = $videos->sort(function ($a, $b) use ($sortField, $sortDirection) {
-            $valueA = is_numeric($a[$sortField]) ? $a[$sortField] : strtolower($a[$sortField]);
-            $valueB = is_numeric($b[$sortField]) ? $b[$sortField] : strtolower($b[$sortField]);
-
-            if ($sortDirection === 'asc') {
-                return $valueA <=> $valueB;
-            } else {
-                return $valueB <=> $valueA;
-            }
-        })->values();
-
-        $total = Redis::get('videos:all:count');
-
-        $currentPageItems = $videos->slice(($page - 1) * $perPage % 1000, $perPage)->all();
-
-        return new LengthAwarePaginator($currentPageItems, $total, $perPage, $page, [
-            'path' => LengthAwarePaginator::resolveCurrentPath(),
-        ]);
+        return $videos->map(function ($video) {
+            return (object) $video;
+        });
     }
 
     // 在模型事件中刷新缓存
