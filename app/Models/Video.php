@@ -111,9 +111,15 @@ class Video extends Model
             });
         }
 
-        return $videos->sortBy(function ($video) use ($sortField, $sortDirection) {
-            return $sortDirection == 'asc' ? $video[$sortField] : -$video[$sortField];
-        })->map(function ($video) {
+        $videos = $videos->sort(function ($a, $b) use ($sortField, $sortDirection) {
+            if ($sortDirection === 'asc') {
+                return strcmp($a[$sortField], $b[$sortField]);
+            } else {
+                return strcmp($b[$sortField], $a[$sortField]);
+            }
+        });
+
+        return $videos->map(function ($video) {
             return (object) $video;
         });
     }
