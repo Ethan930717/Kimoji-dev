@@ -34,7 +34,7 @@ class VideoSearch extends Component
 
     public function render()
     {
-        $videos = collect(Video::getFromRedis());
+        $videos = collect(Video::getFromRedis([], $this->sortField, $this->sortDirection));
 
         if (!empty($this->search)) {
             $searchTerms = $this->prepareSearchTerms($this->search);
@@ -48,8 +48,6 @@ class VideoSearch extends Component
                 return true;
             });
         }
-
-        $videos = $videos->sortBy($this->sortField, SORT_REGULAR, $this->sortDirection === 'desc');
 
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $perPage = 50;
@@ -74,4 +72,5 @@ class VideoSearch extends Component
         return str_split($term);
     }
 }
+
 
