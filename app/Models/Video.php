@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Carbon\Carbon;
 
 class Video extends Model
@@ -133,7 +134,6 @@ class Video extends Model
             'path' => LengthAwarePaginator::resolveCurrentPath(),
         ]);
     }
-
 
     // 在模型事件中刷新缓存
     protected static function booted()
