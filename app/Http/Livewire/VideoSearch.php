@@ -36,9 +36,13 @@ class VideoSearch extends Component
         $currentPage = $this->page;
         $perPage = 50;
 
-        $videos = Video::getFromRedis($currentPage, $perPage, [
-            'item_number' => $this->search,
-        ], $this->sortField, $this->sortDirection);
+        $filters = [];
+        if (!empty($this->search)) {
+            $searchTerms = $this->prepareSearchTerms($this->search);
+            $filters = ['item_number' => $searchTerms];
+        }
+
+        $videos = Video::getFromRedis($currentPage, $perPage, $filters, $this->sortField, $this->sortDirection);
 
         return view('livewire.video-search', [
             'videos' => $videos,

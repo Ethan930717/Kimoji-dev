@@ -114,8 +114,15 @@ class Video extends Model
             });
         }
 
-        $videos = $videos->sortBy(function ($video) use ($sortField, $sortDirection) {
-            return $sortDirection == 'asc' ? $video[$sortField] : -$video[$sortField];
+        $videos = $videos->sort(function ($a, $b) use ($sortField, $sortDirection) {
+            $valueA = is_numeric($a[$sortField]) ? $a[$sortField] : strtolower($a[$sortField]);
+            $valueB = is_numeric($b[$sortField]) ? $b[$sortField] : strtolower($b[$sortField]);
+
+            if ($sortDirection === 'asc') {
+                return $valueA <=> $valueB;
+            } else {
+                return $valueB <=> $valueA;
+            }
         })->values();
 
         $total = Redis::get('videos:all:count');
