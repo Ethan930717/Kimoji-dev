@@ -100,7 +100,7 @@ class Video extends Model
         $chunks = Redis::get('videos:all:chunks');
         $videos = collect();
 
-        for ($i = 0; i < $chunks; $i++) {
+        for ($i = 0; $i < $chunks; $i++) {
             $data = Redis::get("videos:all:chunk_{$i}");
             $videos = $videos->merge(json_decode($data, true));
         }
