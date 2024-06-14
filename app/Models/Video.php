@@ -95,7 +95,7 @@ class Video extends Model
     }
 
     // 从 Redis 获取数据
-    public static function getFromRedis($filters = [], $sortField = 'release_date', $sortDirection = 'desc')
+    public static function getFromRedis()
     {
         $chunks = Redis::get('videos:all:chunks');
         $videos = collect();
@@ -104,20 +104,6 @@ class Video extends Model
             $data = Redis::get("videos:all:chunk_{$i}");
             $videos = $videos->merge(json_decode($data, true));
         }
-
-        foreach ($filters as $key => $value) {
-            $videos = $videos->filter(function ($video) use ($key, $value) {
-                return strpos($video[$key], $value) !== false;
-            });
-        }
-
-        $videos = $videos->sort(function ($a, $b) use ($sortField, $sortDirection) {
-            if ($sortDirection === 'asc') {
-                return strcmp($a[$sortField], $b[$sortField]);
-            } else {
-                return strcmp($b[$sortField], $a[$sortField]);
-            }
-        });
 
         return $videos->map(function ($video) {
             return (object) $video;
