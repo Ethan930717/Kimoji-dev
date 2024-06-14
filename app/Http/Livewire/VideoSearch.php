@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Video;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class VideoSearch extends Component
 {
