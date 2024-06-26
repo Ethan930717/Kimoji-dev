@@ -81,17 +81,17 @@ class Video extends Model
     // 缓存到 Redis
     public static function cacheToRedis()
     {
-        $videos = self::all()->chunk(1000);
+        $videos = self::all()->chunk(50);
 
         $i = 0;
         foreach ($videos as $chunk) {
             $data = $chunk->toJson();
-            Redis::set("videos:all:chunk_{$i}", $data);
+            Redis::set("videos:page:{$i}", $data);
             $i++;
         }
 
-        // 设置总块数
-        Redis::set('videos:all:chunks', $i);
+        // 设置总页数
+        Redis::set('videos:pages', $i);
     }
 
     // 从 Redis 获取数据

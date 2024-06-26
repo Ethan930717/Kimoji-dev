@@ -34,7 +34,8 @@ class VideoSearch extends Component
 
     public function render()
     {
-        $videos = collect(Video::getFromRedis());
+        // 从 Redis 获取分页数据
+        $videos = collect(Video::getFromRedis($this->page, 50));
 
         if (!empty($this->search)) {
             $searchTerms = $this->prepareSearchTerms($this->search);
@@ -51,6 +52,7 @@ class VideoSearch extends Component
 
         $videos = $videos->sortBy($this->sortField, SORT_REGULAR, $this->sortDirection === 'desc');
 
+        // 手动分页
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $perPage = 50;
         $currentItems = $videos->slice(($currentPage - 1) * $perPage, $perPage)->all();

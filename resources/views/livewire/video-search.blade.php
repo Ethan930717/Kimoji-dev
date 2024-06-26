@@ -21,7 +21,9 @@
             </div>
         </div>
     </header>
+
     {{ $videos->links('partials.pagination') }}
+
     <div class="panel__body" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2rem;">
         <table class="data-table">
             <thead>
@@ -69,11 +71,12 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="7">{{ __('No Result') }}</td>
+                    <td colspan="6">{{ __('No Result') }}</td>
                 </tr>
             @endforelse
             </tbody>
         </table>
     </div>
+
     {{ $videos->links('partials.pagination') }}
 </section>
