@@ -601,6 +601,17 @@
                         {{ __('staff.warnings-log') }}
                     </a>
                 </p>
+                @if (auth()->user()->group->is_owner)
+                    <p class="form__group form__group--horizontal">
+                        <a
+                            class="form__button form__button--text"
+                            href="{{ route('staff.secret_garden_logs.index') }}"
+                        >
+                            <i class="fa fa-file"></i>
+                            {{ __('secret_garden.logs') }}
+                        </a>
+                    </p>
+                @endif
             </div>
         </section>
     </div>

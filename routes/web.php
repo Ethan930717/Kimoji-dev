@@ -1075,6 +1075,14 @@ Route::middleware('language')->group(function (): void {
             });
         });
 
+        // Secret Garden Logs
+        Route::prefix('secret-garden-logs')->group(function (): void {
+            Route::name('secret_garden_logs.')->group(function (): void {
+                Route::get('/', [App\Http\Controllers\Staff\SecretGardenLogController::class, 'index'])->name('index');
+            });
+        });
+
+
         // Internals System
         Route::prefix('internals')->group(function (): void {
             Route::name('internals.')->group(function (): void {
