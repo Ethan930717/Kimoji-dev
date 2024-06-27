@@ -12,10 +12,7 @@ class VideoController extends Controller
 {
     public function index()
     {
-        $videos = Cache::remember('videos_all', 60, function () {
-            return Video::all();
-        });
-
+        $videos = Video::all();
         return view('secretgarden.video.index', compact('videos'));
     }
 

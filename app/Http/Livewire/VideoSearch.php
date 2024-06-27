@@ -34,10 +34,9 @@ class VideoSearch extends Component
 
     public function render()
     {
-        if (!empty($this->search)) {
-            // 从数据库获取所有数据进行搜索
-            $videos = Video::all();
+        $videos = collect(Video::getFromRedis());
 
+        if (!empty($this->search)) {
             $searchTerms = $this->prepareSearchTerms($this->search);
 
             $videos = $videos->filter(function ($video) use ($searchTerms) {
@@ -48,34 +47,21 @@ class VideoSearch extends Component
                 }
                 return true;
             });
-
-            // 如果搜索结果超过100个，则进行分页
-            if ($videos->count() > 100) {
-                $currentPage = LengthAwarePaginator::resolveCurrentPage();
-                $perPage = 50;
-                $currentItems = $videos->slice(($currentPage - 1) * $perPage, $perPage)->all();
-
-                $paginatedItems = new LengthAwarePaginator($currentItems, $videos->count(), $perPage, $currentPage, [
-                    'path' => LengthAwarePaginator::resolveCurrentPath(),
-                ]);
-
-                return view('livewire.video-search', [
-                    'videos' => $paginatedItems,
-                ]);
-            }
-
-            // 如果搜索结果不超过100个，则不分页
-            return view('livewire.video-search', [
-                'videos' => $videos->take(100),
-            ]);
-        } else {
-            // 从数据库获取最新的100个视频
-            $videos = Video::orderBy('release_date', 'desc')->take(100)->get();
-
-            return view('livewire.video-search', [
-                'videos' => $videos,
-            ]);
         }
+
+        $videos = $videos->sortBy($this->sortField, SORT_REGULAR, $this->sortDirection === 'desc');
+
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $perPage = 50;
+        $currentItems = $videos->slice(($currentPage - 1) * $perPage, $perPage)->all();
+
+        $paginatedItems = new LengthAwarePaginator($currentItems, $videos->count(), $perPage, $currentPage, [
+            'path' => LengthAwarePaginator::resolveCurrentPath(),
+        ]);
+
+        return view('livewire.video-search', [
+            'videos' => $paginatedItems,
+        ]);
     }
 
     protected function prepareSearchTerms($term)
@@ -88,3 +74,4 @@ class VideoSearch extends Component
         return str_split($term);
     }
 }
+
