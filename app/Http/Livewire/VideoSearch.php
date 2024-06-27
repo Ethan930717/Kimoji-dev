@@ -35,8 +35,8 @@ class VideoSearch extends Component
     public function render()
     {
         if (!empty($this->search)) {
-            // 从 Redis 获取所有数据进行搜索
-            $videos = collect(Video::getFromRedis());
+            // 从数据库获取所有数据进行搜索
+            $videos = Video::all();
 
             $searchTerms = $this->prepareSearchTerms($this->search);
 
@@ -69,8 +69,8 @@ class VideoSearch extends Component
                 'videos' => $videos->take(100),
             ]);
         } else {
-            // 从 Redis 获取最新的100个视频
-            $videos = collect(Video::getLatestFromRedis(100));
+            // 从数据库获取最新的100个视频
+            $videos = Video::orderBy('release_date', 'desc')->take(100)->get();
 
             return view('livewire.video-search', [
                 'videos' => $videos,
