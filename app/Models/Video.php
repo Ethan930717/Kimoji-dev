@@ -110,6 +110,22 @@ class Video extends Model
         });
     }
 
+    public static function getLatestFromRedis($count)
+    {
+        $chunks = Redis::get('videos:all:chunks');
+        $videos = collect();
+
+        for ($i = 0; $i < $chunks; $i++) {
+            $data = Redis::get("videos:all:chunk_{$i}");
+            $videos = $videos->merge(json_decode($data, true));
+        }
+
+        // 只返回最新的 $count 个视频
+        return $videos->sortByDesc('release_date')->take($count)->map(function ($video) {
+            return (object) $video;
+        });
+    }
+
     // 在模型事件中刷新缓存
     protected static function booted()
     {
@@ -125,6 +141,9 @@ class Video extends Model
             self::cacheToRedis();
         });
     }
+
+
+
 }
 
 
