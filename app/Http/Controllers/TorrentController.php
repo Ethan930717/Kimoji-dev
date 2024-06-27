@@ -291,9 +291,6 @@ class TorrentController extends Controller
 
         PrivateMessage::insert($pms);
 
-        // 删除种子相关的图片和音频文件
-        $this->deleteTorrentFiles($torrent);
-
         // Reset Requests
         $torrent->requests()->update([
             'torrent_id' => null,
@@ -329,32 +326,6 @@ class TorrentController extends Controller
 
         return to_route('torrents.index')
             ->withSuccess('种子删除成功');
-    }
-
-    protected function deleteTorrentFiles($torrent)
-    {
-        // 删除描述中的图片文件
-        $description = $torrent->description;
-        if ($description) {
-            preg_match_all('/\[img\](https:\/\/kimoji\.club\/image\/.+?)\[\/img\]/', $description, $matches);
-            foreach ($matches[1] as $url) {
-                $path = str_replace('https://kimoji.club', '/var/www/html/public', $url);
-                if (file_exists($path)) {
-                    unlink($path);
-                    echo "Deleted image file: $path\n";
-                }
-            }
-        }
-
-        // 删除音乐文件
-        $musicUrl = $torrent->music_url;
-        if ($musicUrl) {
-            $path = str_replace('https://kimoji.club', '/var/www/html/public', $musicUrl);
-            if (file_exists($path)) {
-                unlink($path);
-                echo "Deleted audio file: $path\n";
-            }
-        }
     }
 
     /**
