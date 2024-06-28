@@ -46,7 +46,7 @@
                            data-fancybox="gallery"
                            data-caption="{{ $video->item_number }}">
                             <img
-                                class="video-poster"
+                                class="video-poster gallery-image"
                                 alt="{{ $video->item_number }}"
                                 src="{{ url('secretgarden/poster/' . $video->poster_url) }}"
                                 style="width: 100%; max-width: 200px; height: auto; cursor: pointer;"
