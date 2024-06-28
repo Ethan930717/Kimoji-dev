@@ -22,7 +22,9 @@
         </div>
     </header>
 
-    {{ $videos->links('partials.pagination') }}
+    @if ($videos instanceof \Illuminate\Pagination\LengthAwarePaginator)
+        {{ $videos->links('partials.pagination') }}
+    @endif
 
     <div class="panel__body" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2rem;">
         <table class="data-table">
@@ -40,13 +42,16 @@
             @forelse ($videos as $video)
                 <tr>
                     <td>
-                        <img
-                            class="video-poster"
-                            alt="{{ $video->item_number }}"
-                            src="{{ url('secretgarden/poster/' . $video->poster_url) }}"
-                            style="width: 100%; max-width: 200px; height: auto; cursor: pointer;"
-                            data-fancybox="gallery"
-                        />
+                        <a href="{{ url('secretgarden/poster/' . $video->poster_url) }}"
+                           data-fancybox="gallery"
+                           data-caption="{{ $video->item_number }}">
+                            <img
+                                class="video-poster"
+                                alt="{{ $video->item_number }}"
+                                src="{{ url('secretgarden/poster/' . $video->poster_url) }}"
+                                style="width: 100%; max-width: 200px; height: auto; cursor: pointer;"
+                            />
+                        </a>
                     </td>
                     <td style="white-space: nowrap;">
                         <a href="{{ route('secretgarden.actor.show', ['id' => $video->actor_id]) }}">
@@ -78,5 +83,7 @@
         </table>
     </div>
 
-    {{ $videos->links('partials.pagination') }}
+    @if ($videos instanceof \Illuminate\Pagination\LengthAwarePaginator)
+        {{ $videos->links('partials.pagination') }}
+    @endif
 </section>

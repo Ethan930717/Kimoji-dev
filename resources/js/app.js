@@ -172,5 +172,10 @@ function bindClickEvents() {
     Fancybox.defaults.Hash = false;
     Fancybox.defaults.backFocus = false;
     Fancybox.defaults.trapFocus = false;
-    Fancybox.bind('[data-fancybox="gallery"]');
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        caption : function(fancybox, carousel, slide) {
+            return slide.$trigger.dataset.caption || '';
+        }
+    });
 }
