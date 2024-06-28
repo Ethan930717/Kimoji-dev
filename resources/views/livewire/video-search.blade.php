@@ -43,8 +43,7 @@
                 <tr>
                     <td>
                         <a href="{{ url('secretgarden/poster/' . $video->poster_url) }}"
-                           data-fancybox="gallery"
-                           data-caption="{{ $video->item_number }}">
+                           data-fancybox="gallery">
                             <img
                                 class="video-poster gallery-image"
                                 alt="{{ $video->item_number }}"
