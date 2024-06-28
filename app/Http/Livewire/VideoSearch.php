@@ -34,9 +34,12 @@ class VideoSearch extends Component
 
     public function render()
     {
-        $videos = collect(Video::getFromRedis());
+        $videos = collect(); // 默认不加载任何视频数据
 
         if (!empty($this->search)) {
+            // 从 Redis 获取数据
+            $videos = collect(Video::getFromRedis());
+
             $searchTerms = $this->prepareSearchTerms($this->search);
 
             $videos = $videos->filter(function ($video) use ($searchTerms) {
@@ -47,17 +50,20 @@ class VideoSearch extends Component
                 }
                 return true;
             });
+
+            $videos = $videos->sortBy($this->sortField, SORT_REGULAR, $this->sortDirection === 'desc');
+
+            $currentPage = LengthAwarePaginator::resolveCurrentPage();
+            $perPage = 50;
+            $currentItems = $videos->slice(($currentPage - 1) * $perPage, $perPage)->all();
+
+            $paginatedItems = new LengthAwarePaginator($currentItems, $videos->count(), $perPage, $currentPage, [
+                'path' => LengthAwarePaginator::resolveCurrentPath(),
+            ]);
+        } else {
+            // 没有搜索词时不进行分页
+            $paginatedItems = collect();
         }
-
-        $videos = $videos->sortBy($this->sortField, SORT_REGULAR, $this->sortDirection === 'desc');
-
-        $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $perPage = 50;
-        $currentItems = $videos->slice(($currentPage - 1) * $perPage, $perPage)->all();
-
-        $paginatedItems = new LengthAwarePaginator($currentItems, $videos->count(), $perPage, $currentPage, [
-            'path' => LengthAwarePaginator::resolveCurrentPath(),
-        ]);
 
         return view('livewire.video-search', [
             'videos' => $paginatedItems,
@@ -74,4 +80,3 @@ class VideoSearch extends Component
         return str_split($term);
     }
 }
-
