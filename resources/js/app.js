@@ -162,11 +162,6 @@ function bindClickEvents() {
         });
     });
 
-    // 为 gallery-image 元素添加点击事件
-    const galleryImages = document.querySelectorAll('.gallery-image');
-    galleryImages.forEach(image => {
-        image.setAttribute('data-fancybox', 'gallery');
-    });
 
     // 绑定Fancybox到所有带有data-fancybox属性的元素
     Fancybox.defaults.Hash = false;

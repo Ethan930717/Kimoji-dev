@@ -45,7 +45,7 @@
                         <a href="{{ url('secretgarden/poster/' . $video->poster_url) }}"
                            data-fancybox="gallery">
                             <img
-                                class="video-poster gallery-image"
+                                class="video-poster"
                                 alt="{{ $video->item_number }}"
                                 src="{{ url('secretgarden/poster/' . $video->poster_url) }}"
                                 style="width: 100%; max-width: 200px; height: auto; cursor: pointer;"
