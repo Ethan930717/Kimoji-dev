@@ -42,15 +42,13 @@
             @forelse ($videos as $video)
                 <tr>
                     <td>
-                        <a href="{{ url('secretgarden/poster/' . $video->poster_url) }}"
-                           data-fancybox="gallery">
-                            <img
-                                class="video-poster"
-                                alt="{{ $video->item_number }}"
-                                src="{{ url('secretgarden/poster/' . $video->poster_url) }}"
-                                style="width: 100%; max-width: 200px; height: auto; cursor: pointer;"
-                            />
-                        </a>
+                        <img
+                            class="video-poster"
+                            data-fancybox="gallery"
+                            alt="{{ $video->item_number }}"
+                            src="{{ url('secretgarden/poster/' . $video->poster_url) }}"
+                            style="width: 100%; max-width: 200px; height: auto; cursor: pointer;"
+                        />
                     </td>
                     <td style="white-space: nowrap;">
                         <a href="{{ route('secretgarden.actor.show', ['id' => $video->actor_id]) }}">
