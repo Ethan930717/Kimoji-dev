@@ -115,10 +115,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function bindClickEvents() {
     // 为所有设置了 data-fancybox 属性的图片添加点击事件
-    document.querySelectorAll('img[data-fancybox="gallery"]').forEach(img => {
-        img.addEventListener('click', function() {
+    document.querySelectorAll('[data-fancybox="gallery"]').forEach(img => {
+        img.addEventListener('click', function(event) {
+            event.preventDefault();  // 阻止默认行为，特别是如果 img 包裹在 a 标签内
             // Fancybox 会根据 data-fancybox 属性自动处理这些图片
-            Fancybox.show([{ src: img.getAttribute('data-src'), type: 'image' }]);
+            Fancybox.show([{ src: img.getAttribute('data-src') || img.src, type: 'image' }]);
         });
     });
 
