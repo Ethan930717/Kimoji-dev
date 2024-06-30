@@ -54,9 +54,7 @@
         @foreach ($images as $index => $image)
             <div class="image-container">
                 <section class="panelV2 panel--grid-item">
-                    <a href="{{ asset($image->url) }}" data-fancybox="gallery" data-caption="{{ pathinfo($image->name, PATHINFO_FILENAME) }}">
-                        <img class="thumbnail lazy" data-src="{{ asset($image->url) }}" alt="缩略图">
-                    </a>
+                    <img class="thumbnail lazy" data-fancybox="gallery" data-caption="{{ pathinfo($image->name, PATHINFO_FILENAME) }}" data-src="{{ asset($image->url) }}" alt="缩略图" style="cursor: pointer;">
                 </section>
                 <div class="image-title">{{ pathinfo($image->name, PATHINFO_FILENAME) }}</div>
             </div>
