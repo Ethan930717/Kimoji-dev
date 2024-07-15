@@ -81,10 +81,10 @@
                 Latest Update: {{ $latestUpdate }}
                 <i class="{{ config('other.font-awesome') }} fa-star"></i>
             </div>
-            <div class="mediahub-card__list-item">
-                <button id="show-latest-100" class="mediahub-card__heading">Show Latest 100</button>
+            <div style="text-align: center; margin-top: 20px;">
+                <button id="show-latest-100" style="font-size: 18px;">Show Latest 100</button>
             </div>
-            <div id="loading-message" class="mediahub-card__subheading">
+            <div id="loading-message" style="text-align: center; display: none; margin-top: 20px;">
                 Loading...
             </div>
             <div id="latest-100-videos" class="panel__body torrent-search--card__results" style="display: none;">
