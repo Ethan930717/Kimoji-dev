@@ -108,6 +108,10 @@ Route::middleware('language')->group(function (): void {
                 // Video Tags
                 Route::get('/video-tags', [App\Http\Controllers\SecretGarden\VideoTagController::class, 'index'])->name('video_tags.index');
                 Route::get('/tag/{id}', [App\Http\Controllers\SecretGarden\VideoTagController::class, 'show'])->name('video_tags.show');
+
+                // Add new route for latest 100 videos
+                Route::get('/latest100', [App\Http\Controllers\SecretGarden\HomeController::class, 'latest100'])->name('latest100');
+
             });
 
 

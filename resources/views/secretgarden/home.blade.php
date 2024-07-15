@@ -81,6 +81,39 @@
                 Latest Update: {{ $latestUpdate }}
                 <i class="{{ config('other.font-awesome') }} fa-star"></i>
             </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button id="show-latest-100" style="font-size: 18px;">Show Latest 100</button>
+            </div>
+            <div id="loading-message" style="text-align: center; display: none; margin-top: 20px;">
+                Loading...
+            </div>
+            <div id="latest-100-videos" class="panel__body torrent-search--card__results" style="display: none;">
+                <!-- Latest 100 videos will be loaded here -->
+            </div>
         </div>
     </section>
+
+    <script>
+        document.getElementById('show-latest-100').addEventListener('click', function() {
+            const button = this;
+            const loadingMessage = document.getElementById('loading-message');
+            const latest100VideosContainer = document.getElementById('latest-100-videos');
+
+            button.style.display = 'none';
+            loadingMessage.style.display = 'block';
+
+            fetch('{{ route('secretgarden.latest100') }}')
+                .then(response => response.json())
+                .then(data => {
+                    loadingMessage.style.display = 'none';
+                    latest100VideosContainer.style.display = 'block';
+                    latest100VideosContainer.innerHTML = data.html;
+                })
+                .catch(error => {
+                    loadingMessage.style.display = 'none';
+                    button.style.display = 'block';
+                    console.error('Error:', error);
+                });
+        });
+    </script>
 @endsection

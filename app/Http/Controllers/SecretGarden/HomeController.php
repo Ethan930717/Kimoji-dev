@@ -10,6 +10,7 @@ use App\Models\VideoMaker;
 use App\Models\VideoLabel;
 use App\Models\VideoSeries;
 use App\Models\VideoTag;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -19,7 +20,6 @@ class HomeController extends Controller
      */
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
-
         $latestUpdate = Video::max('release_date');
 
         return view('secretgarden.home', [
@@ -32,5 +32,16 @@ class HomeController extends Controller
             'tagsCount'        => VideoTag::count(),
             'latestUpdate'     => $latestUpdate,
         ]);
+    }
+
+    /**
+     * Return the latest 100 videos.
+     */
+    public function latest100(): \Illuminate\Http\JsonResponse
+    {
+        $videos = Video::orderBy('release_date', 'desc')->take(100)->get();
+        $html = view('secretgarden.partials.latest_videos', compact('videos'))->render();
+
+        return response()->json(['html' => $html]);
     }
 }
