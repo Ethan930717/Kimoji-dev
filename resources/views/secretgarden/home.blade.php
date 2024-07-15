@@ -82,7 +82,7 @@
                 <i class="{{ config('other.font-awesome') }} fa-star"></i>
             </div>
             <div style="text-align: center; margin-top: 20px;">
-                <button id="show-latest-100" style="font-size: 18px;">Show Latest 100</button>
+                <button id="show-latest-100" class="glass-button" style="font-size: 20px;">Show Latest 100</button>
             </div>
             <div id="loading-message" style="text-align: center; display: none; margin-top: 20px;">
                 Loading...
@@ -93,27 +93,57 @@
         </div>
     </section>
 
+    <style>
+        .glass-button {
+            font-size: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            color: #fff;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: background 0.3s ease, border 0.3s ease;
+        }
+
+        .glass-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+    </style>
+
     <script>
         document.getElementById('show-latest-100').addEventListener('click', function() {
             const button = this;
             const loadingMessage = document.getElementById('loading-message');
             const latest100VideosContainer = document.getElementById('latest-100-videos');
 
-            button.style.display = 'none';
-            loadingMessage.style.display = 'block';
+            if (latest100VideosContainer.style.display === 'none') {
+                button.innerText = 'Hide Latest 100';
+                loadingMessage.style.display = 'block';
+                latest100VideosContainer.style.display = 'none';
 
-            fetch('{{ route('secretgarden.latest100') }}')
-                .then(response => response.json())
-                .then(data => {
+                if (!latest100VideosContainer.hasChildNodes()) {
+                    fetch('{{ route('secretgarden.latest100') }}')
+                        .then(response => response.json())
+                        .then(data => {
+                            loadingMessage.style.display = 'none';
+                            latest100VideosContainer.style.display = 'block';
+                            latest100VideosContainer.innerHTML = data.html;
+                        })
+                        .catch(error => {
+                            loadingMessage.style.display = 'none';
+                            button.style.display = 'block';
+                            console.error('Error:', error);
+                        });
+                } else {
                     loadingMessage.style.display = 'none';
                     latest100VideosContainer.style.display = 'block';
-                    latest100VideosContainer.innerHTML = data.html;
-                })
-                .catch(error => {
-                    loadingMessage.style.display = 'none';
-                    button.style.display = 'block';
-                    console.error('Error:', error);
-                });
+                }
+            } else {
+                button.innerText = 'Show Latest 100';
+                latest100VideosContainer.style.display = 'none';
+            }
         });
     </script>
 @endsection
