@@ -82,9 +82,9 @@
                 <i class="{{ config('other.font-awesome') }} fa-star"></i>
             </div>
             <div style="text-align: center; margin-top: 20px;">
-                <button id="show-latest-100" class="mediahub-card__list-item">Show Latest 100</button>
+                <button id="show-latest-100" class="glass-button" style="font-size: 20px;">Show Latest 100</button>
             </div>
-            <div id="loading-message" class="mediahub-card__heading" style="text-align: center; display: none; margin-top: 20px;">
+            <div id="loading-message" style="text-align: center; display: none; margin-top: 20px;">
                 Loading...
             </div>
             <div id="latest-100-videos" class="panel__body torrent-search--card__results" style="display: none;">
@@ -92,6 +92,25 @@
             </div>
         </div>
     </section>
+
+    <style>
+        .glass-button {
+            font-size: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            color: #fff;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: background 0.3s ease, border 0.3s ease;
+        }
+
+        .glass-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+    </style>
 
     <script>
         document.getElementById('show-latest-100').addEventListener('click', function() {
