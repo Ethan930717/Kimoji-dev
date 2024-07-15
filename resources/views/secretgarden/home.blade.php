@@ -81,10 +81,10 @@
                 Latest Update: {{ $latestUpdate }}
                 <i class="{{ config('other.font-awesome') }} fa-star"></i>
             </div>
-            <div style="text-align: center; margin-top: 20px;">
-                <button id="show-latest-100" class="glass-button" style="font-size: 20px;">Show Latest 100</button>
+            <div class="mediahub-card__list-item">
+                <button id="show-latest-100" class="mediahub-card__heading">Show Latest 100</button>
             </div>
-            <div id="loading-message" style="text-align: center; display: none; margin-top: 20px;">
+            <div id="loading-message" class="mediahub-card__subheading">
                 Loading...
             </div>
             <div id="latest-100-videos" class="panel__body torrent-search--card__results" style="display: none;">
@@ -93,57 +93,27 @@
         </div>
     </section>
 
-    <style>
-        .glass-button {
-            font-size: 20px;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 15px;
-            color: #fff;
-            backdrop-filter: blur(10px);
-            cursor: pointer;
-            transition: background 0.3s ease, border 0.3s ease;
-        }
-
-        .glass-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-    </style>
-
     <script>
         document.getElementById('show-latest-100').addEventListener('click', function() {
             const button = this;
             const loadingMessage = document.getElementById('loading-message');
             const latest100VideosContainer = document.getElementById('latest-100-videos');
 
-            if (latest100VideosContainer.style.display === 'none') {
-                button.innerText = 'Hide Latest 100';
-                loadingMessage.style.display = 'block';
-                latest100VideosContainer.style.display = 'none';
+            button.style.display = 'none';
+            loadingMessage.style.display = 'block';
 
-                if (!latest100VideosContainer.hasChildNodes()) {
-                    fetch('{{ route('secretgarden.latest100') }}')
-                        .then(response => response.json())
-                        .then(data => {
-                            loadingMessage.style.display = 'none';
-                            latest100VideosContainer.style.display = 'block';
-                            latest100VideosContainer.innerHTML = data.html;
-                        })
-                        .catch(error => {
-                            loadingMessage.style.display = 'none';
-                            button.style.display = 'block';
-                            console.error('Error:', error);
-                        });
-                } else {
+            fetch('{{ route('secretgarden.latest100') }}')
+                .then(response => response.json())
+                .then(data => {
                     loadingMessage.style.display = 'none';
                     latest100VideosContainer.style.display = 'block';
-                }
-            } else {
-                button.innerText = 'Show Latest 100';
-                latest100VideosContainer.style.display = 'none';
-            }
+                    latest100VideosContainer.innerHTML = data.html;
+                })
+                .catch(error => {
+                    loadingMessage.style.display = 'none';
+                    button.style.display = 'block';
+                    console.error('Error:', error);
+                });
         });
     </script>
 @endsection
