@@ -32,6 +32,7 @@
         "league/flysystem-aws-s3-v3": "^3.22",
         "livewire/livewire": "^2.12.6",
         "marcreichel/igdb-laravel": "^3.8.1",
+        "overtrue/pinyin": "^5.3",
         "paragonie/constant_time_encoding": "^2.6.3",
         "spatie/laravel-backup": "^8.4.1",
         "spatie/laravel-cookie-consent": "^3.2.4",

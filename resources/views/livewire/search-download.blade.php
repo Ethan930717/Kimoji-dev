@@ -1,55 +1,43 @@
 <div class="panelV2">
-    <header class="panel__header">
+    <section class="panelV2">
         <h2 class="panel__heading">{{ __('search.title') }}</h2>
-        <div class="panel__actions">
-            <div class="panel__action">
-                <div class="form__group">
-                    <input
-                        id="name"
-                        class="form__text"
-                        placeholder="{{ __('search.placeholder') }}"
-                        type="text"
-                        wire:model.debounce.250ms="query"
-                    />
-                    <label class="form__label form__label--floating" for="name">
-                        {{ __('search.label') }}
-                    </label>
-                    <div wire:loading wire:target="query">
-                        <span style="font-size: 12px">{{ __('search.searching') }}...</span>
-                    </div>
-                </div>
+        <form wire:submit.prevent="search">
+            <div class="form__group">
+                <input type="text" wire:model="query" class="form__input" placeholder="{{ __('search.placeholder') }}" required>
+                <button type="submit" class="form__button">{{ __('search.button') }}</button>
             </div>
-        </div>
-    </header>
+        </form>
+    </section>
 
-    @if ($results)
-        <div class="panel__body" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2rem;">
-            <table class="data-table">
-                <thead>
-                <tr>
-                    <th>{{ __('Cover') }}</th>
-                    <th style="white-space: nowrap;">{{ __('Title') }}</th>
-                    <th style="white-space: nowrap;">{{ __('Artist') }}</th>
-                    <th>{{ __('Category') }}</th>
-                    <th style="white-space: nowrap;">{{ __('Download') }}</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach ($results as $result)
+    @if($results)
+        <div class="panelV2">
+            <h2 class="panel__heading">{{ __('search.results') }}</h2>
+            <div class="panel__body" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2rem;">
+                <table class="data-table">
+                    <thead>
                     <tr>
-                        <td>
-                            <img class="album-cover" src="{{ $result['cover'] }}" alt="{{ $result['title'] }}" style="width: 100%; max-width: 200px; height: auto; cursor: pointer;" />
-                        </td>
-                        <td style="white-space: nowrap;">{{ $result['title'] }}</td>
-                        <td style="white-space: nowrap;">{{ $result['artist'] }}</td>
-                        <td>{{ $result['category'] }}</td>
-                        <td style="white-space: nowrap;">
-                            <button class="form__button" wire:click="setDownloadUrl('{{ $result['url'] }}')">{{ __('Request') }}</button>
-                        </td>
+                        <th>{{ __('Cover') }}</th>
+                        <th style="white-space: nowrap;">{{ __('Title') }}</th>
+                        <th style="white-space: nowrap;">{{ __('Artist') }}</th>
+                        <th>{{ __('Category') }}</th>
+                        <th style="white-space: nowrap;">{{ __('Download') }}</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($results as $result)
+                        <tr>
+                            <td>
+                                <img class="album-cover" data-fancybox="gallery" src="{{ $result['cover'] }}" alt="{{ $result['title'] }}" style="width: 100%; max-width: 200px; height: auto; cursor: pointer;" />
+                            </td>
+                            <td style="white-space: nowrap;">{{ $result['title'] }}</td>
+                            <td style="white-space: nowrap;">{{ $result['artist'] }}</td>
+                            <td style="white-space: nowrap;"> <p class="data">{{ $result['category'] }}</p></td>
+                            <td style="white-space: nowrap;"> <button class="form__button" wire:click="setDownloadUrl('{{ $result['url'] }}')">{{ __('Request') }}</button></td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div class="pagination">
@@ -70,7 +58,7 @@
         </div>
     @endif
 
-    @if ($downloadUrl)
+    @if($downloadUrl)
         <section class="panelV2">
             <h2 class="panel__heading">{{ __('download.title') }}</h2>
             <div class="form__group">
