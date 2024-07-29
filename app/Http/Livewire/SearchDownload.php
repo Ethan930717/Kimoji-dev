@@ -10,17 +10,22 @@ class SearchDownload extends Component
     public $query;
     public $results = [];
     public $downloadUrl;
+    public $page = 1;
+    public $totalResults = 0;
+    public $perPage = 20; // 每页默认20个结果
 
     public function search()
     {
         $response = Http::get('https://www.qobuz.com/fr-fr/search', [
             'q' => $this->query,
+            'page' => $this->page,
         ]);
 
         $html = $response->body();
 
         // 解析 HTML 内容
         $this->results = $this->parseResults($html);
+        $this->totalResults = $this->getTotalResults($html);
     }
 
     public function parseResults($html)
@@ -56,6 +61,23 @@ class SearchDownload extends Component
         return $results;
     }
 
+    public function getTotalResults($html)
+    {
+        $dom = new \DOMDocument();
+        @$dom->loadHTML($html);
+
+        $xpath = new \DOMXPath($dom);
+        $totalResultsNode = $xpath->query('//div[@class="search-result-info"]/b')->item(0);
+
+        return $totalResultsNode ? (int)$totalResultsNode->nodeValue : 0;
+    }
+
+    public function setPage($page)
+    {
+        $this->page = $page;
+        $this->search();
+    }
+
     public function setDownloadUrl($url)
     {
         $this->downloadUrl = 'https://www.qobuz.com' . $url;
@@ -64,16 +86,25 @@ class SearchDownload extends Component
     public function download()
     {
         // 这里调用你的 Python 脚本来下载专辑
-        $scriptPath = storage_path('app/OrpheusDL_qobuz/orpheus.py');
+        $scriptPath = base_path('app/OrpheusDL_qobuz/orpheus.py');
         $command = "python3 $scriptPath '{$this->downloadUrl}'";
-        exec($command);
+        exec($command, $output, $return_var);
 
-        session()->flash('message', '专辑下载已开始。');
+        if ($return_var === 0) {
+            session()->flash('message', '专辑下载已开始。');
+        } else {
+            session()->flash('message', '专辑下载失败，请稍后重试。');
+        }
     }
 
     public function render()
     {
-        return view('livewire.search-download');
+        return view('livewire.search-download', [
+            'results' => $this->results,
+            'totalResults' => $this->totalResults,
+            'perPage' => $this->perPage,
+            'currentPage' => $this->page,
+        ]);
     }
 }
 
