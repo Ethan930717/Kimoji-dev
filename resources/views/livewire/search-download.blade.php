@@ -1,41 +1,28 @@
-<section class="panelV2">
+<div class="panelV2">
     <header class="panel__header">
-        <h2 class="panel__heading">Requests</h2>
+        <h2 class="panel__heading">{{ __('search.title') }}</h2>
         <div class="panel__actions">
             <div class="panel__action">
-                <form wire:submit.prevent="search">
                 <div class="form__group">
                     <input
-                        type="text"
+                        id="name"
                         class="form__text"
-                        placeholder=" "
-                        wire:model="query"
-                        required
+                        placeholder="{{ __('search.placeholder') }}"
+                        type="text"
+                        wire:model.debounce.250ms="query"
                     />
-                    <button type="submit" class="form__button">{{ __('Search') }}</button>
+                    <label class="form__label form__label--floating" for="name">
+                        {{ __('search.label') }}
+                    </label>
+                    <div wire:loading wire:target="query">
+                        <span style="font-size: 12px">{{ __('search.searching') }}...</span>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <div class="pagination">
-        @if ($totalResults > $perPage)
-            @php
-                $totalPages = ceil($totalResults / $perPage);
-            @endphp
-            <nav>
-                <ul class="pagination">
-                    @for ($i = 1; $i <= $totalPages; $i++)
-                        <li class="page-item {{ $i == $currentPage ? 'active' : '' }}">
-                            <a class="page-link" wire:click.prevent="setPage({{ $i }})" href="#">{{ $i }}</a>
-                        </li>
-                    @endfor
-                </ul>
-            </nav>
-        @endif
-    </div>
-
-    @if($results)
+    @if ($results)
         <div class="panel__body" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2rem;">
             <table class="data-table">
                 <thead>
@@ -48,28 +35,42 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($results as $result)
+                @foreach ($results as $result)
                     <tr>
                         <td>
-                            <img
-                                class="album-cover"
-                                data-fancybox="gallery"
-                                src="{{ $result['cover'] }}" alt="{{ $result['title'] }}"
-                                style="width: 100%; max-width: 200px; height: auto; cursor: pointer;"
-                            />
+                            <img class="album-cover" src="{{ $result['cover'] }}" alt="{{ $result['title'] }}" style="width: 100%; max-width: 200px; height: auto; cursor: pointer;" />
                         </td>
                         <td style="white-space: nowrap;">{{ $result['title'] }}</td>
                         <td style="white-space: nowrap;">{{ $result['artist'] }}</td>
-                        <td style="white-space: nowrap;"> <p class="data">{{ $result['category'] }}</p></td>
-                        <td style="white-space: nowrap;"> <button class="form__button" wire:click="setDownloadUrl('{{ $result['url'] }}')">{{ __('Request') }}</button></td>
+                        <td>{{ $result['category'] }}</td>
+                        <td style="white-space: nowrap;">
+                            <button class="form__button" wire:click="setDownloadUrl('{{ $result['url'] }}')">{{ __('Request') }}</button>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
+
+        <div class="pagination">
+            @if ($totalResults > $perPage)
+                @php
+                    $totalPages = ceil($totalResults / $perPage);
+                @endphp
+                <nav>
+                    <ul class="pagination">
+                        @for ($i = 1; $i <= $totalPages; $i++)
+                            <li class="page-item {{ $i == $currentPage ? 'active' : '' }}">
+                                <a class="page-link" wire:click.prevent="setPage({{ $i }})" href="#">{{ $i }}</a>
+                            </li>
+                        @endfor
+                    </ul>
+                </nav>
+            @endif
+        </div>
     @endif
 
-    @if($downloadUrl)
+    @if ($downloadUrl)
         <section class="panelV2">
             <h2 class="panel__heading">{{ __('download.title') }}</h2>
             <div class="form__group">
@@ -84,22 +85,4 @@
             {{ session('message') }}
         </div>
     @endif
-
-    <div class="pagination">
-        @if ($totalResults > $perPage)
-            @php
-                $totalPages = ceil($totalResults / $perPage);
-            @endphp
-            <nav>
-                <ul class="pagination">
-                    @for ($i = 1; $i <= $totalPages; $i++)
-                        <li class="page-item {{ $i == $currentPage ? 'active' : '' }}">
-                            <a class="page-link" wire:click.prevent="setPage({{ $i }})" href="#">{{ $i }}</a>
-                        </li>
-                    @endfor
-                </ul>
-            </nav>
-        @endif
-    </div>
-
-</section>
+</div>
