@@ -11,5 +11,5 @@
 @endsection
 
 @section('content')
-    @livewire('torrent-request-search')
+    @livewire('search-download')
 @endsection

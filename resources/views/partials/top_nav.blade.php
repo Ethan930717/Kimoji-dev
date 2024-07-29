@@ -194,12 +194,12 @@
                 </div>
             </a>
             <ul>
-                <li>
+<!--                <li>
                     <a href="{{ route('requests.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-hands-helping"></i>
                         {{ __('request.requests') }}
                     </a>
-                </li>
+                </li>-->
                 <li>
                     <a href="{{ route('top10.index') }}">
                         <i class="{{ config('other.font-awesome') }} fa-trophy-alt"></i>
