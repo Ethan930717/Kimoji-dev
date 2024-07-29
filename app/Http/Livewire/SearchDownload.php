@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Http;
-use Overtrue\Pinyin\Pinyin;
 
 class SearchDownload extends Component
 {
@@ -17,12 +16,6 @@ class SearchDownload extends Component
 
     public function search()
     {
-        // 判断关键词是否包含简体中文，如果是则转换为繁体中文
-        if (preg_match('/\p{Han}+/u', $this->query)) {
-            $pinyin = new Pinyin();
-            $this->query = $pinyin->convert($this->query, PINYIN_TW);
-        }
-
         $response = Http::get('https://www.qobuz.com/fr-fr/search', [
             'q' => $this->query,
             'page' => $this->page,
@@ -114,3 +107,4 @@ class SearchDownload extends Component
         ]);
     }
 }
+
